@@ -1,0 +1,62 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#new">New Bug</a></li>
+        <li><a href="#config">Configure</a></li>
+      </ul>
+   
+
+ <!-- DROPDOWN LOGIN STARTS HERE  -->
+    <ul id="signInDropdown" class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-default navbar-btn dropdown-toggle"><i class="glyphicon glyphicon-user color-blue"></i> Login <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+        <li>
+          <form class="navbar-form form" role="form">
+            <div class="form-group loginform">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                <!--EMAIL ADDRESS-->
+                <input id="emailInput" placeholder="email address" class="form-control" type="email" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
+              </div>
+            </div>           
+            <div class="form-group loginform">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock color-blue"></i></span>
+                <!--PASSWORD--> 
+                <input id="passwordInput" placeholder="password" class="form-control" type="password" oninvalid="setCustomValidity('Please enter a password!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
+              </div>
+            </div>
+            <!--  BASIC ERROR MESSAGE
+            <div class="form-group">
+              <label class="error-message color-red">*Email &amp; password don't match!</label>
+            </div>
+            -->
+            <div class="form-group loginform">
+              <!--BUTTON-->
+              <button type="submit" class="btn btn-primary form-control">Login</button></div>
+            <div class="form-group">
+              <!--RESET PASSWORD LINK-->
+              <span class="pull-right"><a href="#">Forgot Password?</a></span></div>
+          </form>
+        </li>
+      </ul>
+      </li>
+    </ul>
+    <!-- DROPDOWN LOGIN ENDS HERE  -->
+
+
+    </div><!--/.nav-collapse -->
+
+
+
+</div><!--/.navbar -->
