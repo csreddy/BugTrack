@@ -7,18 +7,21 @@ var app = angular.module('fullstackApp', [
     'ui.bootstrap',
     'ngRoute',
     'bug.controllers',
-    'bugConfig.services',
-    'bug.factory',
     'bug.services',
 	'user.controllers',
 	'user.services',
-	'flash.services'
+	'flash.services',
+    'navbar.controllers',
+    'search.services',
+    'bugconfig.services',
+    'modal.services',
+    'bugTexteditor.directive',
+    'search.controllers'
 ]);
   app.config(function($routeProvider, $locationProvider) {
         $routeProvider
-            .otherwise({
-                redirectTo: '/'
-            });
-
+        .otherwise({
+            redirectTo: '/'
+        });
         $locationProvider.html5Mode(true);
-    });
+    }); 

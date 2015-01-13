@@ -1,9 +1,8 @@
 'use strict';
 
-var app = angular.module('bugConfig.services', []);
-app.constant('RESTURL', 'http://' + location.hostname + ':' + location.port);
+var app = angular.module('bugconfig.services', []);
 
-app.factory('bugConfigFactory', ['$http', 'RESTURL',
+app.factory('bugConfig', ['$http', 'RESTURL',
     function($http, RESTURL) {
         // Service logic
         function updateConfiguration(payload) {

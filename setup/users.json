@@ -1,0 +1,134 @@
+[
+    {
+        "createdAt": "2014-05-26T17:29:56:18Z",
+        "email": "admin@mycompany.com",
+        "modifiedAt": "2014-05-16T03:54:37:15Z",
+        "name": "Admin User",
+        "password": "admin",
+        "username": "admin",
+		"savedQueries": {
+			"default": {}
+		}
+    },
+    {
+        "createdAt": "2014-05-26T17:29:56:18Z",
+        "email": "sreddy@mycompany.com",
+        "modifiedAt": "2014-05-16T03:54:37:15Z",
+        "name": "Sudhakar Reddy",
+        "password": "admin",
+        "username": "sreddy",
+		"savedQueries": {
+			"default": {}
+		}
+    },
+    {
+        "createdAt": "2014-05-26T17:29:56:18Z",
+        "email": "fullerbullock@mycompany.com",
+        "modifiedAt": "2014-05-16T03:54:37:15Z",
+        "name": "Fuller Bullock",
+        "password": "admin",
+        "username": "fbullock",
+		"savedQueries": {
+			"default": {}
+		}
+    },
+    {
+        "createdAt": "2014-03-21T15:04:02:888Z",
+        "email": "danagordon@mycompany.com",
+        "modifiedAt": "2014-04-14T19:40:27:519Z",
+        "name": "Dana Gordon",
+        "password": "admin",
+        "username": "dgordon",
+		"savedQueries": {
+			"default": {}
+		}
+    },
+    {
+        "createdAt": "2014-01-19T16:59:06:630Z",
+        "email": "guzmanwagner@mycompany.com",
+        "modifiedAt": "2014-04-29T15:05:05:162Z",
+        "name": "Guzman Wagner",
+        "password": "admin",
+        "username": "gwagner",
+		"savedQueries": {
+			"default": {}
+		}
+    },
+    {
+        "createdAt": "2014-02-28T02:22:55:677Z",
+        "email": "acevedokey@mycompany.com",
+        "modifiedAt": "2014-08-18T11:59:55:717Z",
+        "name": "Acevedo Key",
+        "password": "admin",
+        "username": "akey",
+		"savedQueries": {
+			"default": {}
+		}
+    },
+    {
+        "createdAt": "2014-02-14T13:44:03:388Z",
+        "email": "marciacompton@mycompany.com",
+        "modifiedAt": "2014-04-05T12:57:25:739Z",
+        "name": "Marcia Compton",
+        "password": "admin",
+        "username": "mcompton",
+		"savedQueries": {
+			"default": {}
+		}
+    },
+    {
+        "createdAt": "2014-06-20T15:08:03:991Z",
+        "email": "lessieperry@mycompany.com",
+        "modifiedAt": "2014-02-16T13:00:37:198Z",
+        "name": "Lessie Perry",
+        "password": "admin",
+        "username": "lperry",
+		"savedQueries": {
+			"default": {}
+		}
+    },
+    {
+        "createdAt": "2014-06-02T05:17:15:351Z",
+        "email": "shawnacombs@mycompany.com",
+        "modifiedAt": "2014-03-27T08:20:06:979Z",
+        "name": "Shawna Combs",
+        "password": "admin",
+        "username": "scombs",
+		"savedQueries": {
+			"default": {}
+		}
+    },
+    {
+        "createdAt": "2014-02-13T09:37:01:533Z",
+        "email": "rachaellowe@mycompany.com",
+        "modifiedAt": "2014-05-12T20:30:08:63Z",
+        "name": "Rachael Lowe",
+        "password": "admin",
+        "username": "rlowe",
+		"savedQueries": {
+			"default": {}
+		}
+    },
+    {
+        "createdAt": "2014-07-15T19:28:23:18Z",
+        "email": "saundraharmon@mycompany.com",
+        "modifiedAt": "2014-08-11T02:44:27:588Z",
+        "name": "Saundra Harmon",
+        "password": "admin",
+        "username": "sharmon",
+		"savedQueries": {
+			"default": {}
+		}
+    },
+    {
+        "createdAt": "2014-04-08T13:38:45:775Z",
+        "email": "wardhuffman@mycompany.com",
+        "modifiedAt": "2014-03-20T20:17:05:381Z",
+        "name": "Ward Huffman",
+        "password": "admin",
+        "username": "whuffman",
+		"savedQueries": {
+			"default": {}
+		}
+    }
+]

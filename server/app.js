@@ -22,12 +22,11 @@ var conn = require('./config/db-config.js').connection;
 var db = marklogic.createDatabaseClient(conn);
 var fs = require('fs');
 
-var routes = require('./routes/routes');
-var user = require('./routes/user');
-var bug = require('./routes/bug');
-var search = require('./routes/search');
-var login = require('./routes/login');
-
+//var routes = require('routes');
+//var user = require('./routes/user');
+//var bug = require('./routes/bug');
+//var search = require('./routes/search');
+//var login = require('./routes/login');
 
 // Setup server
 var app = express();
@@ -40,14 +39,14 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
 app.use(session({
-    name: 'test',
+    name: 'bugtrack',
     secret: 'mysecret',
     saveUninitialized: true,
     resave: true,
     cookie: {
         maxAge: 3600000
     },
-     rolling: true
+    rolling: true
 }));
 
 console.log('starting BugTrack.......');
@@ -74,47 +73,35 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new LocalStrategy(function(username, password, done) {
-    var url = 'http://' + username + ':' + password + '@localhost:8003/v1/search';
-    var userURI = 'http://localhost:8003/v1/documents?uri=/user/' + username + '.json';
-
-	console.log('userURI', userURI);
-    var options = {
-        method: 'GET',
-        url: userURI
-    };
-    request(options, function(error, response, body) {
-        if (error) {
-            return done(null, false, {
-                status: 503,
-                message: 'Database connection refused'
-            });
-        }
-
-        body = JSON.parse(body);
-        console.log('response = ', typeof body);
-        if (response.statusCode === 404) {
+    db.documents.read('/user/' + username + '.json').result(function(document) {
+        console.log('document', document);
+        if (document.length === 0) {
             return done(null, false, {
                 status: 404,
                 message: 'User does not exist'
             });
-        } else if (response.statusCode === 200) {
-            console.log('body.password = ', body.password);
-            console.log('password = ', password);
-            if (body.password === password) {
-                return done(null, {
-                    status: 200,
-                    username: username
-                });
-            } else {
-                return done(null, false, {
-                    status: 401,
-                    message: 'Incorrect password.'
-                });
-            }
-        } else {
-            return done(error);
         }
-    });
+
+        if (document[0].content.password === password) {
+            return done(null, {
+                status: 200,
+                username: document[0].content.username
+            })
+        } else {
+            return done(null, false, {
+                status: 401,
+                message: 'Incorrect password'
+            })
+        }
+        done();
+    }, function(error) {
+        console.log(error);
+        if (error.code === 'ECONNREFUSED') {
+            return done(null, false, {status: 503, message: 'Database connection refused'})
+        } else{
+            return done(null, false, {status: 500, message: error.code})
+        }
+    })
 
 }));
 
@@ -181,36 +168,29 @@ app.use('/v1/', function(req, res, next) {
             console.log('nothing to do');
     }
 
-}); 
+});
 
 app.get('/userinfo', function(req, res) {
     console.log('===================== req.user', req.user);
-    // req.user = "admin";
-    var url = 'http://localhost:8003/v1/documents?uri=/user/' + req.user + '.json';
-    console.log('URL ==== ', url);
-    request(url, function(error, response, body) {
-        if (!error && response.statusCode === 200) {
-            var bodyObj = JSON.parse(body);
+    db.documents.read('/user/'+ req.user + '.json').result(function(document) {
+            var bodyObj = document[0].content;
             delete bodyObj.password;
             delete bodyObj.createdAt;
             delete bodyObj.modifiedAt;
             res.send(bodyObj);
-        } else {
-            res.send(401, {
-                message: 'Please sign in'
-            });
-        }
-
-    });
+    }, function(error) {
+        res.send(401, {message: 'Please sign in'})
+    })
 });
 
 app.post('/login', function(req, res, next) {
-	console.log("Login...", req.body);
+    console.log("Login...", req.body);
     passport.authenticate('local', function(err, user, info) {
         if (err) {
             return next(err);
         }
         if (!user) {
+            //console.log('info', info);
             req.session.messages = [info.message];
             return res.send(401, info);
         }
@@ -227,22 +207,22 @@ app.post('/login', function(req, res, next) {
 
 // logout
 app.get('/logout', function(req, res, next) {
-    /*  this is not working 
+    /*  this is not working
    http://stackoverflow.com/questions/13758207/why-is-passportjs-in-node-not-removing-session-on-logout
-   req.logout();  
+   req.logout();
     console.log('logged out');
     res.redirect('/#/login');
     */
 
     req.session.destroy(function(err) {
-        res.redirect('/#/login'); //Inside a callback… bulletproof!
+        res.redirect('/login'); //Inside a callback… bulletproof!
     });
 });
 
 
 var server = require('http').createServer(app);
 require('./config/express')(app);
-require('./routes/routes')(app);
+require('./routes')(app);
 
 // Start server
 server.listen(config.port, config.ip, function() {
@@ -250,4 +230,4 @@ server.listen(config.port, config.ip, function() {
 });
 
 // Expose app
-exports = module.exports = app; 
+exports = module.exports = app;

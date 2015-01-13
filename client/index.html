@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
-    <title></title>
+    <title>BugTrack</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -67,16 +67,29 @@
         <!-- build:js({.tmp,client}) app/app.js -->
         <script src="app/app.js"></script>
           <!-- injector:js -->
-          <script src="app/main/bug.controller.js"></script>
-          <script src="app/main/main.controller.js"></script>
+          <script src="app/bug/bug.controller.js"></script>
+          <script src="app/bug/bug.js"></script>
+          <script src="app/directives/angulartexteditor.directive.js"></script>
+          <script src="app/directives/codehighlight.directive.js"></script>
+          <script src="app/directives/fileupload.directive.js"></script>
+          <script src="app/directives/wysiHtml5.directive.js"></script>
           <script src="app/main/main.js"></script>
-          <script src="app/services/bugconfigfactory.js"></script>
-          <script src="app/services/bugfactory.js"></script>
-          <script src="app/services/bugservice.js"></script>
+          <script src="app/main/search.controller.js"></script>
+          <script src="app/services/bug/bug.service.js"></script>
+          <script src="app/services/bugconfig/bugconfig.service.js"></script>
           <script src="app/services/flash/flash.service.js"></script>
+          <script src="app/services/modal/modal.service.js"></script>
+          <script src="app/services/search/search.service.js"></script>
           <script src="app/services/user/user.service.js"></script>
           <script src="app/user/user.controller.js"></script>
           <script src="app/user/user.js"></script>
+          <script src="app/utils/bootstrap-wysihtml5.js"></script>
+          <script src="app/utils/highlight.min.js"></script>
+          <script src="app/utils/jquery-te-1.4.0.min.js"></script>
+          <script src="app/utils/jquery-ui.min.js"></script>
+          <script src="app/utils/md5.js"></script>
+          <script src="app/utils/util.js"></script>
+          <script src="app/utils/wysihtml5-0.3.0.min.js"></script>
           <script src="components/navbar/navbar.controller.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->

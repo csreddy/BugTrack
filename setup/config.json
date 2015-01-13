@@ -1,0 +1,289 @@
+{
+    "users": [
+        {
+            "email": "sreddy@mycompany.com",
+            "name": "Sudhakar Reddy",
+            "username": "sreddy"
+        },
+        {
+            "email": "admin@mycompany.com",
+            "name": "Admin User",
+            "username": "admin"
+        },
+        {
+            "email": "fullerbullock@mycompany.com",
+            "name": "Fuller Bullock",
+            "username": "castaneda"
+        },
+        {
+            "email": "danagordon@mycompany.com",
+            "name": "Dana Gordon",
+            "username": "donaldson"
+        },
+        {
+            "email": "guzmanwagner@mycompany.com",
+            "name": "Guzman Wagner",
+            "username": "small"
+        },
+        {
+            "email": "acevedokey@mycompany.com",
+            "name": "Acevedo Key",
+            "username": "bolton"
+        },
+        {
+            "email": "marciacompton@mycompany.com",
+            "name": "Marcia Compton",
+            "username": "rosales"
+        },
+        {
+            "email": "lessieperry@mycompany.com",
+            "name": "Lessie Perry",
+            "username": "cummings"
+        },
+        {
+            "email": "shawnacombs@mycompany.com",
+            "name": "Shawna Combs",
+            "username": "sheppard"
+        },
+        {
+            "email": "rachaellowe@mycompany.com",
+            "name": "Rachael Lowe",
+            "username": "goff"
+        },
+        {
+            "email": "saundraharmon@mycompany.com",
+            "name": "Saundra Harmon",
+            "username": "mercer"
+        },
+        {
+            "email": "wardhuffman@mycompany.com",
+            "name": "Ward Huffman",
+            "username": "lester"
+        }
+    ],
+    "severity": ["P1 - Catastrophic", "P2 - Critcial", "P3 - Major", "P4 - Minor", "P5 -  Aesthetic", "Performance"],
+    "status": ["New", "Verify", "Fix", "Test", "Ship", "Closed", "Will not fix", "External", "n/v/f/e"],
+    "version": [
+        "n/a",
+        "TKW-2.0-1",
+        "TKW-1.0-nightly",
+        "TKP-2.0-1",
+        "TKP-1.0-nightly",
+        "TKE-2.0-1",
+        "TKE-1.0-nightly",
+        "SPC-1.1-1",
+        "SPC-1.0-nightly",
+        "SPC-1.0-3",
+        "RFETrack 2.0-1",
+        "MSOA-1.0-nightly",
+        "MSOA-1.0-1",
+        "Mint-1.0",
+        "Help-1.0",
+        "Gen-1.0-eb5",
+        "EATool-2.1",
+        "DTE-1.0-nightly",
+        "DTE-1.0-1",
+        "DMC-0.2",
+        "Bugtrack-2.0",
+        "Bugtrack-1.1",
+        "Admin-License-0.1",
+        "8.0-nightly",
+        "8.0-ea1",
+        "7.0-nightly",
+        "7.0-3",
+        "7.0-2.4",
+        "7.0-2.3",
+        "7.0-2.2",
+        "7.0-2.1",
+        "7.0-2",
+        "7.0-1",
+        "6.0-nightly",
+        "6.0-5.3",
+        "6.0-5.2",
+        "6.0-5.1",
+        "6.0-5",
+        "6.0-4.5",
+        "6.0-4.4",
+        "6.0-4.3",
+        "6.0-4.2",
+        "6.0-4.1",
+        "6.0-4",
+        "6.0-3.3",
+        "6.0-3.2",
+        "6.0-3.1",
+        "6.0-3",
+        "6.0-2.3",
+        "6.0-2.2",
+        "6.0-2.1",
+        "6.0-2",
+        "6.0-1.2",
+        "6.0-1",
+        "5.0.4-5",
+        "5.0-nightly",
+        "5.0-6.1",
+        "5.0-6",
+        "5.0-5.6",
+        "5.0-5.5",
+        "5.0-5.4",
+        "5.0-5.3",
+        "5.0-5.2",
+        "5.0-5.1",
+        "5.0-5",
+        "5.0-4.4",
+        "5.0-4.3",
+        "5.0-4.2",
+        "5.0-4.1",
+        "5.0-4",
+        "5.0-3.3",
+        "5.0-3.2.1",
+        "5.0-3.2",
+        "5.0-3.1",
+        "5.0-3",
+        "5.0-2",
+        "5.0-1"
+    ],
+    "kind": ["Bug", "Task", "RFE", "Other"],
+    "platform": [
+        "all",
+        "linux(32-bit)",
+        "linux(64-bit)",
+        "windows(64-bit)",
+        "windows(32-bit)",
+        "solaris(sparc)",
+        "solaris(opteron)",
+        "vmware",
+        "OS X",
+        "EC2"
+    ],
+    "tofixin": [
+        "RFETrack-2.1",
+        "Mint-2.0",
+        "Help-1.1",
+        "DMC-0.3",
+        "Bugtrack-2.1",
+        "5.0-6.2",
+        "Admin-License-0.2",
+        "8.0-ea3",
+        "8.0-ea2",
+        "8.0-2",
+        "8.0-1",
+        "7.0-4",
+        "6.0-6",
+        "5.0-7",
+        "5.0-6.3"
+    ],
+    "category": [
+        "Admin API",
+        "Admin License",
+        "adminGUI",
+        "antennahouse",
+        "App Builder",
+        "Backup/Restore",
+        "Basis",
+        "Bi-Temporal",
+        "Bugtrack",
+        "Common API",
+        "Config Management",
+        "Conformance",
+        "conversion",
+        "Debug API",
+        "DMC",
+        "documentation",
+        "Entry Page",
+        "Example App",
+        "Hadoop Connector",
+        "Help (Kayako)",
+        "HP-OM-SPI",
+        "iceni",
+        "InfoStudio API",
+        "InfoStudio UI",
+        "inxight",
+        "JavaScript",
+        "JSON",
+        "Kick It",
+        "MarkLogic Java API",
+        "MarkLogic Node API",
+        "MarkLogic REST API",
+        "markspace",
+        "Mint",
+        "mlcp",
+        "MLOS",
+        "Monitoring Dashboard",
+        "Nagios",
+        "Node.js",
+        "OutsideIn",
+        "Oxygen",
+        "packaging",
+        "Query Console",
+        "Read-Only Config",
+        "ReferenceArchitecture",
+        "Replication",
+        "RFETrack",
+        "samples",
+        "Samplestack",
+        "Scheduled Tasks",
+        "search",
+        "Search API",
+        "security",
+        "Semantics",
+        "Serialization",
+        "SharePoint Connector",
+        "Spelling Suggestion",
+        "SQL",
+        "SQL UI",
+        "Test infrastructure",
+        "Tiered Storage",
+        "TK Excel",
+        "TK PPT",
+        "TK Word",
+        "Upgrade",
+        "Usage/Perf Metrics",
+        "Utility Computing",
+        "Validation",
+        "VizLogic-Widgets",
+        "Wiki",
+        "XCC/.Net",
+        "XCC/Java",
+        "XDBC(.Net)",
+        "XDBC(Java)",
+        "xdmp",
+        "XQuery",
+        "XSLT"
+    ],
+    "priority": [{
+        "level": "1",
+        "title": "Drop everything and fix"
+    }, {
+        "level": "2",
+        "title": "A customer is waiting for this"
+    }, {
+        "level": "3",
+        "title": "Very important"
+    }, {
+        "level": "4",
+        "title": "Important"
+    }, {
+        "level": "5",
+        "title": "Fix if time permits"
+    }, {
+        "level": "6",
+        "title": "Probably won’t fix but worth remembering"
+    }, {
+        "level": "7",
+        "title": "Do not fix"
+    }],
+    "publishStatus": ["Publish", "Not Ready", "Prepare", "Never Publish"],
+    "customerImpact": [{
+        "level": "High",
+        "title": "Significant business impact with no reasonable workaround"
+    }, {
+        "level": "Medium",
+        "title": "Requires significant or unnatural effort to work around issue or to prevent significant business impact"
+    }, {
+        "level": "Low",
+        "title": "Minimal business impact or reasonable workaround is available"
+    }, {
+        "level": "N/A",
+        "title": null
+    }]
+}
