@@ -126,7 +126,7 @@ exports.search = function(req, res) {
               break;  
         }
 
-        console.log('--------------- ' + key + '--------------------');
+        //console.log('--------------- ' + key + '--------------------');
     }
 
 

@@ -2,9 +2,9 @@
 
 var app = angular.module('bug.services', []);
 
-app.service('BugService', function($http, RESTURL) {
+app.service('Bug', ['$http', function($http) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
-    this.getBugs = function(criteria) {
+    this.search = function(criteria) {
         return $http({
             method: 'POST',
             url: '/api/search',
@@ -34,9 +34,9 @@ app.service('BugService', function($http, RESTURL) {
     };
 
 
-    this.createNewBug = function(bug, files) {
+    this.create = function(bug, files) {
         return $http({
-            url: '/new',
+            url: '/api/bug/new',
             method: 'POST',
             headers: {
                 'Content-Type': undefined
@@ -58,9 +58,9 @@ app.service('BugService', function($http, RESTURL) {
     };
 
 
-    this.updateBug = function(bug, files) {
+    this.update = function(bug, files) {
         return $http({
-            url: '/new',
+            url: '/api/bug/new',
             method: 'POST',
             headers: {
                 'Content-Type': undefined
@@ -81,36 +81,30 @@ app.service('BugService', function($http, RESTURL) {
         });
     };
 
-    this.cloneBug = function(payload) {
+    this.clone = function(payload) {
         console.log('inside updateBug()');
         var payloadForUpdate = {};
         payloadForUpdate.bug = payload;
         return $http({
             method: 'POST',
-            url: '/new',
+            url: '/api/bug/new',
             data: payloadForUpdate
         });
     };
 
 
-    this.getBug = function(id) {
+    this.get = function(id) {
         return $http({
             method: 'GET',
-            url: '/bug/' + id
+            url: '/api/bug/' + id
         });
     };
 
-    this.getBugById = function(id) {
-        return $http({
-            method: 'GET',
-            url: '/bug/' + id
-        });
-    };
 
-    this.getCount = function() {
+    this.count = function() {
         return $http({
             method: 'GET',
-            url: '/bug/count'
+            url: '/api/bug/count'
         });
     };
 
@@ -122,4 +116,4 @@ app.service('BugService', function($http, RESTURL) {
     };
 
 
-});
+}]);

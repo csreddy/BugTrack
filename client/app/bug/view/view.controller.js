@@ -1,305 +1,13 @@
 'use strict';
 
-var app = angular.module('bug.controllers', ['ui.bootstrap']);
+angular.module('bug.controllers')
+  .controller('viewCtrl', ['$scope', '$location', 'Bug',  'Config', 'Flash', 'currentUser', 'bugId', 'modalService',
 
-app.controller('newBugCtrl', ['$scope', '$location', 'BugService', 'bugConfigFactory', 'Flash', 'User', 'loadConfig', 'getCurrentUser', 'bugId',
-
-    function($scope, $location, BugService, bugConfigFactory, Flash, User, loadConfig, getCurrentUser, bugId) {
-        // accordion interactions   
-        $scope.status = {
-            isFirstOpen: true,
-            isFirstDisabled: false
-        };
-
-        $scope.config = {};
-        $scope.config = loadConfig.data;
-        $scope.submittedBy = getCurrentUser;
-
-        $scope.selectedItem = {
-            value: 0,
-            label: ''
-        };
-
-        //  $scope.Wrapper = Serv;
-        $scope.relatedTo = [];
-
-        $scope.relatedTasks = [
-            'Requirements task for',
-            'Functional Spec task for',
-            'Test Specification task for',
-            'Test Automation task for',
-            'Documentation task for',
-            'Sub-task of'
-        ];
-
-        // $scope.setKind = function(kind) {
-        //     $scope.kind = kind;
-        // };
-
-        $scope.submitted = false;
-
-
-        $scope.setQuery = function(samplequery) {
-            $scope.samplequery = samplequery;
-        };
-        $scope.setSampledata = function(sampledata) {
-            $scope.sampledata = sampledata;
-        };
-        $scope.setStacktrace = function(stacktrace) {
-            $scope.stacktrace = stacktrace;
-        };
-
-        $scope.setCategory = function(category) {
-            $scope.category = category;
-        };
-
-        $scope.setAssignTo = function(assignTo) {
-            $scope.assignTo = JSON.parse(assignTo);
-        };
-
-        $scope.setSeverity = function(severity) {
-            $scope.severity = severity;
-        };
-
-        $scope.setPriority = function(priority) {
-            $scope.priority = JSON.parse(priority);
-        };
-
-        $scope.setToFixIn = function(tofixin) {
-            $scope.tofixin = tofixin;
-        };
-
-        $scope.setRelation = function(relation) {
-            $scope.relation = relation;
-        };
-
-        $scope.setRelatedTo = function(relatedTo) {
-            if (relatedTo) {
-                var tokenizedTaskIds = relatedTo.split(',');
-                var taskIds = [];
-                for (var i = 0; i < tokenizedTaskIds.length; i++) {
-                    if (!isNaN(parseInt(tokenizedTaskIds[i].replace(/ /g, '')))) {
-                        taskIds[i] = parseInt(tokenizedTaskIds[i].replace(/ /g, ''));
-                    }
-                }
-                $scope.relatedTo = taskIds;
-                console.log(taskIds);
-            } else {
-                $scope.relatedTo = [];
-            }
-        };
-
-        $scope.setVersion = function(version) {
-            $scope.version = version;
-        };
-
-        $scope.setPlatform = function(platform) {
-            $scope.platform = platform;
-        };
-
-        $scope.setMemory = function(memory) {
-            $scope.memory = memory;
-        };
-
-        $scope.setProcessors = function(processors) {
-            $scope.processors = processors;
-        };
-
-        $scope.setNote = function(note) {
-            $scope.note = note;
-        };
-
-        $scope.setHeadline = function(headline) {
-            $scope.headline = headline;
-        };
-
-        $scope.setSupportDescription = function(supportDescription) {
-            $scope.supportDescription = supportDescription;
-        };
-
-        $scope.setWorkaround = function(workaround) {
-            $scope.workaround = workaround;
-        };
-
-        $scope.setPublishStatus = function(publishStatus) {
-            $scope.publishStatus = publishStatus;
-        };
-
-        $scope.setTickets = function(tickets) {
-            if (tickets) {
-                var tokenizedTickets = tickets.split(',');
-                var ticketIds = [];
-                for (var i = 0; i < tokenizedTickets.length; i++) {
-                    if (!isNaN(parseInt(tokenizedTickets[i].replace(/ /g, '')))) {
-                        ticketIds[i] = parseInt(tokenizedTickets[i].replace(/ /g, ''));
-                    }
-                }
-                $scope.tickets = ticketIds;
-            } else {
-                $scope.tickets = [];
-            }
-
-        };
-
-        $scope.setCustomerImpact = function(customerImpact) {
-            $scope.customerImpact = customerImpact;
-        };
-
-
-        //an array of files selected
-        $scope.files = [];
-
-        //listen for the file selected event
-        $scope.$on('fileSelected', function(event, args) {
-            $scope.$apply(function() {
-                //add the file object to the scope's files collection
-                $scope.files.push(args.file);
-            });
-        });
-        $scope.createNewBug = function() {
-            if ($scope.bugForm.$valid) {
-                // Submit as normal
-                submitBug();
-            } else {
-                $scope.bugForm.submitted = true;
-            }
-        };
-
-        //-------------------------------------------------------------------
-        function submitBug() {
-            var bug = {};
-
-            bug.id = parseInt(bugId.data.count) + 1;
-            bug.kind = $scope.kind || 'Bug';
-            bug.createdAt = new Date();
-            bug.modifiedAt = bug.createdAt;
-            bug.status = $scope.config.status[1];
-            bug.title = $scope.title;
-            bug.submittedBy = $scope.submittedBy;
-            bug.assignTo = $scope.assignTo;
-            bug.description = $scope.description;
-            bug.samplequery = $scope.samplequery;
-            bug.sampledata = $scope.sampledata;
-            bug.stacktrace = $scope.stacktrace;
-            bug.category = $scope.category;
-            bug.tofixin = $scope.tofixin;
-            bug.severity = $scope.severity;
-            bug.priority = $scope.priority;
-            bug.version = $scope.version;
-            bug.platform = $scope.platform || 'all';
-            bug.memory = $scope.memory;
-            bug.processors = $scope.processors;
-            bug.note = $scope.note;
-            bug.headline = $scope.headline;
-            bug.subscribers = [];
-            bug.subscribers.push($scope.submittedBy);
-            if ($scope.assignTo.username !== $scope.submittedBy.username) {
-                bug.subscribers.push($scope.assignTo);
-            }
-            bug.attachments = [];
-            for (var i = 0; i < $scope.files.length; i++) {
-                bug.attachments[i] = '/' + bug.id + '/' + $scope.files[i].name;
-            }
-            bug.relation = $scope.relation;
-            bug.relatedTo = $scope.relatedTo || [];
-            bug.clones = [];
-
-            bug.supportDescription = $scope.supportDescription;
-            bug.workaround = $scope.workaround;
-            bug.publishStatus = $scope.publishStatus;
-            bug.customerImpact = $scope.customerImpact;
-            bug.tickets = $scope.tickets || [];
-            bug.changeHistory = [];
-
-            BugService.createNewBug(bug, $scope.files).success(function() {
-                $location.path('/');
-                Flash.addAlert('success', '<a href=\'/#/bug/' + bug.id + '\'>' + 'Bug-' + bug.id + '</a>' + ' was successfully created');
-            }).error(function(response) {
-                Flash.addAlert('danger', response);
-            });
-        }
-    }
-]);
-
-
-
-app.controller('bugListCtrl', ['$scope', '$location', 'BugService', 'Flash', 'getCurrentUserBugs', '$filter', 'getCurrentUser',
-
-    function($scope, $location, BugService, Flash, getCurrentUserBugs, $filter, getCurrentUser) {
-
-        $scope.bugs = [];
-        $scope.currentUser = getCurrentUser;
-        $scope.currentPage = 1;
-        $scope.itemsPerPage = 25;
-
-
-        // get search metrics data from first item in result set
-        $scope.searchMetrics = getCurrentUserBugs.data[0].metrics;
-        $scope.totalItems = getCurrentUserBugs.data[0].total;
-
-        // get bug contents
-        getCurrentUserBugs.data.splice(0, 1);
-        $scope.bugList = getCurrentUserBugs.data;
-
-
-        getBugList();
-
-
-        $scope.$on('search', function(event, data) {
-            $scope.bugList = data.searchResults;
-            $scope.facets = data.searchCriteria.facets;
-            console.log($scope.bugList);
-            $scope.totalItems = $scope.bugList[0].total;
-            getBugList();
-        });
-
-
-        $scope.goToBug = function(uri) {
-            $location.path(uri);
-        };
-
-        $scope.setPage = function(pageNo) {
-            $scope.currentPage = pageNo;
-            console.log('Page changed to: ' + $scope.currentPage);
-            var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
-            var end = begin + $scope.itemsPerPage;
-            getBugDetails(begin, end);
-        };
-
-        var orderBy = $filter('orderBy');
-        $scope.order = function(predicate, reverse) {
-            $scope.bugs = orderBy($scope.bugs, predicate, reverse);
-        };
-
-
-        // private functions
-
-        function getBugDetails(begin, end) {
-            $scope.bugs = [];
-            var paginatedBugList = $scope.bugList.slice(begin, end);
-
-            angular.forEach(paginatedBugList, function(bug) {
-                $scope.bugs.push(bug.content);
-            });
-        }
-        // for pagination, get bug details only for given page
-        function getBugList() {
-            getBugDetails(0, $scope.itemsPerPage);
-        }
-
-
-
-    }
-]);
-
-
-app.controller('bugViewCtrl', ['$scope', '$location', 'BugService', 'bugConfigFactory', 'Flash', 'getCurrentUser', 'bugId', '$q', 'modalService',
-
-    function($scope, $location, BugService, bugConfigFactory, Flash, getCurrentUser, bugId, $q, modalService) {
+    function($scope, $location, Bug, Config, Flash, currentUser, bugId, modalService) {
 
         $scope.config = {};
         $scope.changes = {};
-        $scope.updatedBy = getCurrentUser;
+        $scope.updatedBy = currentUser;
         $scope.showSubscribe = true;
         $scope.showUnsubscribe = false;
 
@@ -307,12 +15,12 @@ app.controller('bugViewCtrl', ['$scope', '$location', 'BugService', 'bugConfigFa
         var updateBug;
         var id = $location.path().replace('/bug/', '');
 
-        bugConfigFactory.getConfig().then(function(response) {
+        Config.get().then(function(response) {
             $scope.config = response.data;
             console.log('config: ', $scope.config);
         });
 
-        BugService.getBug(id).then(function(response) {
+        Bug.get(id).then(function(response) {
                 console.log(response.data);
 
                 $scope.bug = response.data;
@@ -330,7 +38,7 @@ app.controller('bugViewCtrl', ['$scope', '$location', 'BugService', 'bugConfigFa
                 // if the current user has already subscribed then show Unsubscribe else show Subscribe
                 var subscribers = $scope.bug.subscribers;
                 for (var i = 0; i < subscribers.length; i++) {
-                    if (subscribers[i].username === getCurrentUser.username) {
+                    if (subscribers[i].username === currentUser.username) {
                         $scope.showSubscribe = false;
                         $scope.showUnsubscribe = true;
                         break;
@@ -338,7 +46,7 @@ app.controller('bugViewCtrl', ['$scope', '$location', 'BugService', 'bugConfigFa
                 }
                 // if the current user is bug reporter or bug assignee then do not show subscribe/unsubscribe because 
                 // they are subscribed default and cannot unsubscribe
-                if (getCurrentUser.username === $scope.bug.assignTo.username || getCurrentUser.username === $scope.bug.submittedBy.username) {
+                if (currentUser.username === $scope.bug.assignTo.username || currentUser.username === $scope.bug.submittedBy.username) {
                     $scope.showSubscribe = false;
                     $scope.showUnsubscribe = false;
                 }
@@ -526,7 +234,7 @@ app.controller('bugViewCtrl', ['$scope', '$location', 'BugService', 'bugConfigFa
                 }
             }
 
-            BugService.updateBug(updateBug, $scope.files).success(function() {
+            Bug.update(updateBug, $scope.files).success(function() {
                 // reset watchers
                 $scope.changes = {};
                 $scope.files = [];
@@ -571,8 +279,8 @@ app.controller('bugViewCtrl', ['$scope', '$location', 'BugService', 'bugConfigFa
                     } else {
                         $scope.bug.clones = [newBugId];
                     }
-                    var promises = [BugService.cloneBug(clone.bug).then(),
-                        BugService.cloneBug($scope.bug).then()
+                    var promises = [Bug.clone(clone.bug).then(),
+                        Bug.clone($scope.bug).then()
                     ];
                     $q.all(promises).then(function() {
                             console.log('bug details ', clone.bug);
@@ -592,7 +300,7 @@ app.controller('bugViewCtrl', ['$scope', '$location', 'BugService', 'bugConfigFa
         // subscribe to the bug
         $scope.subscribe = function() {
             $scope.bug.subscribers.push($scope.updatedBy);
-            BugService.updateBug($scope.bug).then(function() {
+            Bug.update($scope.bug).then(function() {
                 $scope.showSubscribe = false;
                 $scope.showUnsubscribe = true;
                 Flash.addAlert('success', 'You have subscribed to ' + '<a href=\'/#/bug/' + $scope.bug.id + '\'>' + 'Bug-' + $scope.bug.id + '</a>');
@@ -604,15 +312,15 @@ app.controller('bugViewCtrl', ['$scope', '$location', 'BugService', 'bugConfigFa
         $scope.unsubscribe = function() {
             var subscribers = $scope.bug.subscribers;
             for (var i = 0; i < subscribers.length; i++) {
-                if (subscribers[i].username === getCurrentUser.username) {
+                if (subscribers[i].username === currentUser.username) {
                     $scope.bug.subscribers.splice(i, 1);
                     break;
                 }
             }
-            BugService.updateBug($scope.bug).then(function() {
+            Bug.update($scope.bug).then(function() {
                 // if the current user is bug reporter or bug assignee then do not show subscribe/unsubscribe because 
                 // they are subscribed default and cannot unsubscribe
-                if (getCurrentUser.username === $scope.bug.submittedBy.username || getCurrentUser.username === $scope.bug.assignTo.username) {
+                if (currentUser.username === $scope.bug.submittedBy.username || currentUser.username === $scope.bug.assignTo.username) {
                     $scope.showSubscribe = false;
                     $scope.showUnsubscribe = false;
                 } else {
@@ -626,3 +334,4 @@ app.controller('bugViewCtrl', ['$scope', '$location', 'BugService', 'bugConfigFa
         };
     }
 ]);
+

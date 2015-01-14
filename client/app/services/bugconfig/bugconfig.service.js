@@ -1,71 +1,45 @@
 'use strict';
 
-var app = angular.module('bugconfig.services', []);
+var app = angular.module('config.services', []);
 
-app.factory('bugConfig', ['$http', 'RESTURL',
-    function($http, RESTURL) {
+app.factory('Config', ['$http',
+    function($http) {
         // Service logic
-        function updateConfiguration(payload) {
+        function update(payload) {
             return $http({
                 method: 'PUT',
-                url: RESTURL + '/v1/documents?uri=config.json',
+                url: '/api/configure/update',
                 data: payload
             });
         }
 
-        function getBugs(q) {
-            if (q === undefined || q === null) {
-                q = '';
-            }
-
-            console.log('q = ' + q);
+        function get() {
             return $http({
                 method: 'GET',
-                url: RESTURL + '/v1/search?format=json&q=' + q + '&collection=bugs'
+                url: '/api/configure'
             });
         }
 
-        function getBug(uri) {
-            return $http({
-                method: 'GET',
-                url: RESTURL + '/v1/documents?uri=' + uri
-            });
-        }
-
-
-        function getConfig() {
-            return $http({
-                method: 'GET',
-                url: RESTURL + '/v1/documents?uri=config.json'
-            });
-        }
-
-        function insertConfig(payload) {
+        function insert(payload) {
             return $http({
                 method: 'PUT',
-                url: RESTURL + '/v1/documents?uri=config.json',
+                url: '/api/configure/update',
                 data: payload
             });
         }
 
         // Public API here
         return {
-            insertConfig: function(payload) {
+            insert: function(payload) {
                 console.log('inside insertConfig', payload);
-                insertConfig(payload);
+                insert(payload);
             },
 
-            updateConfiguration: function(payload) {
-                return updateConfiguration(payload);
+            update: function(payload) {
+                return update(payload);
             },
-            getBugs: function(q) {
-                return getBugs(q);
-            },
-            getBug: function(uri) {
-                return getBug(uri);
-            },
-            getConfig: function() {
-                return getConfig();
+            get: function() {
+                return get();
             }
         };
     }

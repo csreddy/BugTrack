@@ -3,8 +3,8 @@
 angular.module('fullstackApp')
     .config(function($routeProvider) {
         $routeProvider.
-        when('/login', {
-            templateUrl: 'app/user/login.html',
-            controller: 'loginCtrl'
+        when('/dashboard', {
+            templateUrl: 'app/dashboard/dashboard.html',
+            controller: 'dashboardCtrl'
         });
     });

@@ -9,7 +9,16 @@ var errors = require('./components/errors');
 module.exports = function(app) {
 
     // Insert routes below
-    app.use('/api/items', require('./api/item'));
+    app.use('/api/configure', require('./api/configure'));
+    app.use('/api/configure/update', require('./api/configure'));
+    app.use('/api/user/', require('./api/user'));
+    app.use('/api/user/:username', require('./api/user'));
+    app.use('/api/user/savedefaultquery', require('./api/user'));
+    app.use('/api/bug', require('./api/bug'));
+    app.use('/api/bug/:id(\\d+)', require('./api/bug'));
+    app.use('/api/bug/new', require('./api/bug'));
+    app.use('/api/bug/count', require('./api/bug'));
+    app.use('/api/bug/facets', require('./api/bug'));
     app.use('/api/things', require('./api/thing'));
     app.use('/api/search', require('./api/search'));
 

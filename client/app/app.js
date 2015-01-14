@@ -6,22 +6,37 @@ var app = angular.module('fullstackApp', [
     'ngSanitize',
     'ui.bootstrap',
     'ngRoute',
+
+    'search.controllers',
+    'search.services',
+
     'bug.controllers',
     'bug.services',
-	'user.controllers',
-	'user.services',
-	'flash.services',
+
+    'user.controllers',
+    'user.services',
+
+    'config.controllers',
+    'config.services',
+    
+    'dashboard.controllers',
+
     'navbar.controllers',
-    'search.services',
-    'bugconfig.services',
+
+
+    
     'modal.services',
-    'bugTexteditor.directive',
-    'search.controllers'
+    'flash.services',
+
+    // 'bugTexteditor.directive',
+    // 'wysiHtml5.directive',
+     'fileupload.directive'
+
 ]);
-  app.config(function($routeProvider, $locationProvider) {
-        $routeProvider
+app.config(function($routeProvider, $locationProvider) {
+    $routeProvider
         .otherwise({
-            redirectTo: '/'
+            redirectTo: '/home'
         });
-        $locationProvider.html5Mode(true);
-    }); 
+    $locationProvider.html5Mode(true);
+}).constant('RESTURL', 'http://' + location.hostname + ':' + location.port);

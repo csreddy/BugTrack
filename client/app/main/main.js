@@ -3,7 +3,7 @@
 angular.module('fullstackApp')
     .config(function($routeProvider) {
         $routeProvider
-            .when('/', {
+            .when('/home', {
                 templateUrl: 'app/main/main.html',
                 controller: 'searchCtrl',
                 title: 'Home',
@@ -13,15 +13,15 @@ angular.module('fullstackApp')
                             return User.getCurrentUserInfo();
                         }
                     ],
-                    getAllBugs: ['BugService',
-                        function(BugService) {
-                            return BugService.getBugs();
+                    getAllBugs: ['Bug',
+                        function(Bug) {
+                            return Bug.search();
                         }
                     ],
-                    config: ['bugConfig',
-                        function(bugConfig) {
+                    config: ['Config',
+                        function(Config) {
                             var config = {};
-                            return bugConfig.getConfig().then(function(configdata) {
+                            return Config.get().then(function(configdata) {
                                 config = angular.copy(configdata.data);
                                 config.kind = [];
                                 config.status = [];
@@ -49,9 +49,5 @@ angular.module('fullstackApp')
                         }
                     ]
                 }
-            })
-            .when('/new', {
-                templateUrl: 'app/main/new.html',
-                controller: 'newBugCtrl'
             });
-    }).constant('RESTURL', 'http://' + location.hostname + ':' + location.port);
+    });

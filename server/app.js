@@ -73,7 +73,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new LocalStrategy(function(username, password, done) {
-    db.documents.read('/user/' + username + '.json').result(function(document) {
+    db.documents.read('/users/' + username + '.json').result(function(document) {
         console.log('document', document);
         if (document.length === 0) {
             return done(null, false, {
@@ -172,7 +172,7 @@ app.use('/v1/', function(req, res, next) {
 
 app.get('/userinfo', function(req, res) {
     console.log('===================== req.user', req.user);
-    db.documents.read('/user/'+ req.user + '.json').result(function(document) {
+    db.documents.read('/users/'+ req.user + '.json').result(function(document) {
             var bodyObj = document[0].content;
             delete bodyObj.password;
             delete bodyObj.createdAt;

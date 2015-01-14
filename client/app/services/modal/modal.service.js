@@ -9,7 +9,7 @@ app.service('modalService', ['$modal',
             backdrop: true,
             keyboard: true,
             modalFade: true,
-            templateUrl: 'views/partials/modal.partial.html'
+            templateUrl: 'components/modal/modal.html'
         };
  
         var modalOptions = {

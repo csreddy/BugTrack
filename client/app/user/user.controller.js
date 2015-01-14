@@ -19,7 +19,7 @@ app.controller('loginCtrl', ['$scope', '$location', '$cookieStore', 'Flash', '$h
 
             User.login(payload).then(function(response) {
                     //$location.path('/user/' + response.data.username);
-                    $location.path('/');
+                    $location.path('/home');
                     User.getInfo().success(function(user) {
                         Flash.addAlert('success', 'Welcome! ' + user.name);
                     });
