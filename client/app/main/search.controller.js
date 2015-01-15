@@ -168,7 +168,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         // they are implemented
         $scope.clear = function() {
             console.log('clear fields');
-            $scope.q = '';
+            $scope.form.q = '';
             $scope.form.kind[0].value = true;
             $scope.form.status = $scope.config.status;
             $scope.form.severity = $scope.config.severity;
@@ -332,7 +332,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         // remove empty value facets which would always be the first item in the array
         function removeEmptyFacets(facets) {
             angular.forEach(facets, function(v, k) {
-                if (v.facetValues && v.facetValues[0].value === '') {
+                if (v.facetValues.length > 0 && v.facetValues[0].value === '') {
                     v.facetValues.shift();
                 }
             });

@@ -7,7 +7,7 @@
             <div class="pull-left">
             <h3 class="panel-title">
 <i class="fa fa-bug"></i>
-            <a ng-href="#/bug/{{bug.id}}">{{bug.kind}} -  {{bug.id}}</a>
+            <a ng-href="/bug/{{bug.id}}">{{bug.kind}} -  {{bug.id}}</a>
             </h3>    
             </div>
             
@@ -171,7 +171,7 @@
                 <tr ng-show="bug.cloneOf">
                     <td colspan="" rowspan=""><b>Clone of</b>
                     </td>
-                    <td colspan="" rowspan=""><a ng-href="#/bug/{{bug.cloneOf}}">{{bug.cloneOf}}</a>
+                    <td colspan="" rowspan=""><a ng-href="/bug/{{bug.cloneOf}}">{{bug.cloneOf}}</a>
                     </td>
                 </tr>
                 <tr ng-hide="bug.cloneOf">
