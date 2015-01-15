@@ -22,11 +22,6 @@ var conn = require('./config/db-config.js').connection;
 var db = marklogic.createDatabaseClient(conn);
 var fs = require('fs');
 
-//var routes = require('routes');
-//var user = require('./routes/user');
-//var bug = require('./routes/bug');
-//var search = require('./routes/search');
-//var login = require('./routes/login');
 
 // Setup server
 var app = express();
@@ -54,12 +49,6 @@ console.log('starting BugTrack.......');
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-
-// app.use('/', routes);
-// app.use('/user', user);
-// app.use('/login', login);
-// app.use('/bug', bug);
-// app.use('/search', search);
 
 
 // authentication
