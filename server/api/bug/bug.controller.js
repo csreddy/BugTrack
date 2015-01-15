@@ -6,6 +6,7 @@ var marklogic = require('marklogic');
 var conn = require('../../config/db-config.js').connection;
 var db = marklogic.createDatabaseClient(conn);
 var q = marklogic.queryBuilder;
+var p = marklogic.patchBuilder;
 var maxLimit = 99999999;
 var _ = require('lodash');
 
@@ -158,4 +159,11 @@ exports.new = function(req, res) {
         });
         fs.createReadStream(attachments[file].path).pipe(writableStream);
     }
+};
+
+
+exports.update = function(req, res) {
+    console.log('Inside update....');
+
+
 };

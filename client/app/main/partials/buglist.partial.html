@@ -74,7 +74,7 @@
                 </tr>
             </thead>
             <tr ng-repeat="bug in bugs">
-                <td><a ng-href="#/bug/{{bug.id}}">{{bug.id}}</a>
+                <td><a ng-href="/bug/{{bug.id}}">{{bug.id}}</a>
                 </td>
                 <td style="width:120px">{{bug.severity}}</td>
                 <td><a class="tooltips" href>{{bug.priority.level}}<span>{{bug.priority.title}}</span></a>

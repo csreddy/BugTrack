@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('bug.controllers')
-  .controller('viewCtrl', ['$scope', '$location', 'Bug',  'Config', 'Flash', 'currentUser', 'bugId', 'modalService',
+  .controller('viewCtrl', ['$scope', '$location', 'Bug',  'Config', 'Flash', 'currentUser', 'bugId', 'modalService', '$q',
 
-    function($scope, $location, Bug, Config, Flash, currentUser, bugId, modalService) {
+    function($scope, $location, Bug, Config, Flash, currentUser, bugId, modalService, $q) {
 
         $scope.config = {};
         $scope.changes = {};

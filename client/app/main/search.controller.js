@@ -332,7 +332,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         // remove empty value facets which would always be the first item in the array
         function removeEmptyFacets(facets) {
             angular.forEach(facets, function(v, k) {
-                if (v.facetValues[0].value === '') {
+                if (v.facetValues && v.facetValues[0].value === '') {
                     v.facetValues.shift();
                 }
             });
