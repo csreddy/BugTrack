@@ -1,15 +1,25 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
- <div ng-init="defaultSearchCriteria()">
+<div ng-init="defaultSearchCriteria()">
     <div ng-include="'app/main/partials/search.partial.html'"></div>
-    <a href="" ng-click="showFacetBox()">
-    <span id="showFacetBox" class="glyphicon glyphicon-chevron-right"></span>    
-</a>
-    <div id="facetBox" class="col-md-2">
-        <div ng-include="'app/main/partials/facets.partial.html'"></div>
-    </div>
+    <!--     <input type="checkbox"  id="showFacetBox" name="showFacetBox" ng-checked="showFacetBox()"> -->
+
+
+<!--     <a href="" ng-click="showFacetBox()">
+        <span id="showFacetBox" class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div> -->
+<!-- <table style="display:block; width:10px;height:200px;float:left;background-color:black;" border="1" class="rowlink" data-link="row">
+    <tr colspan="10%" href="#">
+        <td>
+        </td>
+    </tr>
+</table> -->
+<div id="facetBox" class="col-md-2">
+    <div ng-include="'app/main/partials/facets.partial.html'"></div>
 </div>
+
 
 <div ng-include="'app/main/partials/buglist.partial.html'"></div>
 
- <!-- http://stackoverflow.com/a/25922380/1105556 -->
+<!-- http://stackoverflow.com/a/25922380/1105556 -->
