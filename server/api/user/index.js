@@ -8,12 +8,12 @@ var router = express.Router();
 router.get('/', ensureAuthenticated, controller.index);
 router.get('/:username', ensureAuthenticated, controller.username);
 router.put('/savedefaultquery', ensureAuthenticated, controller.saveDefaultQuery);
-
+router.post('/create', controller.create);
 
 function ensureAuthenticated(req, res, next) {
     console.log('------------from user.js ----------------');
     console.log('req.user', req.user);
-    var username = req.originalUrl.replace('/user/', '');
+    var username = req.originalUrl.replace('/users/', '');
     if (req.isAuthenticated()) {
         return next();
     } else {

@@ -26,7 +26,7 @@ app.service('Bug', ['$http', function($http) {
         
             return $http({
             method: 'POST',
-            url: '/search',
+            url: '/api/search',
             data: searchCriteria
         });
         }

@@ -1,0 +1,33 @@
+/* nav search bar */
+
+#srch-term {
+    width: 20em;
+    background: #626262;
+    border-radius: 2em;
+    border: none;
+    height: 2em;
+    font-size: 1.1em;
+    padding-left: 1em;
+    outline: none;
+    box-shadow: 0 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -5px hsl(0, 0%, 2%)
+}
+#srch-term:active, #srch-term:focus {
+    background: white;
+    outline: none;
+    text-decoration: none;
+}
+#logo {
+    height: 50px;
+    width: 50px;
+    margin-left: 0px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 0px
+}
+
+.brand{
+  font-family: Tahoma, Geneva, sans-serif;
+  /*font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;*/
+  /*font-family: "Andale Mono", AndaleMono, monospace;*/
+  font-size: 170%;
+  color: white;
+}

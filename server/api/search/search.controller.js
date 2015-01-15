@@ -85,24 +85,25 @@ exports.search = function(req, res) {
                 }
                 break;
             case 'assignTo':
-            if (value !== '') {
-                searchCriteria.push(q.range(q.pathIndex('/assignTo/username'), q.datatype('string'), '=', value));    
-            }   
+                if (value !== '') {
+                    searchCriteria.push(q.range(q.pathIndex('/assignTo/username'), q.datatype('string'), '=', value));
+                }
                 break;
             case 'submittedBy':
-            if (value !== '') {
-                searchCriteria.push(q.range(q.pathIndex('/submittedBy/username'), q.datatype('string'), '=', value));
-            }
+                if (value !== '') {
+                    searchCriteria.push(q.range(q.pathIndex('/submittedBy/username'), q.datatype('string'), '=', value));
+                }
                 break;
             case 'category':
             case 'version':
             case 'fixedin':
             case 'tofixin':
-            if (value !== '') {
-                   searchCriteria.push(q.value(key, value));
-            }
+                if (value !== '') {
+                    searchCriteria.push(q.range(key, q.datatype('string'), '=', value));
+                    // searchCriteria.push(q.value(key, value));
+                }
                 break;
-            case 'facets':
+            case 'facets': // for sidebar facet filtering
                 var keys = Object.keys(value);
                 if (keys.length > 0) {
                     keys.forEach(function(item) {
@@ -122,8 +123,8 @@ exports.search = function(req, res) {
                     });
                 }
                 break;
-              default:
-              break;  
+            default:
+                break;
         }
 
         //console.log('--------------- ' + key + '--------------------');
@@ -142,12 +143,14 @@ exports.search = function(req, res) {
         .calculate(
             q.facet('kind', 'kind'),
             q.facet('status', 'status'),
-            q.facet('category', 'category'),
+           // q.facet('category',  'category', q.facetOptions('item-frequency', 'descending')),
+            q.facet('category',  'category', q.facetOptions('limit=10')),
             q.facet('severity', 'severity'),
-            q.facet('version', 'version'),
+            q.facet('version', 'version', q.facetOptions('limit=10')),
             q.facet('platform', 'platform'),
-            q.facet('fixedin', 'fixedin'),
-            q.facet('submittedBy', q.pathIndex('/submittedBy/name')), // server crashes if enabled
+            q.facet('fixedin', 'fixedin', q.facetOptions('limit=10')),
+            q.facet('tofixin', 'tofixin', q.facetOptions('limit=10')),
+            q.facet('submittedBy', q.pathIndex('/submittedBy/name')),
             q.facet('assignTo', q.pathIndex('/assignTo/name')),
             q.facet('priority', q.pathIndex('/priority/level'))
         )

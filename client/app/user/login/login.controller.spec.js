@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: UserCtrl', function() {
+describe('Controller: loginCtrl', function() {
     var flashServiceMock, userServiceMock;
     // load the controller's module
     beforeEach(module('user.controllers', function($provide) {

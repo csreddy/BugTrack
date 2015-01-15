@@ -6,33 +6,18 @@ var app = angular.module('navbar.controllers', []);
  * hide irrelelvant navbar links when user is logged in
  */
 
-app.controller('navbarCtrl', ['$rootScope', '$location', 'User',
-    function($rootScope, $location, User) {
+app.controller('navbarCtrl', ['$rootScope', '$scope', '$location', '$window',
+    function($rootScope, $scope, $location, $window) {
 
-        $rootScope.navbarUser = undefined;
+        $rootScope.navbarUser = $window.sessionStorage.currentUser;
 
-        $rootScope.$on('$routeChangeSuccess', function(next, current) {
-            if ($location.path() !== '/register') {
-                User.getCurrentUserInfo().then(function(user) {
-                    if (user) {
-                        $rootScope.navbarUser = user.name;
-                        $rootScope.hide = false;
-                    } else {
-                        $rootScope.hide = true;
-                    }
-
-                 //   console.log('====', $rootScope.navbarUser);
-                }, function() {
-                    $rootScope.hide = true;
-                    console.log($rootScope.hide);
-                });
-            }
-        });
-
-
+        $scope.selected = function(page) {
+            var currentRoute = $location.path().substring(1) || 'home';
+            return page === currentRoute ? 'active' : '';
+        };
 
         $rootScope.quickSearch = function(bugId) {
-            $location.path('/bug/'+ bugId);
+            $location.path('/bug/' + bugId);
         };
 
 

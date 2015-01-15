@@ -55,7 +55,7 @@ fs.readFile('searchoptions.xml', 'utf8', function(err, data) {
     if (err) throw err;
     var searchOptions = data;
     conn2.database = 'bugtrack-modules';
-    var db2 = marklogic.createDatabaseClient(conn2);
+    db2 = marklogic.createDatabaseClient(conn2);
     db2.documents.write([{
         uri: '/Default/bugtrack/rest-api/options/default.xml',
         category: 'content',

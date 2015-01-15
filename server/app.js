@@ -172,15 +172,21 @@ app.use('/v1/', function(req, res, next) {
 
 app.get('/userinfo', function(req, res) {
     console.log('===================== req.user', req.user);
-    db.documents.read('/users/'+ req.user + '.json').result(function(document) {
+    var uri = '/users/'+ req.user + '.json';
+    if (req.user) {
+    db.documents.read(uri).result(function(document) {
             var bodyObj = document[0].content;
             delete bodyObj.password;
             delete bodyObj.createdAt;
             delete bodyObj.modifiedAt;
             res.send(bodyObj);
     }, function(error) {
-        res.send(401, {message: 'Please sign in'})
-    })
+        res.send(500, {message: 'Error occured.\n' + error})
+    });
+    } else{
+       res.send(401, {message: 'Please sign in'}) 
+    }
+
 });
 
 app.post('/login', function(req, res, next) {

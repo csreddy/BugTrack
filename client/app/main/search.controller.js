@@ -11,6 +11,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.itemsPerPage = 10;
         $scope.config = config;
         $scope.userDefaultSearch = true;
+        $scope.nvfe = false;
         $scope.form = {};
 
         // if the user has default query then set the $scope.form to user's default query
@@ -55,9 +56,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     }, {
                         name: 'External',
                         value: false
-                    }, {
-                        name: 'n/v/f/e',
-                        value: false
                     }],
                     severity: [{
                         name: 'P1 - Catastrophic',
@@ -97,7 +95,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
 
         };
 
-                // sort users alphabetically
+        // sort users alphabetically
         $scope.config.users.sort(function(a, b) {
             return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
         });
@@ -120,8 +118,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $scope.showMore = true;
             }
         };
-		
-		$scope.setAssignedTo = function(assignTo) {
+
+        $scope.setAssignedTo = function(assignTo) {
             $scope.form.assignTo = assignTo;
         };
 
@@ -152,6 +150,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $scope.bugList = response.slice(1);
                 $scope.results = response;
                 $scope.facets = response[0].facets;
+                removeEmptyFacets($scope.facets);
                 $scope.searchMetrics = response[0].metrics;
                 $scope.totalItems = response[0].total;
                 console.log('facets', $scope.facets);
@@ -162,7 +161,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             });
         };
 
-         // clear form. returns all bugs by default.
+
+
+        // clear form. returns all bugs by default.
         // will change to return tasks, rfes and others when 
         // they are implemented
         $scope.clear = function() {
@@ -171,8 +172,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             $scope.form.kind[0].value = true;
             $scope.form.status = $scope.config.status;
             $scope.form.severity = $scope.config.severity;
-            $scope.form.submittedBy = '';
-            $scope.form.assignTo = '';
+            $scope.form.submittedBy = $scope.form.assignTo = $scope.form.category = $scope.form.version = $scope.form.fixedin = $scope.form.tofixin = '';
             $scope.search();
         };
 
@@ -187,6 +187,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $scope.results = response;
                 $scope.bugList = response.slice(1);
                 $scope.facets = response[0].facets;
+                removeEmptyFacets($scope.facets);
                 $scope.searchMetrics = response[0].metrics;
                 $scope.totalItems = response[0].total;
                 angular.element("ul[name='" + facetKind + "']").hide();
@@ -206,6 +207,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $scope.results = response;
                 $scope.bugList = response.slice(1);
                 $scope.facets = response[0].facets;
+                removeEmptyFacets($scope.facets);
                 $scope.searchMetrics = response[0].metrics;
                 $scope.totalItems = response[0].total;
                 angular.element("ul[name='" + facetKind + "']").show();
@@ -218,13 +220,13 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.hideFacetBox = function() {
             console.log('hide facet');
             angular.element("div[id='facetBox']").hide();
-           // angular.element('span#showFacetBox').attr('style', 'display:none');
+            // angular.element('span#showFacetBox').attr('style', 'display:none');
         };
 
         $scope.showFacetBox = function() {
             console.log('show facet');
             angular.element("div[id='facetBox']").show();
-           // angular.element('a#showFacetBox').attr('style', 'display:block');
+            // angular.element('a#showFacetBox').attr('style', 'display:block');
         };
 
 
@@ -260,7 +262,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             }
         };
 
-         $scope.$watchCollection('bugList', function() {
+        $scope.$watchCollection('bugList', function() {
             // console.log('hey, bug list has changed!', $scope.bugList);
             getBugDetails();
         }, true);
@@ -283,27 +285,10 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $scope.userDefaultSearch = false;
             }
 
-            var index = 8;
-            var isSelected = $scope.form.status[index].value;
-            if (isSelected) {
-              $scope.form.status.forEach(function(item) {
-                if (item.name === 'New' || item.name === 'Verify' || item.name === 'Fix' || item.name === 'External') {
-                    item.value = true;
-                }
-
-              }); 
-            } else {
-                $scope.form.status.forEach(function(item) {
-                if (item.name === 'New' || item.name === 'Verify' || item.name === 'Fix' || item.name === 'External') {
-                    item.value = false;
-                }
-
-              }); 
-            } 
-
         }, true);
 
- $scope.saveUserDefaultSearch = function() {
+
+        $scope.saveUserDefaultSearch = function() {
             if (!$scope.form.userDefaultSearch) {
                 console.log('saved......');
                 User.saveDefaultQuery($scope.form).success(function(response) {
@@ -316,10 +301,17 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         };
 
 
+        $scope.selectNVFE = function(select) {
+            console.log('select n/v/f/e');
+            $scope.form.status.forEach(function(item) {
+                if (item.name === 'New' || item.name === 'Verify' || item.name === 'Fix' || item.name === 'External') {
+                    item.value = select;
+                }
+            });
+        };
 
 
-
-	// private functions
+        // private functions
         function getBugDetails(begin, end) {
             $scope.bugs = [];
             var paginatedBugList;
@@ -337,6 +329,15 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             getBugDetails(0, $scope.itemsPerPage);
         }
 
+        // remove empty value facets which would always be the first item in the array
+        function removeEmptyFacets(facets) {
+            angular.forEach(facets, function(v, k) {
+                if (v.facetValues[0].value === '') {
+                    v.facetValues.shift();
+                }
+            });
+        }
 
 
-    }]);
+    }
+]);

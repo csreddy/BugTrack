@@ -14,6 +14,7 @@ module.exports = function(app) {
     app.use('/api/user/', require('./api/user'));
     app.use('/api/user/:username', require('./api/user'));
     app.use('/api/user/savedefaultquery', require('./api/user'));
+    app.use('/api/user/create', require('./api/user'));
     app.use('/api/bug', require('./api/bug'));
     app.use('/api/bug/:id(\\d+)', require('./api/bug'));
     app.use('/api/bug/new', require('./api/bug'));

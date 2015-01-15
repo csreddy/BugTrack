@@ -66,4 +66,9 @@
       <element ns="" name="fixedin"/>
     </range>
   </constraint>
+  <constraint name="tofixin">
+   <range type="xs:string">
+      <element ns="" name="tofixin"/>
+    </range>
+  </constraint>
    </options>

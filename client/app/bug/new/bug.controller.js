@@ -164,7 +164,6 @@ angular.module('bug.controllers', ['ui.bootstrap', 'angularFileUpload'])
             }
         };
 
-        //-------------------------------------------------------------------
         function submitBug() {
             var bug = {};
 
