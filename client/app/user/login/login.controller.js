@@ -5,7 +5,7 @@ var app = angular.module('user.controllers', ['ngCookies']);
 app.controller('loginCtrl', ['$scope', '$location', '$cookieStore', 'Flash', '$http', 'User', '$window',
     function($scope, $location, $cookieStore, Flash, $http, User, $window) {
 
-        $scope.username = 'sreddy';
+        $scope.username = 'admin';
         $scope.password = 'admin';
 
 
