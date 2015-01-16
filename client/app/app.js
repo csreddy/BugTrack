@@ -29,7 +29,7 @@ var app = angular.module('fullstackApp', [
     'flash.services',
 
     // 'bugTexteditor.directive',
-    // 'wysiHtml5.directive',
+     'wysiHtml5.directive',
      'fileupload.directive'
 
 ]);
@@ -39,4 +39,4 @@ app.config(function($routeProvider, $locationProvider) {
             redirectTo: '/home'
         });
     $locationProvider.html5Mode(true);
-}).constant('RESTURL', 'http://' + location.hostname + ':' + location.port);
+});

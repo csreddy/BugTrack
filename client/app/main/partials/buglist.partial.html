@@ -53,39 +53,39 @@
                 <tr ng-init="reverse=false">
                     <th><a href="" ng-click="reverse=!reverse; order('id', reverse)">Id</a>
                     </th>
-                    <th><a href="" ng-click="reverse=!reverse; order('severity', reverse)">Severity</a>
+                    <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('severity', reverse)">Severity</a>
                     </th>
-                    <th><a href="" ng-click="reverse=!reverse; order('priority.level', reverse)">Priority</a>
+                    <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('priority.level', reverse)">Priority</a>
                     </th>
-                    <th><a href="" ng-click="reverse=!reverse; order('submittedBy.username', reverse)">Submitted by</a>
+                    <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('submittedBy.username', reverse)">Submitted by</a>
                     </th>
-                    <th><a href="" ng-click="reverse=!reverse; order('category', reverse)">Category</a>
+                    <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('category', reverse)">Category</a>
                     </th>
-                    <th><a href="" ng-click="reverse=!reverse; order('version', reverse)">Version</a>
+                    <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('version', reverse)">Version</a>
                     </th>
-                    <th><a href="" ng-click="reverse=!reverse; order('tofixin', reverse)">Fix in</a>
+                    <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('tofixin', reverse)">Fix in</a>
                     </th>
                     <th><a href="" ng-click="reverse=!reverse; order('title', reverse)">Title</a>
                     </th>
-                    <th><a href="" ng-click="reverse=!reverse; order('status', reverse)">Status</a>
+                    <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('status', reverse)">Status</a>
                     </th>
-                    <th><a href="" ng-click="reverse=!reverse; order('assignTo.username', reverse)">Assigned to</a>
+                    <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('assignTo.username', reverse)">Assigned to</a>
                     </th>
                 </tr>
             </thead>
             <tr ng-repeat="bug in bugs">
                 <td><a ng-href="/bug/{{bug.id}}">{{bug.id}}</a>
                 </td>
-                <td style="width:120px">{{bug.severity}}</td>
-                <td><a class="tooltips" href>{{bug.priority.level}}<span>{{bug.priority.title}}</span></a>
+                <td style="width:120px" class="hidden-xs">{{bug.severity}}</td>
+                <td class="hidden-xs"><a class="tooltips" href>{{bug.priority.level}}<span>{{bug.priority.title}}</span></a>
                 </td>
-                <td style="width:200px">{{bug.submittedBy.username}}</td>
-                <td>{{bug.category}}</td>
-                <td style="width:70px">{{bug.version}}</td>
-                <td style="width:70px">{{bug.tofixin}}</td>
+                <td style="width:200px" class="hidden-xs">{{bug.submittedBy.username}}</td>
+                <td class="hidden-xs">{{bug.category}}</td>
+                <td style="width:70px" class="hidden-xs">{{bug.version}}</td>
+                <td style="width:70px" class="hidden-xs">{{bug.tofixin}}</td>
                 <td style="width:500px">{{bug.title}}</td>
-                <td>{{bug.status}}</td>
-                <td style="width:200px">{{bug.assignTo.username}}</td>
+                <td class="hidden-xs">{{bug.status}}</td>
+                <td style="width:200px" class="hidden-xs">{{bug.assignTo.username}}</td>
             </tr>
         </table>
         </div>

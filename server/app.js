@@ -101,63 +101,6 @@ process.on('uncaughtException', function(err) {
 });
 
 
-// api calls
-app.use('/v1/', function(req, res, next) {
-    'use strict';
-
-    function handleConnRefused(err, resp, body) {
-        if (err.code === 'ECONNREFUSED') {
-            console.error('Refused connection');
-            next(err);
-        } else {
-            throw err;
-        }
-    }
-    var url = 'http://localhost:8003/v1' + req.url;
-
-    switch (req.method) {
-        case 'GET':
-            req.pipe(request(url, function(error, response, body) {
-                if (error) {
-                    next(error);
-                }
-            })).pipe(res);
-            break;
-        case 'PUT':
-            var options = {
-                method: 'PUT',
-                url: url,
-                body: req.body,
-                json: true
-            };
-
-            req.pipe(request(options, function(error, response, body) {
-                if (error) {
-                    next(error);
-                }
-            })).pipe(res);
-            break;
-        case 'POST':
-            console.log('its a POST');
-            var url = 'http://localhost:8003/v1/documents?extension=json';
-            var options = {
-                method: 'POST',
-                headers: req.headers,
-                url: url,
-                body: JSON.stringify(req.body)
-            };
-
-            req.pipe(request(options, function(error, response, body) {
-                if (error) {
-                    next(error);
-                }
-            })).pipe(res);
-            break;
-        default:
-            console.log('nothing to do');
-    }
-
-});
 
 app.get('/userinfo', function(req, res) {
     console.log('===================== req.user', req.user);

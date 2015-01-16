@@ -2,9 +2,9 @@
 
 var app = angular.module('user.services', []);
 
-app.service('User', ['$http', 'RESTURL', '$location', 'Flash',
+app.service('User', ['$http', '$location', 'Flash',
 
-    function($http, RESTURL, $location, Flash) {
+    function($http, $location, Flash) {
 
         // create a new user
         this.create = function(payload) {
@@ -17,19 +17,12 @@ app.service('User', ['$http', 'RESTURL', '$location', 'Flash',
 
         // check if user exists
         this.isExist = function(user) {
-            //  var uri = '/user/' + username + '.json';
-            return $http({
-                method: 'GET',
-                url: RESTURL + '/v1/search?q="' + user.username + '"' + '&collection=users'
-            });
+
         };
 
         // get all users
         this.getUsers = function() {
-            return $http({
-                method: 'GET',
-                url: RESTURL + '/v1/search?collection=users'
-            });
+
         };
 
 
@@ -50,15 +43,15 @@ app.service('User', ['$http', 'RESTURL', '$location', 'Flash',
         };
 
         this.login = function(userCredentials) {
-            return  $http({
+            return $http({
                 method: 'POST',
                 url: '/login',
                 data: userCredentials
             });
         };
 
-         this.logout = function() {
-            return  $http({
+        this.logout = function() {
+            return $http({
                 method: 'GET',
                 url: '/logout',
             });
