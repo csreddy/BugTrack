@@ -25,13 +25,13 @@ var fs = require('fs');
 
 // Setup server
 var app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cookieParser());
+
 app.use(multer({
     dest: './uploads/'
 }));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
 
 app.use(session({
     name: 'bugtrack',
@@ -61,38 +61,6 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-passport.use(new LocalStrategy(function(username, password, done) {
-    db.documents.read('/users/' + username + '.json').result(function(document) {
-        console.log('document', document);
-        if (document.length === 0) {
-            return done(null, false, {
-                status: 404,
-                message: 'User does not exist'
-            });
-        }
-
-        if (document[0].content.password === password) {
-            return done(null, {
-                status: 200,
-                username: document[0].content.username
-            })
-        } else {
-            return done(null, false, {
-                status: 401,
-                message: 'Incorrect password'
-            })
-        }
-        done();
-    }, function(error) {
-        console.log(error);
-        if (error.code === 'ECONNREFUSED') {
-            return done(null, false, {status: 503, message: 'Database connection refused'})
-        } else{
-            return done(null, false, {status: 500, message: error.code})
-        }
-    })
-
-}));
 
 process.on('uncaughtException', function(err) {
     console.error('uncaughtException: ' + err.message);
@@ -119,42 +87,6 @@ app.get('/userinfo', function(req, res) {
        res.send(401, {message: 'Please sign in'}) 
     }
 
-});
-
-app.post('/login', function(req, res, next) {
-    console.log("Login...", req.body);
-    passport.authenticate('local', function(err, user, info) {
-        if (err) {
-            return next(err);
-        }
-        if (!user) {
-            //console.log('info', info);
-            req.session.messages = [info.message];
-            return res.send(401, info);
-        }
-        req.logIn(user, function(err) {
-            if (err) {
-                return next(err);
-            }
-            console.log('from /login post', req.user);
-            return res.send(req.user);
-        });
-    })(req, res, next);
-});
-
-
-// logout
-app.get('/logout', function(req, res, next) {
-    /*  this is not working
-   http://stackoverflow.com/questions/13758207/why-is-passportjs-in-node-not-removing-session-on-logout
-   req.logout();
-    console.log('logged out');
-    res.redirect('/#/login');
-    */
-
-    req.session.destroy(function(err) {
-        res.redirect('/login'); //Inside a callback… bulletproof!
-    });
 });
 
 

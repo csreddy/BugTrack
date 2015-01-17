@@ -21,8 +21,6 @@ exports.search = function(req, res) {
         searchCriteria = [q.collection('bugs')];
     }
 
-
-
     for (var key in criteria) {
         var orQuery = [];
         var value = criteria[key];

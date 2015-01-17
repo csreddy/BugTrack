@@ -29,7 +29,7 @@ exports.count = function(req, res) {
             categories: 'metadata'
         })
     ).result(function(response) {
-        console.log(response);
+       // console.log(response);
         res.status(200).json({
             count: response[0].total
         });
