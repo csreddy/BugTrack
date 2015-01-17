@@ -15,7 +15,7 @@ var _ = require('lodash');
 exports.index = function(req, res) {
     db.documents.read('config.json').result(function(document) {
         if (document[0]) {
-            console.log(Object.keys(document[0].content));
+          //  console.log(Object.keys(document[0].content));
             res.status(200).json(document[0].content)
         } else {
             res.status(404).json({

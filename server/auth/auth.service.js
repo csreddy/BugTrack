@@ -4,7 +4,7 @@ var passport = require('passport');
 var config = require('../config/environment');
 
 function ensureAuthenticated(req, res, next) {
-    console.log('req.user', req.user);
+    console.log('req.user = ', req.user);
     var username = req.originalUrl.replace('/users/', '');
     if (req.isAuthenticated()) {
         return next();
@@ -16,4 +16,4 @@ function ensureAuthenticated(req, res, next) {
 }
 
 
-exports.ensureAuthenticated = ensureAuthenticated;
+exports.ensureAuthenticated = ensureAuthenticated; 

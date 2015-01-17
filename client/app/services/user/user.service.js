@@ -45,7 +45,7 @@ app.service('User', ['$http', '$location', 'Flash',
         this.login = function(userCredentials) {
             return $http({
                 method: 'POST',
-                url: '/login',
+                url: '/auth/local/login',
                 data: userCredentials
             });
         };
@@ -53,7 +53,7 @@ app.service('User', ['$http', '$location', 'Flash',
         this.logout = function() {
             return $http({
                 method: 'GET',
-                url: '/logout',
+                url: '/auth/local/logout',
             });
         };
 
