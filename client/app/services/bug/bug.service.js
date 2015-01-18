@@ -23,8 +23,6 @@ app.service('Bug', ['$http',
                     assignTo: user.username,
                     facets: {}
                 };
-                console.log('inside getCurrentUserBugs().........');
-
                 return $http({
                     method: 'POST',
                     url: '/api/search',
