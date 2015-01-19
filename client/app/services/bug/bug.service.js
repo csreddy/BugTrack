@@ -85,20 +85,32 @@ app.service('Bug', ['$http',
         };
 
 
-        // this.update = function(bug, updatedBug) {
-        //     console.log('OLD:', bug);
-        //     console.log('Updated:', JSON.stringify(updatedBug));
-        //     return bug;
-        // };
+        this.subscribe = function(subscribe) {
+            return $http({
+                method: 'PUT',
+                url: '/api/bug/' + subscribe.id + '/subscribe',
+                data: subscribe
+            });
+        };
 
-        this.clone = function(payload) {
-            console.log('inside updateBug()');
-            var payloadForUpdate = {};
-            payloadForUpdate.bug = payload;
+        this.unsubscribe = function(unsubscribe) {
+            return $http({
+                method: 'PUT',
+                url: '/api/bug/' + unsubscribe.id + '/unsubscribe',
+                data: unsubscribe
+            });
+        };
+
+        this.clone = function(parent, clone) {
+            console.log('inside clone()');
+            var data = {
+                parent: parent,
+                clone: clone
+            };
             return $http({
                 method: 'POST',
-                url: '/api/bug/new',
-                data: payloadForUpdate
+                url: '/api/bug/clone',
+                data: data
             });
         };
 
@@ -125,6 +137,20 @@ app.service('Bug', ['$http',
             });
         };
 
+        this.watch = function(scope, object) {
+            scope.$watch(object, function() {
+                if (scope[object] !== undefined) {
+                    var note = object + ' changed from ' + scope.bug[object] + ' to ' + scope[object];
+                    console.log(note);
+                    scope.changes[object] = {
+                        'from': scope.bug[object],
+                        'to': scope[object]
+                    };
+                }
+            }, true);
+
+
+        };
 
     }
 ]);

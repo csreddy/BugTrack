@@ -328,17 +328,15 @@ exports.update = function(req, res) {
             });
         }
 
-        for (var file in req.files) {
+        for (var i in req.files) {
             // delete file from uploads dir after successfull upload
-            fs.unlink(req.files[file].path, function(err) {
+            fs.unlink(req.files[i].path, function(err) {
                 if (err) throw err;
             });
         }
     }
 
     updates.push(p.insert("array-node('changeHistory')", 'last-child', changes))
-
-
 
     db.documents.patch(uri, updates).result(function(response) {
         res.status(200).json({
@@ -351,5 +349,49 @@ exports.update = function(req, res) {
         })
     });
 
+};
+
+
+exports.subscribe = function(req, res) {
+  console.log('subscribe', req.body);
+  var uri =  req.body.id + '.json'
+    db.documents.patch(uri, p.insert("array-node('subscribers')", 'last-child', req.body.user)).result(function(response) {
+        res.status(200).json({message: 'Bug subscribed'})
+    }, function(error) {
+        res.status(400).json({message: error});
+    });
+};
+
+
+exports.unsubscribe = function(req, res) {
+   console.log('unsubscribe', req.body);
+  var uri =  req.body.id + '.json'
+    db.documents.patch(uri, p.remove("subscribers[username eq '"+req.body.user.username+"']")).result(function(response) {
+        res.status(200).json({message: 'Bug unsubscribed'})
+    }, function(error) {
+        res.status(400).json({message: error});
+    });
+};
+
+exports.clone = function(req, res) {
+    console.log('cloning ');
+    var bugs = [{
+        uri: req.body.parent.id + '.json',
+        category: 'content',
+        contentType: 'application/json',
+        collections: ['bugs'],
+        content: req.body.parent
+    },{
+        uri: req.body.clone.id + '.json',
+        category: 'content',
+        contentType: 'application/json',
+        collections: ['bugs'],
+        content: req.body.clone
+    }]
+    db.documents.write(bugs).result(function(response) {
+        res.status(200).json({message: 'Clone successfull'});
+    }, function(error) {
+        res.status(error.statusCode).json({message: 'Clone failed'})
+    })
 
 };

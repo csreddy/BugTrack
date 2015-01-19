@@ -213,8 +213,8 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <ul ng-repeat="file in bug.attachments track by $index" class="list-inline">
-                            <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}</a></li>
+                        <ul ng-repeat="file in bug.attachments track by $index" class="list-inline" style="display: inline-block;">
+                            <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a></li>
                         
                         
                         </ul>
@@ -255,6 +255,7 @@
             <p class="pull-right" style="font-size: 12px;font-weight: 400;">{{item.time}}</p>
         </div>
         <div class="panel-body">
+            <p class="bg-success">
             <ul ng-repeat="(key, value) in item.change" class="list-unstyled">
                 <li ng-hide="value.to.name || value.to.level">
                     {{key | capitalize}} changed
@@ -272,11 +273,11 @@
                 </li>
             </ul>
             <b ng-show="item.attachments">Attached:</b>
-            <ul ng-repeat="file in item.attachments" class="list-unstyled">
-                <li><a href="{{file.uri}}">{{file.name}}</a>
+            <ul ng-repeat="file in item.attachments" class="list-inline" style="display: inline-block;">
+                <li><a href="{{file.uri}}">{{file.name}}&nbsp;&nbsp;&nbsp;</a>
                 </li>
             </ul>
-
+            </p>
 
             <p ng-show="item.comment" ng-bind-html="item.comment"></p>
 

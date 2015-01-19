@@ -18,10 +18,13 @@ module.exports = function(app) {
     app.use('/api/user/create', require('./api/user'));
     app.use('/api/bug', require('./api/bug'));
     app.use('/api/bug/:id(\\d+)', require('./api/bug'));
+    app.use('/api/bug/:id(\\d+)/subscribe', require('./api/bug'));
+    app.use('/api/bug/:id(\\d+)/unsubscribe', require('./api/bug'));
     app.use('/api/bug/new', require('./api/bug'));
     app.use('/api/bug/update', require('./api/bug'));
     app.use('/api/bug/count', require('./api/bug'));
     app.use('/api/bug/facets', require('./api/bug'));
+    app.use('/api/bug/clone', require('./api/bug'));
     app.use('/api/search', require('./api/search'));
 
     // All undefined asset or api routes should return a 404
