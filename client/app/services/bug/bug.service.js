@@ -57,16 +57,17 @@ app.service('Bug', ['$http',
         };
 
 
-        this.update = function(bug, files) {
+        this.update = function(bug, old, files) {
             return $http({
-                url: '/api/bug/new',
-                method: 'POST',
+                url: '/api/bug/update',
+                method: 'PUT',
                 headers: {
                     'Content-Type': undefined
                 },
                 transformRequest: function(data) {
                     var form = new FormData();
                     form.append('bug', angular.toJson(bug));
+                    form.append('old', angular.toJson(old));
                     if (data.files) {
                         for (var i = 0; i < data.files.length; i++) {
                             console.log('FORM', data.files[i]);
@@ -77,10 +78,18 @@ app.service('Bug', ['$http',
                 },
                 data: {
                     bug: bug,
+                    old: old,
                     files: files
                 }
             });
         };
+
+
+        // this.update = function(bug, updatedBug) {
+        //     console.log('OLD:', bug);
+        //     console.log('Updated:', JSON.stringify(updatedBug));
+        //     return bug;
+        // };
 
         this.clone = function(payload) {
             console.log('inside updateBug()');

@@ -90,6 +90,19 @@ app.get('/userinfo', function(req, res) {
 });
 
 
+app.get('/doc/:a/:b', function(req, res) {
+console.log('URL', req.params);
+var data = {a: req.params.a, b: req.params.b}
+res.json(data);
+
+    /*db.documents.read(req.url).result(function(response) {
+        res.status(200).json(response.documents[0])
+    }, function(error) {
+        res.status(404).json({message: 'error'})
+    })*/
+});
+
+
 var server = require('http').createServer(app);
 require('./config/express')(app);
 require('./routes')(app);

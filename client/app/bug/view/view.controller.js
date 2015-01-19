@@ -24,10 +24,10 @@ angular.module('bug.controllers')
                 console.log(response.data);
 
                 $scope.bug = response.data;
-                updateBug = response.data;
+                updateBug = JSON.parse(JSON.stringify(response.data));
                 console.log('updateBug', updateBug);
 
-                // cloned bug attachedments will have its parent attachment uri, hence need to do this
+                // cloned bug attachments will have its parent attachment uri, hence need to do this
                 $scope.attachments = [];
                 for (var i = 0; i < $scope.bug.attachments.length; i++) {
                     $scope.attachments[i] = {};
@@ -45,7 +45,7 @@ angular.module('bug.controllers')
                     }
                 }
                 // if the current user is bug reporter or bug assignee then do not show subscribe/unsubscribe because 
-                // they are subscribed default and cannot unsubscribe
+                // they are subscribed by default and not allowed to unsubscribe
                 if (currentUser.username === $scope.bug.assignTo.username || currentUser.username === $scope.bug.submittedBy.username) {
                     $scope.showSubscribe = false;
                     $scope.showUnsubscribe = false;
@@ -151,7 +151,7 @@ angular.module('bug.controllers')
                 // watch for assignTo change
                 $scope.$watch('assignTo', function() {
                     if ($scope.assignTo !== undefined) {
-                        var note = 'Bug re-assigned to ' + JSON.parse($scope.assignTo).name;
+                        var note = 'Bug assigned to ' + JSON.parse($scope.assignTo).name;
                         console.log(note);
                         $scope.changes.assignTo = {
                             'from': $scope.bug.assignTo,
@@ -164,7 +164,7 @@ angular.module('bug.controllers')
             function(response) {
                 if (response.status === 404) {
                     $location.path('/404');
-                    Flash.addAlert('danger', 'bug not found');
+                    Flash.addAlert('danger', 'Bug not found');
                 } else {
                     Flash.addAlert('danger', response.data.error.message);
                 }
@@ -185,20 +185,8 @@ angular.module('bug.controllers')
 
         // update bug 
         $scope.updateBug = function() {
-            var uri = $scope.bug.id + '.json';
-            var updateTime = new Date();
             updateBug.status = $scope.status || $scope.bug.status;
             updateBug.assignTo = ($scope.assignTo === undefined) ? $scope.bug.assignTo : JSON.parse($scope.assignTo);
-            // check if the user has already subscribed
-            for (var i = 0; i < updateBug.subscribers.length; i++) {
-                if (updateBug.subscribers[i].username === updateBug.assignTo.username) {
-                    break;
-                }
-                // if user has not subscribed then subscribe at the last iteration
-                if (i === updateBug.subscribers.length - 1) {
-                    updateBug.subscribers.push(updateBug.assignTo);
-                }
-            }
             updateBug.category = $scope.category || $scope.bug.category;
             updateBug.tofixin = $scope.tofixin || $scope.bug.tofixin;
             updateBug.severity = $scope.severity || $scope.bug.severity;
@@ -206,18 +194,11 @@ angular.module('bug.controllers')
             updateBug.version = $scope.version || $scope.bug.version;
             updateBug.platform = $scope.platform || $scope.bug.platform;
             updateBug.fixedin = $scope.fixedin || $scope.bug.fixedin;
-            if (Object.keys($scope.changes).length !== 0 || $scope.newcomment) {
-                console.log($scope.newcomment);
-                console.log($scope.updatedBy);
-                updateBug.changeHistory.push({
-                    'time': updateTime,
-                    'updatedBy': $scope.updatedBy,
-                    'change': $scope.changes,
-                    'comment': $scope.newcomment
-                });
-                // clear text area after submit
-                $scope.newcomment = '';
-            }
+            updateBug.comment = $scope.newcomment || ''; 
+            updateBug.subscribers = $scope.assignTo || '';
+            updateBug.updatedBy = currentUser;
+
+
             for (var j = 0; j < $scope.files.length; j++) {
                 var fileuri = '/' + updateBug.id + '/' + $scope.files[j].name;
                 if (updateBug.attachments.indexOf(fileuri) > -1) {
@@ -233,15 +214,22 @@ angular.module('bug.controllers')
                     updateBug.attachments.push(fileuri);
                 }
             }
-
-            Bug.update(updateBug, $scope.files).success(function() {
-                // reset watchers
+            console.log('Before', $scope.bug);
+            Bug.update(updateBug, $scope.bug, $scope.files).success(function(response) {
+                 // reset watchers
                 $scope.changes = {};
                 $scope.files = [];
+                $scope.newcomment = '';
                 Flash.addAlert('success', '<a href=\'/#/bug/' + $scope.bug.id + '\'>' + 'Bug-' + $scope.bug.id + '</a>' + ' was successfully updated');
-            }).error(function(response) {
-                Flash.addAlert('danger', response.data.error.message);
+                Bug.get(id).then(function(response) {
+                    $scope.bug = response.data;
+                }, function(error) {
+                    Flash.addAlert('danger', error.data.error.message);
+                });   
+            }).error(function(error) {
+                 Flash.addAlert('danger', error.data.error.message);
             });
+
         };
 
         // clone bug 

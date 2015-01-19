@@ -39,7 +39,7 @@ app.controller('logoutCtrl', ['$http', 'User', 'Flash', '$location', '$window',
         User.logout().then(function() {
             $location.path('/login');
             Flash.addAlert('success', 'user logged out');
-            $window.sessionStorage.currentUser = undefined;
+            //$window.sessionStorage.currentUser = undefined;
         }, function(error) {
             Flash.addAlert('danger', 'something went wrong\n'+ error);
         });

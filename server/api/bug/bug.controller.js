@@ -29,7 +29,7 @@ exports.count = function(req, res) {
             categories: 'metadata'
         })
     ).result(function(response) {
-       // console.log(response);
+        // console.log(response);
         res.status(200).json({
             count: response[0].total
         });
@@ -103,22 +103,22 @@ exports.id = function(req, res) {
 };
 
 exports.new = function(req, res) {
-     'use strict';
+    'use strict';
     console.log('inside NEW.........');
     //console.log('BODY', req.body);
     //console.log('FILES', req.files);
     var attachments = req.files;
     var errors = false;
-     var id;
-     var collections = ['bugs'];
+    var id;
+    var collections = ['bugs'];
     if (typeof req.body.bug === 'object') {
-         id = req.body.bug.id;
-         collections.push(req.body.bug.submittedBy.username);
-    } else{
-          id = JSON.parse(req.body.bug).id;
-          collections.push(JSON.parse(req.body.bug).submittedBy.username);
+        id = req.body.bug.id;
+        collections.push(req.body.bug.submittedBy.username);
+    } else {
+        id = JSON.parse(req.body.bug).id;
+        collections.push(JSON.parse(req.body.bug).submittedBy.username);
     }
-    var uri = id + '.json';  
+    var uri = id + '.json';
     db.documents.write([{
         uri: uri,
         category: 'content',
@@ -135,35 +135,221 @@ exports.new = function(req, res) {
         res.send(200);
     });
 
-     for (var file in attachments) {
+    for (var file in attachments) {
         console.log(attachments[file]);
-        if (attachments[file].mimetype === "image/svg+xml") {
-             errors = true;
-            break;
-        }
         var doc = {
-            uri: '/'+ id +'/' + attachments[file].originalname,
+            uri: '/' + id + '/' + attachments[file].originalname,
             category: 'content',
-            contentType: attachments[file].mimetype
+            contentType: attachments[file].mimetype,
+            content: fs.createReadStream(attachments[file].path)
         };
 
-        var writableStream = db.documents.createWriteStream(doc);
-        writableStream.result(function(response) {
-            console.log('wrote:\n ' + response.documents[0].uri);
+        db.documents.write(doc).result(function(response) {
+            console.log('wrote:\n ', JSON.stringify(response.documents[0]));
+            res.send(200);
         }, function(error) {
-            console.log('file upload failed');
             errors = true;
             res.send(400, {
                 message: 'file upload failed. Try again'
             });
         });
-        fs.createReadStream(attachments[file].path).pipe(writableStream);
     }
+
+    for (var file in attachments) {
+        // delete file from uploads dir after successfull upload
+        fs.unlink(attachments[file].path, function(err) {
+            if (err) throw err;
+        });
+    }
+
 };
 
 
 exports.update = function(req, res) {
     console.log('Inside update....');
+    console.log(req.body);
+    // res.json(req.body);
+    var from = JSON.parse(req.body.old);
+    var to = JSON.parse(req.body.bug);
+    var file = req.files;
+    var uri = from.id + '.json';
+    var updates = []
+    var updateTime = new Date();
+
+    var changes = {
+        time: updateTime,
+        updatedBy: {
+            name: to.updatedBy.name,
+            email: to.updatedBy.email,
+            username: to.updatedBy.username
+        },
+        change: {},
+        attachments: []
+    }
+
+    console.log('FILES', req.files);
+
+    for (var prop in to) {
+        switch (prop) {
+            case 'status':
+                if (from.status !== to.status) {
+                    updates.push(p.replace('/status', to.status));
+                    changes.change.status = {
+                        from: from.status,
+                        to: to.status
+                    };
+                }
+                break;
+            case 'severity':
+                if (from.severity !== to.severity) {
+                    updates.push(p.replace('/severity', to.severity));
+                    changes.change.severity = {
+                        from: from.severity,
+                        to: to.severity
+                    };
+                }
+                break;
+            case 'category':
+                if (from.category !== to.category) {
+                    updates.push(p.replace('/category', to.category));
+                    changes.change.category = {
+                        from: from.category,
+                        to: to.category
+                    };
+                }
+                break;
+            case 'priority':
+                if (from.priority.level !== to.priority.level) {
+                    updates.push(p.replace('/priority/level', to.priority.level));
+                    updates.push(p.replace('/priority/title', to.priority.title));
+                    changes.change.priority = {
+                        from: from.priority,
+                        to: to.priority
+                    };
+                }
+                break;
+            case 'version':
+                if (from.version !== to.version) {
+                    updates.push(p.replace('/version', to.version));
+                    changes.change.version = {
+                        from: from.version,
+                        to: to.version
+                    };
+                }
+                break;
+            case 'platform':
+                if (from.platform !== to.platform) {
+                    updates.push(p.replace('/platform', to.platform))
+                    changes.change.platform = {
+                        from: from.platform,
+                        to: to.platform
+                    };
+                }
+                break;
+            case 'tofixin':
+                if (from.tofixin !== to.tofixin) {
+                    updates.push(p.replace('/tofixin', to.tofixin));
+                }
+                break;
+            case 'fixedin':
+                if (from.fixedin !== to.fixedin) {
+                    updates.push(p.replace('/fixedin', to.fixedin));
+                    changes.change.fixedin = {
+                        from: from.fixedin,
+                        to: to.fixedin
+                    };
+                }
+                break;
+            case 'assignTo':
+                if (from.assignTo.username !== to.assignTo.username) {
+                    updates.push(p.replace('/assignTo/username', to.assignTo.username));
+                    updates.push(p.replace('/assignTo/email', to.assignTo.email));
+                    updates.push(p.replace('/assignTo/name', to.assignTo.name));
+                    for (var i = 0; i < to.subscribers.length; i++) {
+                    // check if the user has already subscribed
+                        if (to.subscribers[i].username === to.assignTo.username) {
+                            break;
+                        }  
+                          // if user has not subscribed then subscribe at the last iteration
+                         if (i === to.subscribers.length - 1) {
+                            updates.push(p.insert("array-node('subscribers')", 'last-child', to.assignTo));
+                        }
+                    }
+
+                    changes.change.assignTo = {
+                        from: from.assignTo,
+                        to: to.assignTo
+                    };
+
+                }
+                break;
+            case 'comment':
+                if (to.comment.length > 0) {
+                    changes.comment = to.comment;
+                }
+                break;
+            default:
+                break;
+                // do nothing
+        }
+
+    }
+
+    if (Object.keys(req.files).length > 0) {
+        for (var file in req.files) {
+            var fileObj = {
+                name: req.files[file].originalname,
+                uri: '/' + to.id + '/' + req.files[file].originalname
+            }
+            updates.push(p.insert("array-node('attachments')", 'last-child', fileObj));
+            changes.attachments.push(fileObj);
+        }
+    }
+
+
+    if (Object.keys(req.files).length > 0) {
+        for (var file in req.files) {
+            console.log(req.files[file]);
+            var doc = {
+                uri: '/' + to.id + '/' + req.files[file].originalname,
+                category: 'content',
+                contentType: req.files[file].mimetype,
+                content: fs.createReadStream(req.files[file].path)
+            };
+
+            db.documents.write(doc).result(function(response) {
+                console.log('wrote:\n ', JSON.stringify(response.documents[0]));
+                // res.send(200);
+            }, function(error) {
+                errors = true;
+                res.send(400, {
+                    message: 'file upload failed. Try again'
+                });
+            });
+        }
+
+        for (var file in req.files) {
+            // delete file from uploads dir after successfull upload
+            fs.unlink(req.files[file].path, function(err) {
+                if (err) throw err;
+            });
+        }
+    }
+
+    updates.push(p.insert("array-node('changeHistory')", 'last-child', changes))
+
+
+
+    db.documents.patch(uri, updates).result(function(response) {
+        res.status(200).json({
+            message: 'bug updated'
+        })
+    }, function(error) {
+        console.log(error);
+        res.status(500).json({
+            message: 'bug update failed\n' + error
+        })
+    });
 
 
 };

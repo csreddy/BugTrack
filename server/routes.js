@@ -19,6 +19,7 @@ module.exports = function(app) {
     app.use('/api/bug', require('./api/bug'));
     app.use('/api/bug/:id(\\d+)', require('./api/bug'));
     app.use('/api/bug/new', require('./api/bug'));
+    app.use('/api/bug/update', require('./api/bug'));
     app.use('/api/bug/count', require('./api/bug'));
     app.use('/api/bug/facets', require('./api/bug'));
     app.use('/api/search', require('./api/search'));
