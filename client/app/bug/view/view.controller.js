@@ -96,7 +96,7 @@ angular.module('bug.controllers')
 
 
                 for (var j = 0; j < $scope.files.length; j++) {
-                    var fileuri = '/' + updateBug.id + '/' + $scope.files[j].name;
+                    var fileuri = '/bug/'+ updateBug.id +'/attachments/' + $scope.files[j].name;
                     if (updateBug.attachments.indexOf(fileuri) > -1) {
                         var modalOptions = {
                             showCloseButton: true,
@@ -116,14 +116,14 @@ angular.module('bug.controllers')
                     $scope.changes = {};
                     $scope.files = [];
                     $scope.newcomment = '';
-                    Flash.addAlert('success', '<a href=\'/#/bug/' + $scope.bug.id + '\'>' + 'Bug-' + $scope.bug.id + '</a>' + ' was successfully updated');
+                    Flash.addAlert('success', '<a href=\'/bug/' + $scope.bug.id + '\'>' + 'Bug-' + $scope.bug.id + '</a>' + ' was successfully updated');
                     Bug.get(id).then(function(response) {
                         $scope.bug = response.data;
                     }, function(error) {
-                        Flash.addAlert('danger', error.data.error.message);
+                        Flash.addAlert('danger', error.message);
                     });
                 }).error(function(error) {
-                    Flash.addAlert('danger', error.data.error.message);
+                    Flash.addAlert('danger', error.message);
                 });
 
             };

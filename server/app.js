@@ -26,7 +26,9 @@ var fs = require('fs');
 // Setup server
 var app = express();
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
 app.use(cookieParser());
 
 app.use(multer({
@@ -68,39 +70,60 @@ process.on('uncaughtException', function(err) {
     process.exit(1); // exit with error
 });
 
+// api calls
+app.use('/v1/', function(req, res, next) {
+    'use strict';
+
+    function handleConnRefused(err, resp, body) {
+        if (err.code === 'ECONNREFUSED') {
+            console.error('Refused connection');
+            next(err);
+        } else {
+            throw err;
+        }
+    }
+    var url = 'http://localhost:8003/v1' + req.url;
+    switch (req.method) {
+        case 'GET':
+            req.pipe(request(url,  {
+                user: 'admin',
+                pass: 'admin',
+                sendImmediately: false
+            }, function(error, response, body) {
+                if (error) {
+                    next(error);
+                }
+            })).pipe(res);
+            break;
+        default:
+            console.log('nothing to do');
+    }
+});
 
 
 app.get('/userinfo', function(req, res) {
     console.log('===================== req.user', req.user);
-    var uri = '/users/'+ req.user + '.json';
+    var uri = '/users/' + req.user + '.json';
     if (req.user) {
-    db.documents.read(uri).result(function(document) {
+        db.documents.read(uri).result(function(document) {
             var bodyObj = document[0].content;
             delete bodyObj.password;
             delete bodyObj.createdAt;
             delete bodyObj.modifiedAt;
             res.send(bodyObj);
-    }, function(error) {
-        res.send(500, {message: 'Error occured.\n' + error})
-    });
-    } else{
-       res.send(401, {message: 'Please sign in'}) 
+        }, function(error) {
+            res.send(500, {
+                message: 'Error occured.\n' + error
+            })
+        });
+    } else {
+        res.send(401, {
+            message: 'Please sign in'
+        })
     }
 
 });
 
-
-app.get('/doc/:a/:b', function(req, res) {
-console.log('URL', req.params);
-var data = {a: req.params.a, b: req.params.b}
-res.json(data);
-
-    /*db.documents.read(req.url).result(function(response) {
-        res.status(200).json(response.documents[0])
-    }, function(error) {
-        res.status(404).json({message: 'error'})
-    })*/
-});
 
 
 var server = require('http').createServer(app);

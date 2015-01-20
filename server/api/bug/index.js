@@ -15,5 +15,4 @@ router.put('/:id/unsubscribe', controller.unsubscribe);
 router.post('/new', auth.ensureAuthenticated, controller.new);
 router.put('/update', controller.update);
 router.post('/clone', controller.clone);
-
 module.exports = router; 

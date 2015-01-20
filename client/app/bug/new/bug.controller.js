@@ -202,7 +202,7 @@ angular.module('bug.controllers', ['ui.bootstrap', 'angularFileUpload', 'textAng
                 for (var i = 0; i < $scope.files.length; i++) {
                     bug.attachments[i] = {
                         name: $scope.files[i].name,
-                        uri: '/' + bug.id + '/' + $scope.files[i].name
+                        uri: '/bug/' + bug.id + '/attachments/' + $scope.files[i].name
                     };
                 }
                 bug.relation = $scope.relation;
@@ -218,7 +218,7 @@ angular.module('bug.controllers', ['ui.bootstrap', 'angularFileUpload', 'textAng
 
                 Bug.create(bug, $scope.files).success(function() {
                     $location.path('/');
-                    Flash.addAlert('success', '<a href=\'/#/bug/' + bug.id + '\'>' + 'Bug-' + bug.id + '</a>' + ' was successfully created');
+                    Flash.addAlert('success', '<a href=\'/bug/' + bug.id + '\'>' + 'Bug-' + bug.id + '</a>' + ' was successfully created');
                 }).error(function(response) {
                     Flash.addAlert('danger', response);
                 });

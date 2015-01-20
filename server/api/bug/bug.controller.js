@@ -74,7 +74,7 @@ exports.facets = function(req, res) {
 exports.id = function(req, res) {
     res.locals.errors = req.flash();
     console.log(res.locals.errors);
-    var uri = req.params.id + '.json';
+    var uri = '/bug/'+req.params.id+'/'+req.params.id + '.json';
     db.documents.probe(uri).result(function(document) {
         console.log('document at ' + uri + ' exists: ' + document.exists);
         if (document.exists) {
@@ -118,7 +118,7 @@ exports.new = function(req, res) {
         id = JSON.parse(req.body.bug).id;
         collections.push(JSON.parse(req.body.bug).submittedBy.username);
     }
-    var uri = id + '.json';
+    var uri = '/bug/' + id + '/' + id + '.json';
     db.documents.write([{
         uri: uri,
         category: 'content',
@@ -138,7 +138,7 @@ exports.new = function(req, res) {
     for (var file in attachments) {
         console.log(attachments[file]);
         var doc = {
-            uri: '/' + id + '/' + attachments[file].originalname,
+            uri: '/bug/' + id + '/attachments/' + attachments[file].originalname,
             category: 'content',
             contentType: attachments[file].mimetype,
             content: fs.createReadStream(attachments[file].path)
@@ -172,7 +172,7 @@ exports.update = function(req, res) {
     var from = JSON.parse(req.body.old);
     var to = JSON.parse(req.body.bug);
     var file = req.files;
-    var uri = from.id + '.json';
+    var uri = '/bug/'+from.id+'/'+from.id + '.json';
     var updates = []
     var updateTime = new Date();
 
@@ -266,12 +266,12 @@ exports.update = function(req, res) {
                     updates.push(p.replace('/assignTo/email', to.assignTo.email));
                     updates.push(p.replace('/assignTo/name', to.assignTo.name));
                     for (var i = 0; i < to.subscribers.length; i++) {
-                    // check if the user has already subscribed
+                        // check if the user has already subscribed
                         if (to.subscribers[i].username === to.assignTo.username) {
                             break;
-                        }  
-                          // if user has not subscribed then subscribe at the last iteration
-                         if (i === to.subscribers.length - 1) {
+                        }
+                        // if user has not subscribed then subscribe at the last iteration
+                        if (i === to.subscribers.length - 1) {
                             updates.push(p.insert("array-node('subscribers')", 'last-child', to.assignTo));
                         }
                     }
@@ -299,7 +299,7 @@ exports.update = function(req, res) {
         for (var file in req.files) {
             var fileObj = {
                 name: req.files[file].originalname,
-                uri: '/' + to.id + '/' + req.files[file].originalname
+                uri: '/bug/' + to.id + '/attachments/' + req.files[file].originalname
             }
             updates.push(p.insert("array-node('attachments')", 'last-child', fileObj));
             changes.attachments.push(fileObj);
@@ -311,7 +311,7 @@ exports.update = function(req, res) {
         for (var file in req.files) {
             console.log(req.files[file]);
             var doc = {
-                uri: '/' + to.id + '/' + req.files[file].originalname,
+                uri: '/bug/' + to.id + '/attachments/' + req.files[file].originalname,
                 category: 'content',
                 contentType: req.files[file].mimetype,
                 content: fs.createReadStream(req.files[file].path)
@@ -353,45 +353,61 @@ exports.update = function(req, res) {
 
 
 exports.subscribe = function(req, res) {
-  console.log('subscribe', req.body);
-  var uri =  req.body.id + '.json'
+    console.log('subscribe', req.body);
+    var uri = req.body.id + '.json'
     db.documents.patch(uri, p.insert("array-node('subscribers')", 'last-child', req.body.user)).result(function(response) {
-        res.status(200).json({message: 'Bug subscribed'})
+        res.status(200).json({
+            message: 'Bug subscribed'
+        })
     }, function(error) {
-        res.status(400).json({message: error});
+        res.status(400).json({
+            message: error
+        });
     });
 };
 
 
 exports.unsubscribe = function(req, res) {
-   console.log('unsubscribe', req.body);
-  var uri =  req.body.id + '.json'
-    db.documents.patch(uri, p.remove("subscribers[username eq '"+req.body.user.username+"']")).result(function(response) {
-        res.status(200).json({message: 'Bug unsubscribed'})
+    console.log('unsubscribe', req.body);
+    var uri = req.body.id + '.json'
+    db.documents.patch(uri, p.remove("subscribers[username eq '" + req.body.user.username + "']")).result(function(response) {
+        res.status(200).json({
+            message: 'Bug unsubscribed'
+        })
     }, function(error) {
-        res.status(400).json({message: error});
+        res.status(400).json({
+            message: error
+        });
     });
 };
 
 exports.clone = function(req, res) {
     console.log('cloning ');
     var bugs = [{
-        uri: req.body.parent.id + '.json',
+        uri: '/bug/' + req.body.parent.id + '/' + req.body.parent.id + '.json',
         category: 'content',
         contentType: 'application/json',
         collections: ['bugs'],
         content: req.body.parent
-    },{
-        uri: req.body.clone.id + '.json',
+    }, {
+        uri: '/bug/' + req.body.clone.id + '/' + req.body.clone.id + '.json',
         category: 'content',
         contentType: 'application/json',
         collections: ['bugs'],
         content: req.body.clone
     }]
     db.documents.write(bugs).result(function(response) {
-        res.status(200).json({message: 'Clone successfull'});
+        res.status(200).json({
+            message: 'Clone successfull'
+        });
     }, function(error) {
-        res.status(error.statusCode).json({message: 'Clone failed'})
+        res.status(error.statusCode).json({
+            message: 'Clone failed'
+        })
     })
+
+};
+
+exports.uri = function(req, res) {
 
 };
