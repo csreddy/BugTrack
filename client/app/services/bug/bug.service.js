@@ -23,8 +23,6 @@ app.service('Bug', ['$http',
                     assignTo: user.username,
                     facets: {}
                 };
-                console.log('inside getCurrentUserBugs().........');
-
                 return $http({
                     method: 'POST',
                     url: '/api/search',
@@ -59,16 +57,17 @@ app.service('Bug', ['$http',
         };
 
 
-        this.update = function(bug, files) {
+        this.update = function(bug, old, files) {
             return $http({
-                url: '/api/bug/new',
-                method: 'POST',
+                url: '/api/bug/update',
+                method: 'PUT',
                 headers: {
                     'Content-Type': undefined
                 },
                 transformRequest: function(data) {
                     var form = new FormData();
                     form.append('bug', angular.toJson(bug));
+                    form.append('old', angular.toJson(old));
                     if (data.files) {
                         for (var i = 0; i < data.files.length; i++) {
                             console.log('FORM', data.files[i]);
@@ -79,19 +78,39 @@ app.service('Bug', ['$http',
                 },
                 data: {
                     bug: bug,
+                    old: old,
                     files: files
                 }
             });
         };
 
-        this.clone = function(payload) {
-            console.log('inside updateBug()');
-            var payloadForUpdate = {};
-            payloadForUpdate.bug = payload;
+
+        this.subscribe = function(subscribe) {
+            return $http({
+                method: 'PUT',
+                url: '/api/bug/' + subscribe.id + '/subscribe',
+                data: subscribe
+            });
+        };
+
+        this.unsubscribe = function(unsubscribe) {
+            return $http({
+                method: 'PUT',
+                url: '/api/bug/' + unsubscribe.id + '/unsubscribe',
+                data: unsubscribe
+            });
+        };
+
+        this.clone = function(parent, clone) {
+            console.log('inside clone()');
+            var data = {
+                parent: parent,
+                clone: clone
+            };
             return $http({
                 method: 'POST',
-                url: '/api/bug/new',
-                data: payloadForUpdate
+                url: '/api/bug/clone',
+                data: data
             });
         };
 
@@ -118,6 +137,20 @@ app.service('Bug', ['$http',
             });
         };
 
+        this.watch = function(scope, object) {
+            scope.$watch(object, function() {
+                if (scope[object] !== undefined) {
+                    var note = object + ' changed from ' + scope.bug[object] + ' to ' + scope[object];
+                    console.log(note);
+                    scope.changes[object] = {
+                        'from': scope.bug[object],
+                        'to': scope[object]
+                    };
+                }
+            }, true);
+
+
+        };
 
     }
 ]);
