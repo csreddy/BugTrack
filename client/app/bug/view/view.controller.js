@@ -93,7 +93,7 @@ angular.module('bug.controllers')
                 updateBug.comment = $scope.newcomment || '';
                 updateBug.subscribers = $scope.assignTo || '';
                 updateBug.updatedBy = currentUser;
-
+                updateBug.svninfo = {};    
 
                 for (var j = 0; j < $scope.files.length; j++) {
                     var fileuri = '/bug/'+ updateBug.id +'/attachments/' + $scope.files[j].name;

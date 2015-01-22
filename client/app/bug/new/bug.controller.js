@@ -173,7 +173,11 @@ angular.module('bug.controllers', ['ui.bootstrap', 'angularFileUpload', 'textAng
                 bug.modifiedAt = bug.createdAt;
                 bug.status = $scope.config.status[1];
                 bug.title = $scope.title;
-                bug.submittedBy = $scope.submittedBy;
+                bug.submittedBy = {
+                    username: $scope.submittedBy.username,
+                    email: $scope.submittedBy.email,
+                    name: $scope.submittedBy.name
+                };
                 bug.assignTo = $scope.assignTo;
                 bug.description = $scope.description;
                 bug.samplequery = $scope.samplequery;
@@ -181,6 +185,7 @@ angular.module('bug.controllers', ['ui.bootstrap', 'angularFileUpload', 'textAng
                 bug.stacktrace = $scope.stacktrace;
                 bug.category = $scope.category;
                 bug.tofixin = $scope.tofixin;
+                bug.fixedin = '';
                 bug.severity = $scope.severity;
                 bug.priority = $scope.priority;
                 bug.version = $scope.version;

@@ -1,134 +1,3141 @@
-[
-    {
-        "createdAt": "2014-05-26T17:29:56:18Z",
-        "email": "admin@mycompany.com",
-        "modifiedAt": "2014-05-16T03:54:37:15Z",
-        "name": "Admin User",
-        "password": "admin",
-        "username": "admin",
-		"savedQueries": {
-			"default": {}
-		}
-    },
-    {
-        "createdAt": "2014-05-26T17:29:56:18Z",
-        "email": "sreddy@mycompany.com",
-        "modifiedAt": "2014-05-16T03:54:37:15Z",
-        "name": "Sudhakar Reddy",
-        "password": "admin",
-        "username": "sreddy",
-		"savedQueries": {
-			"default": {}
-		}
-    },
-    {
-        "createdAt": "2014-05-26T17:29:56:18Z",
-        "email": "fullerbullock@mycompany.com",
-        "modifiedAt": "2014-05-16T03:54:37:15Z",
-        "name": "Fuller Bullock",
-        "password": "admin",
-        "username": "fbullock",
-		"savedQueries": {
-			"default": {}
-		}
-    },
-    {
-        "createdAt": "2014-03-21T15:04:02:888Z",
-        "email": "danagordon@mycompany.com",
-        "modifiedAt": "2014-04-14T19:40:27:519Z",
-        "name": "Dana Gordon",
-        "password": "admin",
-        "username": "dgordon",
-		"savedQueries": {
-			"default": {}
-		}
-    },
-    {
-        "createdAt": "2014-01-19T16:59:06:630Z",
-        "email": "guzmanwagner@mycompany.com",
-        "modifiedAt": "2014-04-29T15:05:05:162Z",
-        "name": "Guzman Wagner",
-        "password": "admin",
-        "username": "gwagner",
-		"savedQueries": {
-			"default": {}
-		}
-    },
-    {
-        "createdAt": "2014-02-28T02:22:55:677Z",
-        "email": "acevedokey@mycompany.com",
-        "modifiedAt": "2014-08-18T11:59:55:717Z",
-        "name": "Acevedo Key",
-        "password": "admin",
-        "username": "akey",
-		"savedQueries": {
-			"default": {}
-		}
-    },
-    {
-        "createdAt": "2014-02-14T13:44:03:388Z",
-        "email": "marciacompton@mycompany.com",
-        "modifiedAt": "2014-04-05T12:57:25:739Z",
-        "name": "Marcia Compton",
-        "password": "admin",
-        "username": "mcompton",
-		"savedQueries": {
-			"default": {}
-		}
-    },
-    {
-        "createdAt": "2014-06-20T15:08:03:991Z",
-        "email": "lessieperry@mycompany.com",
-        "modifiedAt": "2014-02-16T13:00:37:198Z",
-        "name": "Lessie Perry",
-        "password": "admin",
-        "username": "lperry",
-		"savedQueries": {
-			"default": {}
-		}
-    },
-    {
-        "createdAt": "2014-06-02T05:17:15:351Z",
-        "email": "shawnacombs@mycompany.com",
-        "modifiedAt": "2014-03-27T08:20:06:979Z",
-        "name": "Shawna Combs",
-        "password": "admin",
-        "username": "scombs",
-		"savedQueries": {
-			"default": {}
-		}
-    },
-    {
-        "createdAt": "2014-02-13T09:37:01:533Z",
-        "email": "rachaellowe@mycompany.com",
-        "modifiedAt": "2014-05-12T20:30:08:63Z",
-        "name": "Rachael Lowe",
-        "password": "admin",
-        "username": "rlowe",
-		"savedQueries": {
-			"default": {}
-		}
-    },
-    {
-        "createdAt": "2014-07-15T19:28:23:18Z",
-        "email": "saundraharmon@mycompany.com",
-        "modifiedAt": "2014-08-11T02:44:27:588Z",
-        "name": "Saundra Harmon",
-        "password": "admin",
-        "username": "sharmon",
-		"savedQueries": {
-			"default": {}
-		}
-    },
-    {
-        "createdAt": "2014-04-08T13:38:45:775Z",
-        "email": "wardhuffman@mycompany.com",
-        "modifiedAt": "2014-03-20T20:17:05:381Z",
-        "name": "Ward Huffman",
-        "password": "admin",
-        "username": "whuffman",
-		"savedQueries": {
-			"default": {}
-		}
+[{
+    "username": "ian",
+    "email": "ian@cerisent.com",
+    "name": "Ian Small",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
     }
-]
+}, {
+    "username": "avnur",
+    "email": "avnur@cerisent.com",
+    "name": "Ron Avnur",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "cjl",
+    "email": "cjl@cerisent.com",
+    "name": "Christopher Lindblad",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rwang",
+    "email": "rwang@cerisent.com",
+    "name": "Rachel Link",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jim",
+    "email": "jim@cerisent.com",
+    "name": "Jim Healy",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dave",
+    "email": "dave@cerisent.com",
+    "name": "Dave O'Brien",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "pcp",
+    "email": "pcp@cerisent.com",
+    "name": "Paul Pedersen",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "huifen",
+    "email": "huifen@cerisent.com",
+    "name": "Huifen Chan",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jhunter",
+    "email": "jhunter@servlets.com",
+    "name": "Jason Hunter",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "max",
+    "email": "max@cerisent.com",
+    "name": "Max Schireson",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "nick",
+    "email": "nick@cerisent.com",
+    "name": "Nick Lanham",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "asheesh",
+    "email": "asheesh@cerisent.com",
+    "name": "Asheesh Mangla",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ajay",
+    "email": "ajay@cerisent.com",
+    "name": "Ajay Singh",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "adam",
+    "email": "adam@cerisent.com",
+    "name": "Adam Block",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mary",
+    "email": "mary@cerisent.com",
+    "name": "Mary Holstege",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "kelly",
+    "email": "kelly@cerisent.com",
+    "name": "Kelly Stirman",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "hui",
+    "email": "hui.li@marklogic.com",
+    "name": "Hui Li",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "denise",
+    "email": "denise.skarupski@marklogic.com",
+    "name": "Denise Miura",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "cwilliams",
+    "email": "cwilliams@marklogic.com",
+    "name": "Christina Williams",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ronh",
+    "email": "ronh@marklogic.com",
+    "name": "Ron Hitchens",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dsokolsky",
+    "email": "dsokolsky@marklogic.com",
+    "name": "Danny Sokolsky",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "uigwebuike",
+    "email": "uigwebuike@marklogic.com",
+    "name": "Uchenna Igwebuike",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "msteinberg",
+    "email": "mark.steinberg@marklogic.com",
+    "name": "Mark Steinberg",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rpolasani",
+    "email": "raghu.polasani@marklogic.com",
+    "name": "Raghu Polasani",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "johnpilat",
+    "email": "john.pilat@marklogic.com",
+    "name": "John Pilat",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jfc",
+    "email": "jfc@marklogic.com",
+    "name": "John Canny",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mturner",
+    "email": "matt.turner@marklogic.com",
+    "name": "Matt Turner",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "nobody",
+    "email": "nobody@marklogic.com",
+    "name": "nobody nobody",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jespinoza",
+    "email": "jespinoza@marklogic.com",
+    "name": "Jose Espinoza",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "shivaji",
+    "email": "Shivaji.Dutta@marklogic.com",
+    "name": "Shivaji Dutta",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sbuxton",
+    "email": "stephen.buxton@marklogic.com",
+    "name": "Stephen Buxton",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jmeree",
+    "email": "joe.meree@marklogic.com",
+    "name": "Joe Meree",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "cbiow",
+    "email": "chris.biow@marklogic.com",
+    "name": "Christopher Biow",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dclark",
+    "email": "dan.clark@marklogic.com",
+    "name": "Dan Clark",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "wlaforest",
+    "email": "wlaforest@marklogic.com",
+    "name": "William LaForest",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "smudunuri",
+    "email": "smudunuri@marklogic.com",
+    "name": "Shashi Mudunuri",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "prooney",
+    "email": "paul.rooney@marklogic.com",
+    "name": "Paul Rooney",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jkerr",
+    "email": "james.kerr@marklogic.com",
+    "name": "James Kerr",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "cwhitney",
+    "email": "colleen.whitney@marklogic.com",
+    "name": "Colleen  Whitney",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jcooper",
+    "email": "jcooper@marklogic.com",
+    "name": "Justin Cooper",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "cwelch",
+    "email": "cwelch@marklogic.com",
+    "name": "Christopher Welch",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sravotto",
+    "email": "sravotto@marklogic.com",
+    "name": "Silvano  Ravotto",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rmiller",
+    "email": "rmiller@marklogic.com",
+    "name": "Ronnen  Miller",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rgrimm",
+    "email": "rgrimm@marklogic.com",
+    "name": "Ryan Grimm",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "pkankanala",
+    "email": "pkankanala@marklogic.com",
+    "name": "Praveen Kankanala",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "aagrawal",
+    "email": "aagrawal@marklogic.com",
+    "name": "Andy Agrawal",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jclippinger",
+    "email": "jclippinger@marklogic.com",
+    "name": "James Clippinger",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sshearer",
+    "email": "sshearer@marklogic.com",
+    "name": "Seth Shearer ",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mhelmstetter",
+    "email": "mark.helmstetter@marklogic.com",
+    "name": "Mark Helmstetter",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "achaudhry",
+    "email": "achaudhry@marklogic.com",
+    "name": "Abdul Chaudhry",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jshao",
+    "email": "jshao@marklogic.com",
+    "name": "Julia Shao",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "frubino",
+    "email": "frubino@marklogic.com",
+    "name": "Frank Rubino",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "aredalen",
+    "email": "aredalen@marklogic.com",
+    "name": "Aaron Redalen",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "fsanders",
+    "email": "fsanders@marklogic.com",
+    "name": "Frank Sanders",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "paven",
+    "email": "paven@marklogic.com",
+    "name": "Pete Aven",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "tturchioe",
+    "email": "tturchioe@marklogic.com",
+    "name": "Tom Turchioe",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ppreuveneers",
+    "email": "ppreuveneers@marklogic.com",
+    "name": "Paul Preuveneers",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dlam",
+    "email": "dlam@marklogic.com",
+    "name": "David  Lam",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "lratcliff",
+    "email": "lratcliff@marklogic.com",
+    "name": "Larry Ratcliff",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "wfeick",
+    "email": "wfeick@marklogic.com",
+    "name": "Wayne Feick",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "damusin",
+    "email": "david.amusin@marklogic.com",
+    "name": "David Amusin",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ashutosh",
+    "email": "aagarwal@marklogic.com",
+    "name": "Ashutosh Agarwal",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jpurohit",
+    "email": "jpurohit@marklogic.com",
+    "name": "Juhi Purohit",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "prawal",
+    "email": "prawal@marklogic.com",
+    "name": "Puneet Rawal",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "khanson",
+    "email": "khanson@marklogic.com",
+    "name": "Kevin Hanson",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "darias",
+    "email": "darias@marklogic.com",
+    "name": "Dan Arias",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jmakeig",
+    "email": "jmakeig@marklogic.com",
+    "name": "Justin Makeig",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "msrinivasan",
+    "email": "mahalakshmi.srinivasan@marklogic.com",
+    "name": "Mahalakshmi Srinivasan",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "crichey",
+    "email": "clark.richey@marklogic.com",
+    "name": "Clark Richey",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "placey",
+    "email": "placey@marklogic.com",
+    "name": "Pamela Lacey",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "smohanty",
+    "email": "smohanty@marklogic.com",
+    "name": "Sujit Mohanty",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rmonaghan",
+    "email": "rmonaghan@marklogic.com",
+    "name": "Ryan Monaghan",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "skrishnan",
+    "email": "skrishnan@marklogic,com",
+    "name": "Sudhir Krishnan",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jli",
+    "email": "jli@marklogic.com",
+    "name": "Julia Li",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "fsnow",
+    "email": "fsnow@marklogic.com",
+    "name": "Frank Snow",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mdubinko",
+    "email": "mdubinko@marklogic.com",
+    "name": "Micah  Dubinko",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "nwalsh",
+    "email": "norman.walsh@marklogic.com",
+    "name": "Norman Walsh",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jbooth",
+    "email": "jbooth@marklogic.com",
+    "name": "Jason Booth",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dfeldman",
+    "email": "dfeldman@marklogic.com",
+    "name": "Damon Feldman",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mdoane",
+    "email": "mdoane@marklogic.com",
+    "name": "Michael Doane",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "blloyd",
+    "email": "blloyd@marklogic.com",
+    "name": "Barry Lloyd",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "bkane",
+    "email": "bkane@marklogic.com",
+    "name": "Bintou Kane",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "fmesa",
+    "email": "fmesa@marklogic.com",
+    "name": "Fernando  Mesa",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "phare",
+    "email": "phare@marklogic.com",
+    "name": "Paxton Hare",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "gkatz",
+    "email": "gkatz@marklogic.com",
+    "name": "Gary Katz",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "kpulkesin",
+    "email": "kpulkesin@marklogic.com",
+    "name": "Kumar Pulkesin",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jmonberg",
+    "email": "jmonberg@marklogic.com",
+    "name": "Jason Monberg",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "schen",
+    "email": "schen@marklogic.com",
+    "name": "Sidney Chen",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "yzhan",
+    "email": "yzhan@marklogic.com",
+    "name": "Yan Zhan",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "msarma",
+    "email": "msarma@marklogic.com",
+    "name": "Meghalim Sarma",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dsherman",
+    "email": "dsherman@marklogic.com",
+    "name": "David  Sherman",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "gfurbush",
+    "email": "gfurbush@marklogic.com",
+    "name": "Gordon Furbush ",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "emiller",
+    "email": "emiller@marklogic.com",
+    "name": "Erin Miller",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sparnell",
+    "email": "sparnell@marklogic.com",
+    "name": "Scott Parnell",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "oschwering",
+    "email": "oschwering@marklogic.com",
+    "name": "Olav  Schwering",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sneth",
+    "email": "sneth@marklogic.com",
+    "name": "Sam Neth",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jrunkel",
+    "email": "Jay.Runkel@marklogic.com",
+    "name": "Jay Runkel",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "danderson",
+    "email": "donald.anderson@marklogic.com",
+    "name": "Donald  Anderson",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "akakkar",
+    "email": "Ankit.Kakkar@marklogic.com",
+    "name": "Ankit Kakkar",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jstock",
+    "email": "jim.stock@marklogic.com",
+    "name": "Jim Stock",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "fsalonga",
+    "email": "franklin.salonga@marklogic.com",
+    "name": "Frank Salonga",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "gchinchwadkar",
+    "email": "Gajanan.Chinchwadkar@marklogic.com",
+    "name": "Gajanan Chinchwadkar",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "kbadami",
+    "email": "kash.badami@marklogic.com",
+    "name": "Kash Badami",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "bmo",
+    "email": "brian.mo@marklogic.com",
+    "name": "Brian Mo",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "wunderwood",
+    "email": "wunderwood@marklogic.com",
+    "name": "Walter  Underwood",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "bcoryat",
+    "email": "Blossom.Coryat@marklogic.com",
+    "name": "Blossom Coryat",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ayuwono",
+    "email": "ayuwono@marklogic.com",
+    "name": "Aries Yuwono",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ebloch",
+    "email": "eric.bloch@marklogic.com",
+    "name": "Eric Bloch",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "vmadan",
+    "email": "vmadan@marklogic.com",
+    "name": "Vinay Madan",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "derickson",
+    "email": "David.Erickson@marklogic.com",
+    "name": "David Erickson",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dcassel",
+    "email": "dave.cassel@marklogic.com",
+    "name": "Dave Cassel",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jvogt",
+    "email": "jd.vogt@marklogic.com",
+    "name": "JD Vogt",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jmyatt",
+    "email": "jason.myatt@marklogic.com",
+    "name": "Jason Myatt",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ybertaud",
+    "email": "ybertaud@marklogic.com",
+    "name": "Yann  Bertaud",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ifinlayson",
+    "email": "iain.finlayson@marklogic.com",
+    "name": "Iain Finlayson",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ccoggins",
+    "email": "cody.coggins@marklogic.com",
+    "name": "Cody Coggins",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "kkumar",
+    "email": "kkumar@marklogic.com",
+    "name": "Kaushal Kumar",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "gvidal",
+    "email": "gary.vidal@marklogic.com",
+    "name": "Gary Vidal",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "lpica",
+    "email": "lou.pica@marklogic.com",
+    "name": "Lou Pica",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "skottam",
+    "email": "Sravan.Kottam@marklogic.com",
+    "name": "Sravan Kottam",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ableasdale",
+    "email": "alex.bleasdale@marklogic.com",
+    "name": "Alex Bleasdale",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jchen",
+    "email": "jane.chen@marklogic.com",
+    "name": "Jane Chen",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sverma",
+    "email": "shiva.verma@marklogic.com",
+    "name": "Shiva Verma",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "edelacruz",
+    "email": "ed.delacruz@marklogic.com",
+    "name": "Ed Delacruz",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mgursky",
+    "email": "michael.gursky@marklogic.com",
+    "name": "Michael Gursky",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "wwallach",
+    "email": "wwallach@marklogic.com",
+    "name": "Walt Wallach",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jsnelson",
+    "email": "jsnelson@marklogic.com",
+    "name": "John Snelson",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sbrooks",
+    "email": "Scott.Brooks@marklogic.com",
+    "name": "Scott Brooks",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "pfennell",
+    "email": "philip.fennell@marklogic.com",
+    "name": "Philip Fennell",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jliu",
+    "email": "jliu@marklogic.com",
+    "name": "Jessie Liu",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "kcoleman",
+    "email": "kim.coleman@marklogic.com",
+    "name": "Kim Coleman",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "wkrause",
+    "email": "Wolfgang.Krause@marklogic.com",
+    "name": "Wolfgang Krause",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "wholmes",
+    "email": "william.holmes@marklogic.com",
+    "name": "William Holmes",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rpelton",
+    "email": "rick.pelton@marklogic.com",
+    "name": "Rick Pelton",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dborkar",
+    "email": "dipti.borkar@marklogic.com",
+    "name": "Dipti Borkar",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "hwu",
+    "email": "haitao.wu@marklogic.com",
+    "name": "Haitao Wu",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "hsu",
+    "email": "hsiao.su@marklogic.com",
+    "name": "Hsiao Su",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "pmcgowan",
+    "email": "Preston.McGowan@marklogic.com",
+    "name": "Preston McGowan",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rbhatacharya",
+    "email": "rbhatacharya@marklogic.com",
+    "name": "Rajdeep Bhattacharya",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "wzhou",
+    "email": "wenqi.zhou@marklogic.com",
+    "name": "Wenqi Zhou",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ehennum",
+    "email": "erik.hennum@marklogic.com",
+    "name": "Erik Hennum",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "schartrand",
+    "email": "Steffan.Chartrand@marklogic.com",
+    "name": "Steffan Chartrand",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "bstarbird",
+    "email": "bob.starbird@marklogic.com",
+    "name": "Bob Starbird",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "agonzales",
+    "email": "tony.gonzales@marklogic.com",
+    "name": "Tony Gonzales",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ksaxena",
+    "email": "kapil.saxena@marklogic.com",
+    "name": "Kapil Saxena",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rhu",
+    "email": "ron.hu@marklogic.com",
+    "name": "Ron Hu",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rstryker",
+    "email": "ruth.stryker@marklogic.com",
+    "name": "Ruth Stryker",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "tdiepenbrock",
+    "email": "Thomas.Diepenbrock@marklogic.com",
+    "name": "Thomas Diepenbrock",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "tbeck",
+    "email": "tom.beck@marklogic.com",
+    "name": "Tom Beck",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "svempati",
+    "email": "sundeep.vempati@marklogic.com",
+    "name": "Sundeep Vempati",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sthirumavalavan",
+    "email": "subhadra.thirumavalavan@marklogic.com",
+    "name": "Subhadra Thirumavalavan",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sstafford",
+    "email": "scott.stafford@marklogic.com",
+    "name": "Scott Stafford",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "elenz",
+    "email": "evan.lenz@marklogic.com",
+    "name": "Evan Lenz",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ali",
+    "email": "ali@marklogic.com",
+    "name": "Aries Li",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "atsoi",
+    "email": "arthur.tsoi@marklogic.com",
+    "name": "Arthur Tsoi",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "clavin",
+    "email": "colby.lavin@marklogic.com",
+    "name": "Colby Lavin",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "kleong",
+    "email": "kevin.leong@marklogic.com",
+    "name": "Kevin Leong",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "lpollington",
+    "email": "lee.pollington@marklogic.com",
+    "name": "Lee Pollington",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sreddy",
+    "email": "sreddy@marklogic.com",
+    "name": "Sudhakar Reddy",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "bmann",
+    "email": "brad.mann@marklogic.com",
+    "name": "Brad Mann",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rjovanovich",
+    "email": "richard.jovanovich@marklogic.com",
+    "name": "Richard Jovanovich",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jfuller",
+    "email": "jim.fuller@marklogic.com",
+    "name": "Jim Fuller",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "lling",
+    "email": "ling.ling@marklogic.com",
+    "name": "Ling Ling",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "smiller",
+    "email": "Scott.Miller@marklogic.com",
+    "name": "Scott Miller",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "grusso",
+    "email": "gary.russo@marklogic.com",
+    "name": "Gary Russo",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "lhutt",
+    "email": "lon.hutt@marklogic.com",
+    "name": "Lon Hutt",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "miyer",
+    "email": "mallika.iyer@marklogic.com",
+    "name": "Mallika Iyer",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jdalton",
+    "email": "joe.dalton@marklogic.com",
+    "name": "Joe Dalton",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "cgreer",
+    "email": "charles.greer@marklogic.com",
+    "name": "Charles Greer",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mwooldri",
+    "email": "mike.wooldridge@marklogic.com",
+    "name": "Mike Wooldridge",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "bgupta",
+    "email": "balkrishna.gupta@marklogic.com",
+    "name": "Balkrishna Gupta",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dummy",
+    "email": "dummy@marklogic.com",
+    "name": "Dummy Dummy",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "gghai",
+    "email": "Gaurav.ghai@marklogic.com",
+    "name": "Gaurav Ghai",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "achoudha",
+    "email": "ajay.choudhary@marklogic.com",
+    "name": "Ajay Choudhary",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "tgallowa",
+    "email": "thomas.galloway@marklogic.com",
+    "name": "Thomas Galloway",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ctaylor",
+    "email": "christophe.taylor@marklogic.com",
+    "name": "Christophe Taylor",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jfurt",
+    "email": "Julie.Furt@marklogic.com",
+    "name": "Julie Furt",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "tchen",
+    "email": "tian.chen@marklogic.com",
+    "name": "Tian Chen",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "pclark",
+    "email": "Pamela.Clark@marklogic.com",
+    "name": "Pamela Clark",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "tstyslinger",
+    "email": "tim.styslinger@marklogic.com",
+    "name": "Tim Styslinger",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "gvaidees",
+    "email": "Ganesh.Vaideeswaran@marklogic.com",
+    "name": "Ganesh Vaideeswaran",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "bciano",
+    "email": "Bill.Ciano@marklogic.com",
+    "name": "Bill Ciano",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "imasri",
+    "email": "Isie.Masri@marklogic.com",
+    "name": "Isie Masri",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "glang",
+    "email": "Gary.Lang@marklogic.com",
+    "name": "Gary Lang",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mdolan",
+    "email": "Michael.Dolan@marklogic.com",
+    "name": "Michael Dolan",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "srandle",
+    "email": "Steve.Randle@marklogic.com",
+    "name": "Steve Randle",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dchander",
+    "email": "dinesh.chander@globallogic.com",
+    "name": "Dinesh Chander",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mislam",
+    "email": "Towhid.Islam@marklogic.com",
+    "name": "Towhid Islam",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sbrockma",
+    "email": "Steven.Brockman@marklogic.com",
+    "name": "Steven Brockman",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mlindber",
+    "email": "Magnus.Lindberg@marklogic.com",
+    "name": "Magnus Lindberg",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "tbrady",
+    "email": "Terry.Brady@marklogic.com",
+    "name": "Terry Brady",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "cwang",
+    "email": "cwang@marklogic.com",
+    "name": "Chonghai Wang",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dlee",
+    "email": "David.Lee@marklogic.com",
+    "name": "David  Lee",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "vkorolev",
+    "email": "vitaly.korolev@marklogic.com",
+    "name": "Vitaly Korolev",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sakare",
+    "email": "Sumit.Akare@marklogic.com",
+    "name": "Sumit Akare",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "myawitz",
+    "email": "mitchell.yawitz@marklogic.com",
+    "name": "Mitch Yawitz",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jsolis",
+    "email": "Julio.Solis@marklogic.com",
+    "name": "Julio Solis",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dmalkina",
+    "email": "Deena.Malkina@marklogic.com",
+    "name": "Deena Malkina",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "iagrawal",
+    "email": "iagrawal@marklogic.com",
+    "name": "Isha Agrawal",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "kmccaleb",
+    "email": "Ken.McCaleb@marklogic.com",
+    "name": "Ken McCaleb",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ktune",
+    "email": "Ken.Tune@marklogic.com",
+    "name": "Ken Tune",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jhoy",
+    "email": "Joe.Hoy@marklogic.com",
+    "name": "Joe Hoy",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "knagar",
+    "email": "Kuldeep.Nagar@marklogic.com",
+    "name": "Kuldeep Nagar",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mbhatnagar",
+    "email": "mayank.bhatnagar@marklogic.com",
+    "name": "Mayank Bhatnagar",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mbhatnag",
+    "email": "Mayank.Bhatnagar@marklogic.com",
+    "name": "Mayank Bhatnagar",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "pkim",
+    "email": "pkim@marklogic.com",
+    "name": "Peter Kim",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "fxue",
+    "email": "Fei.Xue@marklogic.com",
+    "name": "Fei Xue",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dkim",
+    "email": "Dale.Kim@marklogic.com",
+    "name": "Dale Kim",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "pcaine",
+    "email": "Penny.Caine@marklogic.com",
+    "name": "Penny Caine",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "gnist",
+    "email": "Greg.Nist@marklogic.com",
+    "name": "Greg Nist",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ewasser",
+    "email": "Eric.Wasser@marklogic.com",
+    "name": "Eric Wasser",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jcrean",
+    "email": "Joe.Crean@marklogic.com",
+    "name": "Joe Crean",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "bwoolfol",
+    "email": "Bernard.Woolfolk@marklogic.com",
+    "name": "Bernard  Woolfolk",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dgorbet",
+    "email": "David.Gorbet@marklogic.com",
+    "name": "David Gorbet",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "arosenba",
+    "email": "Aaron.Rosenbaum@marklogic.com",
+    "name": "Aaron Rosenbaum",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "aobermay",
+    "email": "Andy.Obermayer@marklogic.com",
+    "name": "Andy Obermayer",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sguttman",
+    "email": "Steve.Guttman@marklogic.com",
+    "name": "Steve Guttman",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dsheahan",
+    "email": "Denis.Sheahan@marklogic.com",
+    "name": "Denis Sheahan",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "scrook",
+    "email": "Stephen.Crook@marklogic.com",
+    "name": "Stephen Crook",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sanand",
+    "email": "Sumit.Anand@marklogic.com",
+    "name": "Sumit Anand",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "aabbas",
+    "email": "Adeel.Abbas@marklogic.com",
+    "name": "Adeel Abbas",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "smazer",
+    "email": "Sara.Mazer@marklogic.com",
+    "name": "Sara  Mazer",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "tsmirnov",
+    "email": "Tanya.Smirnov@marklogic.com",
+    "name": "Tanya Smirnov",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mwhiteha",
+    "email": "matthew.whitehart@marklogic.com",
+    "name": "Matthew Whitehart  ",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "crothwel",
+    "email": "Chris.Rothwell@marklogic.com",
+    "name": "Chris Rothwell",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "tsuzuki",
+    "email": "takashi.suzuki@marklogic.com",
+    "name": "Takashi Suzuki",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "gpushkar",
+    "email": "gaurav.pushkarna@marklogic.com",
+    "name": "Gaurav Pushkarna",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jgardner",
+    "email": "James.Gardner@marklogic.com",
+    "name": "James Gardner",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "adhavle",
+    "email": "adhavle@marklogic.com",
+    "name": "Amey Dhavle",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sbodzin",
+    "email": "Sandy.Bodzin@marklogic.com",
+    "name": "Sandy Bodzin",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ezegers",
+    "email": "Emil.Zegers@marklogic.com",
+    "name": "Emil Zegers",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jpasqua",
+    "email": "Joe.Pasqua@marklogic.com",
+    "name": "Joe Pasqua",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ldavalur",
+    "email": "ldavalur@marklogic.com",
+    "name": "L D",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sstroud",
+    "email": "Scott.Stroud@marklogic.com",
+    "name": "Scott Stroud",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ldavulur",
+    "email": "lavanya.davuluri@marklogic.com",
+    "name": "Lavanya Davuluri",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "spal",
+    "email": "Satyender.Pal@marklogic.com",
+    "name": "Satyender Pal",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "michael",
+    "email": "michael.blakeley@marklogic.com",
+    "name": "Michael Blakeley",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jbakke",
+    "email": "Jonathan.Bakke@marklogic.com",
+    "name": "Jonathan Bakke",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "afowler",
+    "email": "afowler@marklogic.com",
+    "name": "Adam Fowler",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "lsquilla",
+    "email": "Luigi.Squillante@marklogic.com",
+    "name": "Luigi Squillante",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jclark",
+    "email": "jim.clark@marklogic.com",
+    "name": "Jim Clark",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jjames",
+    "email": "John.James@marklogic.com",
+    "name": "John James",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mchiarin",
+    "email": "mchiarin@marklogic.com",
+    "name": "Marc Chiarini",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mtodd",
+    "email": "Michaline.Todd@marklogic.com",
+    "name": "Michaline Todd",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "yding",
+    "email": "Yue.Ding@marklogic.com",
+    "name": "Yue Ding",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rsemerau",
+    "email": "Ryan.Semerau@marklogic.com",
+    "name": "Ryan Semerau ",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rgupta",
+    "email": "Rashi.Gupta@marklogic.com",
+    "name": "Rashi Gupta",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "chamlin",
+    "email": "Chris.Hamlin@marklogic.com",
+    "name": "Chris Hamlin",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "bsokol",
+    "email": "Billy.Sokol@marklogic.com",
+    "name": "Billy Sokol",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "kmittal",
+    "email": "Kshitiz.Mittal@marklogic.com",
+    "name": "Kshitiz Mittal",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jmckean",
+    "email": "Jane.McKean@marklogic.com",
+    "name": "Jane McKean",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ssalsbur",
+    "email": "stu.salsbury@marklogic.com",
+    "name": "Stu Salsbury",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jkrebs",
+    "email": "Jonathan.Krebs@marklogic.com",
+    "name": "Jonathan Krebs",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rlouapre",
+    "email": "Richard.Louapre@marklogic.com",
+    "name": "Richard Louapre",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mferneau",
+    "email": "Mark.Ferneau@marklogic.com",
+    "name": "Mark Ferneau",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "vdeodhar",
+    "email": "Vaidehi.Deodhar@marklogic.com",
+    "name": "Vaidehi Deodhar",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mcrosier",
+    "email": "Matthew.Crosier@marklogic.com",
+    "name": "Matthew Crosier",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "pkester",
+    "email": "Peter.Kester@marklogic.com",
+    "name": "Peter Kester",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "cschilli",
+    "email": "Chris.Schilling@marklogic.com",
+    "name": "Chris Schilling",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "kalderet",
+    "email": "Kasey.Alderete@marklogic.com",
+    "name": "Kasey Alderete",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jbryan",
+    "email": "Joe.Bryan@marklogic.com",
+    "name": "Joe Bryan",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "fpacione",
+    "email": "Frank.Pacione@marklogic.com",
+    "name": "Frank Pacione",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jdriscol",
+    "email": "Jim.Driscoll@marklogic.com",
+    "name": "Jim Driscoll",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "gjosten",
+    "email": "Geert.Josten@marklogic.com",
+    "name": "Geert Josten",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "smefford",
+    "email": "Sam.Mefford@marklogic.com",
+    "name": "Sam Mefford",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "imekrez",
+    "email": "Idriss.Mekrez@marklogic.com",
+    "name": "Idriss Mekrez",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "amistry",
+    "email": "Avinash.Mistry@marklogic.com",
+    "name": "Avinash Mistry",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "vgoyal",
+    "email": "Vipul.Goyal@marklogic.com",
+    "name": "Vipul Goyal",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "ageorge",
+    "email": "ageorge@marklogic.com",
+    "name": "Ajit George",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mpowers",
+    "email": "Mason.Powers@marklogic.com",
+    "name": "Mason Powers",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jhuang",
+    "email": "June.Huang@marklogic.com",
+    "name": "June Huang",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "skumar",
+    "email": "Satyendra.Kumar@marklogic.com.",
+    "name": "Satyendra Kumar",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "iarora",
+    "email": "Ish.Arora@marklogic.com",
+    "name": "Ish Arora",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "xlei",
+    "email": "lei.xu@marklogic.com",
+    "name": "Lei Xu",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "TestGanesh",
+    "email": "Ganesh.Vaideeswaran@marklogic.com",
+    "name": "TestGanesh TestGanesh",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rrudin",
+    "email": "Robert.Rudin@marklogic.com",
+    "name": "Robert Rudin",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "phoehne",
+    "email": "Paul.Hoehne@marklogic.com",
+    "name": "Paul Hoehne",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mzergaou",
+    "email": "Mohamed.Zergaoui@marklogic.com",
+    "name": "Mohamed Zergaoui",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mplotnic",
+    "email": "Mark.Plotnick@marklogic.com",
+    "name": "Mark Plotnick",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "sbertold",
+    "email": "pramod.baireddy@hp.com",
+    "name": "Steve Bertoldi",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rcaltabi",
+    "email": "Rosario.Caltabiano@marklogic.com",
+    "name": "Rosario Caltabiano",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jdonner",
+    "email": "Jeff.Donner@marklogic.com",
+    "name": "Jeff Donner",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rdew",
+    "email": "Ryan.Dew@marklogic.com",
+    "name": "Ryan Dew",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "eouthwai",
+    "email": "Ed.Outhwaite@marklogic.com",
+    "name": "Ed Outhwaite",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "nsingh",
+    "email": "nishant.singh@marklogic.com",
+    "name": "Nishant Singh",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jjoerg",
+    "email": "Jochen.Joerg@marklogic.com",
+    "name": "Jochen Joerg",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "bdang",
+    "email": "Balvinder.Dang@marklogic.com",
+    "name": "Balvinder Dang",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mthahir",
+    "email": "Mohamad.Thahir@marklogic.com",
+    "name": "Mohamad Thahir",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "cmilani",
+    "email": "Caio.Milani@marklogic.com",
+    "name": "Caio Milani",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "marmagos",
+    "email": "Mike.Armagost@marklogic.com",
+    "name": "Mike Armagost",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "cchaplin",
+    "email": "Chris.Chaplinsky@marklogic.com",
+    "name": "Chris Chaplinsky",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "credding",
+    "email": "Clay.Redding@marklogic.com",
+    "name": "Clay Redding",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "rpughsle",
+    "email": "Rob.Pughsley@marklogic.com",
+    "name": "Rob Pughsley ",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mderu",
+    "email": "Michel.deRu@marklogic.com",
+    "name": "Michel deRu",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "tpiros",
+    "email": "Tamas.Piros@marklogic.com",
+    "name": "Tamas Piros",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jwilliam",
+    "email": "Jon.Williams@marklogic.com",
+    "name": "Jon Williams",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "kford",
+    "email": "kevin.ford@marklogic.com",
+    "name": "Kevin Ford",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "psingla",
+    "email": "pooja.singla@marklogic.com",
+    "name": "Pooja  Singla",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "hmediche",
+    "email": "harsha.medicherla@marklogic.com",
+    "name": "Harsha Medicherla",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "amund",
+    "email": "alexander.mund@marklogic.com",
+    "name": "Alexander Mund",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "vdufault",
+    "email": "vertume.dufault@marklogic.com",
+    "name": "Vertume DuFault",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "jmyers",
+    "email": "jeff.myers@marklogic.com",
+    "name": "Jeff Myers",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "viyengar",
+    "email": "venu.iyengar@marklogic.com",
+    "name": "Venugopal Iyengar",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "bmiller",
+    "email": "bill.miller@marklogic.com",
+    "name": "William Miller",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mmaachou",
+    "email": "mehdi.maachou@marklogic.com",
+    "name": "Mehdi Maachou",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mrodrigu",
+    "email": "Miguel.Rodriguez@marklogic.com",
+    "name": "Miguel Rodriguez",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "charagan",
+    "email": "christy.haragan@marklogic.com",
+    "name": "Christy Haragan",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dsoares",
+    "email": "donald.soares@marklogic.com",
+    "name": "Donald Soares",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "fgeorges",
+    "email": "Florent.Georges@marklogic.com",
+    "name": "Florent Georges",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "dmaddox",
+    "email": "Daphne.Maddox@marklogic.com",
+    "name": "Daphne Maddox",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "kkrupa",
+    "email": "Ken.Krupa@marklogic.com",
+    "name": "Ken Krupa",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "mlawson",
+    "email": "mark.lawson@marklogic.com",
+    "name": "Mark Lawson",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "cmontero",
+    "email": "carlos.montero@marklogic.com",
+    "name": "Carlos Montero",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
+    "username": "cstillio",
+    "email": "cameron.stillion@marklogic.com",
+    "name": "Cameron  Stillion",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}]
