@@ -44,7 +44,7 @@ fs.readFile('users.json', 'utf8', function(err, data) {
         	console.log('\t'+response.documents[i].uri);
         }
     }, function(error) {
-        console.log('oops! ' + error);
+        console.log('oops! ', JSON.stringify(error));
     });
 });
 

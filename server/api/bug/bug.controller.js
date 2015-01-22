@@ -288,6 +288,11 @@ exports.update = function(req, res) {
                     changes.comment = to.comment;
                 }
                 break;
+            case 'svninfo':
+                if (true) {
+                    // TODO
+                }
+                    break;
             default:
                 break;
                 // do nothing
