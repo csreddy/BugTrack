@@ -1258,7 +1258,7 @@
     }],
     "severity": [
         "P1 - Catastrophic",
-        "P2 - Critcial",
+        "P2 - Critical",
         "P3 - Major",
         "P4 - Minor",
         "P5 - Aesthetic",

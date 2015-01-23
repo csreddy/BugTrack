@@ -8,7 +8,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
 
         $scope.bugs = [];
         $scope.currentPage = 1;
-        $scope.itemsPerPage = 10;
+        $scope.itemsPerPage = 20;
         $scope.config = config;
         $scope.userDefaultSearch = true;
         $scope.nvfe = false;
