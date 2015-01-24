@@ -10,11 +10,14 @@ var _ = require('lodash');
 
 // search endpoint
 exports.search = function(req, res) {
-    console.log('CALLED /SEARCH------------------');
+    console.log('Called /api/search....');
     res.locals.errors = req.flash();
     // console.log(res.locals.errors);
     var result = {};
     var criteria = req.body;
+    console.log('criteria:', criteria);
+    var start  = req.body.startIndex || 1;
+    var end = req.body.itemsPerPage;
     var searchCriteria = [];
     // when empty criteria is sent 
     if (Object.keys(criteria).length === 0) {
@@ -152,7 +155,7 @@ exports.search = function(req, res) {
             q.facet('assignTo', q.pathIndex('/assignTo/name')),
             q.facet('priority', q.pathIndex('/priority/level'))
         )
-        .slice(1, maxLimit)
+        .slice(start, end)
         .withOptions({
             debug: true,
             queryPlan: true,
@@ -166,6 +169,6 @@ exports.search = function(req, res) {
         result = response;
         res.status(200).json(result);
     }, function(error) {
-        res.status(500).json(error);
+        res.status(error.statusCode).json(JSON.stringify(error));
     });
 };

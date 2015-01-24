@@ -359,22 +359,20 @@ exports.update = function(req, res) {
 
 exports.subscribe = function(req, res) {
     console.log('subscribe', req.body);
-    var uri = req.body.id + '.json'
+    var uri = '/bug/'+req.body.id + '/'+req.body.id + '.json';
     db.documents.patch(uri, p.insert("array-node('subscribers')", 'last-child', req.body.user)).result(function(response) {
         res.status(200).json({
             message: 'Bug subscribed'
         })
     }, function(error) {
-        res.status(400).json({
-            message: error
-        });
+        res.status(error.statusCode).json(JSON.stringify(error));
     });
 };
 
 
 exports.unsubscribe = function(req, res) {
     console.log('unsubscribe', req.body);
-    var uri = req.body.id + '.json'
+    var uri = '/bug/'+req.body.id + '/'+req.body.id + '.json';
     db.documents.patch(uri, p.remove("subscribers[username eq '" + req.body.user.username + "']")).result(function(response) {
         res.status(200).json({
             message: 'Bug unsubscribed'

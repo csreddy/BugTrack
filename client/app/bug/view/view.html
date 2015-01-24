@@ -139,18 +139,18 @@
                 <tr ng-show="bug.resolvedAt">
                     <td colspan="" rowspan="" class="hidden-md"><b>Resolved on</b>
                     </td>
-                    <td colspan="" rowspan="">{{bug.resolvedAt}}</td>
+                    <td colspan="" rowspan="">{{bug.resolvedAt | date: 'medium'}}</td>
                 </tr>
                 <tr ng-show="bug.testedAt">
                     <td colspan="" rowspan="" class="hidden-md"><b>Tested on</b>
                     </td>
-                    <td colspan="" rowspan="">{{bug.resolvedAt}}</td>
+                    <td colspan="" rowspan="">{{bug.resolvedAt | date: 'medium'}}</td>
                     <!-- same as resolved date -->
                 </tr>
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Reported on</b>
                     </td>
-                    <td colspan="" rowspan="">{{bug.createdAt}}</td>
+                    <td colspan="" rowspan="">{{bug.createdAt | date: 'medium'}}</td>
                 </tr>
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Subscribers</b>
@@ -214,7 +214,7 @@
                     </div>
                     <div class="box-body">
                         <ul ng-repeat="file in bug.attachments track by $index" class="list-inline" style="display: inline-block;">
-                            <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a></li>
+                            <li><a ng-href="http://bugtrack.marklogic.com/download.xqy?file={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a></li>
                         
                         
                         </ul>
@@ -252,7 +252,7 @@
         <div class="panel-heading">
             <img alt="user pic" src="assets/images/avatar.png" class="img-circle img-responsive" style="height: 3em;width: 3em; float:left;margin-right: 5px;">
             <b>{{item.updatedBy.name | capitalize}}</b>
-            <p class="pull-right" style="font-size: 12px;font-weight: 400;">{{item.time}}</p>
+            <p class="pull-right" style="font-size: 12px;font-weight: 400;">{{item.time | date:'medium'}}</p>
         </div>
         <div class="panel-body">
             <p class="bg-success">

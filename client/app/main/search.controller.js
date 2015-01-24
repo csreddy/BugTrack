@@ -5,14 +5,13 @@ var app = angular.module('search.controllers', []);
 app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'Flash', 'currentUser', 'User', 'config',
     function($rootScope, $scope, $location, $filter, Search, Flash, currentUser, User, config) {
         $scope.home = "Home page";
-
+        $scope.form = {};
         $scope.bugs = [];
         $scope.currentPage = 1;
-        $scope.itemsPerPage = 10;
         $scope.config = config;
         $scope.userDefaultSearch = true;
         $scope.nvfe = false;
-        $scope.form = {};
+        $scope.itemsPerPage = $scope.form.itemsPerPage = 20;
 
         // if the user has default query then set the $scope.form to user's default query
         // otherwise initialize with app default query
@@ -85,12 +84,12 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     fixedin: '',
                     tofixin: ''
                 };
-                $scope.search();
+                $scope.search(1, $scope.itemsPerPage);
 
             } else {
                 $scope.form = angular.copy(currentUser.savedQueries.default);
                 console.log('user has default search....');
-                $scope.search();
+                $scope.search(1, $scope.itemsPerPage);
             }
 
         };
@@ -143,21 +142,18 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             $scope.form.fixedin = fixedin;
         };
 
-        $scope.search = function() {
+        $scope.search = function(startIndex, itemsPerPage) {
+            $scope.form.startIndex = startIndex || 1;
+            $scope.form.itemsPerPage = itemsPerPage || $scope.itemsPerPage;
             console.log($scope.form);
             return Search.search($scope.form).success(function(response) {
                 console.log(response);
-                $scope.bugList = response.slice(1);
-                $scope.results = response;
-                $scope.facets = response[0].facets;
-                removeEmptyFacets($scope.facets);
-                $scope.searchMetrics = response[0].metrics;
-                $scope.totalItems = response[0].total;
-                console.log('facets', $scope.facets);
+                processResult(response);
+                console.log('FACETS', $scope.facets);
                 console.log('RESULT', response[0].report);
                 //   Flash.addAlert('success', 'Returned ' + ($scope.results.length - 1) + ' results');
-            }).error(function(response) {
-                Flash.addAlert('danger', response.status + ' :error occured');
+            }).error(function(error) {
+                Flash.addAlert('danger', error + ' :error occured');
             });
         };
 
@@ -173,7 +169,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             $scope.form.status = $scope.config.status;
             $scope.form.severity = $scope.config.severity;
             $scope.form.submittedBy = $scope.form.assignTo = $scope.form.category = $scope.form.version = $scope.form.fixedin = $scope.form.tofixin = '';
-            $scope.search();
+            $scope.form.facets= {};
+            $scope.search(1, $scope.itemsPerPage);
         };
 
 
@@ -181,17 +178,12 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.filter = function(facetKind, facet) {
             console.log('$scope.form', $scope.form);
             $scope.form.facets[facetKind] = facet;
-
+            $scope.form.startIndex = 1;
+            $scope.form.itemsPerPage = $scope.itemsPerPage;
             return Search.search($scope.form).success(function(response) {
-                console.log(response);
-                $scope.results = response;
-                $scope.bugList = response.slice(1);
-                $scope.facets = response[0].facets;
-                removeEmptyFacets($scope.facets);
-                $scope.searchMetrics = response[0].metrics;
-                $scope.totalItems = response[0].total;
+                processResult(response);
                 angular.element("ul[name='" + facetKind + "']").hide();
-                Flash.addAlert('success', 'Returned ' + ($scope.results.length - 1) + ' results');
+            //    Flash.addAlert('success', 'Returned ' + ($scope.results.length - 1) + ' results');
             }).error(function(response) {
                 Flash.addAlert('danger', response.status + ' :error occured');
             });
@@ -201,17 +193,14 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         // remove filter 
         $scope.unfilter = function(facetKind) {
             delete $scope.form.facets[facetKind];
+            $scope.form.startIndex = 1;
+            $scope.form.itemsPerPage = $scope.itemsPerPage;
             console.log('$scope.form from removeFacet', $scope.form);
             return Search.search($scope.form).success(function(response) {
                 console.log(response);
-                $scope.results = response;
-                $scope.bugList = response.slice(1);
-                $scope.facets = response[0].facets;
-                removeEmptyFacets($scope.facets);
-                $scope.searchMetrics = response[0].metrics;
-                $scope.totalItems = response[0].total;
+                processResult(response);
                 angular.element("ul[name='" + facetKind + "']").show();
-                Flash.addAlert('success', 'Returned ' + ($scope.results.length - 1) + ' results');
+              //  Flash.addAlert('success', 'Returned ' + ($scope.results.length - 1) + ' results');
             }).error(function(response) {
                 Flash.addAlert('danger', response.status + ' :error occured');
             });
@@ -239,9 +228,10 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.setPage = function(pageNo) {
             $scope.currentPage = pageNo;
             console.log('Page changed to: ' + $scope.currentPage);
-            var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
-            var end = begin + $scope.itemsPerPage;
-            getBugDetails(begin, end);
+            var begin = (($scope.currentPage -1 )  * $scope.itemsPerPage + 1);
+             $scope.form.startIndex = begin;
+            console.log('$scope.form', $scope.form);
+            $scope.search(begin, $scope.itemsPerPage);
         };
 
         // for table column sorting
@@ -263,7 +253,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         };
 
         $scope.$watchCollection('bugList', function() {
-            // console.log('hey, bug list has changed!', $scope.bugList);
             getBugDetails();
         }, true);
 
@@ -311,22 +300,23 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         };
 
 
-        // private functions
-        function getBugDetails(begin, end) {
-            $scope.bugs = [];
-            var paginatedBugList;
-            if ($scope.bugList) {
-                paginatedBugList = $scope.bugList.slice(begin, end);
-            }
+      /* private functions  */
+      function processResult (searchResult) {
+                $scope.results = searchResult;
+                $scope.bugList = searchResult.slice(1);
+                $scope.facets = searchResult[0].facets;
+                removeEmptyFacets($scope.facets);
+                $scope.searchMetrics = searchResult[0].metrics;
+                $scope.totalItems = searchResult[0].total;
+      }
+       
 
-            angular.forEach(paginatedBugList, function(bug) {
+       // get bug details for table disiplay
+        function getBugDetails() {
+            $scope.bugs = [];
+            angular.forEach($scope.bugList, function(bug) {
                 $scope.bugs.push(bug.content);
             });
-        }
-
-        // for pagination, get bug details only for given page
-        function getBugList() {
-            getBugDetails(0, $scope.itemsPerPage);
         }
 
         // remove empty value facets which would always be the first item in the array
