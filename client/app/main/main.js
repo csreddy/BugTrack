@@ -13,11 +13,6 @@ angular.module('fullstackApp')
                             return User.getCurrentUserInfo();
                         }
                     ],
-                    getAllBugs: ['Bug',
-                        function(Bug) {
-                            return Bug.search();
-                        }
-                    ],
                     config: ['Config',
                         function(Config) {
                             var config = {};
