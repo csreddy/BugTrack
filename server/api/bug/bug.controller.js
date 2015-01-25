@@ -79,7 +79,7 @@ exports.id = function(req, res) {
        // console.log('document at ' + uri + ' exists: ' + document.exists);
         if (document.exists) {
             db.documents.read({uris: [uri]}).result(function(response) {
-                console.log('from '+ uri, response);
+           //     console.log('from '+ uri, response);
                 if (response.length === 1) {
                     res.status(200).json(response[0].content);
                 }
@@ -386,17 +386,19 @@ exports.unsubscribe = function(req, res) {
 
 exports.clone = function(req, res) {
     console.log('cloning ');
+    console.log('parent', req.body.parent);
+    console.log('clone', req.body.clone);
     var bugs = [{
         uri: '/bug/' + req.body.parent.id + '/' + req.body.parent.id + '.json',
         category: 'content',
         contentType: 'application/json',
-        collections: ['bugs'],
+        collections: ['bugs', req.body.parent.submittedBy.username],
         content: req.body.parent
     }, {
         uri: '/bug/' + req.body.clone.id + '/' + req.body.clone.id + '.json',
         category: 'content',
         contentType: 'application/json',
-        collections: ['bugs'],
+        collections: ['bugs', req.body.clone.submittedBy.username],
         content: req.body.clone
     }]
     db.documents.write(bugs).result(function(response) {
@@ -405,7 +407,7 @@ exports.clone = function(req, res) {
         });
     }, function(error) {
         res.status(error.statusCode).json({
-            message: 'Clone failed'
+            message: 'Clone failed' + '\n' + JSON.stringify(error)
         })
     })
 
