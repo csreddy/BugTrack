@@ -38,11 +38,6 @@ angular.module('fullstackApp')
                    function(User) {
                         return User.getCurrentUserInfo();
                     }
-                ],
-                bugId: ['Bug',
-                    function(Bug) {
-                        return Bug.count();
-                    }
                 ]
             }
         });

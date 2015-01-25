@@ -76,14 +76,15 @@ exports.id = function(req, res) {
     console.log(res.locals.errors);
     var uri = '/bug/'+req.params.id+'/'+req.params.id + '.json';
     db.documents.probe(uri).result(function(document) {
-        console.log('document at ' + uri + ' exists: ' + document.exists);
+       // console.log('document at ' + uri + ' exists: ' + document.exists);
         if (document.exists) {
-            db.read(uri).result(function(response) {
+            db.documents.read({uris: [uri]}).result(function(response) {
+                console.log('from '+ uri, response);
                 if (response.length === 1) {
-                    res.status(200).json(response[0]);
+                    res.status(200).json(response[0].content);
                 }
             }, function(error) {
-                res.status(500).json({
+                res.status(error.statusCode).json({
                     error: 'error occured while retrieving ' + uri + '\n' + error
                 })
             });
@@ -94,11 +95,10 @@ exports.id = function(req, res) {
             });
         }
     }, function(error) {
-        res.status(404).json({
+        res.status(error.statusCode).json({
             error: 'could not find bug ' + req.params.id
         });
     })
-
 
 };
 

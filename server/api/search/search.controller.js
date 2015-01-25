@@ -145,7 +145,7 @@ exports.search = function(req, res) {
             q.facet('kind', 'kind'),
             q.facet('status', 'status'),
            // q.facet('category',  'category', q.facetOptions('item-frequency', 'descending')),
-            q.facet('category',  'category', q.facetOptions('limit=10')),
+            q.facet('category',  'category', q.facetOptions('item-frequency', 'descending'), q.facetOptions('limit=10')),
             q.facet('severity', 'severity'),
             q.facet('version', 'version', q.facetOptions('limit=10')),
             q.facet('platform', 'platform'),

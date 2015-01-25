@@ -124,6 +124,7 @@ app.service('Bug', ['$http',
 
 
         this.count = function() {
+            console.log('getting bug count');
             return $http({
                 method: 'GET',
                 url: '/api/bug/count'

@@ -1,24 +1,20 @@
 'use strict';
 
 angular.module('bug.controllers')
-    .controller('viewCtrl', ['$scope', '$location', 'Bug', 'Config', 'Flash', 'currentUser', 'bugId', 'modalService', '$q',
+    .controller('viewCtrl', ['$scope', '$location', 'Bug', 'config', 'Flash', 'currentUser', 'modalService', '$q',
 
-        function($scope, $location, Bug, Config, Flash, currentUser, bugId, modalService, $q) {
+        function($scope, $location, Bug, config, Flash, currentUser, modalService, $q) {
 
-            $scope.config = {};
             $scope.changes = {};
-            $scope.updatedBy = currentUser;
+            $scope.updatedBy = currentUser || {};
             $scope.showSubscribe = true;
             $scope.showUnsubscribe = false;
-
+            $scope.config = config.data || {};
 
             var updateBug;
             var id = $location.path().replace('/bug/', '');
 
-            Config.get().then(function(response) {
-                $scope.config = response.data;
-                console.log('config: ', $scope.config);
-            });
+           
 
             Bug.get(id).then(function(response) {
                     console.log(response.data);
@@ -110,7 +106,6 @@ angular.module('bug.controllers')
                         updateBug.attachments.push(fileuri);
                     }
                 }
-                console.log('Before', $scope.bug);
                 Bug.update(updateBug, $scope.bug, $scope.files).success(function(response) {
                     // reset watchers
                     $scope.changes = {};
@@ -140,10 +135,11 @@ angular.module('bug.controllers')
 
                 console.log('cloning ' + id);
                 var cloneTime = new Date();
-                var newBugId = parseInt(bugId.data.count) + 1;
+               // var newBugId = parseInt(bugId.data.count) + 1;
+                var newBugId;
                 var clone = {};
                 clone.bug = angular.copy($scope.bug);
-                clone.bug.id = newBugId;
+               // clone.bug.id = newBugId;
                 clone.bug.cloneOf = id;
                 clone.bug.clones = [];
                 clone.bug.changeHistory.push({
@@ -157,14 +153,16 @@ angular.module('bug.controllers')
                     // $location.path('/bug/' + id);
                 } else {
                     console.warn('clone of', $scope.bug.cloneOf);
-                    modalService.showModal({}, modalOptions).then(function(result) {
-                        if ($scope.bug.clones) {
-                            $scope.bug.clones.push(newBugId);
-                        } else {
-                            $scope.bug.clones = [newBugId];
-                        }
+                    modalService.showModal({}, modalOptions).then(function() {
+                      
 
-                        Bug.clone($scope.bug, clone.bug).then(function() {
+                    var cloneOps = [Bug.count.then(function(response) {
+                            newBugId = parseInt(response.data.count) + 1;
+                         clone.bug.id = newBugId;
+                         $scope.bug.clones.push(newBugId);
+                    }), Bug.clone($scope.bug, clone.bug).then()];
+                    
+                       $q.all(cloneOps).then(function() {
                                 console.log('bug details ', clone.bug);
                                 //  console.log('----', $scope.updatedBy);
                                 $location.path('/bug/' + newBugId);
@@ -177,6 +175,10 @@ angular.module('bug.controllers')
                         );
                     });
                 }
+            
+
+
+
             };
 
             // subscribe to the bug
