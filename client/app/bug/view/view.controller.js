@@ -10,6 +10,7 @@ angular.module('bug.controllers')
         $scope.showSubscribe = true;
         $scope.showUnsubscribe = false;
         $scope.config = config.data || {};
+        $scope.hasAttachments = false;
 
         var updateBug;
         var id = $location.path().replace('/bug/', '');
@@ -38,6 +39,10 @@ angular.module('bug.controllers')
                 if (currentUser.username === $scope.bug.assignTo.username || currentUser.username === $scope.bug.submittedBy.username) {
                     $scope.showSubscribe = false;
                     $scope.showUnsubscribe = false;
+                }
+
+                if($scope.bug.attachments.length > 0){
+                    $scope.hasAttachments = true;
                 }
 
                 // watch for bug field changes   
