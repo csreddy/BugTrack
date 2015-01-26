@@ -1,4 +1,14 @@
 [{
+    "username": "btuser",
+    "email": "bugtrack@marklogic.com",
+    "name": "Bugtrack User",
+    "password": "admin",
+    "createdAt": "2014-05-26T17:29:56:18Z",
+    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "savedQueries": {
+        "default": {}
+    }
+}, {
     "username": "ian",
     "email": "ian@cerisent.com",
     "name": "Ian Small",

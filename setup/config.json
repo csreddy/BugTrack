@@ -1,5 +1,9 @@
 {
     "users": [{
+        "username": "btuser",
+        "email": "bugtrack@marklogic.com",
+        "name": "Bugtrack User"
+    }, {
         "username": "ian",
         "email": "ian@cerisent.com",
         "name": "Ian Small"
