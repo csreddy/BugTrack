@@ -4,10 +4,12 @@ $(document).ready(function() {
         $('.row-offcanvas').toggleClass('active');
     });
 
-    //  $('#description').wysihtml5();
-
     $("option[value='? undefined:undefined ?']").each(function(item) {
         item.remove();
     });
+
+    $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
 
 });

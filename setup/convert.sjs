@@ -18,10 +18,19 @@ function capitalize(s)
   return s[0].toUpperCase() + s.slice(1);
 }
 
-var total = [];
+function htmlEncode(html){
+  return html.toString()
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+
+var total = 0;
 var json =  require("/MarkLogic/json/json.xqy");
 var users = fn.doc("root/support/bugtracking/users.xml").next().value.root
-var uris = cts.uriMatch("root/support/bugtracking/bug*.xml", ["limit=1000"])
+var uris = cts.uriMatch("root/support/bugtracking/bug31816.xml", ["limit=1"])
      for (uri of uris){
        try{
       var xml =  fn.doc(uri).next().value.root 
@@ -94,7 +103,7 @@ try{
          var assignee = user.xpath("/*:users/*:user/*:account-name[.= '"+ assignedTo +"']/..").next().value
              newbug.assignTo = getUserInfo(assignedTo) || {}
               
-               newbug.description = "<p><pre>"+bug['bug-description']['recreate-steps'].toString().replace('<http:', 'http:')+"</pre></p>"  || '' 
+               newbug.description = "<p><pre id='description'>"+htmlEncode(bug['bug-description']['recreate-steps'])+"</pre></p>"  || '' 
         newbug.samplequery = bug['bug-description']['sample-query'] || ''
         newbug.sampledata = bug['bug-description']['sample-content'] || ''
        // no stacktrace  
@@ -142,13 +151,15 @@ if(bug.relationships){
                 var change = {
                    time: comment.xpath("*:timestamp/text()"),
                    updatedBy: getUserInfo(comment.xpath("*:commenter/text()")),
-                  change: {}
+                  change: {},
+                  show: false
                 }
                     if(comment.xpath("*:old-status/text()").toString()){
                        change.change.status = {
                             from: capitalize(comment.xpath("*:old-status/text()")).toString() || '' , 
                             to: capitalize(comment.xpath("*:new-status/text()")) 
                             }
+                         change.show = true;
                        }
                 // xdmp.log("======="+comment.xpath("*:new-to-be-fixed-in-version/text()").toString())
                  if(comment.xpath("*:new-to-be-fixed-in-version/text()").toString()){
@@ -156,12 +167,14 @@ if(bug.relationships){
                             from:comment.xpath("*:old-to-be-fixed-in-version/text()") || '' , 
                             to: comment.xpath("*:new-to-be-fixed-in-version/text()") 
                             }
+                          change.show = true;
                        }
                  if(comment.xpath("*:assign-by/text()").toString()){  
                        change.change.assignTo = {
                         from: getUserInfo(comment.xpath("*:assign-by/text()")) || '' ,    
                          to: getUserInfo(comment.xpath("*:assigned-to/text()")) 
                             }
+                          change.show = true;
                        }
                  if(comment.xpath("*:svn/*:revision/text()").toString().length > 0){
                        change.svn = {
@@ -169,6 +182,7 @@ if(bug.relationships){
                          revision: comment.xpath("*:svn/*:revision/text()"),
                          paths: comment.xpath("*:svn/*:paths/*:path/text()")
                        }
+                          change.show = true;
                        }
                  
                  
@@ -177,24 +191,28 @@ if(bug.relationships){
                          to: comment.xpath("*:old-category/text()"),    
                          to: comment.xpath("*:new-category/text()") 
                             }
+                          change.show = true;
                        }
                  if(comment.xpath("*:old-severity/text()").toString()){
                        change.change.severity = {
                          to: comment.xpath("*:old-severity/text()"),    
                          to: comment.xpath("*:new-severity/text()") 
                             }
+                          change.show = true;
                        }
                     
                     if(comment.xpath("*:comment-text/text()").toString()){
                       change.comment = comment.xpath("*:comment-text/text()")
+                      change.show = true;
                     }
                  
                  newbug.changeHistory.push(change)
                }
    var str = 'declareUpdate(); xdmp.documentInsert("/bug/" + newBug.id + "/" + newBug.id + ".json", newBug, null, ["bugs", newBug.submittedBy.username])'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
    xdmp.eval(str, {newBug: newbug}, {database: xdmp.database('bugtrack')});
-    total.push(newbug.id)
-    "total bugs loaded: "+ total.length + "\n" + "elapsed time: "+xdmp.elapsedTime() 
+    xdmp.log("loaded /bug/" +newbug.id + '/' + newbug.id+ '.json' )    
+    total++;
+    "total bugs loaded: "+ count + "\n" + "elapsed time: "+xdmp.elapsedTime() 
       } catch(e){
         newbug.id + ' : ' + e.toString()
       }      

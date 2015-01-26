@@ -15,7 +15,7 @@ exports.search = function(req, res) {
     // console.log(res.locals.errors);
     var result = {};
     var criteria = req.body;
-    console.log('criteria:', criteria);
+    //console.log('criteria:', criteria);
     var start  = req.body.startIndex || 1;
     var end = req.body.itemsPerPage;
     var searchCriteria = [];
