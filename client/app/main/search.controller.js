@@ -305,7 +305,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $scope.results = searchResult;
                 $scope.bugList = searchResult.slice(1);
                 $scope.facets = searchResult[0].facets;
-                removeEmptyFacets($scope.facets);
+                renameEmptyFacets($scope.facets);
                 $scope.searchMetrics = searchResult[0].metrics;
                 $scope.totalItems = searchResult[0].total;
       }
@@ -320,11 +320,14 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         }
 
         // remove empty value facets which would always be the first item in the array
-        function removeEmptyFacets(facets) {
+        function renameEmptyFacets(facets) {
             angular.forEach(facets, function(v, k) {
-                if (v.facetValues.length > 0 && v.facetValues[0].value === '') {
-                    v.facetValues.shift();
+                for (var i = 0; i < v.facetValues.length; i++) {
+                 if (v.facetValues[i].name === '') {
+                   v.facetValues[i].name = '(empty)';
                 }
+                }
+                
             });
         }
 
