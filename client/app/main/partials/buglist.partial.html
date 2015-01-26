@@ -6,7 +6,7 @@
     <accordion close-others="false">
     <accordion-group ng-init="open=true;disabled=true" is-open="open" is-disabled="disabled">
       <accordion-heading>
-      <b>{{totalItems}} Bugs</b>
+      <b>{{totalItems}} Bugs</b> <small>({{searchMetrics['total-time']}})</small>
       </accordion-heading>
     <div class="table-responsive">
         <table class="table table-striped table-condensed pull-left">
@@ -76,25 +76,28 @@
             <tr ng-repeat="bug in bugs">
                 <td><a ng-href="/bug/{{bug.id}}">{{bug.id}}</a>
                 </td>
-                <td style="width:120px" class="hidden-xs">{{bug.severity}}</td>
+                <td style="max-width:120px" class="hidden-xs">{{bug.severity}}</td>
                 <td class="hidden-xs"><a class="tooltips" href>{{bug.priority.level}}<span>{{bug.priority.title}}</span></a>
                 </td>
-                <td style="width:200px" class="hidden-xs">{{bug.submittedBy.username}}</td>
+                <td style="max-width:200px" class="hidden-xs">{{bug.submittedBy.username}}</td>
                 <td class="hidden-xs">{{bug.category}}</td>
-                <td style="width:70px" class="hidden-xs">{{bug.version}}</td>
-                <td style="width:70px" class="hidden-xs">{{bug.tofixin}}</td>
-                <td style="width:500px">{{bug.title}}</td>
+                <td style="max-width:70px" class="hidden-xs">{{bug.version}}</td>
+                <td style="max-width:70px" class="hidden-xs">{{bug.tofixin}}</td>
+                <td style="max-width: 300px">{{bug.title}}</td>
                 <td class="hidden-xs">{{bug.status}}</td>
-                <td style="width:200px" class="hidden-xs">{{bug.assignTo.username}}</td>
+                <td style="max-width:200px" class="hidden-xs">{{bug.assignTo.username}}</td>
             </tr>
         </table>
         </div>
-
     </accordion-group>
 </accordion>
-<div class="container-fluid text-center">
-<pagination total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="setPage(currentPage)" ng-hide="totalItems < itemsPerPage"></pagination>
+<div class="col-xs-12 col-sm-12 col-md-10">
+<div class="container text-center">
+<pagination total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="setPage(currentPage)" ng-hide="totalItems < itemsPerPage"  max-size="10" rotate="false" direction-links="false"  boundary-links="true"></pagination>    
 </div>
+
+</div>
+
 </div>
 
 

@@ -144,15 +144,14 @@ exports.search = function(req, res) {
         .calculate(
             q.facet('kind', 'kind'),
             q.facet('status', 'status'),
-           // q.facet('category',  'category', q.facetOptions('item-frequency', 'descending')),
-            q.facet('category',  'category', q.facetOptions('item-frequency', 'descending'), q.facetOptions('limit=10')),
+            q.facet('category',  'category',q.facetOptions('limit=10')),
             q.facet('severity', 'severity'),
             q.facet('version', 'version', q.facetOptions('limit=10')),
             q.facet('platform', 'platform'),
             q.facet('fixedin', 'fixedin', q.facetOptions('limit=10')),
             q.facet('tofixin', 'tofixin', q.facetOptions('limit=10')),
-            q.facet('submittedBy', q.pathIndex('/submittedBy/name')),
-            q.facet('assignTo', q.pathIndex('/assignTo/name')),
+            q.facet('submittedBy', q.pathIndex('/submittedBy/name'), q.facetOptions('limit=10')),
+            q.facet('assignTo', q.pathIndex('/assignTo/name'), q.facetOptions('limit=10')),
             q.facet('priority', q.pathIndex('/priority/level'))
         )
         .slice(start, end)

@@ -35,3 +35,10 @@ a:hover.tooltips span {
     margin-left: -76px;
     z-index: 999;
 }
+
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
