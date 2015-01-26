@@ -8,7 +8,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.form = {};
         $scope.bugs = [];
         $scope.currentPage = 1;
-        $scope.config = config;
+        $scope.config = angular.copy(config);
         $scope.userDefaultSearch = true;
         $scope.nvfe = false;
         $scope.itemsPerPage = $scope.form.itemsPerPage = 20;
@@ -166,8 +166,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             console.log('clear fields');
             $scope.form.q = '';
             $scope.form.kind[0].value = true;
-            $scope.form.status = $scope.config.status;
-            $scope.form.severity = $scope.config.severity;
+            $scope.form.status = config.status;
+            $scope.form.severity = config.severity;
             $scope.form.submittedBy = $scope.form.assignTo = $scope.form.category = $scope.form.version = $scope.form.fixedin = $scope.form.tofixin = '';
             $scope.form.facets= {};
             $scope.search(1, $scope.itemsPerPage);
