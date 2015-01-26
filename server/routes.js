@@ -21,6 +21,7 @@ module.exports = function(app) {
     app.use('/api/bug/:id(\\d+)/subscribe', require('./api/bug'));
     app.use('/api/bug/:id(\\d+)/unsubscribe', require('./api/bug'));
     app.use('/api/bug/new', require('./api/bug'));
+    app.use('/api/bug/newbugid', require('./api/bug'));
     app.use('/api/bug/update', require('./api/bug'));
     app.use('/api/bug/count', require('./api/bug'));
     app.use('/api/bug/facets', require('./api/bug'));

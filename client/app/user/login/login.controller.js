@@ -25,8 +25,8 @@ app.controller('loginCtrl', ['$scope', '$location', '$cookieStore', 'Flash', '$h
                         $window.sessionStorage.currentUser = user.name;
                     });
                 },
-                function(response) {
-                    Flash.addAlert('danger', response.data.message);
+                function(error) {
+                    Flash.addAlert('danger', error);
                 });
         };
 

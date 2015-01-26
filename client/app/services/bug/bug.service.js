@@ -13,6 +13,13 @@ app.service('Bug', ['$http',
             });
         };
 
+        this.getNewId = function() {
+            return $http({
+                method: 'GET',
+                url: '/api/bug/newbugid'
+            });
+        };
+
 
         this.getCurrentUserBugs = function(user) {
             if (user) {

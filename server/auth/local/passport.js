@@ -38,7 +38,7 @@ exports.setup = function() {
             } else {
                 return done(null, false, {
                     status: 500,
-                    message: error.code
+                    message: JSON.stringify(error)
                 })
             }
         })

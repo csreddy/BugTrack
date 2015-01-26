@@ -60,7 +60,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                         name: 'P1 - Catastrophic',
                         value: false
                     }, {
-                        name: 'P2 - Critcial',
+                        name: 'P2 - Critical',
                         value: false
                     }, {
                         name: ' P3 - Major',

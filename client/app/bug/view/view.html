@@ -248,7 +248,7 @@
     </div>
 
 
-    <div class="panel panel-default" ng-repeat="item in bug.changeHistory">
+    <div class="panel panel-default" ng-show="item.show || item.show == undefined" ng-repeat="item in bug.changeHistory">
         <div class="panel-heading">
             <img alt="user pic" src="assets/images/avatar.png" class="img-circle img-responsive" style="height: 3em;width: 3em; float:left;margin-right: 5px;">
             <b>{{item.updatedBy.name | capitalize}}</b>

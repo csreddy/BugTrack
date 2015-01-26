@@ -23,7 +23,7 @@ exports.count = function(req, res) {
         q.where(
             q.collection('bugs')
         )
-        .slice(1, maxLimit)
+        .slice(1, 1)
         .withOptions({
             debug: true,
             categories: 'metadata'
@@ -74,12 +74,14 @@ exports.facets = function(req, res) {
 exports.id = function(req, res) {
     res.locals.errors = req.flash();
     console.log(res.locals.errors);
-    var uri = '/bug/'+req.params.id+'/'+req.params.id + '.json';
+    var uri = '/bug/' + req.params.id + '/' + req.params.id + '.json';
     db.documents.probe(uri).result(function(document) {
-       // console.log('document at ' + uri + ' exists: ' + document.exists);
+        // console.log('document at ' + uri + ' exists: ' + document.exists);
         if (document.exists) {
-            db.documents.read({uris: [uri]}).result(function(response) {
-           //     console.log('from '+ uri, response);
+            db.documents.read({
+                uris: [uri]
+            }).result(function(response) {
+                //     console.log('from '+ uri, response);
                 if (response.length === 1) {
                     res.status(200).json(response[0].content);
                 }
@@ -119,6 +121,7 @@ exports.new = function(req, res) {
         collections.push(JSON.parse(req.body.bug).submittedBy.username);
     }
     var uri = '/bug/' + id + '/' + id + '.json';
+    var countDoc = 'count.json'
     db.documents.write([{
         uri: uri,
         category: 'content',
@@ -172,7 +175,7 @@ exports.update = function(req, res) {
     var from = JSON.parse(req.body.old);
     var to = JSON.parse(req.body.bug);
     var file = req.files;
-    var uri = '/bug/'+from.id+'/'+from.id + '.json';
+    var uri = '/bug/' + from.id + '/' + from.id + '.json';
     var updates = []
     var updateTime = new Date();
 
@@ -292,7 +295,7 @@ exports.update = function(req, res) {
                 if (true) {
                     // TODO
                 }
-                    break;
+                break;
             default:
                 break;
                 // do nothing
@@ -359,7 +362,7 @@ exports.update = function(req, res) {
 
 exports.subscribe = function(req, res) {
     console.log('subscribe', req.body);
-    var uri = '/bug/'+req.body.id + '/'+req.body.id + '.json';
+    var uri = '/bug/' + req.body.id + '/' + req.body.id + '.json';
     db.documents.patch(uri, p.insert("array-node('subscribers')", 'last-child', req.body.user)).result(function(response) {
         res.status(200).json({
             message: 'Bug subscribed'
@@ -372,7 +375,7 @@ exports.subscribe = function(req, res) {
 
 exports.unsubscribe = function(req, res) {
     console.log('unsubscribe', req.body);
-    var uri = '/bug/'+req.body.id + '/'+req.body.id + '.json';
+    var uri = '/bug/' + req.body.id + '/' + req.body.id + '.json';
     db.documents.patch(uri, p.remove("subscribers[username eq '" + req.body.user.username + "']")).result(function(response) {
         res.status(200).json({
             message: 'Bug unsubscribed'
@@ -413,6 +416,12 @@ exports.clone = function(req, res) {
 
 };
 
-exports.uri = function(req, res) {
-
+exports.newbugid = function(req, res) {
+    db.documents.read('count.json').result(function(response) {
+            console.log('count:', response);
+            res.status(200).json(response)
+    }, function(error) {
+            console.log('error:', error);
+            res.status(error.statusCode).json(JSON.stringify(error));
+    })
 };
