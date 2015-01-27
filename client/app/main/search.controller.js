@@ -177,7 +177,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         // filter results based on facets
         $scope.filter = function(facetKind, facet) {
             console.log('$scope.form', $scope.form);
+            if (facet.name === '(empty)') {
+               facet.name = '';
+            } 
             $scope.form.facets[facetKind] = facet;
+            
             $scope.form.startIndex = 1;
             $scope.form.itemsPerPage = $scope.itemsPerPage;
             return Search.search($scope.form).success(function(response) {

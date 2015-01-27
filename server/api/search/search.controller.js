@@ -15,7 +15,7 @@ exports.search = function(req, res) {
     // console.log(res.locals.errors);
     var result = {};
     var criteria = req.body;
-    //console.log('criteria:', criteria);
+    console.log('criteria:', criteria);
     var start  = req.body.startIndex || 1;
     var end = req.body.itemsPerPage;
     var searchCriteria = [];
@@ -151,7 +151,7 @@ exports.search = function(req, res) {
             q.facet('fixedin', 'fixedin', q.facetOptions('limit=10', 'frequency-order','descending')),
             q.facet('tofixin', 'tofixin', q.facetOptions('limit=10', 'frequency-order', 'descending')),
             q.facet('submittedBy', q.pathIndex('/submittedBy/name'), q.facetOptions('limit=10')),
-            q.facet('assignedTo', q.pathIndex('/assignTo/name'), q.facetOptions('limit=10')),
+            q.facet('assignTo', q.pathIndex('/assignTo/name'), q.facetOptions('limit=10')),
             q.facet('priority', q.pathIndex('/priority/level'))
         )
         .slice(start, end)
