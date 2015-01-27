@@ -7,6 +7,7 @@ angular.module('fullstackApp')
                 templateUrl: 'app/main/main.html',
                 controller: 'searchCtrl',
                 title: 'Home',
+                reloadOnSearch: false,
                 resolve: {
                     currentUser: ['User',
                         function(User) {

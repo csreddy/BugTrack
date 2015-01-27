@@ -41,7 +41,7 @@ app.config(function($routeProvider, $locationProvider) {
         .otherwise({
             redirectTo: '/home'
         });
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true).hashPrefix('');
 }).filter('capitalize', function() {
         return function(input, all) {
             return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
