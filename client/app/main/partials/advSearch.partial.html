@@ -61,6 +61,7 @@
                 <option value=""></option>
                     <option  ng-repeat="user in config.users" value="{{user.username}}" ng-selected="form.assignTo === user.username">{{user.name}}</option>
                 </select>
+                <a ng-href="" title="clear" ng-click="clearSelection('assignTo')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
             <div class="form-group">
                 <label class="sm">Category</label>
@@ -69,6 +70,7 @@
                     <option value="" selected></option>
                     <option ng-repeat="category in config.category" ng-selected="form.category === category" value="{{category}}">{{category}}</option>
                 </select>
+                 <a ng-href="" title="clear" ng-click="clearSelection('category')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
             <div class="form-group">
                 <label class="sm">Fixed in</label>
@@ -77,6 +79,7 @@
                 <option value="" selected></option>
                     <option ng-repeat="version in config.version" ng-selected="form.fixedin === version" value="{{version}}">{{version}}</option>
                 </select> 
+                 <a ng-href="" title="clear" ng-click="clearSelection('fixedin')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
             <div class="form-group">
                 <label class="sm">Submitted By</label>
@@ -85,6 +88,7 @@
                 <option value="" selected></option>
                     <option ng-repeat="user in config.users" ng-selected="form.submittedBy === user.username" value="{{user.username}}">{{user.name}}</option>
                 </select> 
+                 <a ng-href="" title="clear" ng-click="clearSelection('submittedBy')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
             <div class="form-group">
                 <label class="sm">Version</label>
@@ -93,6 +97,7 @@
                 <option value="" selected></option>
                     <option ng-repeat="version in config.version" ng-selected="form.version === version" value="{{version}}">{{version}}</option>
                 </select>
+                 <a ng-href="" title="clear" ng-click="clearSelection('version')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
             <div class="form-group">
                 <label class="sm">To Fix in</label>
@@ -101,6 +106,7 @@
                 <option value="" selected></option>
                       <option ng-repeat="version in config.tofixin" ng-selected="form.tofixin === version" value="{{version}}">{{version}}</option>
                 </select>
+                 <a ng-href="" title="clear" ng-click="clearSelection('tofixin')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
         </div>
    <div class="col-md-2">

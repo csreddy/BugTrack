@@ -255,6 +255,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             return show;
         };
 
+        $scope.clearSelection = function(selection) {
+            console.log('selection', selection);
+            $scope.form[selection] = '';
+            $location.search(selection, '');
+        };
 
 
         $scope.$on('$locationChangeSuccess', function() {
