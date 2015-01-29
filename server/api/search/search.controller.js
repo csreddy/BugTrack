@@ -16,12 +16,13 @@ exports.search = function(req, res) {
     var result = {};
     var criteria = req.body;
     console.log('criteria:', criteria);
-    var start  = req.body.startIndex || 1;
-    var end = req.body.itemsPerPage;
+    var page = parseInt(req.body.page) || 1;
+    var pageLength = parseInt(req.body.pageLength) || 20;
+    var startIndex = (page - 1) * pageLength + 1;
     var searchCriteria = [];
     // when empty criteria is sent 
     if (Object.keys(criteria).length === 0) {
-        searchCriteria = [q.collection('bugs')];
+      // searchCriteria = [q.collection('bugs')];
     }
 
     for (var key in criteria) {
@@ -34,101 +35,46 @@ exports.search = function(req, res) {
                 break;
             case 'kind':
                 var collectionName;
-                for (var index in value) {
-                    switch (value[index].name) {
-                        case 'Bug':
-                            collectionName = 'bugs';
-                            if (value[index].value) {
-                                orQuery.push(q.collection(collectionName));
-                                searchCriteria.push(q.or(orQuery));
-                            }
-                            break;
-                        case 'Task':
-                            collectionName = 'tasks';
-                            if (value[index].value) {
-                                orQuery.push(q.collection(collectionName));
-                                searchCriteria.push(q.or(orQuery));
-                            }
-                            break;
-                        case 'RFE':
-                            collectionName = 'rfes';
-                            if (value[index].value) {
-                                orQuery.push(q.collection(collectionName));
-                                searchCriteria.push(q.or(orQuery));
-                            }
-                            break;
-                        case 'Other':
-                            collectionName = 'others';
-                            if (value[index].value) {
-                                orQuery.push(q.collection(collectionName));
-                                searchCriteria.push(q.or(orQuery));
-                            }
-                            break;
-                        default:
-                            // collectionName = 'bugs';
-                            // if (value[index].value) {
-                            //     orQuery.push(q.collection(collectionName));
-                            // }
-                            break;
-                    }
-                    //searchCriteria.push(q.or(orQuery));
+                if (typeof value === 'string' && value !== '') {
+                    collectionName = value.toLowerCase() + 's'; // pluralize
+                    searchCriteria.push(q.collection(collectionName));
                 }
+
+                if (value instanceof Array) {
+                    for (var index in value) {
+                        if (value[index] !== '') {
+                            collectionName = value[index].toLowerCase() + 's'; // pluralize
+                            orQuery.push(q.collection(collectionName));
+                        }
+                    }
+                    if (orQuery.length > 0) {
+                        searchCriteria.push(q.or(orQuery));
+                    }
+                    orQuery = []; // empty array after pushing to search criteria
+                }
+
                 break;
             case 'status':
             case 'severity':
-                for (var index in value) {
-                    if (value[index].value && value[index].name !== 'n/v/f/e') {
-                        orQuery.push(q.value(key, value[index].name));
-                    }
-                }
-                if (orQuery.length > 0) {
-                    searchCriteria.push(q.or(orQuery));
-                }
-                break;
-            case 'assignTo':
-                if (value !== '') {
-                    searchCriteria.push(q.range(q.pathIndex('/assignTo/username'), q.datatype('string'), '=', value));
-                }
-                break;
-            case 'submittedBy':
-                if (value !== '') {
-                    searchCriteria.push(q.range(q.pathIndex('/submittedBy/username'), q.datatype('string'), '=', value));
-                }
-                break;
             case 'category':
             case 'version':
             case 'fixedin':
             case 'tofixin':
-                if (value !== '') {
-                    searchCriteria.push(q.range(key, q.datatype('string'), '=', value));
-                    // searchCriteria.push(q.value(key, value));
-                }
+            case 'platform':
+                parseSelectedItems(searchCriteria, key, 'string', '=', value);
                 break;
-            case 'facets': // for sidebar facet filtering
-                var keys = Object.keys(value);
-                if (keys.length > 0) {
-                    keys.forEach(function(item) {
-                        if (item === 'submittedBy') {
-                            searchCriteria.push(q.range(q.pathIndex('/submittedBy/name'), q.datatype('string'), '=', value[item].name));
-                            // searchCriteria.push(q.value(q.pathIndex('/submittedBy/username'), value[item].name));
-                        } else if (item === 'assignTo') {
-                            searchCriteria.push(q.range(q.pathIndex('/assignTo/name'), q.datatype('string'), '=', value[item].name));
-                            // searchCriteria.push(q.value(q.pathIndex('/assignTo/username'), value[item].name));
-                        } else if (item === 'priority') {
-                            searchCriteria.push(q.range(q.pathIndex('/priority/level'), q.datatype('string'), '=', value[item].name));
-                            // searchCriteria.push(q.value(q.pathIndex('/priority/level'), value[item].name));
-                        } else {
-                            searchCriteria.push(q.range(item, '=', value[item].name));
-                            // searchCriteria.push(q.value(item, value[item].name));
-                        }
-                    });
-                }
+            case 'priority':
+            parsePathIndexItems(searchCriteria, '/priority/level', 'string', '=', value)
+            break;    
+            case 'assignTo':
+                 parsePathIndexItems(searchCriteria, '/assignTo/username', 'string', '=', value)
                 break;
-            default:
+            case 'submittedBy':
+                 parsePathIndexItems(searchCriteria, '/submittedBy/username', 'string', '=', value)
+                break;
+            default: // for any other selection do nothing
                 break;
         }
-
-        //console.log('--------------- ' + key + '--------------------');
     }
 
 
@@ -144,17 +90,17 @@ exports.search = function(req, res) {
         .calculate(
             q.facet('kind', 'kind'),
             q.facet('status', 'status', q.facetOptions('frequency-order')),
-            q.facet('category',  'category'),
+            q.facet('category', 'category'),
             q.facet('severity', 'severity'),
-            q.facet('version', 'version', q.facetOptions('limit=10','frequency-order', 'descending')),
+            q.facet('version', 'version', q.facetOptions('limit=10', 'frequency-order', 'descending')),
             q.facet('platform', 'platform', q.facetOptions('frequency-order', 'descending')),
-            q.facet('fixedin', 'fixedin', q.facetOptions('limit=10', 'frequency-order','descending')),
+            q.facet('fixedin', 'fixedin', q.facetOptions('limit=10', 'frequency-order', 'descending')),
             q.facet('tofixin', 'tofixin', q.facetOptions('limit=10', 'frequency-order', 'descending')),
             q.facet('submittedBy', q.pathIndex('/submittedBy/name')),
-            q.facet('assignTo', q.pathIndex('/assignTo/name')),
+            q.facet('assignTo', q.pathIndex('/assignTo/username')),
             q.facet('priority', q.pathIndex('/priority/level'))
         )
-        .slice(start, end)
+        .slice(startIndex, pageLength)
         .withOptions({
             debug: true,
             queryPlan: true,
@@ -168,6 +114,46 @@ exports.search = function(req, res) {
         result = response;
         res.status(200).json(result);
     }, function(error) {
-        res.status(error.statusCode).json(JSON.stringify(error));
+        res.status(error.statusCode).json(error);
     });
 };
+
+
+function parseSelectedItems (searchCriteria, name, type, condition, value) {
+    var orQuery = [];
+    if (typeof value === 'string') {
+                    searchCriteria.push(q.value(name, value));
+                }
+
+                if (value instanceof Array) {
+                    for (var index in value) {
+                        if (value[index] !== '' && value[index] !== 'n/v/f/e') {
+                            orQuery.push(q.range(name, q.datatype(type), condition, value[index]));
+                        }
+                    }
+                    if (orQuery.length > 0) {
+                        searchCriteria.push(q.or(orQuery));
+                    }
+                    orQuery = []; // empty array after pushing to search criteria 
+                }
+}
+
+
+function parsePathIndexItems (searchCriteria, path, type, condition, value) {
+    var orQuery = [];
+    if (typeof value === 'string' && value !== '') {
+                    searchCriteria.push(q.range(q.pathIndex(path), q.datatype(type), condition, value));
+                }
+
+                if (value instanceof Array) {
+                    for (var index in value) {
+                        if (value[index] !== '') {
+                            orQuery.push(q.range(q.pathIndex(path), q.datatype(type), condition, value[index]));
+                        }
+                    }
+                    if (orQuery.length > 0) {
+                        searchCriteria.push(q.or(orQuery));
+                    }
+                    orQuery = []; // empty array after pushing to search criteria 
+                }
+}

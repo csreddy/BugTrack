@@ -4,7 +4,7 @@ var app = angular.module('user.controllers', ['ngCookies']);
 
 app.controller('loginCtrl', ['$scope', '$location', '$cookieStore', 'Flash', '$http', 'User', '$window',
     function($scope, $location, $cookieStore, Flash, $http, User, $window) {
-
+        $location.search({}); // clear query params from url
         $scope.username = 'btuser';
         $scope.password = 'admin';
 
@@ -22,11 +22,11 @@ app.controller('loginCtrl', ['$scope', '$location', '$cookieStore', 'Flash', '$h
                     $location.path('/home');
                     User.getInfo().success(function(user) {
                         Flash.addAlert('success', 'Welcome! ' + user.name);
-                        $window.sessionStorage.currentUser = user.name;
+                        $window.localStorage.currentUser = user.name;
                     });
                 },
                 function(error) {
-                    Flash.addAlert('danger', error);
+                    Flash.addAlert('danger', error.data.message);
                 });
         };
 
@@ -38,6 +38,7 @@ app.controller('logoutCtrl', ['$http', 'User', 'Flash', '$location', '$window',
     function($http, User, Flash, $location, $rootScope, $window) {
         User.logout().then(function() {
             $location.path('/login');
+            $location.search({});
             Flash.addAlert('success', 'user logged out');
             //$window.sessionStorage.currentUser = undefined;
         }, function(error) {

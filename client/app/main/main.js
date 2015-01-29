@@ -40,8 +40,92 @@ angular.module('fullstackApp')
                                         value: false
                                     });
                                 }
+                                // sort users alphabetically
+                                config.users.sort(function(a, b) {
+                                    return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+                                });
+                                // sort version alphabetically
+                                config.version.sort(function(a, b) {
+                                    return a.toLowerCase().localeCompare(b.toLowerCase());
+                                });
+                                // sort category alphabetically
+                                config.category.sort(function(a, b) {
+                                    return a.toLowerCase().localeCompare(b.toLowerCase());
+                                });
                                 return config;
                             });
+                        }
+                    ],
+                    defaultSearchCriteria: [
+                        function() {
+                            var criteria = {
+                                kind: [{
+                                    name: 'Bug',
+                                    value: true
+                                }, {
+                                    name: 'Task',
+                                    value: false
+                                }, {
+                                    name: 'RFE',
+                                    value: false
+                                }, {
+                                    name: 'Other',
+                                    value: false
+                                }],
+                                status: [{
+                                    name: 'New',
+                                    value: false
+                                }, {
+                                    name: 'Verify',
+                                    value: false
+                                }, {
+                                    name: 'Test',
+                                    value: false
+                                }, {
+                                    name: 'Fix',
+                                    value: false
+                                }, {
+                                    name: 'Ship',
+                                    value: false
+                                }, {
+                                    name: 'Closed',
+                                    value: false
+                                }, {
+                                    name: 'Will not fix',
+                                    value: false
+                                }, {
+                                    name: 'External',
+                                    value: false
+                                }],
+                                severity: [{
+                                    name: 'P1 - Catastrophic',
+                                    value: false
+                                }, {
+                                    name: 'P2 - Critical',
+                                    value: false
+                                }, {
+                                    name: 'P3 - Major',
+                                    value: false
+                                }, {
+                                    name: 'P4 - Minor',
+                                    value: false
+                                }, {
+                                    name: 'P5 - Aesthetic',
+                                    value: false
+                                }, {
+                                    name: 'Performance',
+                                    value: false
+                                }],
+                                q: '',
+                                facets: {},
+                                assignTo: '',
+                                submittedBy: '',
+                                category: '',
+                                version: '',
+                                fixedin: '',
+                                tofixin: ''
+                            };
+                            return criteria;
                         }
                     ]
                 }

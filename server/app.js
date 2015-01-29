@@ -102,7 +102,7 @@ app.use('/v1/', function(req, res, next) {
 
 
 app.get('/userinfo', function(req, res) {
-    console.log('===================== req.user', req.user);
+   // console.log('===================== req.user', req.user);
     var uri = '/users/' + req.user + '.json';
     if (req.user) {
         db.documents.read(uri).result(function(document) {
