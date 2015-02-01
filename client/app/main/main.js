@@ -25,19 +25,19 @@ angular.module('fullstackApp')
                                 for (var i = 0; i < configdata.data.kind.length; i++) {
                                     config.kind.push({
                                         name: configdata.data.kind[i],
-                                        value: false
+                                        selected: false
                                     });
                                 }
                                 for (var i = 0; i < configdata.data.status.length; i++) {
                                     config.status.push({
                                         name: configdata.data.status[i],
-                                        value: false
+                                        selected: false
                                     });
                                 }
                                 for (var i = 0; i < configdata.data.severity.length; i++) {
                                     config.severity.push({
                                         name: configdata.data.severity[i],
-                                        value: false
+                                        selected: false
                                     });
                                 }
                                 // sort users alphabetically
@@ -61,60 +61,60 @@ angular.module('fullstackApp')
                             var criteria = {
                                 kind: [{
                                     name: 'Bug',
-                                    value: true
+                                    selected: true
                                 }, {
                                     name: 'Task',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'RFE',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'Other',
-                                    value: false
+                                    selected: false
                                 }],
                                 status: [{
                                     name: 'New',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'Verify',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'Test',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'Fix',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'Ship',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'Closed',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'Will not fix',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'External',
-                                    value: false
+                                    selected: false
                                 }],
                                 severity: [{
                                     name: 'P1 - Catastrophic',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'P2 - Critical',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'P3 - Major',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'P4 - Minor',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'P5 - Aesthetic',
-                                    value: false
+                                    selected: false
                                 }, {
                                     name: 'Performance',
-                                    value: false
+                                    selected: false
                                 }],
                                 q: '',
                                 facets: {},

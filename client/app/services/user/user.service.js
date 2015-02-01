@@ -57,11 +57,11 @@ app.service('User', ['$http', '$location', 'Flash',
             });
         };
 
-        this.saveDefaultQuery = function(searchCriteria, form) {
+        this.saveDefaultQuery = function(searchCriteria) {
             return $http({
                 method: 'PUT',
                 url: '/api/user/savedefaultquery',
-                data: {search: searchCriteria, form: form}
+                data: searchCriteria
             });
         };
 
