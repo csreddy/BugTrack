@@ -217,7 +217,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     Flash.addAlert('danger', error.body.errorResponse.message);
                 });
             };
-
+            $scope.isPaginationEvent = false;
 
         });
 
