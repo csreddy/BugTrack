@@ -58,7 +58,7 @@
                 <label class="sm">Assigned to</label>
                 <br>
                 <select id="assignTo" ng-model="form.assignTo" name="assignTo" type="text" class="form-control input-xsm">
-                <option value=""></option>
+                <option value="null"></option>
                     <option  ng-repeat="user in config.users" value="{{user.username}}" ng-selected="form.assignTo === user.username">{{user.name}}</option>
                 </select>
                 <a ng-href="" title="clear" ng-click="clearSelection('assignTo')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
@@ -67,7 +67,7 @@
                 <label class="sm">Category</label>
                 <br>
                 <select id="category" ng-model="form.category" name="category" type="text" class="form-control input-xsm">
-                    <option value="" selected></option>
+                    <option value="null" selected></option>
                     <option ng-repeat="category in config.category" ng-selected="form.category === category" value="{{category}}">{{category}}</option>
                 </select>
                  <a ng-href="" title="clear" ng-click="clearSelection('category')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
@@ -76,7 +76,7 @@
                 <label class="sm">Fixed in</label>
                 <br>
                 <select id="fixedin" ng-model="form.fixedin"  name="fixedin" type="text" class="form-control input-xsm">
-                <option value="" selected></option>
+                <option value="null" selected></option>
                     <option ng-repeat="version in config.version" ng-selected="form.fixedin === version" value="{{version}}">{{version}}</option>
                 </select> 
                  <a ng-href="" title="clear" ng-click="clearSelection('fixedin')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
@@ -85,7 +85,7 @@
                 <label class="sm">Submitted By</label>
                 <br>
                 <select id="submittedBy" ng-model="form.submittedBy" name="submittedBy" type="text" class="form-control input-xsm">
-                <option value="" selected></option>
+                <option value="null" selected></option>
                     <option ng-repeat="user in config.users" ng-selected="form.submittedBy === user.username" value="{{user.username}}">{{user.name}}</option>
                 </select> 
                  <a ng-href="" title="clear" ng-click="clearSelection('submittedBy')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
@@ -94,7 +94,7 @@
                 <label class="sm">Version</label>
                 <br>
                 <select id="version" ng-model="form.version"  name="version" type="text" class="form-control input-xsm">
-                <option value="" selected></option>
+                <option value="null" selected></option>
                     <option ng-repeat="version in config.version" ng-selected="form.version === version" value="{{version}}">{{version}}</option>
                 </select>
                  <a ng-href="" title="clear" ng-click="clearSelection('version')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
@@ -103,7 +103,7 @@
                 <label class="sm">To Fix in</label>
                 <br>
                 <select id="tofixin" ng-model="form.tofixin"  name="tofixin" type="text" class="form-control input-xsm">
-                <option value="" selected></option>
+                <option value="null" selected></option>
                       <option ng-repeat="version in config.tofixin" ng-selected="form.tofixin === version" value="{{version}}">{{version}}</option>
                 </select>
                  <a ng-href="" title="clear" ng-click="clearSelection('tofixin')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>

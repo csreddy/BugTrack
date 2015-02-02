@@ -116,14 +116,14 @@ angular.module('fullstackApp')
                                     name: 'Performance',
                                     selected: false
                                 }],
-                                q: '',
+                                q: null,
                                 facets: {},
-                                assignTo: '',
-                                submittedBy: '',
-                                category: '',
-                                version: '',
-                                fixedin: '',
-                                tofixin: ''
+                                assignTo: null,
+                                submittedBy: null,
+                                category: null,
+                                version: null,
+                                fixedin: null,
+                                tofixin: null
                             };
                             return criteria;
                         }

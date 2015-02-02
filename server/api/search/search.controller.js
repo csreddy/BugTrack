@@ -53,7 +53,7 @@ exports.search = function(req, res) {
                     
                     }
              }
-        //delete criteria['f:' + key];
+        delete criteria['f:' + key];
         }
 
     }
@@ -69,6 +69,10 @@ exports.search = function(req, res) {
         }
         switch (key) {
             case 'q':
+            // if null then make it empty string to avoid error
+            if (!value) {
+                value = '';
+            }
                 searchCriteria.push(q.parsedFrom(value));
                 break;
             case 'kind':

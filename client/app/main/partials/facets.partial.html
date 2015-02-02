@@ -19,17 +19,10 @@
         <ul ng-repeat="(facetKind, facetType) in form.facets" class="list-unstyled" name="{{facetKind}}" ng-hide="facetType.length === 0">
             <li><b>{{facetKind | uppercase }}  ({{facetType.length}})</b>
             </li>
-            <select name="" id="" ng-model="facet" ng-options="(facet.name + ' ' + '(' + facet.count+')') for facet in facetType" ng-change="filter(facetKind, facet)" ng-show="showFacetDropdown(facetKind, facetType)">
+            <select name="" id="" ng-model="facet" ng-options="(facet.name + ' ' + '(' + facet.count+')') for facet in facetType" ng-show="showFacetDropdown(facetKind, facetType)">
                 <option value="">-- Select --</option>
             </select>
 
-     <!--        <ul ng-repeat="facet in facetType.facetValues" class="list-unstyled" ng-show="!showFacetDropdown(facetKind, facetType)">
-                <a href="" ng-click="filter(facetKind, facet)">
-                    <li style="margin-left: 10px">{{facet.name}}
-                        <span class="badge bg-olive pull-right">{{facet.count}}</span>
-                    </li>
-                </a>
-            </ul> -->
 
             <ul ng-repeat="facet in facetType" class="list-unstyled" ng-show="!showFacetDropdown(facetKind, facetType)">
             <li style="margin-left: 10px">
