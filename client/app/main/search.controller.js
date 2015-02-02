@@ -198,6 +198,18 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
 
         $scope.$on('$locationChangeSuccess', function() {
             $scope.currentPage = $location.search().page;
+            
+            // due to pagination directive bug, current page number does not get higlighted when 
+            // browser back/fwd is clicked. This is a hack to fix it.
+            angular.forEach(angular.element('#pager li'), function(li) {
+                if(angular.element(li).text() === $scope.currentPage.toString()){   
+                     console.log(angular.element(li).text());
+                    angular.element(li).addClass('active');
+                } else {
+                angular.element(li).removeClass('active');    
+                }
+            });
+
             if (!$scope.isPaginationEvent) {
                 // for form selections to auto fill when browser back/fwd is clicked
                 if (Object.keys($location.search()).length === 0) {
@@ -217,6 +229,15 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     Flash.addAlert('danger', error.body.errorResponse.message);
                 });
             };
+
+            
+
+            
+            
+            /*$('#pager li').each(function(){
+            if( $(this).text() == '1' ) $(this).removeClass('active')
+            });*/
+
             $scope.isPaginationEvent = false;
 
         });
