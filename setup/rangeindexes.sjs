@@ -1,5 +1,5 @@
  var admin = require("/MarkLogic/admin.xqy");  
- var elements = ["kind","id", "createdAt", "modifiedAt", "status","submittedBy", "assignTo", "category", "priority", "severity", "version", "platform", "fixedin", "tofixin"]
+ var elements = ["kind","id", "status","submittedBy", "assignTo", "category", "priority", "severity", "version", "platform", "fixedin", "tofixin"]
      for (var i=0;i<elements.length; i++){
  var config = admin.getConfiguration(); 
  var dbid = xdmp.database("bugtrack"); 
@@ -8,6 +8,15 @@
 admin.saveConfiguration(config);
      }
  
+
+ var elements = ["createdAt", "modifiedAt"]
+     for (var i=0;i<elements.length; i++){
+ var config = admin.getConfiguration(); 
+ var dbid = xdmp.database("bugtrack"); 
+ var rangespec = admin.databaseRangeElementIndex("dateTime", "", elements[i], "" ,false ); 
+ var config = admin.databaseAddRangeElementIndex(config, dbid, rangespec); 
+admin.saveConfiguration(config);
+     }
  
  
  var elements = ["id"]; 
