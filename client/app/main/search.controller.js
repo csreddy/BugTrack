@@ -2,8 +2,8 @@
 
 var app = angular.module('search.controllers', ['checklist-model']);
 
-app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$routeParams',
-    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $routeParams) {
+app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout',
+    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout) {
         $scope.home = "Home page";
         $scope.form = angular.copy(defaultSearchCriteria) || {};
         $scope.bugs = [];
@@ -26,6 +26,13 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $scope.form = angular.copy(parseQueryParams($location.search()));
                 var searchCriteria = $location.search();
                 search($location.search());
+                 console.log('highlightPageNumber');
+                // due to pagination directive bug, current page number does not get higlighted when 
+            // browser back/fwd is clicked. This is a hack to fix it.
+               $timeout(function() {
+                highlightPageNumber(searchCriteria.page);
+            }, 1000);
+                
             /*   
             // check if the url matches users default query, if true then select checkbox to indicate
                 if (angular.equals(searchCriteria, currentUser.savedQueries.default)) {
@@ -220,20 +227,25 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             // $location.search(selection, null);
         };
 
+        function highlightPageNumber (pageNo) {
+           var elements = angular.element('#pager li');
+            angular.forEach(angular.element('#pager li'), function(li) {
+                if(angular.element(li).text() === pageNo.toString()){   
+                     console.log('element',angular.element(li).text());
+                    angular.element(li).addClass('active');
+                } else {
+                     angular.element(li).removeClass('active');    
+                }
+            });
+        }
+
 
         $scope.$on('$locationChangeSuccess', function() {
             $scope.currentPage = $location.search().page || 1;
             
             // due to pagination directive bug, current page number does not get higlighted when 
             // browser back/fwd is clicked. This is a hack to fix it.
-            angular.forEach(angular.element('#pager li'), function(li) {
-                if(angular.element(li).text() === $scope.currentPage.toString()){   
-                     console.log(angular.element(li).text());
-                    angular.element(li).addClass('active');
-                } else {
-                angular.element(li).removeClass('active');    
-                }
-            });
+            highlightPageNumber($scope.currentPage);
 
             if (!$scope.isPaginationEvent) {
                 // for form selections to auto fill when browser back/fwd is clicked
@@ -254,14 +266,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     Flash.addAlert('danger', error.body.errorResponse.message);
                 });
             };
-
-            
-
-            
-            
-            /*$('#pager li').each(function(){
-            if( $(this).text() == '1' ) $(this).removeClass('active')
-            });*/
 
             $scope.isPaginationEvent = false;
 
