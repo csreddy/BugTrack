@@ -6,6 +6,7 @@ angular.module('fullstackApp')
         when('/new', {
             templateUrl: 'app/bug/new/new.html',
             controller: 'newBugCtrl',
+            reloadOnSearch: false,
             resolve: {
                 config: ['Config',
                     function(Config) {
@@ -28,6 +29,7 @@ angular.module('fullstackApp')
         .when('/bug/:id', {
         	templateUrl: 'app/bug/view/view.html',
         	controller: 'viewCtrl',
+            reloadOnSearch: false,
         	resolve: {
         		config: ['Config',
                     function(Config) {

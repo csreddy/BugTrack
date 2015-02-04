@@ -2,33 +2,77 @@
     <div class="box-header">
         <h3 class="box-title">Filter</h3>
         <div class="box-tools pull-right">
-   <button class="btn btn-primary btn-xs" data-widget="collapse" tooltip="minimize" id="facetClose" ng-click="hideFacetBox()">
-   <i class="fa fa-minus"></i></button>
+            <button class="btn btn-primary btn-xs" data-widget="collapse" tooltip="minimize" id="facetClose" ng-click="hideFacetBox()">
+                <i class="fa fa-minus"></i>
+            </button>
         </div>
     </div>
     <div class="box-body">
 
-<li class="list-unstyled">
-    <span ng-repeat="(facetKind, facet) in form.facets" class="badge bg-yellow" style="margin: 2px">{{facetKind}}: {{facet.name}}
-    <a href="" ng-click="unfilter(facetKind)"><span class="glyphicon glyphicon-remove"></span></a>
-    </span>
-</li>
-        <ul ng-repeat="(facetKind, facetType) in facets" class="list-unstyled" name="{{facetKind}}" ng-hide="facetType.facetValues.length === 0">
-            <li><b>{{facetKind | uppercase }}  ({{facetType.facetValues.length}})</b>
+        <!--         <li class="list-unstyled">
+            <span ng-repeat="(facetKind, facet) in form.facets" class="badge bg-yellow" style="margin: 2px">{{facetKind}}: {{facet.name}}
+    <a href="" ng-click="unfilter(facetKind)"><span class="glyphicon glyphicon-remove"></span>
+            </a>
+            </span>
+        </li> -->
+
+        <!--  <facet id="status" ng-model="form.facets['status']"></facet>   -->
+
+        <!--         <ul ng-repeat="facet in form.facets['status']" class="list-unstyled">
+                <li style="margin-left: 10px">
+                    <label class="xsm-label">
+                        <input type="checkbox" name="status" ng-model="facet.selected" value="{{facet}}">
+                    </label>
+                    <span class="badge bg-olive pull-right">{{facet.count}}</span> {{facet.name}}
+                </li>
+            </ul> -->
+
+        <ul ng-repeat="facetName in facetOrder" class="list-unstyled" name="{{facetName}}" ng-hide="form.facets[facetName].length === 0">
+            <div class="form-group">
+            <li><label>{{ facetName | uppercase }} ({{form.facets[facetName].length}})</label>
+
+                <ul ng-repeat="f in form.facets[facetName]" class="list-unstyled" ng-show="!showFacetDropdown2(facetName)">
+                    <!-- facets as checkboxes -->
+                    <li style="margin-left: 10px">
+                        <label class="xsm-label">
+                            <input type="checkbox" name="{{facetName}}" ng-model="f.selected" value="{{f}}">
+                        </label>
+                        <span class="badge bg-olive pull-right">{{f.count}}</span> {{f.name}}
+                    </li>
+                </ul>
             </li>
-            <ul ng-repeat="facet in facetType.facetValues" class="list-unstyled">
-                <a href="" ng-click="filter(facetKind, facet)">
-                    <li style="margin-left: 10px">{{facet.name}}
-                    <span class="badge bg-olive pull-right">{{facet.count}}</span>
-                </li>    
-                </a>
-            </ul>
-           <!--  <select name="assignedTo" id="">
-                <option ng-repeat="facet in facetType.facetValues" value="{{facet.name}}" ng-click="filter(facetKind, facet)">{{facet.name}} - {{facet.count}}</option>
-            </select> -->
+
+            <!-- facets as dropdown -->
+        <select name="{{facetName}}" id="" ng-model="f" ng-options="(f.name + ' ' + '(' + f.count+')') for f in form.facets[facetName]" ng-show="showFacetDropdown2(facetName)" ng-change="addSelectedValueToQuery2(facetName, f)" class="form-control input-sm">
+                <option value="">-- Select --</option>
+            </select>
+           <!--  <select name="{{facetName}}" id="" ng-show="showFacetDropdown2(facetName)">
+                <option value="null"></option>
+                <option ng-repeat="f in form.facets[facetName]"  ng-model="f" value="{{f}}" label="{{f.name}} ({{f.count}})" ng-change="addSelectedValueToQuery()">{{f.name}} ({{f.count}})</option>
+            </select>   --> 
+</div>
 
         </ul>
+
+
+        <!--  <ul ng-repeat="(facetKind, facetType) in form.facets" class="list-unstyled" name="{{facetKind}}" ng-hide="facetType.length === 0">
+            <li><b>{{facetKind | uppercase }}  ({{facetType.length}})</b>
+            </li>
+            <select name="" id="" ng-model="facet" ng-options="(facet.name + ' ' + '(' + facet.count+')') for facet in facetType" ng-show="showFacetDropdown(facetKind, facetType)">
+                <option value="">-#- Select -#-</option>
+            </select>
+
+
+            <ul ng-repeat="facet in facetType" class="list-unstyled" ng-show="!showFacetDropdown(facetKind, facetType)">
+                <li style="margin-left: 10px">
+                    <label class="xsm-label">
+                        <input type="checkbox" name="{{facetKind}}" ng-model="facet.selected" value="{{facet}}">
+                    </label>
+                    <span class="badge bg-olive pull-right">{{facet.count}}</span> {{facet.name}}
+                </li>
+            </ul>
+        </ul> -->
     </div>
-  
+
     <!-- /.box-body -->
 </div>

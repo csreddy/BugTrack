@@ -3,8 +3,8 @@
     "email": "bugtrack@marklogic.com",
     "name": "Bugtrack User",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -13,8 +13,8 @@
     "email": "ian@cerisent.com",
     "name": "Ian Small",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -23,8 +23,8 @@
     "email": "avnur@cerisent.com",
     "name": "Ron Avnur",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -33,8 +33,8 @@
     "email": "cjl@cerisent.com",
     "name": "Christopher Lindblad",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -43,8 +43,8 @@
     "email": "rwang@cerisent.com",
     "name": "Ron Wang",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -53,8 +53,8 @@
     "email": "jim@cerisent.com",
     "name": "Jim Healy",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -63,8 +63,8 @@
     "email": "dave@cerisent.com",
     "name": "Dave O'Brien",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -73,8 +73,8 @@
     "email": "pcp@cerisent.com",
     "name": "Paul Pedersen",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -83,8 +83,8 @@
     "email": "huifen@cerisent.com",
     "name": "Huifen Chan",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -93,8 +93,8 @@
     "email": "jhunter@servlets.com",
     "name": "Jason Hunter",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -103,8 +103,8 @@
     "email": "max@cerisent.com",
     "name": "Max Schireson",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -113,8 +113,8 @@
     "email": "nick@cerisent.com",
     "name": "Nick Lanham",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -123,8 +123,8 @@
     "email": "asheesh@cerisent.com",
     "name": "Asheesh Mangla",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -133,8 +133,8 @@
     "email": "ajay@cerisent.com",
     "name": "Ajay Singh",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -143,8 +143,8 @@
     "email": "adam@cerisent.com",
     "name": "Adam Block",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -153,8 +153,8 @@
     "email": "mary@cerisent.com",
     "name": "Mary Holstege",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -163,8 +163,8 @@
     "email": "kelly@cerisent.com",
     "name": "Kelly Stirman",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -173,8 +173,8 @@
     "email": "hui.li@marklogic.com",
     "name": "Hui Li",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -183,8 +183,8 @@
     "email": "denise.skarupski@marklogic.com",
     "name": "Denise Miura",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -193,8 +193,8 @@
     "email": "cwilliams@marklogic.com",
     "name": "Christina Williams",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -203,8 +203,8 @@
     "email": "ronh@marklogic.com",
     "name": "Ron Hitchens",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -213,8 +213,8 @@
     "email": "dsokolsky@marklogic.com",
     "name": "Danny Sokolsky",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -223,8 +223,8 @@
     "email": "uigwebuike@marklogic.com",
     "name": "Uchenna Igwebuike",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -233,8 +233,8 @@
     "email": "mark.steinberg@marklogic.com",
     "name": "Mark Steinberg",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -243,8 +243,8 @@
     "email": "raghu.polasani@marklogic.com",
     "name": "Raghu Polasani",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -253,8 +253,8 @@
     "email": "john.pilat@marklogic.com",
     "name": "John Pilat",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -263,8 +263,8 @@
     "email": "jfc@marklogic.com",
     "name": "John Canny",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -273,8 +273,8 @@
     "email": "matt.turner@marklogic.com",
     "name": "Matt Turner",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -283,8 +283,8 @@
     "email": "nobody@marklogic.com",
     "name": "nobody nobody",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -293,8 +293,8 @@
     "email": "jespinoza@marklogic.com",
     "name": "Jose Espinoza",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -303,8 +303,8 @@
     "email": "Shivaji.Dutta@marklogic.com",
     "name": "Shivaji Dutta",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -313,8 +313,8 @@
     "email": "stephen.buxton@marklogic.com",
     "name": "Stephen Buxton",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -323,8 +323,8 @@
     "email": "joe.meree@marklogic.com",
     "name": "Joe Meree",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -333,8 +333,8 @@
     "email": "chris.biow@marklogic.com",
     "name": "Christopher Biow",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -343,8 +343,8 @@
     "email": "dan.clark@marklogic.com",
     "name": "Dan Clark",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -353,8 +353,8 @@
     "email": "wlaforest@marklogic.com",
     "name": "William LaForest",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -363,8 +363,8 @@
     "email": "smudunuri@marklogic.com",
     "name": "Shashi Mudunuri",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -373,8 +373,8 @@
     "email": "paul.rooney@marklogic.com",
     "name": "Paul Rooney",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -383,8 +383,8 @@
     "email": "james.kerr@marklogic.com",
     "name": "James Kerr",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -393,8 +393,8 @@
     "email": "colleen.whitney@marklogic.com",
     "name": "Colleen  Whitney",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -403,8 +403,8 @@
     "email": "jcooper@marklogic.com",
     "name": "Justin Cooper",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -413,8 +413,8 @@
     "email": "cwelch@marklogic.com",
     "name": "Christopher Welch",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -423,8 +423,8 @@
     "email": "sravotto@marklogic.com",
     "name": "Silvano  Ravotto",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -433,8 +433,8 @@
     "email": "rmiller@marklogic.com",
     "name": "Ronnen  Miller",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -443,8 +443,8 @@
     "email": "rgrimm@marklogic.com",
     "name": "Ryan Grimm",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -453,8 +453,8 @@
     "email": "pkankanala@marklogic.com",
     "name": "Praveen Kankanala",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -463,8 +463,8 @@
     "email": "aagrawal@marklogic.com",
     "name": "Andy Agrawal",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -473,8 +473,8 @@
     "email": "jclippinger@marklogic.com",
     "name": "James Clippinger",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -483,8 +483,8 @@
     "email": "sshearer@marklogic.com",
     "name": "Seth Shearer ",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -493,8 +493,8 @@
     "email": "mark.helmstetter@marklogic.com",
     "name": "Mark Helmstetter",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -503,8 +503,8 @@
     "email": "achaudhry@marklogic.com",
     "name": "Abdul Chaudhry",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -513,8 +513,8 @@
     "email": "jshao@marklogic.com",
     "name": "Julia Shao",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -523,8 +523,8 @@
     "email": "frubino@marklogic.com",
     "name": "Frank Rubino",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -533,8 +533,8 @@
     "email": "aredalen@marklogic.com",
     "name": "Aaron Redalen",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -543,8 +543,8 @@
     "email": "fsanders@marklogic.com",
     "name": "Frank Sanders",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -553,8 +553,8 @@
     "email": "paven@marklogic.com",
     "name": "Pete Aven",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -563,8 +563,8 @@
     "email": "tturchioe@marklogic.com",
     "name": "Tom Turchioe",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -573,8 +573,8 @@
     "email": "ppreuveneers@marklogic.com",
     "name": "Paul Preuveneers",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -583,8 +583,8 @@
     "email": "dlam@marklogic.com",
     "name": "David  Lam",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -593,8 +593,8 @@
     "email": "lratcliff@marklogic.com",
     "name": "Larry Ratcliff",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -603,8 +603,8 @@
     "email": "wfeick@marklogic.com",
     "name": "Wayne Feick",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -613,8 +613,8 @@
     "email": "david.amusin@marklogic.com",
     "name": "David Amusin",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -623,8 +623,8 @@
     "email": "aagarwal@marklogic.com",
     "name": "Ashutosh Agarwal",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -633,8 +633,8 @@
     "email": "jpurohit@marklogic.com",
     "name": "Juhi Purohit",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -643,8 +643,8 @@
     "email": "prawal@marklogic.com",
     "name": "Puneet Rawal",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -653,8 +653,8 @@
     "email": "khanson@marklogic.com",
     "name": "Kevin Hanson",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -663,8 +663,8 @@
     "email": "darias@marklogic.com",
     "name": "Dan Arias",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -673,8 +673,8 @@
     "email": "jmakeig@marklogic.com",
     "name": "Justin Makeig",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -683,8 +683,8 @@
     "email": "mahalakshmi.srinivasan@marklogic.com",
     "name": "Mahalakshmi Srinivasan",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -693,8 +693,8 @@
     "email": "clark.richey@marklogic.com",
     "name": "Clark Richey",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -703,8 +703,8 @@
     "email": "placey@marklogic.com",
     "name": "Pamela Lacey",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -713,8 +713,8 @@
     "email": "smohanty@marklogic.com",
     "name": "Sujit Mohanty",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -723,8 +723,8 @@
     "email": "rmonaghan@marklogic.com",
     "name": "Ryan Monaghan",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -733,8 +733,8 @@
     "email": "skrishnan@marklogic,com",
     "name": "Sudhir Krishnan",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -743,8 +743,8 @@
     "email": "jli@marklogic.com",
     "name": "Julia Li",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -753,8 +753,8 @@
     "email": "fsnow@marklogic.com",
     "name": "Frank Snow",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -763,8 +763,8 @@
     "email": "mdubinko@marklogic.com",
     "name": "Micah  Dubinko",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -773,8 +773,8 @@
     "email": "norman.walsh@marklogic.com",
     "name": "Norman Walsh",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -783,8 +783,8 @@
     "email": "jbooth@marklogic.com",
     "name": "Jason Booth",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -793,8 +793,8 @@
     "email": "dfeldman@marklogic.com",
     "name": "Damon Feldman",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -803,8 +803,8 @@
     "email": "mdoane@marklogic.com",
     "name": "Michael Doane",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -813,8 +813,8 @@
     "email": "blloyd@marklogic.com",
     "name": "Barry Lloyd",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -823,8 +823,8 @@
     "email": "bkane@marklogic.com",
     "name": "Bintou Kane",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -833,8 +833,8 @@
     "email": "fmesa@marklogic.com",
     "name": "Fernando  Mesa",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -843,8 +843,8 @@
     "email": "phare@marklogic.com",
     "name": "Paxton Hare",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -853,8 +853,8 @@
     "email": "gkatz@marklogic.com",
     "name": "Gary Katz",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -863,8 +863,8 @@
     "email": "kpulkesin@marklogic.com",
     "name": "Kumar Pulkesin",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -873,8 +873,8 @@
     "email": "jmonberg@marklogic.com",
     "name": "Jason Monberg",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -883,8 +883,8 @@
     "email": "schen@marklogic.com",
     "name": "Sidney Chen",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -893,8 +893,8 @@
     "email": "yzhan@marklogic.com",
     "name": "Yan Zhan",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -903,8 +903,8 @@
     "email": "msarma@marklogic.com",
     "name": "Meghalim Sarma",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -913,8 +913,8 @@
     "email": "dsherman@marklogic.com",
     "name": "David  Sherman",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -923,8 +923,8 @@
     "email": "gfurbush@marklogic.com",
     "name": "Gordon Furbush ",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -933,8 +933,8 @@
     "email": "emiller@marklogic.com",
     "name": "Erin Miller",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -943,8 +943,8 @@
     "email": "sparnell@marklogic.com",
     "name": "Scott Parnell",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -953,8 +953,8 @@
     "email": "oschwering@marklogic.com",
     "name": "Olav  Schwering",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -963,8 +963,8 @@
     "email": "sneth@marklogic.com",
     "name": "Sam Neth",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -973,8 +973,8 @@
     "email": "Jay.Runkel@marklogic.com",
     "name": "Jay Runkel",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -983,8 +983,8 @@
     "email": "donald.anderson@marklogic.com",
     "name": "Donald  Anderson",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -993,8 +993,8 @@
     "email": "Ankit.Kakkar@marklogic.com",
     "name": "Ankit Kakkar",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1003,8 +1003,8 @@
     "email": "jim.stock@marklogic.com",
     "name": "Jim Stock",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1013,8 +1013,8 @@
     "email": "franklin.salonga@marklogic.com",
     "name": "Frank Salonga",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1023,8 +1023,8 @@
     "email": "Gajanan.Chinchwadkar@marklogic.com",
     "name": "Gajanan Chinchwadkar",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1033,8 +1033,8 @@
     "email": "kash.badami@marklogic.com",
     "name": "Kash Badami",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1043,8 +1043,8 @@
     "email": "brian.mo@marklogic.com",
     "name": "Brian Mo",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1053,8 +1053,8 @@
     "email": "wunderwood@marklogic.com",
     "name": "Walter  Underwood",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1063,8 +1063,8 @@
     "email": "Blossom.Coryat@marklogic.com",
     "name": "Blossom Coryat",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1073,8 +1073,8 @@
     "email": "ayuwono@marklogic.com",
     "name": "Aries Yuwono",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1083,8 +1083,8 @@
     "email": "eric.bloch@marklogic.com",
     "name": "Eric Bloch",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1093,8 +1093,8 @@
     "email": "vmadan@marklogic.com",
     "name": "Vinay Madan",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1103,8 +1103,8 @@
     "email": "David.Erickson@marklogic.com",
     "name": "David Erickson",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1113,8 +1113,8 @@
     "email": "dave.cassel@marklogic.com",
     "name": "Dave Cassel",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1123,8 +1123,8 @@
     "email": "jd.vogt@marklogic.com",
     "name": "JD Vogt",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1133,8 +1133,8 @@
     "email": "jason.myatt@marklogic.com",
     "name": "Jason Myatt",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1143,8 +1143,8 @@
     "email": "ybertaud@marklogic.com",
     "name": "Yann  Bertaud",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1153,8 +1153,8 @@
     "email": "iain.finlayson@marklogic.com",
     "name": "Iain Finlayson",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1163,8 +1163,8 @@
     "email": "cody.coggins@marklogic.com",
     "name": "Cody Coggins",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1173,8 +1173,8 @@
     "email": "kkumar@marklogic.com",
     "name": "Kaushal Kumar",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1183,8 +1183,8 @@
     "email": "gary.vidal@marklogic.com",
     "name": "Gary Vidal",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1193,8 +1193,8 @@
     "email": "lou.pica@marklogic.com",
     "name": "Lou Pica",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1203,8 +1203,8 @@
     "email": "Sravan.Kottam@marklogic.com",
     "name": "Sravan Kottam",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1213,8 +1213,8 @@
     "email": "alex.bleasdale@marklogic.com",
     "name": "Alex Bleasdale",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1223,8 +1223,8 @@
     "email": "jane.chen@marklogic.com",
     "name": "Jane Chen",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1233,8 +1233,8 @@
     "email": "shiva.verma@marklogic.com",
     "name": "Shiva Verma",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1243,8 +1243,8 @@
     "email": "ed.delacruz@marklogic.com",
     "name": "Ed Delacruz",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1253,8 +1253,8 @@
     "email": "michael.gursky@marklogic.com",
     "name": "Michael Gursky",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1263,8 +1263,8 @@
     "email": "wwallach@marklogic.com",
     "name": "Walt Wallach",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1273,8 +1273,8 @@
     "email": "jsnelson@marklogic.com",
     "name": "John Snelson",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1283,8 +1283,8 @@
     "email": "Scott.Brooks@marklogic.com",
     "name": "Scott Brooks",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1293,8 +1293,8 @@
     "email": "philip.fennell@marklogic.com",
     "name": "Philip Fennell",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1303,8 +1303,8 @@
     "email": "jliu@marklogic.com",
     "name": "Jessie Liu",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1313,8 +1313,8 @@
     "email": "kim.coleman@marklogic.com",
     "name": "Kim Coleman",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1323,8 +1323,8 @@
     "email": "Wolfgang.Krause@marklogic.com",
     "name": "Wolfgang Krause",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1333,8 +1333,8 @@
     "email": "william.holmes@marklogic.com",
     "name": "William Holmes",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1343,8 +1343,8 @@
     "email": "rick.pelton@marklogic.com",
     "name": "Rick Pelton",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1353,8 +1353,8 @@
     "email": "dipti.borkar@marklogic.com",
     "name": "Dipti Borkar",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1363,8 +1363,8 @@
     "email": "haitao.wu@marklogic.com",
     "name": "Haitao Wu",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1373,8 +1373,8 @@
     "email": "hsiao.su@marklogic.com",
     "name": "Hsiao Su",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1383,8 +1383,8 @@
     "email": "Preston.McGowan@marklogic.com",
     "name": "Preston McGowan",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1393,8 +1393,8 @@
     "email": "rbhatacharya@marklogic.com",
     "name": "Rajdeep Bhattacharya",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1403,8 +1403,8 @@
     "email": "wenqi.zhou@marklogic.com",
     "name": "Wenqi Zhou",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1413,8 +1413,8 @@
     "email": "erik.hennum@marklogic.com",
     "name": "Erik Hennum",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1423,8 +1423,8 @@
     "email": "Steffan.Chartrand@marklogic.com",
     "name": "Steffan Chartrand",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1433,8 +1433,8 @@
     "email": "bob.starbird@marklogic.com",
     "name": "Bob Starbird",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1443,8 +1443,8 @@
     "email": "tony.gonzales@marklogic.com",
     "name": "Tony Gonzales",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1453,8 +1453,8 @@
     "email": "kapil.saxena@marklogic.com",
     "name": "Kapil Saxena",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1463,8 +1463,8 @@
     "email": "ron.hu@marklogic.com",
     "name": "Ron Hu",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1473,8 +1473,8 @@
     "email": "ruth.stryker@marklogic.com",
     "name": "Ruth Stryker",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1483,8 +1483,8 @@
     "email": "Thomas.Diepenbrock@marklogic.com",
     "name": "Thomas Diepenbrock",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1493,8 +1493,8 @@
     "email": "tom.beck@marklogic.com",
     "name": "Tom Beck",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1503,8 +1503,8 @@
     "email": "sundeep.vempati@marklogic.com",
     "name": "Sundeep Vempati",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1513,8 +1513,8 @@
     "email": "subhadra.thirumavalavan@marklogic.com",
     "name": "Subhadra Thirumavalavan",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1523,8 +1523,8 @@
     "email": "scott.stafford@marklogic.com",
     "name": "Scott Stafford",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1533,8 +1533,8 @@
     "email": "evan.lenz@marklogic.com",
     "name": "Evan Lenz",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1543,8 +1543,8 @@
     "email": "ali@marklogic.com",
     "name": "Aries Li",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1553,8 +1553,8 @@
     "email": "arthur.tsoi@marklogic.com",
     "name": "Arthur Tsoi",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1563,8 +1563,8 @@
     "email": "colby.lavin@marklogic.com",
     "name": "Colby Lavin",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1573,8 +1573,8 @@
     "email": "kevin.leong@marklogic.com",
     "name": "Kevin Leong",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1583,8 +1583,8 @@
     "email": "lee.pollington@marklogic.com",
     "name": "Lee Pollington",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1593,8 +1593,8 @@
     "email": "sreddy@marklogic.com",
     "name": "Sudhakar Reddy",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1603,8 +1603,8 @@
     "email": "brad.mann@marklogic.com",
     "name": "Brad Mann",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1613,8 +1613,8 @@
     "email": "richard.jovanovich@marklogic.com",
     "name": "Richard Jovanovich",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1623,8 +1623,8 @@
     "email": "jim.fuller@marklogic.com",
     "name": "Jim Fuller",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1633,8 +1633,8 @@
     "email": "ling.ling@marklogic.com",
     "name": "Ling Ling",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1643,8 +1643,8 @@
     "email": "Scott.Miller@marklogic.com",
     "name": "Scott Miller",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1653,8 +1653,8 @@
     "email": "gary.russo@marklogic.com",
     "name": "Gary Russo",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1663,8 +1663,8 @@
     "email": "lon.hutt@marklogic.com",
     "name": "Lon Hutt",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1673,8 +1673,8 @@
     "email": "mallika.iyer@marklogic.com",
     "name": "Mallika Iyer",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1683,8 +1683,8 @@
     "email": "joe.dalton@marklogic.com",
     "name": "Joe Dalton",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1693,8 +1693,8 @@
     "email": "charles.greer@marklogic.com",
     "name": "Charles Greer",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1703,8 +1703,8 @@
     "email": "mike.wooldridge@marklogic.com",
     "name": "Mike Wooldridge",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1713,8 +1713,8 @@
     "email": "balkrishna.gupta@marklogic.com",
     "name": "Balkrishna Gupta",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1723,8 +1723,8 @@
     "email": "dummy@marklogic.com",
     "name": "Dummy Dummy",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1733,8 +1733,8 @@
     "email": "Gaurav.ghai@marklogic.com",
     "name": "Gaurav Ghai",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1743,8 +1743,8 @@
     "email": "ajay.choudhary@marklogic.com",
     "name": "Ajay Choudhary",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1753,8 +1753,8 @@
     "email": "thomas.galloway@marklogic.com",
     "name": "Thomas Galloway",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1763,8 +1763,8 @@
     "email": "christophe.taylor@marklogic.com",
     "name": "Christophe Taylor",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1773,8 +1773,8 @@
     "email": "Julie.Furt@marklogic.com",
     "name": "Julie Furt",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1783,8 +1783,8 @@
     "email": "tian.chen@marklogic.com",
     "name": "Tian Chen",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1793,8 +1793,8 @@
     "email": "Pamela.Clark@marklogic.com",
     "name": "Pamela Clark",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1803,8 +1803,8 @@
     "email": "tim.styslinger@marklogic.com",
     "name": "Tim Styslinger",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1813,8 +1813,8 @@
     "email": "Ganesh.Vaideeswaran@marklogic.com",
     "name": "Ganesh Vaideeswaran",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1823,8 +1823,8 @@
     "email": "Bill.Ciano@marklogic.com",
     "name": "Bill Ciano",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1833,8 +1833,8 @@
     "email": "Isie.Masri@marklogic.com",
     "name": "Isie Masri",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1843,8 +1843,8 @@
     "email": "Gary.Lang@marklogic.com",
     "name": "Gary Lang",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1853,8 +1853,8 @@
     "email": "Michael.Dolan@marklogic.com",
     "name": "Michael Dolan",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1863,8 +1863,8 @@
     "email": "Steve.Randle@marklogic.com",
     "name": "Steve Randle",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1873,8 +1873,8 @@
     "email": "dinesh.chander@globallogic.com",
     "name": "Dinesh Chander",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1883,8 +1883,8 @@
     "email": "Towhid.Islam@marklogic.com",
     "name": "Towhid Islam",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1893,8 +1893,8 @@
     "email": "Steven.Brockman@marklogic.com",
     "name": "Steven Brockman",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1903,8 +1903,8 @@
     "email": "Magnus.Lindberg@marklogic.com",
     "name": "Magnus Lindberg",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1913,8 +1913,8 @@
     "email": "Terry.Brady@marklogic.com",
     "name": "Terry Brady",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1923,8 +1923,8 @@
     "email": "cwang@marklogic.com",
     "name": "Chonghai Wang",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1933,8 +1933,8 @@
     "email": "David.Lee@marklogic.com",
     "name": "David  Lee",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1943,8 +1943,8 @@
     "email": "vitaly.korolev@marklogic.com",
     "name": "Vitaly Korolev",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1953,8 +1953,8 @@
     "email": "Sumit.Akare@marklogic.com",
     "name": "Sumit Akare",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1963,8 +1963,8 @@
     "email": "mitchell.yawitz@marklogic.com",
     "name": "Mitch Yawitz",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1973,8 +1973,8 @@
     "email": "Julio.Solis@marklogic.com",
     "name": "Julio Solis",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1983,8 +1983,8 @@
     "email": "Deena.Malkina@marklogic.com",
     "name": "Deena Malkina",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -1993,8 +1993,8 @@
     "email": "iagrawal@marklogic.com",
     "name": "Isha Agrawal",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2003,8 +2003,8 @@
     "email": "Ken.McCaleb@marklogic.com",
     "name": "Ken McCaleb",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2013,8 +2013,8 @@
     "email": "Ken.Tune@marklogic.com",
     "name": "Ken Tune",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2023,8 +2023,8 @@
     "email": "Joe.Hoy@marklogic.com",
     "name": "Joe Hoy",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2033,8 +2033,8 @@
     "email": "Kuldeep.Nagar@marklogic.com",
     "name": "Kuldeep Nagar",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2043,8 +2043,8 @@
     "email": "mayank.bhatnagar@marklogic.com",
     "name": "Mayank Bhatnagar",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2053,8 +2053,8 @@
     "email": "Mayank.Bhatnagar@marklogic.com",
     "name": "Mayank Bhatnagar",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2063,8 +2063,8 @@
     "email": "pkim@marklogic.com",
     "name": "Peter Kim",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2073,8 +2073,8 @@
     "email": "Fei.Xue@marklogic.com",
     "name": "Fei Xue",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2083,8 +2083,8 @@
     "email": "Dale.Kim@marklogic.com",
     "name": "Dale Kim",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2093,8 +2093,8 @@
     "email": "Penny.Caine@marklogic.com",
     "name": "Penny Caine",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2103,8 +2103,8 @@
     "email": "Greg.Nist@marklogic.com",
     "name": "Greg Nist",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2113,8 +2113,8 @@
     "email": "Eric.Wasser@marklogic.com",
     "name": "Eric Wasser",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2123,8 +2123,8 @@
     "email": "Joe.Crean@marklogic.com",
     "name": "Joe Crean",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2133,8 +2133,8 @@
     "email": "Bernard.Woolfolk@marklogic.com",
     "name": "Bernard  Woolfolk",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2143,8 +2143,8 @@
     "email": "David.Gorbet@marklogic.com",
     "name": "David Gorbet",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2153,8 +2153,8 @@
     "email": "Aaron.Rosenbaum@marklogic.com",
     "name": "Aaron Rosenbaum",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2163,8 +2163,8 @@
     "email": "Andy.Obermayer@marklogic.com",
     "name": "Andy Obermayer",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2173,8 +2173,8 @@
     "email": "Steve.Guttman@marklogic.com",
     "name": "Steve Guttman",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2183,8 +2183,8 @@
     "email": "Denis.Sheahan@marklogic.com",
     "name": "Denis Sheahan",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2193,8 +2193,8 @@
     "email": "Stephen.Crook@marklogic.com",
     "name": "Stephen Crook",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2203,8 +2203,8 @@
     "email": "Sumit.Anand@marklogic.com",
     "name": "Sumit Anand",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2213,8 +2213,8 @@
     "email": "Adeel.Abbas@marklogic.com",
     "name": "Adeel Abbas",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2223,8 +2223,8 @@
     "email": "Sara.Mazer@marklogic.com",
     "name": "Sara  Mazer",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2233,8 +2233,8 @@
     "email": "Tanya.Smirnov@marklogic.com",
     "name": "Tanya Smirnov",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2243,8 +2243,8 @@
     "email": "matthew.whitehart@marklogic.com",
     "name": "Matthew Whitehart  ",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2253,8 +2253,8 @@
     "email": "Chris.Rothwell@marklogic.com",
     "name": "Chris Rothwell",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2263,8 +2263,8 @@
     "email": "takashi.suzuki@marklogic.com",
     "name": "Takashi Suzuki",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2273,8 +2273,8 @@
     "email": "gaurav.pushkarna@marklogic.com",
     "name": "Gaurav Pushkarna",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2283,8 +2283,8 @@
     "email": "James.Gardner@marklogic.com",
     "name": "James Gardner",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2293,8 +2293,8 @@
     "email": "adhavle@marklogic.com",
     "name": "Amey Dhavle",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2303,8 +2303,8 @@
     "email": "Sandy.Bodzin@marklogic.com",
     "name": "Sandy Bodzin",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2313,8 +2313,8 @@
     "email": "Emil.Zegers@marklogic.com",
     "name": "Emil Zegers",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2323,8 +2323,8 @@
     "email": "Joe.Pasqua@marklogic.com",
     "name": "Joe Pasqua",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2333,8 +2333,8 @@
     "email": "ldavalur@marklogic.com",
     "name": "L D",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2343,8 +2343,8 @@
     "email": "Scott.Stroud@marklogic.com",
     "name": "Scott Stroud",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2353,8 +2353,8 @@
     "email": "lavanya.davuluri@marklogic.com",
     "name": "Lavanya Davuluri",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2363,8 +2363,8 @@
     "email": "Satyender.Pal@marklogic.com",
     "name": "Satyender Pal",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2373,8 +2373,8 @@
     "email": "michael.blakeley@marklogic.com",
     "name": "Michael Blakeley",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2383,8 +2383,8 @@
     "email": "Jonathan.Bakke@marklogic.com",
     "name": "Jonathan Bakke",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2393,8 +2393,8 @@
     "email": "afowler@marklogic.com",
     "name": "Adam Fowler",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2403,8 +2403,8 @@
     "email": "Luigi.Squillante@marklogic.com",
     "name": "Luigi Squillante",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2413,8 +2413,8 @@
     "email": "jim.clark@marklogic.com",
     "name": "Jim Clark",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2423,8 +2423,8 @@
     "email": "John.James@marklogic.com",
     "name": "John James",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2433,8 +2433,8 @@
     "email": "mchiarin@marklogic.com",
     "name": "Marc Chiarini",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2443,8 +2443,8 @@
     "email": "Michaline.Todd@marklogic.com",
     "name": "Michaline Todd",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2453,8 +2453,8 @@
     "email": "Yue.Ding@marklogic.com",
     "name": "Yue Ding",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2463,8 +2463,8 @@
     "email": "Ryan.Semerau@marklogic.com",
     "name": "Ryan Semerau ",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2473,8 +2473,8 @@
     "email": "Rashi.Gupta@marklogic.com",
     "name": "Rashi Gupta",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2483,8 +2483,8 @@
     "email": "Chris.Hamlin@marklogic.com",
     "name": "Chris Hamlin",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2493,8 +2493,8 @@
     "email": "Billy.Sokol@marklogic.com",
     "name": "Billy Sokol",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2503,8 +2503,8 @@
     "email": "Kshitiz.Mittal@marklogic.com",
     "name": "Kshitiz Mittal",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2513,8 +2513,8 @@
     "email": "Jane.McKean@marklogic.com",
     "name": "Jane McKean",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2523,8 +2523,8 @@
     "email": "stu.salsbury@marklogic.com",
     "name": "Stu Salsbury",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2533,8 +2533,8 @@
     "email": "Jonathan.Krebs@marklogic.com",
     "name": "Jonathan Krebs",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2543,8 +2543,8 @@
     "email": "Richard.Louapre@marklogic.com",
     "name": "Richard Louapre",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2553,8 +2553,8 @@
     "email": "Mark.Ferneau@marklogic.com",
     "name": "Mark Ferneau",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2563,8 +2563,8 @@
     "email": "Vaidehi.Deodhar@marklogic.com",
     "name": "Vaidehi Deodhar",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2573,8 +2573,8 @@
     "email": "Matthew.Crosier@marklogic.com",
     "name": "Matthew Crosier",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2583,8 +2583,8 @@
     "email": "Peter.Kester@marklogic.com",
     "name": "Peter Kester",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2593,8 +2593,8 @@
     "email": "Chris.Schilling@marklogic.com",
     "name": "Chris Schilling",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2603,8 +2603,8 @@
     "email": "Kasey.Alderete@marklogic.com",
     "name": "Kasey Alderete",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2613,8 +2613,8 @@
     "email": "Joe.Bryan@marklogic.com",
     "name": "Joe Bryan",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2623,8 +2623,8 @@
     "email": "Frank.Pacione@marklogic.com",
     "name": "Frank Pacione",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2633,8 +2633,8 @@
     "email": "Jim.Driscoll@marklogic.com",
     "name": "Jim Driscoll",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2643,8 +2643,8 @@
     "email": "Geert.Josten@marklogic.com",
     "name": "Geert Josten",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2653,8 +2653,8 @@
     "email": "Sam.Mefford@marklogic.com",
     "name": "Sam Mefford",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2663,8 +2663,8 @@
     "email": "Idriss.Mekrez@marklogic.com",
     "name": "Idriss Mekrez",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2673,8 +2673,8 @@
     "email": "Avinash.Mistry@marklogic.com",
     "name": "Avinash Mistry",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2683,8 +2683,8 @@
     "email": "Vipul.Goyal@marklogic.com",
     "name": "Vipul Goyal",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2693,8 +2693,8 @@
     "email": "ageorge@marklogic.com",
     "name": "Ajit George",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2703,8 +2703,8 @@
     "email": "Mason.Powers@marklogic.com",
     "name": "Mason Powers",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2713,8 +2713,8 @@
     "email": "June.Huang@marklogic.com",
     "name": "June Huang",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2723,8 +2723,8 @@
     "email": "Satyendra.Kumar@marklogic.com.",
     "name": "Satyendra Kumar",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2733,8 +2733,8 @@
     "email": "Ish.Arora@marklogic.com",
     "name": "Ish Arora",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2743,8 +2743,8 @@
     "email": "lei.xu@marklogic.com",
     "name": "Lei Xu",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2753,8 +2753,8 @@
     "email": "Ganesh.Vaideeswaran@marklogic.com",
     "name": "TestGanesh TestGanesh",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2763,8 +2763,8 @@
     "email": "Robert.Rudin@marklogic.com",
     "name": "Robert Rudin",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2773,8 +2773,8 @@
     "email": "Paul.Hoehne@marklogic.com",
     "name": "Paul Hoehne",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2783,8 +2783,8 @@
     "email": "Mohamed.Zergaoui@marklogic.com",
     "name": "Mohamed Zergaoui",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2793,8 +2793,8 @@
     "email": "Mark.Plotnick@marklogic.com",
     "name": "Mark Plotnick",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2803,8 +2803,8 @@
     "email": "pramod.baireddy@hp.com",
     "name": "Steve Bertoldi",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2813,8 +2813,8 @@
     "email": "Rosario.Caltabiano@marklogic.com",
     "name": "Rosario Caltabiano",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2823,8 +2823,8 @@
     "email": "Jeff.Donner@marklogic.com",
     "name": "Jeff Donner",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2833,8 +2833,8 @@
     "email": "Ryan.Dew@marklogic.com",
     "name": "Ryan Dew",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2843,8 +2843,8 @@
     "email": "Ed.Outhwaite@marklogic.com",
     "name": "Ed Outhwaite",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2853,8 +2853,8 @@
     "email": "nishant.singh@marklogic.com",
     "name": "Nishant Singh",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2863,8 +2863,8 @@
     "email": "Jochen.Joerg@marklogic.com",
     "name": "Jochen Joerg",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2873,8 +2873,8 @@
     "email": "Balvinder.Dang@marklogic.com",
     "name": "Balvinder Dang",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2883,8 +2883,8 @@
     "email": "Mohamad.Thahir@marklogic.com",
     "name": "Mohamad Thahir",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2893,8 +2893,8 @@
     "email": "Caio.Milani@marklogic.com",
     "name": "Caio Milani",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2903,8 +2903,8 @@
     "email": "Mike.Armagost@marklogic.com",
     "name": "Mike Armagost",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2913,8 +2913,8 @@
     "email": "Chris.Chaplinsky@marklogic.com",
     "name": "Chris Chaplinsky",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2923,8 +2923,8 @@
     "email": "Clay.Redding@marklogic.com",
     "name": "Clay Redding",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2933,8 +2933,8 @@
     "email": "Rob.Pughsley@marklogic.com",
     "name": "Rob Pughsley ",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2943,8 +2943,8 @@
     "email": "Michel.deRu@marklogic.com",
     "name": "Michel deRu",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2953,8 +2953,8 @@
     "email": "Tamas.Piros@marklogic.com",
     "name": "Tamas Piros",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2963,8 +2963,8 @@
     "email": "Jon.Williams@marklogic.com",
     "name": "Jon Williams",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2973,8 +2973,8 @@
     "email": "kevin.ford@marklogic.com",
     "name": "Kevin Ford",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2983,8 +2983,8 @@
     "email": "pooja.singla@marklogic.com",
     "name": "Pooja  Singla",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -2993,8 +2993,8 @@
     "email": "harsha.medicherla@marklogic.com",
     "name": "Harsha Medicherla",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3003,8 +3003,8 @@
     "email": "alexander.mund@marklogic.com",
     "name": "Alexander Mund",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3013,8 +3013,8 @@
     "email": "vertume.dufault@marklogic.com",
     "name": "Vertume DuFault",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3023,8 +3023,8 @@
     "email": "jeff.myers@marklogic.com",
     "name": "Jeff Myers",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3033,8 +3033,8 @@
     "email": "venu.iyengar@marklogic.com",
     "name": "Venugopal Iyengar",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3043,8 +3043,8 @@
     "email": "bill.miller@marklogic.com",
     "name": "William Miller",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3053,8 +3053,8 @@
     "email": "mehdi.maachou@marklogic.com",
     "name": "Mehdi Maachou",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3063,8 +3063,8 @@
     "email": "Miguel.Rodriguez@marklogic.com",
     "name": "Miguel Rodriguez",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3073,8 +3073,8 @@
     "email": "christy.haragan@marklogic.com",
     "name": "Christy Haragan",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3083,8 +3083,8 @@
     "email": "donald.soares@marklogic.com",
     "name": "Donald Soares",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3093,8 +3093,8 @@
     "email": "Florent.Georges@marklogic.com",
     "name": "Florent Georges",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3103,8 +3103,8 @@
     "email": "Daphne.Maddox@marklogic.com",
     "name": "Daphne Maddox",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3113,8 +3113,8 @@
     "email": "Ken.Krupa@marklogic.com",
     "name": "Ken Krupa",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3123,8 +3123,8 @@
     "email": "mark.lawson@marklogic.com",
     "name": "Mark Lawson",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3133,8 +3133,8 @@
     "email": "carlos.montero@marklogic.com",
     "name": "Carlos Montero",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }
@@ -3143,8 +3143,8 @@
     "email": "cameron.stillion@marklogic.com",
     "name": "Cameron  Stillion",
     "password": "admin",
-    "createdAt": "2014-05-26T17:29:56:18Z",
-    "modifiedAt": "2014-05-16T03:54:37:15Z",
+    "createdAt": "2014-05-26T17:29:56.18",
+    "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
         "default": {}
     }

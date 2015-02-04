@@ -1,4 +1,10 @@
-<div class="well">
+<!-- <form action="/api/search" method="POST" enctype="application/x-www-form-urlencoded">
+    <input type="text" name="q" id="q" class="form-group">
+    <input type="text" name="age" id="age" class="form-group">
+    <button type="submit">Submit</button>
+</form>
+ -->
+ <div class="well">
 
     <form class="form-inline" name="searchForm">
         <fieldset>
@@ -7,7 +13,7 @@
                     <div class="input-group input-group-sm">
                         <input type="text" id="q" name="q" ng-model="form.q" class="form-control" placeholder="search">
                         <span class="input-group-btn">
-                         <button class="btn btn-info btn-flat bg-green" type="button" ng-click="search()" id="search">Search</button>
+                         <button class="btn btn-info btn-flat bg-green" type="button" ng-click="mainSearch()" id="search">Search</button>
                  </span>
                     </div>
                 </div>

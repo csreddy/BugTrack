@@ -5,6 +5,7 @@ angular.module('fullstackApp')
         $routeProvider.
         when('/dashboard', {
             templateUrl: 'app/dashboard/dashboard.html',
-            controller: 'dashboardCtrl'
+            controller: 'dashboardCtrl',
+            reloadOnSearch: false 
         });
     });

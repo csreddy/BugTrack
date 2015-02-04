@@ -1,114 +1,68 @@
 'user strict';
 
-var app = angular.module('search.controllers', []);
+var app = angular.module('search.controllers', ['checklist-model']);
 
-app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'Flash', 'currentUser', 'User', 'config',
-    function($rootScope, $scope, $location, $filter, Search, Flash, currentUser, User, config) {
+app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$routeParams',
+    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $routeParams) {
         $scope.home = "Home page";
-        $scope.form = {};
+        $scope.form = angular.copy(defaultSearchCriteria) || {};
         $scope.bugs = [];
-        $scope.currentPage = 1;
+        $scope.currentPage = parseInt($location.search().page) || 1;
         $scope.config = angular.copy(config);
-        $scope.userDefaultSearch = true;
+        $scope.userDefaultSearch = false;
         $scope.nvfe = false;
-        $scope.itemsPerPage = $scope.form.itemsPerPage = 20;
+        $scope.pageLength = 20;
+        $scope.facetName = '';
+        $scope.isPaginationEvent = false;
+        $scope.facetOrder = ['assignTo', 'submittedBy', 'category', 'status','severity','priority', 'createdAt']; //'platform'
+        var conditionNames = ['q', 'kind', 'status', 'severity', 'priority', 'category', 'version', 'fixedin', 'tofixin', 'assignTo', 'submittedBy', 'page', 'pageLength'];
 
-        // if the user has default query then set the $scope.form to user's default query
-        // otherwise initialize with app default query
-        $scope.defaultSearchCriteria = function() {
-            if (Object.keys(currentUser.savedQueries.default).length === 0) {
-                $scope.form = {
-                    kind: [{
-                        name: 'Bug',
-                        value: true
-                    }, {
-                        name: 'Task',
-                        value: false
-                    }, {
-                        name: 'RFE',
-                        value: false
-                    }, {
-                        name: 'Other',
-                        value: false
-                    }],
-                    status: [{
-                        name: 'New',
-                        value: false
-                    }, {
-                        name: 'Verify',
-                        value: false
-                    }, {
-                        name: 'Test',
-                        value: false
-                    }, {
-                        name: 'Fix',
-                        value: false
-                    }, {
-                        name: 'Ship',
-                        value: false
-                    }, {
-                        name: 'Closed',
-                        value: false
-                    }, {
-                        name: 'Will not fix',
-                        value: false
-                    }, {
-                        name: 'External',
-                        value: false
-                    }],
-                    severity: [{
-                        name: 'P1 - Catastrophic',
-                        value: false
-                    }, {
-                        name: 'P2 - Critical',
-                        value: false
-                    }, {
-                        name: ' P3 - Major',
-                        value: false
-                    }, {
-                        name: 'P4 - Minor',
-                        value: false
-                    }, {
-                        name: 'P5 - Aesthetic',
-                        value: false
-                    }, {
-                        name: ' Performance',
-                        value: false
-                    }],
-                    q: '',
-                    facets: {},
-                    assignTo: currentUser.username,
-                    submittedBy: '',
-                    category: '',
-                    version: '',
-                    fixedin: '',
-                    tofixin: ''
-                };
-                $scope.search(1, $scope.itemsPerPage);
+        $scope.init = function() {
 
-            } else {
-                $scope.form = angular.copy(currentUser.savedQueries.default);
+            // if url contains search params then get that search results
+            if (Object.keys($location.search()).length > 0) {
+                console.log('init()', $location.search());
+                // set form selections according to url query params
+                $scope.form = angular.copy(parseQueryParams($location.search()));
+                var searchCriteria = $location.search();
+                search($location.search());
+            /*   
+            // check if the url matches users default query, if true then select checkbox to indicate
+                if (angular.equals(searchCriteria, currentUser.savedQueries.default)) {
+                    $scope.userDefaultSearch = true;
+                }
+            */
+            } else if (Object.keys(currentUser.savedQueries.default).length > 0) {
+                // if the user has default query then set the $scope.form to user's default query
+                // otherwise initialize with app default query
                 console.log('user has default search....');
-                $scope.search(1, $scope.itemsPerPage);
+                $scope.form = angular.copy(parseQueryParams(currentUser.savedQueries.default));
+                var searchCriteria = convertFormSelectionsToQueryParams();
+                search(searchCriteria);
+                 $scope.userDefaultSearch = true;
+            } else {
+                $scope.form.assignTo = currentUser.username;
+                var searchCriteria = angular.copy(convertFormSelectionsToQueryParams());
+                search(searchCriteria);
             }
-
         };
 
-        // sort users alphabetically
-        $scope.config.users.sort(function(a, b) {
-            return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-        });
-        // sort version alphabetically
-        $scope.config.version.sort(function(a, b) {
-            return a.toLowerCase().localeCompare(b.toLowerCase());
-        });
-        // sort category alphabetically
-        $scope.config.category.sort(function(a, b) {
-            return a.toLowerCase().localeCompare(b.toLowerCase());
-        });
+        // for form selection using checkboxes and dropdowns
+        $scope.addSelectedValueToQuery = function() {
+            angular.forEach(conditionNames, function(item) {
+                if ($scope.form[item]) {
+                    $location.search(item, setSelectedItems($scope.form[item]));
+                }
+            });
+            console.log('addSelectedValueToQuery', $scope.form);
+        };
 
+        $scope.addSelectedValueToQuery2 = function(facetName,selectedItem) {
+            var index = getObjectIndex($scope.form.facets[facetName], selectedItem.name);
+            $scope.form.facets[facetName][index].selected = true;
+        };
 
-        // toggle advanced search visibility
+        // toggle advanced search panel visibility
         $scope.showMore = true;
         $scope.showAdvancedSearch = function() {
             if ($scope.showMore) {
@@ -118,43 +72,17 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             }
         };
 
-        $scope.setAssignedTo = function(assignTo) {
-            $scope.form.assignTo = assignTo;
-        };
 
-        $scope.setSubmittedBy = function(submittedBy) {
-            $scope.form.submittedBy = submittedBy;
-        };
 
-        $scope.setCategory = function(category) {
-            $scope.form.category = category;
-        };
+        $scope.mainSearch = function(searchCriteria) {
+            console.log('SCOPE.FORM', $scope.form);
+            $scope.isPaginationEvent = false;
+            searchCriteria = angular.copy(convertFormSelectionsToQueryParams());
+            console.log('searchCriteria: ', searchCriteria);
+            $location.search(searchCriteria);
+            // searchCriteria =  {kind:['Bug'],page:1,status:['New','Test']};
+            $location.search('page', 1); // start from page 1 for every search
 
-        $scope.setVersion = function(version) {
-            $scope.form.version = version;
-        };
-
-        $scope.setToFixin = function(tofixin) {
-            $scope.form.tofixin = tofixin;
-        };
-
-        $scope.setFixedIn = function(fixedin) {
-            $scope.form.fixedin = fixedin;
-        };
-
-        $scope.search = function(startIndex, itemsPerPage) {
-            $scope.form.startIndex = startIndex || 1;
-            $scope.form.itemsPerPage = itemsPerPage || $scope.itemsPerPage;
-            console.log($scope.form);
-            return Search.search($scope.form).success(function(response) {
-                console.log(response);
-                processResult(response);
-                console.log('FACETS', $scope.facets);
-                console.log('RESULT', response[0].report);
-                //   Flash.addAlert('success', 'Returned ' + ($scope.results.length - 1) + ' results');
-            }).error(function(error) {
-                Flash.addAlert('danger', error + ' :error occured');
-            });
         };
 
 
@@ -164,51 +92,15 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         // they are implemented
         $scope.clear = function() {
             console.log('clear fields');
-            $scope.form.q = '';
-            $scope.form.kind[0].value = true;
-            $scope.form.status = config.status;
-            $scope.form.severity = config.severity;
-            $scope.form.submittedBy = $scope.form.assignTo = $scope.form.category = $scope.form.version = $scope.form.fixedin = $scope.form.tofixin = '';
-            $scope.form.facets= {};
-            $scope.search(1, $scope.itemsPerPage);
-        };
-
-
-        // filter results based on facets
-        $scope.filter = function(facetKind, facet) {
-            console.log('$scope.form', $scope.form);
-            if (facet.name === '(empty)') {
-               facet.name = '';
-            } 
-            $scope.form.facets[facetKind] = facet;
-            
-            $scope.form.startIndex = 1;
-            $scope.form.itemsPerPage = $scope.itemsPerPage;
-            return Search.search($scope.form).success(function(response) {
+            $scope.isPaginationEvent = false;
+            $scope.form = angular.copy(defaultSearchCriteria);
+            return Search.search($location.search({})).success(function(response) {
                 processResult(response);
-                angular.element("ul[name='" + facetKind + "']").hide();
-            //    Flash.addAlert('success', 'Returned ' + ($scope.results.length - 1) + ' results');
-            }).error(function(response) {
-                Flash.addAlert('danger', response.status + ' :error occured');
+            }).error(function(error) {
+                Flash.addAlert('danger', error.body.errorResponse.message);
             });
         };
 
-
-        // remove filter 
-        $scope.unfilter = function(facetKind) {
-            delete $scope.form.facets[facetKind];
-            $scope.form.startIndex = 1;
-            $scope.form.itemsPerPage = $scope.itemsPerPage;
-            console.log('$scope.form from removeFacet', $scope.form);
-            return Search.search($scope.form).success(function(response) {
-                console.log(response);
-                processResult(response);
-                angular.element("ul[name='" + facetKind + "']").show();
-              //  Flash.addAlert('success', 'Returned ' + ($scope.results.length - 1) + ' results');
-            }).error(function(response) {
-                Flash.addAlert('danger', response.status + ' :error occured');
-            });
-        };
 
         $scope.hideFacetBox = function() {
             console.log('hide facet');
@@ -229,31 +121,24 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         };
 
         // get bugs for the current page
-        $scope.setPage = function(pageNo) {
-            $scope.currentPage = pageNo;
-            console.log('Page changed to: ' + $scope.currentPage);
-            var begin = (($scope.currentPage -1 )  * $scope.itemsPerPage + 1);
-             $scope.form.startIndex = begin;
-            console.log('$scope.form', $scope.form);
-            $scope.search(begin, $scope.itemsPerPage);
+        $scope.gotoPage = function(pageNo) {
+            console.log($location.search());
+            $location.search('page', pageNo);
+            $scope.isPaginationEvent = true;
+            return Search.search($location.search()).success(function(searchResult) {
+                $scope.results = searchResult;
+                $scope.bugList = searchResult.slice(1);
+                $scope.searchMetrics = searchResult[0].metrics;
+                $scope.totalItems = searchResult[0].total;
+            }).error(function(error) {
+                Flash.addAlert('danger', error.body.errorResponse.message);
+            });
         };
 
         // for table column sorting
         var orderBy = $filter('orderBy');
         $scope.order = function(predicate, reverse) {
             $scope.bugs = orderBy($scope.bugs, predicate, reverse);
-        };
-
-        $scope.saveUserDefaultSearch = function() {
-            if (!$scope.form.userDefaultSearch) {
-                console.log('saved......');
-                User.saveDefaultQuery($scope.form).success(function(response) {
-                    $scope.userDefaultSearch = true;
-                    console.log(response);
-                }).error(function(error) {
-                    console.log(error);
-                });
-            }
         };
 
         $scope.$watchCollection('bugList', function() {
@@ -266,28 +151,16 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         }, true);
 
 
-        // watch if user default query is changed
-        $scope.$watch('form', function() {
-            // console.log('hey, search query changed!' + JSON.stringify($scope.form));
-            // console.log('default user query', JSON.stringify(currentUser.savedQueries.default));
-            if (angular.equals($scope.form, currentUser.savedQueries.default)) {
-                console.log('user default search unchanged');
-                $scope.userDefaultSearch = true;
-            } else {
-                console.log('user default search changed');
-                $scope.userDefaultSearch = false;
-            }
-
-        }, true);
-
 
         $scope.saveUserDefaultSearch = function() {
             if (!$scope.form.userDefaultSearch) {
                 console.log('saved......');
-                User.saveDefaultQuery($scope.form).success(function(response) {
+                var searchCriteria = angular.copy(convertFormSelectionsToQueryParams());
+                User.saveDefaultQuery(searchCriteria).success(function() {
                     $scope.userDefaultSearch = true;
-                    console.log(response);
+                    Flash.addAlert('success', 'Default search query saved');
                 }).error(function(error) {
+                    Flash.addAlert('danger', 'Oops! Could not save query. Please try again');
                     console.log(error);
                 });
             }
@@ -301,21 +174,175 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     item.value = select;
                 }
             });
+            $scope.addSelectedValueToQuery();
         };
 
 
-      /* private functions  */
-      function processResult (searchResult) {
-                $scope.results = searchResult;
-                $scope.bugList = searchResult.slice(1);
-                $scope.facets = searchResult[0].facets;
-                renameEmptyFacets($scope.facets);
-                $scope.searchMetrics = searchResult[0].metrics;
-                $scope.totalItems = searchResult[0].total;
-      }
-       
+        $scope.showFacetDropdown = function(facetKind, facetType) {
+            var show = false;
+            if (facetType.length === 0) {
+                show = false;
+            }
+            if (facetKind === 'assignTo') {
+                show = true;
+            }
+            if (facetKind === 'submittedBy') {
+                show = true;
+            }
 
-       // get bug details for table disiplay
+            if (facetKind === 'category') {
+                show = true;
+            }
+            return show;
+        };
+
+      $scope.showFacetDropdown2 = function(facetName) {
+            var show = false;
+            if ($scope.form.facets[facetName] || !$scope.form.facets[facetName] instanceof Array) {
+                show = false;
+            }
+            if (facetName === 'assignTo') {
+                show = true;
+            }
+            if (facetName === 'submittedBy') {
+                show = true;
+            }
+
+            if (facetName === 'category') {
+                show = true;
+            }
+            return show;
+        };
+
+        $scope.clearSelection = function(selection) {
+            console.log('selection', selection);
+            $scope.form[selection] = null;
+            // $location.search(selection, null);
+        };
+
+
+        $scope.$on('$locationChangeSuccess', function() {
+            $scope.currentPage = $location.search().page || 1;
+            
+            // due to pagination directive bug, current page number does not get higlighted when 
+            // browser back/fwd is clicked. This is a hack to fix it.
+            angular.forEach(angular.element('#pager li'), function(li) {
+                if(angular.element(li).text() === $scope.currentPage.toString()){   
+                     console.log(angular.element(li).text());
+                    angular.element(li).addClass('active');
+                } else {
+                angular.element(li).removeClass('active');    
+                }
+            });
+
+            if (!$scope.isPaginationEvent) {
+                // for form selections to auto fill when browser back/fwd is clicked
+                if (Object.keys($location.search()).length === 0) {
+                    // reset search form to default
+                    $scope.form = angular.copy(defaultSearchCriteria);
+                } else {
+                    parseQueryParams($location.search());
+
+                }
+
+                return Search.search($location.search()).success(function(response) {
+                    processResult(response);
+                    //  console.log('FACETS', $scope.facets);
+                    console.log('RESULT', response[0].report);
+                    //   Flash.addAlert('success', 'Returned ' + ($scope.results.length - 1) + ' results');
+                }).error(function(error) {
+                    Flash.addAlert('danger', error.body.errorResponse.message);
+                });
+            };
+
+            
+
+            
+            
+            /*$('#pager li').each(function(){
+            if( $(this).text() == '1' ) $(this).removeClass('active')
+            });*/
+
+            $scope.isPaginationEvent = false;
+
+        });
+
+        // watch if user default query is changed
+        $scope.$watch('form', function() {
+            console.log('form:', $scope.form);
+           var userQuery = parseQueryParams(currentUser.savedQueries.default);
+            if (angular.equals($scope.form, userQuery)) {
+                $scope.userDefaultSearch = true;
+            } else {
+                console.log('user default search changed');
+                $scope.userDefaultSearch = false;
+            }
+
+        }, true);
+
+
+
+        /* private functions  */
+
+        function search(searchCriteria) {
+            return Search.search(searchCriteria).success(function(response) {
+                processResult(response);
+                console.log('RESULT', response[0].report);
+                //console.log('$scope.currentPage', typeof $scope.currentPage);
+            }).error(function(error) {
+                Flash.addAlert('danger', error.body.errorResponse.message);
+            });
+        }
+
+        function processResult(searchResult) {
+            $scope.results = searchResult;
+            $scope.bugList = searchResult.slice(1);
+            $scope.form.facets = angular.copy(processFacets(searchResult[0].facets));
+            renameEmptyFacets($scope.form.facets);
+            preselectFacetCheckBox($scope.form.facets);
+            console.log('Facets: ', $scope.form.facets);
+            // reArrangeFacets($scope.facets);
+            $scope.searchMetrics = searchResult[0].metrics;
+            $scope.totalItems = searchResult[0].total;
+        }
+
+
+        // process the facets returned from results into managable 
+        // arrays so that it can be included as part of the search form
+        function processFacets(facetsFromSearch) {
+            var facetArray = {};
+
+            angular.forEach(facetsFromSearch, function(facet, key) {
+                facetArray[key] = facet.facetValues;
+                // add extra property to each object in facetarray
+                angular.forEach(facetArray[key], function(item) {
+                    item.selected = false;
+                });
+            });
+
+            return facetArray;
+        }
+
+        // if the search query contains facets selection then automatically 
+        // pre-select after the results are retained
+        function preselectFacetCheckBox(facetsFromSearch) {
+            var queryParams = angular.copy($location.search());
+            angular.forEach(queryParams, function(item, key) {
+                if (key.indexOf('f:') > -1) {
+                    for (var i = 0; i < queryParams[key].length; i++) {
+                        angular.forEach(facetsFromSearch[key.replace(/f:/, '')], function(facet) {
+                            if (facet.name === queryParams[key][i] || facet.name === queryParams[key]) {
+                                facet.selected = true;
+                            }
+                        });
+                    }
+                }
+            });
+            return facetsFromSearch;
+        }
+
+
+        // get bug details for table disiplay
         function getBugDetails() {
             $scope.bugs = [];
             angular.forEach($scope.bugList, function(bug) {
@@ -323,18 +350,134 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             });
         }
 
-        // remove empty value facets which would always be the first item in the array
+        // rename empty value facets, show them as (empty) in the ui
         function renameEmptyFacets(facets) {
-            angular.forEach(facets, function(v, k) {
-                for (var i = 0; i < v.facetValues.length; i++) {
-                 if (v.facetValues[i].name === '') {
-                   v.facetValues[i].name = '(empty)';
+            angular.forEach(facets, function(v) {
+                for (var i = 0; i < v.length; i++) {
+                    if (v[i].name === '') {
+                        v[i].name = '(empty)';
+                    }
                 }
-                }
-                
+
             });
         }
 
+        function setSelectedItems(item) {
+            var selectedItems = [];
+            if (typeof item === 'string') {
+                return item;
+            }
+
+            if (item instanceof Array) {
+                angular.forEach(item, function(item) {
+                    if (item.value) {
+                        selectedItems.push(item.name);
+                    }
+                });
+                //   console.log(selectedItems);
+                return selectedItems;
+            }
+        }
+
+
+        function reArrangeFacets(facets) {
+            var reArrangedFacets = {};
+            reArrangedFacets.category = facets.category;
+            reArrangedFacets.assignTo = facets.assignTo;
+            $scope.facets = angular.copy(reArrangedFacets);
+        }
+
+        function convertFormSelectionsToQueryParams() {
+            // delete f:keys from $scope.forms before processing
+            angular.forEach($scope.form, function(item, key) {
+                if (key.indexOf('f:') > -1) {
+                    delete $scope.form[key];
+                }
+            });
+
+            var params = {};
+            // params.facets = {};
+            angular.forEach($scope.form, function(value, key) {
+                if (!value) {
+                 //   params[key] = null;
+                }
+                if (typeof value === 'string') {
+                    params[key] = value;
+                }
+                if (value instanceof Array) {
+                    params[key] = [];
+                    angular.forEach(value, function(item) {
+                        if (item instanceof Object && item.selected) params[key].push(item.name);
+                        if (typeof item === 'string' && item !== '') {
+                            params[key].push(item);
+                        }
+                    });
+                    // if its empty array then delete the criterion
+                    if (params[key].length === 0) delete params[key];
+                }
+                if (value instanceof Object && key === 'facets') {
+                    angular.forEach(value, function(item, facetKind) {
+                        params['f:' + facetKind] = [];
+                        for (var i = 0; i < item.length; i++) {
+                            if (item[i].selected) {
+                                console.log('pusing...');
+                                params['f:' + facetKind].push(item[i].name);
+                            }
+                        }
+                     // if its empty array then delete the criterion
+                    if (params['f:' + facetKind].length === 0) delete  params['f:' + facetKind];
+
+                    });
+                }
+
+            });
+            //    console.log('params', params);
+            // delete params.facets;
+            return params;
+        }
+
+
+        function parseQueryParams(queryParams) {
+          //  $scope.form = angular.copy(defaultSearchCriteria);
+            var form = angular.copy(defaultSearchCriteria);
+            angular.forEach(queryParams, function(value, key) {
+                switch (key) {
+                    case 'page':
+                        $scope.currentPage = parseInt(value);
+                        break;
+                    case 'kind':
+                    case 'status':
+                    case 'severity':
+                        if (typeof value === 'string') {
+                            var index = getObjectIndex(form[key], value);
+                            form[key][index].selected = true;
+                        }
+                        if (value instanceof Array) {
+                            angular.forEach(value, function(item) {
+                                var index = getObjectIndex(form[key], item);
+                                form[key][index].selected = true;
+                            });
+                        }
+                        break;
+                    default:
+                        form[key] = value;
+                        break;
+                }
+            });
+        return form;
+            //  console.log('after parsing', $scope.form);
+        }
+
+
+        function getObjectIndex(array, name) {
+            var index = -1;
+            for (var i = 0; i < array.length; i++) {
+                if (array[i].name === name) {
+                    index = i;
+                }
+            }
+            return index;
+        }
 
     }
 ]);

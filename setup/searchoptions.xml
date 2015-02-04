@@ -71,4 +71,9 @@
       <element ns="" name="tofixin"/>
     </range>
   </constraint>
+  <constraint name="createdAt">
+   <range type="xs:dateTime">
+      <element ns="" name="createdAt"/>
+    </range>
+  </constraint>
    </options>

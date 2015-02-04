@@ -23,14 +23,14 @@ var app = angular.module('fullstackApp', [
 
     'navbar.controllers',
 
-
-
     'modal.services',
     'flash.services',
 
     // 'bugTexteditor.directive',
     'wysiHtml5.directive',
-    'fileupload.directive'
+    'fileupload.directive',
+    'ngProgress',
+    'facet.directive'
 
 ]);
 app.config(function($routeProvider, $locationProvider) {
@@ -41,17 +41,22 @@ app.config(function($routeProvider, $locationProvider) {
         .otherwise({
             redirectTo: '/home'
         });
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true).hashPrefix('');
 }).filter('capitalize', function() {
-        return function(input, all) {
-            return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
-                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            }) : '';
-        }});
+    return function(input, all) {
+        return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        }) : '';
+    }
+}).run(function($rootScope, ngProgress) {
+    $rootScope.$on('$routeChangeStart', function() {
+        ngProgress.height('3px');
+        ngProgress.color('green');
+        ngProgress.start();
+    });
 
-
-
-
-
-
-
+    $rootScope.$on('$routeChangeSuccess', function() {
+        ngProgress.complete();
+    });
+    // Do the same with $routeChangeError
+});

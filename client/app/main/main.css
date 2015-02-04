@@ -42,3 +42,24 @@ a:hover.tooltips span {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/*
+.table-nowrap {
+    table-layout:fixed;
+}*/
+
+.table-nowrap td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.table-striped > tbody > tr:nth-child(4n+1) > td, 
+.table-striped > tbody > tr:nth-child(4n+1) > th {
+   background-color: red;
+}
+
+
+
+

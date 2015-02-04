@@ -5,6 +5,7 @@ angular.module('fullstackApp')
         $routeProvider.
         when('/configure', {
             templateUrl: 'app/configure/configure.html',
-            controller: 'configCtrl'
+            controller: 'configCtrl',
+            reloadOnSearch: false
         });
     });
