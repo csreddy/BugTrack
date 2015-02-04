@@ -29,7 +29,8 @@ var app = angular.module('fullstackApp', [
     // 'bugTexteditor.directive',
     'wysiHtml5.directive',
     'fileupload.directive',
-    'ngProgress'
+    'ngProgress',
+    'facet.directive'
 
 ]);
 app.config(function($routeProvider, $locationProvider) {

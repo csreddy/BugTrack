@@ -14,7 +14,7 @@ exports.search = function(req, res) {
     res.locals.errors = req.flash();
     var result = {};
     var criteria = req.body;
-   // console.log('criteria:', criteria);
+    // console.log('criteria:', criteria);
     var page = parseInt(req.body.page) || 1;
     var pageLength = parseInt(req.body.pageLength) || 20;
     var startIndex = (page - 1) * pageLength + 1;
@@ -24,36 +24,43 @@ exports.search = function(req, res) {
         // searchCriteria = [q.collection('bugs')];
     }
 
-      // reformat criteria json to handle facet selections
+    // date buckets
+    var date = new Date();
+    var today = stringify(date);
+    var yesterday = stringify(new Date(date.setDate(date.getDate() - 1)));
+
+
+    // reformat criteria json to handle facet selections
     for (var key in criteria) {
         if (key.indexOf('f:') > -1) {
             key = key.replace(/f:/, '');
             var value = criteria[key];
-            
-            if(!value){
-                criteria[key] = criteria['f:'+key]
+
+            if (!value) {
+                criteria[key] = criteria['f:' + key]
             }
 
             if (typeof value === 'string' && value !== '') {
                 if (value === '(empty)') value = '';
                 value = [value];
-               value.reduce(function(a, b) {
+                value.reduce(function(a, b) {
                     return a.concat(b);
                 });
             }
 
             if (value instanceof Array) {
-                for(var i=0; i< criteria['f:' + key].length; i++){
-                    value.push(criteria['f:'+key][i]);
+                for (var i = 0; i < criteria['f:' + key].length; i++) {
+                    value.push(criteria['f:' + key][i]);
                 }
-                               
+
             }
-              for(var i=0; i< criteria[key].length; i++){
-                    if (criteria[key][i] === '(empty)'){                          criteria[key][i] = ''
-                    
-                    }
-             }
-        delete criteria['f:' + key];
+            for (var i = 0; i < criteria[key].length; i++) {
+                if (criteria[key][i] === '(empty)') {
+                    criteria[key][i] = ''
+
+                }
+            }
+            delete criteria['f:' + key];
         }
 
     }
@@ -69,14 +76,13 @@ exports.search = function(req, res) {
         }
         switch (key) {
             case 'q':
-            // if null then make it empty string to avoid error
-            if (!value) {
-                value = '';
-            }
+                // if null then make it empty string to avoid error
+                if (!value) {
+                    value = '';
+                }
                 searchCriteria.push(q.parsedFrom(value));
                 break;
             case 'kind':
-            case 'f:kind':
                 var collectionName;
                 if (typeof value === 'string' && value !== '') {
                     collectionName = value.toLowerCase() + 's'; // pluralize
@@ -84,18 +90,22 @@ exports.search = function(req, res) {
                 }
 
                 if (value instanceof Array) {
-                    for (var index in value) {
-                        if (value[index] !== '') {
-                            collectionName = value[index].toLowerCase() + 's'; // pluralize
-                            orQuery.push(q.collection(collectionName));
+                    // when array length > 1
+                    if (value.length > 1) {
+                        for (var index in value) {
+                            if (value[index] !== '') {
+                                collectionName = value[index].toLowerCase() + 's'; // pluralize
+                                orQuery.push(q.collection(collectionName));
+                            }
                         }
+                        if (orQuery.length > 0) searchCriteria.push(q.or(orQuery));
+                    } else {
+                        // when array contains only one item
+                        collectionName = value[0].toLowerCase() + 's'; // pluralize
+                        searchCriteria.push(q.collection(collectionName))
                     }
-                    if (orQuery.length > 0) {
-                        searchCriteria.push(q.or(orQuery));
-                    }
-                    orQuery = []; // empty array after pushing to search criteria
                 }
-
+                orQuery = []; // empty array after pushing to search criteria
                 break;
             case 'status':
             case 'severity':
@@ -114,6 +124,44 @@ exports.search = function(req, res) {
                 break;
             case 'submittedBy':
                 parsePathIndexItems(searchCriteria, '/submittedBy/username', 'string', '=', value)
+                break;
+            case 'createdAt':
+                orQuery = [];
+                for (var i = 0; i < value.length; i++) {
+                    if (value[i] === 'today') {
+                        // value[i] = today + 'T23:59:59';
+                        orQuery.push(q.and(
+                            q.range('createdAt', q.datatype('dateTime'), '>', yesterday + 'T23:59:59'),
+                            q.range('createdAt', q.datatype('dateTime'), '<=', today + 'T23:59:59')
+                        ))
+                    }
+                    if (value[i] === 'yesterday') {
+                        // value[i] = yesterday + 'T23:59:59';
+                        orQuery.push(q.and(
+                            q.range('createdAt', q.datatype('dateTime'), '>=', yesterday + 'T00:00:00'),
+                            q.range('createdAt', q.datatype('dateTime'), '<', today + 'T23:59:59')
+                        ))
+                    }
+                    if (value[i] === 'older') {
+                        // value[i] = yesterday + 'T23:59:59';
+                        orQuery.push(q.and(
+                            q.range('createdAt', q.datatype('dateTime'), '<', '2010-01-01T00:00:00')
+                        ))
+                    }
+
+                    var year = parseInt(value[i]);
+                    if (year) {
+                        var start = year + '-01-01T00:00:00';
+                        var end = year + '-12-31T23:59:59';
+                        orQuery.push(q.and(
+                            q.range('createdAt', q.datatype('dateTime'), '>=', start),
+                            q.range('createdAt', q.datatype('dateTime'), '<', end)
+                        ))
+                    }
+
+                }
+
+                searchCriteria.push(q.or(orQuery))
                 break;
             default: // for any other selection do nothing
                 break;
@@ -139,10 +187,20 @@ exports.search = function(req, res) {
             q.facet('platform', 'platform', q.facetOptions('frequency-order', 'descending')),
             // q.facet('fixedin', 'fixedin', q.facetOptions('limit=10', 'frequency-order', 'descending')),
             // q.facet('tofixin', 'tofixin', q.facetOptions('limit=10', 'frequency-order', 'descending')),
-            q.facet('submittedBy', q.pathIndex('/submittedBy/name')),
+            q.facet('submittedBy', q.pathIndex('/submittedBy/username')),
             q.facet('assignTo', q.pathIndex('/assignTo/username')),
-            q.facet('priority', q.pathIndex('/priority/level'))
-        )
+            q.facet('priority', q.pathIndex('/priority/level')),
+            q.facet('createdAt', q.datatype('xs:dateTime'),
+                q.bucket('today', today + 'T00:00:00', '<', today + 'T23:59:59'),
+                q.bucket('yesterday', yesterday + 'T00:00:00', '<', yesterday + 'T23:59:59'),
+                q.bucket('2010', '2010-01-01T00:00:00', '<', '2011-01-01T00:00:00'),
+                q.bucket('2011', '2011-01-01T00:00:00', '<', '2012-01-01T00:00:00'),
+                q.bucket('2012', '2012-01-01T00:00:00', '<', '2013-01-01T00:00:00'),
+                q.bucket('2013', '2013-01-01T00:00:00', '<', '2014-01-01T00:00:00'),
+                q.bucket('2014', '2014-01-01T00:00:00', '<', '2015-01-01T00:00:00'),
+                q.bucket('2015', '2015-01-01T00:00:00', '<', '2016-01-01T00:00:00'),
+                q.bucket('older', null, '<', '2010-01-01T00:00:00')
+            ))
         .slice(startIndex, pageLength)
         .withOptions({
             debug: true,
@@ -152,8 +210,8 @@ exports.search = function(req, res) {
             view: 'facets'
         })
     ).result(function(response) {
-       // console.log('\n------------------------------------------');
-       // console.log('searchCriteria', JSON.stringify(searchCriteria));
+        // console.log('\n------------------------------------------');
+        // console.log('searchCriteria', JSON.stringify(searchCriteria));
         // console.log('/search', req.body);
         result = response;
         res.status(200).json(result);
@@ -170,16 +228,18 @@ function parseSelectedItems(searchCriteria, name, type, condition, value) {
     }
 
     if (value instanceof Array) {
-        for (var index in value) {
-            if (value[index] !== 'n/v/f/e') {
-                orQuery.push(q.range(name, q.datatype(type), condition, value[index]));
+        if (value.length > 1) {
+            for (var index in value) {
+                if (value[index] !== 'n/v/f/e') {
+                    orQuery.push(q.range(name, q.datatype(type), condition, value[index]));
+                }
             }
+            if (orQuery.length > 0) searchCriteria.push(q.or(orQuery));
+        } else {
+            searchCriteria.push(q.range(name, q.datatype(type), condition, value[0]))
         }
-        if (orQuery.length > 0) {
-            searchCriteria.push(q.or(orQuery));
-        }
-        orQuery = []; // empty array after pushing to search criteria 
     }
+    orQuery = []; // empty array after pushing to search criteria 
 }
 
 
@@ -190,12 +250,25 @@ function parsePathIndexItems(searchCriteria, path, type, condition, value) {
     }
 
     if (value instanceof Array) {
-        for (var index in value) {
+        if (value.length > 1) {
+            for (var index in value) {
                 orQuery.push(q.range(q.pathIndex(path), q.datatype(type), condition, value[index]));
+            }
+            if (orQuery.length > 0) searchCriteria.push(q.or(orQuery));
+        } else {
+            searchCriteria.push(q.range(q.pathIndex(path), q.datatype(type), condition, value[0]))
         }
-        if (orQuery.length > 0) {
-            searchCriteria.push(q.or(orQuery));
-        }
-        orQuery = []; // empty array after pushing to search criteria 
     }
+    orQuery = []; // empty array after pushing to search criteria 
+}
+
+
+
+function stringify(d) {
+    var dateStr = d.getFullYear() + '-'
+    var month = d.getMonth() + 1;
+    dateStr = (month < 9) ? dateStr + '0' + month + '-' : dateStr + month + '-';
+    dateStr = (d.getDate() < 9) ? dateStr + '0' + d.getDate() : dateStr + d.getDate();
+    console.log(dateStr)
+    return dateStr;
 }

@@ -1,6 +1,6 @@
 'user strict';
 
-var app = angular.module('search.controllers', []);
+var app = angular.module('search.controllers', ['checklist-model']);
 
 app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$routeParams',
     function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $routeParams) {
@@ -14,6 +14,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.pageLength = 20;
         $scope.facetName = '';
         $scope.isPaginationEvent = false;
+        $scope.facetOrder = ['assignTo', 'submittedBy', 'category', 'status','severity','priority', 'createdAt']; //'platform'
         var conditionNames = ['q', 'kind', 'status', 'severity', 'priority', 'category', 'version', 'fixedin', 'tofixin', 'assignTo', 'submittedBy', 'page', 'pageLength'];
 
         $scope.init = function() {
@@ -53,6 +54,12 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     $location.search(item, setSelectedItems($scope.form[item]));
                 }
             });
+            console.log('addSelectedValueToQuery', $scope.form);
+        };
+
+        $scope.addSelectedValueToQuery2 = function(facetName,selectedItem) {
+            var index = getObjectIndex($scope.form.facets[facetName], selectedItem.name);
+            $scope.form.facets[facetName][index].selected = true;
         };
 
         // toggle advanced search panel visibility
@@ -90,7 +97,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             return Search.search($location.search({})).success(function(response) {
                 processResult(response);
             }).error(function(error) {
-                Flash.addAlert('danger', error + ' :error occured');
+                Flash.addAlert('danger', error.body.errorResponse.message);
             });
         };
 
@@ -189,6 +196,24 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             return show;
         };
 
+      $scope.showFacetDropdown2 = function(facetName) {
+            var show = false;
+            if ($scope.form.facets[facetName] || !$scope.form.facets[facetName] instanceof Array) {
+                show = false;
+            }
+            if (facetName === 'assignTo') {
+                show = true;
+            }
+            if (facetName === 'submittedBy') {
+                show = true;
+            }
+
+            if (facetName === 'category') {
+                show = true;
+            }
+            return show;
+        };
+
         $scope.clearSelection = function(selection) {
             console.log('selection', selection);
             $scope.form[selection] = null;
@@ -197,7 +222,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
 
 
         $scope.$on('$locationChangeSuccess', function() {
-            $scope.currentPage = $location.search().page;
+            $scope.currentPage = $location.search().page || 1;
             
             // due to pagination directive bug, current page number does not get higlighted when 
             // browser back/fwd is clicked. This is a hack to fix it.
