@@ -14,14 +14,31 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.pageLength = 20;
         $scope.facetName = '';
         $scope.isPaginationEvent = false;
-        $scope.facetOrder = [{type:'assignTo', title: 'Assigned To'},
-                            {type: 'submittedBy', title: 'Submitted By'},
-                            {type: 'category', title: 'Category'},
-                            {type: 'status', title: 'Status'},
-                            {type: 'severity', title: 'Severity'},
-                            {type:'priority', title: 'Priority'}, 
-                            {type:'createdAt', title: 'Created On'}, 
-                            {type:'publishStatus', title: 'Publish Status'}]; //'platform'
+        $scope.facetOrder = [{
+            type: 'assignTo',
+            title: 'Assigned To'
+        }, {
+            type: 'submittedBy',
+            title: 'Submitted By'
+        }, {
+            type: 'category',
+            title: 'Category'
+        }, {
+            type: 'status',
+            title: 'Status'
+        }, {
+            type: 'severity',
+            title: 'Severity'
+        }, {
+            type: 'priority',
+            title: 'Priority'
+        }, {
+            type: 'createdAt',
+            title: 'Created On'
+        }, {
+            type: 'publishStatus',
+            title: 'Publish Status'
+        }]; //'platform'
         var conditionNames = ['q', 'kind', 'status', 'severity', 'priority', 'category', 'version', 'fixedin', 'tofixin', 'assignTo', 'submittedBy', 'page', 'pageLength'];
 
 
@@ -283,17 +300,21 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         });
 
         // watch if user default query is changed
-        $scope.$watch('form', function() {
-            //console.log('form:', $scope.form);
-            var userQuery = parseQueryParams(currentUser.savedQueries.default);
-            if (angular.equals($scope.form, userQuery)) {
-                $scope.userDefaultSearch = true;
-            } else {
-                console.log('user default search changed');
-                $scope.userDefaultSearch = false;
-            }
+        // start watching after the page is loaded
+        $timeout(function() {
+            $scope.$watch('form', function() {
+                //console.log('form:', $scope.form);
+                var userQuery = parseQueryParams(currentUser.savedQueries.default);
+                if (angular.equals($scope.form, userQuery)) {
+                    $scope.userDefaultSearch = true;
+                } else {
+                    console.log('user default search changed');
+                    $scope.userDefaultSearch = false;
+                }
 
-        }, true);
+            }, true);
+        }, 500);
+
 
 
 
@@ -303,7 +324,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             return Search.search(searchCriteria).success(function(response) {
                 processResult(response);
                 console.log('RESULT', response[0].report);
-              //  console.log('search', response);
+                //  console.log('search', response);
             }).error(function(error) {
                 Flash.addAlert('danger', error.body.errorResponse.message);
             });
@@ -483,13 +504,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                         }
                         break;
                     default:
-                        if (value instanceof Array || value instanceof Object) {
-                            form[key] = value;    
-                        }
-                        if (typeof value === 'string') {
-                            form[key] = [value];
-                        }
-                        
+                         form[key] = value;
                         break;
                 }
             });
