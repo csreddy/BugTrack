@@ -60,13 +60,12 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             if (Object.keys($location.search()).length > 0) {
                 console.log('init()', $location.search());
                 // set form selections according to url query params
-                $scope.form = angular.copy(parseQueryParams($location.search()));
-                var searchCriteria = $location.search();
-                search(searchCriteria);
+                $scope.form = parseQueryParams($location.search());
+                search($location.search());
                 // due to pagination directive bug, current page number does not get higlighted when 
                 // browser back/fwd is clicked. This is a hack to fix it.
                 $timeout(function() {
-                    highlightPageNumber(searchCriteria.page);
+                    highlightPageNumber($location.search().page);
                 }, 1000);
 
                 /*   
@@ -79,14 +78,12 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 // if the user has default query then set the $scope.form to user's default query
                 // otherwise initialize with app default query
                 console.log('user has default search....');
-                $scope.form = angular.copy(parseQueryParams(currentUser.savedQueries.default));
-                var searchCriteria = convertFormSelectionsToQueryParams();
-                search(searchCriteria);
+                $scope.form = parseQueryParams(currentUser.savedQueries.default);
+                search(convertFormSelectionsToQueryParams());
                 $scope.userDefaultSearch = true;
             } else {
                 $scope.form.assignTo = currentUser.username;
-                var searchCriteria = angular.copy(convertFormSelectionsToQueryParams());
-                search(searchCriteria);
+                search(convertFormSelectionsToQueryParams);
             }
         };
 
@@ -117,14 +114,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
 
 
 
-        $scope.mainSearch = function(searchCriteria) {
+        $scope.mainSearch = function() {
             console.log('SCOPE.FORM', $scope.form);
             $scope.isPaginationEvent = false;
-            searchCriteria = angular.copy(convertFormSelectionsToQueryParams());
-            console.log('searchCriteria: ', searchCriteria);
-            $location.search(searchCriteria);
+            $location.search(convertFormSelectionsToQueryParams());
             $location.search('page', 1); // start from page 1 for every search
-
         };
 
 
@@ -287,6 +281,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                         // reset search form to default
                         $scope.form = angular.copy(defaultSearchCriteria);
                     } else {
+                        // get form selections from query params
                         $scope.form = parseQueryParams($location.search());
 
                     }
