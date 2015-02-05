@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bug.controllers', ['ui.bootstrap', 'angularFileUpload', 'textAngular'])
+angular.module('bug.controllers', ['angularFileUpload', 'textAngular'])
     .controller('newBugCtrl', ['$scope', '$location', 'Bug', 'Config', 'Flash', 'User', 'config', 'currentUser', 'bugId',
 
         function($scope, $location, Bug, Config, Flash, User, config, currentUser, bugId) {

@@ -30,7 +30,8 @@ var app = angular.module('fullstackApp', [
     'wysiHtml5.directive',
     'fileupload.directive',
     'ngProgress',
-    'facet.directive'
+    'facet.directive',
+    'ui.bootstrap'
 
 ]);
 app.config(function($routeProvider, $locationProvider) {
