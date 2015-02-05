@@ -43,7 +43,7 @@
             </li>
 
             <!-- facets as dropdown -->
-        <select name="{{facet.type}}" id="" ng-model="f" ng-options="(f.name + ' ' + '(' + f.count+')') for f in form.facets[facet.type]" ng-show="showFacetDropdown2(facet.type)" ng-change="addSelectedValueToQuery2(facet.type, f)" class="form-control input-sm" ng-selected="f.name">
+        <select name="{{facet.type}}" id="" ng-model="f" ng-options="(f.name + ' ' + '(' + f.count+')') for f in form.facets[facet.type]" ng-show="showFacetDropdown2(facet.type)" ng-change="addSelectedValueToQuery2(facet.type, f)" class="form-control input-sm">
                 <option value="">-- Select --</option>
             </select>
            <!--  <select name="{{facetName}}" id="" ng-show="showFacetDropdown2(facetName)">

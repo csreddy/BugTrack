@@ -46,7 +46,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $scope.form = angular.copy(parseQueryParams($location.search()));
                 var searchCriteria = $location.search();
                 search(searchCriteria);
-                console.log('highlightPageNumber');
                 // due to pagination directive bug, current page number does not get higlighted when 
                 // browser back/fwd is clicked. This is a hack to fix it.
                 $timeout(function() {
@@ -271,7 +270,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                         // reset search form to default
                         $scope.form = angular.copy(defaultSearchCriteria);
                     } else {
-                        parseQueryParams($location.search());
+                        $scope.form = parseQueryParams($location.search());
 
                     }
 
@@ -280,12 +279,12 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 }
                 $scope.isPaginationEvent = false;
             }
-
+            console.log('form:', $scope.form);
         });
 
         // watch if user default query is changed
         $scope.$watch('form', function() {
-            console.log('form:', $scope.form);
+            //console.log('form:', $scope.form);
             var userQuery = parseQueryParams(currentUser.savedQueries.default);
             if (angular.equals($scope.form, userQuery)) {
                 $scope.userDefaultSearch = true;
@@ -304,7 +303,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             return Search.search(searchCriteria).success(function(response) {
                 processResult(response);
                 console.log('RESULT', response[0].report);
-                console.log('search', response);
+              //  console.log('search', response);
             }).error(function(error) {
                 Flash.addAlert('danger', error.body.errorResponse.message);
             });
@@ -315,8 +314,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             $scope.form.facets = angular.copy(processFacets(searchResult[0].facets));
             renameEmptyFacets($scope.form.facets);
             preselectFacetCheckBox($scope.form.facets);
-            console.log('Facets: ', $scope.form.facets);
-            // reArrangeFacets($scope.facets);
             $scope.searchMetrics = searchResult[0].metrics;
             $scope.totalItems = searchResult[0].total;
         }
@@ -357,7 +354,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         }
 
 
-        // get bug details for table disiplay
+        // get bug details for table display
         function getBugDetails() {
             $scope.bugs = [];
             angular.forEach($scope.bugList, function(bug) {

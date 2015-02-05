@@ -24,7 +24,7 @@ label.xsm-label {
 }
 input.form-control.input-xsm {
     height: 25px;
-    line-height: 30px;
+   /* line-height: 30px;*/
     padding-left: 4px;
     padding-top: 0px;
     padding-bottom: 0px;
