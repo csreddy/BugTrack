@@ -111,12 +111,13 @@
                                             <label class="col-xs-4 col-md-2 control-label" for="relation">Relation to parent task</label>
                                             <div class="col-xs-4 col-md-4">
                                                 <select id="relation" ng-model="relation" ng-change="setRelation(relation)" name="relation" type="text" class="form-control input-sm">
+                                                    <option value=""></option>
                                                     <option ng-repeat="relation in relatedTasks" value="{{relation}}">
                                                         {{relation}}</option>
                                                 </select>
                                             </div>
                                             <div class="col-xs-4 col-md-4">
-                                                <input class="form-control input-sm" ng-model="relatedTo" ng-change="setRelatedTo(relatedTo)" name="relatedTo" type="text" placeholder="task/bug id">
+                                                <input class="form-control input-sm" ng-model="relatedTo" ng-change="setRelatedTo(relatedTo)" name="relatedTo" type="text" placeholder="task id">
                                             </div>
                                         </div>
                                     </accordion-group>

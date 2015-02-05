@@ -4,6 +4,7 @@ var app = angular.module('user.controllers', ['ngCookies']);
 
 app.controller('loginCtrl', ['$scope', '$location', '$cookieStore', 'Flash', '$http', 'User', '$window',
     function($scope, $location, $cookieStore, Flash, $http, User, $window) {
+        $scope.pageName = 'loginPage';
         $location.search({}); // clear query params from url
         $scope.username = 'btuser';
         $scope.password = 'admin';

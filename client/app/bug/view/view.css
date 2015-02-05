@@ -4,3 +4,21 @@ border: 0px;
 font-size: 14px;
 font-family: 'Source Sans Pro', sans-serif;
 }
+
+
+.gist {
+    color: #000;
+    white-space: pre-wrap;
+    font-family: Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+    font-size: 85%;
+     background-color: #f0f0f0;
+     padding: 5px;
+     border-radius: 4px;
+     float: left;
+}
+
+
+.code { counter-reset: listing; }
+code { counter-increment: listing; }
+.code i:before { content: counter(listing) ". "; color: gray; }
+.code i { float: left; clear: both; min-width: 2.5em; }

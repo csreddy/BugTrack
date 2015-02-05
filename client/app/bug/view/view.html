@@ -228,7 +228,8 @@
                 <legend>
                     <h5><span class="glyphicon glyphicon-pencil"></span>  Sample Query</span></h5>
                 </legend>
-                <pre><code>{{bug.samplequery}}</code></pre>
+    <pre class="code">{{bug.samplequery}}</pre>
+             <!--    <p>{{bug.samplequery}}</p -->
 
             </div>
             <div ng-show="bug.sampledata">
@@ -242,8 +243,8 @@
                     <h5><span class="glyphicon glyphicon-file"></span>  Error Stacktrace</span></h5>
                 </legend>
                 <div style="overflow: auto; max-height:500px;">
-                    <pre>{{bug.stacktrace}}</pre>
-                    <p class="gist">{{bug.stacktrace}}</p>
+                  <!--   <pre>{{bug.stacktrace}}</pre> -->
+                    <p class="gist line-number">{{bug.stacktrace}}</p>
                 </div>
             </div>
         </div>
@@ -277,7 +278,7 @@
          
        <p ng-show="item.comment" ng-bind-html="item.comment"></p>
 
-            <b ng-show="item.attachments">Attached:</b>
+          <!--   <b ng-show="item.attachments">Attached:</b> -->
             <ul ng-repeat="file in item.attachments" class="list-inline" style="display: inline-block;">
                 <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a>
                 </li>

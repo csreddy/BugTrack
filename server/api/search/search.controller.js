@@ -21,7 +21,7 @@ exports.search = function(req, res) {
     var searchCriteria = [];
     // when empty criteria is sent 
     if (Object.keys(criteria).length === 0) {
-        // searchCriteria = [q.collection('bugs')];
+         searchCriteria = [q.collection('bugs')];
     }
 
     // date buckets
@@ -137,6 +137,7 @@ exports.search = function(req, res) {
             case 'fixedin':
             case 'tofixin':
             case 'platform':
+            case 'publishStatus':
                 parseSelectedItems(searchCriteria, key, 'string', '=', value);
                 break;
             case 'priority':
@@ -236,10 +237,11 @@ exports.search = function(req, res) {
             q.facet('submittedBy', q.pathIndex('/submittedBy/username')),
             q.facet('assignTo', q.pathIndex('/assignTo/username')),
             q.facet('priority', q.pathIndex('/priority/level')),
+            q.facet('publishStatus', 'publishStatus', q.facetOptions('frequency-order', 'descending')),
             q.facet('createdAt', q.datatype('xs:dateTime'),
                 q.bucket('today', today + 'T00:00:00', '<', today + 'T23:59:59'),
                 q.bucket('yesterday', yesterday + 'T00:00:00', '<', yesterday + 'T23:59:59'),
-                q.bucket('last12Months', last12Months + 'T00:00:00', '<', today + 'T23:59:59'),
+                q.bucket('last 12 Months', last12Months + 'T00:00:00', '<', today + 'T23:59:59'),
                 q.bucket('2015', '2015-01-01T00:00:00', '<', '2015-12-31T23:59:59'),
                 q.bucket('2014', '2014-01-01T00:00:00', '<', '2014-12-31T23:59:59'),
                 q.bucket('older', null, '<', '2014-01-01T00:00:00')

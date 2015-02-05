@@ -14,7 +14,14 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.pageLength = 20;
         $scope.facetName = '';
         $scope.isPaginationEvent = false;
-        $scope.facetOrder = ['assignTo', 'submittedBy', 'category', 'status', 'severity', 'priority', 'createdAt']; //'platform'
+        $scope.facetOrder = [{type:'assignTo', title: 'Assigned To'},
+                            {type: 'submittedBy', title: 'Submitted By'},
+                            {type: 'category', title: 'Category'},
+                            {type: 'status', title: 'Status'},
+                            {type: 'severity', title: 'Severity'},
+                            {type:'priority', title: 'Priority'}, 
+                            {type:'createdAt', title: 'Created On'}, 
+                            {type:'publishStatus', title: 'Publish Status'}]; //'platform'
         var conditionNames = ['q', 'kind', 'status', 'severity', 'priority', 'category', 'version', 'fixedin', 'tofixin', 'assignTo', 'submittedBy', 'page', 'pageLength'];
 
 
@@ -100,7 +107,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             searchCriteria = angular.copy(convertFormSelectionsToQueryParams());
             console.log('searchCriteria: ', searchCriteria);
             $location.search(searchCriteria);
-            // searchCriteria =  {kind:['Bug'],page:1,status:['New','Test']};
             $location.search('page', 1); // start from page 1 for every search
 
         };
@@ -146,7 +152,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             $location.search('page', pageNo);
             $scope.isPaginationEvent = true;
             return Search.search($location.search()).success(function(searchResult) {
-                $scope.results = searchResult;
                 $scope.bugList = searchResult.slice(1);
                 $scope.searchMetrics = searchResult[0].metrics;
                 $scope.totalItems = searchResult[0].total;
@@ -241,10 +246,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         };
 
         function highlightPageNumber(pageNo) {
-            var elements = angular.element('#pager li');
             angular.forEach(angular.element('#pager li'), function(li) {
                 if (angular.element(li).text() === pageNo.toString()) {
-                    console.log('element', angular.element(li).text());
                     angular.element(li).addClass('active');
                 } else {
                     angular.element(li).removeClass('active');
@@ -254,8 +257,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
 
 
         $scope.$on('$locationChangeSuccess', function() {
-            console.log($location.path());
-            if ($location.path() === '/home') {
+            console.log($location.url());
+            if ($location.url().indexOf('/home') > -1) {
                 $scope.currentPage = $location.search().page || 1;
 
                 // due to pagination directive bug, current page number does not get higlighted when 
@@ -272,16 +275,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
 
                     }
 
-                    return Search.search($location.search()).success(function(response) {
-                        processResult(response);
-                        //  console.log('FACETS', $scope.facets);
-                        console.log('RESULT', response[0].report);
-                        console.log('RESULT', response);
-                        //   Flash.addAlert('success', 'Returned ' + ($scope.results.length - 1) + ' results');
-                    }).error(function(error) {
-                        Flash.addAlert('danger', error.body.errorResponse.message);
-                    });
-                };
+                    search($location.search());
+
+                }
                 $scope.isPaginationEvent = false;
             }
 
@@ -308,14 +304,13 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             return Search.search(searchCriteria).success(function(response) {
                 processResult(response);
                 console.log('RESULT', response[0].report);
-                //console.log('$scope.currentPage', typeof $scope.currentPage);
+                console.log('search', response);
             }).error(function(error) {
                 Flash.addAlert('danger', error.body.errorResponse.message);
             });
         }
 
         function processResult(searchResult) {
-            $scope.results = searchResult;
             $scope.bugList = searchResult.slice(1);
             $scope.form.facets = angular.copy(processFacets(searchResult[0].facets));
             renameEmptyFacets($scope.form.facets);

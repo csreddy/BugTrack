@@ -17,9 +17,10 @@ html, body {
     -webkit-font-smoothing: antialiased;
     min-height: 100%;
     /* background: #f9f9f9;*/
-    
     padding-top: 30px;
 }
+
+
 a {
     color: #3c8dbc;
 }
@@ -3197,7 +3198,7 @@ Component: timeline
     color: #587ea3;
     background-color: #ffffff;
 }
-.footer {
+.site-footer {
     padding-top: 20px;
     padding-bottom: 20px;
     color: #777;

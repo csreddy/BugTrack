@@ -27,15 +27,15 @@
                 </li>
             </ul> -->
 
-        <ul ng-repeat="facetName in facetOrder" class="list-unstyled" name="{{facetName}}" ng-hide="form.facets[facetName].length === 0">
+        <ul ng-repeat="facet in facetOrder" class="list-unstyled" name="{{facet.type}}" ng-hide="form.facets[facet.type].length === 0">
             <div class="form-group">
-            <li><label>{{ facetName | capitalize }} ({{form.facets[facetName].length}})</label>
+            <li><label>{{ facet.title }} ({{form.facets[facet.type].length}})</label>
 
-                <ul ng-repeat="f in form.facets[facetName]" class="list-unstyled" ng-show="!showFacetDropdown2(facetName)">
+                <ul ng-repeat="f in form.facets[facet.type]" class="list-unstyled" ng-show="!showFacetDropdown2(facet.type)">
                     <!-- facets as checkboxes -->
                     <li style="margin-left: 10px">
                         <label class="xsm-label">
-                            <input type="checkbox" name="{{facetName}}" ng-model="f.selected" value="{{f}}">
+                            <input type="checkbox" name="{{facet.type}}" ng-model="f.selected" value="{{f}}">
                         </label>
                         <span class="badge bg-olive pull-right">{{f.count}}</span> {{f.name | capitalize}}
                     </li>
@@ -43,7 +43,7 @@
             </li>
 
             <!-- facets as dropdown -->
-        <select name="{{facetName}}" id="" ng-model="f" ng-options="(f.name + ' ' + '(' + f.count+')') for f in form.facets[facetName]" ng-show="showFacetDropdown2(facetName)" ng-change="addSelectedValueToQuery2(facetName, f)" class="form-control input-sm">
+        <select name="{{facet.type}}" id="" ng-model="f" ng-options="(f.name + ' ' + '(' + f.count+')') for f in form.facets[facet.type]" ng-show="showFacetDropdown2(facet.type)" ng-change="addSelectedValueToQuery2(facet.type, f)" class="form-control input-sm" ng-selected="f.name">
                 <option value="">-- Select --</option>
             </select>
            <!--  <select name="{{facetName}}" id="" ng-show="showFacetDropdown2(facetName)">

@@ -121,7 +121,7 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular'])
             };
 
             $scope.setPublishStatus = function(publishStatus) {
-                $scope.publishStatus = publishStatus;
+                $scope.publishStatus = publishStatus || 'Not Ready';
             };
 
             $scope.setTickets = function(tickets) {
@@ -216,7 +216,7 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular'])
 
                 bug.supportDescription = $scope.supportDescription;
                 bug.workaround = $scope.workaround;
-                bug.publishStatus = $scope.publishStatus;
+                bug.publishStatus = $scope.publishStatus || 'Not Ready';
                 bug.customerImpact = $scope.customerImpact;
                 bug.tickets = $scope.tickets || [];
                 bug.changeHistory = [];

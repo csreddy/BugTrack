@@ -71,9 +71,19 @@
       <element ns="" name="tofixin"/>
     </range>
   </constraint>
+   <constraint name="publishStatus">
+   <range type="xs:string">
+      <element ns="" name="publishStatus"/>
+    </range>
+  </constraint>
   <constraint name="createdAt">
    <range type="xs:dateTime">
       <element ns="" name="createdAt"/>
+    </range>
+  </constraint>
+  <constraint name="modifiedAt">
+   <range type="xs:dateTime">
+      <element ns="" name="modifiedAt"/>
     </range>
   </constraint>
    </options>

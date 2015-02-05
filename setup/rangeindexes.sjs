@@ -1,5 +1,5 @@
  var admin = require("/MarkLogic/admin.xqy");  
- var elements = ["kind","id", "status","submittedBy", "assignTo", "category", "priority", "severity", "version", "platform", "fixedin", "tofixin"]
+ var elements = ["kind","id", "status","submittedBy", "assignTo", "category", "priority", "severity", "version", "platform", "fixedin", "tofixin", "publishStatus"]
      for (var i=0;i<elements.length; i++){
  var config = admin.getConfiguration(); 
  var dbid = xdmp.database("bugtrack"); 
