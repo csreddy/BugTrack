@@ -146,14 +146,14 @@ exports.search = function(req, res) {
                         // value[i] = today + 'T23:59:59';
                         orQuery.push(q.and(
                             q.range('createdAt', q.datatype('dateTime'), '>', yesterday + 'T23:59:59'),
-                            q.range('createdAt', q.datatype('dateTime'), '<=', today + 'T23:59:59')
+                            q.range('createdAt', q.datatype('dateTime'), '<', today + 'T23:59:59')
                         ))
                     }
                     if (value[i] === 'yesterday') {
                         // value[i] = yesterday + 'T23:59:59';
                         orQuery.push(q.and(
                             q.range('createdAt', q.datatype('dateTime'), '>', yesterday + 'T00:00:00'),
-                            q.range('createdAt', q.datatype('dateTime'), '<=', today + 'T23:59:59')
+                            q.range('createdAt', q.datatype('dateTime'), '<', today + 'T23:59:59')
                         ))
                     }
 
@@ -161,7 +161,7 @@ exports.search = function(req, res) {
                         // value[i] = yesterday + 'T23:59:59';
                         orQuery.push(q.and(
                             q.range('createdAt', q.datatype('dateTime'), '>', last12Months + 'T00:00:00'),
-                            q.range('createdAt', q.datatype('dateTime'), '<=', today + 'T23:59:59')
+                            q.range('createdAt', q.datatype('dateTime'), '<', today + 'T23:59:59')
                         ))
                     }
 
@@ -177,7 +177,7 @@ exports.search = function(req, res) {
                         var start = year + '-01-01T00:00:00';
                         var end = year + '-12-31T23:59:59';
                         orQuery.push(q.and(
-                            q.range('createdAt', q.datatype('dateTime'), '>=', start),
+                            q.range('createdAt', q.datatype('dateTime'), '>', start),
                             q.range('createdAt', q.datatype('dateTime'), '<', end)
                         ))
                     }
@@ -188,7 +188,7 @@ exports.search = function(req, res) {
                 break;
             case 'range':
                 searchCriteria.push(q.and(
-                    q.range('createdAt', q.datatype('dateTime'), '>=', value.from + 'T00:00:00'),
+                    q.range('createdAt', q.datatype('dateTime'), '>', value.from + 'T00:00:00'),
                     q.range('createdAt', q.datatype('dateTime'), '<', value.to + 'T23:59:59')
                 ));
                 break;
@@ -223,12 +223,8 @@ exports.search = function(req, res) {
                 q.bucket('today', today + 'T00:00:00', '<', today + 'T23:59:59'),
                 q.bucket('yesterday', yesterday + 'T00:00:00', '<', yesterday + 'T23:59:59'),
                 q.bucket('last12Months', last12Months + 'T00:00:00', '<', today + 'T23:59:59'),
-                q.bucket('2015', '2015-01-01T00:00:00', '<', '2016-01-01T00:00:00'),
-                q.bucket('2014', '2014-01-01T00:00:00', '<', '2015-01-01T00:00:00'),
-                // q.bucket('2013', '2013-01-01T00:00:00', '<', '2014-01-01T00:00:00'),
-                // q.bucket('2012', '2012-01-01T00:00:00', '<', '2013-01-01T00:00:00'),
-                // q.bucket('2011', '2011-01-01T00:00:00', '<', '2012-01-01T00:00:00'),
-                // q.bucket('2010', '2010-01-01T00:00:00', '<', '2011-01-01T00:00:00'),
+                q.bucket('2015', '2015-01-01T00:00:00', '<', '2015-12-31T23:59:59'),
+                q.bucket('2014', '2014-01-01T00:00:00', '<', '2014-12-31T23:59:59'),
                 q.bucket('older', null, '<', '2014-01-01T00:00:00')
                 // q.facetOptions('item-order','descending')
             ))
