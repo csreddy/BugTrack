@@ -38,30 +38,39 @@ exports.search = function(req, res) {
             key = key.replace(/f:/, '');
             var value = criteria[key];
 
+            // if key does not exist then create the key and assign f:key 
+            // value to it
             if (!value) {
-                criteria[key] = criteria['f:' + key]
+                if (typeof criteria['f:'+key] === 'string') {
+                    criteria[key] = [criteria['f:' + key]];    
+                } else {
+                    criteria[key] = criteria['f:' + key];    
+                }
+                
             }
-
+            // if key exists, then make an array from its value and
+            // assign to key
             if (typeof value === 'string' && value !== '') {
                 if (value === '(empty)') value = '';
-                value = [value];
-                value.reduce(function(a, b) {
-                    return a.concat(b);
-                });
+                criteria[key] = [value];
             }
 
+            // if key exists and value is an array then push its values
+            // to key
             if (value instanceof Array) {
                 for (var i = 0; i < criteria['f:' + key].length; i++) {
                     value.push(criteria['f:' + key][i]);
                 }
 
             }
+            // if any of the value is (empty), then convert it into empty string
             for (var i = 0; i < criteria[key].length; i++) {
                 if (criteria[key][i] === '(empty)') {
                     criteria[key][i] = ''
 
                 }
             }
+            // after maninpulation on its values, delete the f:key
             delete criteria['f:' + key];
         }
     }
@@ -140,20 +149,28 @@ exports.search = function(req, res) {
                 parsePathIndexItems(searchCriteria, '/submittedBy/username', 'string', '=', value)
                 break;
             case 'createdAt':
+            console.log('got into createdAt');
+               console.log('yesterday: ',yesterday);
                 orQuery = [];
+               if (typeof value === 'string' ) {
+
+               }
+
+
                 for (var i = 0; i < value.length; i++) {
                     if (value[i] === 'today') {
                         // value[i] = today + 'T23:59:59';
                         orQuery.push(q.and(
-                            q.range('createdAt', q.datatype('dateTime'), '>', yesterday + 'T23:59:59'),
+                            q.range('createdAt', q.datatype('dateTime'), '>', today + 'T00:00:00'),
                             q.range('createdAt', q.datatype('dateTime'), '<', today + 'T23:59:59')
                         ))
                     }
                     if (value[i] === 'yesterday') {
+                        console.log('got into yesterday');
                         // value[i] = yesterday + 'T23:59:59';
                         orQuery.push(q.and(
                             q.range('createdAt', q.datatype('dateTime'), '>', yesterday + 'T00:00:00'),
-                            q.range('createdAt', q.datatype('dateTime'), '<', today + 'T23:59:59')
+                            q.range('createdAt', q.datatype('dateTime'), '<', yesterday + 'T23:59:59')
                         ))
                     }
 
@@ -228,7 +245,7 @@ exports.search = function(req, res) {
                 q.bucket('older', null, '<', '2014-01-01T00:00:00')
                 // q.facetOptions('item-order','descending')
             ))
-        .slice(startIndex, pageLength)
+        .slice(startIndex, pageLength, q.snippet())
         .withOptions({
             debug: true,
             queryPlan: true,

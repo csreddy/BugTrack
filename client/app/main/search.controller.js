@@ -18,7 +18,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         var conditionNames = ['q', 'kind', 'status', 'severity', 'priority', 'category', 'version', 'fixedin', 'tofixin', 'assignTo', 'submittedBy', 'page', 'pageLength'];
 
 
-         // for calendar   
+        // for calendar   
         $scope.cal = {
             open: function(when, $event) {
                 $event.preventDefault();
@@ -38,7 +38,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 // set form selections according to url query params
                 $scope.form = angular.copy(parseQueryParams($location.search()));
                 var searchCriteria = $location.search();
-                search($location.search());
+                search(searchCriteria);
                 console.log('highlightPageNumber');
                 // due to pagination directive bug, current page number does not get higlighted when 
                 // browser back/fwd is clicked. This is a hack to fix it.
@@ -254,33 +254,36 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
 
 
         $scope.$on('$locationChangeSuccess', function() {
-            $scope.currentPage = $location.search().page || 1;
+            console.log($location.path());
+            if ($location.path() === '/home') {
+                $scope.currentPage = $location.search().page || 1;
 
-            // due to pagination directive bug, current page number does not get higlighted when 
-            // browser back/fwd is clicked. This is a hack to fix it.
-            highlightPageNumber($scope.currentPage);
+                // due to pagination directive bug, current page number does not get higlighted when 
+                // browser back/fwd is clicked. This is a hack to fix it.
+                highlightPageNumber($scope.currentPage);
 
-            if (!$scope.isPaginationEvent) {
-                // for form selections to auto fill when browser back/fwd is clicked
-                if (Object.keys($location.search()).length === 0) {
-                    // reset search form to default
-                    $scope.form = angular.copy(defaultSearchCriteria);
-                } else {
-                    parseQueryParams($location.search());
+                if (!$scope.isPaginationEvent) {
+                    // for form selections to auto fill when browser back/fwd is clicked
+                    if (Object.keys($location.search()).length === 0) {
+                        // reset search form to default
+                        $scope.form = angular.copy(defaultSearchCriteria);
+                    } else {
+                        parseQueryParams($location.search());
 
-                }
+                    }
 
-                return Search.search($location.search()).success(function(response) {
-                    processResult(response);
-                    //  console.log('FACETS', $scope.facets);
-                    console.log('RESULT', response[0].report);
-                    //   Flash.addAlert('success', 'Returned ' + ($scope.results.length - 1) + ' results');
-                }).error(function(error) {
-                    Flash.addAlert('danger', error.body.errorResponse.message);
-                });
-            };
-
-            $scope.isPaginationEvent = false;
+                    return Search.search($location.search()).success(function(response) {
+                        processResult(response);
+                        //  console.log('FACETS', $scope.facets);
+                        console.log('RESULT', response[0].report);
+                        console.log('RESULT', response);
+                        //   Flash.addAlert('success', 'Returned ' + ($scope.results.length - 1) + ' results');
+                    }).error(function(error) {
+                        Flash.addAlert('danger', error.body.errorResponse.message);
+                    });
+                };
+                $scope.isPaginationEvent = false;
+            }
 
         });
 
@@ -440,7 +443,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 }
 
                 if (value instanceof Object && key === 'range') {
-                    if (value.from) params.from =  stringify(new Date(value.from));
+                    if (value.from) params.from = stringify(new Date(value.from));
                     if (value.to) params.to = stringify(new Date(value.to));
                 }
 
@@ -483,12 +486,18 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                         break;
                     case 'from':
                     case 'to':
-                        if(value){
+                        if (value) {
                             form.range[key] = value;
                         }
-                    break;    
+                        break;
                     default:
-                        form[key] = value;
+                        if (value instanceof Array || value instanceof Object) {
+                            form[key] = value;    
+                        }
+                        if (typeof value === 'string') {
+                            form[key] = [value];
+                        }
+                        
                         break;
                 }
             });
