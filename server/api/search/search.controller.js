@@ -14,7 +14,7 @@ exports.search = function(req, res) {
     res.locals.errors = req.flash();
     var result = {};
     var criteria = req.body;
-    // console.log('criteria:', criteria);
+    console.log('criteria:', criteria);
     var page = parseInt(req.body.page) || 1;
     var pageLength = parseInt(req.body.pageLength) || 20;
     var startIndex = (page - 1) * pageLength + 1;
@@ -28,7 +28,9 @@ exports.search = function(req, res) {
     var date = new Date();
     var today = stringify(date);
     var yesterday = stringify(new Date(date.setDate(date.getDate() - 1)));
-
+    var last12MonthsDate = new Date();
+    last12MonthsDate.setMonth(-11);
+    var last12Months = stringify(last12MonthsDate);
 
     // reformat criteria json to handle facet selections
     for (var key in criteria) {
@@ -62,8 +64,20 @@ exports.search = function(req, res) {
             }
             delete criteria['f:' + key];
         }
-
     }
+
+    // put from and to keys as object for making it east add to search criteria
+    if (criteria.from || criteria.to ) criteria.range = {};
+    if (criteria.from) {
+        criteria.range.from = criteria.from;
+        delete criteria.from;
+    }
+
+    if (criteria.to) {
+        criteria.range.to = criteria.to;
+        delete criteria.to;
+    }
+
 
 
     console.log('after formatting', criteria);
@@ -138,15 +152,24 @@ exports.search = function(req, res) {
                     if (value[i] === 'yesterday') {
                         // value[i] = yesterday + 'T23:59:59';
                         orQuery.push(q.and(
-                            q.range('createdAt', q.datatype('dateTime'), '>=', yesterday + 'T00:00:00'),
-                            q.range('createdAt', q.datatype('dateTime'), '<', today + 'T23:59:59')
+                            q.range('createdAt', q.datatype('dateTime'), '>', yesterday + 'T00:00:00'),
+                            q.range('createdAt', q.datatype('dateTime'), '<=', today + 'T23:59:59')
                         ))
                     }
-                    if (value[i] === 'older') {
+
+                    if (value[i] === 'last12Months') {
                         // value[i] = yesterday + 'T23:59:59';
                         orQuery.push(q.and(
-                            q.range('createdAt', q.datatype('dateTime'), '<', '2010-01-01T00:00:00')
+                            q.range('createdAt', q.datatype('dateTime'), '>', last12Months + 'T00:00:00'),
+                            q.range('createdAt', q.datatype('dateTime'), '<=', today + 'T23:59:59')
                         ))
+                    }
+
+                    if (value[i] === 'older') {
+                        // value[i] = yesterday + 'T23:59:59';
+                        searchCriteria.push(
+                            q.range('createdAt', q.datatype('dateTime'), '<', '2014-01-01T00:00:00')
+                        )
                     }
 
                     var year = parseInt(value[i]);
@@ -161,7 +184,13 @@ exports.search = function(req, res) {
 
                 }
 
-                searchCriteria.push(q.or(orQuery))
+                if (orQuery.length > 0) searchCriteria.push(q.or(orQuery)) 
+                break;
+            case 'range':
+                searchCriteria.push(q.and(
+                    q.range('createdAt', q.datatype('dateTime'), '>=', value.from + 'T00:00:00'),
+                    q.range('createdAt', q.datatype('dateTime'), '<', value.to + 'T23:59:59')
+                ));
                 break;
             default: // for any other selection do nothing
                 break;
@@ -193,13 +222,15 @@ exports.search = function(req, res) {
             q.facet('createdAt', q.datatype('xs:dateTime'),
                 q.bucket('today', today + 'T00:00:00', '<', today + 'T23:59:59'),
                 q.bucket('yesterday', yesterday + 'T00:00:00', '<', yesterday + 'T23:59:59'),
-                q.bucket('2010', '2010-01-01T00:00:00', '<', '2011-01-01T00:00:00'),
-                q.bucket('2011', '2011-01-01T00:00:00', '<', '2012-01-01T00:00:00'),
-                q.bucket('2012', '2012-01-01T00:00:00', '<', '2013-01-01T00:00:00'),
-                q.bucket('2013', '2013-01-01T00:00:00', '<', '2014-01-01T00:00:00'),
-                q.bucket('2014', '2014-01-01T00:00:00', '<', '2015-01-01T00:00:00'),
+                q.bucket('last12Months', last12Months + 'T00:00:00', '<', today + 'T23:59:59'),
                 q.bucket('2015', '2015-01-01T00:00:00', '<', '2016-01-01T00:00:00'),
-                q.bucket('older', null, '<', '2010-01-01T00:00:00')
+                q.bucket('2014', '2014-01-01T00:00:00', '<', '2015-01-01T00:00:00'),
+                // q.bucket('2013', '2013-01-01T00:00:00', '<', '2014-01-01T00:00:00'),
+                // q.bucket('2012', '2012-01-01T00:00:00', '<', '2013-01-01T00:00:00'),
+                // q.bucket('2011', '2011-01-01T00:00:00', '<', '2012-01-01T00:00:00'),
+                // q.bucket('2010', '2010-01-01T00:00:00', '<', '2011-01-01T00:00:00'),
+                q.bucket('older', null, '<', '2014-01-01T00:00:00')
+                // q.facetOptions('item-order','descending')
             ))
         .slice(startIndex, pageLength)
         .withOptions({
@@ -267,8 +298,8 @@ function parsePathIndexItems(searchCriteria, path, type, condition, value) {
 function stringify(d) {
     var dateStr = d.getFullYear() + '-'
     var month = d.getMonth() + 1;
-    dateStr = (month < 9) ? dateStr + '0' + month + '-' : dateStr + month + '-';
-    dateStr = (d.getDate() < 9) ? dateStr + '0' + d.getDate() : dateStr + d.getDate();
-    console.log(dateStr)
+    dateStr = (month < 10) ? dateStr + '0' + month + '-' : dateStr + month + '-';
+    dateStr = (d.getDate() < 10) ? dateStr + '0' + d.getDate() : dateStr + d.getDate();
+    // console.log(dateStr)
     return dateStr;
 }

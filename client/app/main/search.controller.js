@@ -14,8 +14,21 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.pageLength = 20;
         $scope.facetName = '';
         $scope.isPaginationEvent = false;
-        $scope.facetOrder = ['assignTo', 'submittedBy', 'category', 'status','severity','priority', 'createdAt']; //'platform'
+        $scope.facetOrder = ['assignTo', 'submittedBy', 'category', 'status', 'severity', 'priority', 'createdAt']; //'platform'
         var conditionNames = ['q', 'kind', 'status', 'severity', 'priority', 'category', 'version', 'fixedin', 'tofixin', 'assignTo', 'submittedBy', 'page', 'pageLength'];
+
+
+         // for calendar   
+        $scope.cal = {
+            open: function(when, $event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                $scope.cal.fromOpened = (when === 'from') ? true : false;
+                $scope.cal.toOpened = (when === 'to') ? true : false;
+            },
+            format: 'MM-dd-yyyy'
+        };
+
 
         $scope.init = function() {
 
@@ -26,14 +39,14 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $scope.form = angular.copy(parseQueryParams($location.search()));
                 var searchCriteria = $location.search();
                 search($location.search());
-                 console.log('highlightPageNumber');
+                console.log('highlightPageNumber');
                 // due to pagination directive bug, current page number does not get higlighted when 
-            // browser back/fwd is clicked. This is a hack to fix it.
-               $timeout(function() {
-                highlightPageNumber(searchCriteria.page);
-            }, 1000);
-                
-            /*   
+                // browser back/fwd is clicked. This is a hack to fix it.
+                $timeout(function() {
+                    highlightPageNumber(searchCriteria.page);
+                }, 1000);
+
+                /*   
             // check if the url matches users default query, if true then select checkbox to indicate
                 if (angular.equals(searchCriteria, currentUser.savedQueries.default)) {
                     $scope.userDefaultSearch = true;
@@ -46,7 +59,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $scope.form = angular.copy(parseQueryParams(currentUser.savedQueries.default));
                 var searchCriteria = convertFormSelectionsToQueryParams();
                 search(searchCriteria);
-                 $scope.userDefaultSearch = true;
+                $scope.userDefaultSearch = true;
             } else {
                 $scope.form.assignTo = currentUser.username;
                 var searchCriteria = angular.copy(convertFormSelectionsToQueryParams());
@@ -64,7 +77,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             console.log('addSelectedValueToQuery', $scope.form);
         };
 
-        $scope.addSelectedValueToQuery2 = function(facetName,selectedItem) {
+        $scope.addSelectedValueToQuery2 = function(facetName, selectedItem) {
             var index = getObjectIndex($scope.form.facets[facetName], selectedItem.name);
             $scope.form.facets[facetName][index].selected = true;
         };
@@ -203,7 +216,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             return show;
         };
 
-      $scope.showFacetDropdown2 = function(facetName) {
+        $scope.showFacetDropdown2 = function(facetName) {
             var show = false;
             if ($scope.form.facets[facetName] || !$scope.form.facets[facetName] instanceof Array) {
                 show = false;
@@ -227,14 +240,14 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             // $location.search(selection, null);
         };
 
-        function highlightPageNumber (pageNo) {
-           var elements = angular.element('#pager li');
+        function highlightPageNumber(pageNo) {
+            var elements = angular.element('#pager li');
             angular.forEach(angular.element('#pager li'), function(li) {
-                if(angular.element(li).text() === pageNo.toString()){   
-                     console.log('element',angular.element(li).text());
+                if (angular.element(li).text() === pageNo.toString()) {
+                    console.log('element', angular.element(li).text());
                     angular.element(li).addClass('active');
                 } else {
-                     angular.element(li).removeClass('active');    
+                    angular.element(li).removeClass('active');
                 }
             });
         }
@@ -242,7 +255,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
 
         $scope.$on('$locationChangeSuccess', function() {
             $scope.currentPage = $location.search().page || 1;
-            
+
             // due to pagination directive bug, current page number does not get higlighted when 
             // browser back/fwd is clicked. This is a hack to fix it.
             highlightPageNumber($scope.currentPage);
@@ -274,7 +287,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         // watch if user default query is changed
         $scope.$watch('form', function() {
             console.log('form:', $scope.form);
-           var userQuery = parseQueryParams(currentUser.savedQueries.default);
+            var userQuery = parseQueryParams(currentUser.savedQueries.default);
             if (angular.equals($scope.form, userQuery)) {
                 $scope.userDefaultSearch = true;
             } else {
@@ -383,14 +396,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             }
         }
 
-
-        function reArrangeFacets(facets) {
-            var reArrangedFacets = {};
-            reArrangedFacets.category = facets.category;
-            reArrangedFacets.assignTo = facets.assignTo;
-            $scope.facets = angular.copy(reArrangedFacets);
-        }
-
         function convertFormSelectionsToQueryParams() {
             // delete f:keys from $scope.forms before processing
             angular.forEach($scope.form, function(item, key) {
@@ -403,7 +408,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             // params.facets = {};
             angular.forEach($scope.form, function(value, key) {
                 if (!value) {
-                 //   params[key] = null;
+                    //   params[key] = null;
                 }
                 if (typeof value === 'string') {
                     params[key] = value;
@@ -428,11 +433,17 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                                 params['f:' + facetKind].push(item[i].name);
                             }
                         }
-                     // if its empty array then delete the criterion
-                    if (params['f:' + facetKind].length === 0) delete  params['f:' + facetKind];
+                        // if its empty array then delete the criterion
+                        if (params['f:' + facetKind].length === 0) delete params['f:' + facetKind];
 
                     });
                 }
+
+                if (value instanceof Object && key === 'range') {
+                    if (value.from) params.from =  stringify(new Date(value.from));
+                    if (value.to) params.to = stringify(new Date(value.to));
+                }
+
 
             });
             //    console.log('params', params);
@@ -440,9 +451,16 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             return params;
         }
 
+        function stringify(d) {
+            var dateStr = d.getFullYear() + '-';
+            var month = d.getMonth() + 1;
+            dateStr = (month < 10) ? dateStr + '0' + month + '-' : dateStr + month + '-';
+            dateStr = (d.getDate() < 10) ? dateStr + '0' + d.getDate() : dateStr + d.getDate();
+            return dateStr;
+        }
 
         function parseQueryParams(queryParams) {
-          //  $scope.form = angular.copy(defaultSearchCriteria);
+            //  $scope.form = angular.copy(defaultSearchCriteria);
             var form = angular.copy(defaultSearchCriteria);
             angular.forEach(queryParams, function(value, key) {
                 switch (key) {
@@ -463,12 +481,18 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                             });
                         }
                         break;
+                    case 'from':
+                    case 'to':
+                        if(value){
+                            form.range[key] = value;
+                        }
+                    break;    
                     default:
                         form[key] = value;
                         break;
                 }
             });
-        return form;
+            return form;
             //  console.log('after parsing', $scope.form);
         }
 

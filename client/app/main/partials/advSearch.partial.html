@@ -108,10 +108,28 @@
                 </select>
                  <a ng-href="" title="clear" ng-click="clearSelection('tofixin')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
+
+         
+        <div class="form-group" >
+             <label class="sm">From</label>
+             <br>
+           <!--  <p class="input-group"> -->
+              <input type="text" class="form-control input-xsm" datepicker-popup="{{cal.format}}" ng-model="form.range.from" is-open="cal.fromOpened" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('from', $event)" close-text="Close"/>
+              <!-- </p> -->
+              </div>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="form-group">
+               <label class="sm">To</label>
+               <br>
+             <!--  <p class="input-group"> -->
+              <input type="text" class="form-control input-xsm" datepicker-popup="{{cal.format}}" ng-model="form.range.to" is-open="cal.toOpened" min-date="minDate" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('to', $event)" close-text="Close" />
+          <!--   </p> -->
+        </div>     
+           
         </div>
    <div class="col-md-2">
             <div class="form-group">
-			<button class="btn btn-sm btn-danger" ng-click="clear()">Clear</button><br><br>
+            <a ng-href="" ng-click="clear()" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-refresh"></span> Clear</a>
             </div>
         </div>
 

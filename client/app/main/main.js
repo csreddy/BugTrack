@@ -123,7 +123,8 @@ angular.module('fullstackApp')
                                 category: null,
                                 version: null,
                                 fixedin: null,
-                                tofixin: null
+                                tofixin: null,
+                                range:{}
                             };
                             return criteria;
                         }

@@ -1,6 +1,6 @@
 <div class="box box-solid box-primary">
     <div class="box-header">
-        <h3 class="box-title">Filter</h3>
+        <h3 class="box-title"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter</h3>
         <div class="box-tools pull-right">
             <button class="btn btn-primary btn-xs" data-widget="collapse" tooltip="minimize" id="facetClose" ng-click="hideFacetBox()">
                 <i class="fa fa-minus"></i>
@@ -29,7 +29,7 @@
 
         <ul ng-repeat="facetName in facetOrder" class="list-unstyled" name="{{facetName}}" ng-hide="form.facets[facetName].length === 0">
             <div class="form-group">
-            <li><label>{{ facetName | uppercase }} ({{form.facets[facetName].length}})</label>
+            <li><label>{{ facetName | capitalize }} ({{form.facets[facetName].length}})</label>
 
                 <ul ng-repeat="f in form.facets[facetName]" class="list-unstyled" ng-show="!showFacetDropdown2(facetName)">
                     <!-- facets as checkboxes -->
@@ -37,7 +37,7 @@
                         <label class="xsm-label">
                             <input type="checkbox" name="{{facetName}}" ng-model="f.selected" value="{{f}}">
                         </label>
-                        <span class="badge bg-olive pull-right">{{f.count}}</span> {{f.name}}
+                        <span class="badge bg-olive pull-right">{{f.count}}</span> {{f.name | capitalize}}
                     </li>
                 </ul>
             </li>
