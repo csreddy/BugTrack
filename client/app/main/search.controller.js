@@ -78,8 +78,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 // if the user has default query then set the $scope.form to user's default query
                 // otherwise initialize with app default query
                 console.log('user has default search....');
-                $scope.form = parseQueryParams(currentUser.savedQueries.default);
-                search(convertFormSelectionsToQueryParams());
+                $location.search(currentUser.savedQueries.default);
+                $scope.form = parseQueryParams($location.search());
                 $scope.userDefaultSearch = true;
             } else {
                 $scope.form.assignTo = currentUser.username;
@@ -190,8 +190,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.saveUserDefaultSearch = function() {
             if (!$scope.form.userDefaultSearch) {
                 console.log('saved......');
-                var searchCriteria = angular.copy(convertFormSelectionsToQueryParams());
-                User.saveDefaultQuery(searchCriteria).success(function() {
+                //var searchCriteria = angular.copy(convertFormSelectionsToQueryParams());
+                User.saveDefaultQuery($location.search()).success(function() {
                     $scope.userDefaultSearch = true;
                     Flash.addAlert('success', 'Default search query saved');
                 }).error(function(error) {
@@ -294,22 +294,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             console.log('form:', $scope.form);
         });
 
-        // watch if user default query is changed
-        // start watching after the page is loaded
-        $timeout(function() {
-            $scope.$watch('form', function() {
-                //console.log('form:', $scope.form);
-                var userQuery = parseQueryParams(currentUser.savedQueries.default);
-                if (angular.equals($scope.form, userQuery)) {
-                    $scope.userDefaultSearch = true;
-                } else {
-                    console.log('user default search changed');
-                    $scope.userDefaultSearch = false;
-                }
-
-            }, true);
-        }, 500);
-
 
 
 
@@ -319,7 +303,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             return Search.search(searchCriteria).success(function(response) {
                 processResult(response);
                 console.log('RESULT', response[0].report);
-                //  console.log('search', response);
+                //console.log('search', response);
             }).error(function(error) {
                 Flash.addAlert('danger', error.body.errorResponse.message);
             });
@@ -499,7 +483,16 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                         }
                         break;
                     default:
-                         form[key] = value;
+                        if (key.indexOf('f:') > -1) {
+                            key = key.replace(/f:/, '');
+                            form.facets[key] = [];
+                            angular.forEach(value, function(item) {
+                                form.facets[key].push({name: item, value: item, selected: true })
+                            });
+                        } else{
+                         form[key] = value;   
+                     }
+                      
                         break;
                 }
             });
