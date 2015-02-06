@@ -20,7 +20,8 @@
     "request": "^2.37.0",
     "socket.io": "~0.9.16",
     "socketio-jwt": "^2.0.2",
-    "static-favicon": "~1.0.1"
+    "static-favicon": "~1.0.1",
+    "marklogic": "marklogic/node-client-api#develop"
   },
   "devDependencies": {
     "connect": "^3.0.2",
@@ -90,8 +91,7 @@
     "should": "~3.3.1",
     "supertest": "~0.11.0",
     "time-grunt": "~0.3.1",
-    "multer": "^0.1.6",
-    "marklogic": "marklogic/node-client-api#develop"
+    "multer": "^0.1.6"
   },
   "engines": {
     "node": ">=0.10.0"

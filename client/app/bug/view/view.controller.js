@@ -16,7 +16,6 @@ angular.module('bug.controllers')
         var id = $location.path().replace('/bug/', '');
 
 
-
         Bug.get(id).then(function(response) {
                 console.log(response.data);
 
@@ -78,7 +77,6 @@ angular.module('bug.controllers')
                 $scope.files.push(args.file);
             });
         });
-
 
         // update bug 
         $scope.updateBug = function() {

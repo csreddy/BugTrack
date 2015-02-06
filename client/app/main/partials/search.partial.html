@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <a ng-href="" id="advSrch" ng-click="!showAdvancedSearch()">&nbsp;<small>Advanced Search</small></a> &nbsp;&nbsp;&nbsp;
                         <label class="xsm-label">
-                            <input type="checkbox" name="userDefaultSearch" ng-model="userDefaultSearch" ng-value="form.userDefaultSearch" ng-click="saveUserDefaultSearch()"> Make this my default search
+                            <input type="checkbox" name="userDefaultSearch" ng-model="userDefaultSearch" ng-value="form.userDefaultSearch" ng-change="saveUserDefaultSearch()"> Make this my default search
                         </label>
                     </div>
 

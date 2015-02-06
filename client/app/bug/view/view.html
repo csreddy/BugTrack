@@ -228,23 +228,22 @@
                 <legend>
                     <h5><span class="glyphicon glyphicon-pencil"></span>  Sample Query</span></h5>
                 </legend>
-    <pre class="code">{{bug.samplequery}}</pre>
-             <!--    <p>{{bug.samplequery}}</p -->
+                <div hljs source="bug.samplequery"></div>
 
             </div>
             <div ng-show="bug.sampledata">
                 <legend>
                     <h5><span class="glyphicon glyphicon-align-justify"></span>  Sample Data</span></h5>
                 </legend>
-                {{bug.sampledata}}
+                <div hljs source="bug.sampledata"></div>
             </div>
             <div ng-show="bug.stacktrace">
                 <legend>
                     <h5><span class="glyphicon glyphicon-file"></span>  Error Stacktrace</span></h5>
                 </legend>
                 <div style="overflow: auto; max-height:500px;">
-                  <!--   <pre>{{bug.stacktrace}}</pre> -->
-                    <p class="gist line-number">{{bug.stacktrace}}</p>
+                    <div hljs source="bug.stacktrace"></div>
+                    <!-- <p class="gist">{{bug.stacktrace}}</p> -->
                 </div>
             </div>
         </div>
