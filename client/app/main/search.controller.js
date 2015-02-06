@@ -83,7 +83,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $scope.userDefaultSearch = true;
             } else {
                 $scope.form.assignTo = currentUser.username;
-                search(convertFormSelectionsToQueryParams);
+                search(convertFormSelectionsToQueryParams());
             }
         };
 

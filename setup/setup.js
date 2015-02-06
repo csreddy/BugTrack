@@ -34,7 +34,8 @@ fs.readFile('users.json', 'utf8', function(err, data) {
         users[i] = {
             uri: uri,
             contentType: 'application/json',
-            content: users[i]
+            content: users[i],
+            collections: ['users']
         };
     }
 
