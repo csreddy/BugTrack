@@ -3208,3 +3208,6 @@ Component: timeline
     margin-top: 100px;
 }
     
+.alert {
+    max-width: 50%;
+}

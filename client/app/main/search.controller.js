@@ -1,6 +1,6 @@
 'user strict';
 
-var app = angular.module('search.controllers', ['checklist-model']);
+var app = angular.module('search.controllers', []);
 
 app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout',
     function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout) {

@@ -30,7 +30,7 @@ function htmlEncode(html){
 var total = 0;
 var json =  require("/MarkLogic/json/json.xqy");
 var users = fn.doc("root/support/bugtracking/users.xml").next().value.root
-var uris = cts.uriMatch("root/support/bugtracking/bug30000.xml", ["limit=1"])
+var uris = cts.uriMatch("root/support/bugtracking/bug32197.xml")
      for (uri of uris){
        try{
       var xml =  fn.doc(uri).next().value.root 
@@ -115,6 +115,13 @@ try{
         newbug.processors =  bug.environment['number-cpus'] || ''
         newbug.note = bug.environment.note || ''
         newbug.subscribers = []
+          if(newbug.submittedBy.username !== newbug.assignTo.username){
+             newbug.subscribers.push(newbug.submittedBy)
+          } else {
+            newbug.subscribers.push(newbug.submittedBy);
+            newbug.subscribers.push(newbug.assignTo);
+             }
+          
           for (var sub of xml.xpath("/*:bug-holder/*:bug/*:subscribers/*:subscriber")){
             if(sub.xpath("./text()").toString()){
                newbug.subscribers.push(getUserInfo(sub.xpath("./text()")))
@@ -220,3 +227,6 @@ if(newbug.kind.toString() === 'Bug'){
         newbug.id + ' : ' + e.toString()
       }      
 }
+
+
+

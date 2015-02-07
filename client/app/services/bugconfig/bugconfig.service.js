@@ -5,11 +5,15 @@ var app = angular.module('config.services', []);
 app.factory('Config', ['$http',
     function($http) {
         // Service logic
-        function update(payload) {
+        function update(category, items, operation) {
             return $http({
                 method: 'PUT',
                 url: '/api/configure/update',
-                data: payload
+                data: {
+                    category: category,
+                    items: items,
+                    operation: operation
+                }
             });
         }
 
@@ -35,8 +39,8 @@ app.factory('Config', ['$http',
                 insert(payload);
             },
 
-            update: function(payload) {
-                return update(payload);
+            update: function(category, item, operation) {
+                return update(category, item, operation);
             },
             get: function() {
                 return get();

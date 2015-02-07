@@ -1260,6 +1260,7 @@
         "email": "cameron.stillion@marklogic.com",
         "name": "Cameron  Stillion"
     }],
+    "groups": [],
     "severity": [
         "P1 - Catastrophic",
         "P2 - Critical",

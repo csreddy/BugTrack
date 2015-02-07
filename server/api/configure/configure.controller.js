@@ -15,7 +15,7 @@ var _ = require('lodash');
 exports.index = function(req, res) {
     db.documents.read('config.json').result(function(document) {
         if (document[0]) {
-          //  console.log(Object.keys(document[0].content));
+            //  console.log(Object.keys(document[0].content));
             res.status(200).json(document[0].content)
         } else {
             res.status(404).json({
@@ -32,27 +32,32 @@ exports.index = function(req, res) {
 
 // update configure options
 exports.update = function(req, res) {
-   // console.log('config req.body', req.body);
-    var keys = ['users', 'severity', 'status', 'version', 'kind', 'platform', 'tofixin', 'category', 'priority', 'publishStatus', 'customerImpact'];
-    // check that content is not corrupted before update
-    if (Object.keys(req.body).length === keys.length) {
-        db.documents.write([{
+    // console.log('config req.body', req.body);
+    if (req.body.items) {
+        var operations = [];
+        if (req.body.operation === 'add') {
+            //  you can add only one item at once, items array will always contains only one item, hence always accesses first item 
+            operations = [p.insert("array-node('" + req.body.category + "')", 'last-child', req.body.items[0])]
+        }
+        if (req.body.operation === 'delete') {
+            for (var i = 0; i < req.body.items.length; i++) {
+                operations.push(p.remove(req.body.category + "[. eq '" + req.body.items[i] + "']"))
+            }
+        }
+
+        db.documents.patch({
             uri: uri,
-            contentType: 'application/json',
-            content: req.body
-        }]).result(function(response) {
+            operations: operations
+        }).result(function() {
             res.status(200).json({
-                message: 'config.json updated'
+                message: 'config updated'
             })
         }, function(error) {
-            res.status(500).json({
-                message: 'config.json update failed.\n' + error
-            })
-        });
-
+            res.status(error.statusCode).json(error)
+        })
     } else {
-        res.status(404).json({
-            message: 'BAD REQUEST: Either form content was empty or submitted form was corrupt'
+        res.status(304).json({
+            message: 'cannot update config with empty value'
         });
     }
 
