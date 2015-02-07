@@ -31,7 +31,7 @@ app.service('Flash', function($rootScope, $timeout) {
         // disappear flashes after 30 sec
         $timeout(function() {
             $rootScope.alerts.pop();
-        }, 30000);
+        }, 3000);
     };
 
     // close alert

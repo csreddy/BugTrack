@@ -46,7 +46,9 @@
 
     <!-- Add your site or application content here -->
 	 <alert ng-repeat="alert in alerts" type="{{alert.type}}" ng-bind-html="alert.msg" close="closeAlert($index)"></alert>
-    <div ng-view="" id="{{pageName}}" class="container-fluid"></div>
+          <b>watch count: {{watch}}</b>
+    <div ng-view="" id="{{pageName}}" class="container-fluid">
+    </div>
     <div class="site-footer">Powered by MarkLogic</div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

@@ -55,7 +55,7 @@ app.config(function($routeProvider, $locationProvider) {
             return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             }) : '';
-        }
+        };
     }).run(function($rootScope, ngProgress) {
         $rootScope.$on('$routeChangeStart', function() {
             ngProgress.height('3px');
@@ -67,4 +67,20 @@ app.config(function($routeProvider, $locationProvider) {
             ngProgress.complete();
         });
         // Do the same with $routeChangeError
-    });
+    }).factory('getWatchCount', function() {
+        return function getWatchCount() {
+            var total = 0;
+            angular.element('.ng-scope').each(function() {
+
+                var scope = $(this).scope();
+                total += scope.$$watchers ? scope.$$watchers.length : 0;
+            });
+            return (total);
+        };
+    }).run(['$rootScope', 'getWatchCount',
+        function($rootScope, getWatchCount) {
+            $rootScope.$watch(function() {
+                $rootScope.watch = getWatchCount();
+            });
+        }
+    ])
