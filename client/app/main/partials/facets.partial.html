@@ -9,12 +9,12 @@
     </div>
     <div class="box-body">
 
-        <ul ng-repeat="facet in facetOrder" class="list-unstyled" name="{{facet.type}}" ng-hide="form.facets[facet.type].length === 0">
+        <ul ng-repeat="facet in facetOrder" class="list-unstyled" name="{{facet.type}}" ng-if="form.facets[facet.type].length > 0">
             <div class="form-group">
                 <li>
                     <label>{{ facet.title }} ({{form.facets[facet.type].length}})</label>
 
-                    <ul ng-repeat="f in form.facets[facet.type]" class="list-unstyled" ng-show="!showFacetDropdown2(facet.type)">
+                    <ul ng-repeat="f in form.facets[facet.type]" class="list-unstyled" ng-if="!showFacetDropdown2(facet.type)">
                         <!-- facets as checkboxes -->
                         <li style="margin-left: 10px">
                             <label class="xsm-label">
@@ -26,7 +26,7 @@
                 </li>
 
                 <!-- facets as dropdown -->
-                <select name="{{facet.type}}" id="" ng-model="f" ng-options="(f.name + ' ' + '(' + f.count+')') for f in form.facets[facet.type]" ng-show="showFacetDropdown2(facet.type)" ng-change="addSelectedValueToQuery2(facet.type, f)" class="form-control input-sm">
+                <select name="{{facet.type}}" id="" ng-model="f" ng-options="(f.name + ' ' + '(' + f.count+')') for f in form.facets[facet.type]" ng-if="showFacetDropdown2(facet.type)" ng-change="addSelectedValueToQuery2(facet.type, f)" class="form-control input-sm">
                     <option value="">-- Select --</option>
                 </select>
 
