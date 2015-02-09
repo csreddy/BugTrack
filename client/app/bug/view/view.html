@@ -215,7 +215,7 @@
                     </div>
                     <div class="box-body">
                         <ul ng-repeat="file in bug.attachments track by $index" class="list-inline" style="display: inline-block;">
-                            <li><a ng-href="http://bugtrack.marklogic.com/download.xqy?file={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a></li>
+                            <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a></li>
                         
                         
                         </ul>

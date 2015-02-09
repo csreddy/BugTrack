@@ -30,13 +30,15 @@ exports.index = function(req, res) {
 
 };
 
+
 // update configure options
 exports.update = function(req, res) {
     // console.log('config req.body', req.body);
     if (req.body.items) {
         var operations = [];
         if (req.body.operation === 'add') {
-            //  you can add only one item at once, items array will always contains only one item, hence always accesses first item 
+            //  you can add only one item at once, items array will always contains only one item, 
+            //  hence always accesses first item 
             operations = [p.insert("array-node('" + req.body.category + "')", 'last-child', req.body.items[0])]
         }
         if (req.body.operation === 'delete') {
