@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('config.controllers', [])
-    .controller('configCtrl', ['$scope', 'Config', 'Flash',
-        function($scope, Config, Flash) {
+angular.module('config.controllers', ['ivh.treeview'])
+    .controller('configCtrl', ['$scope', 'Config', 'Flash', 'ivhTreeviewMgr',
+        function($scope, Config, Flash, ivhTreeviewMgr) {
             $scope.config = {};
             Config.get().then(function(response) {
                 $scope.config = response.data;
@@ -47,24 +47,48 @@ angular.module('config.controllers', [])
 
             $scope.updateConfigOptions = function(category, items, operation) {
                 Config.update(category, items, operation).then(function() {
-                   var msg = (operation === 'add')? 'Added ' + items + ' to ' + category: 'Removed ' + items.join(',') + ' from ' + category ;
+                    var msg = (operation === 'add') ? 'Added ' + items + ' to ' + category : 'Removed ' + items.join(',') + ' from ' + category;
                     Flash.addAlert('success', msg);
                     $scope.newItem = {}; // clear input field after success
                     console.log($scope);
                     Config.get().then(function(response) {
-                        $scope.config = response.data;
+                        $scope.config[category] = response.data[category];
                     });
                 }, function(error) {
-                    Flash.addAlert('danger', error.statusText +': Oops! Could not update config. Please try again.' );
-                  //  Flash.addAlert('danger', JSON.stringify(error));
+                    Flash.addAlert('danger', error.statusText + ': Oops! Could not update config. Please try again.');
+                    //  Flash.addAlert('danger', JSON.stringify(error));
                 });
 
             };
 
 
-            $scope.addUserToGroup = function() {
+            $scope.addUsersToGroup = function(group, users) {
+                Config.addUsersToGroup(group, users).then(function() {
+                    Config.get().then(function(response) {
+                        $scope.config = response.data;
+                    });
 
+                }, function(error) {
+                    Flash.addAlert('danger', error.statusText + ': Oops! Could not add user(s) to the group. Please try again.');
+                });
             };
+
+            $scope.selectUsers = function(node, isSelected, tree) {
+                //Config.removeUsersFromGroup(node, isSelected);
+                console.log(node);
+                console.log('parent', tree);
+                //var parent = 
+            };
+
+            $scope.expand = function() {
+                ivhTreeviewMgr.expandRecursive($scope.config.groups);
+            };
+
+            $scope.collapse = function() {
+                ivhTreeviewMgr.collapseRecursive($scope.config.groups);
+            };
+
+
 
         }
     ]);

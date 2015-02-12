@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <legend>Configure Bug Field Options</legend>
     <div class="row">
-       <!-- Users -->
+        <!-- Users -->
         <!-- <div class="col-md-3">
             <form class="form-horizontal">
                 <fieldset>
@@ -45,7 +45,8 @@
 
                     <!-- Select Multiple -->
                     <div class="form-group">
-                     <input type="search" ng-model="searchKind" class="form-control" placeholder="search kind"> <br>
+                        <input type="search" ng-model="searchKind" class="form-control" placeholder="search kind">
+                        <br>
                         <select ng-model="kind" id="kind" name="kind" class="form-control" multiple="multiple">
                             <option ng-repeat="kind in config.kind.sort() | filter:searchKind" value="{{kind}}">{{kind}}</option>
                         </select>
@@ -76,7 +77,8 @@
 
                     <!-- Select Multiple -->
                     <div class="form-group">
-                     <input type="search" ng-model="searchPlatform" class="form-control" placeholder="search platform"> <br>
+                        <input type="search" ng-model="searchPlatform" class="form-control" placeholder="search platform">
+                        <br>
                         <select ng-model="platform" id="platform" name="platform" class="form-control" multiple="multiple">
                             <option ng-repeat="platform in config.platform | filter:searchPlatform" value="{{platform}}">{{platform}}</option>
                         </select>
@@ -106,7 +108,8 @@
 
                     <!-- Select Multiple -->
                     <div class="form-group">
-                     <input type="search" ng-model="searchStatus" class="form-control" placeholder="search status"> <br>
+                        <input type="search" ng-model="searchStatus" class="form-control" placeholder="search status">
+                        <br>
                         <select ng-model="status" id="status" name="status" class="form-control" multiple="multiple">
                             <option ng-repeat="status in config.status.sort() | filter:searchStatus" value="{{status}}">{{status}}</option>
                         </select>
@@ -135,7 +138,8 @@
 
                     <!-- Select Multiple -->
                     <div class="form-group">
-                     <input type="search" ng-model="searchCategory" class="form-control" placeholder="search category"> <br>
+                        <input type="search" ng-model="searchCategory" class="form-control" placeholder="search category">
+                        <br>
                         <select ng-model="category" id="category" name="category" class="form-control" multiple="multiple">
                             <option ng-repeat="category in config.category.sort() | filter:searchCategory" value="{{category}}">{{category}}</option>
                         </select>
@@ -165,7 +169,8 @@
 
                     <!-- Select Multiple -->
                     <div class="form-group">
-                     <input type="search" ng-model="searchVersion" class="form-control" placeholder="search user"> <br>
+                        <input type="search" ng-model="searchVersion" class="form-control" placeholder="search user">
+                        <br>
                         <select ng-model="version" id="version" name="version" class="form-control" multiple="multiple">
                             <option ng-repeat="version in config.version.sort() | filter:searchVersion" value="{{version}}">{{version}}</option>
                         </select>
@@ -195,7 +200,8 @@
 
                     <!-- Select Multiple -->
                     <div class="form-group">
-                     <input type="search" ng-model="searchTofixin" class="form-control" placeholder="search tofixin"> <br>
+                        <input type="search" ng-model="searchTofixin" class="form-control" placeholder="search tofixin">
+                        <br>
                         <select ng-model="tofixins" id="tofixins" name="tofixins" class="form-control" multiple="multiple">
                             <option ng-repeat="tofixin in config.tofixin.sort() | filter:searchTofixin" value="{{tofixin}}">{{tofixin}}</option>
                         </select>
@@ -224,7 +230,8 @@
 
                     <!-- Select Multiple -->
                     <div class="form-group">
-                     <input type="search" ng-model="searchSeverity" class="form-control" placeholder="search severity"> <br>
+                        <input type="search" ng-model="searchSeverity" class="form-control" placeholder="search severity">
+                        <br>
                         <select ng-model="severity" id="severity" name="severity" class="form-control" multiple="multiple">
                             <option ng-repeat="severity in config.severity.sort() | filter:searchSeverity" value="{{severity}}">{{severity}}</option>
                         </select>
@@ -253,35 +260,52 @@
                 <!-- Form Name -->
                 <label>Users ({{config.users.length}})</label>
 
-                
-                
+
+
                 <div class="form-group">
-                   <input type="search" ng-model="searchUser" class="form-control" placeholder="search user"> <br>
+                    <input type="search" ng-model="searchUser" class="form-control" placeholder="search user/group">
+                    <br>
                     <select ng-model="users" id="users" name="users" class="form-control " multiple="multiple" style="height: 500px;">
-                        <option ng-repeat="user in config.users | filter:searchUser" value="{{user}}">
-                            {{user.name}} - {{user.email}} </option>
+                        <optgroup label="Groups">
+                            <option ng-repeat="group in config.groups | filter:searchUser" value="{{group.value}}">{{group.value}}</option>
+                        </optgroup>
+                        <optgroup label="Users">
+                            <option ng-repeat="user in config.users | filter:searchUser" value="{{user}}">
+                                {{user.name}} - {{user.email}} </option>
+                        </optgroup>
                     </select>
                 </div>
 
                 <!-- Select input -->
                 <div class="form-group">
-                    <select name="groupslist" id="groupslist" class="form-control">
-                        <option value="{{group}}" ng-model="groupname" ng-repeat="group in config.groups">{{group}}</option>
-                    </select>
+                    <select name="grouplist" id="grouplist" ng-model="groupname" ng-options="group.value for group in config.groups" class="form-control"></select>
                     <span class="help-block">help</span>
                 </div>
 
                 <!-- Button (Double) -->
                 <div class="form-group">
-                    <button ng-click="addUserToGroup(newuser, user, userusername)" id="adduser" name="adduser" class="btn btn-sm btn-success">Add</button>
-                    <button ng-click="removeUserFromGroup(users)" id="deleteuser" name="deleteuser" class="btn btn-sm btn-danger">Delete</button>
+                    <button ng-click="addUsersToGroup(groupname.value, users)" id="adduser" name="adduser" class="btn btn-sm btn-success">Add</button>
+                    <button ng-click="removeUsersFromGroup(groupname.value, users)" id="deleteuser" name="deleteuser" class="btn btn-sm btn-danger">Delete</button>
                 </div>
 
             </fieldset>
         </form>
     </div>
 
-    <div class="col-md-2 col-md-offset-1" style="margin-top: 10px;">
+    <div class="col-md-3 col-md-offset-1" style="margin-top: 10px;">
+        <label>Groups ({{config.groups.length}})</label>
+        <input type="search" ng-model="searchGroupTree" class="form-control" placeholder="search group">
+        <small><a href="" ng-click="expand()" class="pull-left" style="padding-top:5px;"><span class="glyphicon glyphicon-expand" aria-hidden="true"></span>Expand</a></small>
+        <small><a href="" ng-click="collapse()" class="pull-right" style="padding-top:5px;"><span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>Collapse</a></small>
+        <br>
+        <div ivh-treeview="config.groups" ivh-treeview-filter="searchGroupTree" ivh-treeview-expand-to-depth="1" ivh-treeview-validate="false" ivh-treeview-change-handler="selectUsers"></div>
+        <div class="form-group">
+            <button ng-click="removeUsersFromGroup(node, isSelected, tree)" id="deletegroup" name="deletegroup" class="btn btn-sm btn-danger">Delete</button>
+
+        </div>
+    </div>
+
+    <div class="col-md-1 col-md-offset-1" style="margin-top: 10px;">
         <form class="form-horizontal">
             <fieldset>
                 <!-- Form Name -->
@@ -289,10 +313,11 @@
 
                 <!-- Select Multiple -->
                 <div class="form-group">
-                 <input type="search" ng-model="searchGroup" class="form-control" placeholder="search group"> 
-                 <span class="fornav"><i class="icon-search"></i></span><br>
+                    <input type="search" ng-model="searchGroup" class="form-control" placeholder="search group">
+                    <span class="fornav"><i class="icon-search"></i></span>
+                    <br>
                     <select ng-model="group" id="group" name="group" class="form-control" multiple="multiple">
-                        <option ng-repeat="group in config.groups.sort() | filter:searchGroup" value="{{group}}">{{group}}</option>
+                        <option ng-repeat="group in config.groups | filter:searchGroup" value="{{group}}">{{group.value}}</option>
                     </select>
                 </div>
 
@@ -311,4 +336,5 @@
             </fieldset>
         </form>
     </div>
+
 </div>
