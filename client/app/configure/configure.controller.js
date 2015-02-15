@@ -1,14 +1,17 @@
 'use strict';
 
-angular.module('config.controllers', [])
-    .controller('configCtrl', ['$scope', 'Config', 'Flash',
-        function($scope, Config, Flash) {
+angular.module('config.controllers', ['ivh.treeview'])
+    .controller('configCtrl', ['$scope', 'Config', 'Flash', 'ivhTreeviewMgr',
+        function($scope, Config, Flash, ivhTreeviewMgr) {
             $scope.config = {};
             Config.get().then(function(response) {
                 $scope.config = response.data;
             });
 
             $scope.test = 'in config page';
+            $scope.users = {
+                selectedChildren: []
+            };
 
             //  bugConfig.insertConfig(config);
 
@@ -47,24 +50,105 @@ angular.module('config.controllers', [])
 
             $scope.updateConfigOptions = function(category, items, operation) {
                 Config.update(category, items, operation).then(function() {
-                   var msg = (operation === 'add')? 'Added ' + items + ' to ' + category: 'Removed ' + items.join(',') + ' from ' + category ;
+                    var msg = (operation === 'add') ? 'Added ' + items + ' to ' + category : 'Removed ' + items.join(',') + ' from ' + category;
+                    // if (category === 'groups' && operation === 'delete') {
+                    //     msg = 'Removed group';
+                    // }
+
                     Flash.addAlert('success', msg);
                     $scope.newItem = {}; // clear input field after success
                     console.log($scope);
                     Config.get().then(function(response) {
-                        $scope.config = response.data;
+                        $scope.config[category] = response.data[category];
                     });
                 }, function(error) {
-                    Flash.addAlert('danger', error.statusText +': Oops! Could not update config. Please try again.' );
-                  //  Flash.addAlert('danger', JSON.stringify(error));
+                    Flash.addAlert('danger', error.statusText + ': Oops! Could not update config. Please try again.');
+                    //  Flash.addAlert('danger', JSON.stringify(error));
                 });
 
             };
 
 
-            $scope.addUserToGroup = function() {
+            $scope.addUsersToGroup = function(group, users) {
+                Config.addUsersToGroup(group, users).then(function() {
+                    Config.get().then(function(response) {
+                        $scope.config = response.data;
+                    });
 
+                }, function(error) {
+                    Flash.addAlert('danger', error.statusText + ': Oops! Could not add user(s) to the group. Please try again.');
+                });
             };
 
+            // get all selected items from the groups tree
+            function getSelectedChildren2(tree, selectedItems,ancestors) {
+                var selectedChildren = selectedItems || [];
+                for (var i = 0; i < tree.length; i++) {
+                    tree[i].ancestors =  ancestors || [];
+                    // console.log('tree[i]:', tree[i]);
+                    if (tree[i].children && tree[i].children.length > 0) {
+                        
+                        if(tree[i].parent) tree[i].ancestors.push(tree[i].parent);
+                        if ( tree[i].selected) {
+                            tree[i].ancestors.pop();
+                            selectedChildren.push(tree[i]);
+                        } else{
+                            getSelectedChildren2(tree[i].children, selectedChildren, tree[i].ancestors);
+                        }
+                    } else {
+                        if (tree[i].selected) {
+                            selectedChildren.push(tree[i]);
+                        }
+                    }
+                }
+                return selectedChildren;
+            }
+
+            function getSelectedChildren(tree) {
+                var selectedItems = [];
+                for (var i = 0; i < tree.length; i++) {
+                    for (var j = 0; j < tree[i].children.length; j++) {
+                        if (tree[i].children[j].selected) {
+                            selectedItems.push(tree[i].children[j]);
+                        }
+                    }
+                }
+                return selectedItems;
+            }
+
+
+            $scope.selectUsers = function(node, isSelected, tree) {
+                $scope.users.selectedChildren = getSelectedChildren(tree);
+                // console.log('$scope.user.selected', $scope.users.selectedChildren);
+            };
+
+            $scope.selectUsers2 = function(node, isSelected, tree) {
+                $scope.users.selectedChildren = getSelectedChildren2(tree);
+                console.log('$scope.user.selected', $scope.users.selectedChildren);
+            };
+
+
+            $scope.removeUsersFromGroup = function() {
+                Config.removeUsersFromGroup($scope.users.selectedChildren).then(function() {
+                    Flash.addAlert('success', 'Users removed successfully');
+                    Config.get().then(function(response) {
+                        $scope.config.groups = response.data.groups;
+                    });
+                }, function(error) {
+                    Flash.addAlert('danger', error.statusText);
+                });
+            };
+
+            $scope.expand = function() {
+                ivhTreeviewMgr.expandRecursive($scope.config.groups);
+            };
+
+            $scope.collapse = function() {
+                ivhTreeviewMgr.collapseRecursive($scope.config.groups);
+            };
+
+            $scope.$watchCollection('grouplist', function() {
+                console.log('grouplist', $scope.grouplist2);
+            });
         }
     ]);

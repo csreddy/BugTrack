@@ -32,6 +32,29 @@ app.factory('Config', ['$http',
             });
         }
 
+        function addUsersToGroup(group, users) {
+            return $http({
+                method: 'PUT',
+                url: '/api/configure/adduserstogroup',
+                data: {
+                    group: group,
+                    users: users
+                }
+            });
+        }
+
+        function removeUsersFromGroup(users) {
+            console.log('users', users);
+            return $http({
+                method: 'PUT',
+                url: '/api/configure/removeusersfromgroup',
+                data: {
+                    users: users
+                }
+            });
+        }
+
+
         // Public API here
         return {
             insert: function(payload) {
@@ -44,6 +67,12 @@ app.factory('Config', ['$http',
             },
             get: function() {
                 return get();
+            },
+            addUsersToGroup: function(group, users) {
+                return addUsersToGroup(group, users);
+            },
+            removeUsersFromGroup: function(group, users, tree) {
+                return removeUsersFromGroup(group, users, tree);
             }
         };
     }

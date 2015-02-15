@@ -1,0 +1,14 @@
+#groupsTree {
+    min-height: 170px;
+    max-height: 600px;
+    overflow: auto;
+}
+div#kind, div#platform, div#status, div#category, div#tofixin, div#version, div#severity, div#group, div#users, div#grouptree {
+    margin: 0px 50px 25px 50px;
+}
+span > small[count='0'] {
+    display: none;
+}
+ul {
+    list-style-type: none;
+}

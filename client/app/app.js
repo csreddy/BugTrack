@@ -44,43 +44,62 @@ app.config(function($routeProvider, $locationProvider) {
             redirectTo: '/home'
         });
     $locationProvider.html5Mode(true).hashPrefix('');
-}).config(function(hljsServiceProvider) {
+})
+// for code highlight
+.config(function(hljsServiceProvider) {
     hljsServiceProvider.setOptions({
         // replace tab with 4 spaces
         tabReplace: '    '
     });
 })
-    .filter('capitalize', function() {
-        return function(input, all) {
-            return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
-                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            }) : '';
-        };
-    }).run(function($rootScope, ngProgress) {
-        $rootScope.$on('$routeChangeStart', function() {
-            ngProgress.height('3px');
-            ngProgress.color('green');
-            ngProgress.start();
-        });
+// for groups tree ui
+.config(function(ivhTreeviewOptionsProvider) {
+    ivhTreeviewOptionsProvider.set({
+        defaultSelectedState: false,
+        validate: true,
+        // Twisties can be images, custom html, or plain text
+        twistieCollapsedTpl: '<span class="glyphicon glyphicon-plus-sign"></span>',
+        twistieExpandedTpl: '<span class="glyphicon glyphicon-minus-sign"></span>',
+       // twistieLeafTpl: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+        twistieLeafTpl: ''
+    });
+})
+// filter for capitalize
+.filter('capitalize', function() {
+    return function(input, all) {
+        return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        }) : '';
+    };
+})
+// progress bar
+.run(function($rootScope, ngProgress) {
+    $rootScope.$on('$routeChangeStart', function() {
+        ngProgress.height('3px');
+        ngProgress.color('green');
+        ngProgress.start();
+    });
 
-        $rootScope.$on('$routeChangeSuccess', function() {
-            ngProgress.complete();
-        });
-        // Do the same with $routeChangeError
-    }).factory('getWatchCount', function() {
-        return function getWatchCount() {
-            var total = 0;
-            angular.element('.ng-scope').each(function() {
+    $rootScope.$on('$routeChangeSuccess', function() {
+        ngProgress.complete();
+    });
+    // Do the same with $routeChangeError
+})
+// for debugging app performance
+.factory('getWatchCount', function() {
+    return function getWatchCount() {
+        var total = 0;
+        angular.element('.ng-scope').each(function() {
 
-                var scope = $(this).scope();
-                total += scope.$$watchers ? scope.$$watchers.length : 0;
-            });
-            return (total);
-        };
-    }).run(['$rootScope', 'getWatchCount',
-        function($rootScope, getWatchCount) {
-            $rootScope.$watch(function() {
-                $rootScope.watch = getWatchCount();
-            });
-        }
-    ])
+            var scope = $(this).scope();
+            total += scope.$$watchers ? scope.$$watchers.length : 0;
+        });
+        return (total);
+    };
+}).run(['$rootScope', 'getWatchCount',
+    function($rootScope, getWatchCount) {
+        $rootScope.$watch(function() {
+            $rootScope.watch = getWatchCount();
+        });
+    }
+]);
