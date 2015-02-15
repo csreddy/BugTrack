@@ -12,6 +12,8 @@ module.exports = function(app) {
     app.use('/auth', require('./auth'))
     app.use('/api/configure', require('./api/configure'));
     app.use('/api/configure/update', require('./api/configure'));
+    app.use('/api/configure/adduserstogroup', require('./api/configure'));
+    app.use('/api/configure/removeusersfromgroup', require('./api/configure'));
     app.use('/api/user/', require('./api/user'));
     app.use('/api/user/:username', require('./api/user'));
     app.use('/api/user/savedefaultquery', require('./api/user'));

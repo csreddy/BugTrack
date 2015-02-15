@@ -60,7 +60,8 @@ app.config(function($routeProvider, $locationProvider) {
         // Twisties can be images, custom html, or plain text
         twistieCollapsedTpl: '<span class="glyphicon glyphicon-plus-sign"></span>',
         twistieExpandedTpl: '<span class="glyphicon glyphicon-minus-sign"></span>',
-        twistieLeafTpl: '&#9679;'
+       // twistieLeafTpl: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+        twistieLeafTpl: ''
     });
 })
 // filter for capitalize

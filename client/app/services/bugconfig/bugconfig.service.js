@@ -43,10 +43,15 @@ app.factory('Config', ['$http',
             });
         }
 
-        function removeUsersFromGroup(group, users) {
-            console.log('group', group);
+        function removeUsersFromGroup(users) {
             console.log('users', users);
-            
+            return $http({
+                method: 'PUT',
+                url: '/api/configure/removeusersfromgroup',
+                data: {
+                    users: users
+                }
+            });
         }
 
 

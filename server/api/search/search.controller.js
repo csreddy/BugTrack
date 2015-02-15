@@ -175,7 +175,7 @@ exports.search = function(req, res) {
                         ))
                     }
 
-                    if (value[i] === 'last12Months') {
+                    if (value[i] === 'last 12 Months') {
                         // value[i] = yesterday + 'T23:59:59';
                         orQuery.push(q.and(
                             q.range('createdAt', q.datatype('dateTime'), '>', last12Months + 'T00:00:00'),

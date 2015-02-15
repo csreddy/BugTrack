@@ -9,6 +9,9 @@ angular.module('config.controllers', ['ivh.treeview'])
             });
 
             $scope.test = 'in config page';
+            $scope.users = {
+                selectedChildren: []
+            };
 
             //  bugConfig.insertConfig(config);
 
@@ -48,6 +51,10 @@ angular.module('config.controllers', ['ivh.treeview'])
             $scope.updateConfigOptions = function(category, items, operation) {
                 Config.update(category, items, operation).then(function() {
                     var msg = (operation === 'add') ? 'Added ' + items + ' to ' + category : 'Removed ' + items.join(',') + ' from ' + category;
+                    // if (category === 'groups' && operation === 'delete') {
+                    //     msg = 'Removed group';
+                    // }
+
                     Flash.addAlert('success', msg);
                     $scope.newItem = {}; // clear input field after success
                     console.log($scope);
@@ -73,11 +80,63 @@ angular.module('config.controllers', ['ivh.treeview'])
                 });
             };
 
+            // get all selected items from the groups tree
+            function getSelectedChildren2(tree, selectedItems,ancestors) {
+                var selectedChildren = selectedItems || [];
+                for (var i = 0; i < tree.length; i++) {
+                    tree[i].ancestors =  ancestors || [];
+                    // console.log('tree[i]:', tree[i]);
+                    if (tree[i].children && tree[i].children.length > 0) {
+                        
+                        if(tree[i].parent) tree[i].ancestors.push(tree[i].parent);
+                        if ( tree[i].selected) {
+                            tree[i].ancestors.pop();
+                            selectedChildren.push(tree[i]);
+                        } else{
+                            getSelectedChildren2(tree[i].children, selectedChildren, tree[i].ancestors);
+                        }
+                    } else {
+                        if (tree[i].selected) {
+                            selectedChildren.push(tree[i]);
+                        }
+                    }
+                }
+                return selectedChildren;
+            }
+
+            function getSelectedChildren(tree) {
+                var selectedItems = [];
+                for (var i = 0; i < tree.length; i++) {
+                    for (var j = 0; j < tree[i].children.length; j++) {
+                        if (tree[i].children[j].selected) {
+                            selectedItems.push(tree[i].children[j]);
+                        }
+                    }
+                }
+                return selectedItems;
+            }
+
+
             $scope.selectUsers = function(node, isSelected, tree) {
-                //Config.removeUsersFromGroup(node, isSelected);
-                console.log(node);
-                console.log('parent', tree);
-                //var parent = 
+                $scope.users.selectedChildren = getSelectedChildren(tree);
+                // console.log('$scope.user.selected', $scope.users.selectedChildren);
+            };
+
+            $scope.selectUsers2 = function(node, isSelected, tree) {
+                $scope.users.selectedChildren = getSelectedChildren2(tree);
+                console.log('$scope.user.selected', $scope.users.selectedChildren);
+            };
+
+
+            $scope.removeUsersFromGroup = function() {
+                Config.removeUsersFromGroup($scope.users.selectedChildren).then(function() {
+                    Flash.addAlert('success', 'Users removed successfully');
+                    Config.get().then(function(response) {
+                        $scope.config.groups = response.data.groups;
+                    });
+                }, function(error) {
+                    Flash.addAlert('danger', error.statusText);
+                });
             };
 
             $scope.expand = function() {
@@ -88,7 +147,8 @@ angular.module('config.controllers', ['ivh.treeview'])
                 ivhTreeviewMgr.collapseRecursive($scope.config.groups);
             };
 
-
-
+            $scope.$watchCollection('grouplist', function() {
+                console.log('grouplist', $scope.grouplist2);
+            });
         }
     ]);
