@@ -28,3 +28,6 @@ Stack: MarkLogic 8.0-nightly + NodeJs + AngularJS (1.3)
 + Create, edit and delete search queries
 + Dashboard for analytics
 Many more…
+
+
+ '{{ctrl.label(node)}}<small count="{{getChildren().length}}">&nbsp;<b>({{getChildren().length}})</b></small>',

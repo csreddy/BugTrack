@@ -58,7 +58,7 @@
                 <label class="sm">Assigned to</label>
                 <br>
                 <select name="assignTo" id="assignTo" ng-model="form.assignTo" ng-options="user.username as user.name for user in config.users" class="form-control input-xsm">
-                    <option value="null"></option>
+                    <option value="" selected></option>
                 </select>
                 <a ng-href="" title="clear" ng-click="clearSelection('assignTo')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
@@ -66,7 +66,7 @@
                 <label class="sm">Category</label>
                 <br>
                 <select name="category" id="category" ng-model="form.category" ng-options="category for category in config.category" class="form-control input-xsm" ng-selected="form.category === category">
-                    <option value="null"></option>
+                    <option value="" selected></option>
                 </select>
                  <a ng-href="" title="clear" ng-click="clearSelection('category')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
@@ -74,7 +74,7 @@
                 <label class="sm">Fixed in</label>
                 <br>
                  <select name="fixedin" id="fixedin" ng-model="form.fixedin" ng-options="version for version in config.version" class="form-control input-xsm" ng-selected="form.fixedin === version">
-                    <option value="null"></option>
+                    <option value="" selected></option>
                 </select>
                  <a ng-href="" title="clear" ng-click="clearSelection('fixedin')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
@@ -82,7 +82,7 @@
                 <label class="sm">Submitted By</label>
                 <br>
                  <select name="submittedBy" id="submittedBy" ng-model="form.submittedBy" ng-options="user.username as user.name for user in config.users" class="form-control input-xsm">
-                    <option value="null"></option>
+                    <option value="" selected></option>
                 </select>
                  <a ng-href="" title="clear" ng-click="clearSelection('submittedBy')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
@@ -90,7 +90,7 @@
                 <label class="sm">Version</label>
                 <br>
                 <select name="version" id="version" ng-model="form.version" ng-options="version for version in config.version" class="form-control input-xsm" ng-selected="form.version === version">
-                    <option value="null"></option>
+                    <option value="" selected></option>
                 </select>
                  <a ng-href="" title="clear" ng-click="clearSelection('version')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
@@ -98,7 +98,7 @@
                 <label class="sm">To Fix in</label>
                 <br>
                 <select name="tofixin" id="tofixin" ng-model="form.tofixin" ng-options="tofixin for tofixin in config.tofixin" class="form-control input-xsm" ng-selected="form.tofixin === tofixin">
-                    <option value="null"></option>
+                    <option value="" selected></option>
                 </select>
                  <a ng-href="" title="clear" ng-click="clearSelection('tofixin')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>

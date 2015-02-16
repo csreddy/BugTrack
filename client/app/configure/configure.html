@@ -320,7 +320,7 @@
             <small><a href="" ng-click="collapse()" class="pull-right" style="padding-top:5px;"><span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>Collapse</a></small>
         </div>
         <br>
-            <div ivh-treeview="config.groups" ivh-treeview-filter="searchGroupTree" ivh-treeview-expand-to-depth="1" ivh-treeview-validate="false" ivh-treeview-change-handler="selectUsers2"></div>
+            <div ivh-treeview="config.groups" id="grouptree" ivh-treeview-filter="searchGroupTree" ivh-treeview-expand-to-depth="1" ivh-treeview-validate="false" ivh-treeview-change-handler="selectUsers2"></div>
         <br>
         <div class="form-group">
             <button ng-click="removeUsersFromGroup(node, isSelected, tree)" id="deletegroup" name="deletegroup" class="btn btn-sm btn-danger">Remove Group Members</button>

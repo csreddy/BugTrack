@@ -8,7 +8,14 @@
         </div>
     </div>
     <div class="box-body">
-
+    <label for="groups">Groups</label>
+    <select name="criteria" id="criteria" ng-model="groupCriteria" ng-options="groupCriteria.label for groupCriteria in config.groupCriteria" class="form-control" ng-change="setGroupCriteria(groupCriteria)"><option value="" selected>select criterion</option></select>
+    <div class="form-group" id="facet_grouplist">
+   
+     <div ivh-treeview="config.groups" ivh-treeview-filter="searchGroupTree" ivh-treeview-expand-to-depth="0" ivh-treeview-validate="false" ivh-treeview-change-handler="selectGroups"></div>
+   
+    </div>
+     
         <ul ng-repeat="facet in facetOrder" class="list-unstyled" name="{{facet.type}}" ng-if="form.facets[facet.type].length > 0">
             <div class="form-group">
                 <li>
@@ -23,7 +30,7 @@
                             <span class="badge bg-olive pull-right">{{f.count}}</span> {{f.name | capitalize}}
                         </li>
                     </ul>
-                </li>
+                </li> 
 
                 <!-- facets as dropdown -->
                 <select name="{{facet.type}}" id="" ng-model="f" ng-options="(f.name + ' ' + '(' + f.count+')') for f in form.facets[facet.type]" ng-if="showFacetDropdown2(facet.type)" ng-change="addSelectedValueToQuery2(facet.type, f)" class="form-control input-sm">

@@ -57,6 +57,7 @@ angular.module('fullstackApp')
                         }
                     ],
                     defaultSearchCriteria: [
+
                         function() {
                             var criteria = {
                                 kind: [{
@@ -124,7 +125,8 @@ angular.module('fullstackApp')
                                 version: null,
                                 fixedin: null,
                                 tofixin: null,
-                                range:{}
+                                range: {},
+                                selectedUsers: []
                             };
                             return criteria;
                         }

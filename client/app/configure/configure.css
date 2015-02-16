@@ -9,6 +9,6 @@ div#kind, div#platform, div#status, div#category, div#tofixin, div#version, div#
 span > small[count='0'] {
     display: none;
 }
-ul {
+ul.ivh-treeview {
     list-style-type: none;
 }

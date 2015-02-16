@@ -210,6 +210,10 @@ exports.search = function(req, res) {
                     q.range('createdAt', q.datatype('dateTime'), '<', value.to + 'T23:59:59')
                 ));
                 break;
+             case 'groupUsers':
+                console.log('groupCriteria', criteria.groupCriteria);
+                parsePathIndexItems(searchCriteria, '/'+ criteria.groupCriteria +'/username', 'string', '=', value)
+             break;   
             default: // for any other selection do nothing
                 break;
         }

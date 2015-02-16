@@ -1,10 +1,10 @@
 'user strict';
 
-var app = angular.module('search.controllers', []);
+var app = angular.module('search.controllers', ['ivh.treeview']);
 
-app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout',
-    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout) {
-      
+app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr',
+    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr) {
+
         $scope.home = "Home page";
         $scope.form = angular.copy(defaultSearchCriteria) || {};
         $scope.bugs = [];
@@ -131,6 +131,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             console.log('clear fields');
             $scope.isPaginationEvent = false;
             $scope.form = angular.copy(defaultSearchCriteria);
+            ivhTreeviewMgr.deselectAll(config.groups);
             return Search.search($location.search({})).success(function(response) {
                 processResult(response);
             }).error(function(error) {
@@ -295,6 +296,39 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             console.log('form:', $scope.form);
         });
 
+        $scope.setGroupCriteria = function(groupCriteria) {
+            $scope.form.groupCriteria = groupCriteria.value;
+        };
+
+        $scope.selectGroups = function(node, isSelected, tree) {
+            $scope.form.groupUsers = getSelectedUsers(tree);
+            console.log('$scope.form.group.groupUsers', $scope.form.groupUsers);
+        };
+
+        // get all selected items from the groups tree
+        function getSelectedUsers(tree, selectedItems, ancestors) {
+            var selectedUsers = selectedItems || [];
+            for (var i = 0; i < tree.length; i++) {
+                tree[i].ancestors = ancestors || [];
+                // console.log('tree[i]:', tree[i]);
+                if (tree[i].children && tree[i].children.length > 0) {
+
+                    if (tree[i].parent) tree[i].ancestors.push(tree[i].parent);
+                    if (tree[i].selected) tree[i].ancestors.pop();
+                    getSelectedUsers(tree[i].children, selectedUsers, tree[i].ancestors);
+                } else {
+                    if (tree[i].selected) {
+                        selectedUsers.push([tree[i]]);
+                    }
+                }
+            }
+            selectedUsers = _.flattenDeep(selectedUsers);
+            selectedUsers = _.map(selectedUsers, function(user) {
+                return user.value.username;
+            });
+            return selectedUsers;
+        }
+
 
 
 
@@ -440,10 +474,10 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     if (value.to) params.to = stringify(new Date(value.to));
                 }
 
-
             });
             //    console.log('params', params);
             // delete params.facets;
+            console.log('params:', params);
             return params;
         }
 
@@ -488,12 +522,16 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                             key = key.replace(/f:/, '');
                             form.facets[key] = [];
                             angular.forEach(value, function(item) {
-                                form.facets[key].push({name: item, value: item, selected: true })
+                                form.facets[key].push({
+                                    name: item,
+                                    value: item,
+                                    selected: true
+                                })
                             });
-                        } else{
-                         form[key] = value;   
-                     }
-                      
+                        } else {
+                            form[key] = value;
+                        }
+
                         break;
                 }
             });
