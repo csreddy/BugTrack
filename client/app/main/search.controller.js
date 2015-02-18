@@ -1,17 +1,16 @@
 'user strict';
 
-var app = angular.module('search.controllers', ['ivh.treeview']);
+var app = angular.module('search.controllers', ['ivh.treeview', 'ngProgress']);
 
-app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr', 'Config',
-    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr, Config) {
+app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr', 'Config', 'ngProgress',
+    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr, Config, ngProgress) {
 
-        $scope.home = "Home page";
+        $scope.home = 'Home page';
         $scope.form = angular.copy(defaultSearchCriteria) || {};
         $scope.bugs = [];
         $scope.currentPage = parseInt($location.search().page) || 1;
         $scope.config = angular.copy(config);
-       // $scope.form.groups = $scope.config.groups;
-          $scope.form.groups = angular.copy($scope.preSelectedGroups) || angular.copy(config.groups);
+        $scope.form.groups = angular.copy($scope.preSelectedGroups) || angular.copy(config.groups);
         $scope.userDefaultSearch = false;
         $scope.nvfe = false;
         $scope.pageLength = 20;
@@ -57,7 +56,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             format: 'MM-dd-yyyy'
         };
 
-
+        // initial funtion which executes when the page is loaded
         $scope.init = function() {
             // if url contains search params then get that search results
             if (Object.keys($location.search()).length > 0) {
@@ -134,13 +133,16 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             console.log('clear fields');
             $scope.isPaginationEvent = false;
             $scope.form = angular.copy(defaultSearchCriteria);
-             $scope.preSelectedGroups = config.groups;
-             $scope.form.groups =  $scope.preSelectedGroups;
+            $scope.preSelectedGroups = config.groups;
+            $scope.form.groups = $scope.preSelectedGroups;
             ivhTreeviewMgr.deselectAll($scope.form.groups);
+            ngProgress.start();
             return Search.search($location.search({})).success(function(response) {
                 processResult(response);
+                ngProgress.complete();
             }).error(function(error) {
                 Flash.addAlert('danger', error.body.errorResponse.message);
+                ngProgress.complete();
             });
         };
 
@@ -168,12 +170,15 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             console.log($location.search());
             $location.search('page', pageNo);
             $scope.isPaginationEvent = true;
+            ngProgress.start();
             return Search.search($location.search()).success(function(searchResult) {
                 $scope.bugList = searchResult.slice(1);
                 $scope.searchMetrics = searchResult[0].metrics;
                 $scope.totalItems = searchResult[0].total;
+                ngProgress.complete();
             }).error(function(error) {
                 Flash.addAlert('danger', error.body.errorResponse.message);
+                ngProgress.complete();
             });
         };
 
@@ -183,6 +188,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             $scope.bugs = orderBy($scope.bugs, predicate, reverse);
         };
 
+        // watch the buglist collection returned from the search response
+        // and get details of each bug for rendering in table the UI
         $scope.$watchCollection('bugList', function() {
             getBugDetails();
         }, true);
@@ -193,7 +200,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         }, true);
 
 
-
+        // save users default search qyery, performs this search whenever user reloads the page
+        //  with no search params in the url
         $scope.saveUserDefaultSearch = function() {
             if (!$scope.form.userDefaultSearch) {
                 console.log('saved......');
@@ -208,7 +216,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             }
         };
 
-
+        // selecting checkbo nvfe  selects n/v/f/e checkboxes
         $scope.selectNVFE = function(select) {
             console.log('select n/v/f/e');
             $scope.form.status.forEach(function(item) {
@@ -219,7 +227,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             $scope.addSelectedValueToQuery();
         };
 
-
+        // boolean to show/hide facet dropdown
         $scope.showFacetDropdown = function(facetKind, facetType) {
             var show = false;
             if (facetType.length === 0) {
@@ -238,6 +246,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             return show;
         };
 
+        // another variation to show/hide facet dropdown
         $scope.showFacetDropdown2 = function(facetName) {
             var show = false;
             if ($scope.form.facets[facetName] || !$scope.form.facets[facetName] instanceof Array) {
@@ -256,12 +265,14 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             return show;
         };
 
+        // clear dropdown selection
         $scope.clearSelection = function(selection) {
             console.log('selection', selection);
             $scope.form[selection] = null;
             // $location.search(selection, null);
         };
 
+        // highlight page number in the pagination button list
         function highlightPageNumber(pageNo) {
             angular.forEach(angular.element('#pager li'), function(li) {
                 if (angular.element(li).text() === pageNo.toString()) {
@@ -272,7 +283,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             });
         }
 
-
+        // watch for location changes and extract search pararms from the url and perform search
         $scope.$on('$locationChangeSuccess', function() {
             console.log($location.url());
             if ($location.url().indexOf('/home') > -1) {
@@ -299,19 +310,23 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             console.log('form:', $scope.form);
         });
 
+        // set group criteria
         $scope.setGroupCriteria = function(groupCriteria) {
             $scope.form.groupCriteria = groupCriteria.value;
         };
 
+        // collect all selected users/groups from groups tree
         $scope.selectGroups = function(node, isSelected, tree) {
             $scope.form.groupUsers = getSelectedUsers(tree);
-            console.log('$scope.form.group.groupUsers', $scope.form.groupUsers);
+            // console.log('$scope.form.group.groupUsers', $scope.form.groupUsers);
         };
 
+        // expand groups tree
         $scope.expand = function() {
             Config.expandGroups($scope.form.groups);
         };
 
+        // collapse groups treee
         $scope.collapse = function() {
             Config.collapseGroups($scope.form.groups);
         };
@@ -324,6 +339,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
          *
          *********************************************/
 
+        // search with passed search critera
         function search(searchCriteria) {
             if (searchCriteria.groupUsers) {
                 if (searchCriteria.groupUsers.length === 0) {
@@ -331,13 +347,16 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     delete searchCriteria.groupUsers;
                 }
             }
+            ngProgress.start();
             return Search.search(searchCriteria).success(function(response) {
                 processResult(response);
                 console.log('RESULT', response[0].report);
                 console.log('scope.form.groups', $scope.form.groups);
                 //console.log('search', response);
+                ngProgress.complete();
             }).error(function(error) {
                 Flash.addAlert('danger', error.body.errorResponse.message);
+                ngProgress.complete();
             });
         }
 
@@ -351,7 +370,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             } else {
                 $scope.form.groups = angular.copy(config.groups);
             }
-           // $scope.form.groups = angular.copy($scope.preSelectedGroups) || angular.copy(config.groups);
+            // $scope.form.groups = angular.copy($scope.preSelectedGroups) || angular.copy(config.groups);
             renameEmptyFacets($scope.form.facets);
             preselectFacetCheckBox($scope.form.facets);
             $scope.searchMetrics = searchResult[0].metrics;
@@ -480,8 +499,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 }
 
                 if (value instanceof Array && key === 'groups') {
-                      params.groupUsers = getSelectedUsers(value);
-                      console.log('groups', value);
+                    params.groupUsers = getSelectedUsers(value);
+                    console.log('groups', value);
                 }
             });
             console.log('params', params);
@@ -544,10 +563,10 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                                 });
                             });
                         });
-                         
+
                         // copy this for pre-selecting group selection when url contaning
                         // group selections is reloaded
-                         $scope.preSelectedGroups  =  angular.copy(form.groups);
+                        $scope.preSelectedGroups = angular.copy(form.groups);
                         break;
                     default:
                         if (key.indexOf('f:') > -1) {
@@ -567,7 +586,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                         break;
                 }
             });
-           
+
             return form;
             //  console.log('after parsing', $scope.form);
         }
