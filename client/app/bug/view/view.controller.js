@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('bug.controllers')
-    .controller('viewCtrl', ['$scope', '$location', 'Bug', 'config', 'Flash', 'currentUser', 'modalService', '$q',
+    .controller('viewCtrl', ['$scope', '$location', 'Bug', 'config', 'Flash', 'currentUser', 'modalService', '$q', 'ngProgress',
 
-    function($scope, $location, Bug, config, Flash, currentUser, modalService, $q) {
+    function($scope, $location, Bug, config, Flash, currentUser, modalService, $q, ngProgress) {
 
         $scope.changes = {};
         $scope.updatedBy = currentUser || {};
@@ -80,6 +80,8 @@ angular.module('bug.controllers')
 
         // update bug 
         $scope.updateBug = function() {
+            ngProgress.start();
+            
             updateBug.status = $scope.status || $scope.bug.status;
             updateBug.assignTo = ($scope.assignTo === undefined) ? $scope.bug.assignTo : JSON.parse($scope.assignTo);
             updateBug.category = $scope.category || $scope.bug.category;
@@ -122,6 +124,7 @@ angular.module('bug.controllers')
                 }, function(error) {
                     Flash.addAlert('danger', error.message);
                 });
+                ngProgress.complete();
             }).error(function(error) {
                 Flash.addAlert('danger', error.message);
             });
@@ -166,13 +169,16 @@ angular.module('bug.controllers')
                     Bug.clone($scope.bug, clone.bug).then();
                 })];
 
+                ngProgress.start();
                 $q.all(cloneOps).then(function() {
+                        ngProgress.complete();
                         console.log('bug details ', clone.bug);
                         //  console.log('----', $scope.updatedBy);
                         $location.path('/bug/' + newBugId);
                         Flash.addAlert('success', '<a href=\'/#/bug/' + clone.bug.id + '\'>' + 'Bug-' + clone.bug.id + '</a>' + ' was successfully cloned');
                     },
                     function(error) {
+                        ngProgress.complete();
                         console.log(error);
                         Flash.addAlert('danger', error.data.message);
                     }

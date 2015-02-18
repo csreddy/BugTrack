@@ -1,20 +1,26 @@
 'use strict';
 
 var flash = require('connect-flash');
+var bunyan = require('bunyan');
+var log = bunyan.createLogger({
+    name: 'Search',
+    serializers: {
+        req: bunyan.stdSerializers.req
+    }
+});
 var marklogic = require('marklogic');
 var conn = require('../../config/db-config.js').connection;
 var db = marklogic.createDatabaseClient(conn);
 var q = marklogic.queryBuilder;
-var maxLimit = 99999999;
 var _ = require('lodash');
 
 // search endpoint
 exports.search = function(req, res) {
-    console.log('Called /api/search....');
+    log.info('Called /api/search....');
     res.locals.errors = req.flash();
     var result = {};
     var criteria = req.body;
-    console.log('criteria:', criteria);
+   // log.info('criteria:', criteria);
     var page = parseInt(req.body.page) || 1;
     var pageLength = parseInt(req.body.pageLength) || 20;
     var startIndex = (page - 1) * pageLength + 1;
@@ -89,7 +95,7 @@ exports.search = function(req, res) {
 
 
 
-    console.log('after formatting', criteria);
+    log.info('after formatting', criteria);
 
     for (var key in criteria) {
         var orQuery = [];
@@ -150,14 +156,8 @@ exports.search = function(req, res) {
                 parsePathIndexItems(searchCriteria, '/submittedBy/username', 'string', '=', value)
                 break;
             case 'createdAt':
-            console.log('got into createdAt');
-               console.log('yesterday: ',yesterday);
+               log.info('yesterday: ',yesterday);
                 orQuery = [];
-               if (typeof value === 'string' ) {
-
-               }
-
-
                 for (var i = 0; i < value.length; i++) {
                     if (value[i] === 'today') {
                         // value[i] = today + 'T23:59:59';
@@ -167,7 +167,7 @@ exports.search = function(req, res) {
                         ))
                     }
                     if (value[i] === 'yesterday') {
-                        console.log('got into yesterday');
+                        log.info('got into yesterday');
                         // value[i] = yesterday + 'T23:59:59';
                         orQuery.push(q.and(
                             q.range('createdAt', q.datatype('dateTime'), '>', yesterday + 'T00:00:00'),
@@ -211,7 +211,7 @@ exports.search = function(req, res) {
                 ));
                 break;
              case 'groupUsers':
-                console.log('groupCriteria', criteria.groupCriteria);
+                log.info('groupCriteria', criteria.groupCriteria);
                 parsePathIndexItems(searchCriteria, '/'+ criteria.groupCriteria +'/username', 'string', '=', value)
              break;   
             default: // for any other selection do nothing
@@ -260,9 +260,9 @@ exports.search = function(req, res) {
             view: 'facets'
         })
     ).result(function(response) {
-        // console.log('\n------------------------------------------');
-        // console.log('searchCriteria', JSON.stringify(searchCriteria));
-        // console.log('/search', req.body);
+        // log.info('\n------------------------------------------');
+        // log.info('searchCriteria', JSON.stringify(searchCriteria));
+        // log.info('/search', req.body);
         result = response;
         res.status(200).json(result);
     }, function(error) {
@@ -319,6 +319,6 @@ function stringify(d) {
     var month = d.getMonth() + 1;
     dateStr = (month < 10) ? dateStr + '0' + month + '-' : dateStr + month + '-';
     dateStr = (d.getDate() < 10) ? dateStr + '0' + d.getDate() : dateStr + d.getDate();
-    // console.log(dateStr)
+    // log.info(dateStr)
     return dateStr;
 }

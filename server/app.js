@@ -22,6 +22,15 @@ var conn = require('./config/db-config.js').connection;
 var db = marklogic.createDatabaseClient(conn);
 var fs = require('fs');
 
+// for logger
+var bunyan = require('bunyan');
+var log = bunyan.createLogger({
+    name: 'BugTrack',
+    serializers: {
+        req: bunyan.stdSerializers.req
+    }
+});
+
 
 // Setup server
 var app = express();
@@ -46,7 +55,8 @@ app.use(session({
     rolling: true
 }));
 
-console.log('starting BugTrack.......');
+
+log.info('starting BugTrack.......');
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -55,7 +65,7 @@ app.use(flash());
 
 // authentication
 passport.serializeUser(function(user, done) {
-    console.log('serializeUser:', user);
+    log.info('serializeUser:', user);
     done(null, user.username);
 });
 
@@ -85,7 +95,7 @@ app.use('/v1/', function(req, res, next) {
     var url = 'http://localhost:8003/v1' + req.url;
     switch (req.method) {
         case 'GET':
-            req.pipe(request(url,  {
+            req.pipe(request(url, {
                 user: 'admin',
                 pass: 'admin',
                 sendImmediately: false
@@ -96,13 +106,13 @@ app.use('/v1/', function(req, res, next) {
             })).pipe(res);
             break;
         default:
-            console.log('nothing to do');
+            log.info('nothing to do');
     }
 });
 
 
 app.get('/userinfo', function(req, res) {
-   // console.log('===================== req.user', req.user);
+    // log.info('===================== req.user', req.user);
     var uri = '/users/' + req.user + '.json';
     if (req.user) {
         db.documents.read(uri).result(function(document) {
@@ -132,7 +142,7 @@ require('./routes')(app);
 
 // Start server
 server.listen(config.port, config.ip, function() {
-    console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+    log.info('Express server listening on %d, in %s mode', config.port, app.get('env'));
 });
 
 // Expose app

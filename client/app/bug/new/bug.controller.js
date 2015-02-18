@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('bug.controllers', ['angularFileUpload', 'textAngular'])
-    .controller('newBugCtrl', ['$scope', '$location', 'Bug', 'Config', 'Flash', 'User', 'config', 'currentUser', 'bugId',
+angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgress'])
+    .controller('newBugCtrl', ['$scope', '$location', 'Bug', 'Config', 'Flash', 'User', 'config', 'currentUser', 'bugId', 'ngProgress',
 
-        function($scope, $location, Bug, Config, Flash, User, config, currentUser, bugId) {
+        function($scope, $location, Bug, Config, Flash, User, config, currentUser, bugId, ngProgress) {
             // accordion interactions   
             $scope.status = {
                 isFirstOpen: true,
@@ -221,10 +221,13 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular'])
                 bug.tickets = $scope.tickets || [];
                 bug.changeHistory = [];
 
+                ngProgress.start();
                 Bug.create(bug, $scope.files).success(function() {
-                    $location.path('/');
+                    ngProgress.complete();
+                    $location.path('/bug/'+bug.id);
                     Flash.addAlert('success', '<a href=\'/bug/' + bug.id + '\'>' + 'Bug-' + bug.id + '</a>' + ' was successfully created');
                 }).error(function(response) {
+                    ngProgress.complete();
                     Flash.addAlert('danger', response);
                 });
             }
