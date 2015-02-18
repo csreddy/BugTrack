@@ -309,11 +309,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         };
 
         $scope.expand = function() {
-            Config.expandGroups($scope.config.groups);
+            Config.expandGroups($scope.form.groups);
         };
 
         $scope.collapse = function() {
-            Config.collapseGroups($scope.config.groups);
+            Config.collapseGroups($scope.form.groups);
         };
 
         /*********************************************
