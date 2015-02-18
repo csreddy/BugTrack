@@ -57,6 +57,7 @@ a:hover.tooltips span {
 #facet_grouplist{
     min-height: 10px;
     max-height: 300px;
+    min-width: 10em;
     overflow: auto;
 }
 

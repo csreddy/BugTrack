@@ -126,7 +126,8 @@ angular.module('fullstackApp')
                                 fixedin: null,
                                 tofixin: null,
                                 range: {},
-                                selectedUsers: []
+                                selectedUsers: [],
+                                groupCriteria: 'submittedBy'
                             };
                             return criteria;
                         }

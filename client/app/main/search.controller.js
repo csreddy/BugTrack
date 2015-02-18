@@ -2,19 +2,22 @@
 
 var app = angular.module('search.controllers', ['ivh.treeview']);
 
-app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr',
-    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr) {
+app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr', 'Config',
+    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr, Config) {
 
         $scope.home = "Home page";
         $scope.form = angular.copy(defaultSearchCriteria) || {};
         $scope.bugs = [];
         $scope.currentPage = parseInt($location.search().page) || 1;
         $scope.config = angular.copy(config);
+       // $scope.form.groups = $scope.config.groups;
+          $scope.form.groups = $scope.preSelectedGroups || config.groups;
         $scope.userDefaultSearch = false;
         $scope.nvfe = false;
         $scope.pageLength = 20;
         $scope.facetName = '';
         $scope.isPaginationEvent = false;
+        $scope.groupCriteria = 'submittedBy';
         $scope.facetOrder = [{
             type: 'assignTo',
             title: 'Assigned To'
@@ -56,7 +59,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
 
 
         $scope.init = function() {
-
             // if url contains search params then get that search results
             if (Object.keys($location.search()).length > 0) {
                 console.log('init()', $location.search());
@@ -68,7 +70,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $timeout(function() {
                     highlightPageNumber($location.search().page);
                 }, 1000);
-
+                $scope.form.groups = $scope.preSelectedGroups || config.groups;
+                console.log('preSelectedGroups', $scope.preSelectedGroups);
                 /*   
             // check if the url matches users default query, if true then select checkbox to indicate
                 if (angular.equals(searchCriteria, currentUser.savedQueries.default)) {
@@ -287,9 +290,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                         $scope.form = parseQueryParams($location.search());
 
                     }
-
                     search($location.search());
-
                 }
                 $scope.isPaginationEvent = false;
             }
@@ -305,39 +306,27 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             console.log('$scope.form.group.groupUsers', $scope.form.groupUsers);
         };
 
-        // get all selected items from the groups tree
-        function getSelectedUsers(tree, selectedItems, ancestors) {
-            var selectedUsers = selectedItems || [];
-            for (var i = 0; i < tree.length; i++) {
-                tree[i].ancestors = ancestors || [];
-                // console.log('tree[i]:', tree[i]);
-                if (tree[i].children && tree[i].children.length > 0) {
+        $scope.expand = function() {
+            Config.expandGroups($scope.config.groups);
+        };
 
-                    if (tree[i].parent) tree[i].ancestors.push(tree[i].parent);
-                    if (tree[i].selected) tree[i].ancestors.pop();
-                    getSelectedUsers(tree[i].children, selectedUsers, tree[i].ancestors);
-                } else {
-                    if (tree[i].selected) {
-                        selectedUsers.push([tree[i]]);
-                    }
-                }
-            }
-            selectedUsers = _.flattenDeep(selectedUsers);
-            selectedUsers = _.map(selectedUsers, function(user) {
-                return user.value.username;
-            });
-            return selectedUsers;
-        }
+        $scope.collapse = function() {
+            Config.collapseGroups($scope.config.groups);
+        };
 
-
-
-
-        /* private functions  */
+        /*********************************************
+         *
+         *
+         *   private functions
+         *
+         *
+         *********************************************/
 
         function search(searchCriteria) {
             return Search.search(searchCriteria).success(function(response) {
                 processResult(response);
                 console.log('RESULT', response[0].report);
+                console.log('scope.form.groups', $scope.form.groups);
                 //console.log('search', response);
             }).error(function(error) {
                 Flash.addAlert('danger', error.body.errorResponse.message);
@@ -347,6 +336,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         function processResult(searchResult) {
             $scope.bugList = searchResult.slice(1);
             $scope.form.facets = angular.copy(processFacets(searchResult[0].facets));
+            $scope.form.groups = $scope.preSelectedGroups || config.groups;
             renameEmptyFacets($scope.form.facets);
             preselectFacetCheckBox($scope.form.facets);
             $scope.searchMetrics = searchResult[0].metrics;
@@ -381,7 +371,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                             if (facet.name === queryParams[key][i] || facet.name === queryParams[key]) {
                                 facet.selected = true;
                             }
-                        });
+                        })
                     }
                 }
             });
@@ -477,6 +467,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             });
             //    console.log('params', params);
             // delete params.facets;
+            // 
+            delete params.groups;
             console.log('params:', params);
             return params;
         }
@@ -489,8 +481,10 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             return dateStr;
         }
 
+        // parses query params and converts them into equivalent form selections
         function parseQueryParams(queryParams) {
             //  $scope.form = angular.copy(defaultSearchCriteria);
+            defaultSearchCriteria.groups = config.groups;
             var form = angular.copy(defaultSearchCriteria);
             angular.forEach(queryParams, function(value, key) {
                 switch (key) {
@@ -517,6 +511,22 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                             form.range[key] = value;
                         }
                         break;
+                    case 'groupUsers':
+                        angular.forEach(value, function(user) {
+                            console.log('found groups');
+                            angular.forEach(form.groups, function(group) {
+                                angular.forEach(group.children, function(u, i) {
+                                    if (u.value.username === user) {
+                                        ivhTreeviewMgr.select(form.groups, group.children[i]);
+                                    }
+                                });
+                            });
+                        });
+                         
+                        // copy this for pre-selecting group selection when url contaning
+                        // group selections is reloaded
+                         $scope.preSelectedGroups  =  angular.copy(form.groups);
+                        break;
                     default:
                         if (key.indexOf('f:') > -1) {
                             key = key.replace(/f:/, '');
@@ -526,7 +536,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                                     name: item,
                                     value: item,
                                     selected: true
-                                })
+                                });
                             });
                         } else {
                             form[key] = value;
@@ -535,10 +545,34 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                         break;
                 }
             });
+           
             return form;
             //  console.log('after parsing', $scope.form);
         }
 
+        // get all selected users from the groups tree
+        function getSelectedUsers(tree, selectedItems, ancestors) {
+            var selectedUsers = selectedItems || [];
+            for (var i = 0; i < tree.length; i++) {
+                tree[i].ancestors = ancestors || [];
+                // console.log('tree[i]:', tree[i]);
+                if (tree[i].children && tree[i].children.length > 0) {
+
+                    if (tree[i].parent) tree[i].ancestors.push(tree[i].parent);
+                    if (tree[i].selected) tree[i].ancestors.pop();
+                    getSelectedUsers(tree[i].children, selectedUsers, tree[i].ancestors);
+                } else {
+                    if (tree[i].selected) {
+                        selectedUsers.push([tree[i]]);
+                    }
+                }
+            }
+            selectedUsers = _.flattenDeep(selectedUsers);
+            selectedUsers = _.map(selectedUsers, function(user) {
+                return user.value.username;
+            });
+            return selectedUsers;
+        }
 
         function getObjectIndex(array, name) {
             var index = -1;

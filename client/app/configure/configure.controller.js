@@ -13,8 +13,6 @@ angular.module('config.controllers', ['ivh.treeview'])
                 selectedChildren: []
             };
 
-            //  bugConfig.insertConfig(config);
-
 
             $scope.addUser = function(email, name, username) {
                 var newuser = {
@@ -81,18 +79,18 @@ angular.module('config.controllers', ['ivh.treeview'])
             };
 
             // get all selected items from the groups tree
-            function getSelectedChildren2(tree, selectedItems,ancestors) {
+            function getSelectedChildren2(tree, selectedItems, ancestors) {
                 var selectedChildren = selectedItems || [];
                 for (var i = 0; i < tree.length; i++) {
-                    tree[i].ancestors =  ancestors || [];
+                    tree[i].ancestors = ancestors || [];
                     // console.log('tree[i]:', tree[i]);
                     if (tree[i].children && tree[i].children.length > 0) {
-                        
-                        if(tree[i].parent) tree[i].ancestors.push(tree[i].parent);
-                        if ( tree[i].selected) {
+
+                        if (tree[i].parent) tree[i].ancestors.push(tree[i].parent);
+                        if (tree[i].selected) {
                             tree[i].ancestors.pop();
                             selectedChildren.push(tree[i]);
-                        } else{
+                        } else {
                             getSelectedChildren2(tree[i].children, selectedChildren, tree[i].ancestors);
                         }
                     } else {
@@ -139,16 +137,15 @@ angular.module('config.controllers', ['ivh.treeview'])
                 });
             };
 
+            // expan tree
             $scope.expand = function() {
-                ivhTreeviewMgr.expandRecursive($scope.config.groups);
+                Config.expandGroups($scope.config.groups);
             };
 
+            // collapse tree
             $scope.collapse = function() {
-                ivhTreeviewMgr.collapseRecursive($scope.config.groups);
+                Config.collapseGroups($scope.config.groups);
             };
 
-            $scope.$watchCollection('grouplist', function() {
-                console.log('grouplist', $scope.grouplist2);
-            });
         }
     ]);

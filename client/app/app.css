@@ -3211,3 +3211,14 @@ Component: timeline
 .alert {
     max-width: 50%;
 }
+
+#appversion {
+position: absolute;
+background-color: #D72824;
+color: white;
+padding: 1px 1px;
+border-radius: 3px;
+font-size: 11px;
+margin: -48px 155px;
+}
+}

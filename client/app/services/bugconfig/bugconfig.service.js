@@ -1,9 +1,9 @@
 'use strict';
 
-var app = angular.module('config.services', []);
+var app = angular.module('config.services', ['ivh.treeview']);
 
-app.factory('Config', ['$http',
-    function($http) {
+app.factory('Config', ['$http','ivhTreeviewMgr',
+    function($http, ivhTreeviewMgr) {
         // Service logic
         function update(category, items, operation) {
             return $http({
@@ -54,6 +54,12 @@ app.factory('Config', ['$http',
             });
         }
 
+        function expandGroups (groups) {
+           ivhTreeviewMgr.expandRecursive(groups);
+        }
+        function collapseGroups (groups) {
+           ivhTreeviewMgr.collapseRecursive(groups);
+        }
 
         // Public API here
         return {
@@ -73,6 +79,12 @@ app.factory('Config', ['$http',
             },
             removeUsersFromGroup: function(group, users, tree) {
                 return removeUsersFromGroup(group, users, tree);
+            },
+            expandGroups: function(groups) {
+                return expandGroups(groups);
+            },
+            collapseGroups: function(groups) {
+                return collapseGroups(groups);
             }
         };
     }
