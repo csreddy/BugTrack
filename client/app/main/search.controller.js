@@ -11,7 +11,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.currentPage = parseInt($location.search().page) || 1;
         $scope.config = angular.copy(config);
        // $scope.form.groups = $scope.config.groups;
-          $scope.form.groups = $scope.preSelectedGroups || config.groups;
+          $scope.form.groups = angular.copy($scope.preSelectedGroups) || angular.copy(config.groups);
         $scope.userDefaultSearch = false;
         $scope.nvfe = false;
         $scope.pageLength = 20;
@@ -70,7 +70,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $timeout(function() {
                     highlightPageNumber($location.search().page);
                 }, 1000);
-                $scope.form.groups = $scope.preSelectedGroups || config.groups;
+                $scope.form.groups = angular.copy($scope.preSelectedGroups) || angular.copy(config.groups);
                 console.log('preSelectedGroups', $scope.preSelectedGroups);
                 /*   
             // check if the url matches users default query, if true then select checkbox to indicate
@@ -134,7 +134,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             console.log('clear fields');
             $scope.isPaginationEvent = false;
             $scope.form = angular.copy(defaultSearchCriteria);
-            ivhTreeviewMgr.deselectAll(config.groups);
+             $scope.preSelectedGroups = config.groups;
+             $scope.form.groups =  $scope.preSelectedGroups;
+            ivhTreeviewMgr.deselectAll($scope.form.groups);
             return Search.search($location.search({})).success(function(response) {
                 processResult(response);
             }).error(function(error) {
@@ -323,6 +325,12 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
          *********************************************/
 
         function search(searchCriteria) {
+            if (searchCriteria.groupUsers) {
+                if (searchCriteria.groupUsers.length === 0) {
+                    delete searchCriteria.groupCriteria;
+                    delete searchCriteria.groupUsers;
+                }
+            }
             return Search.search(searchCriteria).success(function(response) {
                 processResult(response);
                 console.log('RESULT', response[0].report);
@@ -336,7 +344,14 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         function processResult(searchResult) {
             $scope.bugList = searchResult.slice(1);
             $scope.form.facets = angular.copy(processFacets(searchResult[0].facets));
-            $scope.form.groups = $scope.preSelectedGroups || config.groups;
+            // groups does not come from search resposne
+            // so we artifically attach groups to the search response
+            if ($location.search().groupUsers) {
+                $scope.form.groups = angular.copy($scope.preSelectedGroups)
+            } else {
+                $scope.form.groups = angular.copy(config.groups);
+            }
+           // $scope.form.groups = angular.copy($scope.preSelectedGroups) || angular.copy(config.groups);
             renameEmptyFacets($scope.form.facets);
             preselectFacetCheckBox($scope.form.facets);
             $scope.searchMetrics = searchResult[0].metrics;
@@ -464,10 +479,17 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     if (value.to) params.to = stringify(new Date(value.to));
                 }
 
+                if (value instanceof Array && key === 'groups') {
+                      params.groupUsers = getSelectedUsers(value);
+                      console.log('groups', value);
+                }
             });
-            //    console.log('params', params);
-            // delete params.facets;
-            // 
+            console.log('params', params);
+            if (params.groupUsers.length === 0) {
+                delete params.groupCriteria;
+                delete params.groupUsers;
+            }
+            // we dont need groups param
             delete params.groups;
             console.log('params:', params);
             return params;
