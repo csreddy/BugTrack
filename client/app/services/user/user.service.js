@@ -7,11 +7,11 @@ app.service('User', ['$http', '$location', 'Flash',
     function($http, $location, Flash) {
 
         // create a new user
-        this.create = function(payload) {
+        this.create = function(user) {
             return $http({
                 method: 'POST',
                 url: '/api/user/create',
-                data: payload
+                data: user
             });
         };
 

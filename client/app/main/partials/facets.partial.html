@@ -10,16 +10,16 @@
     <div class="box-body">
     <label for="groups">Groups</label>
   <!--   <select name="criteria" id="criteria" ng-model="groupCriteria" ng-options="groupCriteria.label for groupCriteria in config.groupCriteria" class="form-control" ng-change="setGroupCriteria(groupCriteria)" ng-selected="groupCriteria === 'submittedBy'"><option value="">select criterion</option></select> -->
-    <select  name="criteria" id="criteria" mg-model="groupCriteria" class="form-control">
+    <select  name="criteria" id="criteria" mg-model="groupCriteria" class="form-control input-xsm">
         <option value="{{criteria.value}}" ng-repeat="criteria in config.groupCriteria" ng-selected="groupCriteria === 'submittedBy'">{{criteria.label}}</option>
     </select>
     <div class="form-group" style="margin-top:2px;">
-            <input type="search" ng-model="searchGroupTree" class="form-control" placeholder="search group">
+            <input type="search" ng-model="searchGroupTree" class="form-control input-xsm" placeholder="search group">
             <small><a href="" ng-click="expand()" class="pull-left" style="padding-top:5px;"><span class="glyphicon glyphicon-expand" aria-hidden="true"></span>Expand</a></small>
             <small><a href="" ng-click="collapse()" class="pull-right" style="padding-top:5px;"><span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>Collapse</a></small>
         </div>
        
-     <div id="facet_grouplist" ivh-treeview="form.groups" ivh-treeview-expand-to-depth="1"  ivh-treeview-filter="searchGroupTree" ivh-treeview-validate="true" ivh-treeview-default-selected-state="false" ivh-treeview-change-handler="selectGroups"></div>
+     <div id="facet_grouplist" ivh-treeview="form.groups" ivh-treeview-expand-to-depth="0"  ivh-treeview-filter="searchGroupTree" ivh-treeview-validate="true" ivh-treeview-default-selected-state="false" ivh-treeview-change-handler="selectGroups"></div>
   
      
         <ul ng-repeat="facet in facetOrder" class="list-unstyled" name="{{facet.type}}" ng-if="form.facets[facet.type].length > 0">
@@ -39,7 +39,7 @@
                 </li> 
 
                 <!-- facets as dropdown -->
-                <select name="{{facet.type}}" id="" ng-model="f" ng-options="(f.name + ' ' + '(' + f.count+')') for f in form.facets[facet.type]" ng-if="showFacetDropdown2(facet.type)" ng-change="addSelectedValueToQuery2(facet.type, f)" class="form-control input-sm">
+                <select name="{{facet.type}}" id="" ng-model="f" ng-options="(f.name + ' ' + '(' + f.count+')') for f in form.facets[facet.type]" ng-if="showFacetDropdown2(facet.type)" ng-change="addSelectedValueToQuery2(facet.type, f)" class="form-control input-xsm">
                     <option value="">-- Select --</option>
                 </select>
 

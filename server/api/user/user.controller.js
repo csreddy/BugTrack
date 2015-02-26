@@ -7,7 +7,13 @@ var conn = require('../../config/db-config.js').connection;
 var db = marklogic.createDatabaseClient(conn);
 var q = marklogic.queryBuilder;
 var p = marklogic.patchBuilder;
-var maxLimit = 99999999;
+var bunyan = require('bunyan');
+var log = bunyan.createLogger({
+    name: 'User',
+    serializers: {
+        req: bunyan.stdSerializers.req
+    }
+});
 var _ = require('lodash');
 
 // Get list of users
@@ -19,7 +25,7 @@ exports.index = function(req, res) {
 
 exports.username = function(req, res) {
     res.locals.errors = req.flash();
-    console.log(res.locals);
+    log.info(res.locals);
     res.send({
         username: req.user
     });
@@ -40,14 +46,39 @@ exports.saveDefaultQuery = function(req, res) {
 exports.create = function(req, res) {
     res.locals.errors = req.flash();
     var uri = '/users/' + req.body.username + '.json'
-    db.documents.write({
-        uri: uri,
-        contentType: 'application/json',
-        content: req.body,
-        collections: ['users']
-    }).result(function(response) {
-    	res.status(200).json({message: 'User ' + req.body.username + ' created'})
-    }, function(error) {
-    	res.status(500).json({message: 'User '+ req.body.username + ' could not be created\n'+ error})
+    var user = {
+        username: req.body.username,
+        email: req.body.email,
+        name: req.body.name
+    };
+    var transactionId = null;
+    db.transactions.open().result().then(function(response) {
+        transactionId = response.txid
+    }).then(function() {
+        return db.documents.write({
+            uri: uri,
+            contentType: 'application/json',
+            content: req.body,
+            collections: ['users'],
+            txid: transactionId
+        }).result();
+    }).then(function() {
+        return db.documents.patch({
+            uri: 'config.json',
+            operations: [p.insert("array-node('users')", 'last-child', user)],
+            txid: transactionId
+        }).result()
+    }).then(function() {
+        return db.transactions.commit(transactionId).result(function() {
+            res.send(202).json({
+                message: 'Created user'
+            });
+        }, function(error) {
+            res.send(error.statusCode).json(error.body.errorResponse)
+        });
+    }).catch(function(error) {
+        db.transactions.rollback(transactionId);
+        log.info(JSON.stringify(error));
+        res.send(error.statusCode).json(error);
     });
 };

@@ -17,10 +17,9 @@ html, body {
     -webkit-font-smoothing: antialiased;
     min-height: 100%;
     /* background: #f9f9f9;*/
+    
     padding-top: 30px;
 }
-
-
 a {
     color: #3c8dbc;
 }
@@ -201,7 +200,7 @@ img {
 .bg-olive {
     background-color: #3d9970 !important;
 }
-.bg-lime { 
+.bg-lime {
     background-color: #01ff70 !important;
 }
 .bg-orange {
@@ -3207,18 +3206,18 @@ Component: timeline
     background-color: #f2f2f2;
     margin-top: 100px;
 }
-    
 .alert {
     max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
-
 #appversion {
-position: absolute;
-background-color: #D72824;
-color: white;
-padding: 1px 1px;
-border-radius: 3px;
-font-size: 11px;
-margin: -48px 155px;
+    position: absolute;
+    background-color: #D72824;
+    color: white;
+    padding: 1px 1px;
+    border-radius: 3px;
+    font-size: 11px;
+    margin: -48px 155px;
 }
 }

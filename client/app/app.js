@@ -60,7 +60,7 @@ app.config(function($routeProvider, $locationProvider) {
         // Twisties can be images, custom html, or plain text
         twistieCollapsedTpl: '<span class="glyphicon glyphicon-plus-sign"></span>',
         twistieExpandedTpl: '<span class="glyphicon glyphicon-minus-sign"></span>',
-       // twistieLeafTpl: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+        // twistieLeafTpl: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
         twistieLeafTpl: ''
     });
 })
@@ -96,10 +96,26 @@ app.config(function($routeProvider, $locationProvider) {
         });
         return (total);
     };
-}).run(['$rootScope', 'getWatchCount',
+})
+// get watch count
+.run(['$rootScope', 'getWatchCount',
     function($rootScope, getWatchCount) {
         $rootScope.$watch(function() {
             $rootScope.watch = getWatchCount();
         });
     }
-]);
+])
+// set login and registration page background
+.run(function($rootScope, $location) {
+    $rootScope.$on('$routeChangeSuccess', function() {
+        if ($location.$$path === '/login' || $location.$$path === '/register') {
+            $rootScope.setBg = {
+                background: '#192026'
+            };
+        } else {
+            $rootScope.setBg = {
+                background: 'white'
+            };
+        }
+    });
+});

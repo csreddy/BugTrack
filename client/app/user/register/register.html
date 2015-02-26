@@ -1,14 +1,9 @@
-<div class="container">
-    <div class="row" style="padding-top: 5%">
-		<div class="col-md-8 col-md-offset-2">
-    		<div class="panel panel-default">
-			  	<div class="panel-heading">
-			    	<h3 class="panel-title">Create Account</h3>
-			 	</div>
-			  	<div class="panel-body">
-			    	<form accept-charset="UTF-8" role="form">
-                    <fieldset>
-                    <div class="form-group">
+<div class="form-box" id="reg-box">
+	<div class="header">Create Account</div>
+	<form>
+		<div class="body bg-gray">
+			<fieldset>
+				<div class="form-group">
 			    		    <input class="form-control" ng-model="user.name" placeholder="full name" name="fullname" type="text">
 			    		</div>
                     <div class="form-group">
@@ -23,12 +18,11 @@
 			    		<div class="form-group">
 			    			<input class="form-control" ng-model="user.password2" placeholder="password" name="password"2 type="password" value="">
 			    		</div>
-			    	    <button class="btn btn-success" type="submit" ng-click="createUser()">Create</button>		
-						<button class="btn btn-default" type="submit" ng-click="clear()">Clear</button>		
-			    	</fieldset>
-			      	</form>
-			    </div>
-			</div>
+
+			</fieldset>
 		</div>
-	</div>
+		 <div class="footer bg-gray">
+		 <button class="btn btn-success" type="submit" ng-click="createUser()">Create</button>
+		 </div>
+	</form>
 </div>

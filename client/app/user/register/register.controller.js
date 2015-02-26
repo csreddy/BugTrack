@@ -1,13 +1,23 @@
 'use strict';
 
 angular.module('user.controllers')
- .controller('registerCtrl', ['$scope', '$location', 'Flash', 'User', 'Config',
-    function($scope, $location, Flash, User, Config) {
+ .controller('registerCtrl', ['$scope', '$location', '$window', 'Flash', 'User', 'Config',
+    function($scope, $location, $window, Flash, User, Config) {
 
         $scope.config = {};
         Config.get().then(function(response) {
             $scope.config = response.data;
         });
+
+        
+        var randomNum = new Date().getMilliseconds();
+        $scope.user = {
+            username: 'user-'+ randomNum,
+            name : 'user-'+randomNum,
+            email: 'user-'+randomNum+'@gmail.com',
+            password1: 'admin',
+            password2: 'admin'
+        };
 
 
         $scope.createUser = function() {
@@ -45,6 +55,7 @@ angular.module('user.controllers')
                             $location.path('/home');
                             User.getInfo().success(function(user) {
                                 Flash.addAlert('success', 'Welcome! ' + user.name);
+                                $window.localStorage.currentUser = user.name;
                             });
                         },
                         function(response) {

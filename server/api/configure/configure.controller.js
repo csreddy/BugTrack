@@ -71,14 +71,12 @@ exports.update = function(req, res) {
 
 };
 
-
-
 exports.adduserstogroup = function(req, res) {
     console.log('body: ', req.body);
     if (req.body.users.length > 0 && req.body.group) {
         db.documents.read(uri).result(function(document) {
             var operations = [];
-            var children = []
+            var children = [];
             for (var i = 0; i < req.body.users.length; i++) {
                 try {
                     //when users are added to the group
@@ -87,7 +85,7 @@ exports.adduserstogroup = function(req, res) {
                         label: userInfo.name,
                         value: userInfo,
                         parent: req.body.group
-                    }
+                    };
                     console.log('user:', user);
                     operations.push(p.insert("groups[value ='" + req.body.group + "']/array-node('children')", 'last-child', user))
                     // when a user is add to a  group, update all groups that contain this group as child
@@ -106,7 +104,7 @@ exports.adduserstogroup = function(req, res) {
                         value: groupName,
                         children: children,
                         parent: req.body.group
-                    }
+                    };
                     console.log(req.body);
                     operations.push(p.insert("groups[value ='" + req.body.group + "']/array-node('children')", 'last-child', group))
                     // when a group is add to another  group, update all groups that contain this group as child

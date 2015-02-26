@@ -32,6 +32,14 @@ app.factory('Config', ['$http','ivhTreeviewMgr',
             });
         }
 
+        function createUser(user) {
+            return $http({
+                method:'PUT',
+                url: '/api/configure/createuser',
+                data: user
+            });
+        }
+
         function addUsersToGroup(group, users) {
             return $http({
                 method: 'PUT',
@@ -67,7 +75,9 @@ app.factory('Config', ['$http','ivhTreeviewMgr',
                 console.log('inside insertConfig', payload);
                 insert(payload);
             },
-
+            createUser: function(user) {
+                return createUser(user);
+            },
             update: function(category, item, operation) {
                 return update(category, item, operation);
             },
