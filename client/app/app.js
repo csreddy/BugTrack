@@ -111,6 +111,7 @@ app.config(function($routeProvider, $locationProvider) {
         if ($location.$$path === '/login' || $location.$$path === '/register') {
             $rootScope.setBg = {
                 background: '#192026'
+              //  background: 'url(../assets/images/intro-bg.jpg)'
             };
         } else {
             $rootScope.setBg = {

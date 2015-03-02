@@ -1,21 +1,41 @@
 'use strict';
 
-describe('Controller: configCtrl', function () {
+describe('Controller: configCtrl', function() {
 
-  // load the controller's module
-  beforeEach(module('config.controllers'));
+    var configCtrl, scope, ConfigServiceMock, FlashServiceMock;
 
-  var ConfigureCtrl, scope;
+    // load the controller's module
+    beforeEach(module('config.controllers'));
+    beforeEach(function() {
+        ConfigServiceMock = {
+            get: function() {
+                return 'hello';
+            }
+        };
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    ConfigureCtrl = $controller('configCtrl', {
-      $scope: scope
+        FlashServiceMock = {
+            addAlert: function(alertType, message) {
+                return 'from Flash';
+            }
+        };
     });
-  }));
 
-  it('should ...', function () {
-    expect(1).toEqual(1);
-  });
+
+
+    // Initialize the controller and a mock scope
+    beforeEach(inject(function($controller, $rootScope) {
+        scope = $rootScope.$new();
+        configCtrl = $controller('configCtrl', {
+            $scope: scope,
+            Config: ConfigServiceMock,
+            Flash: FlashServiceMock
+        });
+    }));
+
+    it('should ...', function() {
+     //   spyOn(ConfigServiceMock, 'get').addCallThrough();
+      //  spyOn(FlashServiceMock, 'addAlert').addCallThrough();
+
+        expect(1).toEqual(1);
+    });
 });

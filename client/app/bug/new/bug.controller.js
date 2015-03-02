@@ -226,9 +226,9 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                     ngProgress.complete();
                     $location.path('/bug/'+bug.id);
                     Flash.addAlert('success', '<a href=\'/bug/' + bug.id + '\'>' + 'Bug-' + bug.id + '</a>' + ' was successfully created');
-                }).error(function(response) {
+                }).error(function(error) {
                     ngProgress.complete();
-                    Flash.addAlert('danger', response);
+                    Flash.addAlert('danger', error);
                 });
             }
         }

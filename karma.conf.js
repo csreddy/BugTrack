@@ -19,7 +19,7 @@ module.exports = function(config) {
       'client/bower_components/angular-sanitize/angular-sanitize.js',
       'client/bower_components/angular-route/angular-route.js',
       'client/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-      'client/bower_components/lodash/dist/lodash.compat.js',
+      'client/bower_components/lodash/lodash.js',
       'client/app/app.js',
       'client/app/app.coffee',
       'client/app/**/*.js',
@@ -29,7 +29,15 @@ module.exports = function(config) {
       'client/app/**/*.jade',
       'client/components/**/*.jade',
       'client/app/**/*.html',
-      'client/components/**/*.html'
+      'client/components/**/*.html',
+      // other libs
+      'client/bower_components/handlebars/handlebars.js',
+      'client/bower_components/textAngular/dist/textAngular.min.js',
+      'client/bower_components/ngprogress/build/ngProgress.js',
+      'client/bower_components/highlightjs/highlight.pack.js',
+      'client/bower_components/angular-highlightjs/build/angular-highlightjs.js',
+      'client/bower_components/angular-ivh-treeview/dist/ivh-treeview.js',
+      'client/bower_components/angular-file-upload/angular-file-upload.js'
     ],
 
     preprocessors: {

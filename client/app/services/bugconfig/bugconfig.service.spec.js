@@ -3,7 +3,7 @@
 describe('Service: bugconfig', function () {
 
   // load the service's module
-  beforeEach(module('fullstackAppApp'));
+  beforeEach(module('config.services'));
 
   // instantiate service
   var bugconfig;

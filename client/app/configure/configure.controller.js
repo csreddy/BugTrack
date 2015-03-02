@@ -1,14 +1,13 @@
 'use strict';
 
 angular.module('config.controllers', ['ivh.treeview'])
-    .controller('configCtrl', ['$scope', 'Config', 'Flash', 'ivhTreeviewMgr',
-        function($scope, Config, Flash, ivhTreeviewMgr) {
+    .controller('configCtrl', ['$scope', 'Config', 'Flash',
+        function($scope, Config, Flash) {
             $scope.config = {};
             Config.get().then(function(response) {
                 $scope.config = response.data;
             });
 
-            $scope.test = 'in config page';
             $scope.users = {
                 selectedChildren: []
             };

@@ -31,3 +31,5 @@ Many more…
 
 
  '{{ctrl.label(node)}}<small count="{{getChildren().length}}">&nbsp;<b>({{getChildren().length}})</b></small>',
+
+ start server ``grunt serve | bunyan -j``

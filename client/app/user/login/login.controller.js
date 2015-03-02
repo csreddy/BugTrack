@@ -22,7 +22,7 @@ app.controller('loginCtrl', ['$scope', '$location', '$cookieStore', 'Flash', '$h
                     //$location.path('/user/' + response.data.username);
                     $location.path('/home');
                     User.getInfo().success(function(user) {
-                        Flash.addAlert('success', 'Welcome! ' + user.name);
+                       // Flash.addAlert('success', 'Welcome! ' + user.name);
                         $window.localStorage.currentUser = user.name;
                     });
                 },
