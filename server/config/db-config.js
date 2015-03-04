@@ -33,5 +33,5 @@ var prod =  {
 
 
 module.exports = {
-  connection: test       // Export the development connection
+  connection: dev       // Export the development connection
 }

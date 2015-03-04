@@ -33,7 +33,7 @@ exports.index = function(req, res) {
 
 // update configure options
 exports.update = function(req, res) {
-    console.log('config req.body', req.body);
+    //  console.log('config req.body', req.body);
     if (req.body.items) {
         var operations = [];
         if (req.body.operation === 'add') {
@@ -57,22 +57,25 @@ exports.update = function(req, res) {
             uri: uri,
             operations: operations
         }).result(function() {
-            res.status(200).json({
+            res.send(200, {
                 message: 'config updated'
             })
         }, function(error) {
-            res.status(error.statusCode).json(error)
+            res.send(error.statusCode, error);
         })
     } else {
-        res.status(304).json({
+        // res.send(500, {
+        //     message: 'cannot update config with empty value'
+        // });
+        res.status(500).send({
             message: 'cannot update config with empty value'
         });
-    }
 
+    }
 };
 
 exports.adduserstogroup = function(req, res) {
-    console.log('body: ', req.body);
+    // console.log('body: ', req.body);
     if (req.body.users.length > 0 && req.body.group) {
         db.documents.read(uri).result(function(document) {
             var operations = [];
@@ -80,13 +83,13 @@ exports.adduserstogroup = function(req, res) {
             for (var i = 0; i < req.body.users.length; i++) {
                 try {
                     //when users are added to the group
-                    var userInfo = JSON.parse(req.body.users[i]);
+                    var userInfo = (typeof req.body.users[i] === 'string') ? JSON.parse(req.body.users[i]) : req.body.users[i]
                     var user = {
                         label: userInfo.name,
                         value: userInfo,
                         parent: req.body.group
                     };
-                    console.log('user:', user);
+                    //  console.log('user:', user);
                     operations.push(p.insert("groups[value ='" + req.body.group + "']/array-node('children')", 'last-child', user))
                     // when a user is add to a  group, update all groups that contain this group as child
                     operations.push(p.insert("children[label eq '" + req.body.group + "']/array-node('children')", 'last-child', user));
@@ -94,18 +97,18 @@ exports.adduserstogroup = function(req, res) {
                     // when group is added to another group
                     var groupName = req.body.users[i];
                     var groups = document[0].content.groups;
-                    console.log('groups', groups);
+                    // console.log('groups', groups);
                     children = _.result(_.findWhere(groups, {
                         value: groupName
                     }), 'children');
-                    console.log('children', children);
+                    //  console.log('children', children);
                     var group = {
                         label: groupName,
                         value: groupName,
                         children: children,
                         parent: req.body.group
                     };
-                    console.log(req.body);
+                    // console.log(req.body);
                     operations.push(p.insert("groups[value ='" + req.body.group + "']/array-node('children')", 'last-child', group))
                     // when a group is add to another  group, update all groups that contain this group as child
                     operations.push(p.insert("children[label eq '" + req.body.group + "']/array-node('children')", 'last-child', group));
@@ -138,7 +141,7 @@ exports.adduserstogroup = function(req, res) {
 
 
 exports.removeusersfromgroup = function(req, res) {
-    console.log('removeusersfromgroup:', JSON.stringify(req.body));
+  //  console.log('removeusersfromgroup:', JSON.stringify(req.body));
     var operations = [];
     if (req.body.users.length > 0) {
         for (var i = 0; i < req.body.users.length; i++) {
@@ -155,7 +158,7 @@ exports.removeusersfromgroup = function(req, res) {
                 }
 
                 operationStr = operationStr + "/children[label eq \"" + req.body.users[i].label + "\"]"
-                console.log('operationStr', operationStr);
+                //console.log('operationStr', operationStr);
                 operations.push(p.remove(operationStr));
             }
         }
