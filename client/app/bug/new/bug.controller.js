@@ -13,16 +13,18 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
             $scope.config = {};
             $scope.config = config.data;
             $scope.submittedBy = currentUser;
+            $scope.support = {};
+            $scope.associatedTask = {};
 
             $scope.selectedItem = {
                 value: 0,
                 label: ''
             };
 
-            //  $scope.Wrapper = Serv;
+
             $scope.relatedTo = [];
 
-            $scope.relatedTasks = [
+            $scope.relationTypes = [
                 'Requirements task for',
                 'Functional Spec task for',
                 'Test Specification task for',
@@ -69,9 +71,10 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
             };
 
             $scope.setRelation = function(relation) {
-                $scope.relation = relation;
+                $scope.associatedTask.type = relation;
             };
 
+            // TODO: modify this to accept only one task id
             $scope.setRelatedTo = function(relatedTo) {
                 if (relatedTo) {
                     var tokenizedTaskIds = relatedTo.split(',');
@@ -81,10 +84,10 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                             taskIds[i] = parseInt(tokenizedTaskIds[i].replace(/ /g, ''));
                         }
                     }
-                    $scope.relatedTo = taskIds;
+                    $scope.associatedTask.id = taskIds;
                     console.log(taskIds);
                 } else {
-                    $scope.relatedTo = [];
+                    $scope.associatedTask.id = [];
                 }
             };
 
@@ -109,19 +112,19 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
             };
 
             $scope.setHeadline = function(headline) {
-                $scope.headline = headline;
+                $scope.support.headline = headline;
             };
 
             $scope.setSupportDescription = function(supportDescription) {
-                $scope.supportDescription = supportDescription;
+                $scope.support.supportDescription = supportDescription;
             };
 
             $scope.setWorkaround = function(workaround) {
-                $scope.workaround = workaround;
+                $scope.support.workaround = workaround;
             };
 
             $scope.setPublishStatus = function(publishStatus) {
-                $scope.publishStatus = publishStatus || 'Not Ready';
+                $scope.support.publishStatus = publishStatus || 'Not Ready';
             };
 
             $scope.setTickets = function(tickets) {
@@ -133,15 +136,15 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                             ticketIds[i] = parseInt(tokenizedTickets[i].replace(/ /g, ''));
                         }
                     }
-                    $scope.tickets = ticketIds;
+                    $scope.support.tickets = ticketIds;
                 } else {
-                    $scope.tickets = [];
+                    $scope.support.tickets = [];
                 }
 
             };
 
             $scope.setCustomerImpact = function(customerImpact) {
-                $scope.customerImpact = customerImpact;
+                $scope.support.customerImpact = customerImpact;
             };
 
 
@@ -166,12 +169,13 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
 
             function submitBug() {
                 var bug = {};
-
+                console.log('called submitBug()');
+                
                 bug.id = parseInt(bugId.data.count) + 1;
                 bug.kind = $scope.kind || 'Bug';
                 bug.createdAt = new Date();
                 bug.modifiedAt = bug.createdAt;
-                bug.status = $scope.config.status[1];
+                bug.status = $scope.config.status[0];
                 bug.title = $scope.title;
                 bug.submittedBy = {
                     username: $scope.submittedBy.username,
@@ -193,7 +197,8 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                 bug.memory = $scope.memory;
                 bug.processors = $scope.processors;
                 bug.note = $scope.note;
-                bug.headline = $scope.headline;
+                
+
                 bug.subscribers = [];
                 bug.subscribers.push({
                     email: $scope.submittedBy.email,
@@ -210,26 +215,31 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                         uri: '/bug/' + bug.id + '/attachments/' + $scope.files[i].name
                     };
                 }
-                bug.relation = $scope.relation;
-                bug.relatedTo = $scope.relatedTo || [];
+                //bug.relation = $scope.relation;
+                //bug.relatedTo = $scope.relatedTo || [];
+                
+                bug.associatedTask =  $scope.associatedTask;
                 bug.clones = [];
-
-                bug.supportDescription = $scope.supportDescription;
-                bug.workaround = $scope.workaround;
-                bug.publishStatus = $scope.publishStatus || 'Not Ready';
-                bug.customerImpact = $scope.customerImpact;
-                bug.tickets = $scope.tickets || [];
+                bug.support =  $scope.support;
                 bug.changeHistory = [];
 
                 ngProgress.start();
+                console.log('before Bug.create()');
                 Bug.create(bug, $scope.files).success(function() {
+                    console.log('inside Bug.create()');
                     ngProgress.complete();
-                    $location.path('/bug/'+bug.id);
+                    $location.path('/bug/' + bug.id);
                     Flash.addAlert('success', '<a href=\'/bug/' + bug.id + '\'>' + 'Bug-' + bug.id + '</a>' + ' was successfully created');
                 }).error(function(error) {
                     ngProgress.complete();
                     Flash.addAlert('danger', error);
                 });
             }
+
+            // attached to scope for exposing private functions to unit tests
+
+            this.submitBug = function() {
+                submitBug();
+            };
         }
     ]);

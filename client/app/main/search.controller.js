@@ -4,7 +4,7 @@ var app = angular.module('search.controllers', ['ivh.treeview', 'ngProgress']);
 
 app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr', 'Config', 'ngProgress',
     function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr, Config, ngProgress) {
-
+ 
         $scope.home = 'Home page';
         $scope.form = angular.copy(defaultSearchCriteria) || {};
         $scope.bugs = [];
@@ -43,7 +43,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             title: 'Publish Status'
         }]; //'platform'
         var conditionNames = ['q', 'kind', 'status', 'severity', 'priority', 'category', 'version', 'fixedin', 'tofixin', 'assignTo', 'submittedBy', 'page', 'pageLength'];
-
 
         // for calendar   
         $scope.cal = {
@@ -297,6 +296,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     // for form selections to auto fill when browser back/fwd is clicked
                     if (Object.keys($location.search()).length === 0) {
                         // reset search form to default
+                        
                         $scope.form = angular.copy(defaultSearchCriteria);
                     } else {
                         // get form selections from query params
@@ -366,7 +366,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             // groups does not come from search resposne
             // so we artifically attach groups to the search response
             if ($location.search().groupUsers) {
-                $scope.form.groups = angular.copy($scope.preSelectedGroups)
+                $scope.form.groups = angular.copy($scope.preSelectedGroups);
             } else {
                 $scope.form.groups = angular.copy(config.groups);
             }

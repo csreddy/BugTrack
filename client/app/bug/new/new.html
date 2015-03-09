@@ -2,27 +2,21 @@
 <div class="row">
     <div class="col-md-12">
         <div class="well">
-            <form class="form-horizontal" name="bugForm"  novalidate>
+            <form class="form-horizontal" name="bugForm" novalidate>
                 <fieldset>
                     <legend class="text-center">New Bug</legend>
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="name">Title</label>
                         <div class="col-md-9">
                             <div class="has-error" ng-show="bugForm.title.$dirty && bugForm.title.$invalid">
-                                <small class="has-error" ng-show='bugForm.title.$error.required'>
-                                    Bug title cannot be blank
-                                </small>
-                            </div>
-                            <div class="input-group">
-                                <div class="input-group-btn">
-                                    <!-- dropdown menu -->
-                                    <select ng-model="kind" type="text" class="form-control" style="width: 100px">
-                                        <!-- <option value="Bug" selected>Bug</option> -->
-                                        <option ng-selected="kind === 'Bug'" ng-disabled="kind !== 'Bug'" ng-repeat="kind in config.kind" value="{{kind}}">{{kind}}</option>
-                                    </select>
+                                <div class="form-group has-error" ng-show='bugForm.title.$error.required'>
+                                    <small>
+                                <label class="control-label" for="title">  Bug title cannot be blank</label>
+                                 </small>
                                 </div>
-                                <input id="title" ng-model="title" name="title" type="text" placeholder="Bug title" class="form-control" required />
                             </div>
+
+                            <input id="title" ng-model="title" name="title" type="text" placeholder="Bug title" class="form-control" required />
                         </div>
                     </div>
 
@@ -30,8 +24,8 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="description">Description</label>
                         <div class="col-xs-12 col-md-9">
-                         <!--    <textarea rich-text-editor class="form-control" ng-model="description" id="description" name="description" placeholder="Enter bug description here..." rows="8"></textarea> -->
-                             <text-angular ta-toolbar="[['p','bold','pre', 'quote','italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="description" ng-model="description" id="description" name="description" placeholder="Enter bug description here..."></text-angular>
+                            <!--    <textarea rich-text-editor class="form-control" ng-model="description" id="description" name="description" placeholder="Enter bug description here..." rows="8"></textarea> -->
+                            <text-angular ta-toolbar="[['p','bold','pre', 'quote','italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="description" ng-model="description" id="description" name="description" placeholder="Enter bug description here..."></text-angular>
                         </div>
                     </div>
                     <div>
@@ -112,11 +106,11 @@
                                             <div class="col-xs-4 col-md-4">
                                                 <select id="relation" ng-model="relation" ng-change="setRelation(relation)" name="relation" type="text" class="form-control input-sm">
                                                     <option value=""></option>
-                                                    <option ng-repeat="relation in relatedTasks" value="{{relation}}">
+                                                    <option ng-repeat="relation in relationTypes" value="{{relation}}">
                                                         {{relation}}</option>
                                                 </select>
                                             </div>
-                                            <div class="col-xs-4 col-md-4">
+                                            <div class="col-xs-4 col-md-2">
                                                 <input class="form-control input-sm" ng-model="relatedTo" ng-change="setRelatedTo(relatedTo)" name="relatedTo" type="text" placeholder="task id">
                                             </div>
                                         </div>
@@ -229,7 +223,7 @@
                     <!-- Form actions -->
                     <div class="form-group">
                         <div class="col-md-7 text-right">
-                           <button ng-click="createNewBug()" class="btn btn-primary btn-lg" ng-disabled="bugForm.$invalid">Submit</button>
+                            <button ng-click="createNewBug()" class="btn btn-primary btn-lg" ng-disabled="bugForm.$invalid">Submit</button>
                         </div>
                     </div>
                 </fieldset>

@@ -3,9 +3,9 @@
 angular.module('fullstackApp')
     .config(function($routeProvider) {
         $routeProvider.
-        when('/bug/new', {
-            templateUrl: 'app/bug/new/new.html',
-            controller: 'newBugCtrl',
+        when('/task/new', {
+            templateUrl: 'app/task/new/new.html',
+            controller: 'newTaskCtrl',
             reloadOnSearch: false,
             resolve: {
                 config: ['Config',
@@ -18,17 +18,17 @@ angular.module('fullstackApp')
                         return User.getCurrentUserInfo();
                     }
                 ],
-                bugId: ['Bug',
-                    function(Bug) {
-                        return Bug.count();
+                count: ['Task',
+                    function(Task) {
+                        return Task.count();
                     }
                 ]
 
             }
         })
-        .when('/bug/:id', {
-        	templateUrl: 'app/bug/view/view.html',
-        	controller: 'viewCtrl',
+        .when('/task/:id', {
+        	templateUrl: 'app/task/view/view.html',
+        	controller: 'viewTaskCtrl',
             reloadOnSearch: false,
         	resolve: {
         		config: ['Config',
@@ -44,4 +44,3 @@ angular.module('fullstackApp')
             }
         });
     });
-

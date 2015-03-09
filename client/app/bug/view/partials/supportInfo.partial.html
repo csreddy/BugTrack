@@ -1,0 +1,55 @@
+<form class="form-horizontal">
+<accordion>   
+    <accordion-group>
+        <accordion-heading is-open="status.isFirstOpen">
+            <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;Support Info
+        </accordion-heading>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="headline">Headline</label>
+            <div class="col-md-3">
+                <input id="headline" ng-model="bug.headline" ng-change="setHeadline(headline)" name="headline" type="text" placeholder="" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="description">Description</label>
+            <div class="col-md-7">
+                <textarea class="form-control" ng-model="bug.supportDescription" ng-change="setSupportDescription(supportDescription)" id="supportDescription" name="supportDescription" placeholder="Provide bug description here..." rows="4"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="workaround">Workaround</label>
+            <div class="col-md-7">
+                <textarea class="form-control" ng-model="workaround" ng-change="setWorkaround(workaround)" id="workaround" name="workaround" placeholder="Provide workaround info here..." rows="4"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="publishstatus">Publish Status</label>
+            <div class="col-md-7">
+                <label ng-repeat="status in config.publishStatus">&nbsp;&nbsp;
+                    <input type="radio" name="publishStatus" ng-model="publishStatus" ng-change="setPublishStatus(publishStatus)" ng-value="status" />&nbsp;&nbsp;{{status}}
+                </label>
+            </div>
+        </div>
+        <legend>
+            <h5>Reference: <a href="http://help.mycompany.com" target="_window">help.mycompany.com</a>
+                                            </h5>
+        </legend>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="tickets">Tickets</label>
+            <div class="col-md-7">
+                <input id="tickets" ng-model="tickets" ng-change="setTickets(tickets)" name="tickets" type="text" placeholder="csv ticket ids" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="customerimpact">Customer Impact</label>
+            <div class="col-md-7">
+                <select id="customerImpact" ng-model="customerImpact" ng-change="setCustomerImpact(customerImpact)" name="customerImpact" type="text" class="form-control input-sm">
+                    <option ng-selected="customerimpact.level === 'N/A'" ng-repeat="customerimpact in config.customerImpact" value="{{customerimpact.level}}">
+                        {{customerimpact.level}} : {{customerimpact.title}}</option>
+                </select>
+            </div>
+        </div>
+    </accordion-group>
+    </accordion>
+
+</form>

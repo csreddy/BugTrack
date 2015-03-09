@@ -197,7 +197,7 @@
         <div class="panel-heading"><b class="panel-title">{{bug.title}}</b>
         </div>
         <div class="panel-body">
-      <!--   <span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:40px;color: red;z-index:1"><h2 style="z-index:-1;">{{bug.status}}</h2></span> -->
+            <!--   <span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:40px;color: red;z-index:1"><h2 style="z-index:-1;">{{bug.status}}</h2></span> -->
             <p ng-bind-html="bug.description"></p>
 
             <div ng-show="bug.note">
@@ -215,9 +215,10 @@
                     </div>
                     <div class="box-body">
                         <ul ng-repeat="file in bug.attachments track by $index" class="list-inline" style="display: inline-block;">
-                            <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a></li>
-                        
-                        
+                            <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a>
+                            </li>
+
+
                         </ul>
                     </div>
                     <!-- /.box-body -->
@@ -258,35 +259,36 @@
         </div>
         <div class="panel-body">
             <p class="bg-success">
-            <ul ng-repeat="(key, value) in item.change" class="list-unstyled">
-                <li ng-hide="value.to.name || value.to.level">
-                    {{key | capitalize}} changed
-                    <span ng-hide="value.from===undefined">from {{value.from}}</span> to
-                    <span class="label label-success">{{value.to}}</span>
-                </li>
-                <li ng-show="value.to.name">Bug assigned
-                    <span ng-hide="value.from===undefined">from {{value.from.name}}</span> to
-                    <span class="label label-success">{{value.to.name}}</span>
-                </li>
+                <ul ng-repeat="(key, value) in item.change" class="list-unstyled">
+                    <li ng-hide="value.to.name || value.to.level">
+                        {{key | capitalize}} changed
+                        <span ng-hide="value.from===undefined">from {{value.from}}</span> to
+                        <span class="label label-success">{{value.to}}</span>
+                    </li>
+                    <li ng-show="value.to.name">Bug assigned
+                        <span ng-hide="value.from===undefined">from {{value.from.name}}</span> to
+                        <span class="label label-success">{{value.to.name}}</span>
+                    </li>
 
-                <li ng-show="value.to.level">{{key | capitalize}} changed
-                    <span ng-hide="value.from===undefined">from {{value.from.level}}</span> to
-                    <span class="label label-success">{{value.to.level}}</span>
-                </li>
-            </ul>
-         
-       <p ng-show="item.comment" ng-bind-html="item.comment"></p>
+                    <li ng-show="value.to.level">{{key | capitalize}} changed
+                        <span ng-hide="value.from===undefined">from {{value.from.level}}</span> to
+                        <span class="label label-success">{{value.to.level}}</span>
+                    </li>
+                </ul>
 
-          <!--   <b ng-show="item.attachments">Attached:</b> -->
-            <ul ng-repeat="file in item.attachments" class="list-inline" style="display: inline-block;">
-                <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a>
-                </li>
-            </ul>
+                <p ng-show="item.comment" ng-bind-html="item.comment"></p>
+
+                <!--   <b ng-show="item.attachments">Attached:</b> -->
+                <ul ng-repeat="file in item.attachments" class="list-inline" style="display: inline-block;">
+                    <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a>
+                    </li>
+                </ul>
             </p>
 
-         
+
         </div>
     </div>
+        <div ng-include="'app/bug/view/partials/supportInfo.partial.html'"></div>
 
 
     <form name="commentForm">

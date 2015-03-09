@@ -1,0 +1,270 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="col-xs-12 col-sm-4 col-md-3 pull-left">
+    <div class="panel panel-info">
+        <div class="panel-heading" style="height: 40px">
+            <div class="pull-left">
+                <h3 class="panel-title">
+<i class="fa fa-task"></i>
+            <a ng-href="/task/{{task.id}}">Task -  {{task.id}}</a>
+            </h3>
+            </div>
+
+
+            <div class="pull-right" ng-show="showSubscribe">
+                <a class="pointer" tooltip="Subscribe" ng-click="subscribe()">
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </a>
+            </div>
+            <div class="pull-right" ng-show="showUnsubscribe">
+                <a class="pointer" tooltip="Unsubscribe" ng-click="unsubscribe()">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Status</b>
+                    </td>
+                    <!-- 
+  <td colspan="" rowspan="" ng-model="status" editable-select="task.status" e-ng-options="s as s for s in config.status" onbeforesave="updateStatus($data)">{{task.status}}</td>
+  -->
+                    <td>
+                        <select name="status" id="status" ng-model="task.status"  type="text" class="form-control input-sm" ng-options="status for status in statuses">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                 <td colspan="" rowspan="" class="hidden-md"><b>Severity</b>
+                    <td>
+                        <select id="severity" ng-model="task.severity" name="severity" type="text" class="form-control input-sm" ng-options="severity for severity in config.severity">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Category</b></td>
+                    <td>
+                        <select id="category" ng-model="task.category" name="category" type="text" class="form-control input-sm" ng-options="category for category  in config.category | orderBy: category"
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Version</b></td>
+                    <td>
+                        <select id="version" ng-model="task.version" name="version" type="text" class="form-control input-sm" ng-options="version group by version[0] for version in config.version">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Priority</b>
+                    </td>
+                    <!-- <td colspan="" rowspan="" editable-select="task.priority" e-ng-options="p.level as p.title for p in config.priority">{{task.priority}}</td> -->
+                    <td>
+                         <select id="priority" ng-model="task.priority" name="priority" type="text" class="form-control input-sm">
+                            <option ng-repeat="priority in config.priority" ng-selected="priority.level === task.priority.level" value="{{priority}}">
+                                {{priority.level}} - {{priority.title}}
+                            </option>
+                        </select>
+
+                       <!--  <select id="priority" ng-model="task.priority" name="priority" type="text" class="form-control input-sm" ng-options="(priority.level + ' - ' + priority.title) for priority in config.priority">
+                        </select> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Estimated Days</b>
+                    </td>
+                    <td colspan="" rowspan="">
+                        <select name="days" id="days" ng-model="task.days" ng-options="day for day in days" class="form-control input-sm">
+                        </select>
+                    </td>
+                </tr>
+               <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Start Date</b>
+                    </td>
+                   <td>
+                        <input type="text" class="form-control input-sm" datepicker-popup="{{cal.format}}" ng-model="task.period.startDate" is-open="cal.fromOpened" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('from', $event)" close-text="Close" />
+                   </td>
+                </tr>
+                <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>End Date</b>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control input-sm" datepicker-popup="{{cal.format}}" ng-model="task.period.endDate" is-open="cal.toOpened" min-date="minDate" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('to', $event)" close-text="Close" />
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>To fix in</b>
+                    </td>
+                    <td colspan="" rowspan="">
+                        <select id="tofixin" ng-model="task.tofixin" name="tofixin" type="text" class="form-control input-sm" ng-options="tofixin for tofixin in config.tofixin | orderBy: tofixin">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Fixed in</b>
+                    </td>
+                    <td colspan="" rowspan="">
+                        <select id="fixedin" ng-model="task.fixedin" name="fixedin" type="text" class="form-control input-sm" ng-options="tofixin for tofixin in config.tofixin | orderBy: tofxin">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Assigned To</b>
+                    </td>
+                    <td colspan="" rowspan="">
+                       <select id="assignTo" ng-model="task.assignTo" name="assignTo" type="text" class="form-control input-sm">
+                            <option ng-repeat="user in config.users | orderBy:'name'" ng-selected="user.name === task.assignTo.name" value="{{user}}">
+                                {{user.name}}
+                            </option>
+                        </select>
+
+                    <!--     <select id="assignTo" ng-model="task.assignTo" name="assignTo" type="text" class="form-control input-sm" ng-options="user.name group by user.name[0] for user in config.users">
+                        </select> -->
+                    </td>
+                </tr>
+
+                <tr ng-show="task.completedAt">
+                    <td colspan="" rowspan="" class="hidden-md"><b>Completed on</b>
+                    </td>
+                    <td colspan="" rowspan="">{{task.completedAt | date: 'medium'}}</td>
+                </tr>
+                
+                <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Subscribers</b>
+                    </td>
+                    <td colspan="" rowspan="">
+                        <ul ng-repeat="subscriber in task.subscribers">{{subscriber.name}}</ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Created by</b>
+                    </td>
+                    <td colspan="" rowspan="">{{task.submittedBy.name}}</td>
+                </tr>
+                <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Created on</b>
+                    </td>
+                    <td colspan="" rowspan="">{{task.createdAt | date: 'medium'}}</td>
+                </tr>
+            </table>
+            <span class="label label-default" class="hidden-md">Related tasks</span>
+            <div class="small-box bg-gray">
+                <table class="table">
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- task details  -->
+<div class="col-xs-12 col-sm-8 col-md-9">
+    <div class="panel panel-default">
+        <div class="panel-heading"><b class="panel-title">{{task.title}}</b>
+        </div>
+        <div class="panel-body">
+            <!--   <span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:40px;color: red;z-index:1"><h2 style="z-index:-1;">{{task.status}}</h2></span> -->
+            <p ng-bind-html="task.description"></p>
+
+            <div ng-show="task.note">
+                <div class="callout callout-warning">
+                    <i class="fa fa-bullhorn"></i>
+                    <p>{{task.note}}</p>
+                </div>
+            </div>
+            <div class="pull-left" ng-show="hasAttachments">
+                <div class="box box-success">
+                    <div class="box-header">
+                        <div class="box-tools pull-left">
+                            <div class="label bg-green"><span class="glyphicon glyphicon-file"></span> All Attachments</div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <ul ng-repeat="file in task.attachments track by $index" class="list-inline" style="display: inline-block;">
+                            <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+
+            <div ng-show="task.samplequery">
+                <legend>
+                    <h5><span class="glyphicon glyphicon-pencil"></span>  Sample Query</span></h5>
+                </legend>
+                <div hljs source="task.samplequery"></div>
+
+            </div>
+            <div ng-show="task.sampledata">
+                <legend>
+                    <h5><span class="glyphicon glyphicon-align-justify"></span>  Sample Data</span></h5>
+                </legend>
+                <div hljs source="task.sampledata"></div>
+            </div>
+            <div ng-show="task.stacktrace">
+                <legend>
+                    <h5><span class="glyphicon glyphicon-file"></span>  Error Stacktrace</span></h5>
+                </legend>
+                <div style="overflow: auto; max-height:500px;">
+                    <div hljs source="task.stacktrace"></div>
+                    <!-- <p class="gist">{{task.stacktrace}}</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel panel-default" ng-show="item.show || item.show == undefined" ng-repeat="item in task.changeHistory">
+        <div class="panel-heading">
+            <img alt="user pic" src="assets/images/avatar.png" class="img-circle img-responsive" style="height: 3em;width: 3em; float:left;margin-right: 5px;">
+            <b>{{item.updatedBy.name | capitalize}}</b>
+            <p class="pull-right" style="font-size: 12px;font-weight: 400;">{{item.time | date:'medium'}}</p>
+        </div>
+        <div class="panel-body">
+            <p class="bg-success">
+                <ul ng-repeat="(key, value) in item.change" class="list-unstyled">
+                    <li ng-hide="value.to.name || value.to.level">
+                        {{key | capitalize}} changed
+                        <span ng-hide="value.from===undefined">from {{value.from}}</span> to
+                        <span class="label label-success">{{value.to}}</span>
+                    </li>
+                    <li ng-show="value.to.name">Bug assigned
+                        <span ng-hide="value.from===undefined">from {{value.from.name}}</span> to
+                        <span class="label label-success">{{value.to.name}}</span>
+                    </li>
+
+                    <li ng-show="value.to.level">{{key | capitalize}} changed
+                        <span ng-hide="value.from===undefined">from {{value.from.level}}</span> to
+                        <span class="label label-success">{{value.to.level}}</span>
+                    </li>
+                </ul>
+
+                <p ng-show="item.comment" ng-bind-html="item.comment"></p>
+
+                <!--   <b ng-show="item.attachments">Attached:</b> -->
+                <ul ng-repeat="file in item.attachments" class="list-inline" style="display: inline-block;">
+                    <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a>
+                    </li>
+                </ul>
+            </p>
+
+
+        </div>
+    </div>
+
+    <form name="commentForm">
+        <!-- <text-angular ta-toolbar="[['p','bold','pre', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="newcomment" id="newcomment" name="newcomment" placeholder="Add a comment here"></text-angular> -->
+
+        <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="task.comment" id="comment" name="comment" placeholder="Add a comment here"></text-angular>
+        <br>
+        <input type="file" file-upload multiple/>
+        <ul>
+            <li ng-repeat="file in files">{{file.name}}</li>
+        </ul>
+        <button ng-click="updateTask()" id="updatetask" name="updatetask" class="btn btn-primary btn-danger">Update</button>
+    </form>
+</div>

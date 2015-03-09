@@ -59,8 +59,9 @@ angular.module('config.controllers', ['ivh.treeview'])
                         $scope.config[category] = response.data[category];
                     });
                 }, function(error) {
-                    Flash.addAlert('danger', error.statusText + ': Oops! Could not update config. Please try again.');
-                    //  Flash.addAlert('danger', JSON.stringify(error));
+                   // Flash.addAlert('danger', error.statusText + ': Oops! Could not update config. Please try again.');
+                    
+                      Flash.addAlert('danger', error.data.message);
                 });
 
             };
