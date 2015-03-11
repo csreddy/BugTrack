@@ -6,9 +6,9 @@
     <accordion close-others="false">
         <accordion-group ng-init="open=true;disabled=true" is-open="open" is-disabled="disabled">
             <accordion-heading>
-                <b>{{totalItems.all}} Bugs</b> <small>({{searchMetrics['total-time']}})</small>
+                <b>{{totalItems.all}} Tasks</b> <small>({{searchMetrics['total-time']}})</small>
                 <div class="col-md-4 pull-right">
-                    <input type="text" ng-model="searchbug" class="form-control" style="margin-top:-8px;width:100%;" placeholder="filter">    
+                    <input type="text" ng-model="searchtask" class="form-control" style="margin-top:-8px;width:100%;" placeholder="filter">    
                 </div>
                 
             </accordion-heading>
@@ -37,22 +37,22 @@
                             </th>
                         </tr>
                     </thead> 
-                    <tbody ng-repeat="bug in bugs | filter:searchbug">
-                       <tr> <td><a ng-href="/bug/{{bug.id}}">{{::bug.id}}</a>
+                    <tbody ng-repeat="task in tasks | filter:searchtask">
+                       <tr> <td><a ng-href="/task/{{task.id}}">{{::task.id}}</a>
                         </td>
-                        <td style="max-width:120px" class="hidden-xs">{{::bug.severity}}</td>
+                        <td style="max-width:120px" class="hidden-xs">{{::task.severity}}</td>
                         <td class="hidden-xs">
-                        <a tooltip-trigger tooltip-placement="top" tooltip="{{bug.priority.title}}" href="#">{{::bug.priority.level}}</a>
+                        <a tooltip-trigger tooltip-placement="top" tooltip="{{task.priority.title}}" href="#">{{::task.priority.level}}</a>
                         </td>
-                        <td style="max-width:200px" class="hidden-xs">{{::bug.submittedBy.name}}</td>
-                        <td class="hidden-xs">{{::bug.category}}</td>
-                        <td style="max-width:70px" class="hidden-xs">{{::bug.version}}</td>
-                        <td style="max-width:70px" class="hidden-xs">{{::bug.tofixin}}</td>
-                        <td class="hidden-xs">{{::bug.status}}</td>
-                        <td style="max-width:200px" class="hidden-xs">{{::bug.assignTo.username}}</td>
+                        <td style="max-width:200px" class="hidden-xs">{{::task.submittedBy.name}}</td>
+                        <td class="hidden-xs">{{::task.category}}</td>
+                        <td style="max-width:70px" class="hidden-xs">{{::task.version}}</td>
+                        <td style="max-width:70px" class="hidden-xs">{{::task.tofixin}}</td>
+                        <td class="hidden-xs">{{::task.status}}</td>
+                        <td style="max-width:200px" class="hidden-xs">{{::task.assignTo.username}}</td>
                         </tr>
                     <tr>
-                        <td colspan=9 style="max-width: 300px">{{::bug.title}}</td>
+                        <td colspan=9 style="max-width: 300px">{{::task.title}}</td>
                         </tr>
                     </tbody>
 
@@ -84,19 +84,19 @@
                             </th>
                         </tr>
                     </thead>
-                    <tr ng-repeat="bug in bugs">
-                        <td><a ng-href="/bug/{{bug.id}}">{{bug.id}}</a>
+                    <tr ng-repeat="task in tasks">
+                        <td><a ng-href="/task/{{task.id}}">{{task.id}}</a>
                         </td>
-                        <td style="max-width:120px" class="hidden-xs">{{bug.severity}}</td>
-                        <td class="hidden-xs"><a class="tooltips" href>{{bug.priority.level}}<span>{{bug.priority.title}}</span></a>
+                        <td style="max-width:120px" class="hidden-xs">{{task.severity}}</td>
+                        <td class="hidden-xs"><a class="tooltips" href>{{task.priority.level}}<span>{{task.priority.title}}</span></a>
                         </td>
-                        <td style="max-width:200px" class="hidden-xs">{{bug.submittedBy.username}}</td>
-                        <td class="hidden-xs">{{bug.category}}</td>
-                        <td style="max-width:70px" class="hidden-xs">{{bug.version}}</td>
-                        <td style="max-width:70px" class="hidden-xs">{{bug.tofixin}}</td>
-                        <td class="hidden-xs">{{bug.status}}</td>
-                        <td style="max-width:200px" class="hidden-xs">{{bug.assignTo.username}}</td>
-                        <td style="max-width: 300px">{{bug.title}}</td>
+                        <td style="max-width:200px" class="hidden-xs">{{task.submittedBy.username}}</td>
+                        <td class="hidden-xs">{{task.category}}</td>
+                        <td style="max-width:70px" class="hidden-xs">{{task.version}}</td>
+                        <td style="max-width:70px" class="hidden-xs">{{task.tofixin}}</td>
+                        <td class="hidden-xs">{{task.status}}</td>
+                        <td style="max-width:200px" class="hidden-xs">{{task.assignTo.username}}</td>
+                        <td style="max-width: 300px">{{task.title}}</td>
                     </tr> -->
 
                 </table>
@@ -105,7 +105,7 @@
     </accordion>
     <div class="col-xs-12 col-sm-12 col-md-10">
         <div class="container text-center">
-            <pagination id="pager" total-items="totalItems.all" items-per-page="pageLength" ng-model="currentPage" ng-click="gotoPage(currentPage)" ng-hide="totalItems.bug < pageLength" max-size="10" rotate="false" direction-links="false" boundary-links="true"></pagination>
+            <pagination id="pager" total-items="totalItems.all" items-per-page="pageLength" ng-model="currentPage" ng-click="gotoPage(currentPage)" ng-hide="totalItems.tasks < pageLength" max-size="10" rotate="false" direction-links="false" boundary-links="true"></pagination>
         </div>
     </div>
 </div>

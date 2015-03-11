@@ -139,10 +139,7 @@ app.service('Task', ['$http',
                 if (scope[object] !== undefined) {
                     var note = object + ' changed from ' + scope.task[object] + ' to ' + scope[object];
                     console.log(note);
-                    scope.task.changes[object] = {
-                        'from': scope.task[object],
-                        'to': scope[object]
-                    };
+                    scope.task[object] = scope.task[object];
                 }
             }, true);
 

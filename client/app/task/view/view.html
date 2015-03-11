@@ -60,14 +60,8 @@
                     </td>
                     <!-- <td colspan="" rowspan="" editable-select="task.priority" e-ng-options="p.level as p.title for p in config.priority">{{task.priority}}</td> -->
                     <td>
-                         <select id="priority" ng-model="task.priority" name="priority" type="text" class="form-control input-sm">
-                            <option ng-repeat="priority in config.priority" ng-selected="priority.level === task.priority.level" value="{{priority}}">
-                                {{priority.level}} - {{priority.title}}
-                            </option>
+                        <select id="priority" ng-model="task.priority" name="priority" type="text" class="form-control input-sm" ng-options="(priority.level + ' - ' + priority.title) for priority in config.priority">
                         </select>
-
-                       <!--  <select id="priority" ng-model="task.priority" name="priority" type="text" class="form-control input-sm" ng-options="(priority.level + ' - ' + priority.title) for priority in config.priority">
-                        </select> -->
                     </td>
                 </tr>
                 <tr>
@@ -113,14 +107,8 @@
                     <td colspan="" rowspan="" class="hidden-md"><b>Assigned To</b>
                     </td>
                     <td colspan="" rowspan="">
-                       <select id="assignTo" ng-model="task.assignTo" name="assignTo" type="text" class="form-control input-sm">
-                            <option ng-repeat="user in config.users | orderBy:'name'" ng-selected="user.name === task.assignTo.name" value="{{user}}">
-                                {{user.name}}
-                            </option>
+                        <select id="assignTo" ng-model="task.assignTo" name="assignTo" type="text" class="form-control input-sm" ng-options="user.name group by user.name[0] for user in config.users">
                         </select>
-
-                    <!--     <select id="assignTo" ng-model="task.assignTo" name="assignTo" type="text" class="form-control input-sm" ng-options="user.name group by user.name[0] for user in config.users">
-                        </select> -->
                     </td>
                 </tr>
 

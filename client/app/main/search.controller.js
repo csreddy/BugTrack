@@ -2,9 +2,9 @@
 
 var app = angular.module('search.controllers', ['ivh.treeview', 'ngProgress']);
 
-app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr', 'Config', 'ngProgress',
-    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr, Config, ngProgress) {
- 
+app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'defaultTaskSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr', 'Config', 'ngProgress',
+    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, defaultTaskSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr, Config, ngProgress) {
+
         $scope.home = 'Home page';
         $scope.form = angular.copy(defaultSearchCriteria) || {};
         $scope.bugs = [];
@@ -17,6 +17,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.facetName = '';
         $scope.isPaginationEvent = false;
         $scope.groupCriteria = 'submittedBy';
+        $scope.totalItems = {
+            all: 0,
+            bugs: 0,
+            tasks: 0
+        }
         $scope.facetOrder = [{
             type: 'assignTo',
             title: 'Assigned To'
@@ -42,6 +47,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             type: 'publishStatus',
             title: 'Publish Status'
         }]; //'platform'
+
         var conditionNames = ['q', 'kind', 'status', 'severity', 'priority', 'category', 'version', 'fixedin', 'tofixin', 'assignTo', 'submittedBy', 'page', 'pageLength'];
 
         // for calendar   
@@ -123,6 +129,21 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             $location.search('page', 1); // start from page 1 for every search
         };
 
+        $scope.getItems = function(kind) {
+            if (kind === 'Task') {
+                 $scope.form.kind[0].selected = false;
+                $scope.form.kind[1].selected = true;
+            }
+            if (kind === 'Bug') {
+                $scope.form.kind[0].selected = true;
+                 $scope.form.kind[1].selected = false;
+            }
+            //  angular.element('li#nvfe').hide();
+
+            $location.search(convertFormSelectionsToQueryParams());
+            $location.search('page', 1); // start from page 1 for every search
+        };
+
 
 
         // clear form. returns all bugs by default.
@@ -169,16 +190,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             console.log($location.search());
             $location.search('page', pageNo);
             $scope.isPaginationEvent = true;
-            ngProgress.start();
-            return Search.search($location.search()).success(function(searchResult) {
-                $scope.bugList = searchResult.slice(1);
-                $scope.searchMetrics = searchResult[0].metrics;
-                $scope.totalItems = searchResult[0].total;
-                ngProgress.complete();
-            }).error(function(error) {
-                Flash.addAlert('danger', error.body.errorResponse.message);
-                ngProgress.complete();
-            });
+            search($location.search());
         };
 
         // for table column sorting
@@ -191,6 +203,12 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         // and get details of each bug for rendering in table the UI
         $scope.$watchCollection('bugList', function() {
             getBugDetails();
+        }, true);
+
+        // watch the buglist collection returned from the search response
+        // and get details of each bug for rendering in table the UI
+        $scope.$watchCollection('taskList', function() {
+            getTaskDetails();
         }, true);
 
 
@@ -296,7 +314,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     // for form selections to auto fill when browser back/fwd is clicked
                     if (Object.keys($location.search()).length === 0) {
                         // reset search form to default
-                        
+
                         $scope.form = angular.copy(defaultSearchCriteria);
                     } else {
                         // get form selections from query params
@@ -339,7 +357,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
          *
          *********************************************/
 
-        // search with passed search critera
+        // search with passed search criteria
         function search(searchCriteria) {
             if (searchCriteria.groupUsers) {
                 if (searchCriteria.groupUsers.length === 0) {
@@ -361,7 +379,19 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         }
 
         function processResult(searchResult) {
-            $scope.bugList = searchResult.slice(1);
+            $scope.bugs = [];
+            $scope.tasks = [];
+
+            angular.forEach(_.pluck(searchResult.slice(1), 'content'), function(item) {
+                if (item.kind === 'Bug') {
+                    $scope.bugs.push(item);
+                }
+                if (item.kind === 'Task') {
+                    $scope.tasks.push(item);
+                }
+            });
+
+
             $scope.form.facets = angular.copy(processFacets(searchResult[0].facets));
             // groups does not come from search resposne
             // so we artifically attach groups to the search response
@@ -374,7 +404,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             renameEmptyFacets($scope.form.facets);
             preselectFacetCheckBox($scope.form.facets);
             $scope.searchMetrics = searchResult[0].metrics;
-            $scope.totalItems = searchResult[0].total;
+            $scope.totalItems = {
+                all: searchResult[0].total,
+                bugs: $scope.bugs.length,
+                tasks: $scope.tasks.length
+            };
         }
 
 
@@ -392,6 +426,27 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             });
 
             return facetArray;
+        }
+        // check if search param contains Bug collection
+        function isBug() {
+            var exists = false;
+            if ($location.search().kind) {
+                if ($location.search().kind.indexOf('Bug') > -1) {
+                    exists = true;
+                }
+            }
+            return exists;
+        }
+
+        // check if search param contains Task collection
+        function isTask() {
+            var exists = false;
+            if ($location.search().kind) {
+                if ($location.search().kind.indexOf('Task') > -1) {
+                    exists = true;
+                }
+            }
+            return exists;
         }
 
         // if the search query contains facets selection then automatically 
@@ -412,12 +467,19 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             return facetsFromSearch;
         }
 
-
         // get bug details for table display
         function getBugDetails() {
             $scope.bugs = [];
             angular.forEach($scope.bugList, function(bug) {
                 $scope.bugs.push(bug.content);
+            });
+        }
+
+        // get task details for table display
+        function getTaskDetails() {
+            $scope.tasks = [];
+            angular.forEach($scope.taskList, function(task) {
+                $scope.tasks.push(task.content);
             });
         }
 

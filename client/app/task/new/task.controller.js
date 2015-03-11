@@ -84,6 +84,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                 Task.count().success(function(response) {
                     var task = {};
                     task.id = response.count + 1;
+                    task.kind = 'Task';
                     task.title = $scope.task.title;
                     task.description = $scope.task.description;
                     task.days = $scope.task.days;

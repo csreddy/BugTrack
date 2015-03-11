@@ -57,7 +57,6 @@ angular.module('fullstackApp')
                         }
                     ],
                     defaultSearchCriteria: [
-
                         function() {
                             var criteria = {
                                 kind: [{
@@ -96,6 +95,76 @@ angular.module('fullstackApp')
                                     selected: false
                                 }, {
                                     name: 'External',
+                                    selected: false
+                                },
+                                {
+                                    name: 'Not Yet Started',
+                                    selected: false
+                                }, {
+                                    name: 'In Progress',
+                                    selected: false
+                                }, {
+                                    name: 'Completed',
+                                    selected: false
+                                }],
+                                severity: [{
+                                    name: 'P1 - Catastrophic',
+                                    selected: false
+                                }, {
+                                    name: 'P2 - Critical',
+                                    selected: false
+                                }, {
+                                    name: 'P3 - Major',
+                                    selected: false
+                                }, {
+                                    name: 'P4 - Minor',
+                                    selected: false
+                                }, {
+                                    name: 'P5 - Aesthetic',
+                                    selected: false
+                                }, {
+                                    name: 'Performance',
+                                    selected: false
+                                }],
+                                q: null,
+                                facets: {},
+                                assignTo: null,
+                                submittedBy: null,
+                                category: null,
+                                version: null,
+                                fixedin: null,
+                                tofixin: null,
+                                range: {},
+                                selectedUsers: [],
+                                groupCriteria: 'submittedBy'
+                            };
+                            return criteria;
+                        }
+                    ],
+                    defaultTaskSearchCriteria: [
+                        function() {
+                            var criteria = {
+                                kind: [{
+                                    name: 'Bug',
+                                    selected: false
+                                }, {
+                                    name: 'Task',
+                                    selected: true
+                                }, {
+                                    name: 'RFE',
+                                    selected: false
+                                }, {
+                                    name: 'Other',
+                                    selected: false
+                                }],
+                                status: [{
+                                    name: 'Not Yet Started',
+                                    selected: false
+                                }, {
+                                    name: 'In Progress',
+                                    selected: false
+                                }, {
+                                    name: 'Completed',
                                     selected: false
                                 }],
                                 severity: [{

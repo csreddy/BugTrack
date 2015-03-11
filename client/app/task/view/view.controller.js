@@ -31,13 +31,20 @@ angular.module('task.controllers')
                 format: 'MM-dd-yyyy'
             };
 
-            Task.get(id).then(function(response) {
-                    console.log(response.data);
+           function showTaskInfo(task) {
+                    console.log(task.data);
 
-                    $scope.task = response.data;
-                    oldCopy = JSON.parse(JSON.stringify(response.data));
+                    $scope.task = task.data;
+                    oldCopy = JSON.parse(JSON.stringify(task.data));
                     console.log('oldCopy', oldCopy);
-
+					
+                   // need specical handling for 'priority' and 'assignTo' for 
+                   // pre-selecting values and binding selection from the UI to model
+                   // in dropdown becuase the model is object and not string
+                   var index = _.findIndex($scope.config.priority, $scope.task.priority);
+                   $scope.task.priority = $scope.config.priority[index];
+                   index = _.findIndex($scope.config.users, $scope.task.assignTo);
+                   $scope.task.assignTo = $scope.config.users[index];
 
                     // if the current user has already subscribed then show Unsubscribe else show Subscribe
                     var subscribers = $scope.task.subscribers;
@@ -59,17 +66,45 @@ angular.module('task.controllers')
                         $scope.hasAttachments = true;
                     }
 
-   /*                 // watch for task field changes   
-                    Task.watch($scope, 'task.status');
-                    Task.watch($scope, 'task.priority');
-                    Task.watch($scope, 'task.severity');
-                    Task.watch($scope, 'task.category');
-                    Task.watch($scope, 'task.version');
-                    Task.watch($scope, 'task.tofixin');
-                    Task.watch($scope, 'task.fixedin');
-                    Task.watch($scope, 'task.assignTo');*/
+                }
 
-                },
+
+
+            Task.get(id).then(function(response) {
+            	console.log(response.data);
+
+                    $scope.task = response.data;
+                    oldCopy = JSON.parse(JSON.stringify(response.data));
+                    console.log('oldCopy', oldCopy);
+					
+                   // need specical handling for 'priority' and 'assignTo' for 
+                   // pre-selecting values and binding selection from the UI to model
+                   // in dropdown becuase the model is object and not string
+                   var index = _.findIndex($scope.config.priority, $scope.task.priority);
+                   $scope.task.priority = $scope.config.priority[index];
+                   index = _.findIndex($scope.config.users, $scope.task.assignTo);
+                   $scope.task.assignTo = $scope.config.users[index];
+
+                    // if the current user has already subscribed then show Unsubscribe else show Subscribe
+                    var subscribers = $scope.task.subscribers;
+                    for (var i = 0; i < subscribers.length; i++) {
+                        if (subscribers[i].username === currentUser.username) {
+                            $scope.showSubscribe = false;
+                            $scope.showUnsubscribe = true;
+                            break;
+                        }
+                    }
+                    // if the current user is task reporter or task assignee then do not show subscribe/unsubscribe because 
+                    // they are subscribed by default and not allowed to unsubscribe
+                    if (currentUser.username === $scope.task.assignTo.username || currentUser.username === $scope.task.submittedBy.username) {
+                        $scope.showSubscribe = false;
+                        $scope.showUnsubscribe = false;
+                    }
+
+                    if ($scope.task.attachments.length > 0) {
+                        $scope.hasAttachments = true;
+                    }
+            },
                 function(response) {
                     if (response.status === 404) {
                         $location.path('/404');
@@ -95,24 +130,9 @@ angular.module('task.controllers')
             $scope.updateTask = function() {
                 ngProgress.start();
 
-            /*    var props = ['status', 'priority', 'severity', 'category', 'version', 'tofixin', 'fixedin', 'assignTo'];
-                angular.forEach(props, function(value) {
-                    if (oldCopy[value] !== $scope.task[value]) {
-                        $scope.task.changes[value] = {
-                            'from': oldCopy[value],
-                            'to': $scope.task[value]
-                        };
-                    }
-                });*/
-
-                // oldCopy.status = $scope.task.status || '';
-                // oldCopy.assignTo = $scope.task.assignTo || {};
-                // oldCopy.category = $scope.task.category || '';
-                // oldCopy.tofixin = $scope.task.tofixin || '';
-                // oldCopy.severity = $scope.task.severity;
-                // oldCopy.priority = $scope.task.priority || {};
-                // oldCopy.version = $scope.task.version || '';
-                // oldCopy.fixedin = $scope.task.fixedin || '';
+            $scope.$watch('task.priority', function() {
+            	console.log('task.priority', $scope.task.priority);
+            })
                
                
                 $scope.task.updatedBy = {
