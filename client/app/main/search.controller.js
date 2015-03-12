@@ -77,6 +77,15 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 // set form selections according to url query params
                 $scope.form = parseQueryParams($location.search());
                 search($location.search());
+                if (isBug()) {
+                    $scope.tabs[0].active = true;
+                    $scope.tabs[1].active = false;
+                }
+                if (isTask()) {
+                    $scope.tabs[0].active = false;
+                    $scope.tabs[1].active = true;
+                }
+
                 // due to pagination directive bug, current page number does not get higlighted when 
                 // browser back/fwd is clicked. This is a hack to fix it.
                 $timeout(function() {
@@ -148,9 +157,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         };
 
         $scope.getItems = function(kind) {
-             if (kind === 'Bug') $location.search({kind: 'Bug'})
-             if (kind === 'Task') $location.search({kind: 'Task'})
-             $location.search('page', 1); // start from page 1 for every search
+            if (kind === 'Bug') $location.search('kind', 'Bug');
+            if (kind === 'Task') $location.search('kind', 'Task')
+            $location.search('page', 1); // start from page 1 for every search
         };
 
 
@@ -615,8 +624,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                         $scope.currentPage = parseInt(value);
                         break;
                     case 'kind':
-                        if(value) form[key] = value;
-                    break;
+                        if (value) form[key] = value;
+                        break;
                     case 'status':
                     case 'severity':
                         if (typeof value === 'string') {
