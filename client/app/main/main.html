@@ -21,12 +21,13 @@
 
 <div class="col-md-10">
 <tabset>
-<!--  <tab ng-repeat="tab in tabs" heading="{{tab.title}}s" active="tab.active" disabled="tab.disabled" select="getItems(tab.title)"><br>
-      <div ng-include="'app/main/partials/buglist.partial.html'"></div>
+ <tab ng-repeat="tab in tabs" heading="{{tab.title}}s" active="tab.active" disabled="tab.disabled" select="getItems(tab.title)"><br>
+      <div ng-include="'app/main/partials/buglist.partial.html'" ng-if="tab.title == 'Bug'"></div>
+       <div ng-include="'app/main/partials/tasklist.partial.html'" ng-if="tab.title == 'Task'"></div>
     </tab>
-    </tabset> -->
+    </tabset>
 
-<tabset>
+<!-- <tabset>
     <tab heading="Bugs" select="getItems('Bug')">
     <br>
     	<div ng-include="'app/main/partials/buglist.partial.html'"></div>
@@ -35,7 +36,7 @@
     <br>
     	<div ng-include="'app/main/partials/tasklist.partial.html'"></div>
     </tab>
-  </tabset>
+  </tabset> -->
 		
 </div>
 

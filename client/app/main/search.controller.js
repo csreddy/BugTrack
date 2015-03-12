@@ -50,6 +50,14 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
 
         var conditionNames = ['q', 'kind', 'status', 'severity', 'priority', 'category', 'version', 'fixedin', 'tofixin', 'assignTo', 'submittedBy', 'page', 'pageLength'];
 
+        $scope.tabs = [{
+            title: 'Bug',
+            content: $scope.bugs
+        }, {
+            title: 'Task',
+            content: $scope.tasks
+        }];
+
         // for calendar   
         $scope.cal = {
             open: function(when, $event) {
@@ -127,20 +135,21 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             $scope.isPaginationEvent = false;
             $location.search(convertFormSelectionsToQueryParams());
             $location.search('page', 1); // start from page 1 for every search
+            if (isBug()) {
+                $scope.tabs[0].active = true;
+                $scope.tabs[1].active = false;
+            }
+            if (isTask()) {
+                $scope.tabs[0].active = false;
+                $scope.tabs[1].active = true;
+            }
+
+
         };
 
         $scope.getItems = function(kind) {
-            if (kind === 'Task') {
-                 $scope.form.kind[0].selected = false;
-                $scope.form.kind[1].selected = true;
-            }
-            if (kind === 'Bug') {
-                $scope.form.kind[0].selected = true;
-                 $scope.form.kind[1].selected = false;
-            }
-            //  angular.element('li#nvfe').hide();
-
-            $location.search(convertFormSelectionsToQueryParams());
+             if (kind === 'Bug') $location.search({kind: 'Bug'})
+             if (kind === 'Task') $location.search({kind: 'Task'})
             $location.search('page', 1); // start from page 1 for every search
         };
 
@@ -347,6 +356,17 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         // collapse groups treee
         $scope.collapse = function() {
             Config.collapseGroups($scope.form.groups);
+        };
+
+        $scope.processRadio = function(obj) {
+            console.log('processRadio()');
+            var indexOfCheckedRadioInTheKindObject = $scope.form.kind.indexOf(obj);
+            angular.forEach($scope.form.kind, function(value, key) {
+                if (indexOfCheckedRadioInTheKindObject !== key) {
+                    value.selected = false;
+                    console.log(key + ':', value.selected);
+                }
+            });
         };
 
         /*********************************************

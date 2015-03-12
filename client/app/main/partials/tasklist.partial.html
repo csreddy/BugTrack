@@ -22,8 +22,8 @@
                             </th>
                             <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('priority.level', reverse)">Priority</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('submittedBy.username', reverse)">Submitted by</a>
-                            </th>
+                            <!-- <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('submittedBy.username', reverse)">Submitted by</a>
+                            </th> -->
                             <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('category', reverse)">Category</a>
                             </th>
                             <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('version', reverse)">Version</a>
@@ -35,6 +35,8 @@
                             </th>
                             <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('assignTo.username', reverse)">Assigned to</a>
                             </th>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('subTasks', reverse)">Sub Tasks</a>
+                            </th>
                         </tr>
                     </thead> 
                     <tbody ng-repeat="task in tasks | filter:searchtask">
@@ -44,12 +46,13 @@
                         <td class="hidden-xs">
                         <a tooltip-trigger tooltip-placement="top" tooltip="{{task.priority.title}}" href="#">{{::task.priority.level}}</a>
                         </td>
-                        <td style="max-width:200px" class="hidden-xs">{{::task.submittedBy.name}}</td>
+                       <!--  <td style="max-width:200px" class="hidden-xs">{{::task.submittedBy.name}}</td> -->
                         <td class="hidden-xs">{{::task.category}}</td>
                         <td style="max-width:70px" class="hidden-xs">{{::task.version}}</td>
                         <td style="max-width:70px" class="hidden-xs">{{::task.tofixin}}</td>
                         <td class="hidden-xs">{{::task.status}}</td>
                         <td style="max-width:200px" class="hidden-xs">{{::task.assignTo.username}}</td>
+                         <td style="max-width:200px" class="hidden-xs">{{::task.subTasks.length}}</td>
                         </tr>
                     <tr>
                         <td colspan=9 style="max-width: 300px">{{::task.title}}</td>
