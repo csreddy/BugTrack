@@ -157,8 +157,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         };
 
         $scope.getItems = function(kind) {
-            if (kind === 'Bug') $location.search('kind', 'Bug');
-            if (kind === 'Task') $location.search('kind', 'Task')
+            if(kind) $location.search('kind', kind);
             $location.search('page', 1); // start from page 1 for every search
         };
 
