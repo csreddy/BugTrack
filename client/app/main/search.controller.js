@@ -2,8 +2,8 @@
 
 var app = angular.module('search.controllers', ['ivh.treeview', 'ngProgress']);
 
-app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'defaultTaskSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr', 'Config', 'ngProgress',
-    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, defaultTaskSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr, Config, ngProgress) {
+app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr', 'Config', 'ngProgress',
+    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr, Config, ngProgress) {
 
         $scope.home = 'Home page';
         $scope.form = angular.copy(defaultSearchCriteria) || {};
@@ -21,7 +21,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             all: 0,
             bugs: 0,
             tasks: 0
-        }
+        };
         $scope.facetOrder = [{
             type: 'assignTo',
             title: 'Assigned To'
@@ -150,7 +150,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.getItems = function(kind) {
              if (kind === 'Bug') $location.search({kind: 'Bug'})
              if (kind === 'Task') $location.search({kind: 'Task'})
-            $location.search('page', 1); // start from page 1 for every search
+             $location.search('page', 1); // start from page 1 for every search
         };
 
 
@@ -615,6 +615,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                         $scope.currentPage = parseInt(value);
                         break;
                     case 'kind':
+                        if(value) form[key] = value;
+                    break;
                     case 'status':
                     case 'severity':
                         if (typeof value === 'string') {
