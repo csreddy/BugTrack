@@ -148,9 +148,11 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                         $location.path('/task/' + task.id);
                         Flash.addAlert('success', '<a href=\'/task/' + task.id + '\'>' + 'Task-' + task.id + '</a>' + ' was successfully created');
                     }, function(error) {
-                        Flash.addAlert('danger', 'Oops! Could not create the task. Please try again.')
+                         ngProgress.complete();
+                        Flash.addAlert('danger',  ' Oops! Could not create the task. ' + error.data.message)
                     });
                 }).error(function(error) {
+                    ngProgress.complete();
                     Flash.addAlert('danger', 'Oops! cound not get task count')
                 });
 

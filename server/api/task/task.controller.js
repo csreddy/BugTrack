@@ -322,65 +322,91 @@ exports.update = function(req, res) {
 
 exports.insertProceduralTask = function(req, res) {
     var uri = '/task/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
-    db.documents.patch(uri, p.insert("proceduralTasks/array-node(\"" + req.body.proceduralTaskType + "\")", 'last-child', parseInt(req.body.proceduralTaskId))).result(function(response) {
-        res.status(200).json({
-            message: 'Procedural Task inserted'
-        })
-    }, function(error) {
-        res.status(error.statusCode).json(JSON.stringify(error));
+    db.documents.probe(uri).result(function(response) {
+        if (response.exists) {
+            db.documents.patch(uri, p.insert("proceduralTasks/array-node(\"" + req.body.proceduralTaskType + "\")", 'last-child', parseInt(req.body.proceduralTaskId))).result(function(response) {
+                res.status(200).json({
+                    message: 'Procedural Task inserted'
+                })
+            }, function(error) {
+                res.status(error.statusCode).json(error);
+            });
+        } else {
+            res.status(404).json({
+                message: 'Parent task ' + req.body.parentTaskId + ' does not exist'
+            })
+        }
     });
+
+
 };
 
 
 exports.insertSubTask = function(req, res) {
-
     var uri = '/task/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
-    db.documents.patch(uri, p.insert("array-node('subTasks')", 'last-child', parseInt(req.body.subTaskId))).result(function(response) {
-        res.status(200).json({
-            message: 'Sub Task inserted'
-        })
-    }, function(error) {
-        res.status(error.statusCode).json(JSON.stringify(error));
+    db.documents.probe(uri).result(function(response) {
+        if (response.exists) {
+            db.documents.patch(uri, p.insert("array-node('subTasks')", 'last-child', parseInt(req.body.subTaskId))).result(function(response) {
+                res.status(200).json({
+                    message: 'Sub Task inserted'
+                })
+            }, function(error) {
+                res.status(error.statusCode).json(error);
+            });
+        } else {
+            res.status(404).json({
+                message: 'Parent task ' + req.body.parentTaskId + ' does not exist'
+            })
+        }
     });
+
+
+
 };
 
 exports.createSubTask = function(req, res) {
-    log.info('inside createSubTask()', req.body)
     var parentTaskUri = '/task/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
     var subTaskUri = '/task/' + req.body.subTask.id + '/' + req.body.subTask.id + '.json';
-    var transactionId = null;
-
-    db.transactions.open().result().then(function(response) {
-        transactionId = response.txid;
-    }).then(function() {
-        console.log('write ' + subTaskUri);
-        return db.documents.write({
-            uri: subTaskUri,
-            contentType: 'application/json',
-            content: req.body.subTask,
-            collections: [req.body.subTask.submittedBy.username, 'tasks'],
-            txid: transactionId
-        }).result();
-    }).then(function() {
-        console.log('write ' + parentTaskUri);
-        return db.documents.patch({
-            uri: parentTaskUri,
-            operations: [p.insert("array-node('subTasks')", 'last-child', parseInt(req.body.subTask.id))],
-            txid: transactionId
-        }).result();
-    }).then(function() {
-        return db.transactions.commit(transactionId).result(function() {
-            res.status(200).json({
-                message: 'Created Sub Task'
-            });
-        }, function(error) {
-            res.status(error.statusCode).json(error.body.errorResponse)
-        });
-    }).catch(function(error) {
-        db.transactions.rollback(transactionId);
-        log.info(JSON.stringify(error));
-        res.send(error.statusCode).json(error);
-    })
+    db.documents.probe(parentTaskUri).result(function(response) {
+        if (response.exists) {
+            var transactionId = null;
+            db.transactions.open().result().then(function(response) {
+                transactionId = response.txid;
+            }).then(function() {
+                console.log('write ' + subTaskUri);
+                return db.documents.write({
+                    uri: subTaskUri,
+                    contentType: 'application/json',
+                    content: req.body.subTask,
+                    collections: [req.body.subTask.submittedBy.username, 'tasks'],
+                    txid: transactionId
+                }).result();
+            }).then(function() {
+                console.log('write ' + parentTaskUri);
+                return db.documents.patch({
+                    uri: parentTaskUri,
+                    operations: [p.insert("array-node('subTasks')", 'last-child', parseInt(req.body.subTask.id))],
+                    txid: transactionId
+                }).result();
+            }).then(function() {
+                return db.transactions.commit(transactionId).result(function() {
+                    res.status(200).json({
+                        message: 'Created Sub Task'
+                    });
+                }, function(error) {
+                    res.status(error.statusCode).json(error.body.errorResponse)
+                });
+            }).catch(function(error) {
+                db.transactions.rollback(transactionId);
+                log.info(JSON.stringify(error));
+                res.send(error.statusCode).json(error);
+            })
+        } else {
+            res.status(404).json({
+                message: 'Parent task ' + req.body.parentTaskId + ' does not exist'
+            })
+        }
+    });
 };
 
 exports.subtasks = function(req, res) {
