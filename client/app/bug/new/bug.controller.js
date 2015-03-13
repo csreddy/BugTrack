@@ -5,9 +5,11 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
 
         function($scope, $location, Bug, Config, Flash, User, config, currentUser, bugId, ngProgress) {
             // accordion interactions   
-            $scope.status = {
-                isFirstOpen: true,
-                isFirstDisabled: false
+            $scope.accordion = {
+                status: {
+                    isFirstOpen: true,
+                    isFirstDisabled: false
+                }
             };
 
             $scope.config = {};
@@ -170,7 +172,7 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
             function submitBug() {
                 var bug = {};
                 console.log('called submitBug()');
-                
+
                 bug.id = parseInt(bugId.data.count) + 1;
                 bug.kind = $scope.kind || 'Bug';
                 bug.createdAt = new Date();
@@ -197,7 +199,7 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                 bug.memory = $scope.memory;
                 bug.processors = $scope.processors;
                 bug.note = $scope.note;
-                
+
 
                 bug.subscribers = [];
                 bug.subscribers.push({
@@ -217,10 +219,10 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                 }
                 //bug.relation = $scope.relation;
                 //bug.relatedTo = $scope.relatedTo || [];
-                
-                bug.associatedTask =  $scope.associatedTask;
+
+                bug.associatedTask = $scope.associatedTask;
                 bug.clones = [];
-                bug.support =  $scope.support;
+                bug.support = $scope.support;
                 bug.changeHistory = [];
 
                 ngProgress.start();

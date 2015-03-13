@@ -166,7 +166,7 @@
                 </tr>
             </table>
             <span class="label label-default" class="hidden-md">Related bugs</span>
-            <div class="small-box bg-gray">
+            <div class="bg-gray">
                 <table class="table">
                     <tr ng-show="bug.cloneOf">
                         <td colspan="" rowspan="" class="hidden-md"><b>Clone of</b>
@@ -182,7 +182,7 @@
                                 <li><a ng-href="#/bug/{{clone}}"><span class="label label-success">{{clone}}</span></a>
                                 </li>
                             </ul>
-                            <a class="btn btn-sm btn-warning" ng-href="" ng-click="clone(bug.id)"><span class="glyphicon glyphicon-refresh"></span> Clone</a>
+                            <a class="btn btn-sm btn-warning" ng-href="" ng-click="clone(bug.id)"><i class="fa fa-files-o"></i></span> Clone</a>
                         </td>
                     </tr>
                 </table>

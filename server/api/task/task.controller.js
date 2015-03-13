@@ -106,7 +106,6 @@ exports.new = function(req, res) {
                 return document.uri;
             }).join(', ')
         );
-        console.log('done\n');
         res.send(200);
     });
 
@@ -333,9 +332,8 @@ exports.insertProceduralTask = function(req, res) {
 };
 
 
-exports.insertSubTask= function(req, res) {
-    console.log('insertSubTask()', req.body);
-  //  res.status(200).json({a:req.body})
+exports.insertSubTask = function(req, res) {
+
     var uri = '/task/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
     db.documents.patch(uri, p.insert("array-node('subTasks')", 'last-child', parseInt(req.body.subTaskId))).result(function(response) {
         res.status(200).json({
@@ -350,8 +348,6 @@ exports.createSubTask = function(req, res) {
     log.info('inside createSubTask()', req.body)
     var parentTaskUri = '/task/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
     var subTaskUri = '/task/' + req.body.subTask.id + '/' + req.body.subTask.id + '.json';
-
-    console.log('req.body.subTask.id', req.body.subTask.id);
     var transactionId = null;
 
     db.transactions.open().result().then(function(response) {
@@ -374,7 +370,7 @@ exports.createSubTask = function(req, res) {
         }).result();
     }).then(function() {
         return db.transactions.commit(transactionId).result(function() {
-            res.status(202).json({
+            res.status(200).json({
                 message: 'Created Sub Task'
             });
         }, function(error) {
@@ -418,14 +414,14 @@ exports.subtasks = function(req, res) {
 
                 res.status(200).json(subTasks)
             }, function(error) {
-                res.status(500).json(error)
+                res.status(error.statusCode).json(error)
             })
         } else {
             res.status(200).json([])
         }
 
     }, function(error) {
-        res.status(503).json(error);
+        res.status(error.statusCode).json(error);
     })
 };
 

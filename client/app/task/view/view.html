@@ -4,7 +4,7 @@
         <div class="panel-heading" style="height: 40px">
             <div class="pull-left">
                 <h3 class="panel-title">
-<i class="fa fa-task"></i>
+                <i class="fa fa-tasks"></i>
             <a ng-href="/task/{{task.id}}">Task -  {{task.id}}</a>
             </h3>
             </div>
@@ -123,7 +123,7 @@
                     <td colspan="" rowspan="" class="hidden-md"><b>Subscribers</b>
                     </td>
                     <td colspan="" rowspan="">
-                        <ul ng-repeat="subscriber in task.subscribers">{{subscriber.name}}</ul>
+                        <ul ng-repeat="subscriber in task.subscribers" class="list-inline">{{subscriber.name}}</ul>
                     </td>
                 </tr>
                 <tr>
@@ -138,19 +138,41 @@
                 </tr>
             </table>
             <span class="label label-default" class="hidden-md">Related tasks</span>
-            <div class="small-box bg-gray">
+            <div class="bg-gray">
                 <table class="table">
-
+                    <tbody>
+                    <tr><td><b>Parent Task</b></td>
+                    <td>
+                         <a href="/task/{{task.parent.id}}">{{task.parent.id}}</a>
+                    </td></tr>
+                        <tr>
+                            <td><b>Procedural Tasks</b>
+                            </td>
+                            <td ng-repeat="pTask in proceduralTaskTypes">
+                                <ul ng-repeat="t in task.proceduralTasks[pTask]" class="list-inline"  style="display: inline-block;">
+                                    <li>
+                                       <a href="/task/{{t}}">{{t}}</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                           <tr>
+                            <td><b>Sub Tasks</b>
+                            </td>
+                            <td ng-repeat="subtask in task.subTasks"> 
+                            <a href="/task/{{subtask.id}}">{{subtask.id}}</a>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 </div>
 <!-- task details  -->
 <div class="col-xs-12 col-sm-8 col-md-9">
     <div class="panel panel-default">
-        <div class="panel-heading"><b class="panel-title">{{task.title}}</b>
+        <div class="panel-heading"><i class="fa" ng-class="{'fa-sitemap': task.parent.id}"></i> <b class="panel-title">{{task.title}}</b>
         </div>
         <div class="panel-body">
             <!--   <span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:40px;color: red;z-index:1"><h2 style="z-index:-1;">{{task.status}}</h2></span> -->
@@ -246,14 +268,16 @@
     <form class="form-horizontal">
         <accordion close-others="oneAtATime">
             <accordion-group is-open="accordion.status.isFirstOpen" style="cursor:pointer">
-                <accordion-heading><i class="glyphicon" ng-class="{'glyphicon-chevron-down': accordion.status.open, 'glyphicon-chevron-right': !accordion.status.open}"></i>&nbsp;Engineering Task List</accordion-heading>
+                <accordion-heading><i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;Engineering Task List</accordion-heading>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="headline">Parent Task</label>
                     <div class="col-md-6" ng-if="task.parent.id">
-                        <a href="/task/{{task.parent.id}}">Task-{{task.parent.id}} ({{task.parent.type}} )</a>
+                        <p class="form-control-static">
+                            <a href="/task/{{task.parent.id}}">{{task.parent.type}} for Task-{{task.parent.id}} </a>
+                        </p>
                     </div>
                     <div class="col-md-6" ng-if="!task.parent.id">
-                       <p class="form-control-static">No parent</p> 
+                        <p class="form-control-static">No parent</p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -265,9 +289,8 @@
                             <tbody ng-repeat="pTask in proceduralTaskTypes">
                                 <tr>
                                     <td style="max-width:80px">{{pTask}}</td>
-                                    <td>
-                                        <div style="display: inline-block;">
-                                            <ul class="list-inline" ng-repeat="t in task.proceduralTasks[pTask]">
+                                    <td style="max-width:100px">
+                                            <ul class="list-inline" style="display: inline-block;" ng-repeat="t in task.proceduralTasks[pTask]">
                                                 <li><a href="/task/{{t}}">{{t}}</a>
                                                 </li>
                                             </ul>
@@ -275,7 +298,7 @@
 
                                     </td>
                                     <td>
-                                        <button type="submit" class="btn btn-success  btn-flat btn-sm" ng-click="createProceduralTask(pTask)">Create</button>
+                                        <button type="submit" class="btn btn-success  btn-flat btn-sm" ng-click="createProceduralTask(pTask)"><span class="glyphicon glyphicon-plus"></span></button>
                                     </td>
 
 
@@ -285,23 +308,24 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="headline">Sub Tasks</label>
+                    <label class="col-md-2 control-label" for="headline"></i> Sub Tasks</label>
                     <div class="col-md-8">
                         <p class="form-control-static" ng-if="task.subTasks.length == 0"> No sub tasks</p>
                         <table class="table table-responsive" ng-if="task.subTasks.length > 0">
                             <tbody ng-repeat="subtask in task.subTasks">
                                 <tr>
-                                     <td> <a href="/task/{{subtask.id}}">
+                                    <td> <a href="/task/{{subtask.id}}">
                                          {{subtask.id}} - {{subtask.title}}
-                                     </a></td>
-                                    
+                                     </a>
+                                    </td>
+
                                 </tr>
                             </tbody>
                         </table>
                         <div class="input-group input-group-sm">
-                            <input type="text" id="subtask_title" name="subtask_title" ng-model="task.subtaskTitle" class="form-control" placeholder="enter task title">
+                            <input type="text" id="subtask_title" name="subtask_title" ng-model="task.subtaskTitle" class="form-control" placeholder="enter task title" required>
                             <span class="input-group-btn">
-                          <button class="btn btn-success btn-flat btn-sm" ng-click="createSubTask()"><span class="glyphicon glyphicon-plus"></span> Create</button>
+                          <button class="btn btn-success btn-flat btn-sm" ng-click="createSubTask()"><span class="glyphicon glyphicon-plus"></span> </button>
                             </span>
                         </div>
 

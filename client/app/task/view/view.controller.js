@@ -18,19 +18,19 @@ angular.module('task.controllers')
             };
             $scope.statuses = ['Not Yet Started', 'In Progress', 'Completed'];
             $scope.proceduralTaskTypes = [
-            	'Requirements Task',
+                'Requirements Task',
                 'Functional Specification Task',
                 'Test Specification Task',
                 'Test Automation Task',
                 'Documentation Task'
             ];
             $scope.relationTypes = [
-                'Requirements task for',
-                'Functional Spec task for',
-                'Test Specification task for',
-                'Test Automation task for',
-                'Documentation task for',
-                'Sub-task of'
+                'Requirements Task',
+                'Functional Specification Task',
+                'Test Specification Task',
+                'Test Automation Task',
+                'Documentation Task',
+                'Sub-task'
             ];
             var oldCopy;
             var id = $location.path().replace('/task/', '');
@@ -48,44 +48,6 @@ angular.module('task.controllers')
                 },
                 format: 'MM-dd-yyyy'
             };
-
-            function showTaskInfo(task) {
-                console.log(task.data);
-
-                $scope.task = task.data;
-                oldCopy = JSON.parse(JSON.stringify(task.data));
-                console.log('oldCopy', oldCopy);
-
-                // need specical handling for 'priority' and 'assignTo' for 
-                // pre-selecting values and binding selection from the UI to model
-                // in dropdown becuase the model is object and not string
-                var index = _.findIndex($scope.config.priority, $scope.task.priority);
-                $scope.task.priority = $scope.config.priority[index];
-                index = _.findIndex($scope.config.users, $scope.task.assignTo);
-                $scope.task.assignTo = $scope.config.users[index];
-
-                // if the current user has already subscribed then show Unsubscribe else show Subscribe
-                var subscribers = $scope.task.subscribers;
-                for (var i = 0; i < subscribers.length; i++) {
-                    if (subscribers[i].username === currentUser.username) {
-                        $scope.showSubscribe = false;
-                        $scope.showUnsubscribe = true;
-                        break;
-                    }
-                }
-                // if the current user is task reporter or task assignee then do not show subscribe/unsubscribe because 
-                // they are subscribed by default and not allowed to unsubscribe
-                if (currentUser.username === $scope.task.assignTo.username || currentUser.username === $scope.task.submittedBy.username) {
-                    $scope.showSubscribe = false;
-                    $scope.showUnsubscribe = false;
-                }
-
-                if ($scope.task.attachments.length > 0) {
-                    $scope.hasAttachments = true;
-                }
-
-            }
-
 
 
             Task.get(id).then(function(response) {
@@ -188,6 +150,7 @@ angular.module('task.controllers')
                     //  $scope.task.changes = {};
                     $scope.files = [];
                     $scope.task.comment = '';
+                    subTasks($scope.task.id);
                     Flash.addAlert('success', '<a href=\'/task/' + $scope.task.id + '\'>' + 'Task-' + $scope.task.id + '</a>' + ' was successfully updated');
                     Task.get(id).then(function(response) {
                         $scope.task = response.data;
@@ -241,6 +204,13 @@ angular.module('task.controllers')
                             type: proceduralTaskType,
                             id: id
                         }
+                        task.proceduralTasks = {
+                            'Requirements Task': [],
+                            'Functional Specification Task': [],
+                            'Test Specification Task': [],
+                            'Test Automation Task': [],
+                            'Documentation Task': []
+                        };
                         task.subTasks = [];
                         task.createdAt = new Date();
                         task.modifiedAt = new Date();
@@ -250,7 +220,7 @@ angular.module('task.controllers')
                         $q.all(updates).then(function(response) {
                             ngProgress.complete();
 
-                            $scope.message = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span></span> Created " + '<a href=\'/task/' + task.id + '\'>' + 'Task-' + task.id + '</a>'; //'<a href=\'/task/' + task.id + '\'>' + 'Task-' + task.id + '</a>' + ' created';
+                            $scope.message = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span> Created Task-" + task.id+"</span>"; 
                             // show message for 5 seconds and hide
                             $timeout(function() {
                                 $scope.message = '';
@@ -315,6 +285,13 @@ angular.module('task.controllers')
                             type: $scope.relationTypes[5],
                             id: id
                         };
+                        task.proceduralTasks = {
+                            'Requirements Task': [],
+                            'Functional Specification Task': [],
+                            'Test Specification Task': [],
+                            'Test Automation Task': [],
+                            'Documentation Task': []
+                        };
                         task.subTasks = [];
                         task.createdAt = new Date();
                         task.modifiedAt = new Date();
@@ -323,7 +300,7 @@ angular.module('task.controllers')
                         Task.createSubTask(id, task).then(function(response) {
                             ngProgress.complete();
 
-                            $scope.message = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span></span> Created " + '<a href=\'/task/' + task.id + '\'>' + 'Task-' + task.id + '</a>'; //'<a href=\'/task/' + task.id + '\'>' + 'Task-' + task.id + '</a>' + ' created';
+                            $scope.message = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span> Created Task-" + task.id+"</span>"; 
                             // show message for 5 seconds and hide
                             $timeout(function() {
                                 $scope.message = '';
@@ -346,62 +323,6 @@ angular.module('task.controllers')
                 })
             };
 
-
-            // clone task 
-            $scope.clone = function(id) {
-
-                var modalOptions = {
-                    closeButtonText: 'Cancel',
-                    actionButtonText: 'Clone',
-                    headerText: 'Clone Task-' + id + '?',
-                    bodyText: 'Are you sure you want to clone this task?'
-                };
-
-                console.log('cloning ' + id);
-                var cloneTime = new Date();
-                var newTaskId;
-                var clone = {};
-                clone.task = angular.copy($scope.task);
-                clone.task.cloneOf = id;
-                clone.task.clones = [];
-                clone.task.changeHistory.push({
-                    'time': cloneTime,
-                    'updatedBy': $scope.updatedBy,
-                    'comment': "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span></span> Cloned from " + "<a href='/task/" + id + "'>Task-" + id + "</a>"
-                });
-
-                if ($scope.task.cloneOf) {
-                    Flash.addAlert('danger', "Cloning of cloned task is not allowed. Clone the parent <a href='/task/" + $scope.task.cloneOf + "'>Task-" + $scope.task.cloneOf + "</a>");
-                    // $location.path('/task/' + id);
-                } else {
-                    console.warn('clone of', $scope.task.cloneOf);
-                    modalService.showModal({}, modalOptions).then(function() {
-
-
-                        var cloneOps = [Task.count().then(function(response) {
-                            newTaskId = parseInt(response.data.count) + 1;
-                            clone.task.id = newTaskId;
-                            $scope.task.clones.push(newTaskId);
-                            Task.clone($scope.task, clone.task).then();
-                        })];
-
-                        ngProgress.start();
-                        $q.all(cloneOps).then(function() {
-                                ngProgress.complete();
-                                console.log('task details ', clone.task);
-                                //  console.log('----', $scope.updatedBy);
-                                $location.path('/task/' + newTaskId);
-                                Flash.addAlert('success', '<a href=\'/#/task/' + clone.task.id + '\'>' + 'Task-' + clone.task.id + '</a>' + ' was successfully cloned');
-                            },
-                            function(error) {
-                                ngProgress.complete();
-                                console.log(error);
-                                Flash.addAlert('danger', error.data.message);
-                            }
-                        );
-                    });
-                }
-            };
 
             // subscribe to the task
             $scope.subscribe = function() {
@@ -455,7 +376,7 @@ angular.module('task.controllers')
                     $scope.task.subTasks = response.data;
                     console.log($scope.task.subTasks);
                 }, function(error) {
-                   // console.log(error);
+                    // console.log(error);
                     Flash.addAlert('danger', 'Oops! Could not retrieve sub tasks')
                 });
             }

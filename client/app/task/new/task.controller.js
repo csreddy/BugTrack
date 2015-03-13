@@ -69,7 +69,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
 
 
             this.submitTask = function() {
-                submitTask();
+                 submitTask();
             };
 
             this.stringify = function(date) {
@@ -122,7 +122,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                             uri: '/task/' + task.id + '/attachments/' + $scope.task.files[i].name
                         };
                     }
-                    task.subTasks = [];
+                   
                     task.proceduralTasks = {
                         'Requirements Task': [],
                         'Functional Specification Task': [],
@@ -130,6 +130,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                         'Test Automation Task': [],
                         'Documentation Task': []
                     };
+                    task.subTasks = [];
                     task.createdAt = new Date();
                     task.modifiedAt = new Date();
                     task.changeHistory = [];
