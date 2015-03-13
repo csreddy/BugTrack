@@ -14,8 +14,12 @@ module.exports = function(app) {
     app.use('/api/tasks/new', require('./api/task'));
     app.use('/api/tasks/update', require('./api/task'));
     app.use('/api/tasks/:id(\\d+)', require('./api/task'));
+    app.use('/api/tasks/subtasks', require('./api/task'));
     app.use('/api/tasks/:id(\\d+)/subscribe', require('./api/task'));
     app.use('/api/tasks/:id(\\d+)/unsubscribe', require('./api/task'));
+    app.use('/api/tasks/insertProceduralTask', require('./api/task'))
+    app.use('/api/tasks/insertSubTask', require('./api/task'))
+    app.use('/api/tasks/createSubTask', require('./api/task'))
 
     // Auth route
     app.use('/auth', require('./auth'))

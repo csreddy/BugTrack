@@ -7,11 +7,18 @@ var conn = require('../../config/db-config.js').connection;
 var db = marklogic.createDatabaseClient(conn);
 var q = marklogic.queryBuilder;
 var p = marklogic.patchBuilder;
+var bunyan = require('bunyan');
+var log = bunyan.createLogger({
+    name: 'Task',
+    serializers: {
+        req: bunyan.stdSerializers.req
+    }
+});
 var _ = require('lodash');
 
 // Get list of tasks
 exports.index = function(req, res) {
-  res.json([]);
+    res.json([]);
 };
 
 // get task count
@@ -314,8 +321,115 @@ exports.update = function(req, res) {
 
 };
 
+exports.insertProceduralTask = function(req, res) {
+    var uri = '/task/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
+    db.documents.patch(uri, p.insert("proceduralTasks/array-node(\"" + req.body.proceduralTaskType + "\")", 'last-child', parseInt(req.body.proceduralTaskId))).result(function(response) {
+        res.status(200).json({
+            message: 'Procedural Task inserted'
+        })
+    }, function(error) {
+        res.status(error.statusCode).json(JSON.stringify(error));
+    });
+};
+
+
+exports.insertSubTask= function(req, res) {
+    console.log('insertSubTask()', req.body);
+  //  res.status(200).json({a:req.body})
+    var uri = '/task/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
+    db.documents.patch(uri, p.insert("array-node('subTasks')", 'last-child', parseInt(req.body.subTaskId))).result(function(response) {
+        res.status(200).json({
+            message: 'Sub Task inserted'
+        })
+    }, function(error) {
+        res.status(error.statusCode).json(JSON.stringify(error));
+    });
+};
+
+exports.createSubTask = function(req, res) {
+    log.info('inside createSubTask()', req.body)
+    var parentTaskUri = '/task/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
+    var subTaskUri = '/task/' + req.body.subTask.id + '/' + req.body.subTask.id + '.json';
+
+    console.log('req.body.subTask.id', req.body.subTask.id);
+    var transactionId = null;
+
+    db.transactions.open().result().then(function(response) {
+        transactionId = response.txid;
+    }).then(function() {
+        console.log('write ' + subTaskUri);
+        return db.documents.write({
+            uri: subTaskUri,
+            contentType: 'application/json',
+            content: req.body.subTask,
+            collections: [req.body.subTask.submittedBy.username, 'tasks'],
+            txid: transactionId
+        }).result();
+    }).then(function() {
+        console.log('write ' + parentTaskUri);
+        return db.documents.patch({
+            uri: parentTaskUri,
+            operations: [p.insert("array-node('subTasks')", 'last-child', parseInt(req.body.subTask.id))],
+            txid: transactionId
+        }).result();
+    }).then(function() {
+        return db.transactions.commit(transactionId).result(function() {
+            res.status(202).json({
+                message: 'Created Sub Task'
+            });
+        }, function(error) {
+            res.status(error.statusCode).json(error.body.errorResponse)
+        });
+    }).catch(function(error) {
+        db.transactions.rollback(transactionId);
+        log.info(JSON.stringify(error));
+        res.send(error.statusCode).json(error);
+    })
+};
+
+exports.subtasks = function(req, res) {
+    var uri = '/task/' + req.params.id + '/' + req.params.id + '.json'
+    console.log('URI', uri);
+    db.documents.read({
+        uris: [uri]
+    }).result(function(document) {
+        console.log('document', document);
+        var subTasks = document[0].content.subTasks.sort();
+        var subTaskDocUris = [];
+        if (subTasks.length > 0) {
+            for (var i = 0; i < subTasks.length; i++) {
+                subTaskDocUris.push('/task/' + subTasks[i] + '/' + subTasks[i] + '.json')
+            }
+        }
+
+        if (subTaskDocUris.length > 0) {
+            db.documents.read({
+                uris: subTaskDocUris
+            }).result(function(documents) {
+                subTasks = [];
+                if (documents.length > 0) {
+                    for (var i = 0; i < documents.length; i++) {
+                        subTasks.push({
+                            id: documents[i].content.id,
+                            title: documents[i].content.title
+                        })
+                    }
+                }
+
+                res.status(200).json(subTasks)
+            }, function(error) {
+                res.status(500).json(error)
+            })
+        } else {
+            res.status(200).json([])
+        }
+
+    }, function(error) {
+        res.status(503).json(error);
+    })
+};
+
 exports.subscribe = function(req, res) {
-    console.log('subscribe', req.body);
     var uri = '/task/' + req.body.id + '/' + req.body.id + '.json';
     db.documents.patch(uri, p.insert("array-node('subscribers')", 'last-child', req.body.user)).result(function(response) {
         res.status(200).json({

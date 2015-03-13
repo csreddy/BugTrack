@@ -78,10 +78,10 @@
                                     <div class="form-group">
                                         <label class="col-xs-3 col-md-2 control-label" for="relation">Relation to parent task</label>
                                         <div class="col-xs-4 col-md-3">
-                                            <select name="task_parent_type" id="task_parent.type" ng-model="task.parent.type" ng-options="relation for relation in relationTypes" class="form-control input-sm">
+                                            <select name="task_parent_type" id="task_parent.type" ng-model="task.parent.type" ng-options="(relation + ' for ') for relation in relationTypes" class="form-control input-sm">
                                                 <option value="" selected></option>
                                             </select>
-                                        </div>
+                                        </div> 
                                         <div class="col-xs-4 col-md-2">
                                             <input class="form-control input-sm" ng-model="task.parent.id" name="task.parent.id" type="number" placeholder="parent task id">
                                         </div>

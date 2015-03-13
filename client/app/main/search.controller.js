@@ -75,16 +75,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             if (Object.keys($location.search()).length > 0) {
                 console.log('init()', $location.search());
                 // set form selections according to url query params
-                $scope.form = parseQueryParams($location.search());
+                $scope.form = convertSearchParamsIntoFormSelections($location.search());
                 search($location.search());
-                if (isBug()) {
-                    $scope.tabs[0].active = true;
-                    $scope.tabs[1].active = false;
-                }
-                if (isTask()) {
-                    $scope.tabs[0].active = false;
-                    $scope.tabs[1].active = true;
-                }
+                
 
                 // due to pagination directive bug, current page number does not get higlighted when 
                 // browser back/fwd is clicked. This is a hack to fix it.
@@ -92,7 +85,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     highlightPageNumber($location.search().page);
                 }, 1000);
                 $scope.form.groups = angular.copy($scope.preSelectedGroups) || angular.copy(config.groups);
-                console.log('preSelectedGroups', $scope.preSelectedGroups);
                 /*   
             // check if the url matches users default query, if true then select checkbox to indicate
                 if (angular.equals(searchCriteria, currentUser.savedQueries.default)) {
@@ -104,12 +96,25 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 // otherwise initialize with app default query
                 console.log('user has default search....');
                 $location.search(currentUser.savedQueries.default);
-                $scope.form = parseQueryParams($location.search());
+                $scope.form = convertSearchParamsIntoFormSelections($location.search());
                 $scope.userDefaultSearch = true;
             } else {
+                // if user does not have default query then return all bugs assigned to 
+                // the current user
                 $scope.form.assignTo = currentUser.username;
                 search(convertFormSelectionsToQueryParams());
             }
+
+                // if search params contains kind=Bug then make Bug tab active
+                if (isBug()) {
+                    $scope.tabs[0].active = true;
+                    $scope.tabs[1].active = false;
+                }
+                 // if search params contains kind=Task then make Task tab active
+                if (isTask()) {
+                    $scope.tabs[0].active = false;
+                    $scope.tabs[1].active = true;
+                }
         };
 
         // for form selection using checkboxes and dropdowns
@@ -255,10 +260,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             console.log('select n/v/f/e');
             $scope.form.status.forEach(function(item) {
                 if (item.name === 'New' || item.name === 'Verify' || item.name === 'Fix' || item.name === 'External') {
-                    item.value = select;
+                    item.selected =  !item.selected;
                 }
             });
-            $scope.addSelectedValueToQuery();
+             console.log('select n/v/f/e');
+           // $scope.addSelectedValueToQuery();
         };
 
         // boolean to show/hide facet dropdown
@@ -335,7 +341,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                         $scope.form = angular.copy(defaultSearchCriteria);
                     } else {
                         // get form selections from query params
-                        $scope.form = parseQueryParams($location.search());
+                        $scope.form = convertSearchParamsIntoFormSelections($location.search());
 
                     }
                     search($location.search());
@@ -613,7 +619,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         }
 
         // parses query params and converts them into equivalent form selections
-        function parseQueryParams(queryParams) {
+        function convertSearchParamsIntoFormSelections(queryParams) {
             //  $scope.form = angular.copy(defaultSearchCriteria);
             defaultSearchCriteria.groups = config.groups;
             var form = angular.copy(defaultSearchCriteria);

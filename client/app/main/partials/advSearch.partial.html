@@ -32,12 +32,12 @@
                     <li ng-repeat="status in form.status.slice(0, 8)">
                         <div class="checkbox">
                             <label class="xsm-label">
-                                <input type="checkbox" name="status" ng-model="status.selected" value="{{status.selected}}">&nbsp;{{status.name}}&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="status" ng-model="status.selected" value="{{status.selected}}">&nbsp;{{status.name | capitalize}}&nbsp;&nbsp;&nbsp;
                             </label>
                         </div>
                     </li>
                     <li id="nvfe">
-                        <div class="checkbox">
+                        <div class="checkbox" tooltip-trigger tooltip-placement="top" tooltip="Select New,Verify,Fixed & External">
                             <label class="xsm-label">
                                 <input type="checkbox" name="n/v/f/e" value="n/v/f/e" ng-model="nvfe" ng-click="selectNVFE(nvfe)">&nbsp;n/v/f/e
                             </label>

@@ -20,8 +20,12 @@
 </div>
 
 <div class="col-md-10">
-<tabset>
- <tab ng-repeat="tab in tabs" heading="{{tab.title}}s" active="tab.active" disabled="tab.disabled" select="getItems(tab.title)"><br>
+<tabset class="nav-tabs-custom">
+ <tab ng-repeat="tab in tabs" active="tab.active" disabled="tab.disabled" select="getItems(tab.title)" style="cursor:pointer;"><br>
+     
+    
+     <tab-heading><b>{{tab.title}}s</b></tab-heading>
+     
       <div ng-include="'app/main/partials/buglist.partial.html'" ng-if="tab.title == 'Bug'"></div>
        <div ng-include="'app/main/partials/tasklist.partial.html'" ng-if="tab.title == 'Task'"></div>
     </tab>

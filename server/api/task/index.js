@@ -10,7 +10,11 @@ router.get('/count', controller.count);
 router.post('/new', controller.new)
 router.put('/update', controller.update);
 router.get('/:id(\\d+)', controller.id);
-router.put('/:id/subscribe', controller.subscribe);
-router.put('/:id/unsubscribe', controller.unsubscribe);
+router.get('/:id(\\d+)/subtasks', controller.subtasks);
+router.put('/:id(\\d+)/subscribe', controller.subscribe);
+router.put('/:id(\\d+)/unsubscribe', controller.unsubscribe);
+router.put('/insertProceduralTask', controller.insertProceduralTask);
+router.put('/insertSubTask', controller.insertSubTask);
+router.post('/createSubTask', controller.createSubTask);
 
 module.exports = router;

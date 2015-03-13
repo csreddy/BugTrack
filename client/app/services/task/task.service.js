@@ -119,7 +119,50 @@ app.service('Task', ['$http',
             });
         };
 
+        this.insertProceduralTask = function(parentTaskId, proceduralTaskType, proceduralTaskId) {
+            return $http({
+                method: 'PUT',
+                url: '/api/tasks/insertProceduralTask',
+                data: {
+                    parentTaskId: parentTaskId,
+                    proceduralTaskType: proceduralTaskType,
+                    proceduralTaskId: proceduralTaskId
+                }
+            });
+        };
 
+        this.insertSubTask = function(parentTaskId, subTaskId) {
+            console.log('insertSubTask', {
+                    parentTaskId: parentTaskId,
+                    subTaskId: subTaskId
+                });
+            return $http({
+                method: 'PUT',
+                url: '/api/tasks/insertSubTask',
+                data: {
+                    parentTaskId: parentTaskId,
+                    subTaskId: subTaskId
+                }
+            });
+        };
+
+        this.createSubTask = function(parentTaskId, subTask) {
+            return $http({
+                method: 'POST',
+                url: '/api/tasks/createSubTask',
+                data: {
+                    parentTaskId: parentTaskId,
+                    subTask: subTask
+                }
+            });
+        };
+
+        this.getSubTasks = function(id) {
+            return $http({
+                method: 'GET',
+                url: '/api/tasks/' + id + '/subtasks'
+            });
+        };
 
         this.watch2 = function(scope, task) {
             var props = ['status', 'priority', 'severity', 'category', 'version', 'tofixin', 'fixedin', 'assignTo'];
@@ -132,7 +175,7 @@ app.service('Task', ['$http',
                     };
                 }
             });
-        }
+        };
 
         this.watch = function(scope, object) {
             scope.$watch(object, function() {

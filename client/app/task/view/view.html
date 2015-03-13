@@ -30,26 +30,27 @@
   <td colspan="" rowspan="" ng-model="status" editable-select="task.status" e-ng-options="s as s for s in config.status" onbeforesave="updateStatus($data)">{{task.status}}</td>
   -->
                     <td>
-                        <select name="status" id="status" ng-model="task.status"  type="text" class="form-control input-sm" ng-options="status for status in statuses">
+                        <select name="status" id="status" ng-model="task.status" type="text" class="form-control input-sm" ng-options="status for status in statuses">
                         </select>
                     </td>
                 </tr>
                 <tr>
-                 <td colspan="" rowspan="" class="hidden-md"><b>Severity</b>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Severity</b>
+                        <td>
+                            <select id="severity" ng-model="task.severity" name="severity" type="text" class="form-control input-sm" ng-options="severity for severity in config.severity">
+                            </select>
+                        </td>
+                </tr>
+                <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Category</b>
+                    </td>
                     <td>
-                        <select id="severity" ng-model="task.severity" name="severity" type="text" class="form-control input-sm" ng-options="severity for severity in config.severity">
-                        </select>
+                        <select id="category" ng-model="task.category" name="category" type="text" class="form-control input-sm" ng-options="category for category  in config.category | orderBy: category" </select>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="" rowspan="" class="hidden-md"><b>Category</b></td>
-                    <td>
-                        <select id="category" ng-model="task.category" name="category" type="text" class="form-control input-sm" ng-options="category for category  in config.category | orderBy: category"
-                        </select>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Version</b>
                     </td>
-                </tr>
-                <tr>
-                    <td colspan="" rowspan="" class="hidden-md"><b>Version</b></td>
                     <td>
                         <select id="version" ng-model="task.version" name="version" type="text" class="form-control input-sm" ng-options="version group by version[0] for version in config.version">
                         </select>
@@ -72,12 +73,12 @@
                         </select>
                     </td>
                 </tr>
-               <tr>
+                <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Start Date</b>
                     </td>
-                   <td>
+                    <td>
                         <input type="text" class="form-control input-sm" datepicker-popup="{{cal.format}}" ng-model="task.period.startDate" is-open="cal.fromOpened" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('from', $event)" close-text="Close" />
-                   </td>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>End Date</b>
@@ -85,7 +86,7 @@
                     <td>
                         <input type="text" class="form-control input-sm" datepicker-popup="{{cal.format}}" ng-model="task.period.endDate" is-open="cal.toOpened" min-date="minDate" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('to', $event)" close-text="Close" />
                     </td>
-                    
+
                 </tr>
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>To fix in</b>
@@ -117,7 +118,7 @@
                     </td>
                     <td colspan="" rowspan="">{{task.completedAt | date: 'medium'}}</td>
                 </tr>
-                
+
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Subscribers</b>
                     </td>
@@ -239,20 +240,87 @@
                     </li>
                 </ul>
             </p>
-
-
         </div>
     </div>
 
-    <form name="commentForm">
-        <!-- <text-angular ta-toolbar="[['p','bold','pre', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="newcomment" id="newcomment" name="newcomment" placeholder="Add a comment here"></text-angular> -->
+    <form class="form-horizontal">
+        <accordion close-others="oneAtATime">
+            <accordion-group is-open="accordion.status.isFirstOpen" style="cursor:pointer">
+                <accordion-heading><i class="glyphicon" ng-class="{'glyphicon-chevron-down': accordion.status.open, 'glyphicon-chevron-right': !accordion.status.open}"></i>&nbsp;Engineering Task List</accordion-heading>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="headline">Parent Task</label>
+                    <div class="col-md-6" ng-if="task.parent.id">
+                        <a href="/task/{{task.parent.id}}">Task-{{task.parent.id}} ({{task.parent.type}} )</a>
+                    </div>
+                    <div class="col-md-6" ng-if="!task.parent.id">
+                       <p class="form-control-static">No parent</p> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="headline">Procedural Tasks</label>
+                    <div class="col-md-8">
+                        <span><p ng-bind-html="message" class="text-green"></p></span>
+                        <table class="table table-hover table-responsive">
 
-        <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="task.comment" id="comment" name="comment" placeholder="Add a comment here"></text-angular>
-        <br>
-        <input type="file" file-upload multiple/>
-        <ul>
-            <li ng-repeat="file in files">{{file.name}}</li>
-        </ul>
-        <button ng-click="updateTask()" id="updatetask" name="updatetask" class="btn btn-primary btn-danger">Update</button>
-    </form>
+                            <tbody ng-repeat="pTask in proceduralTaskTypes">
+                                <tr>
+                                    <td style="max-width:80px">{{pTask}}</td>
+                                    <td>
+                                        <div style="display: inline-block;">
+                                            <ul class="list-inline" ng-repeat="t in task.proceduralTasks[pTask]">
+                                                <li><a href="/task/{{t}}">{{t}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-success  btn-flat btn-sm" ng-click="createProceduralTask(pTask)">Create</button>
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="headline">Sub Tasks</label>
+                    <div class="col-md-8">
+                        <p class="form-control-static" ng-if="task.subTasks.length == 0"> No sub tasks</p>
+                        <table class="table table-responsive" ng-if="task.subTasks.length > 0">
+                            <tbody ng-repeat="subtask in task.subTasks">
+                                <tr>
+                                     <td> <a href="/task/{{subtask.id}}">
+                                         {{subtask.id}} - {{subtask.title}}
+                                     </a></td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="input-group input-group-sm">
+                            <input type="text" id="subtask_title" name="subtask_title" ng-model="task.subtaskTitle" class="form-control" placeholder="enter task title">
+                            <span class="input-group-btn">
+                          <button class="btn btn-success btn-flat btn-sm" ng-click="createSubTask()"><span class="glyphicon glyphicon-plus"></span> Create</button>
+                            </span>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </accordion-group>
+        </accordion>
+
+        <form name="commentForm">
+            <!-- <text-angular ta-toolbar="[['p','bold','pre', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="newcomment" id="newcomment" name="newcomment" placeholder="Add a comment here"></text-angular> -->
+
+            <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="task.comment" id="comment" name="comment" placeholder="Add a comment here"></text-angular>
+            <br>
+            <input type="file" file-upload multiple/>
+            <ul>
+                <li ng-repeat="file in files">{{file.name}}</li>
+            </ul>
+            <button ng-click="updateTask()" id="updatetask" name="updatetask" class="btn btn-primary btn-danger">Update</button>
+        </form>
 </div>

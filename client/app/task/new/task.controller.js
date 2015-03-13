@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgress'])
-    .controller('newTaskCtrl', ['$scope', '$location', 'config', 'currentUser', 'count', 'Task', 'Flash', 'ngProgress',
-        function($scope, $location, config, currentUser, count, Task, Flash, ngProgress) {
+    .controller('newTaskCtrl', ['$scope','$q', '$location', 'config', 'currentUser', 'count', 'Task', 'Flash', 'ngProgress',
+        function($scope, $q, $location, config, currentUser, count, Task, Flash, ngProgress) {
             $scope.task = {};
             $scope.task.parent = {};
             $scope.task.period = {
@@ -21,18 +21,18 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
             $scope.task.days = 1;
             $scope.relatedTo = [];
             $scope.relationTypes = [
-                'Requirements task for',
-                'Functional Spec task for',
-                'Test Specification task for',
-                'Test Automation task for',
-                'Documentation task for',
-                'Sub-task of'
+                'Requirements Task',
+                'Functional Specification Task',
+                'Test Specification Task',
+                'Test Automation Task',
+                'Documentation Task',
+                'Sub-task'
             ];
 
             $scope.statuses = ['Not Yet Started', 'In Progress', 'Completed'];
 
 
-              $scope.days = _.range(1, 101);
+            $scope.days = _.range(1, 101);
 
 
             // for calendar   
@@ -100,7 +100,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                     task.priority = $scope.task.priority;
                     task.category = $scope.task.category;
                     task.severity = $scope.task.severity;
-                    task.version =  $scope.task.version;
+                    task.version = $scope.task.version;
                     task.tofixin = $scope.task.tofixin;
                     task.parent = $scope.task.parent;
                     task.submittedBy = {
@@ -123,15 +123,30 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                         };
                     }
                     task.subTasks = [];
+                    task.proceduralTasks = {
+                        'Requirements Task': [],
+                        'Functional Specification Task': [],
+                        'Test Specification Task': [],
+                        'Test Automation Task': [],
+                        'Documentation Task': []
+                    };
                     task.createdAt = new Date();
                     task.modifiedAt = new Date();
                     task.changeHistory = [];
+                    var updates = [Task.create(task, $scope.task.files).then()];
+                    if (task.parent.id) {
+                        if ($scope.relationTypes.indexOf(task.parent.type) > -1 && task.parent.type !== 'Sub-task') {
+                            updates.push(Task.insertProceduralTask(task.parent.id, task.parent.type, task.id).then());
+                        } else {
+                            updates.push(Task.insertSubTask(task.parent.id, task.id).then())
+                        }
+                    }
 
-                    Task.create(task, $scope.task.files).success(function() {
+                    $q.all(updates).then(function(response) {
                         ngProgress.complete();
                         $location.path('/task/' + task.id);
                         Flash.addAlert('success', '<a href=\'/task/' + task.id + '\'>' + 'Task-' + task.id + '</a>' + ' was successfully created');
-                    }).error(function(error) {
+                    }, function(error) {
                         Flash.addAlert('danger', 'Oops! Could not create the task. Please try again.')
                     });
                 }).error(function(error) {
