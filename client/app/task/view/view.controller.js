@@ -150,10 +150,10 @@ angular.module('task.controllers')
                     //  $scope.task.changes = {};
                     $scope.files = [];
                     $scope.task.comment = '';
-                    subTasks($scope.task.id);
                     Flash.addAlert('success', '<a href=\'/task/' + $scope.task.id + '\'>' + 'Task-' + $scope.task.id + '</a>' + ' was successfully updated');
                     Task.get(id).then(function(response) {
                         $scope.task = response.data;
+                         subTasks(id);
                     }, function(error) {
                         Flash.addAlert('danger', error.message);
                     });
