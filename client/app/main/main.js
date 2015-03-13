@@ -19,15 +19,15 @@ angular.module('fullstackApp')
                             var config = {};
                             return Config.get().then(function(configdata) {
                                 config = angular.copy(configdata.data);
-                                config.kind = [];
+                               // config.kind = configdata.data.kind;
                                 config.status = [];
                                 config.severity = [];
-                                for (var i = 0; i < configdata.data.kind.length; i++) {
-                                    config.kind.push({
-                                        name: configdata.data.kind[i],
-                                        selected: false
-                                    });
-                                }
+                                // for (var i = 0; i < configdata.data.kind.length; i++) {
+                                //     config.kind.push({
+                                //         name: configdata.data.kind[i],
+                                //         selected: false
+                                //     });
+                                // }
                                 for (var i = 0; i < configdata.data.status.length; i++) {
                                     config.status.push({
                                         name: configdata.data.status[i],
@@ -57,22 +57,9 @@ angular.module('fullstackApp')
                         }
                     ],
                     defaultSearchCriteria: [
-
                         function() {
                             var criteria = {
-                                kind: [{
-                                    name: 'Bug',
-                                    selected: true
-                                }, {
-                                    name: 'Task',
-                                    selected: false
-                                }, {
-                                    name: 'RFE',
-                                    selected: false
-                                }, {
-                                    name: 'Other',
-                                    selected: false
-                                }],
+                                kind: 'Bug',
                                 status: [{
                                     name: 'New',
                                     selected: false
@@ -96,6 +83,16 @@ angular.module('fullstackApp')
                                     selected: false
                                 }, {
                                     name: 'External',
+                                    selected: false
+                                },
+                                {
+                                    name: 'Not Yet Started',
+                                    selected: false
+                                }, {
+                                    name: 'In Progress',
+                                    selected: false
+                                }, {
+                                    name: 'Completed',
                                     selected: false
                                 }],
                                 severity: [{

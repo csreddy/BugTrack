@@ -20,14 +20,14 @@ exports.search = function(req, res) {
     res.locals.errors = req.flash();
     var result = {};
     var criteria = req.body;
-   // log.info('criteria:', criteria);
+    // log.info('criteria:', criteria);
     var page = parseInt(req.body.page) || 1;
     var pageLength = parseInt(req.body.pageLength) || 20;
     var startIndex = (page - 1) * pageLength + 1;
     var searchCriteria = [];
     // when empty criteria is sent 
     if (Object.keys(criteria).length === 0) {
-         searchCriteria = [q.collection('bugs')];
+        searchCriteria = [q.collection('bugs'), q.collection('tasks')];
     }
 
     // date buckets
@@ -47,12 +47,12 @@ exports.search = function(req, res) {
             // if key does not exist then create the key and assign f:key 
             // value to it
             if (!value) {
-                if (typeof criteria['f:'+key] === 'string') {
-                    criteria[key] = [criteria['f:' + key]];    
+                if (typeof criteria['f:' + key] === 'string') {
+                    criteria[key] = [criteria['f:' + key]];
                 } else {
-                    criteria[key] = criteria['f:' + key];    
+                    criteria[key] = criteria['f:' + key];
                 }
-                
+
             }
             // if key exists, then make an array from its value and
             // assign to key
@@ -82,7 +82,7 @@ exports.search = function(req, res) {
     }
 
     // put from and to keys as object for making it east add to search criteria
-    if (criteria.from || criteria.to ) criteria.range = {};
+    if (criteria.from || criteria.to) criteria.range = {};
     if (criteria.from) {
         criteria.range.from = criteria.from;
         delete criteria.from;
@@ -156,7 +156,7 @@ exports.search = function(req, res) {
                 parsePathIndexItems(searchCriteria, '/submittedBy/username', 'string', '=', value)
                 break;
             case 'createdAt':
-               log.info('yesterday: ',yesterday);
+                log.info('yesterday: ', yesterday);
                 orQuery = [];
                 for (var i = 0; i < value.length; i++) {
                     if (value[i] === 'today') {
@@ -202,7 +202,7 @@ exports.search = function(req, res) {
 
                 }
 
-                if (orQuery.length > 0) searchCriteria.push(q.or(orQuery)) 
+                if (orQuery.length > 0) searchCriteria.push(q.or(orQuery))
                 break;
             case 'range':
                 searchCriteria.push(q.and(
@@ -210,16 +210,37 @@ exports.search = function(req, res) {
                     q.range('createdAt', q.datatype('dateTime'), '<', value.to + 'T23:59:59')
                 ));
                 break;
-             case 'groupUsers':
+            case 'groupUsers':
                 log.info('groupCriteria', criteria.groupCriteria);
-                parsePathIndexItems(searchCriteria, '/'+ criteria.groupCriteria +'/username', 'string', '=', value)
-             break;   
+                parsePathIndexItems(searchCriteria, '/' + criteria.groupCriteria + '/username', 'string', '=', value)
+                break;
             default: // for any other selection do nothing
                 break;
         }
     }
 
-
+    var facetOptions = [ //  q.facet('kind', 'kind'),
+        q.facet('status', 'status', q.facetOptions('frequency-order')),
+        q.facet('category', 'category'),
+        q.facet('severity', 'severity'),
+        q.facet('version', 'version', q.facetOptions('limit=10', 'frequency-order', 'descending')),
+        q.facet('platform', 'platform', q.facetOptions('frequency-order', 'descending')),
+        // q.facet('fixedin', 'fixedin', q.facetOptions('limit=10', 'frequency-order', 'descending')),
+        // q.facet('tofixin', 'tofixin', q.facetOptions('limit=10', 'frequency-order', 'descending')),
+        q.facet('submittedBy', q.pathIndex('/submittedBy/username')),
+        q.facet('assignTo', q.pathIndex('/assignTo/username')),
+        q.facet('priority', q.pathIndex('/priority/level')),
+        q.facet('publishStatus', 'publishStatus', q.facetOptions('frequency-order', 'descending')),
+        q.facet('createdAt', q.datatype('xs:dateTime'),
+            q.bucket('today', today + 'T00:00:00', '<', today + 'T23:59:59'),
+            q.bucket('yesterday', yesterday + 'T00:00:00', '<', yesterday + 'T23:59:59'),
+            q.bucket('last 12 Months', last12Months + 'T00:00:00', '<', today + 'T23:59:59'),
+            q.bucket('2015', '2015-01-01T00:00:00', '<', '2015-12-31T23:59:59'),
+            q.bucket('2014', '2014-01-01T00:00:00', '<', '2014-12-31T23:59:59'),
+            q.bucket('older', null, '<', '2014-01-01T00:00:00')
+            // q.facetOptions('item-order','descending')
+        )
+    ]
 
     // get results
     db.documents.query(
@@ -230,33 +251,14 @@ exports.search = function(req, res) {
             q.sort('id', 'ascending')
         )
         .calculate(
-            //  q.facet('kind', 'kind'),
-            q.facet('status', 'status', q.facetOptions('frequency-order')),
-            q.facet('category', 'category'),
-            q.facet('severity', 'severity'),
-            q.facet('version', 'version', q.facetOptions('limit=10', 'frequency-order', 'descending')),
-            q.facet('platform', 'platform', q.facetOptions('frequency-order', 'descending')),
-            // q.facet('fixedin', 'fixedin', q.facetOptions('limit=10', 'frequency-order', 'descending')),
-            // q.facet('tofixin', 'tofixin', q.facetOptions('limit=10', 'frequency-order', 'descending')),
-            q.facet('submittedBy', q.pathIndex('/submittedBy/username')),
-            q.facet('assignTo', q.pathIndex('/assignTo/username')),
-            q.facet('priority', q.pathIndex('/priority/level')),
-            q.facet('publishStatus', 'publishStatus', q.facetOptions('frequency-order', 'descending')),
-            q.facet('createdAt', q.datatype('xs:dateTime'),
-                q.bucket('today', today + 'T00:00:00', '<', today + 'T23:59:59'),
-                q.bucket('yesterday', yesterday + 'T00:00:00', '<', yesterday + 'T23:59:59'),
-                q.bucket('last 12 Months', last12Months + 'T00:00:00', '<', today + 'T23:59:59'),
-                q.bucket('2015', '2015-01-01T00:00:00', '<', '2015-12-31T23:59:59'),
-                q.bucket('2014', '2014-01-01T00:00:00', '<', '2014-12-31T23:59:59'),
-                q.bucket('older', null, '<', '2014-01-01T00:00:00')
-                // q.facetOptions('item-order','descending')
-            ))
+            facetOptions
+        )
         .slice(startIndex, pageLength, q.snippet())
         .withOptions({
             debug: true,
             queryPlan: true,
             metrics: true,
-            category: 'contents',
+            category: 'metadata',
             view: 'facets'
         })
     ).result(function(response) {

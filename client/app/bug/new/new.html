@@ -2,27 +2,21 @@
 <div class="row">
     <div class="col-md-12">
         <div class="well">
-            <form class="form-horizontal" name="bugForm"  novalidate>
+            <form class="form-horizontal" name="bugForm" novalidate>
                 <fieldset>
-                    <legend class="text-center">New Bug</legend>
+                    <legend class="text-center"><i class="fa fa-bug"></i> New Bug</legend>
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="name">Title</label>
                         <div class="col-md-9">
                             <div class="has-error" ng-show="bugForm.title.$dirty && bugForm.title.$invalid">
-                                <small class="has-error" ng-show='bugForm.title.$error.required'>
-                                    Bug title cannot be blank
-                                </small>
-                            </div>
-                            <div class="input-group">
-                                <div class="input-group-btn">
-                                    <!-- dropdown menu -->
-                                    <select ng-model="kind" type="text" class="form-control" style="width: 100px">
-                                        <!-- <option value="Bug" selected>Bug</option> -->
-                                        <option ng-selected="kind === 'Bug'" ng-disabled="kind !== 'Bug'" ng-repeat="kind in config.kind" value="{{kind}}">{{kind}}</option>
-                                    </select>
+                                <div class="form-group has-error" ng-show='bugForm.title.$error.required'>
+                                    <small>
+                                <label class="control-label" for="title">  Bug title cannot be blank</label>
+                                 </small>
                                 </div>
-                                <input id="title" ng-model="title" name="title" type="text" placeholder="Bug title" class="form-control" required />
                             </div>
+
+                            <input id="title" ng-model="title" name="title" type="text" placeholder="Bug title" class="form-control" required />
                         </div>
                     </div>
 
@@ -30,8 +24,8 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="description">Description</label>
                         <div class="col-xs-12 col-md-9">
-                         <!--    <textarea rich-text-editor class="form-control" ng-model="description" id="description" name="description" placeholder="Enter bug description here..." rows="8"></textarea> -->
-                             <text-angular ta-toolbar="[['p','bold','pre', 'quote','italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="description" ng-model="description" id="description" name="description" placeholder="Enter bug description here..."></text-angular>
+                            <!--    <textarea rich-text-editor class="form-control" ng-model="description" id="description" name="description" placeholder="Enter bug description here..." rows="8"></textarea> -->
+                            <text-angular ta-toolbar="[['p','bold','pre', 'quote','italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="description" ng-model="description" id="description" name="description" placeholder="Enter bug description here..."></text-angular>
                         </div>
                     </div>
                     <div>
@@ -40,26 +34,26 @@
                             <div class="col-md-9">
                                 <accordion close-others="false">
                                     <accordion-group>
-                                        <accordion-heading is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-                                            <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;Enter a sample query that exposes the bug
+                                        <accordion-heading is-open="accordion.status.isFirstOpen" is-disabled="accordion.status.isFirstDisabled">
+                                        <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Enter a sample query that exposes the bug
                                         </accordion-heading>
                                         <textarea class="form-control" ng-model="samplequery" ng-change="setQuery(samplequery)" id="samplequery" name="samplequery" placeholder="Provide sample query.." rows="8"></textarea>
                                     </accordion-group>
                                     <accordion-group>
                                         <accordion-heading>
-                                            <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;Enter supporting sample data for the query above
+                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Enter supporting sample data for the query above
                                         </accordion-heading>
                                         <textarea class="form-control" ng-model="sampledata" ng-change="setSampledata(sampledata)" id="sampledata" name="sampledata" placeholder="Provide sample data.." rows="8"></textarea>
                                     </accordion-group>
                                     <accordion-group>
                                         <accordion-heading>
-                                            <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;Enter stacktrace
+                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Enter stacktrace
                                         </accordion-heading>
                                         <textarea class="form-control" ng-model="stacktrace" ng-change="setStacktrace(stacktrace)" id="stacktrace" name="stacktrace" placeholder="Provide stacktrace.." rows="8"></textarea>
                                     </accordion-group>
-                                    <accordion-group is-open="status.isFirstOpen">
+                                    <accordion-group is-open="accordion.status.isFirstOpen">
                                         <accordion-heading>
-                                            <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;Other info
+                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Other info
                                         </accordion-heading>
                                         <div class="form-group">
                                             <label class="col-md-2 control-label" for="severity">Severity</label>
@@ -112,18 +106,18 @@
                                             <div class="col-xs-4 col-md-4">
                                                 <select id="relation" ng-model="relation" ng-change="setRelation(relation)" name="relation" type="text" class="form-control input-sm">
                                                     <option value=""></option>
-                                                    <option ng-repeat="relation in relatedTasks" value="{{relation}}">
+                                                    <option ng-repeat="relation in relationTypes" value="{{relation}}">
                                                         {{relation}}</option>
                                                 </select>
                                             </div>
-                                            <div class="col-xs-4 col-md-4">
+                                            <div class="col-xs-4 col-md-2">
                                                 <input class="form-control input-sm" ng-model="relatedTo" ng-change="setRelatedTo(relatedTo)" name="relatedTo" type="text" placeholder="task id">
                                             </div>
                                         </div>
                                     </accordion-group>
                                     <accordion-group is-open="status.isFirstOpen">
                                         <accordion-heading>
-                                            <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;Environment in which you encountered the bug
+                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Environment in which you encountered the bug
                                         </accordion-heading>
                                         <div class="form-group">
                                             <label class="col-md-2 control-label" for="version">Version</label>
@@ -165,7 +159,7 @@
                                     </accordion-group>
                                     <accordion-group>
                                         <accordion-heading>
-                                            <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>&nbsp;&nbsp;&nbsp;Support Info
+                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Support Info
                                         </accordion-heading>
                                         <div class="form-group">
                                             <label class="col-md-2 control-label" for="headline">Headline</label>
@@ -219,7 +213,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="customerimpact">Upload files</label>
                             <div class="col-md-6">
-                                <input type="file" file-upload multiple/>
+                                <input type="file" class="form-control-static" file-upload multiple/>
                                 <ul>
                                     <li ng-repeat="file in files">{{file.name}}</li>
                                 </ul>
@@ -229,7 +223,7 @@
                     <!-- Form actions -->
                     <div class="form-group">
                         <div class="col-md-7 text-right">
-                           <button ng-click="createNewBug()" class="btn btn-primary btn-lg" ng-disabled="bugForm.$invalid">Submit</button>
+                            <button ng-click="createNewBug()" class="btn btn-primary btn-lg" ng-disabled="bugForm.$invalid">Submit</button>
                         </div>
                     </div>
                 </fieldset>

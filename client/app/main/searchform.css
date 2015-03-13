@@ -31,7 +31,7 @@ input.form-control.input-xsm {
     border-radius: 4px ! important;
     width: 140px;
 }
-#adv-search-form > div.col-md-1, #adv-search-form > div.col-md-2, #adv-search-form > div.col-md-3 {
+#adv-search-form > div.col-md-1, #adv-search-form > div.col-md-2, #adv-search-form > div.col-md-3, #adv-search-form > div.col-md-5 {
     padding-right: 5px;
     border-right: 1px solid #E4DFDF;
 }

@@ -7,7 +7,6 @@ var conn = require('../../config/db-config.js').connection;
 var db = marklogic.createDatabaseClient(conn);
 var q = marklogic.queryBuilder;
 var p = marklogic.patchBuilder;
-var maxLimit = 99999999;
 var uri = 'config.json'
 var _ = require('lodash');
 

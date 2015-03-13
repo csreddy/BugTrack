@@ -5,20 +5,33 @@
     <!--     <input type="checkbox"  id="showFacetBox" name="showFacetBox" ng-checked="showFacetBox()"> -->
 
 
-<!--     <a href="" ng-click="showFacetBox()">
+    <!--     <a href="" ng-click="showFacetBox()">
         <span id="showFacetBox" class="glyphicon glyphicon-chevron-right"></span>
     </a>
 </div> -->
-<!-- <table style="display:block; width:10px;height:200px;float:left;background-color:black;" border="1" class="rowlink" data-link="row">
+    <!-- <table style="display:block; width:10px;height:200px;float:left;background-color:black;" border="1" class="rowlink" data-link="row">
     <tr colspan="10%" href="#">
         <td>
         </td>
     </tr>
 </table> -->
-<div id="facetBox" class="col-md-2">
-    <div ng-include="'app/main/partials/facets.partial.html'"></div>
-</div>
+    <div id="facetBox" class="col-md-2">
+        <div ng-include="'app/main/partials/facets.partial.html'"></div>
+    </div>
 
-<div ng-include="'app/main/partials/buglist.partial.html'"></div>
+    <div class="col-md-10">
+        <tabset class="nav-tabs-custom">
+            <tab ng-repeat="tab in tabs" active="tab.active" disabled="tab.disabled" select="getItems(tab.title)" style="cursor:pointer;">
+                <tab-heading> <i class="fa" ng-class="{'fa-bug': tab.title == 'Bug', 'fa-tasks': tab.title == 'Task'}"></i> <b>{{tab.title}}s</b>
+                </tab-heading>
+                <div ng-include="'app/main/partials/buglist.partial.html'" ng-if="tab.title == 'Bug'"></div>
+                <div ng-include="'app/main/partials/tasklist.partial.html'" ng-if="tab.title == 'Task'"></div>
+            </tab>
+        </tabset>
+    </div>
 
-<!-- http://stackoverflow.com/a/25922380/1105556 -->
+
+
+
+
+    <!-- http://stackoverflow.com/a/25922380/1105556 -->

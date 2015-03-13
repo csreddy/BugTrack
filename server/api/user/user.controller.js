@@ -70,11 +70,11 @@ exports.create = function(req, res) {
         }).result()
     }).then(function() {
         return db.transactions.commit(transactionId).result(function() {
-            res.send(202).json({
+            res.status(202).json({
                 message: 'Created user'
             });
         }, function(error) {
-            res.send(error.statusCode).json(error.body.errorResponse)
+            res.status(error.statusCode).json(error.body.errorResponse)
         });
     }).catch(function(error) {
         db.transactions.rollback(transactionId);

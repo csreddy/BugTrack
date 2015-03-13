@@ -1,8 +1,8 @@
 'use strict';
 
-var app = angular.module('bug.services', []);
+var app = angular.module('task.services', []);
 
-app.service('Bug', ['$http',
+app.service('Task', ['$http',
     function($http) {
         // AngularJS will instantiate a singleton by calling 'new' on this function
         this.search = function(criteria) {
@@ -11,21 +11,14 @@ app.service('Bug', ['$http',
                 url: '/api/search',
                 data: criteria
             });
-        }; 
-
-        this.getNewId = function() {
-            return $http({
-                method: 'GET',
-                url: '/api/bug/newbugid'
-            });
         };
 
 
-        this.getCurrentUserBugs = function(user) {
+        this.getCurrentUserTasks = function(user) {
             if (user) {
                 var searchCriteria = {
                     kind: {
-                        Bug: true
+                        Task: true
                     },
                     assignTo: user.username,
                     facets: {}
@@ -40,16 +33,16 @@ app.service('Bug', ['$http',
         };
 
 
-        this.create = function(bug, files) {
+        this.create = function(task, files) {
             return $http({
-                url: '/api/bug/new',
+                url: '/api/tasks/new',
                 method: 'POST',
                 headers: {
                     'Content-Type': undefined
                 },
                 transformRequest: function(data) {
                     var form = new FormData();
-                    form.append('bug', angular.toJson(bug));
+                    form.append('task', angular.toJson(task));
                     for (var i = 0; i < data.files.length; i++) {
                         //console.log('FORM', data.files[i]);
                         form.append('file' + i, data.files[i]);
@@ -57,23 +50,23 @@ app.service('Bug', ['$http',
                     return form;
                 },
                 data: {
-                    bug: bug,
+                    task: task,
                     files: files
                 }
             });
         };
 
 
-        this.update = function(bug, old, files) {
+        this.update = function(task, old, files) {
             return $http({
-                url: '/api/bug/update',
+                url: '/api/tasks/update',
                 method: 'PUT',
                 headers: {
                     'Content-Type': undefined
                 },
                 transformRequest: function(data) {
                     var form = new FormData();
-                    form.append('bug', angular.toJson(bug));
+                    form.append('task', angular.toJson(task));
                     form.append('old', angular.toJson(old));
                     if (data.files) {
                         for (var i = 0; i < data.files.length; i++) {
@@ -84,7 +77,7 @@ app.service('Bug', ['$http',
                     return form;
                 },
                 data: {
-                    bug: bug,
+                    task: task,
                     old: old,
                     files: files
                 }
@@ -95,7 +88,7 @@ app.service('Bug', ['$http',
         this.subscribe = function(subscribe) {
             return $http({
                 method: 'PUT',
-                url: '/api/bug/' + subscribe.id + '/subscribe',
+                url: '/api/tasks/' + subscribe.id + '/subscribe',
                 data: subscribe
             });
         };
@@ -103,57 +96,93 @@ app.service('Bug', ['$http',
         this.unsubscribe = function(unsubscribe) {
             return $http({
                 method: 'PUT',
-                url: '/api/bug/' + unsubscribe.id + '/unsubscribe',
+                url: '/api/tasks/' + unsubscribe.id + '/unsubscribe',
                 data: unsubscribe
             });
         };
 
-        this.clone = function(parent, clone) {
-            console.log('inside clone()');
-            var data = {
-                parent: parent,
-                clone: clone
-            };
-            return $http({
-                method: 'POST',
-                url: '/api/bug/clone',
-                data: data
-            });
-        };
 
 
         this.get = function(id) {
             return $http({
                 method: 'GET',
-                url: '/api/bug/' + id
+                url: '/api/tasks/' + id
             });
         };
 
 
         this.count = function() {
-            console.log('getting bug count');
+            console.log('getting task count');
             return $http({
                 method: 'GET',
-                url: '/api/bug/count'
+                url: '/api/tasks/count'
             });
         };
 
-        this.getFacets = function() {
+        this.insertProceduralTask = function(parentTaskId, proceduralTaskType, proceduralTaskId) {
+            return $http({
+                method: 'PUT',
+                url: '/api/tasks/insertProceduralTask',
+                data: {
+                    parentTaskId: parentTaskId,
+                    proceduralTaskType: proceduralTaskType,
+                    proceduralTaskId: proceduralTaskId
+                }
+            });
+        };
+
+        this.insertSubTask = function(parentTaskId, subTaskId) {
+            console.log('insertSubTask', {
+                    parentTaskId: parentTaskId,
+                    subTaskId: subTaskId
+                });
+            return $http({
+                method: 'PUT',
+                url: '/api/tasks/insertSubTask',
+                data: {
+                    parentTaskId: parentTaskId,
+                    subTaskId: subTaskId
+                }
+            });
+        };
+
+        this.createSubTask = function(parentTaskId, subTask) {
+            return $http({
+                method: 'POST',
+                url: '/api/tasks/createSubTask',
+                data: {
+                    parentTaskId: parentTaskId,
+                    subTask: subTask
+                }
+            });
+        };
+
+        this.getSubTasks = function(id) {
             return $http({
                 method: 'GET',
-                url: '/bug/facets'
+                url: '/api/tasks/' + id + '/subtasks'
+            });
+        };
+
+        this.watch2 = function(scope, task) {
+            var props = ['status', 'priority', 'severity', 'category', 'version', 'tofixin', 'fixedin', 'assignTo'];
+            var oldTaskValues = angular.copy(task);
+            angular.forEach(props, function(value, index) {
+                if (scope.task[value]) {
+                    scope.task.changes[value] = {
+                        'from': oldTaskValues[value],
+                        'to': scope.task[value]
+                    };
+                }
             });
         };
 
         this.watch = function(scope, object) {
             scope.$watch(object, function() {
                 if (scope[object] !== undefined) {
-                    var note = object + ' changed from ' + scope.bug[object] + ' to ' + scope[object];
+                    var note = object + ' changed from ' + scope.task[object] + ' to ' + scope[object];
                     console.log(note);
-                    scope.changes[object] = {
-                        'from': scope.bug[object],
-                        'to': scope[object]
-                    };
+                    scope.task[object] = scope.task[object];
                 }
             }, true);
 

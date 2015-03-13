@@ -1,0 +1,139 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="well">
+            <form class="form-horizontal" name="taskForm">
+                <fieldset>
+                    <legend class="text-center"><i class="fa fa-tasks"></i> New Task</legend>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="name">Title</label>
+                        <div class="col-md-9">
+                            <input id="title" ng-model="task.title" name="task_title" type="text" placeholder="Task title" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="name">Description</label>
+                        <div class="col-md-9">
+                            <text-angular ta-toolbar="[['p','bold','pre', 'quote','italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="task.description" id="description" name="task_description" placeholder="Enter task description here..."></text-angular>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="otherinfo"></label>
+                        <div class="col-md-9">
+                            <accordion>
+                                <accordion-group is-open="accordion.status.isFirstOpen">
+                                    <accordion-heading>
+                                        <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Task info
+                                    </accordion-heading>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="severity">Severity</label>
+                                        <div class="col-md-3">
+                                            <select name="task_severity" id="task_severity" ng-model="task.severity" ng-options="severity for severity in config.severity" class="form-control input-sm">
+                                                <option value="" selected></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="severity">Version</label>
+                                        <div class="col-md-3">
+                                            <select name="task_version" id="task_version" ng-model="task.version" ng-options="version for version in config.version" class="form-control input-sm">
+                                                <option value="" selected></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="fixin">Fix in</label>
+                                        <div class="col-md-3">
+                                            <select name="task_tofixin" id="task_tofixin" ng-model="task.tofixin" ng-options="tofixin for tofixin in config.tofixin" class="form-control input-sm">
+                                                <option value="" selected></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- assign to input-->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="assignTo">Assign To</label>
+                                        <div class="col-md-3">
+                                            <select name="task_assignTo" id="task_assignTo" ng-model="task.assignTo" ng-options="user.name for user in config.users" class="form-control input-sm">
+                                                <option value="" selected></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="category">Category</label>
+                                        <div class="col-md-3">
+                                            <select name="task_category" id="task_category" ng-model="task.category" ng-options="category for category in config.category" class="form-control input-sm">
+                                                <option value="" selected></option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="priority">Priority</label>
+                                        <div class="col-md-3">
+                                            <select name="task_priority" id="task_priority" ng-model="task.priority" ng-options="(priority.level + ' - ' + priority.title) for priority in config.priority" class="form-control input-sm">
+                                                <option value="" selected></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-3 col-md-2 control-label" for="relation">Relation to parent task</label>
+                                        <div class="col-xs-4 col-md-3">
+                                            <select name="task_parent_type" id="task_parent.type" ng-model="task.parent.type" ng-options="(relation + ' for ') for relation in relationTypes" class="form-control input-sm">
+                                                <option value="" selected></option>
+                                            </select>
+                                        </div> 
+                                        <div class="col-xs-4 col-md-2">
+                                            <input class="form-control input-sm" ng-model="task.parent.id" name="task.parent.id" type="number" placeholder="parent task id">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <legend>
+                                        <h5 class="help-block"><i class="fa fa-clock-o"></i>  Task duration</h5>
+                                    </legend>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="priority">Estimated Days</label>
+                                        <div class="col-xs-3">
+                                            <select name="task_days" id="task_days" ng-model="task.days" ng-options="day for day in days" class="form-control input-sm">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="priority">Start Date</label>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control input-sm" datepicker-popup="{{cal.format}}" ng-model="task.period.startDate" is-open="cal.fromOpened" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('from', $event)" close-text="Close" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="priority">End Date</label>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control input-sm" datepicker-popup="{{cal.format}}" ng-model="task.period.endDate" is-open="cal.toOpened" min-date="minDate" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('to', $event)" close-text="Close" />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <legend>
+                                        <h5 class="help-block"><i class="fa fa-file"></i> Attach relevant files</h5>
+                                    </legend>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="customerimpact">Upload files</label>
+                                        <div class="col-md-6">
+                                            <input type="file" class="form-control-static" file-upload multiple/>
+                                            <ul>
+                                                <li ng-repeat="file in files">{{file.name}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </accordion-group>
+                            </accordion>
+                        </div>
+                    </div>
+                    <!-- Form actions -->
+                    <div class="form-group">
+                        <div class="col-md-7 text-right">
+                            <button ng-click="createNewTask()" class="btn btn-primary btn-lg" ng-disabled="taskForm.$invalid">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

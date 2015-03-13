@@ -11,6 +11,10 @@ angular.module('bug.controllers')
         $scope.showUnsubscribe = false;
         $scope.config = config.data || {};
         $scope.hasAttachments = false;
+        $scope.status = {
+                isFirstOpen: true,
+                isFirstDisabled: false
+            };
 
         var updateBug;
         var id = $location.path().replace('/bug/', '');
@@ -92,7 +96,7 @@ angular.module('bug.controllers')
             updateBug.platform = $scope.platform || $scope.bug.platform;
             updateBug.fixedin = $scope.fixedin || $scope.bug.fixedin;
             updateBug.comment = $scope.newcomment || '';
-            updateBug.subscribers = $scope.assignTo || '';
+           // updateBug.subscribers = $scope.assignTo || '';
             updateBug.updatedBy = currentUser;
             updateBug.svninfo = {};
 

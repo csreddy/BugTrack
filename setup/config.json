@@ -1761,9 +1761,9 @@
     ],
     "kind": [
         "Bug",
-        "Other",
+        "Task",
         "RFE",
-        "Task"
+        "Other"
     ],
     "platform": [
         "all",

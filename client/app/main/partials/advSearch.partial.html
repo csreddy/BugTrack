@@ -2,35 +2,22 @@
     <div id="adv-search-form" class="row">
         <div class="col-md-1">
             <div class="form-group">
-                <!-- <p class="text-center"><b>Kind</b></b> -->
                 <label class="sm">Kind</label>
                 <ul class="list-inline">
-                    <li ng-repeat="kind in form.kind">
-                        <div class="checkbox">   
+                    <li ng-repeat="kind in config.kind">
+                       <!--  <div class="checkbox">
                             <label class="xsm-label">
-                                <input type="checkbox" name="kind"  ng-model="kind.selected" value="{{kind.selected}}" ng-disabled="kind.name !== 'Bug'">&nbsp;{{kind.name}}&nbsp;
+                                <input type="checkbox" name="kind" ng-model="kind.selected" value="{{kind.selected}}" ng-disabled="kind.name == 'RFE' || kind.name == 'Other'">&nbsp;{{kind.name}}&nbsp;
                             </label>
-                        </div>
-                    </li>
-                </ul>    
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <!-- <p class="text-center"><b>Status</b></b> -->
-                <label class="sm">Status</label>
-                <ul class="list-inline">
-                    <li ng-repeat="status in form.status">
-                        <div class="checkbox">
+                        </div> -->
+                     <!--    <div class="radio">
                             <label class="xsm-label">
-                                <input type="checkbox" name="status" ng-model="status.selected" value="{{status.selected}}">&nbsp;{{status.name}}&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="kind" ng-model="kind.selected" ng-value="true" ng-disabled="kind.name == 'RFE' || kind.name == 'Other'" ng-change="processRadio(kind)">&nbsp;{{kind.name}}&nbsp;
                             </label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="checkbox">
+                        </div> -->
+                        <div class="radio">
                             <label class="xsm-label">
-                                <input type="checkbox" name="n/v/f/e"  value="n/v/f/e" ng-model="nvfe" ng-click="selectNVFE(nvfe)">&nbsp;n/v/f/e
+                                <input type="radio" name="kind" ng-model="form.kind" value="{{kind}}" ng-disabled="kind == 'RFE' || kind == 'Other'">&nbsp;{{kind}}&nbsp;
                             </label>
                         </div>
                     </li>
@@ -39,9 +26,41 @@
         </div>
         <div class="col-md-2">
             <div class="form-group">
+                <!-- <p class="text-center"><b>Status</b></b> -->
+                <label class="sm">Bug Status</label>
+                <ul class="list-inline">
+                    <li ng-repeat="status in form.status.slice(0, 8)">
+                        <div class="checkbox">
+                            <label class="xsm-label">
+                                <input type="checkbox" name="status" ng-model="status.selected" value="{{status.selected}}">&nbsp;{{status.name | capitalize}}&nbsp;&nbsp;&nbsp;
+                            </label>
+                        </div>
+                    </li>
+                    <li id="nvfe">
+                        <div class="checkbox" tooltip-trigger tooltip-placement="top" tooltip="Select New,Verify,Fixed & External">
+                            <label class="xsm-label">
+                                <input type="checkbox" name="n/v/f/e" value="n/v/f/e" ng-model="nvfe" ng-click="selectNVFE(nvfe)">&nbsp;n/v/f/e
+                            </label>
+                        </div>
+                    </li><br>
+                    <label class="sm">Task Status</label>
+                    <br>
+                      <li ng-repeat="status in form.status.slice(8)">
+                        <div class="checkbox">
+                            <label class="xsm-label">
+                                <input type="checkbox" name="status" ng-model="status.selected" value="{{status.selected}}">&nbsp;{{status.name}}&nbsp;&nbsp;&nbsp;
+                            </label>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
                 <!-- <p class="text-center"><b>Severity</b></b> -->
                 <label class="sm">Severity</label>
-                <ul class="list-inline">
+                <ul class="list-unstyled">
                     <li ng-repeat="severity in form.severity">
                         <div class="checkbox">
                             <label class="xsm-label">
@@ -68,23 +87,23 @@
                 <select name="category" id="category" ng-model="form.category" ng-options="category for category in config.category" class="form-control input-xsm" ng-selected="form.category === category">
                     <option value="" selected></option>
                 </select>
-                 <a ng-href="" title="clear" ng-click="clearSelection('category')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                <a ng-href="" title="clear" ng-click="clearSelection('category')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
             <div class="form-group">
                 <label class="sm">Fixed in</label>
                 <br>
-                 <select name="fixedin" id="fixedin" ng-model="form.fixedin" ng-options="version for version in config.version" class="form-control input-xsm" ng-selected="form.fixedin === version">
+                <select name="fixedin" id="fixedin" ng-model="form.fixedin" ng-options="version for version in config.version" class="form-control input-xsm" ng-selected="form.fixedin === version">
                     <option value="" selected></option>
                 </select>
-                 <a ng-href="" title="clear" ng-click="clearSelection('fixedin')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                <a ng-href="" title="clear" ng-click="clearSelection('fixedin')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
             <div class="form-group">
                 <label class="sm">Submitted By</label>
                 <br>
-                 <select name="submittedBy" id="submittedBy" ng-model="form.submittedBy" ng-options="user.username as user.name for user in config.users" class="form-control input-xsm">
+                <select name="submittedBy" id="submittedBy" ng-model="form.submittedBy" ng-options="user.username as user.name for user in config.users" class="form-control input-xsm">
                     <option value="" selected></option>
                 </select>
-                 <a ng-href="" title="clear" ng-click="clearSelection('submittedBy')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                <a ng-href="" title="clear" ng-click="clearSelection('submittedBy')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
             <div class="form-group">
                 <label class="sm">Version</label>
@@ -92,7 +111,7 @@
                 <select name="version" id="version" ng-model="form.version" ng-options="version for version in config.version" class="form-control input-xsm" ng-selected="form.version === version">
                     <option value="" selected></option>
                 </select>
-                 <a ng-href="" title="clear" ng-click="clearSelection('version')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                <a ng-href="" title="clear" ng-click="clearSelection('version')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
             <div class="form-group">
                 <label class="sm">To Fix in</label>
@@ -100,30 +119,30 @@
                 <select name="tofixin" id="tofixin" ng-model="form.tofixin" ng-options="tofixin for tofixin in config.tofixin" class="form-control input-xsm" ng-selected="form.tofixin === tofixin">
                     <option value="" selected></option>
                 </select>
-                 <a ng-href="" title="clear" ng-click="clearSelection('tofixin')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                <a ng-href="" title="clear" ng-click="clearSelection('tofixin')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
 
-         
-        <div class="form-group" >
-             <label class="sm">From</label>
-             <br>
-           <!--  <p class="input-group"> -->
-              <input type="text" class="form-control input-xsm" datepicker-popup="{{cal.format}}" ng-model="form.range.from" is-open="cal.fromOpened" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('from', $event)" close-text="Close"/>
-              <!-- </p> -->
-              </div>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <div class="form-group">
-               <label class="sm">To</label>
-               <br>
-             <!--  <p class="input-group"> -->
-              <input type="text" class="form-control input-xsm" datepicker-popup="{{cal.format}}" ng-model="form.range.to" is-open="cal.toOpened" min-date="minDate" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('to', $event)" close-text="Close" />
-          <!--   </p> -->
-        </div>     
-           
-        </div>
-   <div class="col-md-2">
+
             <div class="form-group">
-            <a ng-href="" ng-click="clear()" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-refresh"></span> Clear</a>
+                <label class="sm">From</label>
+                <br>
+                <!--  <p class="input-group"> -->
+                <input type="text" class="form-control input-xsm" datepicker-popup="{{cal.format}}" ng-model="form.range.from" is-open="cal.fromOpened" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('from', $event)" close-text="Close" />
+                <!-- </p> -->
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="form-group">
+                <label class="sm">To</label>
+                <br>
+                <!--  <p class="input-group"> -->
+                <input type="text" class="form-control input-xsm" datepicker-popup="{{cal.format}}" ng-model="form.range.to" is-open="cal.toOpened" min-date="minDate" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('to', $event)" close-text="Close" />
+                <!--   </p> -->
+            </div>
+
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <a ng-href="" ng-click="clear()" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-refresh"></span> Clear</a>
             </div>
         </div>
 

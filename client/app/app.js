@@ -19,6 +19,9 @@ var app = angular.module('fullstackApp', [
     'config.controllers',
     'config.services',
 
+    'task.controllers',
+    'task.services',
+
     'dashboard.controllers',
 
     'navbar.controllers',

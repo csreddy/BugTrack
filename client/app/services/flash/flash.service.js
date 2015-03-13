@@ -31,7 +31,7 @@ app.service('Flash', function($rootScope, $timeout) {
         // disappear flashes after 30 sec
         $timeout(function() {
             $rootScope.alerts.pop();
-        }, 3000);
+        }, timeout());
     };
 
     // close alert
@@ -42,6 +42,14 @@ app.service('Flash', function($rootScope, $timeout) {
     $rootScope.$on('$routeChangeSuccess', function(next, current) {
         //$rootScope.alerts = [];
     });
+
+    function timeout () {
+        if (_.last($rootScope.alerts).type === 'danger') {
+            return 100000;
+        } else {
+            return 3000;
+        }
+    }
 
 
 });

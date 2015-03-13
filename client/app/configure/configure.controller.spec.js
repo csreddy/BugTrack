@@ -2,40 +2,33 @@
 
 describe('Controller: configCtrl', function() {
 
-    var configCtrl, scope, ConfigServiceMock, FlashServiceMock;
+    var configCtrl, scope;
 
     // load the controller's module
     beforeEach(module('config.controllers'));
-    beforeEach(function() {
-        ConfigServiceMock = {
-            get: function() {
-                return 'hello';
-            }
-        };
-
-        FlashServiceMock = {
-            addAlert: function(alertType, message) {
-                return 'from Flash';
-            }
-        };
-    });
-
+    beforeEach(module('config.services'));
+    beforeEach(module('flash.services'));
 
 
     // Initialize the controller and a mock scope
-    beforeEach(inject(function($controller, $rootScope) {
+    beforeEach(inject(function($controller, $rootScope, Config) {
         scope = $rootScope.$new();
         configCtrl = $controller('configCtrl', {
             $scope: scope,
-            Config: ConfigServiceMock,
-            Flash: FlashServiceMock
+            Config: Config
         });
     }));
 
-    it('should ...', function() {
-     //   spyOn(ConfigServiceMock, 'get').addCallThrough();
-      //  spyOn(FlashServiceMock, 'addAlert').addCallThrough();
-
-        expect(1).toEqual(1);
+    it('should add user to config', function() {
+        console.log('------------------- Config -------------------');
+        scope.config.users = [];
+        scope.addUser('user1@email.com', 'testuser1', 'user1');
+        expect(scope.config.users.length).toEqual(1);
     });
+
+    it('should add new kind', function() {
+        scope.updateConfigOptions('kind', ['hello'], 'add');
+
+    });
+
 });
