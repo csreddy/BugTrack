@@ -137,8 +137,8 @@ angular.module('task.controllers')
 
                 // Task.watch2($scope, $scope.task);
 
-                Task.update($scope.task, oldCopy, $scope.files).success(function() {                 
-                    reloadBugInfo(id)
+                Task.update($scope.task, oldCopy, $scope.files).success(function() {
+                    reloadBugInfo(id);
                     Flash.addAlert('success', '<a href=\'/task/' + $scope.task.id + '\'>' + 'Task-' + $scope.task.id + '</a>' + ' was successfully updated');
                     ngProgress.complete();
                 }).error(function(error) {
@@ -204,19 +204,13 @@ angular.module('task.controllers')
                         $q.all(updates).then(function(response) {
                             ngProgress.complete();
 
-                            $scope.message = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span> Created Task-" + task.id+"</span>"; 
+                            $scope.message = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span> Created Task-" + task.id + "</span>";
                             // show message for 5 seconds and hide
                             $timeout(function() {
                                 $scope.message = '';
                             }, 5000);
                             //  Flash.addAlert('success', '<a href=\'/task/' + task.id + '\'>' + 'Task-' + task.id + '</a>' + ' was successfully created'); 
-                            Task.get(id).then(function(response) {
-                                $scope.task = response.data;
-                                subTasks(id);
-                            }, function(error) {
-                                ngProgress.complete();
-                                Flash.addAlert('danger', 'Oops! Could not get task detals. Reload the page.')
-                            })
+                            reloadBugInfo(id);
 
                         }, function(error) {
                             ngProgress.complete();
@@ -288,19 +282,13 @@ angular.module('task.controllers')
                         Task.createSubTask(id, task).then(function(response) {
                             ngProgress.complete();
 
-                            $scope.message = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span> Created Task-" + task.id+"</span>"; 
+                            $scope.message = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span> Created Task-" + task.id + "</span>";
                             // show message for 5 seconds and hide
                             $timeout(function() {
                                 $scope.message = '';
                             }, 5000);
                             //  Flash.addAlert('success', '<a href=\'/task/' + task.id + '\'>' + 'Task-' + task.id + '</a>' + ' was successfully created'); 
-                            Task.get(id).then(function(response) {
-                                $scope.task = response.data;
-                                subTasks(id);
-                            }, function(error) {
-                                ngProgress.complete();
-                                Flash.addAlert('danger', 'Oops! Could not get task detals. Reload the page.')
-                            })
+                            reloadBugInfo(id);
                         }, function(error) {
                             ngProgress.complete();
                             Flash.addAlert('danger', 'Oops! Could not create the task. Please try again.');
@@ -364,16 +352,46 @@ angular.module('task.controllers')
 
             // private functions
             function reloadBugInfo(id) {
-                   Task.get(id).then(function(response) {
-                        $scope.files = [];
-                        $scope.task = response.data;
-                        oldCopy = angular.copy(response.data);
-                        $scope.task.comment = '';    
-                        subTasks(id);
+                Task.get(id).then(function(response) {
+                    $scope.files = [];
+                    $scope.task = response.data;
+                    oldCopy = angular.copy(response.data);
 
-                    }, function(error) {
-                        Flash.addAlert('danger', error.data.message);
-                    });
+                    // need specical handling for 'priority' and 'assignTo' for 
+                    // pre-selecting values and binding selection from the UI to model
+                    // in dropdown becuase the model is object and not string
+                    var index = _.findIndex($scope.config.priority, $scope.task.priority);
+                    $scope.task.priority = $scope.config.priority[index];
+                    index = _.findIndex($scope.config.users, $scope.task.assignTo);
+                    $scope.task.assignTo = $scope.config.users[index];
+
+                    // if the current user has already subscribed then show Unsubscribe else show Subscribe
+                    var subscribers = $scope.task.subscribers;
+                    for (var i = 0; i < subscribers.length; i++) {
+                        if (subscribers[i].username === currentUser.username) {
+                            $scope.showSubscribe = false;
+                            $scope.showUnsubscribe = true;
+                            break;
+                        }
+                    }
+                    // if the current user is task reporter or task assignee then do not show subscribe/unsubscribe because 
+                    // they are subscribed by default and not allowed to unsubscribe
+                    if (currentUser.username === $scope.task.assignTo.username || currentUser.username === $scope.task.submittedBy.username) {
+                        $scope.showSubscribe = false;
+                        $scope.showUnsubscribe = false;
+                    }
+
+                    if ($scope.task.attachments.length > 0) {
+                        $scope.hasAttachments = true;
+                    }
+
+                    subTasks(id);
+                    $scope.task.comment = '';
+
+
+                }, function(error) {
+                    Flash.addAlert('danger', error.data.message);
+                });
             }
 
             function subTasks(id) {

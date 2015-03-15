@@ -159,6 +159,7 @@ if(bug.relationships){
                    time: comment.xpath("*:timestamp/text()"),
                    updatedBy: getUserInfo(comment.xpath("*:commenter/text()")),
                   change: {},
+                  files:[],
                   show: false
                 }
                     if(comment.xpath("*:old-status/text()").toString()){
