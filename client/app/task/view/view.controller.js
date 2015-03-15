@@ -300,7 +300,7 @@ angular.module('task.controllers')
                 }, function(error) {
                     ngProgress.complete();
                     // do nothing
-                })
+                });
             };
 
 
