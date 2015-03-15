@@ -187,7 +187,7 @@ exports.update = function(req, res) {
             username: to.updatedBy.username
         },
         change: {},
-        attachments: []
+        files: []
     }
 
     console.log('FILES', req.files);
@@ -310,7 +310,7 @@ exports.update = function(req, res) {
                 uri: '/bug/' + to.id + '/attachments/' + req.files[file].originalname
             }
             updates.push(p.insert("array-node('attachments')", 'last-child', fileObj));
-            changes.attachments.push(fileObj);
+            changes.files.push(fileObj);
         }
     }
 

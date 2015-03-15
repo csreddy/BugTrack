@@ -16,7 +16,7 @@ angular.module('task.controllers')
                 isFirstOpen: true,
                 isFirstDisabled: false
             };
-            $scope.statuses = ['Not Yet Started', 'In Progress', 'Completed'];
+            $scope.statuses = ['Not Yet Started', 'In Progress', 'Completed', 'Closed'];
             $scope.proceduralTaskTypes = [
                 'Requirements Task',
                 'Functional Specification Task',
@@ -52,11 +52,8 @@ angular.module('task.controllers')
 
             Task.get(id).then(function(response) {
 
-                    console.log(response.data);
-
                     $scope.task = response.data;
-                    oldCopy = JSON.parse(JSON.stringify(response.data));
-                    console.log('oldCopy', oldCopy);
+                    oldCopy = angular.copy(response.data);
 
                     // need specical handling for 'priority' and 'assignTo' for 
                     // pre-selecting values and binding selection from the UI to model
@@ -114,11 +111,6 @@ angular.module('task.controllers')
             $scope.updateTask = function() {
                 ngProgress.start();
 
-                $scope.$watch('task.priority', function() {
-                    console.log('task.priority', $scope.task.priority);
-                });
-
-
                 $scope.task.updatedBy = {
                     username: currentUser.username,
                     email: currentUser.email,
@@ -145,21 +137,13 @@ angular.module('task.controllers')
 
                 // Task.watch2($scope, $scope.task);
 
-                Task.update($scope.task, oldCopy, $scope.files).success(function() {
-                    // reset watchers
-                    //  $scope.task.changes = {};
-                    $scope.files = [];
-                    $scope.task.comment = '';
+                Task.update($scope.task, oldCopy, $scope.files).success(function() {                 
+                    reloadBugInfo(id)
                     Flash.addAlert('success', '<a href=\'/task/' + $scope.task.id + '\'>' + 'Task-' + $scope.task.id + '</a>' + ' was successfully updated');
-                    Task.get(id).then(function(response) {
-                        $scope.task = response.data;
-                         subTasks(id);
-                    }, function(error) {
-                        Flash.addAlert('danger', error.message);
-                    });
                     ngProgress.complete();
                 }).error(function(error) {
-                    Flash.addAlert('danger', error.message);
+                    ngProgress.complete();
+                    Flash.addAlert('danger', error.data.message);
                 });
 
             };
@@ -230,16 +214,20 @@ angular.module('task.controllers')
                                 $scope.task = response.data;
                                 subTasks(id);
                             }, function(error) {
+                                ngProgress.complete();
                                 Flash.addAlert('danger', 'Oops! Could not get task detals. Reload the page.')
                             })
 
                         }, function(error) {
+                            ngProgress.complete();
                             Flash.addAlert('danger', 'Oops! Could not create the task. Please try again.');
                         });
                     }).error(function(error) {
+                        ngProgress.complete();
                         Flash.addAlert('danger', 'Oops! could not get task count');
                     });
                 }, function(error) {
+                    ngProgress.complete();
                     // do nothing
                 });
             };
@@ -310,15 +298,19 @@ angular.module('task.controllers')
                                 $scope.task = response.data;
                                 subTasks(id);
                             }, function(error) {
+                                ngProgress.complete();
                                 Flash.addAlert('danger', 'Oops! Could not get task detals. Reload the page.')
                             })
                         }, function(error) {
+                            ngProgress.complete();
                             Flash.addAlert('danger', 'Oops! Could not create the task. Please try again.');
                         });
                     }).error(function(error) {
+                        ngProgress.complete();
                         Flash.addAlert('danger', 'Oops! could not get task count');
                     });
                 }, function(error) {
+                    ngProgress.complete();
                     // do nothing
                 })
             };
@@ -371,6 +363,19 @@ angular.module('task.controllers')
             };
 
             // private functions
+            function reloadBugInfo(id) {
+                   Task.get(id).then(function(response) {
+                        $scope.files = [];
+                        $scope.task = response.data;
+                        oldCopy = angular.copy(response.data);
+                        $scope.task.comment = '';    
+                        subTasks(id);
+
+                    }, function(error) {
+                        Flash.addAlert('danger', error.data.message);
+                    });
+            }
+
             function subTasks(id) {
                 Task.getSubTasks(id).then(function(response) {
                     $scope.task.subTasks = response.data;

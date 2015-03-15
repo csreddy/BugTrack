@@ -1,6 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="col-xs-12 col-sm-4 col-md-3 pull-left">
     <div class="panel panel-info">
+
         <div class="panel-heading" style="height: 40px">
             <div class="pull-left">
                 <h3 class="panel-title">
@@ -21,6 +22,7 @@
                 </a>
             </div>
         </div>
+        <!--   <form name="taskForm"> -->
         <div class="panel-body">
             <table class="table table-striped">
                 <tr>
@@ -100,7 +102,7 @@
                     <td colspan="" rowspan="" class="hidden-md"><b>Fixed in</b>
                     </td>
                     <td colspan="" rowspan="">
-                        <select id="fixedin" ng-model="task.fixedin" name="fixedin" type="text" class="form-control input-sm" ng-options="tofixin for tofixin in config.tofixin | orderBy: tofxin">
+                        <select id="fixedin" ng-model="task.fixedin" name="fixedin" type="text" class="form-control input-sm" ng-options="fixedin for fixedin in config.tofixin | orderBy: fixedin">
                         </select>
                     </td>
                 </tr>
@@ -257,7 +259,7 @@
                 <p ng-show="item.comment" ng-bind-html="item.comment"></p>
 
                 <!--   <b ng-show="item.attachments">Attached:</b> -->
-                <ul ng-repeat="file in item.attachments" class="list-inline" style="display: inline-block;">
+                <ul ng-repeat="file in item.files" class="list-inline" style="display: inline-block;">
                     <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a>
                     </li>
                 </ul>
@@ -335,6 +337,7 @@
 
             </accordion-group>
         </accordion>
+
 
         <form name="commentForm">
             <!-- <text-angular ta-toolbar="[['p','bold','pre', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="newcomment" id="newcomment" name="newcomment" placeholder="Add a comment here"></text-angular> -->

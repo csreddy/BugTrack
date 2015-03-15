@@ -279,7 +279,7 @@
                 <p ng-show="item.comment" ng-bind-html="item.comment"></p>
 
                 <!--   <b ng-show="item.attachments">Attached:</b> -->
-                <ul ng-repeat="file in item.attachments" class="list-inline" style="display: inline-block;">
+                <ul ng-repeat="file in item.files" class="list-inline" style="display: inline-block;">
                     <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a>
                     </li>
                 </ul>

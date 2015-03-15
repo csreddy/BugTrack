@@ -29,7 +29,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                 'Sub-task'
             ];
 
-            $scope.statuses = ['Not Yet Started', 'In Progress', 'Completed'];
+            $scope.statuses = ['Not Yet Started', 'In Progress', 'Completed', 'Closed'];
 
 
             $scope.days = _.range(1, 101);
@@ -102,6 +102,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                     task.severity = $scope.task.severity;
                     task.version = $scope.task.version;
                     task.tofixin = $scope.task.tofixin;
+                    task.fixedin = null;
                     task.parent = $scope.task.parent;
                     task.submittedBy = {
                         username: currentUser.username,

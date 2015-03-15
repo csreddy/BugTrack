@@ -165,7 +165,7 @@ app.service('Task', ['$http',
         };
 
         this.watch2 = function(scope, task) {
-            var props = ['status', 'priority', 'severity', 'category', 'version', 'tofixin', 'fixedin', 'assignTo'];
+            var props = ['days','status', 'priority', 'severity', 'category', 'version', 'tofixin', 'fixedin', 'assignTo'];
             var oldTaskValues = angular.copy(task);
             angular.forEach(props, function(value, index) {
                 if (scope.task[value]) {

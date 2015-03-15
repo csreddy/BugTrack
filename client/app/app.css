@@ -3198,7 +3198,7 @@ Component: timeline
     background-color: #ffffff;
 }
 
-.site-footer2 {
+.site-footer {
     padding-top: 20px;
     padding-bottom: 20px;
     color: #777;
@@ -3207,18 +3207,7 @@ Component: timeline
     background-color: #f2f2f2;
     margin-top: 100px;
 }
-.site-footer {
-    position: absolute;
-     padding-top: 20px;
-    padding-bottom: 20px;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-     color: #777;
-      text-align: center;
-     border-top: 1px solid #e5e5e5;
-    background-color: #f2f2f2;
-}
+
 .alert {
     max-width: 50%;
     margin-left: auto;
