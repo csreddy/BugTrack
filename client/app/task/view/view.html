@@ -243,8 +243,8 @@
                     <li ng-hide="value.to.name || value.to.level">
                         {{key | capitalize}} changed
                         from
-                        <span ng-hide="value.from===undefined" class="label label-warning">{{value.from}}</span> to
-                        <span class="label label-success">{{value.to}}</span>
+                        <span ng-hide="value.from===undefined" class="label label-warning">{{value.from | date: 'mediumDate'}}</span> to
+                        <span class="label label-success">{{value.to | date: 'mediumDate' }}</span>
                     </li>
                     <li ng-show="value.to.name">Bug assigned
                         from

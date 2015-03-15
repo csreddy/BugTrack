@@ -107,6 +107,8 @@ exports.new = function(req, res) {
             }).join(', ')
         );
         res.send(200);
+    }, function(error) {
+        res.status(error.statusCode).json(error);
     });
 
     for (var file in attachments) {
@@ -221,6 +223,31 @@ exports.update = function(req, res) {
                     changes.change.fixedin = {
                         from: from.fixedin,
                         to: to.fixedin
+                    };
+                }
+                break;
+            case 'days':
+                if (from.days !== to.days) {
+                    updates.push(p.replace('/days', to.days));
+                    changes.change.days = {
+                        from: from.days,
+                        to: to.days
+                    };
+                }
+                break;
+                case 'period':
+                if (from.period.startDate !== to.period.startDate) {
+                    updates.push(p.replace('/period/startDate', to.period.startDate));
+                     changes.change.startDate = {
+                        from: from.period.startDate,
+                        to: to.period.startDate
+                    };
+                }
+                if (from.period.endDate !== to.period.endDate) {
+                    updates.push(p.replace('/period/endDate', to.period.endDate));
+                     changes.change.endDate = {
+                        from: from.period.endDate,
+                        to: to.period.endDate
                     };
                 }
                 break;
@@ -475,4 +502,28 @@ exports.unsubscribe = function(req, res) {
             message: error
         });
     });
+};
+
+
+exports.getAllParentTasks = function(req, res) {
+    var version = req.params.version;
+    db.documents.query(
+        q.where(
+            [q.collection('tasks'), q.value('tofixin', version), q.scope('parent', q.value('taskId', ''))]
+        )
+        .orderBy(
+            q.sort('id', 'ascending')
+        )
+        .slice(1, 100)
+        .withOptions({
+            debug: true,
+            queryPlan: true,
+            metrics: true,
+            category: 'content'
+        })
+    ).result(function(result) {
+        res.status(200).json(result)
+    }, function(error) {
+        res.status(error.statusCode).json(error);
+    })
 };

@@ -6,7 +6,14 @@ angular.module('fullstackApp')
         when('/reports', {
             templateUrl: 'app/report/report.html',
             controller: 'reportCtrl',
-            reloadOnSearch: false 
-        })
+            reloadOnSearch: false,
+            resolve: {
+                config: ['Config',
+                    function(Config) {
+                        return Config.get();
+                    }
+                ]
+            }
+        });
 
     });

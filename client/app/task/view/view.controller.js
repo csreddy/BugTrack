@@ -163,15 +163,15 @@ angular.module('task.controllers')
                         task.kind = 'Task';
                         task.title = proceduralTaskType + ' for ' + $scope.task.title;
                         task.description = 'Implement ' + task.title;
-                        task.days = null;
+                        task.days = '';
                         task.status = $scope.statuses[0];
                         task.period = {
-                            startDate: null,
-                            endDate: null
+                            startDate: '',
+                            endDate: ''
                         };
 
 
-                        task.period = task.priority = null;
+                        task.period = task.priority = '';
                         task.category = $scope.task.category;
                         task.severity = $scope.task.severity;
                         task.version = $scope.task.version;
@@ -241,15 +241,15 @@ angular.module('task.controllers')
                         task.kind = 'Task';
                         task.title = $scope.task.subtaskTitle;
                         task.description = 'Implement ' + task.title;
-                        task.days = null;
+                        task.days = '';
                         task.status = $scope.statuses[0];
                         task.period = {
-                            startDate: null,
-                            endDate: null
+                            startDate: '',
+                            endDate: ''
                         };
 
 
-                        task.period = task.priority = null;
+                        task.period = task.priority = '';
                         task.category = $scope.task.category;
                         task.severity = $scope.task.severity;
                         task.version = $scope.task.version;

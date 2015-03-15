@@ -1,1 +1,17 @@
-{{message}}
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container-fluid">
+    <legend>Reports</legend>
+    <div class="col-md-2">
+
+    <label for="">Version</label>
+	<select name="tofixin" id="tofixin" ng-model="report.version" ng-options="tofixin for tofixin in config.tofixin" class="form-control input-sm">
+	<option value="" selected></option>
+	</select>
+
+    </div>
+
+
+    
+    
+    
+    </div>

@@ -7,7 +7,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
             $scope.task.parent = {};
             $scope.task.period = {
                 startDate: stringify(new Date()),
-                endDate: null
+                endDate: ''
             };
             $scope.config = {};
             $scope.config = config.data;
@@ -102,8 +102,13 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                     task.severity = $scope.task.severity;
                     task.version = $scope.task.version;
                     task.tofixin = $scope.task.tofixin;
-                    task.fixedin = null;
-                    task.parent = $scope.task.parent;
+                    task.fixedin = '';
+                   // task.parent = $scope.task.parent;
+                    task.parent = {};
+                    task.parent.taskId = $scope.task.parent.taskId || '';
+                    task.parent.type = $scope.task.parent.type || '';
+
+
                     task.submittedBy = {
                         username: currentUser.username,
                         email: currentUser.email,
