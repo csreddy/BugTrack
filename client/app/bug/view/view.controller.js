@@ -4,7 +4,7 @@ angular.module('bug.controllers')
     .controller('viewCtrl', ['$scope', '$location', 'Bug', 'config', 'Flash', 'currentUser', 'modalService', '$q', 'ngProgress',
 
     function($scope, $location, Bug, config, Flash, currentUser, modalService, $q, ngProgress) {
-
+        $location.search({}); // clear query params from url when navigating from search page
         $scope.changes = {};
         $scope.updatedBy = currentUser || {};
         $scope.showSubscribe = true;

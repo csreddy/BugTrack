@@ -20,7 +20,7 @@ module.exports = function(app) {
     app.use('/api/tasks/insertProceduralTask', require('./api/task'));
     app.use('/api/tasks/insertSubTask', require('./api/task'));
     app.use('/api/tasks/createSubTask', require('./api/task'));
-    app.use('/api/tasks/:version/parents', require('./api/task'));
+    app.use('/api/tasks/:version/parentAndSubTasks', require('./api/task'));
     
 
     // Auth route

@@ -76,7 +76,10 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                 stringify(date);
             };
 
-
+            $scope.$watch('task.note', function() {
+                console.log('task.note', $scope.task.note);
+            });
+            
             /* private functions */
             function submitTask() {
                 console.log('submit new task');
@@ -87,6 +90,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                     task.kind = 'Task';
                     task.title = $scope.task.title;
                     task.description = $scope.task.description;
+                    task.note = $scope.task.note;
                     task.days = $scope.task.days;
                     if ($scope.task.period.startDate > new Date()) {
                         task.status = $scope.statuses[0];

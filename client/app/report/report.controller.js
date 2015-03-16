@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('report.controllers', [])
-    .controller('reportCtrl', ['$scope', 'Task', 'config',
-        function($scope, Task, config) {
+    .controller('reportCtrl', ['$scope', 'Task', 'config', 'Flash',
+        function($scope, Task, config, Flash) {
             $scope.title = 'Reports';
 
             $scope.config = config.data;
@@ -10,9 +10,26 @@ angular.module('report.controllers', [])
                 version: '8.0-1'
             };
 
-            $scope.getAllParentTasks = function(version) {
-                return getAllParentTasks(version);
+             $scope.relationTypes = [
+                'Requirements Task',
+                'Functional Specification Task',
+                'Test Specification Task',
+                'Test Automation Task',
+                'Documentation Task',
+                'Sub-task'
+            ];
+
+            $scope.taskList = function(version) {
+            	var v = version || 'all';
+                Task.getParentAndSubTasks(v).success(function(response) {
+                    $scope.tasks = response;                    
+                    console.log($scope.tasks);
+                }).error(function(error) {
+                    Flash.addAlert('danger', 'Error occurred');
+                });
             };
+
+
 
             $scope.getSubTasks = function(taskId) {
                 return getSubTasks(taskId);
@@ -23,6 +40,7 @@ angular.module('report.controllers', [])
 
 
             function getAllParentTasks(version) {
+
 
             }
 

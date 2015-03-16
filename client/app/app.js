@@ -23,7 +23,7 @@ var app = angular.module('fullstackApp', [
     'task.services',
 
     'report.controllers',
-    
+
     'dashboard.controllers',
 
     'navbar.controllers',
@@ -78,7 +78,7 @@ app.config(function($routeProvider, $locationProvider) {
     };
 })
 // progress bar
-.run(function($rootScope, ngProgress) {
+.run(function($rootScope, $location, ngProgress) {
     $rootScope.$on('$routeChangeStart', function() {
         ngProgress.height('3px');
         ngProgress.color('green');
@@ -87,6 +87,11 @@ app.config(function($routeProvider, $locationProvider) {
 
     $rootScope.$on('$routeChangeSuccess', function() {
         ngProgress.complete();
+
+        if ($location.path().indexOf('/home') === -1) {
+            console.log($location.search());
+            $location.search({}); // reset url query params when in not in search page
+        }
     });
     // Do the same with $routeChangeError
 })

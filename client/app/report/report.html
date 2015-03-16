@@ -1,17 +1,79 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="container-fluid">
+<div class="container-fluid" ng-init="taskList('8.0-1')">
     <legend>Reports</legend>
     <div class="col-md-2">
-
-    <label for="">Version</label>
-	<select name="tofixin" id="tofixin" ng-model="report.version" ng-options="tofixin for tofixin in config.tofixin" class="form-control input-sm">
-	<option value="" selected></option>
-	</select>
-
+        <label for="">Version</label>
+        <select name="version" id="version" ng-model="report.version" ng-options="version group by version[0] for version in config.version" class="form-control input-sm" ng-change="taskList(report.version)">
+        </select>
+        <div class="table-responsive">
+            <table class="table  table-striped table-wrap">
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>ID</th>
+                        <th>Feature</th>
+                        <th>To fix in</th>
+                        <th>PM</th>
+                        <th>Dev</th>
+                        <th>QA</th>
+                        <th>Docs</th>
+                        <th>Investigation</th>
+                        <th>Requirements</th>
+                        <th>Functional Specification</th>
+                        <th>Functional Complete</th>
+                        <th>QA Design</th>
+                        <th>Testing</th>
+                        <th>Testing Automated</th>
+                        <th>Documentation</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="t in tasks">
+                    <tr>
+                        <td><b>{{t.version}}</b></td>
+                        <td><a href="/task/{{t.id}}"><b>{{t.id}}</b></a>
+                        </td>
+                        <td style="min-width:200px;max-width:200px"><b>{{t.title}}</b></td>
+                        <td><b>{{t.tofixin}}</b></td>
+                        <td>todo</td>
+                        <td>todo</td>
+                        <td>todo</td>
+                        <td>todo</td>
+                        <td>todo</td>
+                        <td><b>{{t.proceduralTasks[relationTypes[0]].join(',')}}</b></td>
+                        <td><b>{{t.proceduralTasks[relationTypes[1]].join(',')}}</b></td>
+                        <td>todo</td>
+                        <td><b>{{t.proceduralTasks[relationTypes[2]].join(',')}}</b></td>
+                        <td></td>
+                        <td><b>{{t.proceduralTasks[relationTypes[3]].join(',')}}</b></td>
+                        <td><b>{{t.proceduralTasks[relationTypes[4]].join(',')}}</b></td>
+                        <td><b>{{t.note}}</b></td>
+                    </tr>
+                    <tr></tr>
+                    <tr ng-repeat="st in t.subTasks">
+                            <td>{{st.version}}</td>
+                        <td><a href="/task/{{st.id}}">{{st.id}}</a>
+                        </td>
+                        <td style="min-width:200px;max-width:200px">&nbsp;&nbsp;&nbsp;&nbsp;<b>L</b> &nbsp;{{st.title}}</td>
+                        <td>{{st.tofixin}}</td>
+                        <td>todo</td>
+                        <td>todo</td>
+                        <td>todo</td>
+                        <td>todo</td>
+                        <td>todo</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{t.note}}</td>
+                        </tr>
+                     
+                </tbody>
+            </table>
+        </div>
     </div>
+</div>
 
-
-    
-    
-    
-    </div>

@@ -15,6 +15,8 @@ var log = bunyan.createLogger({
     }
 });
 var _ = require('lodash');
+var async = require('async');
+var _this = this;
 
 // Get list of tasks
 exports.index = function(req, res) {
@@ -215,6 +217,10 @@ exports.update = function(req, res) {
             case 'tofixin':
                 if (from.tofixin !== to.tofixin) {
                     updates.push(p.replace('/tofixin', to.tofixin));
+                    changes.change.tofixin = {
+                        from: from.tofixin,
+                        to: to.tofixin
+                    };
                 }
                 break;
             case 'fixedin':
@@ -235,17 +241,17 @@ exports.update = function(req, res) {
                     };
                 }
                 break;
-                case 'period':
+            case 'period':
                 if (from.period.startDate !== to.period.startDate) {
                     updates.push(p.replace('/period/startDate', to.period.startDate));
-                     changes.change.startDate = {
+                    changes.change.startDate = {
                         from: from.period.startDate,
                         to: to.period.startDate
                     };
                 }
                 if (from.period.endDate !== to.period.endDate) {
                     updates.push(p.replace('/period/endDate', to.period.endDate));
-                     changes.change.endDate = {
+                    changes.change.endDate = {
                         from: from.period.endDate,
                         to: to.period.endDate
                     };
@@ -460,7 +466,18 @@ exports.subtasks = function(req, res) {
                     for (var i = 0; i < documents.length; i++) {
                         subTasks.push({
                             id: documents[i].content.id,
-                            title: documents[i].content.title
+                            title: documents[i].content.title,
+                            note: documents[i].content.note,
+                            status: documents[i].content.status,
+                            days: documents[i].content.days,
+                            period: {
+                                startDate: documents[i].content.period.startDate,
+                                endDate: documents[i].content.period.endDate
+                            },
+                            version: documents[i].content.version,
+                            tofixin: documents[i].content.tofixin,
+                            proceduralTasks: documents[i].content.proceduralTasks,
+                            subTasks: documents[i].content.subTasks
                         })
                     }
                 }
@@ -505,25 +522,104 @@ exports.unsubscribe = function(req, res) {
 };
 
 
-exports.getAllParentTasks = function(req, res) {
+exports.getParentAndSubTasks = function(req, res) {
     var version = req.params.version;
-    db.documents.query(
-        q.where(
-            [q.collection('tasks'), q.value('tofixin', version), q.scope('parent', q.value('taskId', ''))]
-        )
-        .orderBy(
-            q.sort('id', 'ascending')
-        )
-        .slice(1, 100)
-        .withOptions({
-            debug: true,
-            queryPlan: true,
-            metrics: true,
-            category: 'content'
+    var criteria = [];
+    var parents = [];
+    var subtasks = [];
+    if (version === 'all') {
+        criteria = [q.collection('tasks'), q.scope('parent', q.value('taskId', ''))]
+    } else {
+        criteria = [q.collection('tasks'), q.value('version', version), q.scope('parent', q.value('taskId', ''))]
+    }
+
+    function formatDoc(result) {
+        return {
+            id: result.content.id,
+            title: result.content.title,
+            note: result.content.note,
+            status: result.content.status,
+            days: result.content.days,
+            period: {
+                startDate: result.content.period.startDate,
+                endDate: result.content.period.endDate
+            },
+            version: result.content.version,
+            tofixin: result.content.tofixin,
+            proceduralTasks: result.content.proceduralTasks,
+            subTasks: result.content.subTasks
+        }
+    }
+
+    function getParentTasks(criteria) {
+        db.documents.query(
+            q.where(criteria)
+            .orderBy(
+                q.sort('id', 'ascending')
+            )
+            .slice(1, 99999) // q.extract(['/id', '/title', '/status','/days', '/version', '/tofixin', '/note'])
+            .withOptions({
+                debug: true,
+                metrics: true,
+                category: 'content'
+            })
+        ).result(function(result) {
+            result.shift() // remove metadata info from the result set
+            for (var i = 0; i < result.length; i++) {
+                parents.push(formatDoc(result[i]))
+            }
+
+            async.each(parents, function(parent, callback) {
+                var uris = []
+                for (var i = 0; i < parent.subTasks.length; i++) {
+                    uris.push('/task/' + parent.subTasks[i] + '/' + parent.subTasks[i] + '.json')
+                };
+                db.documents.read({
+                    uris: uris
+                }).result(function(result) {
+                    var subtasks = [];
+                    for (var i = 0; i < result.length; i++) {
+                        subtasks.push(formatDoc(result[i]))
+                    };
+                    console.log('subTasks', subtasks);
+                    parent.subTasks = subtasks;
+                    callback();
+                }, function(error) {
+                    callback()
+                });
+            }, function(error) {
+                if (error) res.status(error.statusCode).json(error);
+
+                res.status(200).json(parents)
+            })
+
+            // res.status(200).json(parents)    
+        }, function(error) {
+            res.status(error.statusCode).json(error);
         })
-    ).result(function(result) {
-        res.status(200).json(result)
-    }, function(error) {
-        res.status(error.statusCode).json(error);
-    })
+    }
+
+    function getSubTasks(parent, callback) {
+        var uris = []
+        subtasks = [];
+        for (var i = 0; i < parent.subTasks.length; i++) {
+            uris.push('/task/' + parent.subTasks[i] + '/' + parent.subTasks[i] + '.json')
+        };
+        db.documents.read({
+            uris: uris
+        }).result(function(result) {
+            for (var i = 0; i < result.length; i++) {
+                subtasks.push(formatDoc(result[i]))
+            };
+            console.log('subTasks', subtasks);
+            parent.subTasks = subtasks;
+            callback();
+        }, function(error) {
+            console.log(error);
+        })
+    }
+
+    getParentTasks(criteria)
+
+    //res.status(200).json(parents)    
 };

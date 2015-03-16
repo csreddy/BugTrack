@@ -204,29 +204,6 @@
                     <!-- /.box-body -->
                 </div>
             </div>
-
-            <div ng-show="task.samplequery">
-                <legend>
-                    <h5><span class="glyphicon glyphicon-pencil"></span>  Sample Query</span></h5>
-                </legend>
-                <div hljs source="task.samplequery"></div>
-
-            </div>
-            <div ng-show="task.sampledata">
-                <legend>
-                    <h5><span class="glyphicon glyphicon-align-justify"></span>  Sample Data</span></h5>
-                </legend>
-                <div hljs source="task.sampledata"></div>
-            </div>
-            <div ng-show="task.stacktrace">
-                <legend>
-                    <h5><span class="glyphicon glyphicon-file"></span>  Error Stacktrace</span></h5>
-                </legend>
-                <div style="overflow: auto; max-height:500px;">
-                    <div hljs source="task.stacktrace"></div>
-                    <!-- <p class="gist">{{task.stacktrace}}</p> -->
-                </div>
-            </div>
         </div>
     </div>
 
@@ -243,18 +220,19 @@
                     <li ng-hide="value.to.name || value.to.level">
                         {{key | capitalize}} changed
                         from
-                        <span ng-hide="value.from===undefined" class="label label-warning">{{value.from | date: 'mediumDate'}}</span> to
+                        <span ng-hide="value.from===undefined" class="label label-warning">{{value.from | date: 'mediumDate'}}</span> 
+                        <i class="fa  fa-long-arrow-right"></i>
                         <span class="label label-success">{{value.to | date: 'mediumDate' }}</span>
                     </li>
                     <li ng-show="value.to.name">Bug assigned
                         from
-                        <span ng-hide="value.from===undefined" class="label label-danger">{{value.from.name}}</span> to
+                        <span ng-hide="value.from===undefined" class="label label-danger">{{value.from.name}}</span>  <i class="fa  fa-long-arrow-right"></i>
                         <span class="label label-success">{{value.to.name}}</span>
                     </li>
 
                     <li ng-show="value.to.level">{{key | capitalize}} changed
                          from
-                          <span ng-hide="value.from===undefined" class="label label-warning">{{value.from.level}}</span> to
+                          <span ng-hide="value.from===undefined" class="label label-warning">{{value.from.level}}</span>  <i class="fa  fa-long-arrow-right"></i>
                         <span class="label label-success">{{value.to.level}}</span>
                     </li>
                 </ul>

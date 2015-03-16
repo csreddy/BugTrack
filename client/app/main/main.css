@@ -35,33 +35,28 @@ a:hover.tooltips span {
     margin-left: -76px;
     z-index: 999;
 }
-
 .truncate {
-  width: 250px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
 /*
 .table-nowrap {
     table-layout:fixed;
 }*/
 
 .table-nowrap td {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
-#facet_grouplist{
+#facet_grouplist {
     min-height: 10px;
     max-height: 300px;
     min-width: 10em;
     overflow: auto;
 }
-
-
-li.ivh-treeview-node-leaf{
+li.ivh-treeview-node-leaf {
     font-size: 10px;
 }
