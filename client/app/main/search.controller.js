@@ -206,9 +206,15 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 $scope.tableWidth = 'col-md-10';
                 // angular.element('a#showFacetBox').attr('style', 'display:block');
             },
-            setTableStyle: function() {
-                $scope.tableStyle.singleRow = !$scope.tableStyle.singleRow;
-                $scope.tableStyle.doubleRow = !$scope.tableStyle.doubleRow;
+            setTableStyle: function(tableStyle) {
+                if (tableStyle === 1) {
+                     $scope.tableStyle.singleRow = true;
+                     $scope.tableStyle.doubleRow = false;
+                }
+                if (tableStyle === 2) {
+                      $scope.tableStyle.singleRow = false;
+                     $scope.tableStyle.doubleRow = true;
+                }
             }
 
         };
@@ -268,7 +274,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             }
         };
 
-        // selecting checkbo nvfe  selects n/v/f/e checkboxes
+        // selecting checkbox nvfe  selects n/v/f/e checkboxes
         $scope.selectNVFE = function(select) {
             console.log('select n/v/f/e');
             $scope.form.status.forEach(function(item) {
@@ -276,9 +282,12 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                     item.selected = !item.selected;
                 }
             });
-            console.log('select n/v/f/e');
-            // $scope.addSelectedValueToQuery();
         };
+
+
+        $scope.$watch('nvfe', function() {
+            console.log('---'+$scope.nvfe);
+        }, false)
 
         // boolean to show/hide facet dropdown
         $scope.showFacetDropdown = function(facetKind, facetType) {
