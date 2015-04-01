@@ -285,9 +285,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         };
 
 
-        $scope.$watch('nvfe', function() {
-            console.log('---'+$scope.nvfe);
-        }, false)
 
         // boolean to show/hide facet dropdown
         $scope.showFacetDropdown = function(facetKind, facetType) {
