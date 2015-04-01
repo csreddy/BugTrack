@@ -28,42 +28,37 @@
 
     <div class="navbar-right">
         <ul class="nav navbar-nav">
-            <li ng-class="selected('home')">
+            <li ng-class="selected('/home')">
                 <a href="/home">
                     <span class="glyphicon glyphicon-home"></span>&nbsp;Home</a>
             </li>
             <li class="divider-vertical"></li>
-            <li ng-class="selected('dashboard')">
+            <li ng-class="selected('/dashboard')">
                 <a href="/dashboard">
                     <span class="glyphicon glyphicon-dashboard"></span>&nbsp;Dashboard</a>
             </li>
             <li class="divider-vertical"></li>
 
-            <li ng-class="selected('new')">
+            <li ng-class="selected('/bug/new')">
                 <a href="/bug/new">
-                    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;New Bug</a>
+                    <i class="fa fa-bug"></i></span>&nbsp;New Bug</a>
                 </a>
             </li>
-            <li ng-class="selected('new')">
+            <li ng-class="selected('/task/new')">
                 <a href="/task/new">
-                    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;New Task</a>
+                    <i class="fa fa-tasks"></i></span>&nbsp;New Task</a>
                 </a>
-            </li>
-            <li class="divider-vertical"></li>
-            <li ng-class="selected('configure')">
-                <a href="/configure">
-                    <span class="glyphicon glyphicon-cog"></span>&nbsp;Configure</a>
             </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> {{navbarUser | capitalize}} <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="/profile">My Profile</a>
+                    <li><a href="/profile"><span class="glyphicon glyphicon-user"></span>&nbsp;My Profile</a></a>
                     </li>
-                    <li><a href="#">Another action</a>
+                    <li><a href="/configure"><span class="glyphicon glyphicon-cog"></span>&nbsp;Configure</a></a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="#">Separated link</a>
+                    <li><a href="/reports"><span class="glyphicon glyphicon-list"></span>&nbsp;Reports</a></a>
                     </li>
                     <li ng-if="hide">
                         <a href="/login">

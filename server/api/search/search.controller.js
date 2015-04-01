@@ -261,11 +261,10 @@ exports.search = function(req, res) {
             category: 'metadata',
             view: 'facets'
         })
-    ).result(function(response) {
+    ).result(function(result) {
         // log.info('\n------------------------------------------');
         // log.info('searchCriteria', JSON.stringify(searchCriteria));
         // log.info('/search', req.body);
-        result = response;
         res.status(200).json(result);
     }, function(error) {
         res.status(error.statusCode).json(error);

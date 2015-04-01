@@ -12,7 +12,7 @@ app.controller('navbarCtrl', ['$rootScope', '$scope', '$location', '$window',
         $rootScope.navbarUser = $window.localStorage.currentUser;
 
         $scope.selected = function(page) {
-            var currentRoute = $location.path().substring(1) || 'home';
+            var currentRoute = $location.path() || 'home';
             return page === currentRoute ? 'active' : '';
         };
 

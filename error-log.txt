@@ -1,0 +1,5275 @@
+[4mRunning "server" task[24m
+[31m>> [39mThe `server` task has been deprecated. Use `grunt serve` to start a server.
+
+[4mRunning "serve" task[24m
+
+[4mRunning "clean:server" (clean) task[24m
+
+[4mRunning "env:all" (env) task[24m
+
+[4mRunning "concurrent:server" (concurrent) task[24m
+
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[4mRunning "injector:css" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mcss[39m files [90m(12 files)[39m
+[32m>> [39mNothing changed
+
+[4mRunning "bowerInstall:target" (bowerInstall) task[24m
+
+[4mRunning "autoprefixer:dist" (autoprefixer) task[24m
+
+[4mRunning "configureProxies:server" (configureProxies) task[24m
+Proxy created for: /v1/ to localhost:8003
+
+[4mRunning "express:dev" (express) task[24m
+[36mStarting [39mbackground Express server
+{
+  "name": "BugTrack",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "starting BugTrack.......",
+  "time": "2015-03-31T21:35:09.308Z",
+  "v": 0
+}
+
+[4mRunning "wait" task[24m
+[32m>> [39mWaiting for server reload...
+{
+  "name": "BugTrack",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Express server listening on 9000, in development mode",
+  "time": "2015-03-31T21:35:09.398Z",
+  "v": 0
+}
+Done waiting!
+
+[4mRunning "open:server" (open) task[24m
+
+[4mRunning "watch" task[24m
+Waiting...
+[90mGET /api/configure [32m200 [90m9ms - 78b[0m
+[90mGET /login [32m200 [90m2ms[0m
+Login... { username: 'btuser', password: 'admin' }
+{ [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' }
+[90mPOST /auth/local/login [33m401 [90m3ms - 54b[0m
+Login... { username: 'btuser', password: 'admin' }
+document [ { content: 
+     { username: 'btuser',
+       email: 'bugtrack@marklogic.com',
+       name: 'Bugtrack User',
+       password: 'admin',
+       createdAt: '2014-05-26T17:29:56.18',
+       modifiedAt: '2014-05-16T03:54:37.15',
+       savedQueries: [Object] },
+    uri: '/users/btuser.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+{
+  "name": "BugTrack",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "serializeUser: { status: 200, username: 'btuser' }",
+  "time": "2015-03-31T21:36:43.179Z",
+  "v": 0
+}
+from /login post { status: 200, username: 'btuser' }
+[90mPOST /auth/local/login [32m200 [90m556ms - 34b[0m
+[90mGET /api/configure [32m200 [90m13ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:36:43.242Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', assignTo: 'btuser' }",
+  "time": "2015-03-31T21:36:43.242Z",
+  "v": 0
+}
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:36:43.264Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T21:36:43.264Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m737ms[0m
+[90mPOST /api/search [32m200 [90m770ms[0m
+[90mGET /home?kind=Bug&page=1 [32m200 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m497ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:36:47.354Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:36:47.354Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m657ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:38:46 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m2ms[0m
+[90mGET /api/configure [36m304 [90m9ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:38:47.166Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:38:47.167Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m183ms[0m
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:39:17.818Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:39:17.818Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+[90mGET /home?kind=Bug&page=1 [32m200 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:40:05.443Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:40:05.443Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m183ms[0m
+[90mGET /home?kind=Bug&page=1 [32m200 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:40:17.766Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:40:17.767Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m188ms[0m
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:41:14.143Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:41:14.143Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m173ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+[90mGET /api/bug/count [32m200 [90m124ms - 14b[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:41:25.534Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', assignTo: 'btuser' }",
+  "time": "2015-03-31T21:41:25.534Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m86ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:41:25.640Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T21:41:25.640Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m173ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.001s at Tue Mar 31 2015 14:42:26 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m9ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:42:27.516Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:42:27.516Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m178ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:42:34 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:42:36.219Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:42:36.219Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m169ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:42:58 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:43:00.304Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:43:00.304Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m179ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:43:08 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m9ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:43:10.181Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:43:10.181Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m174ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.001s at Tue Mar 31 2015 14:43:25 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:43:26.657Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:43:26.657Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m173ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:44:08 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:44:10.023Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:44:10.023Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m179ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:47:12 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:47:13.691Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:47:13.691Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m200ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:47:16 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:47:17.883Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:47:17.883Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m169ms[0m
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m9ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:47:24.078Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:47:24.078Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m168ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:47:57 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:47:58.739Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:47:58.739Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m176ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:48:04 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:48:06.298Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:48:06.298Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m176ms[0m
+[90mGET /home?kind=Bug&page=1 [32m200 [90m3ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:48:47.458Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:48:47.458Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m169ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:50:41 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:50:42.806Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:50:42.806Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m200ms[0m
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:50:57.710Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:50:57.711Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m165ms[0m
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:54:08.860Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:54:08.860Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m161ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:54:36 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:54:37.482Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:54:37.482Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m182ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:54:50 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:54:52.050Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:54:52.050Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m179ms[0m
+[32m>> [39mFile "client/app/main/search.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 21:56:19 UTC)
+loading tasks     124ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 82%
+injector:scripts   28ms  ▇▇▇▇▇▇▇▇▇ 18%
+Total 152ms
+
+[36mCompleted in 0.442s at Tue Mar 31 2015 14:56:20 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:56:21.415Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:56:21.415Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:58:57 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:58:58.403Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:58:58.403Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m170ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:59:23 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:59:24.404Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:59:24.404Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m171ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 14:59:55 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m8ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T21:59:55.798Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T21:59:55.799Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:00:12 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:00:13.339Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:00:13.339Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m172ms[0m
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:00:24.419Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:00:24.419Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m165ms[0m
+[32m>> [39mFile "client/app/main/search.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 22:03:40 UTC)
+loading tasks     100ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 78%
+injector:scripts   27ms  ▇▇▇▇▇▇▇▇▇▇ 21%
+Total 128ms
+
+[36mCompleted in 0.339s at Tue Mar 31 2015 15:03:40 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:03:41.131Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:03:41.131Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m171ms[0m
+[32m>> [39mFile "client/app/main/search.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 22:04:04 UTC)
+loading tasks     101ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 78%
+injector:scripts   28ms  ▇▇▇▇▇▇▇▇▇▇ 22%
+Total 130ms
+
+[36mCompleted in 0.347s at Tue Mar 31 2015 15:04:04 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:04:04.812Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:04:04.813Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m177ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:04:21 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m13ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:04:21.775Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:04:21.775Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m167ms[0m
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:04:25.552Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:04:25.553Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m170ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:04:55.272Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: 1 }",
+  "time": "2015-03-31T22:04:55.272Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m121ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:04:57.174Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T22:04:57.174Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:05:17 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:05:17.759Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:05:17.759Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m171ms[0m
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:05:24.425Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:05:24.425Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m160ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:06:35 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m10ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:06:35.833Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:06:35.833Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m178ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:07:05 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:07:06.315Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:07:06.315Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m171ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.001s at Tue Mar 31 2015 15:07:32 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:07:33.762Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:07:33.762Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m176ms[0m
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:07:40.221Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:07:40.221Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m170ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:08:37 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:08:38.604Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:08:38.604Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m176ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:09:08 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m2ms[0m
+[90mGET /api/configure [36m304 [90m9ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:09:09.372Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:09:09.372Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m181ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:09:26 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:09:27.483Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:09:27.483Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m171ms[0m
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:09:35.584Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:09:35.585Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m167ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:09:45 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:09:46.878Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:09:46.878Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m168ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:10:11 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:10:13.046Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:10:13.047Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:10:31 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:10:33.263Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:10:33.263Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m168ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:10:55 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:10:57.016Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:10:57.016Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m176ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:12:19 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:12:20.967Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:12:20.967Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m173ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:15:31 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:15:32.942Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:15:32.943Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m172ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:15:49 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:15:50.504Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:15:50.504Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m188ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:15:58 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:15:59.340Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:15:59.340Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m167ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:17:34 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:17:36.055Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:17:36.055Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m176ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:19:09 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:19:11.356Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:19:11.356Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m174ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:19:20 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:19:21.617Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:19:21.618Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m172ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:19:38 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:19:40.182Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:19:40.182Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:20:00 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:20:02.141Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:20:02.141Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m171ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:20:11 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m10ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:20:12.776Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:20:12.776Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m167ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:26:10 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m255ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:26:11.796Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:26:11.796Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m589ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.001s at Tue Mar 31 2015 15:26:24 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m8ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:26:25.643Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:26:25.643Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m183ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:28:41 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:28:42.625Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:28:42.625Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m178ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:29:03 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:29:04.361Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:29:04.361Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m173ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:29:53 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:29:54.834Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:29:54.834Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m180ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:31:46 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:31:48.250Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:31:48.250Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:32:49 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m8ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:32:50.603Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:32:50.604Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m189ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:33:09 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:33:11.163Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:33:11.163Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:33:53 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:33:54.624Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:33:54.624Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m183ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:34:00 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m4ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:34:01.809Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:34:01.809Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:34:12 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:34:13.462Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:34:13.462Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m171ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:34:23 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m8ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:34:24.638Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:34:24.638Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m181ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:34:31 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:34:33.039Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:34:33.039Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m173ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:35:20 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:35:21.347Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:35:21.347Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m176ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:35:46 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:35:47.594Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:35:47.594Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m177ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:35:57 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:35:59.110Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:35:59.110Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:36:25 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:36:26.687Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:36:26.687Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m183ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:40:08 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:40:09.417Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:40:09.417Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m172ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:40:16 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:40:18.253Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:40:18.253Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m173ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:40:27 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:40:28.835Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:40:28.835Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m170ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:42:51 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:42:52.688Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:42:52.688Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m181ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:43:32 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:43:33.900Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:43:33.900Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:43:45 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:43:46.316Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:43:46.316Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m174ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:43:53 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:43:54.486Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:43:54.486Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m170ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:44:02 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:44:03.859Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:44:03.860Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m180ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:44:15 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:44:16.822Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:44:16.822Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m170ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:44:23 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m9ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:44:24.598Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:44:24.598Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m170ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:46:12 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:46:13.651Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:46:13.651Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m174ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:46:19 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:46:21.133Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:46:21.133Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m168ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:46:26 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:46:27.593Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:46:27.593Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m179ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:46:41 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:46:43.208Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:46:43.208Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m173ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:47:24 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:47:26.151Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:47:26.151Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m174ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:47:47 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:47:48.760Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:47:48.760Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m173ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:48:34 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:48:35.660Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:48:35.661Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m170ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:48:51 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m8ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:48:53.090Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:48:53.090Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m179ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:49:20 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:49:21.536Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:49:21.536Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m173ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:49:31 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:49:32.813Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:49:32.813Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m168ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:49:37 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:49:38.416Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:49:38.416Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m164ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:50:01 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:50:02.663Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:50:02.663Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m177ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:50:36 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:50:37.632Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:50:37.632Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m184ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:52:32 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:52:33.978Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:52:33.979Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m174ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:52:59 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:53:00.717Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:53:00.717Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m200ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:56:09 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:56:10.674Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T22:56:10.674Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m198ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:56:13.196Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: 1 }",
+  "time": "2015-03-31T22:56:13.196Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m117ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:57:24 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [32m200 [90m2ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:57:26.251Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T22:57:26.251Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m109ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:57:37 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:57:38.973Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T22:57:38.973Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m116ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 15:58:54 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T22:58:55.696Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T22:58:55.696Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m109ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:02:31 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:02:33.117Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:02:33.117Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m108ms[0m
+[32m>> [39mFile "client/app/main/search.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:02:46 UTC)
+loading tasks     125ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 82%
+injector:scripts   28ms  ▇▇▇▇▇▇▇▇▇ 18%
+Total 153ms
+
+[36mCompleted in 0.440s at Tue Mar 31 2015 16:02:46 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m0ms[0m
+[32m>> [39mFile "client/app/main/search.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:03:17 UTC)
+loading tasks     100ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 78%
+injector:scripts   29ms  ▇▇▇▇▇▇▇▇▇▇ 22%
+Total 129ms
+
+[36mCompleted in 0.342s at Tue Mar 31 2015 16:03:18 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m0ms[0m
+[32m>> [39mFile "client/app/main/search.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:03:49 UTC)
+loading tasks     107ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 79%
+injector:scripts   28ms  ▇▇▇▇▇▇▇▇▇▇ 21%
+Total 135ms
+
+[36mCompleted in 0.353s at Tue Mar 31 2015 16:03:49 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m1ms[0m
+[32m>> [39mFile "client/app/main/search.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:03:51 UTC)
+loading tasks     100ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 78%
+injector:scripts   28ms  ▇▇▇▇▇▇▇▇▇▇ 22%
+Total 128ms
+
+[36mCompleted in 0.339s at Tue Mar 31 2015 16:03:51 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m8ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:03:52.797Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:03:52.797Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m119ms[0m
+[32m>> [39mFile "client/app/main/search.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:03:58 UTC)
+loading tasks     105ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 79%
+injector:scripts   28ms  ▇▇▇▇▇▇▇▇▇▇ 21%
+Total 133ms
+
+[36mCompleted in 0.349s at Tue Mar 31 2015 16:03:58 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:03:59.515Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:03:59.515Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m111ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:06:31 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:06:32.329Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:06:32.329Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m122ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:09:09 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m14ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:09:10.775Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:09:10.776Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m117ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:09:35 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m9ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:09:36.921Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:09:36.921Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m115ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:09:40 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:09:42.045Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:09:42.046Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m116ms[0m
+[32m>> [39mFile "client/app/main/search.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:09:56 UTC)
+loading tasks     102ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 76%
+injector:scripts   32ms  ▇▇▇▇▇▇▇▇▇▇▇ 24%
+Total 134ms
+
+[36mCompleted in 0.353s at Tue Mar 31 2015 16:09:56 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:09:58.040Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:09:58.040Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m122ms[0m
+[32m>> [39mFile "client/app/main/search.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:10:14 UTC)
+loading tasks     100ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 78%
+injector:scripts   28ms  ▇▇▇▇▇▇▇▇▇▇ 22%
+Total 128ms
+
+[36mCompleted in 0.339s at Tue Mar 31 2015 16:10:14 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:10:15.640Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:10:15.640Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m124ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:10:18.688Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T23:10:18.688Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m176ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:10:25.438Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: 1 }",
+  "time": "2015-03-31T23:10:25.439Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m114ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:11:09 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:11:10.885Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:11:10.887Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m112ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:11:19.732Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T23:11:19.732Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m184ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:11:21.902Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: 1 }",
+  "time": "2015-03-31T23:11:21.902Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m117ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:12:43 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m8ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:12:45.335Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:12:45.336Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m118ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:12:48 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:12:49.593Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:12:49.593Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m111ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:12:55.768Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T23:12:55.768Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m177ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:13:26 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:13:27.476Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:13:27.476Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m177ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:13:38 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:13:39.308Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:13:39.308Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m181ms[0m
+[32m>> [39mFile "client/app/main/search.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:16:30 UTC)
+loading tasks     100ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 78%
+injector:scripts   28ms  ▇▇▇▇▇▇▇▇▇▇ 22%
+Total 128ms
+
+[36mCompleted in 0.337s at Tue Mar 31 2015 16:16:30 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:16:31.767Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:16:31.767Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m205ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:17:14 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m8ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:17:16.202Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:17:16.203Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m186ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:17:42 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:17:44.063Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:17:44.063Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m177ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:18:24.003Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: 1 }",
+  "time": "2015-03-31T23:18:24.003Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m121ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:19:41 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:19:42.850Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:19:42.850Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m117ms[0m
+[32m>> [39mFile "client/app/main/main.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:19:49 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:19:50.529Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:19:50.529Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m115ms[0m
+[32m>> [39mFile "client/app/main/search.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:20:57 UTC)
+loading tasks     107ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 79%
+injector:scripts   28ms  ▇▇▇▇▇▇▇▇▇▇ 21%
+Total 135ms
+
+[36mCompleted in 0.352s at Tue Mar 31 2015 16:20:57 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:20:59.247Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:20:59.247Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m117ms[0m
+[32m>> [39mFile "client/app/main/partials/facets.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:21:23 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m8ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:21:25.239Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:21:25.240Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m119ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:22:28.870Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T23:22:28.870Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m201ms[0m
+[32m>> [39mFile "client/app/main/search.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:24:28 UTC)
+loading tasks     100ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 78%
+injector:scripts   28ms  ▇▇▇▇▇▇▇▇▇▇ 22%
+Total 128ms
+
+[36mCompleted in 0.344s at Tue Mar 31 2015 16:24:28 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:24:29.586Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:24:29.586Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:27:33 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:27:34.668Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:27:34.668Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m188ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:28:33 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:28:34.968Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:28:34.968Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m196ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:28:56 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m2ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:28:57.993Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:28:57.993Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m181ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:29:25 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m9ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:29:26.569Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:29:26.569Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m188ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.001s at Tue Mar 31 2015 16:30:04 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:30:05.756Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:30:05.756Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m194ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:30:39 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:30:41.000Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:30:41.000Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m187ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:31:40 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:31:42.194Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:31:42.194Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m180ms[0m
+[32m>> [39mFile "client/app/main/partials/buglist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:31:49 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:31:50.846Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:31:50.846Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m178ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:31:58.413Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 2 }",
+  "time": "2015-03-31T23:31:58.413Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m183ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:31:59.654Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 3 }",
+  "time": "2015-03-31T23:31:59.654Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m180ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:32:02.001Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 4 }",
+  "time": "2015-03-31T23:32:02.001Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m181ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:32:03.858Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 6 }",
+  "time": "2015-03-31T23:32:03.858Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m179ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:32:05.477Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 7 }",
+  "time": "2015-03-31T23:32:05.477Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m179ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:32:06.868Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 9 }",
+  "time": "2015-03-31T23:32:06.869Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m180ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:32:08.480Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 10 }",
+  "time": "2015-03-31T23:32:08.480Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m180ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:32:29.292Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T23:32:29.292Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m178ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:32:34.309Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 2 }",
+  "time": "2015-03-31T23:32:34.309Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:32:35.745Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 5 }",
+  "time": "2015-03-31T23:32:35.745Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m179ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:32:37.727Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 8 }",
+  "time": "2015-03-31T23:32:37.727Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m188ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:32:41.867Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T23:32:41.867Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m174ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:32:57.609Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 3 }",
+  "time": "2015-03-31T23:32:57.609Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m171ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:33:00.069Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 5 }",
+  "time": "2015-03-31T23:33:00.069Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m175ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:33:05.579Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T23:33:05.579Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m173ms[0m
+[90mGET /api/configure [36m304 [90m11ms[0m
+{}
+[90mGET /api/bug/106 [32m200 [90m11ms[0m
+Inside update....
+{ bug: '{"id":106,"kind":"Bug","createdAt":"2003-07-28T22:22:53-07:00","status":"New","title":"Medbook search result not consistent.","category":"","severity":"P2 - Critical","priority":{},"submittedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"assignTo":{"username":"nobody","email":"nobody@marklogic.com","name":"nobody nobody"},"description":"<p><pre>On demo1\'s medbook app, search result is not consistent for the following scenarios: 1. do a search on \\"textbook\\", there are matching results, but there is \\"No Results Found No Results Found No Results Found\\" before all the matching books 2. do a search on \\" TextBook\\", there is no match results returns, but you will just get a blank page, for this case, I expect to see \\"No results found\\".</pre></p>","samplequery":"","sampledata":"","version":"main branch","tofixin":"","fixedin":"","platform":"windows","memory":"","processors":"","note":"","subscribers":[],"attachments":[],"clones":[],"supportDescription":"","workaround":"","publishStatus":"","customerImpact":"","tickets":{"support-ticket":""},"changeHistory":[{"time":"2003-07-28T22:23:50-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{}},{"time":"2003-07-28T22:23:50-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{"assignTo":{"from":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"to":{"username":"ian","email":"ian@cerisent.com","name":"Ian Small"}}},"comment":"Demo app bug. Assign to Ian."},{"time":"2003-07-29T10:39:00-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{}},{"time":"2003-07-29T10:39:00-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{"assignTo":{"from":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"to":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"}}},"comment":"Ian, can you verify this is a bug from demo app not XQE?"},{"time":"2003-07-29T11:39:40-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{}},{"time":"2003-07-29T11:39:40-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{"assignTo":{"from":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"to":{"username":"ian","email":"ian@cerisent.com","name":"Ian Small"}}},"comment":"Assign back to Ian."},{"time":"2003-08-17T19:52:33-07:00","updatedBy":{"username":"ian","email":"ian@cerisent.com","name":"Ian Small"},"change":{}},{"time":"2003-08-17T19:52:33-07:00","updatedBy":{"username":"ian","email":"ian@cerisent.com","name":"Ian Small"},"change":{"assignTo":{"from":{"username":"ian","email":"ian@cerisent.com","name":"Ian Small"},"to":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"}}},"comment":"This was fixed somehow in the most recent swath of changes. Please verify."},{"time":"2003-08-25T13:48:07-07:00","updatedBy":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"},"change":{}},{"time":"2003-08-26T14:17:21-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{}},{"time":"2003-08-26T14:17:21-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{"assignTo":{"from":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"to":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"}}},"comment":"Verified on 1.2-test4."},{"time":"2003-09-03T16:27:22-07:00","updatedBy":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"},"change":{}},{"time":"2003-09-03T16:27:22-07:00","updatedBy":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"},"change":{"assignTo":{"from":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"},"to":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"}}},"comment":"Shipped in 1.2-1"},{"time":"2015-03-24T04:47:26.232Z","updatedBy":{"name":"Bugtrack User","email":"bugtrack@marklogic.com","username":"btuser"},"change":{"status":{"from":"Closed","to":{"isFirstOpen":true,"isFirstDisabled":false}},"priority":{"from":{},"to":{"level":"4","title":"Important"}}},"files":[]},{"time":"2015-03-24T04:50:59.393Z","updatedBy":{"name":"Bugtrack User","email":"bugtrack@marklogic.com","username":"btuser"},"change":{"status":{"from":{"isFirstOpen":true,"isFirstDisabled":false},"to":{"isFirstOpen":true,"isFirstDisabled":false}},"priority":{"from":{},"to":{"level":"5","title":"Fix if time permits"}}},"files":[]}],"comment":"","updatedBy":{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User","savedQueries":{"default":{}}},"svninfo":{}}',
+  old: '{"id":106,"kind":"Bug","createdAt":"2003-07-28T22:22:53-07:00","status":{"isFirstOpen":true,"isFirstDisabled":false},"title":"Medbook search result not consistent.","category":"","severity":"P2 - Critical","priority":{},"submittedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"assignTo":{"username":"nobody","email":"nobody@marklogic.com","name":"nobody nobody"},"description":"<p><pre>On demo1\'s medbook app, search result is not consistent for the following scenarios: 1. do a search on \\"textbook\\", there are matching results, but there is \\"No Results Found No Results Found No Results Found\\" before all the matching books 2. do a search on \\" TextBook\\", there is no match results returns, but you will just get a blank page, for this case, I expect to see \\"No results found\\".</pre></p>","samplequery":"","sampledata":"","version":"main branch","tofixin":"","fixedin":"","platform":"windows","memory":"","processors":"","note":"","subscribers":[],"attachments":[],"clones":[],"supportDescription":"","workaround":"","publishStatus":"","customerImpact":"","tickets":{"support-ticket":""},"changeHistory":[{"time":"2003-07-28T22:23:50-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{}},{"time":"2003-07-28T22:23:50-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{"assignTo":{"from":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"to":{"username":"ian","email":"ian@cerisent.com","name":"Ian Small"}}},"comment":"Demo app bug. Assign to Ian."},{"time":"2003-07-29T10:39:00-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{}},{"time":"2003-07-29T10:39:00-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{"assignTo":{"from":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"to":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"}}},"comment":"Ian, can you verify this is a bug from demo app not XQE?"},{"time":"2003-07-29T11:39:40-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{}},{"time":"2003-07-29T11:39:40-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{"assignTo":{"from":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"to":{"username":"ian","email":"ian@cerisent.com","name":"Ian Small"}}},"comment":"Assign back to Ian."},{"time":"2003-08-17T19:52:33-07:00","updatedBy":{"username":"ian","email":"ian@cerisent.com","name":"Ian Small"},"change":{}},{"time":"2003-08-17T19:52:33-07:00","updatedBy":{"username":"ian","email":"ian@cerisent.com","name":"Ian Small"},"change":{"assignTo":{"from":{"username":"ian","email":"ian@cerisent.com","name":"Ian Small"},"to":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"}}},"comment":"This was fixed somehow in the most recent swath of changes. Please verify."},{"time":"2003-08-25T13:48:07-07:00","updatedBy":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"},"change":{}},{"time":"2003-08-26T14:17:21-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{}},{"time":"2003-08-26T14:17:21-07:00","updatedBy":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"change":{"assignTo":{"from":{"username":"rwang","email":"rwang@cerisent.com","name":"Rachel Link"},"to":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"}}},"comment":"Verified on 1.2-test4."},{"time":"2003-09-03T16:27:22-07:00","updatedBy":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"},"change":{}},{"time":"2003-09-03T16:27:22-07:00","updatedBy":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"},"change":{"assignTo":{"from":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"},"to":{"username":"cjl","email":"cjl@cerisent.com","name":"Christopher Lindblad"}}},"comment":"Shipped in 1.2-1"},{"time":"2015-03-24T04:47:26.232Z","updatedBy":{"name":"Bugtrack User","email":"bugtrack@marklogic.com","username":"btuser"},"change":{"status":{"from":"Closed","to":{"isFirstOpen":true,"isFirstDisabled":false}},"priority":{"from":{},"to":{"level":"4","title":"Important"}}},"files":[]},{"time":"2015-03-24T04:50:59.393Z","updatedBy":{"name":"Bugtrack User","email":"bugtrack@marklogic.com","username":"btuser"},"change":{"status":{"from":{"isFirstOpen":true,"isFirstDisabled":false},"to":{"isFirstOpen":true,"isFirstDisabled":false}},"priority":{"from":{},"to":{"level":"5","title":"Fix if time permits"}}},"files":[]}]}' }
+FILES {}
+[90mPUT /api/bug/update [32m200 [90m303ms - 25b[0m
+{}
+[90mGET /api/bug/106 [32m200 [90m7ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:33:20.046Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', assignTo: 'btuser' }",
+  "time": "2015-03-31T23:33:20.046Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m83ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:33:20.151Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T23:33:20.151Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m176ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:33:34.543Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 2 }",
+  "time": "2015-03-31T23:33:34.543Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m183ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:33:36.055Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 5 }",
+  "time": "2015-03-31T23:33:36.055Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m172ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:33:37.501Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 8 }",
+  "time": "2015-03-31T23:33:37.501Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m184ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:38:09 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=8 [32m200 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m9ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:38:10.279Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '8' }",
+  "time": "2015-03-31T23:38:10.279Z",
+  "v": 0
+}
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:38:10.305Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T23:38:10.306Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m205ms[0m
+[90mPOST /api/search [32m200 [90m218ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:38:13.522Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: 1 }",
+  "time": "2015-03-31T23:38:13.522Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m116ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:38:26.296Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T23:38:26.296Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m180ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:38:27.242Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: 1 }",
+  "time": "2015-03-31T23:38:27.242Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m118ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:38:33.496Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting {}",
+  "time": "2015-03-31T23:38:33.496Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m81ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:38:33.613Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting {}",
+  "time": "2015-03-31T23:38:33.613Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m81ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:38:38.351Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: 1 }",
+  "time": "2015-03-31T23:38:38.351Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m123ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:38:46.871Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: 2 }",
+  "time": "2015-03-31T23:38:46.871Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m112ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:38:57 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=2 [32m200 [90m2ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:38:58.314Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '2' }",
+  "time": "2015-03-31T23:38:58.314Z",
+  "v": 0
+}
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:38:58.337Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: 1 }",
+  "time": "2015-03-31T23:38:58.337Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m133ms[0m
+[90mPOST /api/search [32m200 [90m132ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:39:41 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m5ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:39:43.021Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:39:43.021Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m111ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:40:21 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:40:22.375Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:40:22.375Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m111ms[0m
+[90mGET /home?kind=Task&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m8ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:41:37.663Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:41:37.663Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m118ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:41:43 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:41:44.857Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:41:44.857Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m113ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:42:30 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m8ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:42:31.449Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:42:31.449Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m115ms[0m
+[32m>> [39mFile "client/app/main/partials/tasklist.partial.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:48:46 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Task&page=1 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m245ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:48:47.714Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: '1' }",
+  "time": "2015-03-31T23:48:47.714Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m524ms[0m
+[90mGET /api/configure [36m304 [90m9ms[0m
+{}
+[90mGET /api/tasks/25 [32m200 [90m10ms - 812b[0m
+URI /task/25/25.json
+document [ { content: 
+     { id: 25,
+       kind: 'Task',
+       title: 'test task 2',
+       description: 'Implement test task 2',
+       note: '',
+       days: '',
+       status: 'Not Yet Started',
+       period: [Object],
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       parent: [Object],
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-16T23:51:51.950Z',
+       modifiedAt: '2015-03-16T23:51:51.950Z',
+       changeHistory: [] },
+    uri: '/task/25/25.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/25/subtasks [32m200 [90m5ms - 2b[0m
+[32m>> [39mFile "client/app/task/view/view.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:53:52 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /task/25 [32m200 [90m2ms[0m
+[90mGET /api/configure [36m304 [90m9ms[0m
+{}
+[90mGET /api/tasks/25 [36m304 [90m8ms[0m
+URI /task/25/25.json
+document [ { content: 
+     { id: 25,
+       kind: 'Task',
+       title: 'test task 2',
+       description: 'Implement test task 2',
+       note: '',
+       days: '',
+       status: 'Not Yet Started',
+       period: [Object],
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       parent: [Object],
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-16T23:51:51.950Z',
+       modifiedAt: '2015-03-16T23:51:51.950Z',
+       changeHistory: [] },
+    uri: '/task/25/25.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/25/subtasks [36m304 [90m6ms[0m
+[32m>> [39mFile "client/app/task/view/view.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:54:04 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /task/25 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m9ms[0m
+{}
+[90mGET /api/tasks/25 [36m304 [90m7ms[0m
+URI /task/25/25.json
+document [ { content: 
+     { id: 25,
+       kind: 'Task',
+       title: 'test task 2',
+       description: 'Implement test task 2',
+       note: '',
+       days: '',
+       status: 'Not Yet Started',
+       period: [Object],
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       parent: [Object],
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-16T23:51:51.950Z',
+       modifiedAt: '2015-03-16T23:51:51.950Z',
+       changeHistory: [] },
+    uri: '/task/25/25.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/25/subtasks [36m304 [90m5ms[0m
+[32m>> [39mFile "client/app/task/view/view.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:55:19 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /task/25 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m18ms[0m
+{}
+[90mGET /api/tasks/25 [36m304 [90m7ms[0m
+URI /task/25/25.json
+document [ { content: 
+     { id: 25,
+       kind: 'Task',
+       title: 'test task 2',
+       description: 'Implement test task 2',
+       note: '',
+       days: '',
+       status: 'Not Yet Started',
+       period: [Object],
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       parent: [Object],
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-16T23:51:51.950Z',
+       modifiedAt: '2015-03-16T23:51:51.950Z',
+       changeHistory: [] },
+    uri: '/task/25/25.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/25/subtasks [36m304 [90m6ms[0m
+Inside update....
+{ task: '{"id":25,"kind":"Task","title":"test task 2","description":"Implement test task 2","note":"","days":"","status":"Ship","period":{"startDate":"","endDate":""},"category":"Hadoop Connector","severity":"P2 - Critical","version":"8.0-1","tofixin":"Admin-License-0.2","parent":{"type":"Sub-task","id":"9"},"submittedBy":{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"},"assignTo":{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"},"subscribers":[{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"}],"attachments":[],"proceduralTasks":{"Requirements Task":[],"Functional Specification Task":[],"Test Specification Task":[],"Test Automation Task":[],"Documentation Task":[]},"subTasks":[],"createdAt":"2015-03-16T23:51:51.950Z","modifiedAt":"2015-03-16T23:51:51.950Z","changeHistory":[],"updatedBy":{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"},"svninfo":{}}',
+  old: '{"id":25,"kind":"Task","title":"test task 2","description":"Implement test task 2","note":"","days":"","status":"Not Yet Started","period":{"startDate":"","endDate":""},"priority":"","category":"Hadoop Connector","severity":"P2 - Critical","version":"8.0-1","tofixin":"Admin-License-0.2","parent":{"type":"Sub-task","id":"9"},"submittedBy":{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"},"assignTo":{},"subscribers":[{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"}],"attachments":[],"proceduralTasks":{"Requirements Task":[],"Functional Specification Task":[],"Test Specification Task":[],"Test Automation Task":[],"Documentation Task":[]},"subTasks":[],"createdAt":"2015-03-16T23:51:51.950Z","modifiedAt":"2015-03-16T23:51:51.950Z","changeHistory":[]}' }
+FILES {}
+[90mPUT /api/tasks/update [32m200 [90m300ms - 26b[0m
+{}
+[90mGET /api/tasks/25 [32m200 [90m7ms[0m
+URI /task/25/25.json
+document [ { content: 
+     { id: 25,
+       kind: 'Task',
+       title: 'test task 2',
+       description: 'Implement test task 2',
+       note: '',
+       days: '',
+       status: 'Ship',
+       period: [Object],
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       parent: [Object],
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-16T23:51:51.950Z',
+       modifiedAt: '2015-03-16T23:51:51.950Z',
+       changeHistory: [Object] },
+    uri: '/task/25/25.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/25/subtasks [36m304 [90m4ms[0m
+[90mGET /task/25 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+{}
+[90mGET /api/tasks/25 [36m304 [90m6ms[0m
+URI /task/25/25.json
+document [ { content: 
+     { id: 25,
+       kind: 'Task',
+       title: 'test task 2',
+       description: 'Implement test task 2',
+       note: '',
+       days: '',
+       status: 'Ship',
+       period: [Object],
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       parent: [Object],
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-16T23:51:51.950Z',
+       modifiedAt: '2015-03-16T23:51:51.950Z',
+       changeHistory: [Object] },
+    uri: '/task/25/25.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/25/subtasks [36m304 [90m5ms[0m
+Inside update....
+{ task: '{"id":25,"kind":"Task","title":"test task 2","description":"Implement test task 2","note":"","days":"","status":"Closed","period":{"startDate":"","endDate":""},"category":"Hadoop Connector","severity":"P2 - Critical","version":"8.0-1","tofixin":"Admin-License-0.2","parent":{"type":"Sub-task","id":"9"},"submittedBy":{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"},"assignTo":{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"},"subscribers":[{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"}],"attachments":[],"proceduralTasks":{"Requirements Task":[],"Functional Specification Task":[],"Test Specification Task":[],"Test Automation Task":[],"Documentation Task":[]},"subTasks":[],"createdAt":"2015-03-16T23:51:51.950Z","modifiedAt":"2015-03-16T23:51:51.950Z","changeHistory":[{"time":"2015-03-31T23:55:24.079Z","updatedBy":{"name":"Bugtrack User","email":"bugtrack@marklogic.com","username":"btuser"},"change":{"status":{"from":"Not Yet Started","to":"Ship"},"assignTo":{"from":{},"to":{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"}}},"files":[]}],"updatedBy":{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"},"svninfo":{}}',
+  old: '{"id":25,"kind":"Task","title":"test task 2","description":"Implement test task 2","note":"","days":"","status":"Ship","period":{"startDate":"","endDate":""},"priority":"","category":"Hadoop Connector","severity":"P2 - Critical","version":"8.0-1","tofixin":"Admin-License-0.2","parent":{"type":"Sub-task","id":"9"},"submittedBy":{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"},"assignTo":{},"subscribers":[{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"}],"attachments":[],"proceduralTasks":{"Requirements Task":[],"Functional Specification Task":[],"Test Specification Task":[],"Test Automation Task":[],"Documentation Task":[]},"subTasks":[],"createdAt":"2015-03-16T23:51:51.950Z","modifiedAt":"2015-03-16T23:51:51.950Z","changeHistory":[{"time":"2015-03-31T23:55:24.079Z","updatedBy":{"name":"Bugtrack User","email":"bugtrack@marklogic.com","username":"btuser"},"change":{"status":{"from":"Not Yet Started","to":"Ship"},"assignTo":{"from":{},"to":{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"}}},"files":[]}]}' }
+FILES {}
+[90mPUT /api/tasks/update [32m200 [90m10ms - 26b[0m
+{}
+[90mGET /api/tasks/25 [32m200 [90m7ms[0m
+URI /task/25/25.json
+document [ { content: 
+     { id: 25,
+       kind: 'Task',
+       title: 'test task 2',
+       description: 'Implement test task 2',
+       note: '',
+       days: '',
+       status: 'Closed',
+       period: [Object],
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       parent: [Object],
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-16T23:51:51.950Z',
+       modifiedAt: '2015-03-16T23:51:51.950Z',
+       changeHistory: [Object] },
+    uri: '/task/25/25.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/25/subtasks [36m304 [90m3ms[0m
+[90mGET /task/25 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+{}
+[90mGET /api/tasks/25 [36m304 [90m7ms[0m
+URI /task/25/25.json
+document [ { content: 
+     { id: 25,
+       kind: 'Task',
+       title: 'test task 2',
+       description: 'Implement test task 2',
+       note: '',
+       days: '',
+       status: 'Closed',
+       period: [Object],
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       parent: [Object],
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-16T23:51:51.950Z',
+       modifiedAt: '2015-03-16T23:51:51.950Z',
+       changeHistory: [Object] },
+    uri: '/task/25/25.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/25/subtasks [36m304 [90m4ms[0m
+[90mGET /task/24 [32m200 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+{}
+[90mGET /api/tasks/24 [32m200 [90m9ms - 839b[0m
+URI /task/24/24.json
+document [ { content: 
+     { id: 24,
+       kind: 'Task',
+       title: 'Requirements Task for test task 1',
+       description: 'Implement Requirements Task for test task 1',
+       note: '',
+       days: '',
+       status: 'Not Yet Started',
+       period: '',
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       parent: [Object],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-16T23:23:09.561Z',
+       modifiedAt: '2015-03-16T23:23:09.561Z',
+       changeHistory: [] },
+    uri: '/task/24/24.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/24/subtasks [32m200 [90m4ms - 2b[0m
+[32m>> [39mFile "client/app/task/view/view.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:56:25 UTC)
+loading tasks     115ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 80%
+injector:scripts   29ms  ▇▇▇▇▇▇▇▇▇ 20%
+Total 144ms
+
+[36mCompleted in 0.369s at Tue Mar 31 2015 16:56:26 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /task/24 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m8ms[0m
+{}
+[90mGET /api/tasks/24 [36m304 [90m7ms[0m
+URI /task/24/24.json
+document [ { content: 
+     { id: 24,
+       kind: 'Task',
+       title: 'Requirements Task for test task 1',
+       description: 'Implement Requirements Task for test task 1',
+       note: '',
+       days: '',
+       status: 'Not Yet Started',
+       period: '',
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       parent: [Object],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-16T23:23:09.561Z',
+       modifiedAt: '2015-03-16T23:23:09.561Z',
+       changeHistory: [] },
+    uri: '/task/24/24.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/24/subtasks [36m304 [90m6ms[0m
+[32m>> [39mFile "client/app/task/view/view.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:57:07 UTC)
+loading tasks     101ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 78%
+injector:scripts   28ms  ▇▇▇▇▇▇▇▇▇▇ 22%
+Total 129ms
+
+[36mCompleted in 0.344s at Tue Mar 31 2015 16:57:07 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /task/24 [36m304 [90m1ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+{}
+[90mGET /api/tasks/24 [36m304 [90m9ms[0m
+URI /task/24/24.json
+document [ { content: 
+     { id: 24,
+       kind: 'Task',
+       title: 'Requirements Task for test task 1',
+       description: 'Implement Requirements Task for test task 1',
+       note: '',
+       days: '',
+       status: 'Not Yet Started',
+       period: '',
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       parent: [Object],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-16T23:23:09.561Z',
+       modifiedAt: '2015-03-16T23:23:09.561Z',
+       changeHistory: [] },
+    uri: '/task/24/24.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/24/subtasks [36m304 [90m7ms[0m
+[32m>> [39mFile "client/app/task/view/view.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:57:13 UTC)
+loading tasks     100ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 78%
+injector:scripts   28ms  ▇▇▇▇▇▇▇▇▇▇ 22%
+Total 128ms
+
+[36mCompleted in 0.337s at Tue Mar 31 2015 16:57:13 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /task/24 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m5ms[0m
+{}
+[90mGET /api/tasks/24 [36m304 [90m7ms[0m
+URI /task/24/24.json
+document [ { content: 
+     { id: 24,
+       kind: 'Task',
+       title: 'Requirements Task for test task 1',
+       description: 'Implement Requirements Task for test task 1',
+       note: '',
+       days: '',
+       status: 'Not Yet Started',
+       period: '',
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       parent: [Object],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-16T23:23:09.561Z',
+       modifiedAt: '2015-03-16T23:23:09.561Z',
+       changeHistory: [] },
+    uri: '/task/24/24.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/24/subtasks [36m304 [90m4ms[0m
+[32m>> [39mFile "client/app/task/view/view.controller.js" changed.
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(37 files)[39m
+[32m>> [39mNothing changed
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2015-03-31 23:57:32 UTC)
+loading tasks     101ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 78%
+injector:scripts   27ms  ▇▇▇▇▇▇▇▇▇▇ 21%
+Total 129ms
+
+[36mCompleted in 0.341s at Tue Mar 31 2015 16:57:32 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /task/24 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+{}
+[90mGET /api/tasks/24 [36m304 [90m6ms[0m
+URI /task/24/24.json
+document [ { content: 
+     { id: 24,
+       kind: 'Task',
+       title: 'Requirements Task for test task 1',
+       description: 'Implement Requirements Task for test task 1',
+       note: '',
+       days: '',
+       status: 'Not Yet Started',
+       period: '',
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       parent: [Object],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-16T23:23:09.561Z',
+       modifiedAt: '2015-03-16T23:23:09.561Z',
+       changeHistory: [] },
+    uri: '/task/24/24.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/24/subtasks [36m304 [90m5ms[0m
+[90mGET /api/tasks/count [32m200 [90m514ms - 12b[0m
+write /task/26/26.json
+write /task/24/24.json
+[90mPOST /api/tasks/createSubTask [32m200 [90m284ms - 30b[0m
+{}
+[90mGET /api/tasks/24 [32m200 [90m8ms - 841b[0m
+URI /task/24/24.json
+document [ { content: 
+     { id: 24,
+       kind: 'Task',
+       title: 'Requirements Task for test task 1',
+       description: 'Implement Requirements Task for test task 1',
+       note: '',
+       days: '',
+       status: 'Not Yet Started',
+       period: '',
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       parent: [Object],
+       proceduralTasks: [Object],
+       subTasks: [Object],
+       createdAt: '2015-03-16T23:23:09.561Z',
+       modifiedAt: '2015-03-16T23:23:09.561Z',
+       changeHistory: [] },
+    uri: '/task/24/24.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/24/subtasks [32m200 [90m6ms - 326b[0m
+[90mGET /api/configure [36m304 [90m6ms[0m
+{}
+[90mGET /api/tasks/26 [32m200 [90m7ms - 801b[0m
+URI /task/26/26.json
+document [ { content: 
+     { id: 26,
+       kind: 'Task',
+       title: 'sdfsdfdsfds',
+       description: 'Implement sdfsdfdsfds',
+       note: '',
+       days: '',
+       status: 'New',
+       period: [Object],
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       parent: [Object],
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-31T23:57:48.262Z',
+       modifiedAt: '2015-03-31T23:57:48.262Z',
+       changeHistory: [] },
+    uri: '/task/26/26.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/26/subtasks [32m200 [90m4ms - 2b[0m
+[90mGET /api/tasks/count [32m200 [90m29ms - 12b[0m
+inside NEW TASK
+BODY { task: '{"id":27,"kind":"Task","title":"Requirements Task for sdfsdfdsfds","description":"Implement Requirements Task for sdfsdfdsfds","note":"","days":"","status":"New","period":"","priority":"","category":"Hadoop Connector","severity":"P2 - Critical","version":"8.0-1","tofixin":"Admin-License-0.2","submittedBy":{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"},"assignTo":{},"subscribers":[{"username":"btuser","email":"bugtrack@marklogic.com","name":"Bugtrack User"}],"attachments":[],"parent":{"type":"Requirements Task","id":"26"},"proceduralTasks":{"Requirements Task":[],"Functional Specification Task":[],"Test Specification Task":[],"Test Automation Task":[],"Documentation Task":[]},"subTasks":[],"createdAt":"2015-03-31T23:58:22.465Z","modifiedAt":"2015-03-31T23:58:22.465Z","changeHistory":[]}' }
+wrote:
+    /task/27/27.json
+[90mPOST /api/tasks/new [32m200 [90m7ms - 2b[0m
+[90mPUT /api/tasks/insertProceduralTask [32m200 [90m8ms - 38b[0m
+{}
+[90mGET /api/tasks/26 [32m200 [90m7ms - 803b[0m
+URI /task/26/26.json
+document [ { content: 
+     { id: 26,
+       kind: 'Task',
+       title: 'sdfsdfdsfds',
+       description: 'Implement sdfsdfdsfds',
+       note: '',
+       days: '',
+       status: 'New',
+       period: [Object],
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       parent: [Object],
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-31T23:57:48.262Z',
+       modifiedAt: '2015-03-31T23:57:48.262Z',
+       changeHistory: [] },
+    uri: '/task/26/26.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/26/subtasks [36m304 [90m4ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+{}
+[90mGET /api/tasks/27 [32m200 [90m6ms - 827b[0m
+URI /task/27/27.json
+document [ { content: 
+     { id: 27,
+       kind: 'Task',
+       title: 'Requirements Task for sdfsdfdsfds',
+       description: 'Implement Requirements Task for sdfsdfdsfds',
+       note: '',
+       days: '',
+       status: 'New',
+       period: '',
+       priority: '',
+       category: 'Hadoop Connector',
+       severity: 'P2 - Critical',
+       version: '8.0-1',
+       tofixin: 'Admin-License-0.2',
+       submittedBy: [Object],
+       assignTo: {},
+       subscribers: [Object],
+       attachments: [],
+       parent: [Object],
+       proceduralTasks: [Object],
+       subTasks: [],
+       createdAt: '2015-03-31T23:58:22.465Z',
+       modifiedAt: '2015-03-31T23:58:22.465Z',
+       changeHistory: [] },
+    uri: '/task/27/27.json',
+    category: [ 'content' ],
+    format: 'json',
+    contentType: 'application/json' } ]
+[90mGET /api/tasks/27/subtasks [32m200 [90m6ms - 2b[0m
+[90mGET /api/configure [36m304 [90m12ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:58:28.594Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', assignTo: 'btuser' }",
+  "time": "2015-03-31T23:58:28.595Z",
+  "v": 0
+}
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:58:28.617Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T23:58:28.617Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m107ms[0m
+[90mPOST /api/search [32m200 [90m182ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:58:31.429Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: 1 }",
+  "time": "2015-03-31T23:58:31.429Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m119ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:58:32.895Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: 1 }",
+  "time": "2015-03-31T23:58:32.895Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m183ms[0m
+[32m>> [39mFile "client/app/task/view/view.html" changed.
+[36mCompleted in 0.000s at Tue Mar 31 2015 16:58:47 GMT-0700 (PDT)[39m - Waiting...
+[90mGET /home?kind=Bug&page=1 [36m304 [90m0ms[0m
+[90mGET /api/configure [36m304 [90m7ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:58:48.611Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Bug', page: '1' }",
+  "time": "2015-03-31T23:58:48.612Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m187ms[0m
+req.user =  btuser
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "Called /api/search....",
+  "time": "2015-03-31T23:58:52.265Z",
+  "v": 0
+}
+{
+  "name": "Search",
+  "hostname": "sreddy-mac.marklogic.com",
+  "pid": 12112,
+  "level": 30,
+  "msg": "after formatting { kind: 'Task', page: 1 }",
+  "time": "2015-03-31T23:58:52.266Z",
+  "v": 0
+}
+[90mPOST /api/search [32m200 [90m129ms[0m

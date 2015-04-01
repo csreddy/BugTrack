@@ -157,6 +157,18 @@ app.service('Task', ['$http',
             });
         };
 
+        this.getParentAndSubTasks = function(version) {
+            if (version === 'n/a') {
+                version = 'all';
+            }
+            return $http({
+                method: 'GET',
+                url: '/api/tasks/'+ version + '/parentAndSubTasks'
+            })
+        };
+
+
+
         this.getSubTasks = function(id) {
             return $http({
                 method: 'GET',

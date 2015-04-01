@@ -16,7 +16,6 @@ angular.module('task.controllers')
                 isFirstOpen: true,
                 isFirstDisabled: false
             };
-            $scope.statuses = ['Not Yet Started', 'In Progress', 'Completed', 'Closed'];
             $scope.proceduralTaskTypes = [
                 'Requirements Task',
                 'Functional Specification Task',
@@ -163,15 +162,16 @@ angular.module('task.controllers')
                         task.kind = 'Task';
                         task.title = proceduralTaskType + ' for ' + $scope.task.title;
                         task.description = 'Implement ' + task.title;
-                        task.days = null;
-                        task.status = $scope.statuses[0];
+                        task.note = '';
+                        task.days = '';
+                        task.status = $scope.config.status[0];
                         task.period = {
-                            startDate: null,
-                            endDate: null
+                            startDate: '',
+                            endDate: ''
                         };
 
 
-                        task.period = task.priority = null;
+                        task.period = task.priority = '';
                         task.category = $scope.task.category;
                         task.severity = $scope.task.severity;
                         task.version = $scope.task.version;
@@ -241,15 +241,15 @@ angular.module('task.controllers')
                         task.kind = 'Task';
                         task.title = $scope.task.subtaskTitle;
                         task.description = 'Implement ' + task.title;
-                        task.days = null;
-                        task.status = $scope.statuses[0];
+                        task.note = '';
+                        task.days = '';
+                        task.status = $scope.config.status[0];
                         task.period = {
-                            startDate: null,
-                            endDate: null
+                            startDate: '',
+                            endDate: ''
                         };
 
-
-                        task.period = task.priority = null;
+                        task.priority = '';
                         task.category = $scope.task.category;
                         task.severity = $scope.task.severity;
                         task.version = $scope.task.version;

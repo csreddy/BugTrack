@@ -84,16 +84,6 @@ angular.module('fullstackApp')
                                 }, {
                                     name: 'External',
                                     selected: false
-                                },
-                                {
-                                    name: 'Not Yet Started',
-                                    selected: false
-                                }, {
-                                    name: 'In Progress',
-                                    selected: false
-                                }, {
-                                    name: 'Completed',
-                                    selected: false
                                 }],
                                 severity: [{
                                     name: 'P1 - Catastrophic',
