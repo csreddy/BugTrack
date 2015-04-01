@@ -16,7 +16,6 @@ angular.module('task.controllers')
                 isFirstOpen: true,
                 isFirstDisabled: false
             };
-            $scope.statuses = ['Not Yet Started', 'In Progress', 'Completed', 'Closed'];
             $scope.proceduralTaskTypes = [
                 'Requirements Task',
                 'Functional Specification Task',
@@ -165,7 +164,7 @@ angular.module('task.controllers')
                         task.description = 'Implement ' + task.title;
                         task.note = '';
                         task.days = '';
-                        task.status = $scope.statuses[0];
+                        task.status = $scope.config.status[0];
                         task.period = {
                             startDate: '',
                             endDate: ''
@@ -244,7 +243,7 @@ angular.module('task.controllers')
                         task.description = 'Implement ' + task.title;
                         task.note = '';
                         task.days = '';
-                        task.status = $scope.statuses[0];
+                        task.status = $scope.config.status[0];
                         task.period = {
                             startDate: '',
                             endDate: ''

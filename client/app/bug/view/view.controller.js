@@ -11,10 +11,6 @@ angular.module('bug.controllers')
         $scope.showUnsubscribe = false;
         $scope.config = config.data || {};
         $scope.hasAttachments = false;
-        $scope.status = {
-                isFirstOpen: true,
-                isFirstDisabled: false
-            };
 
         var updateBug;
         var id = $location.path().replace('/bug/', '');
@@ -115,7 +111,6 @@ angular.module('bug.controllers')
                     updateBug.attachments.push(fileuri);
                 }
             }
-
 
             Bug.update(updateBug, $scope.bug, $scope.files).success(function() {
                 // reset watchers

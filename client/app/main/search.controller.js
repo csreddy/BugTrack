@@ -17,6 +17,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.facetName = '';
         $scope.isPaginationEvent = false;
         $scope.groupCriteria = 'submittedBy';
+        $scope.tableWidth = 'col-md-10';
+        $scope.tableStyle = {
+            singleRow: true,
+            doubleRow: false
+        };
         $scope.totalItems = {
             all: 0,
             bugs: 0,
@@ -77,7 +82,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 // set form selections according to url query params
                 $scope.form = convertSearchParamsIntoFormSelections($location.search());
                 search($location.search());
-                
+
 
                 // due to pagination directive bug, current page number does not get higlighted when 
                 // browser back/fwd is clicked. This is a hack to fix it.
@@ -105,16 +110,16 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
                 search(convertFormSelectionsToQueryParams());
             }
 
-                // if search params contains kind=Bug then make Bug tab active
-                if (isBug()) {
-                    $scope.tabs[0].active = true;
-                    $scope.tabs[1].active = false;
-                }
-                 // if search params contains kind=Task then make Task tab active
-                if (isTask()) {
-                    $scope.tabs[0].active = false;
-                    $scope.tabs[1].active = true;
-                }
+            // if search params contains kind=Bug then make Bug tab active
+            if (isBug()) {
+                $scope.tabs[0].active = true;
+                $scope.tabs[1].active = false;
+            }
+            // if search params contains kind=Task then make Task tab active
+            if (isTask()) {
+                $scope.tabs[0].active = false;
+                $scope.tabs[1].active = true;
+            }
         };
 
         // for form selection using checkboxes and dropdowns
@@ -162,7 +167,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         };
 
         $scope.getItems = function(kind) {
-            if(kind) $location.search('kind', kind);
+            if (kind) $location.search('kind', kind);
             $location.search('page', 1); // start from page 1 for every search
         };
 
@@ -188,18 +193,26 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             });
         };
 
+        $scope.userPref = {
+            hideFacetBox: function() {
+                console.log('hide facet');
+                angular.element("div[id='facetBox']").hide();
+                $scope.tableWidth = 'col-md-12';
+                // angular.element('span#showFacetBox').attr('style', 'display:none');
+            },
+            showFacetBox: function() {
+                console.log('show facet');
+                angular.element("div[id='facetBox']").show();
+                $scope.tableWidth = 'col-md-10';
+                // angular.element('a#showFacetBox').attr('style', 'display:block');
+            },
+            setTableStyle: function() {
+                $scope.tableStyle.singleRow = !$scope.tableStyle.singleRow;
+                $scope.tableStyle.doubleRow = !$scope.tableStyle.doubleRow;
+            }
 
-        $scope.hideFacetBox = function() {
-            console.log('hide facet');
-            angular.element("div[id='facetBox']").hide();
-            // angular.element('span#showFacetBox').attr('style', 'display:none');
         };
 
-        $scope.showFacetBox = function() {
-            console.log('show facet');
-            angular.element("div[id='facetBox']").show();
-            // angular.element('a#showFacetBox').attr('style', 'display:block');
-        };
 
 
         // go to bug details page when clicked on bug id
@@ -260,11 +273,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
             console.log('select n/v/f/e');
             $scope.form.status.forEach(function(item) {
                 if (item.name === 'New' || item.name === 'Verify' || item.name === 'Fix' || item.name === 'External') {
-                    item.selected =  !item.selected;
+                    item.selected = !item.selected;
                 }
             });
-             console.log('select n/v/f/e');
-           // $scope.addSelectedValueToQuery();
+            console.log('select n/v/f/e');
+            // $scope.addSelectedValueToQuery();
         };
 
         // boolean to show/hide facet dropdown

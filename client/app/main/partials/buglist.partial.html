@@ -2,19 +2,17 @@
     <!-- <div class="col-md-3" id="facetBox">
 <div ng-include src="'views/partials/facets.partial.html'"></div>
 </div> -->
-
     <accordion close-others="false">
         <accordion-group ng-init="open=true;disabled=true" is-open="open" is-disabled="disabled">
             <accordion-heading>
                 <b>{{totalItems.all}} Bugs</b> <small>({{searchMetrics['total-time']}})</small>
                 <div class="col-md-4 pull-right">
-                    <input type="text" ng-model="searchbug" class="form-control" style="margin-top:-8px;width:100%;" placeholder="filter">    
+                    <input type="text" ng-model="searchbug" class="form-control" style="margin-top:-8px;width:100%;" placeholder="filter">
                 </div>
-                
             </accordion-heading>
             <div class="table-responsive">
-                <table class="table table-striped table-condensed pull-left table-nowrap">
-                   <thead>
+                <table class="table table-striped table-condensed pull-left table-nowrap" ng-if="tableStyle.doubleRow">
+                    <thead>
                         <tr ng-init="reverse=false">
                             <th><a href="" ng-click="reverse=!reverse; order('id', reverse)">Id</a>
                             </th>
@@ -30,36 +28,36 @@
                             </th>
                             <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('tofixin', reverse)">Fix in</a>
                             </th>
-
                             <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('status', reverse)">Status</a>
                             </th>
                             <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('assignTo.username', reverse)">Assigned to</a>
                             </th>
                         </tr>
-                    </thead> 
+                    </thead>
                     <tbody ng-repeat="bug in bugs | filter:searchbug">
-                       <tr> <td><a ng-href="/bug/{{bug.id}}">{{::bug.id}}</a>
-                        </td>
-                        <td style="max-width:120px" class="hidden-xs">{{::bug.severity}}</td>
-                        <td class="hidden-xs">
-                        <a tooltip-trigger tooltip-placement="top" tooltip="{{bug.priority.title}}" href="#">{{::bug.priority.level}}</a>
-                        </td>
-                        <td style="max-width:200px" class="hidden-xs">{{::bug.submittedBy.name}}</td>
-                        <td class="hidden-xs">{{::bug.category}}</td>
-                        <td style="max-width:70px" class="hidden-xs">{{::bug.version}}</td>
-                        <td style="max-width:70px" class="hidden-xs">{{::bug.tofixin}}</td>
-                        <td class="hidden-xs">{{::bug.status}}</td>
-                        <td style="max-width:200px" class="hidden-xs">{{::bug.assignTo.username}}</td>
+                        <tr>
+                            <td><a ng-href="/bug/{{bug.id}}">{{::bug.id}}</a>
+                            </td>
+                            <td style="max-width:120px" class="hidden-xs">{{::bug.severity}}</td>
+                            <td class="hidden-xs">
+                                <a tooltip-trigger tooltip-placement="top" tooltip="{{bug.priority.title}}" href="#">{{::bug.priority.level}}</a>
+                            </td>
+                            <td style="max-width:200px" class="hidden-xs">{{::bug.submittedBy.name}}</td>
+                            <td class="hidden-xs">{{::bug.category}}</td>
+                            <td style="max-width:70px" class="hidden-xs">{{::bug.version}}</td>
+                            <td style="max-width:70px" class="hidden-xs">{{::bug.tofixin}}</td>
+                            <td class="hidden-xs">{{::bug.status}}</td>
+                            <td style="max-width:200px" class="hidden-xs">{{::bug.assignTo.username}}</td>
                         </tr>
-                    <tr>
-                        <td colspan=9 style="max-width: 300px">{{::bug.title}}</td>
+                        <tr>
+                            <td colspan=9 style="max-width: 300px">{{::bug.title}}</td>
                         </tr>
                     </tbody>
-
-
-            <!-- regular table  -->
-
-                   <!--  <thead>
+                </table>
+              
+                <!-- 1 row table  -->
+                <table class="table table-striped table-condensed pull-left table-nowrap" ng-if="tableStyle.singleRow">
+                    <thead>
                         <tr ng-init="reverse=false">
                             <th><a href="" ng-click="reverse=!reverse; order('id', reverse)">Id</a>
                             </th>
@@ -75,7 +73,6 @@
                             </th>
                             <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('tofixin', reverse)">Fix in</a>
                             </th>
-
                             <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('status', reverse)">Status</a>
                             </th>
                             <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('assignTo.username', reverse)">Assigned to</a>
@@ -97,8 +94,7 @@
                         <td class="hidden-xs">{{bug.status}}</td>
                         <td style="max-width:200px" class="hidden-xs">{{bug.assignTo.username}}</td>
                         <td style="max-width: 300px">{{bug.title}}</td>
-                    </tr> -->
-
+                    </tr>
                 </table>
             </div>
         </accordion-group>
@@ -109,4 +105,3 @@
         </div>
     </div>
 </div>
-

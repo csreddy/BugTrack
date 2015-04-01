@@ -32,8 +32,8 @@
   <td colspan="" rowspan="" ng-model="status" editable-select="task.status" e-ng-options="s as s for s in config.status" onbeforesave="updateStatus($data)">{{task.status}}</td>
   -->
                     <td>
-                        <select name="status" id="status" ng-model="task.status" type="text" class="form-control input-sm" ng-options="status for status in statuses">
-                        </select>
+                         <select name="status" id="status" ng-model="task.status" ng-options="status for status in config.status" class="form-control input-sm"><option value="{{task.status}}" selected></option></select>
+                        
                     </td>
                 </tr>
                 <tr>

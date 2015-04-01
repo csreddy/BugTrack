@@ -574,6 +574,9 @@ exports.getParentAndSubTasks = function(req, res) {
                 for (var i = 0; i < parent.subTasks.length; i++) {
                     uris.push('/task/' + parent.subTasks[i] + '/' + parent.subTasks[i] + '.json')
                 };
+               
+               // for each parent, get their corresponding sub tasks
+
                 db.documents.read({
                     uris: uris
                 }).result(function(result) {
@@ -585,11 +588,10 @@ exports.getParentAndSubTasks = function(req, res) {
                     parent.subTasks = subtasks;
                     callback();
                 }, function(error) {
-                    callback()
+                    callback();
                 });
             }, function(error) {
                 if (error) res.status(error.statusCode).json(error);
-
                 res.status(200).json(parents)
             })
 
@@ -620,6 +622,5 @@ exports.getParentAndSubTasks = function(req, res) {
     }
 
     getParentTasks(criteria)
-
-    //res.status(200).json(parents)    
+ 
 };
