@@ -275,19 +275,41 @@ exports.search = function(req, res) {
 function parseSelectedItems(searchCriteria, name, type, condition, value) {
     var orQuery = [];
     if (typeof value === 'string') {
-        searchCriteria.push(q.value(name, value));
+        if (value[0] === '-') {
+            searchCriteria.push(q.not(q.value(name, value)));
+        } else {
+            searchCriteria.push(q.value(name, value));
+        }
+
     }
 
     if (value instanceof Array) {
         if (value.length > 1) {
             for (var index in value) {
                 if (value[index] !== 'n/v/f/e') {
-                    orQuery.push(q.range(name, q.datatype(type), condition, value[index]));
+                    if (value[index][0] !== '-') {
+                        orQuery.push(
+                            q.range(name, q.datatype(type), condition, value[index]));
+                    }
+                    if (value[index][0] === '-') {
+                        searchCriteria.push(
+                            q.not(
+                                q.range(name, q.datatype(type), condition, value[index].substring(1, value[index].length))))
+                    }
                 }
             }
+
             if (orQuery.length > 0) searchCriteria.push(q.or(orQuery));
-        } else {
-            searchCriteria.push(q.range(name, q.datatype(type), condition, value[0]))
+        } else { // when array contains only one item
+            if (value[0][0] === '-') {
+                searchCriteria.push(
+                    q.not(
+                        q.range(name, q.datatype(type), condition, value[0][0].substring(1, value[0].length)))
+                )
+            } else {
+                searchCriteria.push(q.range(name, q.datatype(type), condition, value[0]))
+            }
+
         }
     }
     orQuery = []; // empty array after pushing to search criteria 
@@ -297,17 +319,46 @@ function parseSelectedItems(searchCriteria, name, type, condition, value) {
 function parsePathIndexItems(searchCriteria, path, type, condition, value) {
     var orQuery = [];
     if (typeof value === 'string') {
-        searchCriteria.push(q.range(q.pathIndex(path), q.datatype(type), condition, value));
+        if (value[0] === '-') {
+            searchCriteria.push(
+                q.not(
+                    q.range(q.pathIndex(path), q.datatype(type), condition, value)));
+        } else {
+            searchCriteria.push(
+                q.range(
+                    q.pathIndex(path), q.datatype(type), condition, value));
+        }
+
     }
 
     if (value instanceof Array) {
         if (value.length > 1) {
             for (var index in value) {
-                orQuery.push(q.range(q.pathIndex(path), q.datatype(type), condition, value[index]));
+                if (value[index][0] === '-') {
+                    searchCriteria.push(
+                        q.not(
+                            q.range(
+                                q.pathIndex(path), q.datatype(type), condition, value[index].substring(1, value[index].length))));
+                } else {
+                    orQuery.push(
+                        q.range(
+                            q.pathIndex(path), q.datatype(type), condition, value[index]));
+                }
+
             }
             if (orQuery.length > 0) searchCriteria.push(q.or(orQuery));
         } else {
-            searchCriteria.push(q.range(q.pathIndex(path), q.datatype(type), condition, value[0]))
+            if (value[0][0] === '-') {
+                searchCriteria.push(
+                    q.not(
+                        q.range(
+                            q.pathIndex(path), q.datatype(type), condition, value[0].substring(1, value[0].length))))
+            } else {
+                searchCriteria.push(
+                    q.range(
+                        q.pathIndex(path), q.datatype(type), condition, value[0]))
+            }
+
         }
     }
     orQuery = []; // empty array after pushing to search criteria 
