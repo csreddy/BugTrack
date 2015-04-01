@@ -2,8 +2,8 @@
 
 var app = angular.module('search.controllers', ['ivh.treeview', 'ngProgress']);
 
-app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr', 'Config', 'ngProgress',
-    function($rootScope, $scope, $location, $filter, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr, Config, ngProgress) {
+app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$window', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr', 'Config', 'ngProgress',
+    function($rootScope, $scope, $location, $filter, $window, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr, Config, ngProgress) {
 
         $scope.home = 'Home page';
         $scope.form = angular.copy(defaultSearchCriteria) || {};
@@ -17,11 +17,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         $scope.facetName = '';
         $scope.isPaginationEvent = false;
         $scope.groupCriteria = 'submittedBy';
-        $scope.tableWidth = 'col-md-10';
-        $scope.tableStyle = {
-            singleRow: true,
-            doubleRow: false
-        };
         $scope.totalItems = {
             all: 0,
             bugs: 0,
@@ -194,32 +189,59 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', 'S
         };
 
         $scope.userPref = {
-            hideFacetBox: function() {
-                console.log('hide facet');
-                angular.element("div[id='facetBox']").hide();
-                $scope.tableWidth = 'col-md-12';
-                // angular.element('span#showFacetBox').attr('style', 'display:none');
-            },
-            showFacetBox: function() {
-                console.log('show facet');
-                angular.element("div[id='facetBox']").show();
-                $scope.tableWidth = 'col-md-10';
-                // angular.element('a#showFacetBox').attr('style', 'display:block');
+            doubleRowTable: (function() {
+                if ($window.localStorage.doubleRowTable) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            })(),
+            hideFacetBox: (function() {
+                if ($window.localStorage.hideFacetBox) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })(),
+            tableWidth: (function() {
+                console.log('hideFacetBox', this.hideFacetBox);
+                if ($window.localStorage.hideFacetBox) {
+                    return 'col-md-12';
+                } else {
+                    return 'col-md-10';
+                }
+            })(),
+            toggleFacetBox: function(cmd) {
+                if (cmd === 'hide') {
+                    angular.element("div[id='facetBox']").hide();
+                    $window.localStorage.hideFacetBox = true;
+                    this.hideFacetBox = true;
+                    this.tableWidth = 'col-md-12';
+                } else {
+                    angular.element("div[id='facetBox']").show();
+                    $window.localStorage.removeItem('hideFacetBox');
+                    this.hideFacetBox = false;
+                    this.tableWidth = 'col-md-10';
+                }
             },
             setTableStyle: function(tableStyle) {
                 if (tableStyle === 1) {
-                     $scope.tableStyle.singleRow = true;
-                     $scope.tableStyle.doubleRow = false;
+                    this.doubleRowTable = false;
+                    // set localstorage
+                    $window.localStorage.removeItem('doubleRowTable');
                 }
                 if (tableStyle === 2) {
-                      $scope.tableStyle.singleRow = false;
-                     $scope.tableStyle.doubleRow = true;
+                    this.doubleRowTable = true;
+                    // set localstorage 
+                    $window.localStorage.doubleRowTable = true;
                 }
             }
 
         };
 
-
+        // console.log('hideFacetBox', $scope.userPref.hideFacetBox);
+        console.log('tableWidth', $scope.userPref.tableWidth);
 
         // go to bug details page when clicked on bug id
         $scope.goToBug = function(uri) {

@@ -9,8 +9,8 @@
                     </div>
                     <div class="form-group">
                         <div class="btn-group-vertical btn-group-xs">
-                            <label class="btn" ng-model="userPref.tableStyle" ng-change="userPref.setTableStyle(1)" btn-radio="'Left'" tooltip-trigger tooltip-placement="top" tooltip="1 row table">&nbsp;<i class="fa fa-minus"></i>&nbsp;</label>
-                            <label class="btn" ng-model="userPref.tableStyle" ng-change="userPref.setTableStyle(2)" btn-radio="'Right'" tooltip-trigger tooltip-placement="bottom" tooltip="2 row table"><i class="fa"><b style="font-size:16px">&nbsp;=&nbsp;</b></i></i>
+                            <label class="btn" ng-model="userPref.doubleRowTable" ng-change="userPref.setTableStyle(1)" btn-radio="'1'" tooltip-trigger tooltip-placement="top" tooltip="1 row table">&nbsp;<i class="fa fa-minus"></i>&nbsp;</label>
+                            <label class="btn" ng-model="userPref.doubleRowTable" ng-change="userPref.setTableStyle(2)" btn-radio="'2'" tooltip-trigger tooltip-placement="bottom" tooltip="2 row table"><i class="fa"><b style="font-size:16px">&nbsp;=&nbsp;</b></i></i>
                             </label>
                         </div>
                     </div>
@@ -19,7 +19,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body no-padding">
-            <table class="table table-striped table-responsive table-condensed pull-left table-nowrap" ng-if="tableStyle.doubleRow">
+            <table class="table table-striped table-responsive table-condensed pull-left table-nowrap" ng-if="userPref.doubleRowTable">
                 <thead>
                     <tr ng-init="reverse=false">
                         <th><a href="" ng-click="reverse=!reverse; order('id', reverse)">Id</a>
@@ -63,7 +63,7 @@
                 </tbody>
             </table>
             <!-- 1 row table  -->
-            <table class="table table-striped table-condensed pull-left table-nowrap" ng-if="tableStyle.singleRow">
+            <table class="table table-striped table-condensed pull-left table-nowrap" ng-if="!userPref.doubleRowTable">
                 <thead>
                     <tr ng-init="reverse=false">
                         <th><a href="" ng-click="reverse=!reverse; order('id', reverse)">Id</a>
@@ -92,7 +92,7 @@
                     <td><a ng-href="/bug/{{bug.id}}">{{bug.id}}</a>
                     </td>
                     <td style="max-width:120px" class="hidden-xs">{{bug.severity}}</td>
-                    <td class="hidden-xs"><a class="tooltips" href>{{bug.priority.level}}<span>{{bug.priority.title}}</span></a>
+                    <td class="hidden-xs"><a tooltip-trigger tooltip-placement="top" tooltip="{{bug.priority.title}}" href>{{bug.priority.level}}</a>
                     </td>
                     <td style="max-width:200px" class="hidden-xs">{{bug.submittedBy.username}}</td>
                     <td class="hidden-xs">{{bug.category}}</td>
@@ -100,7 +100,7 @@
                     <td style="max-width:70px" class="hidden-xs">{{bug.tofixin}}</td>
                     <td class="hidden-xs">{{bug.status}}</td>
                     <td style="max-width:200px" class="hidden-xs">{{bug.assignTo.username}}</td>
-                    <td style="max-width: 300px">{{bug.title}}</td>
+                    <td style="max-width: 300px" tooltip-trigger tooltip-placement="top" tooltip="{{bug.title}}">{{bug.title}}</td>
                 </tr>
             </table>
         </div>
