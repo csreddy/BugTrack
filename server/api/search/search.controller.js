@@ -19,10 +19,18 @@ exports.search = function(req, res) {
     log.info('Called /api/search....');
     res.locals.errors = req.flash();
     var result = {};
+    var pageLength = 50;
     var criteria = req.body;
     // log.info('criteria:', criteria);
     var page = parseInt(req.body.page) || 1;
-    var pageLength = parseInt(req.body.pageLength) || 20;
+    if (req.body.pageLength) {
+           if (req.body.pageLength === 'All') {
+            pageLength = 99999;
+           } else {
+            pageLength = parseInt(req.body.pageLength);
+           }
+    }
+    
     var startIndex = (page - 1) * pageLength + 1;
     var searchCriteria = [];
     // when empty criteria is sent 

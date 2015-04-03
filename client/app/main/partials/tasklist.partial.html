@@ -2,7 +2,10 @@
 
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">{{totalItems.all}} Tasks <small>({{searchMetrics['total-time']}})</small></h3>
+            <h3 class="box-title">{{totalItems.all}} Tasks <small>({{searchMetrics['total-time']}})</small>
+ <select name="pagelength" id="pagelength" ng-model="form.pageLength" ng-change="userPref.setPageLength(form.pageLength)" ng-options="length for length in pageLengthOptions" class="input-xsm">
+ </select>
+            </h3>
             <div class="box-tools pull-right">
                 <form class="form-inline">
                     <div class="form-group">
@@ -25,23 +28,23 @@
                         <tr ng-init="reverse=false">
                             <th><a href="" ng-click="reverse=!reverse; order('id', reverse)">Id</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('severity', reverse)">Severity</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('severity,id', reverse)">Severity</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('priority.level', reverse)">Priority</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('priority.level,id', reverse)">Priority</a>
                             </th>
                             <!-- <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('submittedBy.username', reverse)">Submitted by</a>
                             </th> -->
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('category', reverse)">Category</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('category,id', reverse)">Category</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('version', reverse)">Version</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('version,id', reverse)">Version</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('tofixin', reverse)">Fix in</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('tofixin,id', reverse)">Fix in</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('status', reverse)">Status</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('status,id', reverse)">Status</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('assignTo.username', reverse)">Assigned to</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('assignTo.username,id', reverse)">Assigned to</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('subTasks', reverse)">Sub Tasks</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('subTasks,id', reverse)">Sub Tasks</a>
                             </th>
                         </tr>
                     </thead>
@@ -72,25 +75,25 @@
                         <tr ng-init="reverse=false">
                             <th><a href="" ng-click="reverse=!reverse; order('id', reverse)">Id</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('severity', reverse)">Severity</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('severity,id', reverse)">Severity</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('priority.level', reverse)">Priority</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('priority.level,id', reverse)">Priority</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('submittedBy.username', reverse)">Submitted by</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('submittedBy.username,id', reverse)">Submitted by</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('category', reverse)">Category</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('category,id', reverse)">Category</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('version', reverse)">Version</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('version,id', reverse)">Version</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('tofixin', reverse)">Fix in</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('tofixin,id', reverse)">Fix in</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('status', reverse)">Status</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('status,id', reverse)">Status</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('subTasks.lenth', reverse)">Sub Tasks</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('subTasks.lenth,id', reverse)">Sub Tasks</a>
                             </th>
-                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('assignTo.username', reverse)">Assigned to</a>
+                            <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('assignTo.username,id', reverse)">Assigned to</a>
                             </th>
-                            <th><a href="" ng-click="reverse=!reverse; order('title', reverse)">Title</a>
+                            <th><a href="" ng-click="reverse=!reverse; order('title,id', reverse)">Title</a>
                             </th>
                         </tr>
                     </thead>

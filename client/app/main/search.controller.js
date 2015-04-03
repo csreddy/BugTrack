@@ -13,7 +13,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         $scope.form.groups = angular.copy($scope.preSelectedGroups) || angular.copy(config.groups);
         $scope.userDefaultSearch = false;
         $scope.nvfe = false;
-        $scope.pageLength = 20;
+        $scope.form.pageLength = $window.localStorage.pageLength || '50';
+        $scope.pageLengthOptions = ['20', '50', '100', '200', 'All'];
+        //$scope.pageLengthOptions = [{name:'20',value:20},{name:'50',value:50},{name:'100',value:100},{name:'200',value:200},{name:'All',value:99999}]
         $scope.facetName = '';
         $scope.isPaginationEvent = false;
         $scope.groupCriteria = 'submittedBy';
@@ -22,6 +24,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             bugs: 0,
             tasks: 0
         };
+
         $scope.facetOrder = [{
             type: 'assignTo',
             title: 'Assigned To'
@@ -78,7 +81,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 $scope.form = convertSearchParamsIntoFormSelections($location.search());
                 search($location.search());
 
-
                 // due to pagination directive bug, current page number does not get higlighted when 
                 // browser back/fwd is clicked. This is a hack to fix it.
                 $timeout(function() {
@@ -101,8 +103,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             } else {
                 // if user does not have default query then return all bugs assigned to 
                 // the current user
-                $scope.form.assignTo = currentUser.username;
-                search(convertFormSelectionsToQueryParams());
+                $location.search('assignTo', currentUser.username);
+                $location.search('status', ['-Closed', '-External', '-Will not fix']);
+
             }
 
             // if search params contains kind=Bug then make Bug tab active
@@ -179,7 +182,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             $scope.form.groups = $scope.preSelectedGroups;
             ivhTreeviewMgr.deselectAll($scope.form.groups);
             ngProgress.start();
-            return Search.search($location.search({})).success(function(response) {
+            return Search.search($location.search({
+                status: ['-Closed', '-External', '-Will not fix']
+            })).success(function(response) {
                 processResult(response);
                 ngProgress.complete();
             }).error(function(error) {
@@ -188,6 +193,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             });
         };
 
+        // user preferences for table and sidebar 
+        // e.g., table layout, sidebar show/hide
         $scope.userPref = {
             doubleRowTable: (function() {
                 if ($window.localStorage.doubleRowTable) {
@@ -212,6 +219,13 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     return 'col-md-10';
                 }
             })(),
+            // pageLength: (function () {
+            //     if ($window.localStorage.pageLength) {
+            //         return $window.localStorage.pageLength
+            //     } else{
+            //         return 50; // default
+            //     }
+            // })(), 
             toggleFacetBox: function(cmd) {
                 if (cmd === 'hide') {
                     angular.element("div[id='facetBox']").hide();
@@ -236,6 +250,12 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     // set localstorage 
                     $window.localStorage.doubleRowTable = true;
                 }
+            },
+            setPageLength: function(pageLength) {
+                $scope.form.pageLength = pageLength;
+                $window.localStorage.pageLength = pageLength;
+                $location.search('pageLength', $scope.form.pageLength);
+                console.log('pageLength', $scope.form.pageLength);
             }
 
         };
@@ -257,9 +277,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         };
 
         // for table column sorting
-        var orderBy = $filter('orderBy');
         $scope.order = function(predicate, reverse) {
-            $scope.bugs = orderBy($scope.bugs, predicate, reverse);
+            $scope.bugs = $filter('orderBy')($scope.bugs, predicate.split(','), reverse);
+            $scope.tasks = $filter('orderBy')($scope.tasks, predicate.split(','), reverse);
         };
 
         // watch the buglist collection returned from the search response
@@ -484,6 +504,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 bugs: $scope.bugs.length,
                 tasks: $scope.tasks.length
             };
+            console.log('bugs', $scope.bugs.length);
+            console.log('tasks', $scope.tasks.length);
         }
 
 
@@ -640,7 +662,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     console.log('groups', value);
                 }
             });
-            console.log('params', params);
             if (params.groupUsers.length === 0) {
                 delete params.groupCriteria;
                 delete params.groupUsers;
@@ -676,12 +697,28 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     case 'severity':
                         if (typeof value === 'string') {
                             var index = getObjectIndex(form[key], value);
-                            form[key][index].selected = true;
+                            // form[key][index].selected = true;
+
+                            if (index === -1) {
+                                // do nothing. 
+                                // this is needed for NOT queries which are not represented in the form 
+                                // as checkboxes, so just ignore them 
+                            } else {
+                                form[key][index].selected = true;
+                            }
                         }
                         if (value instanceof Array) {
                             angular.forEach(value, function(item) {
                                 var index = getObjectIndex(form[key], item);
-                                form[key][index].selected = true;
+                                //form[key][index].selected = true;
+                                if (index === -1) {
+                                    // do nothing. 
+                                    // this is needed for NOT queries which are not  represented in the form 
+                                    // as checkboxes, so just ignore them 
+                                } else {
+                                    form[key][index].selected = true;
+                                }
+
                             });
                         }
                         break;
@@ -689,6 +726,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     case 'to':
                         if (value) {
                             form.range[key] = value;
+                        }
+                        break;
+                    case 'pageLength':
+                        if (value) {
+                            form.pageLength = value;
                         }
                         break;
                     case 'groupUsers':
