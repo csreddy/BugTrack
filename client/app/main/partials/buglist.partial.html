@@ -2,7 +2,7 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">{{totalItems.all}} Bugs <small>({{searchMetrics['total-time']}})</small>
- <select name="pagelength" id="pagelength" ng-model="form.pageLength" ng-change="userPref.setPageLength(form.pageLength)" ng-options="length for length in pageLengthOptions" class="input-xsm">
+ <select name="pagelength" id="pagelength" ng-model="form.pageLength" ng-change="userPref.setPageLength(form.pageLength)" ng-options="length for length in pageLengthOptions" class="input-xsm" tooltip-trigger tooltip-placement="right" tooltip="items per page">
  </select>
             </h3>
             
