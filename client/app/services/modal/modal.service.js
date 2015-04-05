@@ -11,9 +11,9 @@ app.service('modalService', ['$modal',
             modalFade: true,
             templateUrl: 'components/modal/modal.html'
         };
- 
+
         var modalOptions = {
-            showCloseButton:true,
+            showCloseButton: true,
             showActionButton: true,
             closeButtonText: 'Close',
             actionButtonText: 'OK',
@@ -21,13 +21,13 @@ app.service('modalService', ['$modal',
             bodyText: 'Perform this action?'
         };
 
-		var alertModalDefaults = {
+        var alertModalDefaults = {
             backdrop: true,
             keyboard: true,
             modalFade: true,
             templateUrl: 'views/partials/alertmodal.partial.html'
         };
-		var alertModalOptions = {
+        var alertModalOptions = {
             closeButtonText: 'Ok',
             bodyText: 'Oops! You cannot do this'
         };
@@ -39,13 +39,8 @@ app.service('modalService', ['$modal',
             return this.show(customModalDefaults, customModalOptions);
         };
 
-        this.showModal = function (customModalDefaults, customModalOptions) {
-            if (!customModalDefaults) customModalDefaults = {};
-            customModalDefaults.backdrop = 'static';
-            return this.show(customModalDefaults, customModalOptions);
-        };
 
-        this.show = function (customModalDefaults, customModalOptions) {
+        this.show = function(customModalDefaults, customModalOptions) {
             //Create temp objects to work with since we're in a singleton service
             var tempModalDefaults = {};
             var tempModalOptions = {};
@@ -57,15 +52,29 @@ app.service('modalService', ['$modal',
             angular.extend(tempModalOptions, modalOptions, customModalOptions);
 
             if (!tempModalDefaults.controller) {
-                tempModalDefaults.controller = function ($scope, $modalInstance) {
+                tempModalDefaults.controller = function($rootScope, $scope, $modalInstance) {
                     $scope.modalOptions = tempModalOptions;
-                    $scope.modalOptions.ok = function (result) {
+                    $scope.modalOptions.ok = function(result) {
                         $modalInstance.close(result);
                     };
-                    $scope.modalOptions.close = function (result) {
+                    $scope.modalOptions.close = function(result) {
                         $modalInstance.dismiss('cancel');
                     };
-                }
+
+                    $scope.newSubTask = {
+                        title:'',
+                        tofixin: '',
+                        assignTo: {name: '', username: '', email: ''}
+                    };
+
+                    $scope.$watch('newSubTask', function() {
+                        //console.log('newSubTask', $scope.newSubTask);
+                         $rootScope.$broadcast('newSubTask', $scope.newSubTask);
+                    }, true);
+
+                   
+
+                };
             }
 
             return $modal.open(tempModalDefaults).result;

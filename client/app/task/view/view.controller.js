@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('task.controllers')
-    .controller('viewTaskCtrl', ['$scope', '$location', '$timeout', '$q', 'Task', 'config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
+    .controller('viewTaskCtrl', ['$scope', '$location', '$timeout', '$q', 'Task', 'SubTasks','config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
 
-        function($scope, $location, $timeout, $q, Task, config, Flash, currentUser, modalService, ngProgress) {
+        function($scope, $location, $timeout, $q, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress) {
 
             $scope.changes = {};
             $scope.updatedBy = currentUser || {};
@@ -31,6 +31,7 @@ angular.module('task.controllers')
                 'Documentation Task',
                 'Sub-task'
             ];
+            $scope.newSubTask = {};
             var oldCopy;
             var id = $location.path().replace('/task/', '');
 
@@ -82,7 +83,12 @@ angular.module('task.controllers')
                         $scope.hasAttachments = true;
                     }
 
-                    subTasks(id);
+                   $scope.task.subTasks = SubTasks.data;
+                  
+                   // watch for fields in modal form
+                   $scope.$on('newSubTask', function(event, newSubTask) {
+                        $scope.newSubTask = newSubTask
+                   });
 
                 },
                 function(response) {
@@ -152,8 +158,9 @@ angular.module('task.controllers')
                 var modalOptions = {
                     closeButtonText: 'Cancel',
                     actionButtonText: 'Create',
-                    headerText: 'Confirm',
-                    bodyText: 'Are you sure you want to create ' + proceduralTaskType + ' for ' + '<a href=\'/task/' + id + '\'>' + 'Task-' + id + '</a>'
+                    bodyText: '',
+                    headerText: 'Create ' + proceduralTaskType + ' for Task-' + id,
+                    scope: {config: $scope.config}
                 };
                 modalService.showModal({}, modalOptions).then(function() {
                     Task.count().success(function(response) {
@@ -171,23 +178,24 @@ angular.module('task.controllers')
                         };
 
 
-                        task.period = task.priority = '';
+                        task.period  = ''
+                        task.priority = $scope.newSubTask.priority;
                         task.category = $scope.task.category;
                         task.severity = $scope.task.severity;
                         task.version = $scope.task.version;
-                        task.tofixin = $scope.task.tofixin;
+                        task.tofixin = $scope.newSubTask.tofixin
                         task.submittedBy = {
                             username: currentUser.username,
                             email: currentUser.email,
                             name: currentUser.name
                         };
-                        task.assignTo = {};
-                        task.subscribers = [task.submittedBy];
+                        task.assignTo = $scope.newSubTask.assignTo;
+                        task.subscribers = [task.submittedBy, task.assignTo];
                         task.attachments = [];
                         task.parent = {
                             type: proceduralTaskType,
                             id: id
-                        }
+                        };
                         task.proceduralTasks = {
                             'Requirements Task': [],
                             'Functional Specification Task': [],
@@ -229,10 +237,12 @@ angular.module('task.controllers')
 
             $scope.createSubTask = function() {
                 var modalOptions = {
+                 //   templateUrl: '/components/modal/subtask.modal.html',
                     closeButtonText: 'Cancel',
                     actionButtonText: 'Create',
-                    headerText: 'Confirm',
-                    bodyText: 'Are you sure you want to create sub task for ' + '<a href=\'/task/' + id + '\'>' + 'Task-' + id + '</a>'
+                    bodyText: '',
+                    headerText: 'Create sub-task for Task-' + id,
+                    scope: {config: $scope.config}
                 };
                 modalService.showModal({}, modalOptions).then(function() {
                     Task.count().success(function(response) {
@@ -249,19 +259,20 @@ angular.module('task.controllers')
                             endDate: ''
                         };
 
-                        task.priority = '';
+                        task.priority = $scope.newSubTask.priority;
                         task.category = $scope.task.category;
                         task.severity = $scope.task.severity;
                         task.version = $scope.task.version;
-                        task.tofixin = $scope.task.tofixin;
+                        task.tofixin = $scope.newSubTask.tofixin;
+                        task.fixedin = $scope.task.fixedin;
                         task.parent = id;
                         task.submittedBy = {
                             username: currentUser.username,
                             email: currentUser.email,
                             name: currentUser.name
                         };
-                        task.assignTo = {};
-                        task.subscribers = [task.submittedBy];
+                        task.assignTo = $scope.newSubTask.assignTo;
+                        task.subscribers = [task.submittedBy, task.assignTo];
                         task.attachments = [];
                         task.parent = {
                             type: $scope.relationTypes[5],
@@ -397,7 +408,7 @@ angular.module('task.controllers')
             function subTasks(id) {
                 Task.getSubTasks(id).then(function(response) {
                     $scope.task.subTasks = response.data;
-                    console.log($scope.task.subTasks);
+                    console.log('subTasks',$scope.task.subTasks);
                 }, function(error) {
                     // console.log(error);
                     Flash.addAlert('danger', 'Oops! Could not retrieve sub tasks')

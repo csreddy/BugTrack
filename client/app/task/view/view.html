@@ -1,7 +1,6 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="col-xs-12 col-sm-4 col-md-3 pull-left">
     <div class="panel panel-info">
-
         <div class="panel-heading" style="height: 40px">
             <div class="pull-left">
                 <h3 class="panel-title">
@@ -9,8 +8,6 @@
             <a ng-href="/task/{{task.id}}">Task -  {{task.id}}</a>
             </h3>
             </div>
-
-
             <div class="pull-right" ng-show="showSubscribe">
                 <a class="pointer" tooltip="Subscribe" ng-click="subscribe()">
                     <span class="glyphicon glyphicon-star-empty"></span>
@@ -32,8 +29,9 @@
   <td colspan="" rowspan="" ng-model="status" editable-select="task.status" e-ng-options="s as s for s in config.status" onbeforesave="updateStatus($data)">{{task.status}}</td>
   -->
                     <td>
-                         <select name="status" id="status" ng-model="task.status" ng-options="status for status in config.status" class="form-control input-sm"><option value="{{task.status}}" selected></option></select>
-                        
+                        <select name="status" id="status" ng-model="task.status" ng-options="status for status in config.status" class="form-control input-sm">
+                            <option value="{{task.status}}" selected></option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -88,7 +86,6 @@
                     <td>
                         <input type="text" class="form-control input-sm" datepicker-popup="{{cal.format}}" ng-model="task.period.endDate" is-open="cal.toOpened" min-date="minDate" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('to', $event)" close-text="Close" />
                     </td>
-
                 </tr>
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>To fix in</b>
@@ -114,13 +111,11 @@
                         </select>
                     </td>
                 </tr>
-
                 <tr ng-show="task.completedAt">
                     <td colspan="" rowspan="" class="hidden-md"><b>Completed on</b>
                     </td>
                     <td colspan="" rowspan="">{{task.completedAt | date: 'medium'}}</td>
                 </tr>
-
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Subscribers</b>
                     </td>
@@ -143,26 +138,28 @@
             <div class="bg-gray">
                 <table class="table">
                     <tbody>
-                    <tr><td><b>Parent Task</b></td>
-                    <td>
-                         <a href="/task/{{task.parent.id}}">{{task.parent.id}}</a>
-                    </td></tr>
+                        <tr>
+                            <td><b>Parent Task</b></td>
+                            <td>
+                                <a href="/task/{{task.parent.id}}">{{task.parent.id}}</a>
+                            </td>
+                        </tr>
                         <tr>
                             <td><b>Procedural Tasks</b>
                             </td>
                             <td ng-repeat="pTask in proceduralTaskTypes">
-                                <ul ng-repeat="t in task.proceduralTasks[pTask]" class="list-inline"  style="display: inline-block;">
+                                <ul ng-repeat="t in task.proceduralTasks[pTask]" class="list-inline" style="display: inline-block;">
                                     <li>
-                                       <a href="/task/{{t}}">{{t}}</a>
+                                        <a href="/task/{{t}}">{{t}}</a>
                                     </li>
                                 </ul>
                             </td>
                         </tr>
-                           <tr>
+                        <tr>
                             <td><b>Sub Tasks</b>
                             </td>
-                            <td ng-repeat="subtask in task.subTasks"> 
-                            <a href="/task/{{subtask.id}}">{{subtask.id}}</a>
+                            <td ng-repeat="subtask in task.subTasks">
+                                <a href="/task/{{subtask.id}}">{{subtask.id}}</a>
                             </td>
                         </tr>
                     </tbody>
@@ -179,7 +176,6 @@
         <div class="panel-body">
             <!--   <span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:40px;color: red;z-index:1"><h2 style="z-index:-1;">{{task.status}}</h2></span> -->
             <p ng-bind-html="task.description"></p>
-
             <div ng-show="task.note">
                 <div class="callout callout-warning">
                     <i class="fa fa-bullhorn"></i>
@@ -197,8 +193,6 @@
                         <ul ng-repeat="file in task.attachments track by $index" class="list-inline" style="display: inline-block;">
                             <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a>
                             </li>
-
-
                         </ul>
                     </div>
                     <!-- /.box-body -->
@@ -206,52 +200,55 @@
             </div>
         </div>
     </div>
-
-
-    <div class="panel panel-default" ng-show="item.show || item.show == undefined" ng-repeat="item in task.changeHistory">
-        <div class="panel-heading">
-            <img alt="user pic" src="assets/images/avatar.png" class="img-circle img-responsive" style="height: 3em;width: 3em; float:left;margin-right: 5px;">
-            <b>{{item.updatedBy.name | capitalize}}</b>
-            <p class="pull-right" style="font-size: 12px;font-weight: 400;">{{item.time | date:'medium'}}</p>
-        </div>
-        <div class="panel-body">
-            <p class="bg-success">
-                <ul ng-repeat="(key, value) in item.change" class="list-unstyled">
-                    <li ng-hide="value.to.name || value.to.level">
-                        {{key | capitalize}} changed
-                        from
-                        <span ng-hide="value.from===undefined" class="label label-warning">{{value.from | date: 'mediumDate'}}</span> 
-                        <i class="fa  fa-long-arrow-right"></i>
-                        <span class="label label-success">{{value.to | date: 'mediumDate' }}</span>
-                    </li>
-                    <li ng-show="value.to.name">Bug assigned
-                        from
-                        <span ng-hide="value.from===undefined" class="label label-danger">{{value.from.name}}</span>  <i class="fa  fa-long-arrow-right"></i>
-                        <span class="label label-success">{{value.to.name}}</span>
-                    </li>
-
-                    <li ng-show="value.to.level">{{key | capitalize}} changed
-                         from
-                          <span ng-hide="value.from===undefined" class="label label-warning">{{value.from.level}}</span>  <i class="fa  fa-long-arrow-right"></i>
-                        <span class="label label-success">{{value.to.level}}</span>
-                    </li>
-                </ul>
-
-                <p ng-show="item.comment" ng-bind-html="item.comment"></p>
-
-                <!--   <b ng-show="item.attachments">Attached:</b> -->
-                <ul ng-repeat="file in item.files" class="list-inline" style="display: inline-block;">
-                    <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a>
-                    </li>
-                </ul>
-            </p>
-        </div>
-    </div>
-
-    <form class="form-horizontal">
-        <accordion close-others="oneAtATime">
-            <accordion-group is-open="accordion.status.isFirstOpen" style="cursor:pointer">
-                <accordion-heading><i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;Engineering Task List</accordion-heading>
+    <!--     <accordion ng-if="task.subTasks.length > 0">
+        <accordion-group is-open="accordion.status.isFirstOpen" style="cursor:pointer">
+            <accordion-heading>
+                <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;Sub Tasks
+            </accordion-heading>
+            <table class="table table-striped table-condensed pull-left table-nowrap" ng-if="!userPref.doubleRowTable">
+                <thead>
+                    <tr ng-init="reverse=false">
+                        <th><a href="" ng-click="reverse=!reverse; order('id', reverse)">Id</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('status,id', reverse)">Status</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('severity,id', reverse)">Severity</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('priority.level,id', reverse)">Priority</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('category,id', reverse)">Category</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('version,id', reverse)">Version</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('tofixin,id', reverse)">Fix in</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('assignTo.username,id', reverse)">Assigned to</a>
+                        </th>
+                        <th><a href="" ng-click="reverse=!reverse; order('title,id', reverse)">Title</a>
+                        </th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="subtask in task.subTasks">
+                    <td><a ng-href="/task/{{subtask.id}}">{{::subtask.id}}</a>
+                    </td>
+                    <td class="hidden-xs">{{::subtask.status}}</td>
+                    <td style="max-width:120px" class="hidden-xs">{{::subtask.severity}}</td>
+                    <td class="hidden-xs"><a tooltip-trigger tooltip-placement="top" tooltip="{{subtask.priority.title}}" href>{{::subtask.priority.level}}</a>
+                    </td>
+                    <td class="hidden-xs">{{::subtask.category}}</td>
+                    <td style="max-width:70px" class="hidden-xs">{{::subtask.version}}</td>
+                    <td style="max-width:70px" class="hidden-xs">{{::subtask.tofixin}}</td>
+                    <td style="max-width:200px" class="hidden-xs">{{::subtask.assignTo}}</td>
+                    <td style="max-width: 300px" tooltip-trigger tooltip-placement="top" tooltip="{{subtask.title}}">{{::subtask.title}}</td>
+                </tr>
+            </table>
+        </accordion-group>
+    </accordion> -->
+    <!-- <form class="form-horizontal"> -->
+    <accordion close-others="oneAtATime">
+        <accordion-group is-open="accordion.status.isFirstOpen" style="cursor:pointer">
+            <accordion-heading><i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;Engineering Task List</accordion-heading>
+            <form class="form-horizontal">
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="headline">Parent Task</label>
                     <div class="col-md-6" ng-if="task.parent.id">
@@ -268,67 +265,111 @@
                     <div class="col-md-8">
                         <span><p ng-bind-html="message" class="text-green"></p></span>
                         <table class="table table-hover table-responsive">
-
                             <tbody ng-repeat="pTask in proceduralTaskTypes">
                                 <tr>
                                     <td style="max-width:80px">{{pTask}}</td>
                                     <td style="max-width:100px">
-                                            <ul class="list-inline" style="display: inline-block;" ng-repeat="t in task.proceduralTasks[pTask]">
-                                                <li><a href="/task/{{t}}">{{t}}</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="btn btn-success  btn-flat btn-sm" ng-click="createProceduralTask(pTask)"><span class="glyphicon glyphicon-plus"></span></button>
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
+                                        <ul class="list-inline" style="display: inline-block;" ng-repeat="t in task.proceduralTasks[pTask]">
+                                            <li><a href="/task/{{t}}">{{t}}</a>
+                                            </li>
+                                        </ul>
                     </div>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-success  btn-flat btn-sm" ng-click="createProceduralTask(pTask)"><span class="glyphicon glyphicon-plus"></span></button>
+                    </td>
+                    </tr>
+                    </tbody>
+                    </table>
                 </div>
-                <div class="form-group">
-                    <label class="col-md-2 control-label" for="headline"></i> Sub Tasks</label>
-                    <div class="col-md-8">
-                        <p class="form-control-static" ng-if="task.subTasks.length == 0"> No sub tasks</p>
-                        <table class="table table-responsive" ng-if="task.subTasks.length > 0">
-                            <tbody ng-repeat="subtask in task.subTasks">
-                                <tr>
-                                    <td> <a href="/task/{{subtask.id}}">
-                                         {{subtask.id}} - {{subtask.title}}
-                                     </a>
-                                    </td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="input-group input-group-sm">
-                            <input type="text" id="subtask_title" name="subtask_title" ng-model="task.subtaskTitle" class="form-control" placeholder="enter task title">
-                            <span class="input-group-btn">
-                          <button class="btn btn-success btn-flat btn-sm" ng-click="createSubTask()"><span class="glyphicon glyphicon-plus"></span> </button>
-                            </span>
-                        </div>
-
-
-                    </div>
-                </div>
-
-            </accordion-group>
-        </accordion>
-
-
-        <form name="commentForm">
-            <!-- <text-angular ta-toolbar="[['p','bold','pre', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="newcomment" id="newcomment" name="newcomment" placeholder="Add a comment here"></text-angular> -->
-
-            <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="task.comment" id="comment" name="comment" placeholder="Add a comment here"></text-angular>
-            <br>
-            <input type="file" file-upload multiple/>
-            <ul>
-                <li ng-repeat="file in files">{{file.name}}</li>
-            </ul>
-            <button ng-click="updateTask()" id="updatetask" name="updatetask" class="btn btn-primary btn-danger">Update</button>
+</div>
+</form>
+<div class="form-group">
+    <label class="col-md-2 control-label" for="headline">
+        </i> Sub Tasks</label>
+    <div class="col-md-8">
+        <p class="form-control-static" ng-if="task.subTasks.length == 0"> No sub tasks</p>
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed" ng-if="task.subTasks.length > 0">
+                <tbody>
+                    <thead>
+                        <tr ng-init="reverse=false">
+                            <th class="col-sm-1"><a href="" ng-click="reverse=!reverse; order('id', reverse)">Id</a>
+                            </th>
+                            <th class="col-sm-1 hidden-xs"><a href="" ng-click="reverse=!reverse; order('status,id', reverse)">Status</a>
+                            </th>
+                            <th class="col-sm-1 hidden-xs"><a href="" ng-click="reverse=!reverse; order('tofixin,id', reverse)">Fix in</a>
+                            </th>
+                            <th class="col-sm-2 hidden-xs"><a href="" ng-click="reverse=!reverse; order('assignTo.username,id', reverse)">Assigned to</a>
+                            </th>
+                            <th><a href="" ng-click="reverse=!reverse; order('title,id', reverse)">Title</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="subtask in task.subTasks">
+                        <td><a ng-href="/task/{{subtask.id}}">{{::subtask.id}}</a>
+                        </td>
+                        <td class="hidden-xs">{{::subtask.status}}</td>
+                        <td class="hidden-xs">{{::subtask.tofixin}}</td>
+                        <td class="hidden-xs">{{::subtask.assignTo.name}}</td>
+                        <td tooltip-trigger tooltip-placement="top" tooltip="{{subtask.title}}">{{::subtask.title}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <form name="newSubTask">
+            <div class="input-group input-group-sm">
+                <input type="text" id="subtask_title" name="subtask_title" ng-model="task.subtaskTitle" class="form-control" placeholder="enter sub-task title" required/>
+                <span class="input-group-btn">
+                <button class="btn btn-success btn-flat btn-sm"  ng-click="createSubTask()" ng-disabled="newSubTask.$invalid" tooltip-trigger tooltip-placement="right" tooltip="create sub-task"><span class="glyphicon glyphicon-plus"></span> </button>
+                </span>
+            </div>
         </form>
+    </div>
+</div>
+</accordion-group>
+</accordion>
+<div class="panel panel-default" ng-show="item.show || item.show == undefined" ng-repeat="item in task.changeHistory">
+    <div class="panel-heading">
+        <img alt="user pic" src="assets/images/avatar.png" class="img-circle img-responsive" style="height: 3em;width: 3em; float:left;margin-right: 5px;">
+        <b>{{item.updatedBy.name | capitalize}}</b>
+        <p class="pull-right" style="font-size: 12px;font-weight: 400;">{{item.time | date:'medium'}}</p>
+    </div>
+    <div class="panel-body">
+        <p class="bg-success">
+            <ul ng-repeat="(key, value) in item.change" class="list-unstyled">
+                <li ng-hide="value.to.name || value.to.level">
+                    {{key | capitalize}} changed from
+                    <span ng-hide="value.from===undefined" class="label label-warning">{{value.from | date: 'mediumDate'}}</span>
+                    <i class="fa  fa-long-arrow-right"></i>
+                    <span class="label label-success">{{value.to | date: 'mediumDate' }}</span>
+                </li>
+                <li ng-show="value.to.name">Bug assigned from
+                    <span ng-hide="value.from===undefined" class="label label-danger">{{value.from.name}}</span> <i class="fa  fa-long-arrow-right"></i>
+                    <span class="label label-success">{{value.to.name}}</span>
+                </li>
+                <li ng-show="value.to.level">{{key | capitalize}} changed from
+                    <span ng-hide="value.from===undefined" class="label label-warning">{{value.from.level}}</span> <i class="fa  fa-long-arrow-right"></i>
+                    <span class="label label-success">{{value.to.level}}</span>
+                </li>
+            </ul>
+            <p ng-show="item.comment" ng-bind-html="item.comment"></p>
+            <!--   <b ng-show="item.attachments">Attached:</b> -->
+            <ul ng-repeat="file in item.files" class="list-inline" style="display: inline-block;">
+                <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{file.name}}&nbsp;&nbsp;&nbsp;</a>
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+<form name="commentForm">
+    <!-- <text-angular ta-toolbar="[['p','bold','pre', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="newcomment" id="newcomment" name="newcomment" placeholder="Add a comment here"></text-angular> -->
+    <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="task.comment" id="comment" name="comment" placeholder="Add a comment here"></text-angular>
+    <br>
+    <input type="file" file-upload multiple/>
+    <ul>
+        <li ng-repeat="file in files">{{file.name}}</li>
+    </ul>
+    <button ng-click="updateTask()" id="updatetask" name="updatetask" class="btn btn-primary btn-danger">Update</button>
+</form>
 </div>

@@ -461,6 +461,7 @@ exports.subtasks = function(req, res) {
             db.documents.read({
                 uris: subTaskDocUris
             }).result(function(documents) {
+                console.log('documents', documents);
                 subTasks = [];
                 if (documents.length > 0) {
                     for (var i = 0; i < documents.length; i++) {
@@ -469,6 +470,7 @@ exports.subtasks = function(req, res) {
                             title: documents[i].content.title,
                             note: documents[i].content.note,
                             status: documents[i].content.status,
+                            category: documents[i].content.category,
                             days: documents[i].content.days,
                             period: {
                                 startDate: documents[i].content.period.startDate,
@@ -477,7 +479,8 @@ exports.subtasks = function(req, res) {
                             version: documents[i].content.version,
                             tofixin: documents[i].content.tofixin,
                             proceduralTasks: documents[i].content.proceduralTasks,
-                            subTasks: documents[i].content.subTasks
+                            subTasks: documents[i].content.subTasks,
+                            assignTo: documents[i].content.assignTo
                         })
                     }
                 }

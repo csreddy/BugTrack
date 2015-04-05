@@ -1,13 +1,45 @@
-<div class="modal-header">
-  <h3>{{modalOptions.headerText}}</h3>
+<div class="modal-header bg-olive">
+        <h3 class="modal-title" ng-bind-html="modalOptions.headerText"></h3>
 </div>
 <div class="modal-body">
-  <p ng-bind-html="modalOptions.bodyText"></p>
+        <p ng-bind-html="modalOptions.bodyText"></p>
+        <div class="col-md-12">
+        {{modalOptions.scope.taskTitle}}
+            <form name="subtaskInfo">
+            	 <table class="table table-striped" ng-if="modalOptions.scope.config">
+                <tbody>
+                    <tr>
+                        <td colspan="" rowspan="" class="hidden-md"><b>Assigned To</b>
+                        </td>
+                        <td colspan="" rowspan="">
+                            <select id="assignTo" ng-model="newSubTask.assignTo" name="assignTo" type="text" class="form-control input-sm" ng-options="user.name group by user.name[0] for user in modalOptions.scope.config.users" required>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="" rowspan="" class="hidden-md"><b>To fix in</b>
+                        </td>
+                        <td colspan="" rowspan="">
+                            <select id="tofixin" ng-model="newSubTask.tofixin" name="tofixin" type="text" class="form-control input-sm" ng-options="tofixin for tofixin in modalOptions.scope.config.tofixin | orderBy: tofixin" required>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="" rowspan="" class="hidden-md"><b>Priority</b>
+                        </td>
+                        <td>
+                            <select id="priority" ng-model="newSubTask.priority" name="priority" type="text" class="form-control input-sm" ng-options="(priority.level + ' - ' + priority.title) for priority in modalOptions.scope.config.priority" required>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
 </div>
+
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary btn-danger"  ng-if="modalOptions.showCloseButton" 
-          data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
-  <button class="btn btn-primary btn-success" 
-  		 ng-if="modalOptions.showActionButton" 
-          data-ng-click="modalOptions.ok();">{{modalOptions.actionButtonText}}</button>
+        <button type="button" class="btn btn-primary btn-danger pull-left" ng-if="modalOptions.showCloseButton" data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+        <button class="btn btn-primary btn-success pull-left" ng-if="modalOptions.showActionButton" data-ng-click="modalOptions.ok();" ng-disabled="subtaskInfo.$invalid">{{modalOptions.actionButtonText}}</button>
 </div>
+</form>

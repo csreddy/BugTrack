@@ -40,7 +40,11 @@ angular.module('fullstackApp')
                    function(User) {
                         return User.getCurrentUserInfo();
                     }
-                ]
+                ],
+                SubTasks: ['Task', '$location', function(Task, $location) {
+                    var id = $location.url().replace(/\/task\//, '');
+                    return Task.getSubTasks(parseInt(id));
+                }]
             }
         });
     });

@@ -95,9 +95,13 @@
       <tab-heading>
         <i class="glyphicon glyphicon-pushpin"></i> Saved Queries
         </tab-heading>
-     <pre>{{userQueries}}</pre>
      <ol ng-repeat="(name, query)  in userQueries">
-     <a href="" ng-click="search(query)"><li><b>{{name}}</b></li></a>
+     <a href="" ng-click="search(query)"><li>
+     <b>{{name}}</b>
+     </a>
+     <pre>{{query}}</pre>
+     <div hljs source="query"></div>
+     </li>
      </ol>
 
     </tab>
