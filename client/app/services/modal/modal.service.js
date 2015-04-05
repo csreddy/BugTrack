@@ -61,15 +61,15 @@ app.service('modalService', ['$modal',
                         $modalInstance.dismiss('cancel');
                     };
 
-                    $scope.newSubTask = {
+                    $scope.newItem = {
                         title:'',
                         tofixin: '',
                         assignTo: {name: '', username: '', email: ''}
                     };
 
-                    $scope.$watch('newSubTask', function() {
+                    $scope.$watch('newItem', function() {
                         //console.log('newSubTask', $scope.newSubTask);
-                         $rootScope.$broadcast('newSubTask', $scope.newSubTask);
+                         $rootScope.$broadcast('newItem', $scope.newItem);
                     }, true);
 
                    

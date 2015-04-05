@@ -15,7 +15,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tr ng-repeat="subtask in task.subTasks">
+                    <tr ng-repeat="subtask in task.subTasks | orderBy: 'id'">
                         <td><a ng-href="/task/{{subtask.id}}">{{::subtask.id}}</a>
                         </td>
                         <td class="hidden-xs">{{::subtask.status}}</td>

@@ -12,7 +12,7 @@
                         <td colspan="" rowspan="" class="hidden-md"><b>Assigned To</b>
                         </td>
                         <td colspan="" rowspan="">
-                            <select id="assignTo" ng-model="newSubTask.assignTo" name="assignTo" type="text" class="form-control input-sm" ng-options="user.name group by user.name[0] for user in modalOptions.scope.config.users" required>
+                            <select id="assignTo" ng-model="newItem.assignTo" name="assignTo" type="text" class="form-control input-sm" ng-options="user.name group by user.name[0] for user in modalOptions.scope.config.users" required>
                             </select>
                         </td>
                     </tr>
@@ -20,7 +20,7 @@
                         <td colspan="" rowspan="" class="hidden-md"><b>To fix in</b>
                         </td>
                         <td colspan="" rowspan="">
-                            <select id="tofixin" ng-model="newSubTask.tofixin" name="tofixin" type="text" class="form-control input-sm" ng-options="tofixin for tofixin in modalOptions.scope.config.tofixin | orderBy: tofixin" required>
+                            <select id="tofixin" ng-model="newItem.tofixin" name="tofixin" type="text" class="form-control input-sm" ng-options="tofixin for tofixin in modalOptions.scope.config.tofixin | orderBy: tofixin" required>
                             </select>
                         </td>
                     </tr>
@@ -28,7 +28,7 @@
                         <td colspan="" rowspan="" class="hidden-md"><b>Priority</b>
                         </td>
                         <td>
-                            <select id="priority" ng-model="newSubTask.priority" name="priority" type="text" class="form-control input-sm" ng-options="(priority.level + ' - ' + priority.title) for priority in modalOptions.scope.config.priority" required>
+                            <select id="priority" ng-model="newItem.priority" name="priority" type="text" class="form-control input-sm" ng-options="(priority.level + ' - ' + priority.title) for priority in modalOptions.scope.config.priority" required>
                             </select>
                         </td>
                     </tr>

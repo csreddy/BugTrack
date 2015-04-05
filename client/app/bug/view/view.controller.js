@@ -62,6 +62,11 @@ angular.module('bug.controllers')
                     Bug.watch($scope, 'assignTo');
 
                     // Flash.addAlert('success', 'opened ' + uri);
+
+                      // watch for fields in modal form
+                   $scope.$on('newItem', function(event, newItem) {
+                        $scope.newClone = newItem;
+                   });   
                 },
                 function(response) {
                     if (response.status === 404) {
@@ -142,8 +147,9 @@ angular.module('bug.controllers')
                 var modalOptions = {
                     closeButtonText: 'Cancel',
                     actionButtonText: 'Clone',
-                    headerText: 'Clone Bug-' + id + '?',
-                    bodyText: 'Are you sure you want to clone this bug?'
+                    headerText: 'Clone Bug-' + id,
+                    bodyText: '',
+                    scope: {config: $scope.config}
                 };
 
                 console.log('cloning ' + id);
@@ -170,6 +176,9 @@ angular.module('bug.controllers')
                         var cloneOps = [Bug.count().then(function(response) {
                             newBugId = parseInt(response.data.count) + 1;
                             clone.bug.id = newBugId;
+                            clone.bug.tofixin = $scope.newClone.tofixin;
+                            clone.bug.priority = $scope.newClone.priority;
+                            clone.bug.assignTo = $scope.newClone.assignTo;
                             $scope.bug.clones.push(newBugId);
                             Bug.clone($scope.bug, clone.bug).then();
                         })];

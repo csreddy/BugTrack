@@ -26,7 +26,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tr ng-repeat="bug in clones">
+                <tr ng-repeat="bug in clones | orderBy: 'id'">
                     <td><a ng-href="/bug/{{bug.id}}">{{::bug.id}}</a>
                     </td>
                     <td style="max-width:120px" class="hidden-xs">{{::bug.severity}}</td>
