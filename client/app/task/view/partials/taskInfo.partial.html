@@ -1,0 +1,30 @@
+    <div class="panel panel-default">
+        <div class="panel-heading"><i class="fa" ng-class="{'fa-sitemap': task.parent.id}"></i> <b class="panel-title">{{::task.title}}</b>
+        </div>
+        <div class="panel-body">
+            <!--   <span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:40px;color: red;z-index:1"><h2 style="z-index:-1;">{{task.status}}</h2></span> -->
+            <p ng-bind-html="task.description"></p>
+            <div ng-show="task.note">
+                <div class="callout callout-warning">
+                    <i class="fa fa-bullhorn"></i>
+                    <p>{{::task.note}}</p>
+                </div>
+            </div>
+            <div class="pull-left" ng-show="hasAttachments">
+                <div class="box box-success">
+                    <div class="box-header">
+                        <div class="box-tools pull-left">
+                            <div class="label bg-green"><span class="glyphicon glyphicon-file"></span> All Attachments</div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <ul ng-repeat="file in task.attachments track by $index" class="list-inline" style="display: inline-block;">
+                            <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{::file.name}}&nbsp;&nbsp;&nbsp;</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </div>

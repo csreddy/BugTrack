@@ -121,6 +121,13 @@ app.service('Bug', ['$http',
             });
         };
 
+        this.getClones = function(id) {
+            return $http({
+                method: 'GET',
+                url: '/api/bug/'+id+'/clones'
+            });
+        };
+
 
         this.get = function(id) {
             return $http({

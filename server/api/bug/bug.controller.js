@@ -425,3 +425,55 @@ exports.newbugid = function(req, res) {
             res.status(error.statusCode).json(JSON.stringify(error));
     })
 };
+
+
+exports.clones = function(req, res) {
+    var uri = '/bug/' + req.params.id + '/' + req.params.id + '.json'
+    console.log('URI', uri);
+    db.documents.read({
+        uris: [uri]
+    }).result(function(document) {
+        console.log('document', document);
+        var clones = document[0].content.clones.sort();
+        var cloneDocUris = [];
+        if (clones.length > 0) {
+            for (var i = 0; i < clones.length; i++) {
+                cloneDocUris.push('/bug/' + clones[i] + '/' + clones[i] + '.json')
+            }
+        }
+
+        if (cloneDocUris.length > 0) {
+            db.documents.read({
+                uris: cloneDocUris
+            }).result(function(documents) {
+                console.log('documents', documents);
+                clones = [];
+                if (documents.length > 0) {
+                    for (var i = 0; i < documents.length; i++) {
+                        clones.push({
+                            id: documents[i].content.id,
+                            title: documents[i].content.title,
+                            status: documents[i].content.status,
+                            category: documents[i].content.category,
+                            severity: documents[i].content.severity,
+                            priority: documents[i].content.priority,
+                            version: documents[i].content.version,
+                            tofixin: documents[i].content.tofixin,
+                            fixedin: documents[i].content.fixedin,
+                            assignTo: documents[i].content.assignTo
+                        })
+                    }
+                }
+
+                res.status(200).json(clones)
+            }, function(error) {
+                res.status(error.statusCode).json(error)
+            })
+        } else {
+            res.status(200).json([])
+        }
+
+    }, function(error) {
+        res.status(error.statusCode).json(error);
+    })
+};

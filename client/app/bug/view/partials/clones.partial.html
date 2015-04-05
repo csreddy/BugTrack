@@ -1,0 +1,45 @@
+<accordion ng-if="clones.length > 0">   
+    <accordion-group>
+        <accordion-heading is-open="accordion.status.open">
+           <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Clones
+        </accordion-heading>
+         <table class="table table-striped table-condensed pull-left table-nowrap">
+                <thead>
+                    <tr ng-init="reverse=false">
+                        <th><a href="" ng-click="reverse=!reverse; order('id', reverse)">Id</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('severity,id', reverse)">Severity</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('priority.level', reverse)">Priority</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('category', reverse)">Category</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('version', reverse)">Version</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('tofixin', reverse)">Fix in</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('status', reverse)">Status</a>
+                        </th>
+                        <th class="hidden-xs"><a href="" ng-click="reverse=!reverse; order('assignTo.username', reverse)">Assigned to</a>
+                        </th>
+                        <th><a href="" ng-click="reverse=!reverse; order('title', reverse)">Title</a>
+                        </th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="bug in clones">
+                    <td><a ng-href="/bug/{{bug.id}}">{{::bug.id}}</a>
+                    </td>
+                    <td style="max-width:120px" class="hidden-xs">{{::bug.severity}}</td>
+                    <td class="hidden-xs"><a tooltip-trigger tooltip-placement="top" tooltip="{{bug.priority.title}}" href>{{::bug.priority.level}}</a>
+                    </td>
+                    <td class="hidden-xs">{{::bug.category}}</td>
+                    <td style="max-width:70px" class="hidden-xs">{{::bug.version}}</td>
+                    <td style="max-width:70px" class="hidden-xs">{{::bug.tofixin}}</td>
+                    <td class="hidden-xs">{{::bug.status}}</td>
+                    <td style="max-width:200px" class="hidden-xs">{{::bug.assignTo.name}}</td>
+                    <td style="max-width: 300px" tooltip-trigger tooltip-placement="top" tooltip="{{bug.title}}">{{::bug.title}}</td>
+                </tr>
+            </table>
+
+    </accordion-group>
+    </accordion>

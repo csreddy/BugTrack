@@ -40,7 +40,11 @@ angular.module('fullstackApp')
                    function(User) {
                         return User.getCurrentUserInfo();
                     }
-                ]
+                ],
+                clones: ['Bug', '$location', function(Bug, $location) {
+                      var id = $location.url().replace(/\/bug\//, '');
+                      return Bug.getClones(id);
+                }]
             }
         });
     });

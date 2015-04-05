@@ -1,0 +1,28 @@
+<div class="table-responsive">
+            <table class="table table-striped table-condensed" ng-if="task.subTasks.length > 0">
+                <tbody>
+                    <thead>
+                        <tr ng-init="reverse=false">
+                            <th class="col-sm-1"><a href="" ng-click="reverse=!reverse; order('id', reverse)">Id</a>
+                            </th>
+                            <th class="col-sm-1 hidden-xs"><a href="" ng-click="reverse=!reverse; order('status,id', reverse)">Status</a>
+                            </th>
+                            <th class="col-sm-1 hidden-xs"><a href="" ng-click="reverse=!reverse; order('tofixin,id', reverse)">Fix in</a>
+                            </th>
+                            <th class="col-sm-2 hidden-xs"><a href="" ng-click="reverse=!reverse; order('assignTo.username,id', reverse)">Assigned to</a>
+                            </th>
+                            <th><a href="" ng-click="reverse=!reverse; order('title,id', reverse)">Title</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="subtask in task.subTasks">
+                        <td><a ng-href="/task/{{subtask.id}}">{{::subtask.id}}</a>
+                        </td>
+                        <td class="hidden-xs">{{::subtask.status}}</td>
+                        <td class="hidden-xs">{{::subtask.tofixin}}</td>
+                        <td class="hidden-xs">{{::subtask.assignTo.name}}</td>
+                        <td tooltip-trigger tooltip-placement="top" tooltip="{{subtask.title}}">{{::subtask.title}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>

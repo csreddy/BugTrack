@@ -87,7 +87,7 @@ angular.module('task.controllers')
                   
                    // watch for fields in modal form
                    $scope.$on('newSubTask', function(event, newSubTask) {
-                        $scope.newSubTask = newSubTask
+                        $scope.newSubTask = newSubTask;
                    });
 
                 },

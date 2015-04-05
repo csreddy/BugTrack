@@ -1,25 +1,4 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
-<div class="col-xs-12 col-sm-4 col-md-3 pull-left">
-    <div class="panel panel-info">
-        <div class="panel-heading" style="height: 40px">
-            <div class="pull-left">
-                <h3 class="panel-title">
-<i class="fa fa-bug"></i>
-            <a ng-href="/bug/{{bug.id}}">{{bug.kind}} -  {{bug.id}}</a>
-            </h3>
-            </div>
-            <div class="pull-right" ng-show="showSubscribe">
-                <a class="pointer" tooltip="Subscribe" ng-click="subscribe()">
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                </a>
-            </div>
-            <div class="pull-right" ng-show="showUnsubscribe">
-                <a class="pointer" tooltip="Unsubscribe" ng-click="unsubscribe()">
-                    <span class="glyphicon glyphicon-star"></span>
-                </a>
-            </div>
-        </div>
-              <div class="panel-body">
+        <div class="panel-body">
             <table class="table table-striped">
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Status</b>
@@ -185,24 +164,3 @@
                     </tr>
                 </table>
             </div>
-
-        </div>
-    </div>
-</div>
-<!-- bug details  -->
-<div class="col-xs-12 col-sm-8 col-md-9">
-    <div ng-include="'app/bug/view/partials/bugInfo.partial.html'"></div>
-    <div ng-include="'app/bug/view/partials/clones.partial.html'"></div>
-    <div ng-include="'app/bug/view/partials/supportInfo.partial.html'"></div>
-    <div ng-include="'app/bug/view/partials/comments.partial.html'"></div>
-    <form name="commentForm">
-        <!-- <text-angular ta-toolbar="[['p','bold','pre', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="newcomment" id="newcomment" name="newcomment" placeholder="Add a comment here"></text-angular> -->
-        <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="newcomment" id="newcomment" name="newcomment" placeholder="Add a comment here"></text-angular>
-        <br>
-        <input type="file" file-upload multiple/>
-        <ul>
-            <li ng-repeat="file in files">{{file.name}}</li>
-        </ul>
-        <button ng-click="updateBug()" id="updatebug" name="updatebug" class="btn btn-primary btn-danger">Update</button>
-    </form>
-</div>

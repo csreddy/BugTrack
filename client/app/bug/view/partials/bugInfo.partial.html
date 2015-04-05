@@ -1,0 +1,51 @@
+<div class="panel panel-default">
+        <div class="panel-heading"><b class="panel-title">{{::bug.title}}</b>
+        </div>
+        <div class="panel-body">
+            <!--   <span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:40px;color: red;z-index:1"><h2 style="z-index:-1;">{{bug.status}}</h2></span> -->
+            <p ng-bind-html="bug.description"></p>
+            <div ng-show="bug.note">
+                <div class="callout callout-warning">
+                    <i class="fa fa-bullhorn"></i>
+                    <p>{{::bug.note}}</p>
+                </div>
+            </div>
+            <div class="pull-left" ng-show="hasAttachments">
+                <div class="box box-success">
+                    <div class="box-header">
+                        <div class="box-tools pull-left">
+                            <div class="label bg-green"><span class="glyphicon glyphicon-file"></span> All Attachments</div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <ul ng-repeat="file in bug.attachments track by $index" class="list-inline" style="display: inline-block;">
+                            <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{::file.name}}&nbsp;&nbsp;&nbsp;</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+            <div ng-show="bug.samplequery">
+                <legend>
+                    <h5><span class="glyphicon glyphicon-pencil"></span>  Sample Query</span></h5>
+                </legend>
+                <div hljs source="bug.samplequery"></div>
+            </div>
+            <div ng-show="bug.sampledata">
+                <legend>
+                    <h5><span class="glyphicon glyphicon-align-justify"></span>  Sample Data</span></h5>
+                </legend>
+                <div hljs source="bug.sampledata"></div>
+            </div>
+            <div ng-show="bug.stacktrace">
+                <legend>
+                    <h5><span class="glyphicon glyphicon-file"></span>  Error Stacktrace</span></h5>
+                </legend>
+                <div style="overflow: auto; max-height:500px;">
+                    <div hljs source="bug.stacktrace"></div>
+                    <!-- <p class="gist">{{bug.stacktrace}}</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
