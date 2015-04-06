@@ -455,7 +455,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 }
                 $scope.isPaginationEvent = false;
             }
-            console.log('form:', $scope.form);
         });
 
         // set group criteria
@@ -506,6 +505,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     delete searchCriteria.groupUsers;
                 }
             }
+     
             ngProgress.start();
             return Search.search(searchCriteria).success(function(response) {
                 processResult(response);
