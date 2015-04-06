@@ -444,7 +444,15 @@ exports.createSubTask = function(req, res) {
 
 exports.subtasks = function(req, res) {
     var uri = '/task/' + req.params.id + '/' + req.params.id + '.json'
-    console.log('URI', uri);
+        // check if doc exists
+        db.documents.probe(uri).result(function(response) {
+        if (response.exists) {
+            // do nothing
+        } else {
+            res.redirect('/404')
+        }
+    });
+
     db.documents.read({
         uris: [uri]
     }).result(function(document) {
