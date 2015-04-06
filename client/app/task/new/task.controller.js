@@ -29,9 +29,6 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                 'Sub-task'
             ];
 
-            $scope.statuses = ['Not Yet Started', 'In Progress', 'Completed', 'Closed'];
-
-
             $scope.days = _.range(1, 101);
 
 
@@ -92,12 +89,13 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                     task.description = $scope.task.description;
                     task.note = $scope.task.note;
                     task.days = $scope.task.days;
-                    if ($scope.task.period.startDate > new Date()) {
-                        task.status = $scope.statuses[0];
+                    task.status = $scope.config.status[0];
+                    /*if ($scope.task.period.startDate > new Date()) {
+                        task.status = $scope.config.status[0];
                     }
                     if ($scope.task.period.startDate <= new Date()) {
-                        task.status = $scope.statuses[1];
-                    }
+                        task.status = $scope.config.status[0];
+                    }*/
 
 
                     task.period = $scope.task.period;
