@@ -291,6 +291,14 @@ exports.update = function(req, res) {
                     changes.comment = to.comment;
                 }
                 break;
+            case 'subscribers':
+                var userIndex = _.findIndex(from.subscribers, function(user) {
+                    return user.username == changes.updatedBy.username;
+                });
+                if (userIndex === -1) {
+                    updates.push(p.insert("array-node('subscribers')", 'last-child', changes.updatedBy))
+                }
+                break;
             case 'svninfo':
                 if (true) {
                     // TODO
@@ -418,11 +426,11 @@ exports.clone = function(req, res) {
 
 exports.newbugid = function(req, res) {
     db.documents.read('count.json').result(function(response) {
-            console.log('count:', response);
-            res.status(200).json(response)
+        console.log('count:', response);
+        res.status(200).json(response)
     }, function(error) {
-            console.log('error:', error);
-            res.status(error.statusCode).json(JSON.stringify(error));
+        console.log('error:', error);
+        res.status(error.statusCode).json(JSON.stringify(error));
     })
 };
 

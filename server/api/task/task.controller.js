@@ -287,6 +287,14 @@ exports.update = function(req, res) {
                     changes.comment = to.comment;
                 }
                 break;
+            case 'subscribers':
+                var userIndex = _.findIndex(from.subscribers, function(user) {
+                    return user.username == changes.updatedBy.username;
+                });
+                if (userIndex === -1) {
+                    updates.push(p.insert("array-node('subscribers')", 'last-child', changes.updatedBy))
+                }
+                break;    
             case 'svninfo':
                 if (true) {
                     // TODO
