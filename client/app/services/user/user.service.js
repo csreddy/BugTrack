@@ -53,8 +53,21 @@ app.service('User', ['$http', '$location', 'Flash',
                     url: '/api/user/savedefaultquery',
                     data: searchCriteria
                 });
+            },
+            saveQuery: function(query) {
+                return $http({
+                    method: 'PUT',
+                    url: '/api/user/saveQuery',
+                    data: query
+                });
+            },
+            deleteQuery: function(queryName) {
+                return $http({
+                    method: 'PUT',
+                    url: '/api/user/deleteQuery',
+                    data: {name: queryName}
+                });
             }
-
         };
     }
 ]);

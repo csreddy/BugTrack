@@ -36,6 +36,8 @@ module.exports = function(app) {
     app.use('/api/user/', require('./api/user'));
     app.use('/api/user/:username', require('./api/user'));
     app.use('/api/user/savedefaultquery', require('./api/user'));
+    app.use('/api/user/saveQuery', require('./api/user'));
+    app.use('/api/user/deleteQuery', require('./api/user'));
     app.use('/api/user/create', require('./api/user'));
     
     // Bug routes

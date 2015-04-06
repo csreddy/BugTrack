@@ -2,10 +2,11 @@
 
 var app = angular.module('search.controllers', ['ivh.treeview', 'ngProgress']);
 
-app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$window', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr', 'Config', 'ngProgress',
-    function($rootScope, $scope, $location, $filter, $window, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr, Config, ngProgress) {
+app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$window', 'Search', 'defaultSearchCriteria', 'Flash', 'currentUser', 'User', 'config', '$timeout', 'ivhTreeviewMgr', 'Config', 'ngProgress', 'modalService',
+    function($rootScope, $scope, $location, $filter, $window, Search, defaultSearchCriteria, Flash, currentUser, User, config, $timeout, ivhTreeviewMgr, Config, ngProgress, modalService) {
 
         $scope.home = 'Home page';
+        $scope.currentUser = currentUser;
         $scope.form = angular.copy(defaultSearchCriteria) || {};
         $scope.bugs = [];
         $scope.currentPage = parseInt($location.search().page) || 1;
@@ -93,19 +94,19 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     $scope.userDefaultSearch = true;
                 }
             */
-            } else if (Object.keys(currentUser.savedQueries.default).length > 0) {
+            } else if (Object.keys(currentUser.savedQueries.default.query).length > 0) {
                 // if the user has default query then set the $scope.form to user's default query
                 // otherwise initialize with app default query
                 console.log('user has default search....');
-                $location.search(currentUser.savedQueries.default);
-                $scope.form = convertSearchParamsIntoFormSelections($location.search());
-                $scope.userDefaultSearch = true;
+                $location.$$search = currentUser.savedQueries.default.query;
             } else {
                 // if user does not have default query then return all bugs assigned to 
                 // the current user
-                $location.search('assignTo', currentUser.username);
-                $location.search('status', ['-Closed', '-External', '-Will not fix']);
-
+                // also dont return bugs that are closed, external or will-not-fix
+                $location.$$search = {
+                    assignTo: currentUser.username,
+                    status: ['-Closed', '-External', '-Will not fix']
+                };
             }
 
             // if search params contains kind=Bug then make Bug tab active
@@ -191,6 +192,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 Flash.addAlert('danger', error.body.errorResponse.message);
                 ngProgress.complete();
             });
+
+        /*$location.$$search = {
+                    kind: 'Bug',
+                    status: ['-Closed', '-External', '-Will not fix']
+                };*/
         };
 
         // user preferences for table and sidebar 
@@ -303,17 +309,57 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         // save users default search qyery, performs this search whenever user reloads the page
         //  with no search params in the url
         $scope.saveUserDefaultSearch = function() {
-            if (!$scope.form.userDefaultSearch) {
-                console.log('saved......');
-                //var searchCriteria = angular.copy(convertFormSelectionsToQueryParams());
-                User.saveDefaultQuery($location.search()).success(function() {
-                    $scope.userDefaultSearch = true;
+           var query = {
+                    name: 'default',
+                    query: $location.search()
+                };
+            User.saveQuery(query).success(function() {
                     Flash.addAlert('success', 'Default search query saved');
-                }).error(function(error) {
-                    Flash.addAlert('danger', 'Oops! Could not save query. Please try again');
-                    console.log(error);
+                }).error(function() {
+                    Flash.addAlert('danger', 'Could not save query. Please try again');
                 });
-            }
+        };
+
+        // watch for fields in modal form
+        $scope.$on('newQuery', function(event, newQuery) {
+            //  console.log(newQuery);
+            $scope.newQuery = newQuery;
+        });
+
+
+        // save user query
+        $scope.saveQuery = function() {
+            var modalOptions = {
+                closeButtonText: 'Cancel',
+                actionButtonText: 'Save',
+                bodyText: '',
+                headerText: 'Save Query',
+                scope: {
+                    newQuery: {
+                        name: 'new query',
+                        description: ''
+                    }
+                }
+            };
+            modalService.showModal({}, modalOptions).then(function() {
+                var query = {
+                    name: $scope.newQuery.name,
+                    description: $scope.newQuery.description,
+                    query: $location.search()
+                };
+                User.saveQuery(query).success(function() {
+                    Flash.addAlert('success', 'Query saved')
+                }).error(function() {
+                    Flash.addAlert('danger', 'Could not save query. Please try again');
+                });
+            }, function() {
+                // do nothing
+            });
+        };
+
+        // select saved query
+        $scope.selectUserQuery = function(query) {
+            $location.$$search = query;
         };
 
         // selecting checkbox nvfe  selects n/v/f/e checkboxes

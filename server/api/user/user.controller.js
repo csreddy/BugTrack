@@ -42,6 +42,41 @@ exports.saveDefaultQuery = function(req, res) {
     });
 };
 
+exports.saveQuery = function(req, res) {
+    var uri = '/users/' + req.user + '.json';
+    console.log('saveQuery', req.body);
+    var update = [];
+    var queryObj = new Object();
+    if (req.body.name === 'default') {
+        queryObj['default'] = {
+            description: 'This is the default query',
+            query: req.body.query
+        }
+        update.push(p.replace('/node("savedQueries")/node("default")', queryObj.default))
+    } else{
+        queryObj[req.body.name] = {
+                description: req.body.description,
+                query: req.body.query
+            }
+         update.push(p.insert('/node("savedQueries")', 'last-child', queryObj));   
+    }
+
+    db.documents.patch(uri,update).result(function(response) {
+        res.status(204).json(response);
+    }, function(error) {
+        res.status(error.statusCode).json(error);
+    });
+};
+
+
+exports.deleteQuery = function(req, res) {
+     var uri = '/users/' + req.user + '.json';
+      db.documents.patch(uri, p.remove('/node("savedQueries")/node("'+req.body.name+'")')).result(function(response) {
+        res.status(204).json(response);
+    }, function(error) {
+        res.status(error.statusCode).json(error);
+    });
+};
 
 exports.create = function(req, res) {
     res.locals.errors = req.flash();

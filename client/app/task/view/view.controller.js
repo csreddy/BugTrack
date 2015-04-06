@@ -178,7 +178,7 @@ angular.module('task.controllers')
                         };
 
 
-                        task.period  = ''
+                        task.period  = '';
                         task.priority = $scope.newSubTask.priority;
                         task.category = $scope.task.category;
                         task.severity = $scope.task.severity;

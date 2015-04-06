@@ -4,9 +4,8 @@
         <div ng-include="'app/main/partials/search.partial.html'"></div>
     </div>
     <div class="row" ng-if="userPref.hideFacetBox">
-        <a  ng-click="userPref.toggleFacetBox()" href><i class="fa fa-columns"></i> Show Sidebar</a>
+        <i class="fa fa-columns"><a  ng-click="userPref.toggleFacetBox()" href></i> Show Sidebar</a>
     </div>
-    <br>
     <div class="row">
         <div id="facetBox" class="col-md-2" ng-show="!userPref.hideFacetBox">
             <div ng-include="'app/main/partials/facets.partial.html'"></div>

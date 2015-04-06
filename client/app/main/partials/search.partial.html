@@ -13,12 +13,16 @@
                         <input type="text" id="q" name="q" ng-model="form.q" class="form-control" placeholder="search">
                         <div class="input-group-btn">
                             <button class="btn btn-flat bg-green" type="submit" ng-click="mainSearch()" id="search"><span class="glyphicon glyphicon-search"></span> Search</button>
-                            <button type="button" class="btn btn-flat bg-green dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <button type="button" class="btn btn-flat bg-green dropdown-toggle" data-toggle="dropdown" aria-expanded="false" tooltip-trigger tooltip-placement="right" tooltip="save query">
                                 <span class="caret"></span>
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                <li><a href="#">Save Query</a></li>
+                                <li><a href="#" ng-click="saveUserDefaultSearch()"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Save Default Query</a></li>
+                                <li><a href="#" ng-click="saveQuery()"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> Save Query</a></li>
+                                 <li class="divider"></li>
+                                 <li disabled><h5><small>&nbsp;&nbsp;&nbsp;Saved Queries</small></h5></li>
+                                       <li ng-repeat="(queryName, value) in currentUser.savedQueries"><a href="#" ng-click="selectUserQuery(value.query)" tooltip-trigger tooltip-placement="right" tooltip="{{value.description}}">{{queryName}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -26,9 +30,6 @@
                 <div class="col-sm-6 col-md-2">
                     <div class="form-group">
                         <a ng-href="" id="advSrch" ng-click="!showAdvancedSearch()">&nbsp;<small>Advanced Search</small></a> &nbsp;&nbsp;&nbsp;
-                        <label class="xsm-label">
-                            <input type="checkbox" name="userDefaultSearch" ng-model="userDefaultSearch" ng-value="form.userDefaultSearch" ng-change="saveUserDefaultSearch()"> Make this my default search
-                        </label>
                     </div>
                 </div>
             </div>

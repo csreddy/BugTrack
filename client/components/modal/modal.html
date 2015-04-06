@@ -1,12 +1,30 @@
 <div class="modal-header bg-olive">
-        <h3 class="modal-title" ng-bind-html="modalOptions.headerText"></h3>
+    <h3 class="modal-title" ng-bind-html="modalOptions.headerText"></h3>
 </div>
 <div class="modal-body">
-        <p ng-bind-html="modalOptions.bodyText"></p>
-        <div class="col-md-12">
+    <p ng-bind-html="modalOptions.bodyText"></p>
+    <div class="col-md-12">
         {{modalOptions.scope.taskTitle}}
-            <form name="subtaskInfo">
-            	 <table class="table table-striped" ng-if="modalOptions.scope.config">
+        <form name="modalForm">
+            <table class="table" ng-if="modalOptions.scope.newQuery">
+                <tbody>
+                    <tr>
+                        <td colspan="" rowspan="" class="hidden-md"><b>Name</b>
+                        </td>
+                        <td colspan="" rowspan="">
+                            <input type="text" ng-model="newQuery.name" value="{{newQuery.name}}" class="form-control" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="" rowspan="" class="hidden-md"><b>Description</b>
+                        </td>
+                        <td colspan="" rowspan="">
+                            <input type="text" ng-model="newQuery.description" value="{{newQuery.description}}" class="form-control">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-striped" ng-if="modalOptions.scope.config">
                 <tbody>
                     <tr>
                         <td colspan="" rowspan="" class="hidden-md"><b>Assigned To</b>
@@ -34,12 +52,10 @@
                     </tr>
                 </tbody>
             </table>
-            
-        </div>
+    </div>
 </div>
-
 <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-danger pull-left" ng-if="modalOptions.showCloseButton" data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
-        <button class="btn btn-primary btn-success pull-left" ng-if="modalOptions.showActionButton" data-ng-click="modalOptions.ok();" ng-disabled="subtaskInfo.$invalid">{{modalOptions.actionButtonText}}</button>
+    <button type="button" class="btn btn-primary btn-danger pull-left" ng-if="modalOptions.showCloseButton" data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+    <button class="btn btn-primary btn-success pull-left" ng-if="modalOptions.showActionButton" data-ng-click="modalOptions.ok();" ng-disabled="modalForm.$invalid">{{modalOptions.actionButtonText}}</button>
 </div>
 </form>

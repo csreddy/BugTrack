@@ -67,9 +67,20 @@ app.service('modalService', ['$modal',
                         assignTo: {name: '', username: '', email: ''}
                     };
 
+                    $scope.newQuery = {
+                        name: '',
+                        description: '',
+                        query: {}
+                    }
+
                     $scope.$watch('newItem', function() {
                         //console.log('newSubTask', $scope.newSubTask);
                          $rootScope.$broadcast('newItem', $scope.newItem);
+                    }, true);
+
+                    $scope.$watch('newQuery', function() {
+                        //console.log('newSubTask', $scope.newSubTask);
+                         $rootScope.$broadcast('newQuery', $scope.newQuery);
                     }, true);
 
                    
