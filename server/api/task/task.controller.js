@@ -70,6 +70,8 @@ exports.id = function(req, res) {
             res.status(404).json({
                 error: 'could not find task ' + req.params.id
             });
+           //  res.redirect('/404'); 
+            
         }
     }, function(error) {
         res.status(error.statusCode).json({
