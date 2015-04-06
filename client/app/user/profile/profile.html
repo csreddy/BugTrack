@@ -1,23 +1,24 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<tabset>
+<tabset class="nav-tabs-custom">
     <tab>
         <tab-heading>
             <i class="glyphicon glyphicon-pushpin"></i> Saved Queries
         </tab-heading>
-        <br>
-        <div class="col-md-6">
-            <ol>
-                <li ng-repeat="(name, q) in userQueries | orderBy:'name'">
-                    <a href="" ng-click="isCollapsed = !isCollapsed">{{name}}</a> <span>
+        <div class="row">
+            <div class="col-md-6">
+                <ol>
+                    <li ng-repeat="(name, q) in userQueries | orderBy:'name'">
+                        <a href="" ng-click="isCollapsed = !isCollapsed">{{name}}</a> <span>
                     <button class="btn btn-sm btn-flat bg-green pull-right" ng-click="getResults(q.query)" tooltip-trigger tooltip-placement="right" tooltip="show results"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>
-                    <button class="btn btn-sm btn-flat bg-red pull-right" ng-click="deleteQuery(name)" tooltip-trigger tooltip-placement="left" tooltip="delete query" ng-disabled="name == 'default'"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></button>
-                    </span>
-                    <p>{{q.description}}</p>
-                    <div collapse="isCollapsed">
-                        <pre>{{format(q.query)}}</pre>
-                    </div>
-                </li>
-            </ol>
+                        <button class="btn btn-sm btn-flat bg-red pull-right" ng-click="deleteQuery(name)" tooltip-trigger tooltip-placement="left" tooltip="delete query" ng-disabled="name == 'default'"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></button>
+                        </span>
+                        <p>{{q.description}}</p>
+                        <div collapse="isCollapsed">
+                            <pre>{{format(q.query)}}</pre>
+                        </div>
+                    </li>
+                </ol>
+            </div>
         </div>
     </tab>
     <tab>
@@ -27,7 +28,6 @@
         <div class="container">
             <!--  <h4>Edit Profile</h4> -->
             <!-- <hr> -->
-            <br>
             <div class="alert alert-danger" role="alert">Under Construction...</div>
             <div class="row">
                 <!-- left column -->
@@ -97,7 +97,6 @@
     </tab>
     <tab>
         <tab-heading><i class="fa fa-rss-square"></i> Activity</tab-heading>
-        <br>
         <div class="alert alert-danger" role="alert">Under Construction...</div>
         <ul>
             <li>Updated bug-11111</li>

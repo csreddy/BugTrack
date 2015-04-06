@@ -497,7 +497,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
          *
          *********************************************/
 
-        // search with passed search criteria
+        // search with given search criteria
         function search(searchCriteria) {
             if (searchCriteria.groupUsers) {
                 if (searchCriteria.groupUsers.length === 0) {
@@ -522,7 +522,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         function processResult(searchResult) {
             $scope.bugs = [];
             $scope.tasks = [];
-
+           // console.log('searchResult', searchResult);
             angular.forEach(_.pluck(searchResult.slice(1), 'content'), function(item) {
                 if (item.kind === 'Bug') {
                     $scope.bugs.push(item);
