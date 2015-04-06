@@ -7,7 +7,7 @@
         <i class="fa fa-columns"><a  ng-click="userPref.toggleFacetBox()" href></i> Show Sidebar</a>
     </div>
     <div class="row">
-        <div id="facetBox" class="col-md-2" ng-show="!userPref.hideFacetBox">
+        <div id="facetBox" class="col-md-2 animate-show" ng-show="!userPref.hideFacetBox">
             <div ng-include="'app/main/partials/facets.partial.html'"></div>
         </div>
         <div ng-class="userPref.tableWidth">

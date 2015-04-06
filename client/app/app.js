@@ -37,7 +37,8 @@ var app = angular.module('fullstackApp', [
     'ngProgress',
     'facet.directive',
     'ui.bootstrap',
-    'hljs'
+    'hljs',
+    'ngAnimate'
 
 ]);
 app.config(function($routeProvider, $locationProvider) {
