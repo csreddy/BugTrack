@@ -105,10 +105,9 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                     task.version = $scope.task.version;
                     task.tofixin = $scope.task.tofixin;
                     task.fixedin = '';
-                   // task.parent = $scope.task.parent;
                     task.parent = {};
-                    task.parent.taskId = $scope.task.parent.taskId || '';
-                    task.parent.type = $scope.task.parent.type || '';
+                    task.parent.id = $scope.task.parent.id || null;
+                    task.parent.type = $scope.task.parent.type || null;
 
 
                     task.submittedBy = {
@@ -147,7 +146,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                         if ($scope.relationTypes.indexOf(task.parent.type) > -1 && task.parent.type !== 'Sub-task') {
                             updates.push(Task.insertProceduralTask(task.parent.id, task.parent.type, task.id).then());
                         } else {
-                            updates.push(Task.insertSubTask(task.parent.id, task.id).then())
+                            updates.push(Task.insertSubTask(task.parent.id, task.id).then());
                         }
                     }
 
