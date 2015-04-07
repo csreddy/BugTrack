@@ -24,7 +24,7 @@
             </ul>
             <dl class="dl-horizontal" ng-if="item.svn">
                         <dt>Repository</dt>
-                        <dd><a href="">{{item.svn.repository}}</a></dd>
+                        <dd ng-repeat="repo in item.svn.repository"><a href="">{{repo}}</a></dd>
                         <dt>Revision</dt>
                         <dd><a href="">{{item.svn.revision}}</a></dd>
                         <dt>Files</dt>
