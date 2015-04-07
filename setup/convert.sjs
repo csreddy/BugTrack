@@ -1,12 +1,15 @@
-function getUserInfo(username){
+function getUserInfo(users, username){
   try{
-  var users = fn.doc("root/support/bugtracking/users.xml").next().value.root;
-  var user = users.xpath("/*:users/*:user/*:account-name[.= '"+ username +"']/..").next().value
-  return {
-              username:username,
-              email:user.xpath("*:email/text()"),
-              name:user.xpath("*:first-name/text()") + ' ' + user.xpath("*:last-name/text()")
+  //var users = fn.doc("root/support/bugtracking/users.xml").next().value.root;
+  var user = users.xpath("/bt:users/bt:user/bt:account-name[.= '"+ username +"']/..").next().value  
+      print(typeof username)
+      var userInfo = {
+              username:username.toString(),
+              email:user.xpath("bt:email/text()").toString(),
+              name:user.xpath("bt:first-name/text()") + ' ' + user.xpath("bt:last-name/text()").toString()   
             }
+    //  print(JSON.stringify(userInfo))
+          return userInfo
     } catch(e){
       e.toString()
     }  
@@ -27,11 +30,41 @@ function htmlEncode(html){
         .replace(/>/g, '&gt;');
 }
 
+function flatten(arrayOfArrays){
+ var flattened;
+    if(arrayOfArrays[0].length ===1){
+    flattened = arrayOfArrays[0]
+  } else{
+  flattened = arrayOfArrays.reduce(function(a, b) {
+  return a.concat(b);
+}); 
+  } 
+  return flattened
+}
+
+function isPresent(array, username) {
+  //print(JSON.stringify(array))
+            var index = false;
+            for (var i = 0; i < array.length; i++) {
+                if (array[i].username === username) {
+                    index = true;
+                }
+            }
+            return index;
+        }
+
 function convertBug(doc){
-  try{
+//  try{
        var bug = doc.root["bug-holder"].bug
-       var newbug = {}
-        newbug.id = parseInt(bug['bug-number'])
+      
+       var submittedBy = bug['submit-info']['submitted-by']
+       var users = fn.doc("root/support/bugtracking/users.xml").next().value.root;
+     var submitter = users.xpath("/*:users/*:user/*:account-name[.= '"+ submittedBy +"']/..").next().value
+      var assignedTo = xml.xpath("/*:bug-holder/*:bug/*:assigned-to/text()")
+         var assignee = users.xpath("/*:users/*:user/*:account-name[.= '"+ assignedTo +"']/..").next().value
+         var subscribers = xml.xpath("/*:bug-holder/*:bug/*:subscribers/*:subscriber")     
+     var newbug = {}   
+    newbug.id = parseInt(bug['bug-number'])
         newbug.kind = bug['bug-rfe']
           if(newbug.kind.toString() === 'Bug'){
             newbug.createdAt = bug["submit-info"].timestamp || ''
@@ -85,18 +118,15 @@ function convertBug(doc){
               break;      
           }
           
-         var submittedBy = bug['submit-info']['submitted-by']
-        var user = fn.doc("root/support/bugtracking/users.xml").next().value.root;
+        
        try{ 
-      var submitter = user.xpath("/*:users/*:user/*:account-name[.= '"+ submittedBy +"']/..").next().value
-         newbug.submittedBy = getUserInfo(submittedBy) || {}
+         newbug.submittedBy = getUserInfo(users, submittedBy) || {}
            } catch(e){
             throw new Error("submitter:"+e.toString());
            }       
       //  newbug.assignTo = {username: bug["assigned-to"]} | ''   // not working
-        var assignedTo = xml.xpath("/*:bug-holder/*:bug/*:assigned-to/text()")
-         var assignee = user.xpath("/*:users/*:user/*:account-name[.= '"+ assignedTo +"']/..").next().value
-             newbug.assignTo = getUserInfo(assignedTo) || {}
+        
+             newbug.assignTo = getUserInfo(users,assignedTo) || {}
               
                newbug.description = "<p><pre id='description'>"+htmlEncode(bug['bug-description']['recreate-steps'])+"</pre></p>"  || '' 
         newbug.samplequery = bug['bug-description']['sample-query'] || ''
@@ -109,19 +139,21 @@ function convertBug(doc){
         newbug.memory = bug.environment['memory-size'] || ''
         newbug.processors =  bug.environment['number-cpus'] || ''
         newbug.note = bug.environment.note || ''
-        newbug.subscribers = []
-          if(newbug.submittedBy.username !== newbug.assignTo.username){
-             newbug.subscribers.push(newbug.submittedBy)
-          } else {
-            newbug.subscribers.push(newbug.submittedBy);
-            newbug.subscribers.push(newbug.assignTo);
-             }
-          
-          for (var sub of xml.xpath("/*:bug-holder/*:bug/*:subscribers/*:subscriber")){
-            if(sub.xpath("./text()").toString()){
-               newbug.subscribers.push(getUserInfo(sub.xpath("./text()")))
+        newbug.subscribers = [newbug.submittedBy] 
+            if(newbug.submittedBy.username.toString() !== newbug.assignTo.username.toString() && newbug.assignTo.username.toString() !== 'nobody'){
+             newbug.subscribers.push(newbug.assignTo)
+          } 
+              for (var sub of subscribers){
+             //   print('++++++++'+JSON.stringify(newbug.subscribers))
+           // print(sub.xpath("./text()").toString())
+           // print(isPresent(newbug.subscribers, sub.xpath("./text()").toString()))
+            if(sub.xpath("./text()").toString() && !isPresent(newbug.subscribers, sub.xpath("./text()").toString())){
+               newbug.subscribers.push(getUserInfo(users, sub.xpath("./text()")))
                }
           }
+             
+          
+          
         newbug.attachments = []   
 //          xdmp.log("-------------"+fn.count(xml.xpath("/*:bug-holder/*:bug/*:attachments/*")))
           if(fn.count(xml.xpath("/*:bug-holder/*:bug/*:attachments/*")) > 0){
@@ -152,7 +184,7 @@ if(bug.relationships){
                for (var comment of comments){
                 var change = {
                    time: comment.xpath("*:timestamp/text()"),
-                   updatedBy: getUserInfo(comment.xpath("*:commenter/text()")),
+                   updatedBy: getUserInfo(users, comment.xpath("*:commenter/text()")),
                   change: {},
                   files:[],
                   show: false
@@ -183,7 +215,7 @@ if(bug.relationships){
                        change.svn = {
                          repository: comment.xpath("*:svn/*:repository/text()"),
                          revision: comment.xpath("*:svn/*:revision/text()"),
-                         paths: comment.xpath("*:svn/*:paths/*:path/text()")
+                         paths: comment.xpath("*:svn/*:paths/*:path/text()").toArray()
                        }
                           change.show = true;
                        }
@@ -214,9 +246,10 @@ if(bug.relationships){
             
              }
      return newbug
-      } catch(e){
+ /*     } catch(e){
         newbug.id + ' : ' + e.toString()
-      }     
+      }  
+*/
 }
 
 function loadConvertedDoc(doc){
@@ -245,7 +278,7 @@ var str = null;
 var total = 0;
 var json =  require("/MarkLogic/json/json.xqy");
 var users = fn.doc("root/support/bugtracking/users.xml").next().value.root
-var uris = cts.uriMatch("root/support/bugtracking/bug3219?.xml")
+var uris = cts.uriMatch("root/support/bugtracking/bug32190.xml")
      for (uri of uris){
        var xml = fn.doc(uri).next().value.root 
        var doc =  json.transformToJson(xml, json.config("custom") )
@@ -257,7 +290,5 @@ var uris = cts.uriMatch("root/support/bugtracking/bug3219?.xml")
        if(kind.toString() === 'Task'){
          print('Task')
         }
-  
-
        
 }

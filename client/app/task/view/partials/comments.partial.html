@@ -28,7 +28,7 @@
                         <dt>Revision</dt>
                         <dd><a href="">{{item.svn.revision}}</a></dd>
                         <dt>Files</dt>
-                        <dd ng-repeat="path in item.svn.paths"><a href="">{{path}}</a></dd>
+                        <dd ng-repeat="path in item.svn.paths"><a href="http://svn.marklogic.com/trac.engsvn/browser/{{path}}" target="_window">{{path}}</a></dd>
                 </dl>
             <p ng-show="item.comment" ng-bind-html="item.comment"></p>
             <!--   <b ng-show="item.attachments">Attached:</b> -->
