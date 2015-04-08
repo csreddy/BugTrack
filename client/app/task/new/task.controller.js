@@ -130,6 +130,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                         };
                     }
                    
+                    task.includeInTaskList = true;
                     task.proceduralTasks = {
                         'Requirements Task': [],
                         'Functional Specification Task': [],

@@ -17,6 +17,7 @@ module.exports = function(app) {
     app.use('/api/tasks/subtasks', require('./api/task'));
     app.use('/api/tasks/:id(\\d+)/subscribe', require('./api/task'));
     app.use('/api/tasks/:id(\\d+)/unsubscribe', require('./api/task'));
+    app.use('/api/tasks/:id(\\d+)/toggleTaskListInclusion', require('./api/task'));
     app.use('/api/tasks/insertProceduralTask', require('./api/task'));
     app.use('/api/tasks/insertSubTask', require('./api/task'));
     app.use('/api/tasks/createSubTask', require('./api/task'));

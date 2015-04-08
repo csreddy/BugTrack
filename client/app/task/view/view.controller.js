@@ -91,12 +91,12 @@ angular.module('task.controllers')
                    });
 
                 },
-                function(response) {
-                    if (response.status === 404) {
+                function(error) {
+                    if (error.status === 404) {
                         $location.path('/404');
                         Flash.addAlert('danger', 'Task not found');
                     } else {
-                        Flash.addAlert('danger', response.data.error.message);
+                        Flash.addAlert('danger', error.data.error.message);
                     }
 
                 });
@@ -360,6 +360,18 @@ angular.module('task.controllers')
                     Flash.addAlert('danger', error);
                 });
             };
+
+            $scope.toggleTaskListInclusion = function(yesOrNo) {
+                Task.toggleTaskListInclusion(id, yesOrNo).success(function() {
+                    $scope.message = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span> Updated </span>";
+                }).error(function(error) {
+                        Flash.addAlert('danger', 'Oops! Something went wrong. Reload and try again.');
+                });
+            };
+
+            // $scope.$watch('task.includeInTaskList', function() {
+            //     console.log('task.includeInTaskList', $scope.task.includeInTaskList);
+            // }, true);
 
             // private functions
             function reloadBugInfo(id) {

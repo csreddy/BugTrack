@@ -13,6 +13,7 @@ router.get('/:id(\\d+)', controller.id);
 router.get('/:id(\\d+)/subtasks', controller.subtasks);
 router.put('/:id(\\d+)/subscribe', controller.subscribe);
 router.put('/:id(\\d+)/unsubscribe', controller.unsubscribe);
+router.put('/:id(\\d+)/toggleTaskListInclusion', controller.toggleTaskListInclusion);
 router.put('/insertProceduralTask', controller.insertProceduralTask);
 router.put('/insertSubTask', controller.insertSubTask);
 router.post('/createSubTask', controller.createSubTask);

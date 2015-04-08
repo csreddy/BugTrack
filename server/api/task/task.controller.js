@@ -452,14 +452,15 @@ exports.createSubTask = function(req, res) {
     });
 };
 
-exports.subtasks = function(req, res) {
+exports.subtasks = function(req, res, next) {
     var uri = '/task/' + req.params.id + '/' + req.params.id + '.json'
         // check if doc exists
         db.documents.probe(uri).result(function(response) {
         if (response.exists) {
             // do nothing
         } else {
-            res.redirect('/404')
+            res.redirect('/404');
+            next();
         }
     });
 
@@ -644,4 +645,18 @@ exports.getParentAndSubTasks = function(req, res) {
 
     getParentTasks(criteria)
  
+};
+
+
+exports.toggleTaskListInclusion = function(req, res) {
+    var uri = '/task/' + req.body.id + '/' + req.body.id + '.json';
+    db.documents.patch(uri, p.replace('/includeInTaskList', req.body.includeInTaskList)).result(function(response) {
+        res.status(200).json({
+            message: 'Task updated'
+        })
+    }, function(error) {
+        res.status(error.statusCode).json({
+            message: error
+        });
+    });
 };

@@ -133,9 +133,9 @@ app.service('Task', ['$http',
 
         this.insertSubTask = function(parentTaskId, subTaskId) {
             console.log('insertSubTask', {
-                    parentTaskId: parentTaskId,
-                    subTaskId: subTaskId
-                });
+                parentTaskId: parentTaskId,
+                subTaskId: subTaskId
+            });
             return $http({
                 method: 'PUT',
                 url: '/api/tasks/insertSubTask',
@@ -163,7 +163,7 @@ app.service('Task', ['$http',
             }
             return $http({
                 method: 'GET',
-                url: '/api/tasks/'+ version + '/parentAndSubTasks'
+                url: '/api/tasks/' + version + '/parentAndSubTasks'
             })
         };
 
@@ -176,8 +176,20 @@ app.service('Task', ['$http',
             });
         };
 
+        this.toggleTaskListInclusion = function(id, bool) {
+            return $http({
+                method: 'PUT',
+                url: '/api/tasks/' + id + '/toggleTaskListInclusion',
+                data: {
+                    id: id,
+                    includeInTaskList: bool
+                }
+            });
+        };
+
+
         this.watch2 = function(scope, task) {
-            var props = ['days','status', 'priority', 'severity', 'category', 'version', 'tofixin', 'fixedin', 'assignTo'];
+            var props = ['days', 'status', 'priority', 'severity', 'category', 'version', 'tofixin', 'fixedin', 'assignTo'];
             var oldTaskValues = angular.copy(task);
             angular.forEach(props, function(value, index) {
                 if (scope.task[value]) {

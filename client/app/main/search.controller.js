@@ -851,6 +851,5 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             }
             return index;
         }
-
     }
 ]);
