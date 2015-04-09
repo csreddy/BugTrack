@@ -84,6 +84,7 @@ angular.module('task.controllers')
                     }
 
                    $scope.task.subTasks = SubTasks.data;
+                   $scope.allProceduralTasks  = getAllProceduralTasks($scope.task.proceduralTasks);
                   
                    // watch for fields in modal form
                    $scope.$on('newItem', function(event, newItem) {
@@ -369,9 +370,8 @@ angular.module('task.controllers')
                 });
             };
 
-            // $scope.$watch('task.includeInTaskList', function() {
-            //     console.log('task.includeInTaskList', $scope.task.includeInTaskList);
-            // }, true);
+
+    
 
             // private functions
             function reloadBugInfo(id) {
@@ -417,6 +417,7 @@ angular.module('task.controllers')
                 });
             }
 
+
             function subTasks(id) {
                 Task.getSubTasks(id).then(function(response) {
                     $scope.task.subTasks = response.data;
@@ -425,6 +426,16 @@ angular.module('task.controllers')
                     // console.log(error);
                     Flash.addAlert('danger', 'Oops! Could not retrieve sub tasks')
                 });
+            }
+
+            function getAllProceduralTasks(proceduralTasks) {
+                var _proceduralTasks = [];
+                angular.forEach(proceduralTasks, function(tasks) {
+                     _proceduralTasks.push(tasks);
+                });
+                
+                _proceduralTasks =  _.flatten(_proceduralTasks);
+                return _proceduralTasks;
             }
         }
 

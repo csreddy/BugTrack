@@ -145,21 +145,23 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Procedural Tasks</b>
+                            <td><b>Sub Tasks</b>
                             </td>
-                            <td ng-repeat="pTask in proceduralTaskTypes">
-                                <ul ng-repeat="t in task.proceduralTasks[pTask]" class="list-inline" style="display: inline-block;">
-                                    <li>
-                                        <a href="/task/{{t}}">{{t}}</a>
-                                    </li>
+                            <td>
+                                <ul ng-repeat="subtask in task.subTasks" class="list-inline" style="display: inline-block;">
+                                    <li><a href="/task/{{subtask.id}}">{{subtask.id}}</a></li>
                                 </ul>
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Sub Tasks</b>
+                            <td><b>Procedural Tasks</b>
                             </td>
-                            <td ng-repeat="subtask in task.subTasks">
-                                <a href="/task/{{subtask.id}}">{{subtask.id}}</a>
+                            <td>
+                                <ul ng-repeat="pTask in allProceduralTasks" class="list-inline" style="display: inline-block;">
+                                    <li>
+                                        <a href="/task/{{pTask}}">{{pTask}}</a>
+                                    </li>
+                                </ul>
                             </td>
                         </tr>
                     </tbody>
@@ -170,9 +172,7 @@
 </div>
 <!-- task details  -->
 <div class="col-xs-12 col-sm-8 col-md-9">
-
-<div ng-include="'app/task/view/partials/taskInfo.partial.html'"></div>
-   
+    <div ng-include="'app/task/view/partials/taskInfo.partial.html'"></div>
     <!-- <form class="form-horizontal"> -->
     <accordion close-others="oneAtATime">
         <accordion-group is-open="accordion.status.isFirstOpen" style="cursor:pointer">
@@ -181,9 +181,9 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="headline">Show in Task List</label>
                     <div class="col-md-6">
-                       <p class="form-control-static">
-                        <input type="checkbox" ng-model="task.includeInTaskList" ng-change="toggleTaskListInclusion(task.includeInTaskList)">   
-                       </p>    
+                        <p class="form-control-static">
+                            <input type="checkbox" ng-model="task.includeInTaskList" ng-change="toggleTaskListInclusion(task.includeInTaskList)">
+                        </p>
                     </div>
                 </div>
                 <div class="form-group">
