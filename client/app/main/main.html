@@ -13,10 +13,11 @@
         <div ng-class="userPref.tableWidth">
             <tabset class="nav-tabs-custom">
                 <tab ng-repeat="tab in tabs" active="tab.active" disabled="tab.disabled" select="getItems(tab.title)" style="cursor:pointer;">
-                    <tab-heading> <i class="fa" ng-class="{'fa-bug': tab.title == 'Bug', 'fa-tasks': tab.title == 'Task'}"></i> <b>{{tab.title}}s</b>
+                    <tab-heading> <i class="fa" ng-class="{'fa-bug': tab.title == 'Bug', 'fa-tasks': tab.title == 'Task', 'fa-briefcase': tab.title == 'RFE'}"></i> <b>{{tab.title}}s</b>
                     </tab-heading>
                     <div ng-include="'app/main/partials/buglist.partial.html'" ng-if="tab.title == 'Bug'"></div>
                     <div ng-include="'app/main/partials/tasklist.partial.html'" ng-if="tab.title == 'Task'"></div>
+                     <div ng-include="'app/main/partials/rfelist.partial.html'" ng-if="tab.title == 'RFE'"></div>
                 </tab>
             </tabset>
         </div>

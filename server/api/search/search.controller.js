@@ -35,7 +35,7 @@ exports.search = function(req, res) {
     var searchCriteria = [];
     // when empty criteria is sent 
     if (Object.keys(criteria).length === 0) {
-        searchCriteria = [q.collection('bugs'), q.collection('tasks')];
+        searchCriteria = [q.collection('bugs'), q.collection('tasks'), q.collection('rfes')];
     }
 
     // date buckets

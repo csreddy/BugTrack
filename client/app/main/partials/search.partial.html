@@ -18,8 +18,8 @@
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                <li><a href="#" ng-click="saveUserDefaultSearch()"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Save Default Query</a></li>
-                                <li><a href="#" ng-click="saveQuery()"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> Save Query</a></li>
+                                <li><a href="#" ng-click="saveUserDefaultSearch()"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> Save Default Query</a></li>
+                                <li><a href="#" ng-click="saveQuery()"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Save Query</a></li>
                                  <li class="divider"></li>
                                  <li disabled><h5><small>&nbsp;&nbsp;&nbsp;Saved Queries</small></h5></li>
                                        <li ng-repeat="(queryName, value) in currentUser.savedQueries"><a href="#" ng-click="selectUserQuery(value.query)" tooltip-trigger tooltip-placement="right" tooltip="{{value.description}}">{{queryName}}</a></li>

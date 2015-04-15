@@ -51,7 +51,7 @@
                         </td>
                         <td style="max-width:120px" class="hidden-xs">{{::bug.severity}}</td>
                         <td class="hidden-xs">
-                            <a tooltip-trigger tooltip-placement="top" tooltip="{{bug.priority.title}}" href="#">{{::bug.priority.level}}</a>
+                            <a tooltip-trigger tooltip-animation="false"  tooltip-placement="top" tooltip="{{bug.priority.title}}" href="#">{{::bug.priority.level}}</a>
                         </td>
                         <td style="max-width:200px" class="hidden-xs">{{::bug.submittedBy.name}}</td>
                         <td class="hidden-xs">{{::bug.category}}</td>
@@ -95,7 +95,7 @@
                     <td><a ng-href="/bug/{{bug.id}}">{{bug.id}}</a>
                     </td>
                     <td style="max-width:120px" class="hidden-xs">{{bug.severity}}</td>
-                    <td class="hidden-xs"><a tooltip-trigger tooltip-placement="top" tooltip="{{bug.priority.title}}" href>{{bug.priority.level}}</a>
+                    <td class="hidden-xs"><a tooltip-trigger tooltip-animation="false"  tooltip-placement="top" tooltip="{{bug.priority.title}}" href>{{bug.priority.level}}</a>
                     </td>
                     <td style="max-width:200px" class="hidden-xs">{{bug.submittedBy.username}}</td>
                     <td class="hidden-xs">{{bug.category}}</td>

@@ -1,14 +1,14 @@
 <div class="container-fluid" style="padding-right: 0px">
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">{{totalItems.all}} Tasks <small>({{searchMetrics['total-time']}})</small>
+            <h3 class="box-title">{{totalItems.all}} RFEs <small>({{searchMetrics['total-time']}})</small>
  <select name="pagelength" id="pagelength" ng-model="form.pageLength" ng-change="userPref.setPageLength(form.pageLength)" ng-options="length for length in pageLengthOptions" class="input-xsm">
  </select>
             </h3>
             <div class="box-tools pull-right">
                 <form class="form-inline">
                     <div class="form-group">
-                        <input type="text" ng-model="searchtask" class="form-control" placeholder="filter">
+                        <input type="text" ng-model="searchrfe" class="form-control" placeholder="filter">
                     </div>
                     <div class="form-group">
                         <div class="btn-group-vertical btn-group-xs">
@@ -47,24 +47,24 @@
                             </th>
                         </tr>
                     </thead>
-                <tbody ng-repeat="task in tasks | filter:searchtask">
+                <tbody ng-repeat="rfe in rfes | filter:searchrfe">
                         <tr>
-                            <td><a ng-href="/task/{{task.id}}">{{::task.id}}</a>
+                            <td><a ng-href="/rfe/{{rfe.id}}">{{::rfe.id}}</a>
                             </td>
-                            <td style="max-width:120px" class="hidden-xs">{{::task.severity}}</td>
+                            <td style="max-width:120px" class="hidden-xs">{{::rfe.severity}}</td>
                             <td class="hidden-xs">
-                                <a tooltip-trigger tooltip-animation="false"  tooltip-placement="top" tooltip="{{task.priority.title}}" href="#">{{::task.priority.level}}</a>
+                                <a tooltip-trigger tooltip-animation="false"  tooltip-placement="top" tooltip="{{rfe.priority.title}}" href="#">{{::rfe.priority.level}}</a>
                             </td>
-                            <!--  <td style="max-width:200px" class="hidden-xs">{{::task.submittedBy.name}}</td> -->
-                            <td class="hidden-xs">{{::task.category}}</td>
-                            <td style="max-width:70px" class="hidden-xs">{{::task.version}}</td>
-                            <td style="max-width:70px" class="hidden-xs">{{::task.tofixin}}</td>
-                            <td class="hidden-xs">{{::task.status}}</td>
-                            <td style="max-width:200px" class="hidden-xs">{{::task.assignTo.username}}</td>
-                            <td style="max-width:200px" class="hidden-xs">{{::task.subTasks.length}}</td>
+                            <!--  <td style="max-width:200px" class="hidden-xs">{{::rfe.submittedBy.name}}</td> -->
+                            <td class="hidden-xs">{{::rfe.category}}</td>
+                            <td style="max-width:70px" class="hidden-xs">{{::rfe.version}}</td>
+                            <td style="max-width:70px" class="hidden-xs">{{::rfe.tofixin}}</td>
+                            <td class="hidden-xs">{{::rfe.status}}</td>
+                            <td style="max-width:200px" class="hidden-xs">{{::rfe.assignTo.username}}</td>
+                            <td style="max-width:200px" class="hidden-xs">{{::rfe.subTasks.length}}</td>
                         </tr>
                         <tr>
-                            <td>{{::task.title}}</td>
+                            <td colspan=9 style="max-width: 300px">{{::rfe.title}}</td>
                         </tr>
                     </tbody>
             </table>
@@ -96,20 +96,20 @@
                             </th>
                         </tr>
                     </thead>
-                <tr ng-repeat="task in tasks | filter:searchtask">
-                        <td><a ng-href="/task/{{task.id}}">{{::task.id}}</a>
+                <tr ng-repeat="rfe in rfes | filter:searchrfe">
+                        <td><a ng-href="/rfe/{{rfe.id}}">{{::rfe.id}}</a>
                         </td>
-                        <td style="max-width:120px" class="hidden-xs">{{::task.severity}}</td>
-                        <td class="hidden-xs"><a tooltip-trigger tooltip-placement="top" tooltip-animation="false" tooltip="{{task.priority.title}}" href>{{::task.priority.level}}</a>
+                        <td style="max-width:120px" class="hidden-xs">{{::rfe.severity}}</td>
+                        <td class="hidden-xs"><a tooltip-trigger tooltip-animation="false" tooltip-placement="top" tooltip="{{rfe.priority.title}}" href>{{::rfe.priority.level}}</a>
                         </td>
-                        <td style="max-width:200px" class="hidden-xs">{{::task.submittedBy.username}}</td>
-                        <td class="hidden-xs">{{::task.category}}</td>
-                        <td style="max-width:70px" class="hidden-xs">{{::task.version}}</td>
-                        <td style="max-width:70px" class="hidden-xs">{{::task.tofixin}}</td>
-                        <td class="hidden-xs">{{::task.status}}</td>
-                        <td class="hidden-xs">{{::task.subTasks.length}}</td>
-                        <td style="max-width:200px" class="hidden-xs">{{::task.assignTo.username}}</td>
-                        <td style="max-width: 300px" tooltip-trigger tooltip-placement="top" tooltip="{{task.title}}">{{::task.title}}</td>
+                        <td style="max-width:200px" class="hidden-xs">{{::rfe.submittedBy.username}}</td>
+                        <td class="hidden-xs">{{::rfe.category}}</td>
+                        <td style="max-width:70px" class="hidden-xs">{{::rfe.version}}</td>
+                        <td style="max-width:70px" class="hidden-xs">{{::rfe.tofixin}}</td>
+                        <td class="hidden-xs">{{::rfe.status}}</td>
+                        <td class="hidden-xs">{{::rfe.subTasks.length}}</td>
+                        <td style="max-width:200px" class="hidden-xs">{{::rfe.assignTo.username}}</td>
+                        <td style="max-width: 300px" tooltip-trigger tooltip-placement="top" tooltip="{{rfe.title}}">{{::rfe.title}}</td>
                     </tr>
             </table>
         </div>
@@ -118,7 +118,7 @@
 
     <div class="col-xs-12 col-sm-12 col-md-10">
         <div class="container text-center">
-            <pagination id="pager" total-items="totalItems.all" items-per-page="pageLength" ng-model="currentPage" ng-click="gotoPage(currentPage)" ng-hide="totalItems.tasks < pageLength" max-size="10" rotate="false" direction-links="false" boundary-links="true"></pagination>
+            <pagination id="pager" total-items="totalItems.all" items-per-page="pageLength" ng-model="currentPage" ng-click="gotoPage(currentPage)" ng-hide="totalItems.rfes < pageLength" max-size="10" rotate="false" direction-links="false" boundary-links="true"></pagination>
         </div>
     </div>
 </div>

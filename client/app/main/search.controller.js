@@ -23,7 +23,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         $scope.totalItems = {
             all: 0,
             bugs: 0,
-            tasks: 0
+            tasks: 0,
+            rfes: 0
         };
 
         $scope.facetOrder = [{
@@ -60,6 +61,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         }, {
             title: 'Task',
             content: $scope.tasks
+        },{
+            title: 'RFE',
+            content: $scope.rfes
         }];
 
         // for calendar   
@@ -113,11 +117,19 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             if (isBug()) {
                 $scope.tabs[0].active = true;
                 $scope.tabs[1].active = false;
+                 $scope.tabs[2].active = false;
             }
             // if search params contains kind=Task then make Task tab active
             if (isTask()) {
                 $scope.tabs[0].active = false;
                 $scope.tabs[1].active = true;
+                $scope.tabs[2].active = false;
+            }
+            // if search params contains kind=Task then make Task tab active
+            if (isRFE()) {
+                $scope.tabs[0].active = false;
+                $scope.tabs[1].active = false;
+                $scope.tabs[2].active = true;
             }
         };
 
@@ -153,15 +165,24 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             $scope.isPaginationEvent = false;
             $location.search(convertFormSelectionsToQueryParams());
             $location.search('page', 1); // start from page 1 for every search
+             // if search params contains kind=Bug then make Bug tab active
             if (isBug()) {
                 $scope.tabs[0].active = true;
                 $scope.tabs[1].active = false;
+                 $scope.tabs[2].active = false;
             }
+            // if search params contains kind=Task then make Task tab active
             if (isTask()) {
                 $scope.tabs[0].active = false;
                 $scope.tabs[1].active = true;
+                $scope.tabs[2].active = false;
             }
-
+            // if search params contains kind=Task then make Task tab active
+            if (isRFE()) {
+                $scope.tabs[0].active = false;
+                $scope.tabs[1].active = false;
+                $scope.tabs[2].active = true;
+            }
 
         };
 
@@ -287,18 +308,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             $scope.bugs = $filter('orderBy')($scope.bugs, predicate.split(','), reverse);
             $scope.tasks = $filter('orderBy')($scope.tasks, predicate.split(','), reverse);
         };
-
-        // watch the buglist collection returned from the search response
-        // and get details of each bug for rendering in table the UI
-        $scope.$watchCollection('bugList', function() {
-            getBugDetails();
-        }, true);
-
-        // watch the buglist collection returned from the search response
-        // and get details of each bug for rendering in table the UI
-        $scope.$watchCollection('taskList', function() {
-            getTaskDetails();
-        }, true);
 
 
         $scope.$watchCollection('form', function() {
@@ -489,6 +498,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             });
         };
 
+        $scope.$watch('searchbug', function() {
+            console.log('searchbug:', $scope.searchbug);
+        }, true);
+
+
         /*********************************************
          *
          *
@@ -522,6 +536,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         function processResult(searchResult) {
             $scope.bugs = [];
             $scope.tasks = [];
+             $scope.rfes = [];
            // console.log('searchResult', searchResult);
             angular.forEach(_.pluck(searchResult.slice(1), 'content'), function(item) {
                 if (item.kind === 'Bug') {
@@ -529,6 +544,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 }
                 if (item.kind === 'Task') {
                     $scope.tasks.push(item);
+                }
+                if (item.kind === 'RFE') {
+                    $scope.rfes.push(item);
                 }
             });
 
@@ -548,10 +566,12 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             $scope.totalItems = {
                 all: searchResult[0].total,
                 bugs: $scope.bugs.length,
-                tasks: $scope.tasks.length
+                tasks: $scope.tasks.length,
+                rfes: $scope.rfes.length
             };
             console.log('bugs', $scope.bugs.length);
             console.log('tasks', $scope.tasks.length);
+            console.log('rfes', $scope.rfes.length);
         }
 
 
@@ -592,6 +612,17 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             return exists;
         }
 
+        // check if search param contains RFE collection
+        function isRFE() {
+            var exists = false;
+            if ($location.search().kind) {
+                if ($location.search().kind.indexOf('RFE') > -1) {
+                    exists = true;
+                }
+            }
+            return exists;
+        }
+
         // if the search query contains facets selection then automatically 
         // pre-select after the results are retained
         function preselectFacetCheckBox(facetsFromSearch) {
@@ -625,6 +656,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 $scope.tasks.push(task.content);
             });
         }
+
 
         // rename empty value facets, show them as (empty) in the ui
         function renameEmptyFacets(facets) {
