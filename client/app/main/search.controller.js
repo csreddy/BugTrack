@@ -61,7 +61,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         }, {
             title: 'Task',
             content: $scope.tasks
-        },{
+        }, {
             title: 'RFE',
             content: $scope.rfes
         }];
@@ -109,7 +109,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 // also dont return bugs that are closed, external or will-not-fix
                 $location.$$search = {
                     assignTo: currentUser.username,
-                    status: ['-Closed', '-External', '-Will not fix']
+                    status: ['-Closed', '-External', '-Will not fix'],
+                    pageLength: $scope.form.pageLength
                 };
             }
 
@@ -117,7 +118,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             if (isBug()) {
                 $scope.tabs[0].active = true;
                 $scope.tabs[1].active = false;
-                 $scope.tabs[2].active = false;
+                $scope.tabs[2].active = false;
             }
             // if search params contains kind=Task then make Task tab active
             if (isTask()) {
@@ -165,11 +166,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             $scope.isPaginationEvent = false;
             $location.search(convertFormSelectionsToQueryParams());
             $location.search('page', 1); // start from page 1 for every search
-             // if search params contains kind=Bug then make Bug tab active
+            // if search params contains kind=Bug then make Bug tab active
             if (isBug()) {
                 $scope.tabs[0].active = true;
                 $scope.tabs[1].active = false;
-                 $scope.tabs[2].active = false;
+                $scope.tabs[2].active = false;
             }
             // if search params contains kind=Task then make Task tab active
             if (isTask()) {
@@ -214,7 +215,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 ngProgress.complete();
             });
 
-        /*$location.$$search = {
+            /*$location.$$search = {
                     kind: 'Bug',
                     status: ['-Closed', '-External', '-Will not fix']
                 };*/
@@ -318,15 +319,15 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         // save users default search qyery, performs this search whenever user reloads the page
         //  with no search params in the url
         $scope.saveUserDefaultSearch = function() {
-           var query = {
-                    name: 'default',
-                    query: $location.search()
-                };
+            var query = {
+                name: 'default',
+                query: $location.search()
+            };
             User.saveQuery(query).success(function() {
-                    Flash.addAlert('success', 'Default search query saved');
-                }).error(function() {
-                    Flash.addAlert('danger', 'Could not save query. Please try again');
-                });
+                Flash.addAlert('success', 'Default search query saved');
+            }).error(function() {
+                Flash.addAlert('danger', 'Could not save query. Please try again');
+            });
         };
 
         // watch for fields in modal form
@@ -442,7 +443,17 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         // watch for location changes and extract search pararms from the url and perform search
         $scope.$on('$locationChangeSuccess', function() {
             console.log($location.url());
-            if ($location.url().indexOf('/home') > -1) {
+            if ($location.url() === '/home') {
+                search({
+                    kind: 'Bug',
+                    assignTo: currentUser.username,
+                    status: ['-Closed', '-External', '-Will not fix'],
+                    page: 1,
+                    pageLength: $scope.form.pageLength
+                });
+            } 
+
+             if ($location.url().indexOf('/home') > -1) {
                 $scope.currentPage = $location.search().page || 1;
 
                 // due to pagination directive bug, current page number does not get higlighted when 
@@ -497,12 +508,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 }
             });
         };
-
-        $scope.$watch('searchbug', function() {
-            console.log('searchbug:', $scope.searchbug);
-        }, true);
-
-
         /*********************************************
          *
          *
@@ -519,7 +524,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     delete searchCriteria.groupUsers;
                 }
             }
-     
+
             ngProgress.start();
             return Search.search(searchCriteria).success(function(response) {
                 processResult(response);
@@ -536,8 +541,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         function processResult(searchResult) {
             $scope.bugs = [];
             $scope.tasks = [];
-             $scope.rfes = [];
-           // console.log('searchResult', searchResult);
+            $scope.rfes = [];
+            // console.log('searchResult', searchResult);
             angular.forEach(_.pluck(searchResult.slice(1), 'content'), function(item) {
                 if (item.kind === 'Bug') {
                     $scope.bugs.push(item);

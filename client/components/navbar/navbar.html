@@ -39,7 +39,11 @@
             </li>
             <li class="divider-vertical"></li>
 
-            <li ng-class="selected('/bug/new')">
+            <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">  <i class="fa fa-plus"></i> New <b class="caret"></b>
+                </a>
+                 <ul class="dropdown-menu dropdown-menu-right">
+                 <li ng-class="selected('/bug/new')">
                 <a href="/bug/new">
                     <i class="fa fa-bug"></i></span>&nbsp;New Bug</a>
                 </a>
@@ -49,6 +53,14 @@
                     <i class="fa fa-tasks"></i></span>&nbsp;New Task</a>
                 </a>
             </li>
+             <li ng-class="selected('/rfe/new')">
+                <a href="/rfe/new">
+                    <i class="fa fa-briefcase"></i></span>&nbsp;New RFE</a>
+                </a>
+            </li>
+                 </ul>
+            </li>
+            
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> {{navbarUser | capitalize}} <b class="caret"></b>
                 </a>

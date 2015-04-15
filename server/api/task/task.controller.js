@@ -369,7 +369,8 @@ exports.insertProceduralTask = function(req, res) {
     if (req.headers.referer.indexOf('rfe') > -1) {
         taskOrRfe = 'rfe'
     }
-    var uri = '/' + taskOrRfe + '/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
+    // rfe because, procedural tasks can be added for RFEs only
+    var uri = '/rfe/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json'; 
     db.documents.probe(uri).result(function(response) {
         if (response.exists) {
             db.documents.patch(uri, p.insert("proceduralTasks/array-node(\"" + req.body.proceduralTaskType + "\")", 'last-child', parseInt(req.body.proceduralTaskId))).result(function(response) {
@@ -381,7 +382,7 @@ exports.insertProceduralTask = function(req, res) {
             });
         } else {
             res.status(404).json({
-                message: 'Parent task ' + req.body.parentTaskId + ' does not exist'
+                message: 'RFE ' + req.body.parentTaskId + ' does not exist. '
             })
         }
     });

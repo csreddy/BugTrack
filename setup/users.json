@@ -6,7 +6,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ian",
@@ -16,7 +19,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "avnur",
@@ -26,7 +32,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "cjl",
@@ -36,7 +45,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rwang",
@@ -46,7 +58,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jim",
@@ -56,7 +71,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dave",
@@ -66,7 +84,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "pcp",
@@ -76,7 +97,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "huifen",
@@ -86,7 +110,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jhunter",
@@ -96,7 +123,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "max",
@@ -106,7 +136,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "nick",
@@ -116,7 +149,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "asheesh",
@@ -126,7 +162,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ajay",
@@ -136,7 +175,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "adam",
@@ -146,7 +188,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mary",
@@ -156,7 +201,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "kelly",
@@ -166,7 +214,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "hui",
@@ -176,7 +227,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "denise",
@@ -186,7 +240,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "cwilliams",
@@ -196,7 +253,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ronh",
@@ -206,7 +266,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dsokolsky",
@@ -216,7 +279,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "uigwebuike",
@@ -226,7 +292,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "msteinberg",
@@ -236,7 +305,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rpolasani",
@@ -246,7 +318,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "johnpilat",
@@ -256,7 +331,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jfc",
@@ -266,7 +344,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mturner",
@@ -276,7 +357,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "nobody",
@@ -286,7 +370,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jespinoza",
@@ -296,7 +383,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "shivaji",
@@ -306,7 +396,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sbuxton",
@@ -316,7 +409,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jmeree",
@@ -326,7 +422,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "cbiow",
@@ -336,7 +435,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dclark",
@@ -346,7 +448,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "wlaforest",
@@ -356,7 +461,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "smudunuri",
@@ -366,7 +474,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "prooney",
@@ -376,7 +487,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jkerr",
@@ -386,7 +500,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "cwhitney",
@@ -396,7 +513,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jcooper",
@@ -406,7 +526,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "cwelch",
@@ -416,7 +539,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sravotto",
@@ -426,7 +552,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rmiller",
@@ -436,7 +565,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rgrimm",
@@ -446,7 +578,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "pkankanala",
@@ -456,7 +591,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "aagrawal",
@@ -466,7 +604,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jclippinger",
@@ -476,7 +617,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sshearer",
@@ -486,7 +630,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mhelmstetter",
@@ -496,7 +643,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "achaudhry",
@@ -506,7 +656,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jshao",
@@ -516,7 +669,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "frubino",
@@ -526,7 +682,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "aredalen",
@@ -536,7 +695,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "fsanders",
@@ -546,7 +708,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "paven",
@@ -556,7 +721,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "tturchioe",
@@ -566,7 +734,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ppreuveneers",
@@ -576,7 +747,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dlam",
@@ -586,7 +760,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "lratcliff",
@@ -596,7 +773,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "wfeick",
@@ -606,7 +786,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "damusin",
@@ -616,7 +799,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ashutosh",
@@ -626,7 +812,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jpurohit",
@@ -636,7 +825,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "prawal",
@@ -646,7 +838,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "khanson",
@@ -656,7 +851,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "darias",
@@ -666,7 +864,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jmakeig",
@@ -676,7 +877,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "msrinivasan",
@@ -686,7 +890,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "crichey",
@@ -696,7 +903,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "placey",
@@ -706,7 +916,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "smohanty",
@@ -716,7 +929,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rmonaghan",
@@ -726,7 +942,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "skrishnan",
@@ -736,7 +955,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jli",
@@ -746,7 +968,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "fsnow",
@@ -756,7 +981,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mdubinko",
@@ -766,7 +994,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "nwalsh",
@@ -776,7 +1007,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jbooth",
@@ -786,7 +1020,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dfeldman",
@@ -796,7 +1033,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mdoane",
@@ -806,7 +1046,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "blloyd",
@@ -816,7 +1059,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "bkane",
@@ -826,7 +1072,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "fmesa",
@@ -836,7 +1085,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "phare",
@@ -846,7 +1098,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "gkatz",
@@ -856,7 +1111,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "kpulkesin",
@@ -866,7 +1124,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jmonberg",
@@ -876,7 +1137,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "schen",
@@ -886,7 +1150,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "yzhan",
@@ -896,7 +1163,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "msarma",
@@ -906,7 +1176,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dsherman",
@@ -916,7 +1189,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "gfurbush",
@@ -926,7 +1202,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "emiller",
@@ -936,7 +1215,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sparnell",
@@ -946,7 +1228,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "oschwering",
@@ -956,7 +1241,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sneth",
@@ -966,7 +1254,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jrunkel",
@@ -976,7 +1267,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "danderson",
@@ -986,7 +1280,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "akakkar",
@@ -996,7 +1293,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jstock",
@@ -1006,7 +1306,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "fsalonga",
@@ -1016,7 +1319,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "gchinchwadkar",
@@ -1026,7 +1332,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "kbadami",
@@ -1036,7 +1345,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "bmo",
@@ -1046,7 +1358,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "wunderwood",
@@ -1056,7 +1371,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "bcoryat",
@@ -1066,7 +1384,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ayuwono",
@@ -1076,7 +1397,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ebloch",
@@ -1086,7 +1410,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "vmadan",
@@ -1096,7 +1423,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "derickson",
@@ -1106,7 +1436,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dcassel",
@@ -1116,7 +1449,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jvogt",
@@ -1126,7 +1462,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jmyatt",
@@ -1136,7 +1475,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ybertaud",
@@ -1146,7 +1488,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ifinlayson",
@@ -1156,7 +1501,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ccoggins",
@@ -1166,7 +1514,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "kkumar",
@@ -1176,7 +1527,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "gvidal",
@@ -1186,7 +1540,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "lpica",
@@ -1196,7 +1553,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "skottam",
@@ -1206,7 +1566,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ableasdale",
@@ -1216,7 +1579,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jchen",
@@ -1226,7 +1592,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sverma",
@@ -1236,7 +1605,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "edelacruz",
@@ -1246,7 +1618,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mgursky",
@@ -1256,7 +1631,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "wwallach",
@@ -1266,7 +1644,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jsnelson",
@@ -1276,7 +1657,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sbrooks",
@@ -1286,7 +1670,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "pfennell",
@@ -1296,7 +1683,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jliu",
@@ -1306,7 +1696,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "kcoleman",
@@ -1316,7 +1709,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "wkrause",
@@ -1326,7 +1722,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "wholmes",
@@ -1336,7 +1735,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rpelton",
@@ -1346,7 +1748,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dborkar",
@@ -1356,7 +1761,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "hwu",
@@ -1366,7 +1774,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "hsu",
@@ -1376,7 +1787,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "pmcgowan",
@@ -1386,7 +1800,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rbhatacharya",
@@ -1396,7 +1813,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "wzhou",
@@ -1406,7 +1826,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ehennum",
@@ -1416,7 +1839,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "schartrand",
@@ -1426,7 +1852,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "bstarbird",
@@ -1436,7 +1865,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "agonzales",
@@ -1446,7 +1878,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ksaxena",
@@ -1456,7 +1891,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rhu",
@@ -1466,7 +1904,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rstryker",
@@ -1476,7 +1917,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "tdiepenbrock",
@@ -1486,7 +1930,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "tbeck",
@@ -1496,7 +1943,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "svempati",
@@ -1506,7 +1956,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sthirumavalavan",
@@ -1516,7 +1969,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sstafford",
@@ -1526,7 +1982,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "elenz",
@@ -1536,7 +1995,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ali",
@@ -1546,7 +2008,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "atsoi",
@@ -1556,7 +2021,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "clavin",
@@ -1566,7 +2034,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "kleong",
@@ -1576,7 +2047,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "lpollington",
@@ -1586,7 +2060,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sreddy",
@@ -1596,7 +2073,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "bmann",
@@ -1606,7 +2086,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rjovanovich",
@@ -1616,7 +2099,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jfuller",
@@ -1626,7 +2112,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "lling",
@@ -1636,7 +2125,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "smiller",
@@ -1646,7 +2138,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "grusso",
@@ -1656,7 +2151,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "lhutt",
@@ -1666,7 +2164,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "miyer",
@@ -1676,7 +2177,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jdalton",
@@ -1686,7 +2190,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "cgreer",
@@ -1696,7 +2203,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mwooldri",
@@ -1706,7 +2216,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "bgupta",
@@ -1716,7 +2229,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dummy",
@@ -1726,7 +2242,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "gghai",
@@ -1736,7 +2255,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "achoudha",
@@ -1746,7 +2268,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "tgallowa",
@@ -1756,7 +2281,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ctaylor",
@@ -1766,7 +2294,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jfurt",
@@ -1776,7 +2307,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "tchen",
@@ -1786,7 +2320,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "pclark",
@@ -1796,7 +2333,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "tstyslinger",
@@ -1806,7 +2346,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "gvaidees",
@@ -1816,7 +2359,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "bciano",
@@ -1826,7 +2372,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "imasri",
@@ -1836,7 +2385,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "glang",
@@ -1846,7 +2398,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mdolan",
@@ -1856,7 +2411,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "srandle",
@@ -1866,7 +2424,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dchander",
@@ -1876,7 +2437,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mislam",
@@ -1886,7 +2450,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sbrockma",
@@ -1896,7 +2463,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mlindber",
@@ -1906,7 +2476,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "tbrady",
@@ -1916,7 +2489,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "cwang",
@@ -1926,7 +2502,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dlee",
@@ -1936,7 +2515,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "vkorolev",
@@ -1946,7 +2528,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sakare",
@@ -1956,7 +2541,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "myawitz",
@@ -1966,7 +2554,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jsolis",
@@ -1976,7 +2567,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dmalkina",
@@ -1986,7 +2580,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "iagrawal",
@@ -1996,7 +2593,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "kmccaleb",
@@ -2006,7 +2606,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ktune",
@@ -2016,7 +2619,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jhoy",
@@ -2026,7 +2632,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "knagar",
@@ -2036,7 +2645,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mbhatnagar",
@@ -2046,7 +2658,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mbhatnag",
@@ -2056,7 +2671,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "pkim",
@@ -2066,7 +2684,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "fxue",
@@ -2076,7 +2697,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dkim",
@@ -2086,7 +2710,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "pcaine",
@@ -2096,7 +2723,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "gnist",
@@ -2106,7 +2736,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ewasser",
@@ -2116,7 +2749,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jcrean",
@@ -2126,7 +2762,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "bwoolfol",
@@ -2136,7 +2775,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dgorbet",
@@ -2146,7 +2788,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "arosenba",
@@ -2156,7 +2801,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "aobermay",
@@ -2166,7 +2814,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sguttman",
@@ -2176,7 +2827,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dsheahan",
@@ -2186,7 +2840,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "scrook",
@@ -2196,7 +2853,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sanand",
@@ -2206,7 +2866,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "aabbas",
@@ -2216,7 +2879,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "smazer",
@@ -2226,7 +2892,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "tsmirnov",
@@ -2236,7 +2905,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mwhiteha",
@@ -2246,7 +2918,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "crothwel",
@@ -2256,7 +2931,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "tsuzuki",
@@ -2266,7 +2944,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "gpushkar",
@@ -2276,7 +2957,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jgardner",
@@ -2286,7 +2970,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "adhavle",
@@ -2296,7 +2983,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sbodzin",
@@ -2306,7 +2996,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ezegers",
@@ -2316,7 +3009,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jpasqua",
@@ -2326,7 +3022,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ldavalur",
@@ -2336,7 +3035,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sstroud",
@@ -2346,7 +3048,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ldavulur",
@@ -2356,7 +3061,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "spal",
@@ -2366,7 +3074,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "michael",
@@ -2376,7 +3087,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jbakke",
@@ -2386,7 +3100,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "afowler",
@@ -2396,7 +3113,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "lsquilla",
@@ -2406,7 +3126,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jclark",
@@ -2416,7 +3139,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jjames",
@@ -2426,7 +3152,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mchiarin",
@@ -2436,7 +3165,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mtodd",
@@ -2446,7 +3178,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "yding",
@@ -2456,7 +3191,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rsemerau",
@@ -2466,7 +3204,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rgupta",
@@ -2476,7 +3217,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "chamlin",
@@ -2486,7 +3230,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "bsokol",
@@ -2496,7 +3243,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "kmittal",
@@ -2506,7 +3256,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jmckean",
@@ -2516,7 +3269,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ssalsbur",
@@ -2526,7 +3282,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jkrebs",
@@ -2536,7 +3295,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rlouapre",
@@ -2546,7 +3308,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mferneau",
@@ -2556,7 +3321,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "vdeodhar",
@@ -2566,7 +3334,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mcrosier",
@@ -2576,7 +3347,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "pkester",
@@ -2586,7 +3360,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "cschilli",
@@ -2596,7 +3373,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "kalderet",
@@ -2606,7 +3386,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jbryan",
@@ -2616,7 +3399,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "fpacione",
@@ -2626,7 +3412,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jdriscol",
@@ -2636,7 +3425,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "gjosten",
@@ -2646,7 +3438,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "smefford",
@@ -2656,7 +3451,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "imekrez",
@@ -2666,7 +3464,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "amistry",
@@ -2676,7 +3477,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "vgoyal",
@@ -2686,7 +3490,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "ageorge",
@@ -2696,7 +3503,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mpowers",
@@ -2706,7 +3516,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jhuang",
@@ -2716,7 +3529,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "skumar",
@@ -2726,7 +3542,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "iarora",
@@ -2736,7 +3555,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "xlei",
@@ -2746,7 +3568,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "TestGanesh",
@@ -2756,7 +3581,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rrudin",
@@ -2766,7 +3594,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "phoehne",
@@ -2776,7 +3607,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mzergaou",
@@ -2786,7 +3620,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mplotnic",
@@ -2796,7 +3633,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "sbertold",
@@ -2806,7 +3646,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rcaltabi",
@@ -2816,7 +3659,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jdonner",
@@ -2826,7 +3672,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rdew",
@@ -2836,7 +3685,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "eouthwai",
@@ -2846,7 +3698,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "nsingh",
@@ -2856,7 +3711,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jjoerg",
@@ -2866,7 +3724,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "bdang",
@@ -2876,7 +3737,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mthahir",
@@ -2886,7 +3750,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "cmilani",
@@ -2896,7 +3763,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "marmagos",
@@ -2906,7 +3776,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "cchaplin",
@@ -2916,7 +3789,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "credding",
@@ -2926,7 +3802,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "rpughsle",
@@ -2936,7 +3815,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mderu",
@@ -2946,7 +3828,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "tpiros",
@@ -2956,7 +3841,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jwilliam",
@@ -2966,7 +3854,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "kford",
@@ -2976,7 +3867,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "psingla",
@@ -2986,7 +3880,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "hmediche",
@@ -2996,7 +3893,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "amund",
@@ -3006,7 +3906,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "vdufault",
@@ -3016,7 +3919,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "jmyers",
@@ -3026,7 +3932,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "viyengar",
@@ -3036,7 +3945,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "bmiller",
@@ -3046,7 +3958,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mmaachou",
@@ -3056,7 +3971,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mrodrigu",
@@ -3066,7 +3984,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "charagan",
@@ -3076,7 +3997,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dsoares",
@@ -3086,7 +4010,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "fgeorges",
@@ -3096,7 +4023,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "dmaddox",
@@ -3106,7 +4036,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "kkrupa",
@@ -3116,7 +4049,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "mlawson",
@@ -3126,7 +4062,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "cmontero",
@@ -3136,7 +4075,10 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }, {
     "username": "cstillio",
@@ -3146,6 +4088,9 @@
     "createdAt": "2014-05-26T17:29:56.18",
     "modifiedAt": "2014-05-16T03:54:37.15",
     "savedQueries": {
-        "default": {}
+        "default": {
+            "description": "This is the default query",
+            "query": {}
+        }
     }
 }]

@@ -109,7 +109,6 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                     task.parent.id = $scope.task.parent.id || null;
                     task.parent.type = $scope.task.parent.type || null;
 
-
                     task.submittedBy = {
                         username: currentUser.username,
                         email: currentUser.email,
@@ -145,8 +144,10 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                     var updates = [Task.create(task, $scope.task.files).then()];
                     if (task.parent.id) {
                         if ($scope.relationTypes.indexOf(task.parent.type) > -1 && task.parent.type !== 'Sub-task') {
+                            task.parent.taskOrRfe = 'rfe';
                             updates.push(Task.insertProceduralTask(task.parent.id, task.parent.type, task.id).then());
                         } else {
+                            task.parent.taskOrRfe = 'task';
                             updates.push(Task.insertSubTask(task.parent.id, task.id).then());
                         }
                     }
