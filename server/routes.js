@@ -22,6 +22,17 @@ module.exports = function(app) {
     app.use('/api/tasks/insertSubTask', require('./api/task'));
     app.use('/api/tasks/createSubTask', require('./api/task'));
     app.use('/api/tasks/:version/parentAndSubTasks', require('./api/task'));
+
+     // RFE routes
+    app.use('/api/rfes', require('./api/rfe'));
+    app.use('/api/rfes/count', require('./api/rfe'));
+    app.use('/api/rfes/new', require('./api/rfe'));
+    app.use('/api/rfes/update', require('./api/rfe'));
+    app.use('/api/rfes/:id(\\d+)', require('./api/rfe'));
+    app.use('/api/rfes/subtasks', require('./api/rfe'));
+    app.use('/api/rfes/:id(\\d+)/subscribe', require('./api/rfe'));
+    app.use('/api/rfes/:id(\\d+)/unsubscribe', require('./api/rfe'));
+    app.use('/api/rfes/:version/parentAndSubTasks', require('./api/rfe'));
     
 
     // Auth route

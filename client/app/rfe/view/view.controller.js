@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('task.controllers')
-    .controller('viewTaskCtrl', ['$scope', '$location', '$timeout', '$q', 'Task', 'SubTasks','config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
+angular.module('rfe.controllers')
+    .controller('viewRFECtrl', ['$scope', '$location', '$timeout', '$q', 'RFE', 'Task','SubTasks','config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
 
-        function($scope, $location, $timeout, $q, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress) {
+        function($scope, $location, $timeout, $q, RFE, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress) {
 
             $scope.changes = {};
             $scope.updatedBy = currentUser || {};
@@ -33,7 +33,7 @@ angular.module('task.controllers')
             ];
             $scope.newSubTask = {};
             var oldCopy;
-            var id = $location.path().replace('/task/', '');
+            var id = $location.path().replace('/rfe/', '');
 
             $scope.days = _.range(1, 101);
 
@@ -50,21 +50,22 @@ angular.module('task.controllers')
             };
 
 
-            Task.get(id).then(function(response) {
 
-                    $scope.task = response.data;
+            RFE.get(id).then(function(response) {
+
+                    $scope.rfe = response.data;
                     oldCopy = angular.copy(response.data);
 
                     // need specical handling for 'priority' and 'assignTo' for 
                     // pre-selecting values and binding selection from the UI to model
                     // in dropdown becuase the model is object and not string
-                    var index = _.findIndex($scope.config.priority, $scope.task.priority);
-                    $scope.task.priority = $scope.config.priority[index];
-                    index = _.findIndex($scope.config.users, $scope.task.assignTo);
-                    $scope.task.assignTo = $scope.config.users[index];
+                    var index = _.findIndex($scope.config.priority, $scope.rfe.priority);
+                    $scope.rfe.priority = $scope.config.priority[index];
+                    index = _.findIndex($scope.config.users, $scope.rfe.assignTo);
+                    $scope.rfe.assignTo = $scope.config.users[index];
 
                     // if the current user has already subscribed then show Unsubscribe else show Subscribe
-                    var subscribers = $scope.task.subscribers;
+                    var subscribers = $scope.rfe.subscribers;
                     for (var i = 0; i < subscribers.length; i++) {
                         if (subscribers[i].username === currentUser.username) {
                             $scope.showSubscribe = false;
@@ -74,17 +75,17 @@ angular.module('task.controllers')
                     }
                     // if the current user is task reporter or task assignee then do not show subscribe/unsubscribe because 
                     // they are subscribed by default and not allowed to unsubscribe
-                    if (currentUser.username === $scope.task.assignTo.username || currentUser.username === $scope.task.submittedBy.username) {
+                    if (currentUser.username === $scope.rfe.assignTo.username || currentUser.username === $scope.rfe.submittedBy.username) {
                         $scope.showSubscribe = false;
                         $scope.showUnsubscribe = false;
                     }
 
-                    if ($scope.task.attachments.length > 0) {
+                    if ($scope.rfe.attachments.length > 0) {
                         $scope.hasAttachments = true;
                     }
 
-                   $scope.task.subTasks = SubTasks.data;
-                   $scope.allProceduralTasks  = getAllProceduralTasks($scope.task.proceduralTasks);
+                   $scope.rfe.subTasks = SubTasks.data;
+                   $scope.allProceduralTasks  = getAllProceduralTasks($scope.rfe.proceduralTasks);
                   
                    // watch for fields in modal form
                    $scope.$on('newItem', function(event, newItem) {
@@ -95,7 +96,7 @@ angular.module('task.controllers')
                 function(error) {
                     if (error.status === 404) {
                         $location.path('/404');
-                        Flash.addAlert('danger', 'Task not found');
+                        Flash.addAlert('danger', 'RFE not found');
                     } else {
                         Flash.addAlert('danger', error.data.error.message);
                     }
@@ -113,21 +114,21 @@ angular.module('task.controllers')
                 });
             });
 
-            // update task 
-            $scope.updateTask = function() {
+            // update rfe 
+            $scope.updateRFE = function() {
                 ngProgress.start();
 
-                $scope.task.updatedBy = {
+                $scope.rfe.updatedBy = {
                     username: currentUser.username,
                     email: currentUser.email,
                     name: currentUser.name
                 };
-                // oldCopy.subscribers = $scope.task.subscribers.push(oldCopy.updatedBy);
-                $scope.task.svninfo = {};
+                // oldCopy.subscribers = $scope.rfe.subscribers.push(oldCopy.updatedBy);
+                $scope.rfe.svninfo = {};
 
                 for (var j = 0; j < $scope.files.length; j++) {
-                    var fileuri = '/task/' + oldCopy.id + '/attachments/' + $scope.files[j].name;
-                    if ($scope.task.attachments.indexOf(fileuri) > -1) {
+                    var fileuri = '/rfe/' + oldCopy.id + '/attachments/' + $scope.files[j].name;
+                    if ($scope.rfe.attachments.indexOf(fileuri) > -1) {
                         var modalOptions = {
                             showCloseButton: true,
                             showActionButton: false,
@@ -137,15 +138,14 @@ angular.module('task.controllers')
                         };
                         modalService.showModal({}, modalOptions);
                     } else {
-                        $scope.task.attachments.push(fileuri);
+                        $scope.rfe.attachments.push(fileuri);
                     }
                 }
 
-                // Task.watch2($scope, $scope.task);
 
-                Task.update($scope.task, oldCopy, $scope.files).success(function() {
-                    reloadBugInfo(id);
-                    Flash.addAlert('success', '<a href=\'/task/' + $scope.task.id + '\'>' + 'Task-' + $scope.task.id + '</a>' + ' was successfully updated');
+                RFE.update($scope.rfe, oldCopy, $scope.files).success(function() {
+                    reloadRFEInfo(id);
+                    Flash.addAlert('success', '<a href=\'/rfe/' + $scope.rfe.id + '\'>' + 'RFE-' + $scope.rfe.id + '</a>' + ' was successfully updated');
                     ngProgress.complete();
                 }).error(function(error) {
                     ngProgress.complete();
@@ -160,7 +160,7 @@ angular.module('task.controllers')
                     closeButtonText: 'Cancel',
                     actionButtonText: 'Create',
                     bodyText: '',
-                    headerText: 'Create ' + proceduralTaskType + ' for Task-' + id,
+                    headerText: 'Create ' + proceduralTaskType + ' for RFE-' + id,
                     scope: {config: $scope.config}
                 };
                 modalService.showModal({}, modalOptions).then(function() {
@@ -168,7 +168,7 @@ angular.module('task.controllers')
                         var task = {};
                         task.id = response.count + 1;
                         task.kind = 'Task';
-                        task.title = proceduralTaskType + ' for ' + $scope.task.title;
+                        task.title = proceduralTaskType + ' for ' + $scope.rfe.title;
                         task.description = 'Implement ' + task.title;
                         task.note = '';
                         task.days = '';
@@ -178,13 +178,12 @@ angular.module('task.controllers')
                             endDate: ''
                         };
 
-
                         task.period  = '';
                         task.priority = $scope.newSubTask.priority;
-                        task.category = $scope.task.category;
-                        task.severity = $scope.task.severity;
-                        task.version = $scope.task.version;
-                        task.tofixin = $scope.newSubTask.tofixin
+                        task.category = $scope.rfe.category;
+                        task.severity = $scope.rfe.severity;
+                        task.version = $scope.rfe.version;
+                        task.tofixin = $scope.newSubTask.tofixin;
                         task.submittedBy = {
                             username: currentUser.username,
                             email: currentUser.email,
@@ -196,7 +195,7 @@ angular.module('task.controllers')
                         task.parent = {
                             type: proceduralTaskType,
                             id: id,
-                            taskOrRfe: 'task'
+                            taskOrRfe: 'rfe'
                         };
                         task.proceduralTasks = {
                             'Requirements Task': [],
@@ -220,7 +219,7 @@ angular.module('task.controllers')
                                 $scope.message = '';
                             }, 5000);
                             //  Flash.addAlert('success', '<a href=\'/task/' + task.id + '\'>' + 'Task-' + task.id + '</a>' + ' was successfully created'); 
-                            reloadBugInfo(id);
+                            reloadRFEInfo(id);
 
                         }, function(error) {
                             ngProgress.complete();
@@ -243,7 +242,7 @@ angular.module('task.controllers')
                     closeButtonText: 'Cancel',
                     actionButtonText: 'Create',
                     bodyText: '',
-                    headerText: 'Create sub-task for Task-' + id,
+                    headerText: 'Create sub-task for RFE-' + id,
                     scope: {config: $scope.config}
                 };
                 modalService.showModal({}, modalOptions).then(function() {
@@ -251,7 +250,7 @@ angular.module('task.controllers')
                         var task = {};
                         task.id = response.count + 1;
                         task.kind = 'Task';
-                        task.title = $scope.task.subtaskTitle;
+                        task.title = $scope.rfe.subtaskTitle;
                         task.description = 'Implement ' + task.title;
                         task.note = '';
                         task.days = '';
@@ -262,11 +261,11 @@ angular.module('task.controllers')
                         };
 
                         task.priority = $scope.newSubTask.priority;
-                        task.category = $scope.task.category;
-                        task.severity = $scope.task.severity;
-                        task.version = $scope.task.version;
+                        task.category = $scope.rfe.category;
+                        task.severity = $scope.rfe.severity;
+                        task.version = $scope.rfe.version;
                         task.tofixin = $scope.newSubTask.tofixin;
-                        task.fixedin = $scope.task.fixedin;
+                        task.fixedin = $scope.rfe.fixedin;
                         task.parent = id;
                         task.submittedBy = {
                             username: currentUser.username,
@@ -279,7 +278,7 @@ angular.module('task.controllers')
                         task.parent = {
                             type: $scope.relationTypes[5],
                             id: id,
-                            taskOrRfe: 'task'
+                            taskOrRfe: 'rfe'
                         };
                         task.proceduralTasks = {
                             'Requirements Task': [],
@@ -293,7 +292,7 @@ angular.module('task.controllers')
                         task.modifiedAt = new Date();
                         task.changeHistory = [];
 
-                        Task.createSubTask(id, task).then(function(response) {
+                        Task.createSubTask(id, task, 'rfe').then(function(response) {
                             ngProgress.complete();
 
                             $scope.message = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span> Created Task-" + task.id + "</span>";
@@ -302,7 +301,7 @@ angular.module('task.controllers')
                                 $scope.message = '';
                             }, 5000);
                             //  Flash.addAlert('success', '<a href=\'/task/' + task.id + '\'>' + 'Task-' + task.id + '</a>' + ' was successfully created'); 
-                            reloadBugInfo(id);
+                            reloadRFEInfo(id);
                         }, function(error) {
                             ngProgress.complete();
                             Flash.addAlert('danger', 'Oops! Could not create the task. Please try again.');
@@ -320,7 +319,7 @@ angular.module('task.controllers')
 
             // subscribe to the task
             $scope.subscribe = function() {
-                //$scope.task.subscribers.push($scope.updatedBy);
+                //$scope.rfe.subscribers.push($scope.updatedBy);
                 var subscribe = {
                     id: id,
                     user: {
@@ -329,10 +328,10 @@ angular.module('task.controllers')
                         username: currentUser.username
                     }
                 };
-                Task.subscribe(subscribe).then(function() {
+                RFE.subscribe(subscribe).then(function() {
                     $scope.showSubscribe = false;
                     $scope.showUnsubscribe = true;
-                    Flash.addAlert('success', 'You have subscribed to ' + '<a href=\'/#/task/' + $scope.task.id + '\'>' + 'Task-' + $scope.task.id + '</a>');
+                    Flash.addAlert('success', 'You have subscribed to ' + '<a href=\'/rfe/' + $scope.rfe.id + '\'>' + 'RFE-' + $scope.rfe.id + '</a>');
                 }, function(error) {
                     Flash.addAlert('danger', error.data);
                 });
@@ -348,24 +347,24 @@ angular.module('task.controllers')
                     }
                 };
 
-                Task.unsubscribe(unsubscribe).then(function() {
+                RFE.unsubscribe(unsubscribe).then(function() {
                     // if the current user is task reporter or task assignee then do not show subscribe/unsubscribe because 
                     // they are subscribed default and cannot unsubscribe
-                    if (currentUser.username === $scope.task.submittedBy.username || currentUser.username === $scope.task.assignTo.username) {
+                    if (currentUser.username === $scope.rfe.submittedBy.username || currentUser.username === $scope.rfe.assignTo.username) {
                         $scope.showSubscribe = false;
                         $scope.showUnsubscribe = false;
                     } else {
                         $scope.showSubscribe = true;
                         $scope.showUnsubscribe = false;
                     }
-                    Flash.addAlert('success', 'You have unsubscribed from ' + '<a href=\'/#/task/' + $scope.task.id + '\'>' + 'Task-' + $scope.task.id + '</a>');
+                    Flash.addAlert('success', 'You have unsubscribed from ' + '<a href=\'/#/task/' + $scope.rfe.id + '\'>' + 'Task-' + $scope.rfe.id + '</a>');
                 }, function(error) {
                     Flash.addAlert('danger', error);
                 });
             };
 
             $scope.toggleTaskListInclusion = function(yesOrNo) {
-                Task.toggleTaskListInclusion(id, yesOrNo).success(function() {
+                Task.toggleTaskListInclusion(id, yesOrNo, 'rfe').success(function() {
                     $scope.message = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span> Updated </span>";
                 }).error(function(error) {
                         Flash.addAlert('danger', 'Oops! Something went wrong. Reload and try again.');
@@ -376,22 +375,22 @@ angular.module('task.controllers')
     
 
             // private functions
-            function reloadBugInfo(id) {
-                Task.get(id).then(function(response) {
+            function reloadRFEInfo(id) {
+                RFE.get(id).then(function(response) {
                     $scope.files = [];
-                    $scope.task = response.data;
+                    $scope.rfe = response.data;
                     oldCopy = angular.copy(response.data);
 
                     // need specical handling for 'priority' and 'assignTo' for 
                     // pre-selecting values and binding selection from the UI to model
                     // in dropdown becuase the model is object and not string
-                    var index = _.findIndex($scope.config.priority, $scope.task.priority);
-                    $scope.task.priority = $scope.config.priority[index];
-                    index = _.findIndex($scope.config.users, $scope.task.assignTo);
-                    $scope.task.assignTo = $scope.config.users[index];
+                    var index = _.findIndex($scope.config.priority, $scope.rfe.priority);
+                    $scope.rfe.priority = $scope.config.priority[index];
+                    index = _.findIndex($scope.config.users, $scope.rfe.assignTo);
+                    $scope.rfe.assignTo = $scope.config.users[index];
 
                     // if the current user has already subscribed then show Unsubscribe else show Subscribe
-                    var subscribers = $scope.task.subscribers;
+                    var subscribers = $scope.rfe.subscribers;
                     for (var i = 0; i < subscribers.length; i++) {
                         if (subscribers[i].username === currentUser.username) {
                             $scope.showSubscribe = false;
@@ -401,17 +400,17 @@ angular.module('task.controllers')
                     }
                     // if the current user is task reporter or task assignee then do not show subscribe/unsubscribe because 
                     // they are subscribed by default and not allowed to unsubscribe
-                    if (currentUser.username === $scope.task.assignTo.username || currentUser.username === $scope.task.submittedBy.username) {
+                    if (currentUser.username === $scope.rfe.assignTo.username || currentUser.username === $scope.rfe.submittedBy.username) {
                         $scope.showSubscribe = false;
                         $scope.showUnsubscribe = false;
                     }
 
-                    if ($scope.task.attachments.length > 0) {
+                    if ($scope.rfe.attachments.length > 0) {
                         $scope.hasAttachments = true;
                     }
 
                     subTasks(id);
-                    $scope.task.comment = '';
+                    $scope.rfe.comment = '';
 
 
                 }, function(error) {
@@ -421,9 +420,9 @@ angular.module('task.controllers')
 
 
             function subTasks(id) {
-                Task.getSubTasks(id).then(function(response) {
-                    $scope.task.subTasks = response.data;
-                    console.log('subTasks',$scope.task.subTasks);
+                RFE.getSubTasks(id).then(function(response) {
+                    $scope.rfe.subTasks = response.data;
+                    console.log('subTasks',$scope.rfe.subTasks);
                 }, function(error) {
                     // console.log(error);
                     Flash.addAlert('danger', 'Oops! Could not retrieve sub tasks')

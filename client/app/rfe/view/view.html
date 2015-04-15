@@ -4,8 +4,8 @@
         <div class="panel-heading" style="height: 40px">
             <div class="pull-left">
                 <h3 class="panel-title">
-                <i class="fa fa-tasks"></i>
-            <a ng-href="/task/{{task.id}}">Task -  {{task.id}}</a>
+                <i class="fa fa-briefcase"></i>
+            <a ng-href="/rfe/{{rfe.id}}">RFE -  {{rfe.id}}</a>
             </h3>
             </div>
             <div class="pull-right" ng-show="showSubscribe">
@@ -19,25 +19,25 @@
                 </a>
             </div>
         </div>
-        <!--   <form name="taskForm"> -->
+        <!--   <form name="rfeForm"> -->
         <div class="panel-body">
             <table class="table table-striped">
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Status</b>
                     </td>
                     <!-- 
-  <td colspan="" rowspan="" ng-model="status" editable-select="task.status" e-ng-options="s as s for s in config.status" onbeforesave="updateStatus($data)">{{task.status}}</td>
+  <td colspan="" rowspan="" ng-model="status" editable-select="rfe.status" e-ng-options="s as s for s in config.status" onbeforesave="updateStatus($data)">{{rfe.status}}</td>
   -->
                     <td>
-                        <select name="status" id="status" ng-model="task.status" ng-options="status for status in config.status" class="form-control input-sm">
-                            <option value="{{task.status}}" selected></option>
+                        <select name="status" id="status" ng-model="rfe.status" ng-options="status for status in config.status" class="form-control input-sm">
+                            <option value="{{rfe.status}}" selected></option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Severity</b>
                         <td>
-                            <select id="severity" ng-model="task.severity" name="severity" type="text" class="form-control input-sm" ng-options="severity for severity in config.severity">
+                            <select id="severity" ng-model="rfe.severity" name="severity" type="text" class="form-control input-sm" ng-options="severity for severity in config.severity">
                             </select>
                         </td>
                 </tr>
@@ -45,53 +45,31 @@
                     <td colspan="" rowspan="" class="hidden-md"><b>Category</b>
                     </td>
                     <td>
-                        <select id="category" ng-model="task.category" name="category" type="text" class="form-control input-sm" ng-options="category for category  in config.category | orderBy: category" </select>
+                        <select id="category" ng-model="rfe.category" name="category" type="text" class="form-control input-sm" ng-options="category for category  in config.category | orderBy: category" </select>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Version</b>
                     </td>
                     <td>
-                        <select id="version" ng-model="task.version" name="version" type="text" class="form-control input-sm" ng-options="version group by version[0] for version in config.version">
+                        <select id="version" ng-model="rfe.version" name="version" type="text" class="form-control input-sm" ng-options="version group by version[0] for version in config.version">
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Priority</b>
                     </td>
-                    <!-- <td colspan="" rowspan="" editable-select="task.priority" e-ng-options="p.level as p.title for p in config.priority">{{task.priority}}</td> -->
+                    <!-- <td colspan="" rowspan="" editable-select="rfe.priority" e-ng-options="p.level as p.title for p in config.priority">{{rfe.priority}}</td> -->
                     <td>
-                        <select id="priority" ng-model="task.priority" name="priority" type="text" class="form-control input-sm" ng-options="(priority.level + ' - ' + priority.title) for priority in config.priority">
+                        <select id="priority" ng-model="rfe.priority" name="priority" type="text" class="form-control input-sm" ng-options="(priority.level + ' - ' + priority.title) for priority in config.priority">
                         </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="" rowspan="" class="hidden-md"><b>Estimated Days</b>
-                    </td>
-                    <td colspan="" rowspan="">
-                        <select name="days" id="days" ng-model="task.days" ng-options="day for day in days" class="form-control input-sm">
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="" rowspan="" class="hidden-md"><b>Start Date</b>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control input-sm" datepicker-popup="{{cal.format}}" ng-model="task.period.startDate" is-open="cal.fromOpened" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('from', $event)" close-text="Close" />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="" rowspan="" class="hidden-md"><b>End Date</b>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control input-sm" datepicker-popup="{{cal.format}}" ng-model="task.period.endDate" is-open="cal.toOpened" min-date="minDate" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('to', $event)" close-text="Close" />
                     </td>
                 </tr>
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>To fix in</b>
                     </td>
                     <td colspan="" rowspan="">
-                        <select id="tofixin" ng-model="task.tofixin" name="tofixin" type="text" class="form-control input-sm" ng-options="tofixin for tofixin in config.tofixin | orderBy: tofixin">
+                        <select id="tofixin" ng-model="rfe.tofixin" name="tofixin" type="text" class="form-control input-sm" ng-options="tofixin for tofixin in config.tofixin | orderBy: tofixin">
                         </select>
                     </td>
                 </tr>
@@ -99,7 +77,7 @@
                     <td colspan="" rowspan="" class="hidden-md"><b>Fixed in</b>
                     </td>
                     <td colspan="" rowspan="">
-                        <select id="fixedin" ng-model="task.fixedin" name="fixedin" type="text" class="form-control input-sm" ng-options="fixedin for fixedin in config.tofixin | orderBy: fixedin">
+                        <select id="fixedin" ng-model="rfe.fixedin" name="fixedin" type="text" class="form-control input-sm" ng-options="fixedin for fixedin in config.tofixin | orderBy: fixedin">
                         </select>
                     </td>
                 </tr>
@@ -107,31 +85,31 @@
                     <td colspan="" rowspan="" class="hidden-md"><b>Assigned To</b>
                     </td>
                     <td colspan="" rowspan="">
-                        <select id="assignTo" ng-model="task.assignTo" name="assignTo" type="text" class="form-control input-sm" ng-options="user.name group by user.name[0] for user in config.users">
+                        <select id="assignTo" ng-model="rfe.assignTo" name="assignTo" type="text" class="form-control input-sm" ng-options="user.name group by user.name[0] for user in config.users">
                         </select>
                     </td>
                 </tr>
-                <tr ng-show="task.completedAt">
+                <tr ng-show="rfe.completedAt">
                     <td colspan="" rowspan="" class="hidden-md"><b>Completed on</b>
                     </td>
-                    <td colspan="" rowspan="">{{task.completedAt | date: 'medium'}}</td>
+                    <td colspan="" rowspan="">{{rfe.completedAt | date: 'medium'}}</td>
                 </tr>
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Subscribers</b>
                     </td>
                     <td colspan="" rowspan="">
-                        <ul ng-repeat="subscriber in task.subscribers" class="list-inline">{{subscriber.name}}</ul>
+                        <ul ng-repeat="subscriber in rfe.subscribers" class="list-inline">{{subscriber.name}}</ul>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Created by</b>
                     </td>
-                    <td colspan="" rowspan="">{{task.submittedBy.name}}</td>
+                    <td colspan="" rowspan="">{{rfe.submittedBy.name}}</td>
                 </tr>
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Created on</b>
                     </td>
-                    <td colspan="" rowspan="">{{task.createdAt | date: 'medium'}}</td>
+                    <td colspan="" rowspan="">{{rfe.createdAt | date: 'medium'}}</td>
                 </tr>
             </table>
             <span class="label label-default" class="hidden-md">Related tasks</span>
@@ -139,16 +117,10 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td><b>Parent Task</b></td>
-                            <td>
-                                <a href="/{{task.parent.taskOrRfe}}/{{task.parent.id}}">{{task.parent.id}}</a>
-                            </td>
-                        </tr>
-                        <tr>
                             <td><b>Sub Tasks</b>
                             </td>
                             <td>
-                                <ul ng-repeat="subtask in task.subTasks" class="list-inline" style="display: inline-block;">
+                                <ul ng-repeat="subtask in rfe.subTasks" class="list-inline" style="display: inline-block;">
                                     <li><a href="/task/{{subtask.id}}">{{subtask.id}}</a></li>
                                 </ul>
                             </td>
@@ -172,7 +144,7 @@
 </div>
 <!-- task details  -->
 <div class="col-xs-12 col-sm-8 col-md-9">
-    <div ng-include="'app/task/view/partials/taskInfo.partial.html'"></div>
+    <div ng-include="'app/rfe/view/partials/rfeInfo.partial.html'"></div>
     <!-- <form class="form-horizontal"> -->
     <accordion close-others="oneAtATime">
         <accordion-group is-open="accordion.status.isFirstOpen" style="cursor:pointer">
@@ -182,20 +154,10 @@
                     <label class="col-md-2 control-label" for="headline">Show in Task List</label>
                     <div class="col-md-6">
                         <p class="form-control-static">
-                            <input type="checkbox" ng-model="task.includeInTaskList" ng-change="toggleTaskListInclusion(task.includeInTaskList)">
+                            <input type="checkbox" ng-model="rfe.includeInTaskList" ng-change="toggleTaskListInclusion(rfe.includeInTaskList)">
                         </p>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-md-2 control-label" for="headline">Parent Task</label>
-                    <div class="col-md-6" ng-if="task.parent.id">
-                        <p class="form-control-static">
-                            <a href="/{{task.parent.taskOrRfe}}/{{task.parent.id}}">{{task.parent.type}} for {{task.parent.taskOrRfe | uppercase}}-{{task.parent.id}} </a>
-                        </p>
-                         <p ng-if="!task.parent.id" class="form-control-static">No parent</p>
-                    </div>
-                </div>
-<!--                 
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="headline">Procedural Tasks</label>
                     <div class="col-md-8">
@@ -205,7 +167,7 @@
                                 <tr>
                                     <td style="max-width:80px">{{pTask}}</td>
                                     <td style="max-width:100px">
-                                        <ul class="list-inline" style="display: inline-block;" ng-repeat="t in task.proceduralTasks[pTask]">
+                                        <ul class="list-inline" style="display: inline-block;" ng-repeat="t in rfe.proceduralTasks[pTask]">
                                             <li><a href="/task/{{t}}">{{t}}</a>
                                             </li>
                                         </ul>
@@ -218,15 +180,17 @@
                     </tbody>
                     </table>
                 </div>
-                </div> -->
+</div>
+</form>
 <div class="form-group">
-    <label class="col-md-2 control-label" for="headline"> Sub Tasks</label>
+    <label class="col-md-2 control-label" for="headline">
+        </i> Sub Tasks</label>
     <div class="col-md-8">
-        <p class="form-control-static" ng-if="task.subTasks.length == 0"> No sub tasks</p>
-        <div ng-include="'app/task/view/partials/subtasksTable.partial.html'"></div>
+        <p class="form-control-static" ng-if="rfe.subTasks.length == 0"> No sub tasks</p>
+        <div ng-include="'app/rfe/view/partials/subtasksTable.partial.html'"></div>
         <form name="newSubTask">
             <div class="input-group input-group-sm">
-                <input type="text" id="subtask_title" name="subtask_title" ng-model="task.subtaskTitle" class="form-control" placeholder="enter sub-task title" required/>
+                <input type="text" id="subtask_title" name="subtask_title" ng-model="rfe.subtaskTitle" class="form-control" placeholder="enter sub-task title" required/>
                 <span class="input-group-btn">
                 <button class="btn btn-success btn-flat btn-sm"  ng-click="createSubTask()" ng-disabled="newSubTask.$invalid" tooltip-trigger tooltip-placement="right" tooltip="create sub-task"><span class="glyphicon glyphicon-plus"></span> </button>
                 </span>
@@ -236,15 +200,15 @@
 </div>
 </accordion-group>
 </accordion>
-<div ng-include="'app/task/view/partials/comments.partial.html'"></div>
+<div ng-include="'app/rfe/view/partials/comments.partial.html'"></div>
 <form name="commentForm">
     <!-- <text-angular ta-toolbar="[['p','bold','pre', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="newcomment" id="newcomment" name="newcomment" placeholder="Add a comment here"></text-angular> -->
-    <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="task.comment" id="comment" name="comment" placeholder="Add a comment here"></text-angular>
+    <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="rfe.comment" id="comment" name="comment" placeholder="Add a comment here"></text-angular>
     <br>
     <input type="file" file-upload multiple/>
     <ul>
         <li ng-repeat="file in files">{{file.name}}</li>
     </ul>
-    <button ng-click="updateTask()" id="updatetask" name="updatetask" class="btn btn-primary btn-danger">Update</button>
+    <button ng-click="updateRFE()" id="updaterfe" name="updaterfe" class="btn btn-primary btn-danger">Update</button>
 </form>
 </div>

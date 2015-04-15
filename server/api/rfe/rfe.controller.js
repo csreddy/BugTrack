@@ -9,7 +9,7 @@ var q = marklogic.queryBuilder;
 var p = marklogic.patchBuilder;
 var bunyan = require('bunyan');
 var log = bunyan.createLogger({
-    name: 'Task',
+    name: 'RFE',
     serializers: {
         req: bunyan.stdSerializers.req
     }
@@ -18,19 +18,18 @@ var _ = require('lodash');
 var async = require('async');
 var _this = this;
 
-// Get list of tasks
+// Get list of rfes
 exports.index = function(req, res) {
     res.json([]);
 };
 
-// get task count
-// get bug count
+// get rfe count
 exports.count = function(req, res) {
     res.locals.errors = req.flash();
 
     db.documents.query(
         q.where(
-            q.collection('tasks')
+            q.collection('rfes')
         )
         .slice(1, 1)
         .withOptions({
@@ -45,11 +44,11 @@ exports.count = function(req, res) {
     });
 };
 
-// get task details by id
+// get rfe details by id
 exports.id = function(req, res) {
     res.locals.errors = req.flash();
     console.log(res.locals.errors);
-    var uri = '/task/' + req.params.id + '/' + req.params.id + '.json';
+    var uri = '/rfe/' + req.params.id + '/' + req.params.id + '.json';
     db.documents.probe(uri).result(function(document) {
         // console.log('document at ' + uri + ' exists: ' + document.exists);
         if (document.exists) {
@@ -68,14 +67,14 @@ exports.id = function(req, res) {
 
         } else {
             res.status(404).json({
-                error: 'could not find task ' + req.params.id
+                error: 'could not find rfe ' + req.params.id
             });
-            //  res.redirect('/404'); 
-
+           //  res.redirect('/404'); 
+            
         }
     }, function(error) {
         res.status(error.statusCode).json({
-            error: 'could not find task ' + req.params.id
+            error: 'could not find rfe ' + req.params.id
         });
     })
 
@@ -89,21 +88,21 @@ exports.new = function(req, res) {
     var attachments = req.files;
     var errors = false;
     var id;
-    var collections = ['tasks'];
-    if (typeof req.body.task === 'object') {
-        id = req.body.task.id;
-        collections.push(req.body.task.submittedBy.username);
+    var collections = ['rfes'];
+    if (typeof req.body.rfe === 'object') {
+        id = req.body.rfe.id;
+        collections.push(req.body.rfe.submittedBy.username);
     } else {
-        id = JSON.parse(req.body.task).id;
-        collections.push(JSON.parse(req.body.task).submittedBy.username);
+        id = JSON.parse(req.body.rfe).id;
+        collections.push(JSON.parse(req.body.rfe).submittedBy.username);
     }
-    var uri = '/task/' + id + '/' + id + '.json';
+    var uri = '/rfe/' + id + '/' + id + '.json';
     db.documents.write([{
         uri: uri,
         category: 'content',
         contentType: 'application/json',
         collections: collections,
-        content: req.body.task
+        content: req.body.rfe
     }]).result(function(response) {
         console.log('wrote:\n    ' +
             response.documents.map(function(document) {
@@ -118,7 +117,7 @@ exports.new = function(req, res) {
     for (var file in attachments) {
         console.log(attachments[file]);
         var doc = {
-            uri: '/task/' + id + '/attachments/' + attachments[file].originalname,
+            uri: '/rfe/' + id + '/attachments/' + attachments[file].originalname,
             category: 'content',
             contentType: attachments[file].mimetype,
             content: fs.createReadStream(attachments[file].path)
@@ -149,9 +148,9 @@ exports.update = function(req, res) {
     console.log(req.body);
     // res.json(req.body);
     var from = JSON.parse(req.body.old);
-    var to = JSON.parse(req.body.task);
+    var to = JSON.parse(req.body.rfe);
     var file = req.files;
-    var uri = '/task/' + from.id + '/' + from.id + '.json';
+    var uri = '/rfe/' + from.id + '/' + from.id + '.json';
     var updates = []
     var updateTime = new Date();
 
@@ -294,7 +293,7 @@ exports.update = function(req, res) {
                 if (userIndex === -1) {
                     updates.push(p.insert("array-node('subscribers')", 'last-child', changes.updatedBy))
                 }
-                break;
+                break;    
             case 'svninfo':
                 if (true) {
                     // TODO
@@ -311,7 +310,7 @@ exports.update = function(req, res) {
         for (var file in req.files) {
             var fileObj = {
                 name: req.files[file].originalname,
-                uri: '/task/' + to.id + '/attachments/' + req.files[file].originalname
+                uri: '/rfe/' + to.id + '/attachments/' + req.files[file].originalname
             }
             updates.push(p.insert("array-node('attachments')", 'last-child', fileObj));
             changes.files.push(fileObj);
@@ -323,7 +322,7 @@ exports.update = function(req, res) {
         for (var file in req.files) {
             console.log(req.files[file]);
             var doc = {
-                uri: '/task/' + to.id + '/attachments/' + req.files[file].originalname,
+                uri: '/rfe/' + to.id + '/attachments/' + req.files[file].originalname,
                 category: 'content',
                 contentType: req.files[file].mimetype,
                 content: fs.createReadStream(req.files[file].path)
@@ -352,123 +351,25 @@ exports.update = function(req, res) {
 
     db.documents.patch(uri, updates).result(function(response) {
         res.status(200).json({
-            message: 'task updated'
+            message: 'rfe updated'
         })
     }, function(error) {
         console.log(error);
         res.status(500).json({
-            message: 'task update failed\n' + error
+            message: 'rfe update failed\n' + error
         })
     });
 
 };
 
-exports.insertProceduralTask = function(req, res) {
-    console.log('insertProceduralTask:', req.headers.referer);
-    var taskOrRfe = 'task'; //default
-    if (req.headers.referer.indexOf('rfe') > -1) {
-        taskOrRfe = 'rfe'
-    }
-    var uri = '/' + taskOrRfe + '/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
-    db.documents.probe(uri).result(function(response) {
-        if (response.exists) {
-            db.documents.patch(uri, p.insert("proceduralTasks/array-node(\"" + req.body.proceduralTaskType + "\")", 'last-child', parseInt(req.body.proceduralTaskId))).result(function(response) {
-                res.status(200).json({
-                    message: 'Procedural Task inserted'
-                })
-            }, function(error) {
-                res.status(error.statusCode).json(error);
-            });
-        } else {
-            res.status(404).json({
-                message: 'Parent task ' + req.body.parentTaskId + ' does not exist'
-            })
-        }
-    });
-
-
-};
-
-
-exports.insertSubTask = function(req, res) {
-   var taskOrRfe = 'task'; //default
-    if (req.headers.referer.indexOf('rfe') > -1) {
-        taskOrRfe = 'rfe'
-    }
-    var uri = '/' + taskOrRfe + '/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
-    db.documents.probe(uri).result(function(response) {
-        if (response.exists) {
-            db.documents.patch(uri, p.insert("array-node('subTasks')", 'last-child', parseInt(req.body.subTaskId))).result(function(response) {
-                res.status(200).json({
-                    message: 'Sub Task inserted'
-                })
-            }, function(error) {
-                res.status(error.statusCode).json(error);
-            });
-        } else {
-            res.status(404).json({
-                message: 'Parent task ' + req.body.parentTaskId + ' does not exist'
-            })
-        }
-    });
 
 
 
-};
-
-exports.createSubTask = function(req, res) {
-  var taskOrRfe = 'task'; //default
-    if (req.headers.referer.indexOf('rfe') > -1) {
-        taskOrRfe = 'rfe'
-    }
-    var parentTaskUri = '/' + taskOrRfe + '/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
-    var subTaskUri = '/task/' + req.body.subTask.id + '/' + req.body.subTask.id + '.json';
-    db.documents.probe(parentTaskUri).result(function(response) {
-        if (response.exists) {
-            var transactionId = null;
-            db.transactions.open().result().then(function(response) {
-                transactionId = response.txid;
-            }).then(function() {
-                console.log('write ' + subTaskUri);
-                return db.documents.write({
-                    uri: subTaskUri,
-                    contentType: 'application/json',
-                    content: req.body.subTask,
-                    collections: [req.body.subTask.submittedBy.username, 'tasks'],
-                    txid: transactionId
-                }).result();
-            }).then(function() {
-                console.log('write ' + parentTaskUri);
-                return db.documents.patch({
-                    uri: parentTaskUri,
-                    operations: [p.insert("array-node('subTasks')", 'last-child', parseInt(req.body.subTask.id))],
-                    txid: transactionId
-                }).result();
-            }).then(function() {
-                return db.transactions.commit(transactionId).result(function() {
-                    res.status(200).json({
-                        message: 'Created Sub Task'
-                    });
-                }, function(error) {
-                    res.status(error.statusCode).json(error.body.errorResponse)
-                });
-            }).catch(function(error) {
-                db.transactions.rollback(transactionId);
-                log.info(JSON.stringify(error));
-                res.send(error.statusCode).json(error);
-            })
-        } else {
-            res.status(404).json({
-                message: 'Parent task ' + req.body.parentTaskId + ' does not exist'
-            })
-        }
-    });
-};
 
 exports.subtasks = function(req, res, next) {
-    var uri = '/task/' + req.params.id + '/' + req.params.id + '.json'
+    var uri = '/rfe/' + req.params.id + '/' + req.params.id + '.json'
         // check if doc exists
-    db.documents.probe(uri).result(function(response) {
+        db.documents.probe(uri).result(function(response) {
         if (response.exists) {
             // do nothing
         } else {
@@ -493,7 +394,7 @@ exports.subtasks = function(req, res, next) {
             db.documents.read({
                 uris: subTaskDocUris
             }).result(function(documents) {
-                //  console.log('documents', documents);
+              //  console.log('documents', documents);
                 subTasks = [];
                 if (documents.length > 0) {
                     for (var i = 0; i < documents.length; i++) {
@@ -531,10 +432,10 @@ exports.subtasks = function(req, res, next) {
 };
 
 exports.subscribe = function(req, res) {
-    var uri = '/task/' + req.body.id + '/' + req.body.id + '.json';
+    var uri = '/rfe/' + req.body.id + '/' + req.body.id + '.json';
     db.documents.patch(uri, p.insert("array-node('subscribers')", 'last-child', req.body.user)).result(function(response) {
         res.status(200).json({
-            message: 'Task subscribed'
+            message: 'RFE subscribed'
         })
     }, function(error) {
         res.status(error.statusCode).json(JSON.stringify(error));
@@ -544,10 +445,10 @@ exports.subscribe = function(req, res) {
 
 exports.unsubscribe = function(req, res) {
     console.log('unsubscribe', req.body);
-    var uri = '/task/' + req.body.id + '/' + req.body.id + '.json';
+    var uri = '/rfe/' + req.body.id + '/' + req.body.id + '.json';
     db.documents.patch(uri, p.remove("subscribers[username eq '" + req.body.user.username + "']")).result(function(response) {
         res.status(200).json({
-            message: 'Task unsubscribed'
+            message: 'RFE unsubscribed'
         })
     }, function(error) {
         res.status(400).json({
@@ -563,9 +464,9 @@ exports.getParentAndSubTasks = function(req, res) {
     var parents = [];
     var subtasks = [];
     if (version === 'all') {
-        criteria = [q.collection('tasks'), q.scope('parent', q.value('taskId', ''))]
+        criteria = [q.collection('rfes'),q.collection('tasks'), q.scope('parent', q.value('taskId', ''))]
     } else {
-        criteria = [q.collection('tasks'), q.value('version', version), q.scope('parent', q.value('taskId', ''))]
+        criteria = [q.collection('rfes'), q.collection('tasks'), q.value('version', version), q.scope('parent', q.value('taskId', ''))]
     }
 
     function formatDoc(result) {
@@ -609,8 +510,8 @@ exports.getParentAndSubTasks = function(req, res) {
                 for (var i = 0; i < parent.subTasks.length; i++) {
                     uris.push('/task/' + parent.subTasks[i] + '/' + parent.subTasks[i] + '.json')
                 };
-
-                // for each parent, get their corresponding sub tasks
+               
+               // for each parent, get their corresponding sub tasks
 
                 db.documents.read({
                     uris: uris
@@ -657,20 +558,6 @@ exports.getParentAndSubTasks = function(req, res) {
     }
 
     getParentTasks(criteria)
-
+ 
 };
 
-
-exports.toggleTaskListInclusion = function(req, res) {
-    var taskOrRfe = req.body.taskOrRfe || 'task';
-    var uri = '/' + req.body.taskOrRfe + '/' + req.body.id + '/' + req.body.id + '.json';
-    db.documents.patch(uri, p.replace('/includeInTaskList', req.body.includeInTaskList)).result(function(response) {
-        res.status(200).json({
-            message: 'Task updated'
-        })
-    }, function(error) {
-        res.status(error.statusCode).json({
-            message: error
-        });
-    });
-};

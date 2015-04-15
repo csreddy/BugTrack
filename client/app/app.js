@@ -22,6 +22,9 @@ var app = angular.module('fullstackApp', [
     'task.controllers',
     'task.services',
 
+    'rfe.controllers',
+    'rfe.services',
+
     'report.controllers',
 
     'dashboard.controllers',

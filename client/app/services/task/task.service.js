@@ -119,6 +119,7 @@ app.service('Task', ['$http',
             });
         };
 
+
         this.insertProceduralTask = function(parentTaskId, proceduralTaskType, proceduralTaskId) {
             return $http({
                 method: 'PUT',
@@ -131,26 +132,26 @@ app.service('Task', ['$http',
             });
         };
 
-        this.insertSubTask = function(parentTaskId, subTaskId) {
-            console.log('insertSubTask', {
-                parentTaskId: parentTaskId,
-                subTaskId: subTaskId
-            });
+        this.insertSubTask = function(parentTaskId, subTaskId, taskOrRfe) {
+            var taskOrRfe = taskOrRfe || 'task';
             return $http({
                 method: 'PUT',
                 url: '/api/tasks/insertSubTask',
                 data: {
+                    taskOrRfe: taskOrRfe,
                     parentTaskId: parentTaskId,
                     subTaskId: subTaskId
                 }
             });
         };
 
-        this.createSubTask = function(parentTaskId, subTask) {
+        this.createSubTask = function(parentTaskId, subTask, taskOrRfe) {
+            var taskOrRfe = taskOrRfe || 'task';
             return $http({
                 method: 'POST',
                 url: '/api/tasks/createSubTask',
                 data: {
+                    taskOrRfe: taskOrRfe,
                     parentTaskId: parentTaskId,
                     subTask: subTask
                 }
@@ -169,10 +170,11 @@ app.service('Task', ['$http',
 
 
 
-        this.getSubTasks = function(id) {
+        this.getSubTasks = function(id, taskOrRfe) {
+            var taskOrRfe = taskOrRfe || 'task';
             return $http({
                 method: 'GET',
-                url: '/api/tasks/' + id + '/subtasks'
+                url: '/api/' + taskOrRfe + 's/' + id + '/subtasks'
             });
         };
 

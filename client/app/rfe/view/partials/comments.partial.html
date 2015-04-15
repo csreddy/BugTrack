@@ -1,0 +1,41 @@
+<div class="panel panel-default" ng-show="item.show || item.show == undefined" ng-repeat="item in rfe.changeHistory">
+    <div class="panel-heading">
+        <img alt="user pic" src="assets/images/avatar.png" class="img-circle img-responsive" style="height: 3em;width: 3em; float:left;margin-right: 5px;">
+        <b>{{::item.updatedBy.name | capitalize}}</b>
+        <p class="pull-right" style="font-size: 12px;font-weight: 400;">{{::item.time | date:'medium'}}</p>
+    </div>
+    <div class="panel-body">
+        <p class="bg-success">
+            <ul ng-repeat="(key, value) in item.change" class="list-unstyled">
+                <li ng-hide="value.to.name || value.to.level">
+                    {{::key | capitalize}} changed from
+                    <span ng-hide="value.from===undefined" class="label label-warning">{{::value.from | date: 'mediumDate'}}</span>
+                    <i class="fa  fa-long-arrow-right"></i>
+                    <span class="label label-success">{{::value.to | date: 'mediumDate' }}</span>
+                </li>
+                <li ng-show="value.to.name">Bug assigned from
+                    <span ng-hide="value.from===undefined" class="label label-danger">{{::value.from.name}}</span> <i class="fa  fa-long-arrow-right"></i>
+                    <span class="label label-success">{{::value.to.name}}</span>
+                </li>
+                <li ng-show="value.to.level">{{::key | capitalize}} changed from
+                    <span ng-hide="value.from===undefined" class="label label-warning">{{::value.from.level}}</span> <i class="fa  fa-long-arrow-right"></i>
+                    <span class="label label-success">{{::value.to.level}}</span>
+                </li>
+            </ul>
+            <dl class="dl-horizontal" ng-if="item.svn">
+                        <dt>Repository</dt>
+                        <dd><a href="">{{item.svn.repository}}</a></dd>
+                        <dt>Revision</dt>
+                        <dd><a href="">{{item.svn.revision}}</a></dd>
+                        <dt>Files</dt>
+                        <dd ng-repeat="path in item.svn.paths"><a href="http://svn.marklogic.com/trac.engsvn/browser/{{path}}" target="_window">{{path}}</a></dd>
+                </dl>
+            <p ng-show="item.comment" ng-bind-html="item.comment"></p>
+            <!--   <b ng-show="item.attachments">Attached:</b> -->
+            <ul ng-repeat="file in item.files" class="list-inline" style="display: inline-block;">
+                <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{::file.name}}&nbsp;&nbsp;&nbsp;</a>
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
