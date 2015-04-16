@@ -66,7 +66,7 @@
             <div class="form-group">
                 <label class="sm">Assigned to</label>
                 <br>
-                <select name="assignTo" id="assignTo" ng-model="form.assignTo" ng-options="user.username as user.name for user in config.users" class="form-control input-xsm">
+                <select name="assignTo" id="assignTo" ng-model="form.assignTo" ng-options="user.username as user.name group by user.name[0] for user in config.users" class="form-control input-xsm">
                     <option value="" selected></option>
                 </select>
                 <a ng-href="" title="clear" ng-click="clearSelection('assignTo')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
@@ -90,7 +90,9 @@
             <div class="form-group">
                 <label class="sm">Submitted By</label>
                 <br>
-                <select name="submittedBy" id="submittedBy" ng-model="form.submittedBy" ng-options="user.username as user.name for user in config.users" class="form-control input-xsm">
+                <select name="submittedBy" id="submittedBy" ng-model="form.submittedBy" 
+                ng-options="user.username as user.name group by user.name[0] for user in config.users" class="form-control input-xsm">
+
                     <option value="" selected></option>
                 </select>
                 <a ng-href="" title="clear" ng-click="clearSelection('submittedBy')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>

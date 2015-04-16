@@ -270,9 +270,13 @@ exports.search = function(req, res) {
             view: 'facets'
         })
     ).result(function(result) {
-        // log.info('\n------------------------------------------');
-        // log.info('searchCriteria', JSON.stringify(searchCriteria));
-        // log.info('/search', req.body);
+      //   log.info('\n------------------------------------------');
+        _.transform(result, function(result, item, index) {
+            if(item.content) delete item.content.changeHistory
+            result[index] = item;
+         })   
+
+       //  log.info('/search', result);
         res.status(200).json(result);
     }, function(error) {
         res.status(error.statusCode).json(error);

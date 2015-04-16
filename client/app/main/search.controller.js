@@ -206,7 +206,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             ivhTreeviewMgr.deselectAll($scope.form.groups);
             ngProgress.start();
             return Search.search($location.search({
-                status: ['-Closed', '-External', '-Will not fix']
+                status: ['-Closed', '-External', '-Will not fix'],
+                page:1,
+                pageLength: $window.localStorage.pageLength || '50'
             })).success(function(response) {
                 processResult(response);
                 ngProgress.complete();
@@ -449,7 +451,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     assignTo: currentUser.username,
                     status: ['-Closed', '-External', '-Will not fix'],
                     page: 1,
-                    pageLength: $scope.form.pageLength
+                    pageLength: $window.localStorage.pageLength || '50'
                 });
             } 
 

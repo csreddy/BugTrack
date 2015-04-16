@@ -45,7 +45,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="bug in bugs | filter:searchbug ">
+                <tbody class="animate-repeat" ng-repeat="bug in bugs | filter:searchbug ">
                     <tr>
                         <td><a ng-href="/bug/{{bug.id}}">{{::bug.id}}</a>
                         </td>
@@ -91,19 +91,19 @@
                         </th>
                     </tr>
                 </thead>
-                <tr ng-repeat="bug in bugs | filter:searchbug">
-                    <td><a ng-href="/bug/{{bug.id}}">{{bug.id}}</a>
+                <tr class="animate-repeat" ng-repeat="bug in bugs | filter:searchbug">
+                    <td><a ng-href="/bug/{{bug.id}}">{{::bug.id}}</a>
                     </td>
-                    <td style="max-width:120px" class="hidden-xs">{{bug.severity}}</td>
-                    <td class="hidden-xs"><a tooltip-trigger tooltip-animation="false"  tooltip-placement="top" tooltip="{{bug.priority.title}}" href>{{bug.priority.level}}</a>
+                    <td style="max-width:120px" class="hidden-xs">{{::bug.severity}}</td>
+                    <td class="hidden-xs"><a tooltip-trigger tooltip-animation="false"  tooltip-placement="top" tooltip="{{bug.priority.title}}" href>{{::bug.priority.level}}</a>
                     </td>
-                    <td style="max-width:200px" class="hidden-xs">{{bug.submittedBy.username}}</td>
-                    <td class="hidden-xs">{{bug.category}}</td>
-                    <td style="max-width:70px" class="hidden-xs">{{bug.version}}</td>
-                    <td style="max-width:70px" class="hidden-xs">{{bug.tofixin}}</td>
-                    <td class="hidden-xs">{{bug.status}}</td>
-                    <td style="max-width:200px" class="hidden-xs">{{bug.assignTo.username}}</td>
-                    <td style="max-width: 300px" tooltip-trigger tooltip-placement="top" tooltip="{{bug.title}}">{{bug.title}}</td>
+                    <td style="max-width:200px" class="hidden-xs">{{::bug.submittedBy.username}}</td>
+                    <td class="hidden-xs">{{::bug.category}}</td>
+                    <td style="max-width:70px" class="hidden-xs">{{::bug.version}}</td>
+                    <td style="max-width:70px" class="hidden-xs">{{::bug.tofixin}}</td>
+                    <td class="hidden-xs">{{::bug.status}}</td>
+                    <td style="max-width:200px" class="hidden-xs">{{::bug.assignTo.username}}</td>
+                    <td style="max-width: 300px" tooltip-trigger tooltip-placement="top" tooltip="{{bug.title}}">{{::bug.title}}</td>
                 </tr>
             </table>
         </div>
