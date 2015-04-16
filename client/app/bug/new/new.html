@@ -114,12 +114,11 @@
                                                 <input class="form-control input-sm" ng-model="relatedTo" ng-change="setRelatedTo(relatedTo)" name="relatedTo" type="text" placeholder="task id">
                                             </div>
                                         </div>
-                                    </accordion-group>
-                                    <accordion-group is-open="status.isFirstOpen">
-                                        <accordion-heading>
-                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Environment in which you encountered the bug
-                                        </accordion-heading>
-                                        <div class="form-group">
+
+                                        <legend class="ng-scope">
+                                        <h5 class="help-block"><i class="fa fa-desktop"></i> Environment in which you encountered the bug</h5>
+                                    </legend>
+                                               <div class="form-group">
                                             <label class="col-md-2 control-label" for="version">Version</label>
                                             <div class="col-md-3">
                                                 <select id="version" ng-model="version" ng-change="setVersion(version)" name="version" type="text" class="form-control input-sm">
