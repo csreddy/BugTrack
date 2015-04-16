@@ -530,6 +530,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             ngProgress.start();
             return Search.search(searchCriteria).success(function(response) {
                 processResult(response);
+                $timeout(function(){
+                        $scope.$apply();
+                }, 100);
+                
+                
                 console.log('RESULT', response[0].report);
                 console.log('scope.form.groups', $scope.form.groups);
                 //console.log('search', response);

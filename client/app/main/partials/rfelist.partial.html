@@ -8,7 +8,7 @@
             <div class="box-tools pull-right">
                 <form class="form-inline">
                     <div class="form-group">
-                        <input type="text" ng-model="searchrfe" class="form-control" placeholder="filter">
+                        <input type="text" ng-model="searchrfe" class="form-control" placeholder="filter" ng-model-options="{debounce: 150}">
                     </div>
                     <div class="form-group">
                         <div class="btn-group-vertical btn-group-xs">
@@ -47,7 +47,7 @@
                             </th>
                         </tr>
                     </thead>
-                <tbody ng-repeat="rfe in rfes | filter:searchrfe">
+                <tbody class="animate-repeat" ng-repeat="rfe in rfes track by rfe.id  | filter:searchrfe">
                         <tr>
                             <td><a ng-href="/rfe/{{rfe.id}}">{{::rfe.id}}</a>
                             </td>
@@ -96,7 +96,7 @@
                             </th>
                         </tr>
                     </thead>
-                <tr ng-repeat="rfe in rfes | filter:searchrfe">
+                <tr class="animate-repeat" ng-repeat="rfe in rfes track by rfe.id  | filter:searchrfe">
                         <td><a ng-href="/rfe/{{rfe.id}}">{{::rfe.id}}</a>
                         </td>
                         <td style="max-width:120px" class="hidden-xs">{{::rfe.severity}}</td>
