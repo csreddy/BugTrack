@@ -9,7 +9,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         $scope.currentUser = currentUser;
         $scope.form = angular.copy(defaultSearchCriteria) || {};
         $scope.bugs = [];
-        $scope.currentPage = parseInt($location.search().page) || 1;
+        $scope.currentPage = $location.search().page || 1;
         $scope.config = angular.copy(config);
         $scope.form.groups = angular.copy($scope.preSelectedGroups) || angular.copy(config.groups);
         $scope.userDefaultSearch = false;
@@ -83,14 +83,15 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             if (Object.keys($location.search()).length > 0) {
                 console.log('init()', $location.search());
                 // set form selections according to url query params
-                $scope.form = convertSearchParamsIntoFormSelections($location.search());
                 search($location.search());
+                $scope.form = convertSearchParamsIntoFormSelections($location.search());
+                
 
                 // due to pagination directive bug, current page number does not get higlighted when 
                 // browser back/fwd is clicked. This is a hack to fix it.
                 $timeout(function() {
                     highlightPageNumber($location.search().page);
-                }, 1000);
+                }, 500);
                 $scope.form.groups = angular.copy($scope.preSelectedGroups) || angular.copy(config.groups);
                 /*   
             // check if the url matches users default query, if true then select checkbox to indicate
@@ -110,7 +111,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 $location.$$search = {
                     assignTo: currentUser.username,
                     status: ['-Closed', '-External', '-Will not fix'],
-                    pageLength: $scope.form.pageLength
+                    pageLength: $scope.form.pageLength,
+                    page:1
                 };
             }
 
@@ -126,7 +128,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 $scope.tabs[1].active = true;
                 $scope.tabs[2].active = false;
             }
-            // if search params contains kind=Task then make Task tab active
+            // if search params contains kind=RFE then make RFE tab active
             if (isRFE()) {
                 $scope.tabs[0].active = false;
                 $scope.tabs[1].active = false;
@@ -186,12 +188,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             }
 
         };
-
-        $scope.getItems = function(kind) {
-            if (kind) $location.search('kind', kind);
-            $location.search('page', 1); // start from page 1 for every search
-        };
-
 
 
         // clear form. returns all bugs by default.
@@ -442,19 +438,20 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             });
         }
 
+
         // watch for location changes and extract search pararms from the url and perform search
         $scope.$on('$locationChangeSuccess', function() {
             console.log($location.url());
-            if ($location.url() === '/home') {
+            if (Object.keys($location.$$search).length === 0) {
                 search({
                     kind: 'Bug',
                     assignTo: currentUser.username,
                     status: ['-Closed', '-External', '-Will not fix'],
-                    page: 1,
-                    pageLength: $window.localStorage.pageLength || '50'
+                    pageLength: $window.localStorage.pageLength || '50',
+                    page: 1
                 });
             } 
-
+    
              if ($location.url().indexOf('/home') > -1) {
                 $scope.currentPage = $location.search().page || 1;
 
@@ -781,7 +778,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             angular.forEach(queryParams, function(value, key) {
                 switch (key) {
                     case 'page':
-                        $scope.currentPage = parseInt(value);
+                        $scope.currentPage = value;
                         break;
                     case 'kind':
                         if (value) form[key] = value;
