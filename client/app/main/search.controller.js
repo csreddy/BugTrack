@@ -529,14 +529,17 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
 
             ngProgress.start();
             return Search.search(searchCriteria).success(function(response) {
-                processResult(response);
-                $timeout(function(){
-                        $scope.$apply();
-                }, 100);
-                
-                
+                if (response[0].total > 1000 && ($location.search().pageLength > 1000 || $location.search().pageLength === 'All')) {
+                    $scope.form.pageLength = '200';
+                    $location.search('pageLength', 200);
+                    processResult(response.slice(0, 200));
+                    Flash.addAlert(null, '<b>Result is too big</b>: Showing first 200 items, use pagination');
+                } else {
+                    processResult(response);
+                }
+
                 console.log('RESULT', response[0].report);
-                console.log('scope.form.groups', $scope.form.groups);
+               // console.log('scope.form.groups', $scope.form.groups);
                 //console.log('search', response);
                 ngProgress.complete();
             }).error(function(error) {

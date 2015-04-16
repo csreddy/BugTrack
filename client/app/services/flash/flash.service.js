@@ -47,7 +47,7 @@ app.service('Flash', function($rootScope, $timeout) {
         if (_.last($rootScope.alerts).type === 'danger') {
             return 100000;
         } else {
-            return 3000;
+            return 5000;
         }
     }
 
