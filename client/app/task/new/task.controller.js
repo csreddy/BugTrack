@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgress'])
-    .controller('newTaskCtrl', ['$scope','$q', '$location', 'config', 'currentUser', 'count', 'Task', 'Flash', 'ngProgress',
-        function($scope, $q, $location, config, currentUser, count, Task, Flash, ngProgress) {
+    .controller('newTaskCtrl', ['$scope', '$q', '$location', 'config', 'currentUser', 'count', 'Task', 'RFE', 'Flash', 'ngProgress',
+        function($scope, $q, $location, config, currentUser, count, Task, RFE, Flash, ngProgress) {
             $scope.task = {};
             $scope.task.parent = {};
             $scope.task.period = {
@@ -66,17 +66,19 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
 
 
             this.submitTask = function() {
-                 submitTask();
+                submitTask();
             };
 
             this.stringify = function(date) {
                 stringify(date);
             };
 
-            $scope.$watch('task.note', function() {
-                console.log('task.note', $scope.task.note);
-            });
-            
+            $scope.$watch('task.parent', function() {
+                console.log('task.parent', $scope.task.parent);
+            }, true);
+
+
+
             /* private functions */
             function submitTask() {
                 console.log('submit new task');
@@ -128,7 +130,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                             uri: '/task/' + task.id + '/attachments/' + $scope.task.files[i].name
                         };
                     }
-                   
+
                     task.includeInTaskList = true;
                     task.proceduralTasks = {
                         'Requirements Task': [],
@@ -143,13 +145,28 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                     task.changeHistory = [];
                     var updates = [Task.create(task, $scope.task.files).then()];
                     if (task.parent.id) {
-                        if ($scope.relationTypes.indexOf(task.parent.type) > -1 && task.parent.type !== 'Sub-task') {
-                            task.parent.taskOrRfe = 'rfe';
-                            updates.push(Task.insertProceduralTask(task.parent.id, task.parent.type, task.id).then());
-                        } else {
-                            task.parent.taskOrRfe = 'task';
-                            updates.push(Task.insertSubTask(task.parent.id, task.id).then());
+                        task.parent.taskOrRfe = $scope.task.parent.taskOrRfe.toLowerCase();
+                        switch (task.parent.taskOrRfe) {
+                            case 'rfe':
+                                if ($scope.relationTypes.indexOf(task.parent.type) > -1 && task.parent.type !== 'Sub-task') {
+                                    updates.push(RFE.insertProceduralTask(task.parent.id, task.parent.type, task.id).then());
+                                } else {
+                                    updates.push(RFE.insertSubTask(task.parent.id, task.id).then());
+                                }
+                                break;
+                            case 'task':
+                                if ($scope.relationTypes.indexOf(task.parent.type) > -1 && task.parent.type !== 'Sub-task') {
+                                    updates.push(Task.insertProceduralTask(task.parent.id, task.parent.type, task.id).then());
+                                } else {
+                                    updates.push(Task.insertSubTask(task.parent.id, task.id).then());
+                                }
+                                break;
+                            default:
+                                // do nothing   
+                                break;
                         }
+
+
                     }
 
                     $q.all(updates).then(function(response) {
@@ -157,8 +174,8 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                         $location.path('/task/' + task.id);
                         Flash.addAlert('success', '<a href=\'/task/' + task.id + '\'>' + 'Task-' + task.id + '</a>' + ' was successfully created');
                     }, function(error) {
-                         ngProgress.complete();
-                        Flash.addAlert('danger',  ' Oops! Could not create the task. ' + error.data.message)
+                        ngProgress.complete();
+                        Flash.addAlert('danger', ' Oops! Could not create the task. ' + error.data.message)
                     });
                 }).error(function(error) {
                     ngProgress.complete();

@@ -14,4 +14,6 @@ router.get('/:id(\\d+)/subtasks', controller.subtasks);
 router.put('/:id(\\d+)/subscribe', controller.subscribe);
 router.put('/:id(\\d+)/unsubscribe', controller.unsubscribe);
 router.get('/:version/parentAndSubTasks', controller.getParentAndSubTasks)
+router.put('/insertProceduralTask', controller.insertProceduralTask);
+router.put('/insertSubTask', controller.insertSubTask);
 module.exports = router;

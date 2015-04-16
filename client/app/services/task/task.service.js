@@ -133,7 +133,6 @@ app.service('Task', ['$http',
         };
 
         this.insertSubTask = function(parentTaskId, subTaskId, taskOrRfe) {
-            var taskOrRfe = taskOrRfe || 'task';
             return $http({
                 method: 'PUT',
                 url: '/api/tasks/insertSubTask',
@@ -146,7 +145,6 @@ app.service('Task', ['$http',
         };
 
         this.createSubTask = function(parentTaskId, subTask, taskOrRfe) {
-            var taskOrRfe = taskOrRfe || 'task';
             return $http({
                 method: 'POST',
                 url: '/api/tasks/createSubTask',
@@ -165,7 +163,7 @@ app.service('Task', ['$http',
             return $http({
                 method: 'GET',
                 url: '/api/tasks/' + version + '/parentAndSubTasks'
-            })
+            });
         };
 
 

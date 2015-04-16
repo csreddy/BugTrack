@@ -33,6 +33,8 @@ module.exports = function(app) {
     app.use('/api/rfes/:id(\\d+)/subscribe', require('./api/rfe'));
     app.use('/api/rfes/:id(\\d+)/unsubscribe', require('./api/rfe'));
     app.use('/api/rfes/:version/parentAndSubTasks', require('./api/rfe'));
+    app.use('/api/rfes/insertProceduralTask', require('./api/rfe'));
+    app.use('/api/rfes/insertSubTask', require('./api/rfe'));
     
 
     // Auth route

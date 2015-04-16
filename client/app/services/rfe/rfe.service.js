@@ -130,5 +130,28 @@ app.service('RFE', ['$http',
             });
         };
 
+        this.insertProceduralTask = function(parentTaskId, proceduralTaskType, proceduralTaskId) {
+            return $http({
+                method: 'PUT',
+                url: '/api/rfes/insertProceduralTask',
+                data: {
+                    parentTaskId: parentTaskId,
+                    proceduralTaskType: proceduralTaskType,
+                    proceduralTaskId: proceduralTaskId
+                }
+            });
+        };
+
+        this.insertSubTask = function(parentTaskId, subTaskId) {
+            return $http({
+                method: 'PUT',
+                url: '/api/rfes/insertSubTask',
+                data: {
+                    parentTaskId: parentTaskId,
+                    subTaskId: subTaskId
+                }
+            });
+        };
+
     }
 ]);

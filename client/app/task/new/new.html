@@ -83,6 +83,10 @@
                                             </select>
                                         </div> 
                                         <div class="col-xs-4 col-md-2">
+                                            <select class="form-control input-sm" ng-model="task.parent.taskOrRfe"  ng-init="task.parent.taskOrRfe='Task'" name="task_parent_taskOrRfe" ng-options="taskOrRfe for taskOrRfe in ['Task', 'RFE']">
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-4 col-md-2">
                                             <input class="form-control input-sm" ng-model="task.parent.id" name="task_parent_id" type="number" placeholder="parent task/rfe id">
                                         </div>
                                     </div>

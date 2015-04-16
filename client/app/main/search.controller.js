@@ -526,7 +526,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
 
             ngProgress.start();
             return Search.search(searchCriteria).success(function(response) {
-                if (response[0].total > 1000 && ($location.search().pageLength > 1000 || $location.search().pageLength === 'All')) {
+                if (response[0].total > 1000 && ($location.$$search.pageLength >= 1000 || $location.$$search.pageLength === 'All')) {
                     $scope.form.pageLength = '200';
                     $location.search('pageLength', 200);
                     processResult(response.slice(0, 200));

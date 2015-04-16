@@ -362,9 +362,44 @@ exports.update = function(req, res) {
 
 };
 
+exports.insertSubTask = function(req, res) {
+    var uri = '/rfe/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
+    db.documents.probe(uri).result(function(response) {
+        if (response.exists) {
+            db.documents.patch(uri, p.insert("array-node('subTasks')", 'last-child', parseInt(req.body.subTaskId))).result(function(response) {
+                res.status(200).json({
+                    message: 'Sub Task inserted'
+                })
+            }, function(error) {
+                res.status(error.statusCode).json(error);
+            });
+        } else {
+            res.status(404).json({
+                message: 'Parent task ' + req.body.parentTaskId + ' does not exist'
+            })
+        }
+    });
+};
 
-
-
+exports.insertProceduralTask = function(req, res) {
+    // rfe because, procedural tasks can be added for RFEs only
+    var uri = '/rfe/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json'; 
+    db.documents.probe(uri).result(function(response) {
+        if (response.exists) {
+            db.documents.patch(uri, p.insert("proceduralTasks/array-node(\"" + req.body.proceduralTaskType + "\")", 'last-child', parseInt(req.body.proceduralTaskId))).result(function(response) {
+                res.status(200).json({
+                    message: 'Procedural Task inserted'
+                })
+            }, function(error) {
+                res.status(error.statusCode).json(error);
+            });
+        } else {
+            res.status(404).json({
+                message: 'RFE ' + req.body.parentTaskId + ' does not exist. '
+            })
+        }
+    });
+};
 
 exports.subtasks = function(req, res, next) {
     var uri = '/rfe/' + req.params.id + '/' + req.params.id + '.json'
