@@ -71,7 +71,7 @@ exports.facets = function(req, res) {
 };
 
 // get bug details by id
-exports.id = function(req, res) {
+exports.id = function(req, res, next) {
     res.locals.errors = req.flash();
     console.log(res.locals.errors);
     var uri = '/bug/' + req.params.id + '/' + req.params.id + '.json';
@@ -95,11 +95,13 @@ exports.id = function(req, res) {
             res.status(404).json({
                 error: 'could not find bug ' + req.params.id
             });
+            next();
         }
     }, function(error) {
         res.status(error.statusCode).json({
             error: 'could not find bug ' + req.params.id
         });
+        next();
     })
 
 };

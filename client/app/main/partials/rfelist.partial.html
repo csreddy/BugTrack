@@ -1,7 +1,7 @@
 <div class="container-fluid" style="padding-right: 0px">
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">{{totalItems.all}} RFEs <small>({{searchMetrics['total-time']}})</small>
+            <h3 class="box-title">{{totalItems.all}} RFEs <small ng-if="searchMetrics['total-time'] > 0">({{searchMetrics['total-time']}})</small>
  <select name="pagelength" id="pagelength" ng-model="form.pageLength" ng-change="userPref.setPageLength(form.pageLength)" ng-options="length for length in pageLengthOptions" class="input-xsm">
  </select>
             </h3>

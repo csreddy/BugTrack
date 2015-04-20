@@ -1999,8 +1999,9 @@ Component: timeline
 */
 
 .alert {
-    padding-left: 30px;
+   /* padding-left: 30px;*/
     margin-left: 15px;
+    margin-right: 15px;
     position: relative;
 }
 .alert > .fa, .alert > .glyphicon {
@@ -3209,7 +3210,7 @@ Component: timeline
 }
 
 .alert {
-    max-width: 50%;
+    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
 }

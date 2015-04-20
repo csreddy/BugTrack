@@ -222,13 +222,12 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                 //bug.relation = $scope.relation;
                 //bug.relatedTo = $scope.relatedTo || [];
 
-                bug.associatedTask = $scope.associatedTask;
+              //  bug.associatedTask = $scope.associatedTask;
                 bug.clones = [];
                 bug.support = $scope.support;
                 bug.changeHistory = [];
 
-                ngProgress.start();
-                console.log('before Bug.create()');
+                ngProgress.start(); 
                 Bug.create(bug, $scope.files).success(function() {
                     console.log('inside Bug.create()');
                     ngProgress.complete();

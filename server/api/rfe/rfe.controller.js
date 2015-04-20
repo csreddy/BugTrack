@@ -406,7 +406,7 @@ exports.subtasks = function(req, res, next) {
         // check if doc exists
         db.documents.probe(uri).result(function(response) {
         if (response.exists) {
-            // do nothing
+            // do nothing, proceed further
         } else {
             res.redirect('/404');
             next();

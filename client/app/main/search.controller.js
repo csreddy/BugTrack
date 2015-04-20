@@ -168,6 +168,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             $scope.isPaginationEvent = false;
             $location.search(convertFormSelectionsToQueryParams());
             $location.search('page', 1); // start from page 1 for every search
+            $scope.form.pageLength = $window.localStorage.pageLength || '50';
+            $location.search('pageLength', $scope.form.pageLength);
             // if search params contains kind=Bug then make Bug tab active
             if (isBug()) {
                 $scope.tabs[0].active = true;
@@ -189,6 +191,12 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
 
         };
 
+
+        $scope.getItems = function(kind) {
+            if (kind) $location.search('kind', kind);
+            $location.search('page', 1); // start from page 1 for every search
+            $location.search('pageLength', $scope.form.pageLength);
+        };
 
         // clear form. returns all bugs by default.
         // will change to return tasks, rfes and others when 
