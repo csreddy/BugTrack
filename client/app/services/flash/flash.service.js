@@ -40,7 +40,7 @@ app.service('Flash', function($rootScope, $timeout) {
     };
 
     $rootScope.$on('$routeChangeSuccess', function(next, current) {
-        //$rootScope.alerts = [];
+        $rootScope.alerts = [];
     });
 
     function timeout () {
