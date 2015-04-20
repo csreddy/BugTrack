@@ -184,7 +184,7 @@
 </form>
 <div class="form-group">
     <label class="col-md-2 control-label" for="headline">
-        </i> Sub Tasks</label>
+        </i> Sub Tasks <small>({{rfe.subTasks.length}})</small></label>
     <div class="col-md-8">
         <p class="form-control-static" ng-if="rfe.subTasks.length == 0"> No sub tasks</p>
         <div ng-include="'app/rfe/view/partials/subtasksTable.partial.html'"></div>

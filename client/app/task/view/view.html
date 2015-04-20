@@ -220,7 +220,7 @@
                 </div>
                 </div> -->
 <div class="form-group">
-    <label class="col-md-2 control-label" for="headline"> Sub Tasks</label>
+    <label class="col-md-2 control-label" for="headline"> Sub Tasks <small>({{task.subTasks.length}})</small></label>
     <div class="col-md-8">
         <p class="form-control-static" ng-if="task.subTasks.length == 0"> No sub tasks</p>
         <div ng-include="'app/task/view/partials/subtasksTable.partial.html'"></div>

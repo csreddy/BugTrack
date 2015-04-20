@@ -196,8 +196,9 @@ function updateSubTaskParent(relation, subtaskId){
                     break;
                 case 'Sub-task':
                     parent.subTasks.push(subtaskId)
+                    break;
                 default:
-                    xdmp.log('did not match any criteria')
+                    xdmp.log('did not match any criteria for relation: '+ relation.type)
             }
             loadDoc(parent);
     }
@@ -736,10 +737,11 @@ function convert(doc){
 }
 
 var uris = [];
-for (var id=27472; id<=33000; id++){
-    uris.push("root/support/bugtracking/bug"+ id +".xml");
+for (var id=1; id<=33000; id++){
+   uris.push("root/support/bugtracking/bug"+ id +".xml");
 }
-uris = ["root/support/bugtracking/bug27503.xml"]
+
+
 for (var i=0; i< uris.length; i++){
     if(fn.exists(cts.doc(uris[i]))){
         try{
