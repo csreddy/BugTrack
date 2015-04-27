@@ -8,19 +8,19 @@
             <p class="bg-success">
                 <ul ng-repeat="(key, value) in item.change" class="list-unstyled">
                     <li ng-hide="value.to.name || value.to.level">
-                        {{::key | capitalize}} changed
-                        <span ng-hide="value.from===undefined">from {{::value.from}}</span> to
-                        <span class="label label-success">{{::value.to}}</span>
-                    </li>
-                    <li ng-show="value.to.name">Bug assigned
-                        <span ng-hide="value.from===undefined">from {{::value.from.name}}</span> to
-                        <span class="label label-success">{{::value.to.name}}</span>
-                    </li>
-
-                    <li ng-show="value.to.level">{{::key | capitalize}} changed
-                        <span ng-hide="value.from===undefined">from {{::value.from.level}}</span> to
-                        <span class="label label-success">{{::value.to.level}}</span>
-                    </li>
+                    {{::key | capitalize}} changed from
+                    <span ng-hide="value.from===undefined" class="label label-warning">{{::value.from | date: 'mediumDate'}}</span>
+                    <i class="fa  fa-long-arrow-right"></i>
+                    <span class="label label-success">{{::value.to | date: 'mediumDate' }}</span>
+                </li>
+                <li ng-show="value.to.name">Bug assigned from
+                    <span ng-hide="value.from===undefined" class="label label-danger">{{::value.from.name}}</span> <i class="fa  fa-long-arrow-right"></i>
+                    <span class="label label-success">{{::value.to.name}}</span>
+                </li>
+                <li ng-show="value.to.level">{{::key | capitalize}} changed from
+                    <span ng-hide="value.from===undefined" class="label label-warning">{{::value.from.level}}</span> <i class="fa  fa-long-arrow-right"></i>
+                    <span class="label label-success">{{::value.to.level}}</span>
+                </li>
                 </ul>
 
               <dl class="dl-horizontal" ng-if="item.svn">
