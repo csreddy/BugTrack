@@ -70,12 +70,12 @@ angular.module('bug.controllers')
                         $scope.newClone = newItem;
                    });   
                 },
-                function(response) {
-                    if (response.status === 404) {
+                function(error) {
+                    if (error.status === 404) {
                         $location.path('/404');
                         Flash.addAlert('danger', 'Bug not found');
                     } else {
-                        Flash.addAlert('danger', response.data.error.message);
+                        Flash.addAlert('danger', error.data.error.message);
                     }
 
                 });

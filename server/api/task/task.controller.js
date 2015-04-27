@@ -70,7 +70,7 @@ exports.id = function(req, res) {
             res.status(404).json({
                 error: 'could not find task ' + req.params.id
             });
-            //  res.redirect('/404'); 
+             // res.redirect('/404'); 
 
         }
     }, function(error) {
@@ -370,7 +370,7 @@ exports.insertProceduralTask = function(req, res) {
         taskOrRfe = 'rfe'
     }
     // rfe because, procedural tasks can be added for RFEs only
-    var uri = '/rfe/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json'; 
+    var uri = '/rfe/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
     db.documents.probe(uri).result(function(response) {
         if (response.exists) {
             db.documents.patch(uri, p.insert("proceduralTasks/array-node(\"" + req.body.proceduralTaskType + "\")", 'last-child', parseInt(req.body.proceduralTaskId))).result(function(response) {
@@ -392,7 +392,7 @@ exports.insertProceduralTask = function(req, res) {
 
 
 exports.insertSubTask = function(req, res) {
-   var taskOrRfe = 'task'; //default
+    var taskOrRfe = 'task'; //default
     if (req.headers.referer.indexOf('rfe') > -1) {
         taskOrRfe = 'rfe'
     }
@@ -418,7 +418,7 @@ exports.insertSubTask = function(req, res) {
 };
 
 exports.createSubTask = function(req, res) {
-  var taskOrRfe = 'task'; //default
+    var taskOrRfe = 'task'; //default
     if (req.headers.referer.indexOf('rfe') > -1) {
         taskOrRfe = 'rfe'
     }
@@ -471,64 +471,63 @@ exports.subtasks = function(req, res, next) {
         // check if doc exists
     db.documents.probe(uri).result(function(response) {
         if (response.exists) {
-            // do nothing
-        } else {
-            res.redirect('/404');
-            next();
-        }
-    });
-
-    db.documents.read({
-        uris: [uri]
-    }).result(function(document) {
-        console.log('document', document);
-        var subTasks = document[0].content.subTasks.sort();
-        var subTaskDocUris = [];
-        if (subTasks.length > 0) {
-            for (var i = 0; i < subTasks.length; i++) {
-                subTaskDocUris.push('/task/' + subTasks[i] + '/' + subTasks[i] + '.json')
-            }
-        }
-
-        if (subTaskDocUris.length > 0) {
             db.documents.read({
-                uris: subTaskDocUris
-            }).result(function(documents) {
-                //  console.log('documents', documents);
-                subTasks = [];
-                if (documents.length > 0) {
-                    for (var i = 0; i < documents.length; i++) {
-                        subTasks.push({
-                            id: documents[i].content.id,
-                            title: documents[i].content.title,
-                            note: documents[i].content.note,
-                            status: documents[i].content.status,
-                            category: documents[i].content.category,
-                            days: documents[i].content.days,
-                            period: {
-                                startDate: documents[i].content.period.startDate,
-                                endDate: documents[i].content.period.endDate
-                            },
-                            version: documents[i].content.version,
-                            tofixin: documents[i].content.tofixin,
-                            proceduralTasks: documents[i].content.proceduralTasks,
-                            subTasks: documents[i].content.subTasks,
-                            assignTo: documents[i].content.assignTo
-                        })
+                uris: [uri]
+            }).result(function(document) {
+                console.log('document', document);
+                var subTasks = document[0].content.subTasks.sort();
+                var subTaskDocUris = [];
+                if (subTasks.length > 0) {
+                    for (var i = 0; i < subTasks.length; i++) {
+                        subTaskDocUris.push('/task/' + subTasks[i] + '/' + subTasks[i] + '.json')
                     }
                 }
 
-                res.status(200).json(subTasks)
+                if (subTaskDocUris.length > 0) {
+                    db.documents.read({
+                        uris: subTaskDocUris
+                    }).result(function(documents) {
+                        //  console.log('documents', documents);
+                        subTasks = [];
+                        if (documents.length > 0) {
+                            for (var i = 0; i < documents.length; i++) {
+                                subTasks.push({
+                                    id: documents[i].content.id,
+                                    title: documents[i].content.title,
+                                    note: documents[i].content.note,
+                                    status: documents[i].content.status,
+                                    category: documents[i].content.category,
+                                    days: documents[i].content.days,
+                                    period: {
+                                        startDate: documents[i].content.period.startDate,
+                                        endDate: documents[i].content.period.endDate
+                                    },
+                                    version: documents[i].content.version,
+                                    tofixin: documents[i].content.tofixin,
+                                    proceduralTasks: documents[i].content.proceduralTasks,
+                                    subTasks: documents[i].content.subTasks,
+                                    assignTo: documents[i].content.assignTo
+                                })
+                            }
+                        }
+
+                        res.status(200).json(subTasks)
+                    }, function(error) {
+                        res.status(error.statusCode).json(error)
+                    })
+                } else {
+                    res.status(200).json([])
+                }
+
             }, function(error) {
-                res.status(error.statusCode).json(error)
+                res.status(error.statusCode).json(error);
             })
         } else {
-            res.status(200).json([])
+            res.status(200).json({
+                message: 'task ' + req.params.id + ' does not exist'
+            })
         }
-
-    }, function(error) {
-        res.status(error.statusCode).json(error);
-    })
+    });
 };
 
 exports.subscribe = function(req, res) {

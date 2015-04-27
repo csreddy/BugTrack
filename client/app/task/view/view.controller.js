@@ -2,7 +2,7 @@
 
 angular.module('task.controllers')
     .controller('viewTaskCtrl', ['$scope', '$location', '$timeout', '$q', 'Task', 'SubTasks','config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
-
+ 
         function($scope, $location, $timeout, $q, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress) {
 
             $scope.changes = {};
