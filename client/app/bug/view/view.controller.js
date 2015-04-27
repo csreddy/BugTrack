@@ -21,6 +21,8 @@ angular.module('bug.controllers')
             var updateBug;
             var id = $location.path().replace('/bug/', '');
 
+            // sort users
+            $scope.config.users = _.sortBy($scope.config.users, 'name');
 
             Bug.get(id).then(function(response) {
                     console.log(response.data);
