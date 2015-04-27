@@ -219,6 +219,7 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                         uri: '/bug/' + bug.id + '/attachments/' + $scope.files[i].name
                     };
                 }
+                bug.tags = [$scope.category, $scope.assignTo.username, $scope.submittedBy.username];
                 //bug.relation = $scope.relation;
                 //bug.relatedTo = $scope.relatedTo || [];
 

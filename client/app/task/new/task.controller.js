@@ -140,6 +140,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                         'Documentation Task': []
                     };
                     task.subTasks = [];
+                    task.tags = [$scope.task.category, $scope.task.assignTo.username, $scope.task.submittedBy.username];
                     task.createdAt = new Date();
                     task.modifiedAt = new Date();
                     task.changeHistory = [];

@@ -105,7 +105,7 @@ angular.module('rfe.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                         rfe.subscribers.push(rfe.assignTo);
                     }
                     rfe.attachments = [];
-                    console.log('task', rfe);
+                    
                     for (var i = 0; i < $scope.rfe.files.length; i++) {
                         rfe.attachments[i] = {
                             name: $scope.rfe.files[i].name,
@@ -122,6 +122,7 @@ angular.module('rfe.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                         'Documentation Task': []
                     };
                     rfe.subTasks = [];
+                    rfe.tags = [$scope.rfe.category, $scope.rfe.assignTo.username, $scope.rfe.submittedBy.username];
                     rfe.createdAt = new Date();
                     rfe.modifiedAt = new Date();
                     rfe.changeHistory = [];
