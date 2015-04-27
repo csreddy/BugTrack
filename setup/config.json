@@ -1678,7 +1678,9 @@
         "Ship",
         "Closed",
         "Will not fix",
-        "External"
+        "External",
+        "Not a bug",
+        "Duplicate"
     ],
     "version": [
         "n/a",
@@ -1792,7 +1794,7 @@
     "tofixin": [
         "3.0-3",
         "4.2-6",
-        "5.0-1"
+        "5.0-1",
         "5.0-2",
         "5.0-3",
         "5.0-3.1",
