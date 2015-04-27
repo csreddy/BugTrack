@@ -485,7 +485,7 @@ exports.clones = function(req, res, next) {
             })
 
         } else {
-            res.status(404).json({message: 'bug ' +req.params.id +' does not exist'})
+            res.status(200).json({message: 'bug ' +req.params.id +' does not exist'})
         }
     })
 
