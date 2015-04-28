@@ -176,41 +176,17 @@ app.service('Task', ['$http',
             });
         };
 
-        this.toggleTaskListInclusion = function(id, bool) {
+        this.toggleTaskListInclusion = function(id, bool, taskOrRfe) {
+             var taskOrRfe = taskOrRfe || 'task';
             return $http({
                 method: 'PUT',
                 url: '/api/tasks/' + id + '/toggleTaskListInclusion',
                 data: {
                     id: id,
-                    includeInTaskList: bool
+                    includeInTaskList: bool,
+                    taskOrRfe: taskOrRfe
                 }
             });
-        };
-
-
-        this.watch2 = function(scope, task) {
-            var props = ['days', 'status', 'priority', 'severity', 'category', 'version', 'tofixin', 'fixedin', 'assignTo'];
-            var oldTaskValues = angular.copy(task);
-            angular.forEach(props, function(value, index) {
-                if (scope.task[value]) {
-                    scope.task.changes[value] = {
-                        'from': oldTaskValues[value],
-                        'to': scope.task[value]
-                    };
-                }
-            });
-        };
-
-        this.watch = function(scope, object) {
-            scope.$watch(object, function() {
-                if (scope[object] !== undefined) {
-                    var note = object + ' changed from ' + scope.task[object] + ' to ' + scope[object];
-                    console.log(note);
-                    scope.task[object] = scope.task[object];
-                }
-            }, true);
-
-
         };
 
     }

@@ -663,7 +663,7 @@ exports.getParentAndSubTasks = function(req, res) {
 
 exports.toggleTaskListInclusion = function(req, res) {
     var taskOrRfe = req.body.taskOrRfe || 'task';
-    var uri = '/' + req.body.taskOrRfe + '/' + req.body.id + '/' + req.body.id + '.json';
+    var uri = '/' + taskOrRfe + '/' + req.body.id + '/' + req.body.id + '.json';
     db.documents.patch(uri, p.replace('/includeInTaskList', req.body.includeInTaskList)).result(function(response) {
         res.status(200).json({
             message: 'Task updated'
