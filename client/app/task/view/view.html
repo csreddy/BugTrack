@@ -178,6 +178,7 @@
         <accordion-group is-open="accordion.status.isFirstOpen" style="cursor:pointer">
             <accordion-heading><i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;Engineering Task List</accordion-heading>
             <form class="form-horizontal">
+                <span><p ng-bind-html="message" class="text-green"></p></span>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="headline">Show in Task List</label>
                     <div class="col-md-6">
