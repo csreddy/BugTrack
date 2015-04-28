@@ -575,6 +575,10 @@ body > .header .logo .icon {
     }
 }
 @media (max-width: 767px) {
+     body {
+        padding-top: 100px;
+    }
+    
     .navbar .navbar-nav > li {
         float: left;
     }
@@ -592,6 +596,9 @@ body > .header .logo .icon {
     }
 }
 @media screen and (max-width: 560px) {
+    body {
+        padding-top: 100px;
+    }
     body > .header {
         position: relative;
     }
