@@ -16,6 +16,9 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
 
             $scope.config = {};
             $scope.config = config.data;
+             // sort users
+            $scope.config.users = _.sortBy($scope.config.users, 'name');
+            
             $scope.submittedBy = currentUser;
             $scope.support = {};
             $scope.associatedTask = {};
