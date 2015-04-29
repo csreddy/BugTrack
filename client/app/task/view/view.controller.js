@@ -6,7 +6,11 @@ angular.module('task.controllers')
         function($scope, $location, $timeout, $q, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress) {
 
             $scope.changes = {};
-            $scope.updatedBy = currentUser || {};
+            $scope.updatedBy = {
+                username: currentUser.username,
+                name: currentUser.name,
+                email: currentUser.email
+            };
             $scope.showSubscribe = true;
             $scope.showUnsubscribe = false;
             $scope.config = config.data || {};

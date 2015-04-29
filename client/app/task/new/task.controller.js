@@ -9,6 +9,11 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                 startDate: stringify(new Date()),
                 endDate: ''
             };
+            $scope.submittedBy = {
+                username: currentUser.username,
+                name: currentUser.name,
+                email: currentUser.email
+            };
             $scope.config = {};
             $scope.config = config.data;
             $scope.accordion = {};
@@ -140,7 +145,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                         'Documentation Task': []
                     };
                     task.subTasks = [];
-                    task.tags = [$scope.task.category, $scope.task.assignTo.username, $scope.task.submittedBy.username];
+                    task.tags = [task.category, task.assignTo.username, task.submittedBy.username];
                     task.createdAt = new Date();
                     task.modifiedAt = new Date();
                     task.changeHistory = [];
