@@ -58,52 +58,31 @@ angular.module('fullstackApp')
                     ],
                     defaultSearchCriteria: [
                         function() {
+                            console.log(this);
                             var criteria = {
                                 kind: 'Bug',
-                                status: [{
-                                    name: 'New',
-                                    selected: false
-                                }, {
-                                    name: 'Verify',
-                                    selected: false
-                                }, {
-                                    name: 'Test',
-                                    selected: false
-                                }, {
-                                    name: 'Fix',
-                                    selected: false
-                                }, {
-                                    name: 'Ship',
-                                    selected: false
-                                }, {
-                                    name: 'Closed',
-                                    selected: false
-                                }, {
-                                    name: 'Will not fix',
-                                    selected: false
-                                }, {
-                                    name: 'External',
-                                    selected: false
-                                }],
-                                severity: [{
-                                    name: 'P1 - Catastrophic',
-                                    selected: false
-                                }, {
-                                    name: 'P2 - Critical',
-                                    selected: false
-                                }, {
-                                    name: 'P3 - Major',
-                                    selected: false
-                                }, {
-                                    name: 'P4 - Minor',
-                                    selected: false
-                                }, {
-                                    name: 'P5 - Aesthetic',
-                                    selected: false
-                                }, {
-                                    name: 'Performance',
-                                    selected: false
-                                }],
+                                status: (function () {
+                                    var statuses = ['New', 'Verify', 'Test', 'Fix', 'Ship', 'Closed', 'Will not fix', 'External', 'Duplicate', 'Not a bug']
+                                    var statusCheckboxes = [];
+                                    _.forEach(statuses, function(status, index) {
+                                           statusCheckboxes[index] = {
+                                            name: status,
+                                            selected: false
+                                           }; 
+                                    });
+                                    return statusCheckboxes;
+                                })(),
+                                severity: (function () {
+                                    var severities = ['P1 - Catastrophic', 'P2 - Critical', 'P3 - Major', 'P4 - Minor', 'P5 - Aesthetic', 'Performance']
+                                    var severityCheckboxes = [];
+                                    _.forEach(severities, function(severity, index) {
+                                           severityCheckboxes[index] = {
+                                            name: severity,
+                                            selected: false
+                                           }; 
+                                    });
+                                    return severityCheckboxes;
+                                })(),
                                 q: null,
                                 facets: {},
                                 assignTo: null,

@@ -29,7 +29,7 @@
   -->
                     <td>
                         <select id="status" ng-model="status" name="status" type="text" class="form-control input-sm">
-                            <option ng-repeat="status in config.status.sort()" ng-selected="status === bug.status" value="{{status}}">
+                            <option ng-repeat="status in config.status" ng-selected="status === bug.status" value="{{status}}">
                                 {{status}}
                             </option>
                         </select>
