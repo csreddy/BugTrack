@@ -171,6 +171,7 @@ angular.module('bug.controllers')
                 clone.bug.changeHistory.push({
                     'time': cloneTime,
                     'updatedBy': $scope.updatedBy,
+                    'change':{},
                     'comment': "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span></span> Cloned from " + "<a href='/bug/" + id + "'>Bug-" + id + "</a>"
                 });
 
