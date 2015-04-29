@@ -6,7 +6,12 @@ angular.module('bug.controllers')
         function($scope, $location, Bug, clones, config, Flash, currentUser, modalService, $q, ngProgress) {
             $location.search({}); // clear query params from url when navigating from search page
             $scope.changes = {};
-            $scope.updatedBy = currentUser || {};
+            $scope.updatedBy = {
+                username: currentUser.username,
+                name: currentUser.name,
+                email: currentUser.email
+            } || {};
+
             $scope.showSubscribe = true;
             $scope.showUnsubscribe = false;
             $scope.config = config.data || {};
@@ -65,10 +70,10 @@ angular.module('bug.controllers')
 
                     // Flash.addAlert('success', 'opened ' + uri);
 
-                      // watch for fields in modal form
-                   $scope.$on('newItem', function(event, newItem) {
+                    // watch for fields in modal form
+                    $scope.$on('newItem', function(event, newItem) {
                         $scope.newClone = newItem;
-                   });   
+                    });
                 },
                 function(error) {
                     if (error.status === 404) {
@@ -151,7 +156,9 @@ angular.module('bug.controllers')
                     actionButtonText: 'Clone',
                     headerText: 'Clone Bug-' + id,
                     bodyText: '',
-                    scope: {config: $scope.config}
+                    scope: {
+                        config: $scope.config
+                    }
                 };
 
                 console.log('cloning ' + id);

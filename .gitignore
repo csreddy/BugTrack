@@ -6,3 +6,4 @@ client/bower_components
 dist
 uploads/*
 error-log.txt
+npm-debug.log
