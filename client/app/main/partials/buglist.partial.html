@@ -2,7 +2,7 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">{{totalItems.all}} Bugs <small ng-if="searchMetrics['total-time'] > 0">({{searchMetrics['total-time']}})</small>
-            <select name="pagelength" id="pagelength" ng-model="form.pageLength" ng-change="userPref.setPageLength(form.pageLength)" ng-options="length for length in pageLengthOptions" class="input-xsm" tooltip-trigger tooltip-placement="right" tooltip="items per page">
+            <select name="pagelength" id="pagelength" ng-model="form.pageLength" ng-change="userPref.setPageLength(form.pageLength)" ng-options="length for length in pageLengthOptions" class="input-xsm" tooltip-animation="false" tooltip-trigger tooltip-placement="right" tooltip="items per page">
             </select>
             </h3>
             <div class="box-tools pull-right">
@@ -12,8 +12,8 @@
                     </div>
                     <div class="form-group">
                         <div class="btn-group-vertical btn-group-xs">
-                            <label class="btn" ng-model="userPref.doubleRowTable" ng-change="userPref.setTableStyle(1)" btn-radio="'1'" tooltip-trigger tooltip-placement="top" tooltip="1 row table">&nbsp;<i class="fa fa-minus"></i>&nbsp;</label>
-                            <label class="btn" ng-model="userPref.doubleRowTable" ng-change="userPref.setTableStyle(2)" btn-radio="'2'" tooltip-trigger tooltip-placement="bottom" tooltip="2 row table"><i class="fa"><b style="font-size:16px">&nbsp;=&nbsp;</b></i></i>
+                            <label class="btn" ng-model="userPref.doubleRowTable" ng-change="userPref.setTableStyle(1)" btn-radio="'1'" tooltip-trigger tooltip-animation="false" tooltip-placement="top" tooltip="1 row table">&nbsp;<i class="fa fa-minus"></i>&nbsp;</label>
+                            <label class="btn" ng-model="userPref.doubleRowTable" ng-change="userPref.setTableStyle(2)" btn-radio="'2'" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" tooltip="2 row table"><i class="fa"><b style="font-size:16px">&nbsp;=&nbsp;</b></i></i>
                             </label>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody class="animate-repeat" ng-repeat="bug in bugs track by bug.id | filter:searchbug">
+                <tbody class="animate-repeat" ng-repeat="bug in bugs | filter:searchbug track by bug.id">
                     <tr>
                         <td><a ng-href="/bug/{{bug.id}}">{{::bug.id}}</a>
                         </td>
@@ -92,7 +92,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tr class="animate-repeat" ng-repeat="bug in bugs track by bug.id | filter:searchbug">
+                <tr class="animate-repeat" ng-repeat="bug in bugs | filter:searchbug track by bug.id">
                     <td><a ng-href="/bug/{{bug.id}}">{{::bug.id}}</a>
                     </td>
                     <td style="max-width:120px" class="hidden-xs">{{::bug.severity}}</td>
@@ -104,7 +104,7 @@
                     <td style="max-width:70px" class="hidden-xs">{{::bug.tofixin}}</td>
                     <td class="hidden-xs">{{::bug.status}}</td>
                     <td style="max-width:200px" class="hidden-xs">{{::bug.assignTo.username}}</td>
-                    <td style="max-width: 300px" tooltip-trigger tooltip-placement="top" tooltip="{{bug.title}}">{{::bug.title}}</td>
+                    <td style="max-width: 300px" tooltip-animation="false" tooltip-trigger tooltip-placement="top" tooltip="{{bug.title}}">{{::bug.title}}</td>
                 </tr>
             </table>
         </div>

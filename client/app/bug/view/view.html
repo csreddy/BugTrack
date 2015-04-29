@@ -1,5 +1,5 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="col-xs-12 col-sm-4 col-md-3 pull-left">
+<div class="col-xs-12 col-sm-4 col-md-3 pull-left" id="infobox" ng-show="true">
     <div class="panel panel-info">
         <div class="panel-heading" style="height: 40px">
             <div class="pull-left">
@@ -9,12 +9,12 @@
             </h3>
             </div>
             <div class="pull-right" ng-show="showSubscribe">
-                <a class="pointer" tooltip="Subscribe" ng-click="subscribe()">
+                <a class="pointer" tooltip-animation="false" tooltip-trigger tooltip-placement="right" tooltip="Subscribe" ng-click="subscribe()">
                     <span class="glyphicon glyphicon-star-empty"></span>
                 </a>
             </div>
             <div class="pull-right" ng-show="showUnsubscribe">
-                <a class="pointer" tooltip="Unsubscribe" ng-click="unsubscribe()">
+                <a class="pointer" tooltip-animation="false" tooltip-trigger tooltip="Unsubscribe" tooltip-placement="right" ng-click="unsubscribe()">
                     <span class="glyphicon glyphicon-star"></span>
                 </a>
             </div>

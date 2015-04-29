@@ -22,7 +22,7 @@
                                 <li><a href="#" ng-click="saveQuery()"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Save Query</a></li>
                                  <li class="divider"></li>
                                  <li disabled><h5><small>&nbsp;&nbsp;&nbsp;Saved Queries</small></h5></li>
-                                       <li ng-repeat="(queryName, value) in currentUser.savedQueries"><a href="#" ng-click="selectUserQuery(value.query)" tooltip-trigger tooltip-placement="right" tooltip="{{value.description}}">{{queryName}}</a></li>
+                                       <li ng-repeat="(queryName, value) in currentUser.savedQueries"><a href="#" ng-click="selectUserQuery(value.query)" tooltip-animation="false" tooltip-trigger tooltip-placement="right" tooltip="{{value.description}}">{{queryName}}</a></li>
                             </ul>
                         </div>
                     </div>

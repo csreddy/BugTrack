@@ -54,7 +54,7 @@
     <![endif]-->
     <!-- Add your site or application content here -->
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" ng-bind-html="alert.msg" close="closeAlert($index)"></alert>
-  <!--   <b>watch count: {{watch}}</b> -->
+    <b>watch count: {{watch}}</b>
     <div ng-view="" class="container-fluid">
     </div>
     <div class="site-footer">Powered by <a href="http://developer.marklogic.com/" target="_window">MarkLogic 8</a></div>

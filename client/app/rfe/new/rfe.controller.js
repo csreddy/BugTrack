@@ -122,7 +122,7 @@ angular.module('rfe.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                         'Documentation Task': []
                     };
                     rfe.subTasks = [];
-                    rfe.tags = [$scope.rfe.category, $scope.rfe.assignTo.username, $scope.rfe.submittedBy.username];
+                    rfe.tags = [$scope.rfe.category, rfe.assignTo.username, rfe.submittedBy.username];
                     rfe.createdAt = new Date();
                     rfe.modifiedAt = new Date();
                     rfe.changeHistory = [];

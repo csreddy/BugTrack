@@ -12,8 +12,8 @@
                     </div>
                     <div class="form-group">
                         <div class="btn-group-vertical btn-group-xs">
-                            <label class="btn" ng-model="userPref.doubleRowTable" ng-change="userPref.setTableStyle(1)" btn-radio="'1'" tooltip-trigger tooltip-placement="top" tooltip="1 row table">&nbsp;<i class="fa fa-minus"></i>&nbsp;</label>
-                            <label class="btn" ng-model="userPref.doubleRowTable" ng-change="userPref.setTableStyle(2)" btn-radio="'2'" tooltip-trigger tooltip-placement="bottom" tooltip="2 row table"><i class="fa"><b style="font-size:16px">&nbsp;=&nbsp;</b></i></i>
+                            <label class="btn" ng-model="userPref.doubleRowTable" ng-change="userPref.setTableStyle(1)" btn-radio="'1'" tooltip-trigger tooltip-animation="false" tooltip-placement="top" tooltip="1 row table">&nbsp;<i class="fa fa-minus"></i>&nbsp;</label>
+                            <label class="btn" ng-model="userPref.doubleRowTable" ng-change="userPref.setTableStyle(2)" btn-radio="'2'" tooltip-animation="false" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" tooltip="2 row table"><i class="fa"><b style="font-size:16px">&nbsp;=&nbsp;</b></i></i>
                             </label>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             </th>
                         </tr>
                     </thead>
-                <tbody class="animate-repeat" ng-repeat="task in tasks track by task.id | filter:searchtask">
+                <tbody class="animate-repeat" ng-repeat="task in tasks | filter:searchtask track by task.id ">
                         <tr>
                             <td><a ng-href="/task/{{task.id}}">{{::task.id}}</a>
                             </td>
@@ -64,7 +64,7 @@
                             <td style="max-width:200px" class="hidden-xs">{{::task.subTasks.length}}</td>
                         </tr>
                         <tr>
-                            <td>{{::task.title}}</td>
+                              <td colspan=9 style="max-width: 300px">{{::task.title}}</td>
                         </tr>
                     </tbody>
             </table>
@@ -96,7 +96,7 @@
                             </th>
                         </tr>
                     </thead>
-                <tr class="animate-repeat" ng-repeat="task in tasks track by task.id  | filter:searchtask">
+                <tr class="animate-repeat" ng-repeat="task in tasks | filter:searchtask track by task.id">
                         <td><a ng-href="/task/{{task.id}}">{{::task.id}}</a>
                         </td>
                         <td style="max-width:120px" class="hidden-xs">{{::task.severity}}</td>
@@ -109,7 +109,7 @@
                         <td class="hidden-xs">{{::task.status}}</td>
                         <td class="hidden-xs">{{::task.subTasks.length}}</td>
                         <td style="max-width:200px" class="hidden-xs">{{::task.assignTo.username}}</td>
-                        <td style="max-width: 300px" tooltip-trigger tooltip-placement="top" tooltip="{{task.title}}">{{::task.title}}</td>
+                        <td style="max-width: 240px" tooltip-animation="false" tooltip-trigger tooltip-placement="top" tooltip="{{task.title}}">{{::task.title}}</td>
                     </tr>
             </table>
         </div>
