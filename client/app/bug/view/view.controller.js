@@ -181,8 +181,6 @@ angular.module('bug.controllers')
                 } else {
                     console.warn('clone of', $scope.bug.cloneOf);
                     modalService.showModal({}, modalOptions).then(function() {
-
-
                         var cloneOps = [Bug.count().then(function(response) {
                             newBugId = parseInt(response.data.count) + 1;
                             clone.bug.id = newBugId;
@@ -198,8 +196,8 @@ angular.module('bug.controllers')
                                 ngProgress.complete();
                                 console.log('bug details ', clone.bug);
                                 //  console.log('----', $scope.updatedBy);
-                                $location.path('/bug/' + newBugId);
-                                Flash.addAlert('success', '<a href=\'/#/bug/' + clone.bug.id + '\'>' + 'Bug-' + clone.bug.id + '</a>' + ' was successfully cloned');
+                              //  $location.path('/bug/' + newBugId);
+                                Flash.addAlert('success', '<a href=\'/bug/' + clone.bug.id + '\'>' + 'Bug-' + clone.bug.id + '</a>' + ' was successfully cloned');
                             },
                             function(error) {
                                 ngProgress.complete();
