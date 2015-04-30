@@ -6,6 +6,14 @@
     <div class="col-md-12">
         {{modalOptions.scope.taskTitle}}
         <form name="modalForm">
+<!-- when editing bug title -->
+<div ng-if="modalOptions.scope.editTitle">
+    <div class="form-group">
+        <textarea class="form-control" name="newTitle" value="{{editTitle.newTitle}}" placeholder="" ng-model="editTitle.newTitle" ng-init="editTitle.newTitle = modalOptions.scope.oldTitle" rows="3" required></textarea>
+    </div>
+</div>
+
+
 <!--  when setting duplicate bug  -->
         <div ng-if="modalOptions.scope.duplicate">
              <div class="form-group">

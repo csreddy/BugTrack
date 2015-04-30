@@ -24,9 +24,6 @@
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Status</b>
                     </td>
-                    <!-- 
-  <td colspan="" rowspan="" ng-model="status" editable-select="bug.status" e-ng-options="s as s for s in config.status" onbeforesave="updateStatus($data)">{{bug.status}}</td>
-  -->
                     <td>
                         <select id="status" ng-model="status" name="status" type="text" class="form-control input-sm">
                             <option ng-repeat="status in config.status" ng-selected="status === bug.status" value="{{status}}">

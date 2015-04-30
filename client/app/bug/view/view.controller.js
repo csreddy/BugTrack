@@ -86,59 +86,91 @@ angular.module('bug.controllers')
 
                 });
 
+            // watch for bug title
+            $scope.$on('editTitle', function(event, newTitle) {
+                updateBug.title = newTitle;
+            });
+
             // watch for certain bug fields which must accompany with a comment
             $scope.$on('originalBug', function(event, originalBug) {
-                        $scope.newcomment = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span></span> This is Duplicate of " + "<a href='/bug/" + originalBug.id + "'>Bug-" + originalBug.id + "</a>\n" + originalBug.comment
-                    });
-             
-              // watch for certain bug fields which must accompany with a comment
+                $scope.newcomment = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span></span> This is Duplicate of " + "<a href='/bug/" + originalBug.id + "'>Bug-" + originalBug.id + "</a>\n" + originalBug.comment
+            });
+
+            // watch for certain bug fields which must accompany with a comment
             $scope.$on('notABug', function(event, comment) {
-                        $scope.newcomment = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span></span> This is Not a Bug \n" + comment;
-                    });   
-            
+                $scope.newcomment = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span></span> This is Not a Bug \n" + comment;
+            });
+
             // certain status requires comment or some other update
             // below cases covers them and applies rules accordingly
             $scope.$watch('status', function() {
                 var modalOptions = {
-                        closeButtonText: 'Cancel',
-                        actionButtonText: 'Submit',
-                        bodyText: '',
-                    };
-                switch($scope.status){
+                    closeButtonText: 'Cancel',
+                    actionButtonText: 'Submit',
+                    bodyText: '',
+                };
+                switch ($scope.status) {
                     case 'Duplicate':
-                    modalOptions.headerText = 'Original Bug Id';
-                    modalOptions.scope = {duplicate: true};
-                    modalService.showModal({
-                      //  templateUrl: 'components/modal/partials/duplicate.modal.html'
-                    }, modalOptions).then(function() {
-                        $scope.updateBug();
-                    }, function() {
-                        // revert status
-                        $scope.status = $scope.bug.status;
-                        // clear pre-generated comment when cancelled
-                        $scope.newcomment = '';
+                        modalOptions.headerText = 'Original Bug Id';
+                        modalOptions.scope = {
+                            duplicate: true
+                        };
+                        modalService.showModal({
+                            //  templateUrl: 'components/modal/partials/duplicate.modal.html'
+                        }, modalOptions).then(function() {
+                            $scope.updateBug();
+                        }, function() {
+                            // revert status
+                            $scope.status = $scope.bug.status;
+                            // clear pre-generated comment when cancelled
+                            $scope.newcomment = '';
 
-                    });
-                    break;
-                 case 'Not a bug':
-                 console.log('inside not a bug');
-                 modalOptions.headerText = 'Not A Bug';
-                 modalOptions.scope = {notABug: true};
-                 modalService.showModal({}, modalOptions).then(function() {
-                        $scope.updateBug();
-                    }, function() {
-                         // revert status
-                        $scope.status = $scope.bug.status;
-                        // clear pre-generated comment when cancelled
-                        $scope.newcomment = '';
-                    });
-                 break;
-                  default:
-                  // do nothing  
+                        });
+                        break;
+                    case 'Not a bug':
+                        console.log('inside not a bug');
+                        modalOptions.headerText = 'Not A Bug';
+                        modalOptions.scope = {
+                            notABug: true
+                        };
+                        modalService.showModal({}, modalOptions).then(function() {
+                            $scope.updateBug();
+                        }, function() {
+                            // revert status
+                            $scope.status = $scope.bug.status;
+                            // clear pre-generated comment when cancelled
+                            $scope.newcomment = '';
+                        });
+                        break;
+                    default:
+                        // do nothing  
                 }
-               
+
             });
 
+            $scope.editTitle = function() {
+                var modalOptions = {
+                    closeButtonText: 'Cancel',
+                    actionButtonText: 'Submit',
+                    bodyText: '',
+                    headerText: 'Edit bug title',
+                    scope: {
+                        editTitle: true,
+                        oldTitle: $scope.bug.title
+                    }
+                };
+                modalService.showModal({}, modalOptions).then(function() {
+                    if (updateBug.title === $scope.bug.title) {
+                        Flash.addAlert(null, 'Did not update because there was no chnage in the title');
+                    } else{
+                      $scope.newcomment = '';
+                        $scope.updateBug();
+                    }
+
+                }, function() {
+                    // do nothing
+                });
+            };
 
             //an array of files selected
             $scope.files = [];

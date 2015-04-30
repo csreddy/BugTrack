@@ -64,6 +64,7 @@ app.service('modalService', ['$modal',
 
                     $scope.originalBug = {id: null, comment: ''};
                     $scope.notABug = {comment: ''};
+                    $scope.editTitle = {newTitle: null};
 
                     $scope.$watch('newItem', function() {
                         //console.log('newSubTask', $scope.newSubTask);
@@ -83,6 +84,11 @@ app.service('modalService', ['$modal',
                    $scope.$watch('notABug', function() {
                       //  console.log('notABug',$scope.notABug);
                         $rootScope.$broadcast('notABug', $scope.notABug.comment);
+                   }, true);
+
+                   $scope.$watch('editTitle', function() {
+                       // console.log('editTitle',$scope.editTitle);
+                        $rootScope.$broadcast('editTitle', $scope.editTitle.newTitle);
                    }, true);
 
                 };

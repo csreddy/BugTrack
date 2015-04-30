@@ -192,6 +192,15 @@ exports.update = function(req, res) {
 
     for (var prop in to) {
         switch (prop) {
+            case 'title':
+                if (from.title !== to.title) {
+                    updates.push(p.replace('/title', to.title));
+                    changes.change.title = {
+                        from: from.title,
+                        to: to.title
+                    };
+                }
+                break;
             case 'status':
                 if (from.status !== to.status) {
                     updates.push(p.replace('/status', to.status));
