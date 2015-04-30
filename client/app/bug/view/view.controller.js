@@ -110,11 +110,14 @@ angular.module('bug.controllers')
                     modalOptions.scope = {duplicate: true};
                     modalService.showModal({
                       //  templateUrl: 'components/modal/partials/duplicate.modal.html'
-                    }, modalOptions ).then(function() {
+                    }, modalOptions).then(function() {
                         $scope.updateBug();
                     }, function() {
+                        // revert status
+                        $scope.status = $scope.bug.status;
                         // clear pre-generated comment when cancelled
                         $scope.newcomment = '';
+
                     });
                     break;
                  case 'Not a bug':
@@ -124,6 +127,8 @@ angular.module('bug.controllers')
                  modalService.showModal({}, modalOptions).then(function() {
                         $scope.updateBug();
                     }, function() {
+                         // revert status
+                        $scope.status = $scope.bug.status;
                         // clear pre-generated comment when cancelled
                         $scope.newcomment = '';
                     });
