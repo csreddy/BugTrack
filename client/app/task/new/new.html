@@ -6,15 +6,15 @@
                 <fieldset>
                     <legend class="text-center"><i class="fa fa-tasks"></i> New Task</legend>
                     <div class="form-group">
-                        <label class="col-md-2 control-label" for="name">Title</label>
+                        <label class="col-md-2 control-label" for="name">Title*</label>
                         <div class="col-md-9">
                             <input id="title" ng-model="task.title" name="task_title" type="text" placeholder="Task title" class="form-control" required />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label" for="name">Description</label>
+                        <label class="col-md-2 control-label" for="name">Description*</label>
                         <div class="col-md-9">
-                            <text-angular ta-toolbar="[['p','bold','pre', 'quote','italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="task.description" id="description" name="task_description" placeholder="Enter task description here..."></text-angular>
+                            <text-angular ta-toolbar="[['p','bold','pre', 'quote','italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="task.description" id="description" name="task_description" placeholder="Enter task description here..." required></text-angular>
                         </div>
                     </div>
                     <div class="form-group">
@@ -26,17 +26,17 @@
                                         <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Task info
                                     </accordion-heading>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label" for="severity">Severity</label>
+                                        <label class="col-md-2 control-label" for="severity">Severity*</label>
                                         <div class="col-md-3">
-                                            <select name="task_severity" id="task_severity" ng-model="task.severity" ng-options="severity for severity in config.severity" class="form-control input-sm">
+                                            <select name="task_severity" id="task_severity" ng-model="task.severity" ng-options="severity for severity in config.severity" class="form-control input-sm" required>
                                                 <option value="" selected></option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label" for="severity">Version</label>
+                                        <label class="col-md-2 control-label" for="severity">Version*</label>
                                         <div class="col-md-3">
-                                            <select name="task_version" id="task_version" ng-model="task.version" ng-options="version for version in config.version" class="form-control input-sm">
+                                            <select name="task_version" id="task_version" ng-model="task.version" ng-options="version for version in config.version" class="form-control input-sm" required>
                                                 <option value="" selected></option>
                                             </select>
                                         </div>
@@ -68,9 +68,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label" for="priority">Priority</label>
+                                        <label class="col-md-2 control-label" for="priority">Priority*</label>
                                         <div class="col-md-3">
-                                            <select name="task_priority" id="task_priority" ng-model="task.priority" ng-options="(priority.level + ' - ' + priority.title) for priority in config.priority" class="form-control input-sm">
+                                            <select name="task_priority" id="task_priority" ng-model="task.priority" ng-options="(priority.level + ' - ' + priority.title) for priority in config.priority" class="form-control input-sm" required>
                                                 <option value="" selected></option>
                                             </select>
                                         </div>
