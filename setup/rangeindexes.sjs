@@ -38,3 +38,12 @@ admin.saveConfiguration(config);
  var config = admin.databaseAddRangePathIndex(config, dbid, pathspec); 
  admin.saveConfiguration(config);
  }
+
+  var elements = ["last-modified"]
+  for (var i=0;i<elements.length; i++){
+ var config = admin.getConfiguration(); 
+ var dbid = xdmp.database("bugtrack"); 
+ var rangespec = admin.databaseRangeElementIndex("dateTime", "http://marklogic.com/xdmp/property", elements[i], "" ,false ); 
+ var config = admin.databaseAddRangeElementIndex(config, dbid, rangespec); 
+admin.saveConfiguration(config);
+     }
