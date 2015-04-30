@@ -69,3 +69,23 @@ li.ivh-treeview-node-leaf {
     padding-bottom: 10px;
   padding-right: 2px;
 }*/
+
+#historyMenu{
+    width: 600px
+}
+
+#historyItem > a> pre > p {
+    font-size: 10px;
+}
+
+#historyItem > a:hover, a:active, a:focus {
+    color: none;
+}
+
+#historyItem > a > pre {
+    font-size: 10px;
+    margin: 0 0 0 0px;
+    padding:5px;
+    border: 0px solid #ccc;
+    border-radius: 5px;
+}

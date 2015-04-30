@@ -66,6 +66,14 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             content: $scope.rfes
         }];
 
+        // if last5Searches does not exist then assign empty array
+        try {
+            $scope.searchHistory = JSON.parse($window.localStorage.last5Searches);
+        } catch (e) {
+            $scope.searchHistory = [];
+        }
+
+
         // for calendar   
         $scope.cal = {
             open: function(when, $event) {
@@ -85,7 +93,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 // set form selections according to url query params
                 search($location.search());
                 $scope.form = convertSearchParamsIntoFormSelections($location.search());
-                
+
 
                 // due to pagination directive bug, current page number does not get higlighted when 
                 // browser back/fwd is clicked. This is a hack to fix it.
@@ -112,7 +120,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     assignTo: currentUser.username,
                     status: ['-Closed', '-External', '-Will not fix'],
                     pageLength: $scope.form.pageLength,
-                    page:1
+                    page: 1
                 };
             }
 
@@ -165,8 +173,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
 
         $scope.mainSearch = function() {
             console.log('SCOPE.FORM', $scope.form);
+            var queryParams = convertFormSelectionsToQueryParams();
             $scope.isPaginationEvent = false;
-            $location.search(convertFormSelectionsToQueryParams());
+            $location.search(queryParams);
             $location.search('page', 1); // start from page 1 for every search
             $scope.form.pageLength = $window.localStorage.pageLength || '50';
             $location.search('pageLength', $scope.form.pageLength);
@@ -189,6 +198,14 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 $scope.tabs[2].active = true;
             }
 
+            // push to search history
+            if ($scope.searchHistory.length === 5) {
+                $scope.searchHistory.pop();
+            }
+
+            $scope.searchHistory.push(queryParams);
+            $s
+            $window.localStorage.last5Searches = JSON.stringify($scope.searchHistory);
         };
 
 
@@ -211,7 +228,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             ngProgress.start();
             return Search.search($location.search({
                 status: ['-Closed', '-External', '-Will not fix'],
-                page:1,
+                page: 1,
                 pageLength: $window.localStorage.pageLength || '50'
             })).success(function(response) {
                 processResult(response);
@@ -458,9 +475,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     pageLength: $window.localStorage.pageLength || '50',
                     page: 1
                 });
-            } 
-    
-             if ($location.url().indexOf('/home') > -1) {
+            }
+
+            if ($location.url().indexOf('/home') > -1) {
                 $scope.currentPage = $location.search().page || 1;
 
                 // due to pagination directive bug, current page number does not get higlighted when 
@@ -544,7 +561,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 }
 
                 console.log('RESULT', response[0].report);
-               // console.log('scope.form.groups', $scope.form.groups);
+                // console.log('scope.form.groups', $scope.form.groups);
                 //console.log('search', response);
                 ngProgress.complete();
             }).error(function(error) {
