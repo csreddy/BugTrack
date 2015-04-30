@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('bug.controllers')
-    .controller('viewCtrl', ['$scope', '$location', 'Bug', 'clones', 'config', 'Flash', 'currentUser', 'modalService', '$q', 'ngProgress',
+    .controller('viewCtrl', ['$scope', '$location', '$window', 'Bug', 'clones', 'config', 'Flash', 'currentUser', 'modalService', '$q', 'ngProgress',
 
-        function($scope, $location, Bug, clones, config, Flash, currentUser, modalService, $q, ngProgress) {
+        function($scope, $location, $window, Bug, clones, config, Flash, currentUser, modalService, $q, ngProgress) {
             $location.search({}); // clear query params from url when navigating from search page
             $scope.changes = {};
             $scope.updatedBy = {
@@ -23,6 +23,25 @@ angular.module('bug.controllers')
                 open: true
             };
             $scope.clones = clones.data;
+            
+            // check if this preference is stored in localStorage before
+            // otherwise set the defaults
+            try {
+                if($window.localStorage.showCompactInfoBox){
+                    $scope.sideBar =  false;
+                    $scope.compactInfoBox = true;
+                }else{
+                 $scope.sideBar = true;
+                 $scope.compactInfoBox = false;   
+                } 
+            } catch (e) {
+                // defaults
+                 $scope.sideBar = true;
+                 $scope.compactInfoBox = false;
+            }
+
+
+
             var updateBug;
             var id = $location.path().replace('/bug/', '');
 
@@ -162,8 +181,8 @@ angular.module('bug.controllers')
                 modalService.showModal({}, modalOptions).then(function() {
                     if (updateBug.title === $scope.bug.title) {
                         Flash.addAlert(null, 'Did not update because there was no chnage in the title');
-                    } else{
-                      $scope.newcomment = '';
+                    } else {
+                        $scope.newcomment = '';
                         $scope.updateBug();
                     }
 
@@ -182,6 +201,21 @@ angular.module('bug.controllers')
                     $scope.files.push(args.file);
                 });
             });
+
+            // show sidebar
+            $scope.showSidebar = function() {
+                $scope.compactInfoBox = false;
+                $scope.sideBar = true;
+                delete  $window.localStorage.showCompactInfoBox;
+            };
+
+            // show compact info box
+            $scope.showCompactInfoBox = function() {
+                $scope.compactInfoBox = true;
+                $scope.sideBar = false;
+                $window.localStorage.showCompactInfoBox = 'true';
+            };
+
 
             // update bug 
             $scope.updateBug = function() {

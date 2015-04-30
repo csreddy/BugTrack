@@ -3,10 +3,7 @@
     <div class="panel panel-info">
         <div class="panel-heading" style="height: 40px">
             <div class="pull-left">
-                <h3 class="panel-title">
-                <i class="fa fa-tasks"></i>
-            <a ng-href="/task/{{task.id}}">Task -  {{task.id}}</a>
-            </h3>
+                 <label class="panel-title"><i class="fa fa-tasks"></i> {{task.kind}} -  {{task.id}}</label>
             </div>
             <div class="pull-right" ng-show="showSubscribe">
                 <a class="pointer" tooltip-trigger tooltip-animation="false" tooltip-placement="right" tooltip="Subscribe" ng-click="subscribe()">

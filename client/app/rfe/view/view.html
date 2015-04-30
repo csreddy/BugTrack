@@ -3,10 +3,7 @@
     <div class="panel panel-info">
         <div class="panel-heading" style="height: 40px">
             <div class="pull-left">
-                <h3 class="panel-title">
-                <i class="fa fa-briefcase"></i>
-            <a ng-href="/rfe/{{rfe.id}}">RFE -  {{rfe.id}}</a>
-            </h3>
+                 <label class="panel-title"><i class="fa fa-briefcase"></i> {{rfe.kind}} -  {{rfe.id}}</label>
             </div>
             <div class="pull-right" ng-show="showSubscribe">
                 <a class="pointer" tooltip-animation="false" tooltip-trigger tooltip="Unsubscribe" tooltip-placement="right" tooltip="subscribe" ng-click="subscribe()">
