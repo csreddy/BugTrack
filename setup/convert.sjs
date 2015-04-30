@@ -369,17 +369,22 @@ function convertBug(doc) {
           }
 
         newbug.attachments = []
-        if((typeof bug.attachments) == 'Array'){
-            if (bug.attachments.attachment.length > 0) {
-                for (var att of bug.attachments.attachment)
-                {
-                    newbug.attachments.push({
-                        name: att.name,
-                        uri: att._value
-                    })
+        try{
+            if((bug.attachments.attachment instanceof Array)){
+                xdmp.log('attachments')
+                if (bug.attachments.attachment.length > 0) {
+                    for(var att=0; att<bug.attachments.attachment.length; att++){
+                        newbug.attachments.push({
+                            name: bug.attachments.attachment[att].name,
+                            uri: bug.attachments.attachment[att]._value
+                        })
+                    }
                 }
             }
+        }catch(e){
+           // nothing
         }
+
 
 
         if (bug.relationships) {
@@ -478,7 +483,7 @@ function convertBug(doc) {
             }
 
             if (comment['comment-text']) {
-                change.comment = comment['comment-text'] || '';
+                change.comment = "<p><pre id='description'>" + htmlEncode(comment['comment-text']) + "</pre></p>" || ''
                 change.show = true;
             }
 
@@ -605,19 +610,22 @@ function convertTask(doc) {
         }
 
         newbug.attachments = []
-        if ((typeof bug.attachments) == 'Array') {
-            if (bug.attachments.attachment.length > 0) {
-                for (var att of
-                bug.attachments.attachment
-            )
-                {
-                    newbug.attachments.push({
-                        name: att.name,
-                        uri: att._value
-                    })
+        try{
+            if((bug.attachments.attachment instanceof Array)){
+                xdmp.log('attachments')
+                if (bug.attachments.attachment.length > 0) {
+                    for(var att=0; att<bug.attachments.attachment.length; att++){
+                        newbug.attachments.push({
+                            name: bug.attachments.attachment[att].name,
+                            uri: bug.attachments.attachment[att]._value
+                        })
+                    }
                 }
             }
+        }catch(e){
+            // nothing
         }
+
 
         try{
            if(bug.relationships.relation.to){
@@ -706,7 +714,7 @@ function convertTask(doc) {
             }
 
             if (comment['comment-text']) {
-                change.comment = comment['comment-text'] || '';
+                change.comment = "<p><pre id='description'>" + htmlEncode(comment['comment-text']) + "</pre></p>" || ''
                 change.show = true;
             }
 
@@ -738,10 +746,15 @@ function convert(doc){
 
 var uris = [];
 for (var id=1; id<=33000; id++){
-   uris.push("root/support/bugtracking/bug"+ id +".xml");
+    uris.push("root/support/bugtracking/bug"+ id +".xml");
 }
 
+/*uris = [];
+for(var i=0; i<ids.length; i++){
+   // uris[i] = "root/support/bugtracking/bug"+ ids[i] +".xml";
+}*/
 
+uris = ["root/support/bugtracking/bug29100.xml"];
 for (var i=0; i< uris.length; i++){
     if(fn.exists(cts.doc(uris[i]))){
         try{

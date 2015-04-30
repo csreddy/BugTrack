@@ -6,41 +6,10 @@
     <div class="col-md-12">
         {{modalOptions.scope.taskTitle}}
         <form name="modalForm">
-<!--  when setting duplicate bug  -->
-        <div ng-if="modalOptions.scope.originalBug">
-             <div class="form-group">
-                  <input type="number" name="originalBug" value="{{originalBug.id}}" placeholder="Original Bug Id" ng-model="originalBug.id" class="form-control" required>
-             </div>
-
-             <div class="form-group">
-             <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="originalBug.comment" id="comment" name="comment" placeholder="Optional comment"></text-angular>
-             </div>
-        </div>
-
-<!-- when saving new query -->
-            <table class="table" ng-if="modalOptions.scope.newQuery">
+            <table class="table table-striped">
                 <tbody>
                     <tr>
-                        <td colspan="" rowspan="" class="hidden-md"><b>Name</b>
-                        </td>
-                        <td colspan="" rowspan="">
-                            <input type="text" ng-model="newQuery.name" value="{{newQuery.name}}" class="form-control" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="" rowspan="" class="hidden-md"><b>Description</b>
-                        </td>
-                        <td colspan="" rowspan="">
-                            <input type="text" ng-model="newQuery.description" value="{{newQuery.description}}" class="form-control">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <!--  when  creating subtask or procedural task -->
-            <table class="table table-striped" ng-if="modalOptions.scope.config">
-                <tbody>
-                    <tr>
-                        <td colspan="" rowspan="" class="hidden-md"><b>Assigned To</b>
+                        <td colspan="" rowspan="" class="hidden-md"><b>Assign To</b>
                         </td>
                         <td colspan="" rowspan="">
                             <select id="assignTo" ng-model="newItem.assignTo" name="assignTo" type="text" class="form-control input-sm" ng-options="user.name group by user.name[0] for user in modalOptions.scope.config.users" required>

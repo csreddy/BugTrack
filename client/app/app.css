@@ -578,7 +578,7 @@ body > .header .logo .icon {
      body {
         padding-top: 100px;
     }
-    
+
     .navbar .navbar-nav > li {
         float: left;
     }
@@ -3231,5 +3231,6 @@ Component: timeline
     margin: -48px 155px;
 }
 
-
-
+.modal-footer {
+    /*margin-top: 50px;*/
+}

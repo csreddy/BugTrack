@@ -156,7 +156,7 @@ app.service('Bug', ['$http',
             scope.$watch(object, function() {
                 if (scope[object] !== undefined) {
                     var note = object + ' changed from ' + scope.bug[object] + ' to ' + scope[object];
-                    console.log(note);
+                  //  console.log(note);
                     scope.changes[object] = {
                         'from': scope.bug[object],
                         'to': scope[object]

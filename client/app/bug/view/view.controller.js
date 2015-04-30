@@ -68,6 +68,7 @@ angular.module('bug.controllers')
                     Bug.watch($scope, 'fixedin');
                     Bug.watch($scope, 'assignTo');
 
+
                     // Flash.addAlert('success', 'opened ' + uri);
 
                     // watch for fields in modal form
@@ -84,6 +85,42 @@ angular.module('bug.controllers')
                     }
 
                 });
+
+            // watch for certain bug fields which must accompany with a comment
+            $scope.$on('originalBug', function(event, originalBug) {
+                        $scope.newcomment = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span></span> This is Duplicate of " + "<a href='/bug/" + originalBug.id + "'>Bug-" + originalBug.id + "</a>\n" + originalBug.comment
+                       // 'This is Duplicate of ' + '<a href=\'/bug/' + originalBug.id + '\'>' + 'Bug-' + originalBug.id + '</a>' + 
+                       // '\n'+ originalBug.comment;
+                    });
+                
+            
+            // certain status requires comment or some other update
+            // below cases covers them and applies rules accordingly
+            $scope.$watch('status', function() {
+                switch($scope.status){
+                    case 'Duplicate':
+                        var modalOptions = {
+                        closeButtonText: 'Cancel',
+                        actionButtonText: 'Submit',
+                        bodyText: '',
+                        headerText: 'Original Bug Id',
+                        scope: {originalBug: true}
+                    };
+                    modalService.showModal({
+                      //  templateUrl: 'components/modal/partials/duplicate.modal.html'
+                    }, modalOptions ).then(function() {
+                        $scope.updateBug();
+                    }, function() {
+                        // clear pre-generated comment when cancelled
+                        $scope.newcomment = '';
+                    });
+                    break;
+                  default:
+                  // do nothing  
+                }
+               
+            });
+
 
             //an array of files selected
             $scope.files = [];
@@ -171,7 +208,7 @@ angular.module('bug.controllers')
                 clone.bug.changeHistory.push({
                     'time': cloneTime,
                     'updatedBy': $scope.updatedBy,
-                    'change':{},
+                    'change': {},
                     'comment': "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span></span> Cloned from " + "<a href='/bug/" + id + "'>Bug-" + id + "</a>"
                 });
 
@@ -196,7 +233,7 @@ angular.module('bug.controllers')
                                 ngProgress.complete();
                                 console.log('bug details ', clone.bug);
                                 //  console.log('----', $scope.updatedBy);
-                              //  $location.path('/bug/' + newBugId);
+                                //  $location.path('/bug/' + newBugId);
                                 Flash.addAlert('success', '<a href=\'/bug/' + clone.bug.id + '\'>' + 'Bug-' + clone.bug.id + '</a>' + ' was successfully cloned');
                             },
                             function(error) {

@@ -9,9 +9,9 @@ app.service('modalService', ['$modal',
             backdrop: true,
             keyboard: true,
             modalFade: true,
-            templateUrl: 'components/modal/modal.html'
+            templateUrl: 'components/modal/modal.html',
         };
-
+ 
         var modalOptions = {
             showCloseButton: true,
             showActionButton: true,
@@ -19,17 +19,6 @@ app.service('modalService', ['$modal',
             actionButtonText: 'OK',
             headerText: 'Proceed?',
             bodyText: 'Perform this action?'
-        };
-
-        var alertModalDefaults = {
-            backdrop: true,
-            keyboard: true,
-            modalFade: true,
-            templateUrl: 'views/partials/alertmodal.partial.html'
-        };
-        var alertModalOptions = {
-            closeButtonText: 'Ok',
-            bodyText: 'Oops! You cannot do this'
         };
 
 
@@ -71,7 +60,9 @@ app.service('modalService', ['$modal',
                         name: '',
                         description: '',
                         query: {}
-                    }
+                    };
+
+                    $scope.originalBug = {id: null, comment: ''};
 
                     $scope.$watch('newItem', function() {
                         //console.log('newSubTask', $scope.newSubTask);
@@ -83,7 +74,10 @@ app.service('modalService', ['$modal',
                          $rootScope.$broadcast('newQuery', $scope.newQuery);
                     }, true);
 
-                   
+                   $scope.$watch('originalBug', function() {
+                      //  console.log('originalBug',$scope.originalBug);
+                        $rootScope.$broadcast('originalBug', $scope.originalBug);
+                   }, true);
 
                 };
             }
