@@ -89,23 +89,25 @@ angular.module('bug.controllers')
             // watch for certain bug fields which must accompany with a comment
             $scope.$on('originalBug', function(event, originalBug) {
                         $scope.newcomment = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span></span> This is Duplicate of " + "<a href='/bug/" + originalBug.id + "'>Bug-" + originalBug.id + "</a>\n" + originalBug.comment
-                       // 'This is Duplicate of ' + '<a href=\'/bug/' + originalBug.id + '\'>' + 'Bug-' + originalBug.id + '</a>' + 
-                       // '\n'+ originalBug.comment;
                     });
-                
+             
+              // watch for certain bug fields which must accompany with a comment
+            $scope.$on('notABug', function(event, comment) {
+                        $scope.newcomment = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span></span> This is Not a Bug \n" + comment;
+                    });   
             
             // certain status requires comment or some other update
             // below cases covers them and applies rules accordingly
             $scope.$watch('status', function() {
-                switch($scope.status){
-                    case 'Duplicate':
-                        var modalOptions = {
+                var modalOptions = {
                         closeButtonText: 'Cancel',
                         actionButtonText: 'Submit',
                         bodyText: '',
-                        headerText: 'Original Bug Id',
-                        scope: {originalBug: true}
                     };
+                switch($scope.status){
+                    case 'Duplicate':
+                    modalOptions.headerText = 'Original Bug Id';
+                    modalOptions.scope = {duplicate: true};
                     modalService.showModal({
                       //  templateUrl: 'components/modal/partials/duplicate.modal.html'
                     }, modalOptions ).then(function() {
@@ -115,6 +117,17 @@ angular.module('bug.controllers')
                         $scope.newcomment = '';
                     });
                     break;
+                 case 'Not a bug':
+                 console.log('inside not a bug');
+                 modalOptions.headerText = 'Not A Bug';
+                 modalOptions.scope = {notABug: true};
+                 modalService.showModal({}, modalOptions).then(function() {
+                        $scope.updateBug();
+                    }, function() {
+                        // clear pre-generated comment when cancelled
+                        $scope.newcomment = '';
+                    });
+                 break;
                   default:
                   // do nothing  
                 }

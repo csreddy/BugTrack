@@ -7,7 +7,7 @@
         {{modalOptions.scope.taskTitle}}
         <form name="modalForm">
 <!--  when setting duplicate bug  -->
-        <div ng-if="modalOptions.scope.originalBug">
+        <div ng-if="modalOptions.scope.duplicate">
              <div class="form-group">
                   <input type="number" name="originalBug" value="{{originalBug.id}}" placeholder="Original Bug Id" ng-model="originalBug.id" class="form-control" required>
              </div>
@@ -16,6 +16,13 @@
              <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="originalBug.comment" id="comment" name="comment" placeholder="Optional comment"></text-angular>
              </div>
         </div>
+
+ <!--  when setting 'not a bug' status  -->
+        <div ng-if="modalOptions.scope.notABug">
+             <div class="form-group">
+             <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="notABug.comment" id="comment" name="comment" placeholder="Optional comment"></text-angular>
+             </div>
+        </div>       
 
 <!-- when saving new query -->
             <table class="table" ng-if="modalOptions.scope.newQuery">
