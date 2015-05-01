@@ -6,7 +6,7 @@ app.controller('loginCtrl', ['$scope', '$location', '$cookieStore', 'Flash', '$h
     function($scope, $location, $cookieStore, Flash, $http, User, $window) {
         $scope.pageName = 'loginPage';
         $location.search({}); // clear query params from url
-        $scope.username = 'btuser';
+        $scope.username = '';
         $scope.password = 'admin';
 
 
