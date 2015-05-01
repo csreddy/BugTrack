@@ -5,7 +5,7 @@
             <select name="pagelength" id="pagelength" ng-model="form.pageLength" ng-change="userPref.setPageLength(form.pageLength)" ng-options="length for length in pageLengthOptions" class="input-xsm" tooltip-animation="false" tooltip-trigger tooltip-placement="right" tooltip="items per page">
             </select>
             </h3>
-            <div class="box-tools pull-right">
+            <div class="box-tools pull-right hidden-xs">
                 <form class="form-inline">
                     <div class="form-group">
                         <input type="text" ng-model="searchbug" class="form-control" placeholder="filter" ng-model-options="{debounce: 150}">

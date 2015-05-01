@@ -1,5 +1,6 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-  <div ng-include="'app/bug/view/partials/compactInfoBox.partial.html'"></div>
+  <div class="hidden-xs" ng-include="'app/bug/view/partials/compactInfoBox.partial.html'"></div>
+  <div class="hidden-sm hidden-md hidden-lg" ng-include="'app/bug/view/partials/mobile.compactInfoBox.partial.html'"></div>
 
 <div class="col-xs-12 col-sm-4 col-md-3 pull-left" id="infobox" ng-show="sideBar">
     <div class="panel panel-info">

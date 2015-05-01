@@ -16,6 +16,14 @@
     outline: none;
     text-decoration: none;
 }
+
+@media screen and (max-width: 468px){
+  #srch-term{
+    width: 340px;
+  }
+}
+
+
 #logo {
     height: 50px;
     width: 50px;
