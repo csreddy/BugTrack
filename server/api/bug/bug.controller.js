@@ -306,6 +306,70 @@ exports.update = function(req, res) {
                     updates.push(p.insert("array-node('subscribers')", 'last-child', changes.updatedBy))
                 }
                 break;
+            case 'support':
+                if (from.support.headline !== to.support.headline) {
+                    updates.push(p.replace('/support/headline', to.support.headline));
+                    changes.change['support headline'] = {
+                        from: from.support.headline,
+                        to: to.support.headline
+                    }
+                }
+                if (from.support.supportDescription !== to.support.supportDescription) {
+                    updates.push(p.replace('/support/supportDescription', to.support.supportDescription));
+                    changes.change['support description'] = {
+                        from: from.support.supportDescription,
+                        to: to.support.supportDescription
+                    }
+                }
+                if (from.support.workaround !== to.support.workaround) {
+                    updates.push(p.replace('/support/workaround', to.support.workaround));
+                    changes.change['support workaround'] = {
+                        from: from.support.workaround,
+                        to: to.support.workaround
+                    }
+                }
+                if (from.support.publishStatus !== to.support.publishStatus) {
+                    updates.push(p.replace('/support/publishStatus', to.support.publishStatus));
+                    changes.change['support publishStatus'] = {
+                        from: from.support.publishStatus,
+                        to: to.support.publishStatus
+                    }
+                }
+
+
+                if ((typeof to.support.tickets) === 'string') {
+                    to.support.tickets = to.support.tickets.split(',');
+                    _.forEach(to.support.tickets, function(value, index) {
+                        if (!isNaN(value)) {
+                            to.support.tickets[index] = value.trim();
+                        } else {
+                            res.status(500).json({
+                                message: 'ticket ids should be numbers only'
+                            })
+                        }
+                    });
+                    to.support.tickets.sort();
+                }
+
+                if (to.support.tickets instanceof Array) {
+                    if (from.support.tickets.sort().join(',') !== to.support.tickets.sort().join(',')) {
+                        updates.push(p.replace("/support/array-node('tickets')", to.support.tickets));
+                        changes.change['support tickets'] = {
+                            from: from.support.tickets.join(','),
+                            to: to.support.tickets.join(',')
+                        }
+                    }
+                }
+
+
+                if (from.support.customerImpact.level !== to.support.customerImpact.level) {
+                    updates.push(p.replace('/support/customerImpact', to.support.customerImpact));
+                    changes.change['customer impact'] = {
+                        from: from.support.customerImpact.level,
+                        to: to.support.customerImpact
+                    }
+                }
+                break;
             case 'svninfo':
                 if (true) {
                     // TODO
@@ -494,7 +558,9 @@ exports.clones = function(req, res, next) {
             })
 
         } else {
-            res.status(200).json({message: 'bug ' +req.params.id +' does not exist'})
+            res.status(200).json({
+                message: 'bug ' + req.params.id + ' does not exist'
+            })
         }
     })
 

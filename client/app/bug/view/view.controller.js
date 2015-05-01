@@ -23,6 +23,7 @@ angular.module('bug.controllers')
                 open: true
             };
             $scope.clones = clones.data;
+
             
             // check if this preference is stored in localStorage before
             // otherwise set the defaults
@@ -52,10 +53,13 @@ angular.module('bug.controllers')
                     console.log(response.data);
 
                     $scope.bug = response.data;
+                    // ignore html sanitize
                     $scope.bug.description = $sce.trustAsHtml($scope.bug.description);
                     updateBug = JSON.parse(JSON.stringify(response.data));
                     console.log('updateBug', updateBug);
 
+
+                    $scope.support = updateBug.support;
 
                     // if the current user has already subscribed then show Unsubscribe else show Subscribe
                     var subscribers = $scope.bug.subscribers;
@@ -77,7 +81,7 @@ angular.module('bug.controllers')
                         $scope.hasAttachments = true;
                     }
 
-                    // watch for bug field changes   
+                  /*  // watch for bug field changes   
                     Bug.watch($scope, 'status');
                     Bug.watch($scope, 'priority');
                     Bug.watch($scope, 'severity');
@@ -87,6 +91,7 @@ angular.module('bug.controllers')
                     Bug.watch($scope, 'tofixin');
                     Bug.watch($scope, 'fixedin');
                     Bug.watch($scope, 'assignTo');
+                    Bug.watch($scope, 'support');*/
 
 
                     // Flash.addAlert('success', 'opened ' + uri);
@@ -234,6 +239,7 @@ angular.module('bug.controllers')
                 updateBug.comment = $scope.newcomment || '';
                 // updateBug.subscribers = $scope.assignTo || '';
                 updateBug.updatedBy = currentUser;
+                updateBug.support = $scope.support || $scope.bug.support;
                 updateBug.svninfo = {};
 
                 for (var j = 0; j < $scope.files.length; j++) {

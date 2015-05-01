@@ -31,7 +31,7 @@
                         <dt>Files</dt>
                         <dd ng-repeat="path in item.svn.paths track by $index"><a href="http://svn.marklogic.com/trac.engsvn/browser/{{path}}" target="_window">{{path}}</a></dd>
                 </dl>
-                <div ta-bind ng-model="item.comment" ng-show="item.comment">
+                <div ta-bind ng-model="item.comment" ng-if="item.comment">
                 <!-- <p ng-show="item.comment" ng-bind-html="item.comment"></p> -->
 
                 <!--   <b ng-show="item.attachments">Attached:</b> -->

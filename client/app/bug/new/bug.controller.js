@@ -20,9 +20,18 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
             $scope.config.users = _.sortBy($scope.config.users, 'name');
             
             $scope.submittedBy = currentUser;
-            $scope.support = {};
+            
+            // suppport default values
+            $scope.support = {
+                headline: '',
+                supportDescription: '',
+                publishStatus: $scope.config.publishStatus[0],
+                tickets:[],
+                customerImpact: $scope.config.customerImpact[3],
+                workaround: ''
+            };
+            
             $scope.associatedTask = {};
-
             $scope.selectedItem = {
                 value: 0,
                 label: ''
@@ -139,8 +148,11 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                     var tokenizedTickets = tickets.split(',');
                     var ticketIds = [];
                     for (var i = 0; i < tokenizedTickets.length; i++) {
-                        if (!isNaN(parseInt(tokenizedTickets[i].replace(/ /g, '')))) {
-                            ticketIds[i] = parseInt(tokenizedTickets[i].replace(/ /g, ''));
+                        // remove spaces
+                        tokenizedTickets[i].replace(/ /g, '');
+                        // put only if its  a number
+                        if (!isNaN(parseInt(tokenizedTickets[i]))) {
+                            ticketIds[i] = parseInt(tokenizedTickets[i]);
                         }
                     }
                     $scope.support.tickets = ticketIds;

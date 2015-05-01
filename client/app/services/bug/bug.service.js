@@ -11,7 +11,7 @@ app.service('Bug', ['$http',
                 url: '/api/search',
                 data: criteria
             });
-        }; 
+        };
 
         this.getNewId = function() {
             return $http({
@@ -124,7 +124,7 @@ app.service('Bug', ['$http',
         this.getClones = function(id) {
             return $http({
                 method: 'GET',
-                url: '/api/bug/'+id+'/clones'
+                url: '/api/bug/' + id + '/clones'
             });
         };
 
@@ -152,6 +152,8 @@ app.service('Bug', ['$http',
             });
         };
 
+
+
         this.watch = function(scope, object) {
             scope.$watch(object, function() {
                 if (scope[object] !== undefined) {
@@ -163,9 +165,8 @@ app.service('Bug', ['$http',
                     };
                 }
             }, true);
-
-
         };
+
 
     }
 ]);

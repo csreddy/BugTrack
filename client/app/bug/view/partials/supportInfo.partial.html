@@ -7,26 +7,26 @@
         <div class="form-group">
             <label class="col-md-2 control-label" for="headline">Headline</label>
             <div class="col-md-3">
-                <input id="headline" ng-model="bug.support.headline" ng-change="setHeadline(bug.support.headline)" name="headline" type="text" placeholder="" class="form-control">
+                <input id="headline" ng-model="support.headline" ng-change="setHeadline(support.headline)" name="headline" type="text" placeholder="" class="form-control">
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label" for="description">Description</label>
             <div class="col-md-7">
-                <textarea class="form-control" ng-model="bug.support.supportDescription" ng-change="setSupportDescription(bug.support.supportDescription)" id="supportDescription" name="supportDescription" placeholder="Provide bug description here..." rows="4"></textarea>
+                <textarea class="form-control" ng-model="support.supportDescription" ng-change="setSupportDescription(support.supportDescription)" id="supportDescription" name="supportDescription" placeholder="Provide bug description here..." rows="4"></textarea>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label" for="workaround">Workaround</label>
             <div class="col-md-7">
-                <textarea class="form-control" ng-model="bug.support.workaround" ng-change="setWorkaround(bug.support.workaround)" id="workaround" name="workaround" placeholder="Provide workaround info here..." rows="4"></textarea>
+                <textarea class="form-control" ng-model="support.workaround" ng-change="setWorkaround(support.workaround)" id="workaround" name="workaround" placeholder="Provide workaround info here..." rows="4"></textarea>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label" for="publishstatus">Publish Status</label>
             <div class="col-md-7">
                 <label ng-repeat="status in config.publishStatus">&nbsp;&nbsp;
-                    <input type="radio" name="publishStatus" ng-model="bug.support.publishStatus" ng-change="setPublishStatus(bug.support.publishStatus)" ng-value="status" />&nbsp;&nbsp;{{status}}
+                    <input type="radio" name="publishStatus" ng-model="support.publishStatus" ng-change="setPublishStatus(support.publishStatus)" ng-value="status" />&nbsp;&nbsp;{{status}}
                 </label>
             </div>
         </div>
@@ -37,13 +37,13 @@
         <div class="form-group">
             <label class="col-md-2 control-label" for="tickets">Tickets</label>
             <div class="col-md-7">
-                <input id="tickets" ng-model="bug.support.tickets" ng-change="setTickets(bug.support.tickets)" name="tickets" type="text" placeholder="csv ticket ids" class="form-control">
+                <input id="tickets" ng-model="support.tickets" ng-change="setTickets(bug.support.tickets)" name="tickets" type="text" placeholder="csv ticket ids" class="form-control">
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label" for="customerimpact">Customer Impact</label>
             <div class="col-md-7">
-                <select id="customerImpact" ng-model="bug.support.customerImpact" ng-change="setCustomerImpact(bug.support.customerImpact)" name="customerImpact" type="text" class="form-control input-sm">
+                <select id="customerImpact" ng-model="support.customerImpact" ng-change="setCustomerImpact(support.customerImpact)" name="customerImpact" type="text" class="form-control input-sm">
                     <option ng-selected="bug.support.customerImpact.level === 'N/A'" ng-repeat="customerImpact in config.customerImpact" value="{{customerImpact.level}}">
                         {{customerImpact.level}} : {{customerImpact.title}}</option>
                 </select>
