@@ -1,38 +1,37 @@
+<div class="modal-content">
+    
+
 <div class="modal-header bg-olive">
     <h3 class="modal-title" ng-bind-html="modalOptions.headerText"></h3>
 </div>
+<form name="modalForm">
 <div class="modal-body">
     <p ng-bind-html="modalOptions.bodyText"></p>
     <div class="col-md-12">
         {{modalOptions.scope.taskTitle}}
-        <form name="modalForm">
-<!-- when editing bug title -->
-<div ng-if="modalOptions.scope.editTitle">
-    <div class="form-group">
-        <textarea class="form-control" name="newTitle" value="{{editTitle.newTitle}}" placeholder="" ng-model="editTitle.newTitle" ng-init="editTitle.newTitle = modalOptions.scope.oldTitle" rows="3" required></textarea>
-    </div>
-</div>
-
-
-<!--  when setting duplicate bug  -->
-        <div ng-if="modalOptions.scope.duplicate">
-             <div class="form-group">
-                  <input type="number" name="originalBug" value="{{originalBug.id}}" placeholder="Original Bug Id" ng-model="originalBug.id" class="form-control" required>
-             </div>
-
-             <div class="form-group">
-             <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="originalBug.comment" id="comment" name="comment" placeholder="Optional comment"></text-angular>
-             </div>
-        </div>
-
- <!--  when setting 'not a bug' status  -->
-        <div ng-if="modalOptions.scope.notABug">
-             <div class="form-group">
-             <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="notABug.comment" id="comment" name="comment" placeholder="Optional comment"></text-angular>
-             </div>
-        </div>       
-
-<!-- when saving new query -->
+     
+            <!-- when editing bug title -->
+            <div ng-if="modalOptions.scope.editTitle">
+                <div class="form-group">
+                    <textarea class="form-control" name="newTitle" value="{{editTitle.newTitle}}" placeholder="" ng-model="editTitle.newTitle" ng-init="editTitle.newTitle = modalOptions.scope.oldTitle" rows="3" required></textarea>
+                </div>
+            </div>
+            <!--  when setting duplicate bug  -->
+            <div ng-if="modalOptions.scope.duplicate">
+                <div class="form-group">
+                    <input type="number" name="originalBug" value="{{originalBug.id}}" placeholder="Original Bug Id" ng-model="originalBug.id" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="originalBug.comment" id="comment" name="comment" placeholder="Optional comment"></text-angular>
+                </div>
+            </div>
+            <!--  when setting 'not a bug' status  -->
+            <div ng-if="modalOptions.scope.notABug">
+                <div class="form-group">
+                    <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="notABug.comment" id="comment" name="comment" placeholder="Optional comment"></text-angular>
+                </div>
+            </div>
+            <!-- when saving new query -->
             <table class="table" ng-if="modalOptions.scope.newQuery">
                 <tbody>
                     <tr>
@@ -82,8 +81,9 @@
             </table>
     </div>
 </div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-primary btn-danger pull-left" ng-if="modalOptions.showCloseButton" data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
-    <button class="btn btn-primary btn-success pull-left" ng-if="modalOptions.showActionButton" data-ng-click="modalOptions.ok();" ng-disabled="modalForm.$invalid">{{modalOptions.actionButtonText}}</button>
+<div class="modal-footer" style="border-top: 0px">
+    <button type="button" class="btn btn-primary btn-danger " ng-if="modalOptions.showCloseButton" data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+    <button class="btn btn-primary btn-success" ng-if="modalOptions.showActionButton" data-ng-click="modalOptions.ok();" ng-disabled="modalForm.$invalid" style="margin-right:200px; margin-left:0px">{{modalOptions.actionButtonText}}</button>
 </div>
 </form>
+</div>
