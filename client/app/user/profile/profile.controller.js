@@ -38,6 +38,7 @@ angular.module('user.controllers')
                 modalService.showModal({}, modalOptions).then(function() {
                     User.deleteQuery(queryName).then(function() {
                         Flash.addAlert('success', 'Deleted query');
+                        delete $scope.userQueries[queryName];
                     }, function() {
                         Flash.addAlert('danger', 'Could not delete query');
                     });

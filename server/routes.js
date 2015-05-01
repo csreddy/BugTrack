@@ -47,25 +47,25 @@ module.exports = function(app) {
     app.use('/api/configure/removeusersfromgroup', require('./api/configure'));
     
     // User routes
-    app.use('/api/user/', require('./api/user'));
-    app.use('/api/user/:username', require('./api/user'));
-    app.use('/api/user/savedefaultquery', require('./api/user'));
-    app.use('/api/user/saveQuery', require('./api/user'));
-    app.use('/api/user/deleteQuery', require('./api/user'));
-    app.use('/api/user/create', require('./api/user'));
+    app.use('/api/users/', require('./api/user'));
+    app.use('/api/users/:username', require('./api/user'));
+    app.use('/api/users/savedefaultquery', require('./api/user'));
+    app.use('/api/users/saveQuery', require('./api/user'));
+    app.use('/api/users/deleteQuery', require('./api/user'));
+    app.use('/api/users/create', require('./api/user'));
     
     // Bug routes
-    app.use('/api/bug', require('./api/bug'));
-    app.use('/api/bug/:id(\\d+)', require('./api/bug'));
-    app.use('/api/bug/:id(\\d+)/subscribe', require('./api/bug'));
-    app.use('/api/bug/:id(\\d+)/unsubscribe', require('./api/bug'));
-    app.use('/api/bug/:id(\\d+)/clones', require('./api/bug'));
-    app.use('/api/bug/new', require('./api/bug'));
-    app.use('/api/bug/newbugid', require('./api/bug'));
-    app.use('/api/bug/update', require('./api/bug'));
-    app.use('/api/bug/count', require('./api/bug'));
-    app.use('/api/bug/facets', require('./api/bug'));
-    app.use('/api/bug/clone', require('./api/bug'));
+    app.use('/api/bugs', require('./api/bug'));
+    app.use('/api/bugs/:id(\\d+)', require('./api/bug'));
+    app.use('/api/bugs/:id(\\d+)/subscribe', require('./api/bug'));
+    app.use('/api/bugs/:id(\\d+)/unsubscribe', require('./api/bug'));
+    app.use('/api/bugs/:id(\\d+)/clones', require('./api/bug'));
+    app.use('/api/bugs/new', require('./api/bug'));
+    app.use('/api/bugs/newbugid', require('./api/bug'));
+    app.use('/api/bugs/update', require('./api/bug'));
+    app.use('/api/bugs/count', require('./api/bug'));
+    app.use('/api/bugs/facets', require('./api/bug'));
+    app.use('/api/bugs/clone', require('./api/bug'));
     
     // Search route
     app.use('/api/search', require('./api/search'));

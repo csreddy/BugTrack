@@ -10,7 +10,7 @@ app.service('User', ['$http', '$location', 'Flash',
             create: function(user) {
                 return $http({
                     method: 'POST',
-                    url: '/api/user/create',
+                    url: '/api/users/create',
                     data: user
                 });
             },
@@ -50,21 +50,21 @@ app.service('User', ['$http', '$location', 'Flash',
             saveDefaultQuery: function(searchCriteria) {
                 return $http({
                     method: 'PUT',
-                    url: '/api/user/savedefaultquery',
+                    url: '/api/users/savedefaultquery',
                     data: searchCriteria
                 });
             },
             saveQuery: function(query) {
                 return $http({
                     method: 'PUT',
-                    url: '/api/user/saveQuery',
+                    url: '/api/users/saveQuery',
                     data: query
                 });
             },
             deleteQuery: function(queryName) {
                 return $http({
                     method: 'PUT',
-                    url: '/api/user/deleteQuery',
+                    url: '/api/users/deleteQuery',
                     data: {name: queryName}
                 });
             }

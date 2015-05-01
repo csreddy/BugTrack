@@ -204,7 +204,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             }
 
             $scope.searchHistory.push(queryParams);
-            $s
             $window.localStorage.last5Searches = JSON.stringify($scope.searchHistory);
         };
 

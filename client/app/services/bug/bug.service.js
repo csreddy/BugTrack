@@ -16,7 +16,7 @@ app.service('Bug', ['$http',
         this.getNewId = function() {
             return $http({
                 method: 'GET',
-                url: '/api/bug/newbugid'
+                url: '/api/bugs/newbugid'
             });
         };
 
@@ -42,7 +42,7 @@ app.service('Bug', ['$http',
 
         this.create = function(bug, files) {
             return $http({
-                url: '/api/bug/new',
+                url: '/api/bugs/new',
                 method: 'POST',
                 headers: {
                     'Content-Type': undefined
@@ -66,7 +66,7 @@ app.service('Bug', ['$http',
 
         this.update = function(bug, old, files) {
             return $http({
-                url: '/api/bug/update',
+                url: '/api/bugs/update',
                 method: 'PUT',
                 headers: {
                     'Content-Type': undefined
@@ -95,7 +95,7 @@ app.service('Bug', ['$http',
         this.subscribe = function(subscribe) {
             return $http({
                 method: 'PUT',
-                url: '/api/bug/' + subscribe.id + '/subscribe',
+                url: '/api/bugs/' + subscribe.id + '/subscribe',
                 data: subscribe
             });
         };
@@ -103,7 +103,7 @@ app.service('Bug', ['$http',
         this.unsubscribe = function(unsubscribe) {
             return $http({
                 method: 'PUT',
-                url: '/api/bug/' + unsubscribe.id + '/unsubscribe',
+                url: '/api/bugs/' + unsubscribe.id + '/unsubscribe',
                 data: unsubscribe
             });
         };
@@ -116,7 +116,7 @@ app.service('Bug', ['$http',
             };
             return $http({
                 method: 'POST',
-                url: '/api/bug/clone',
+                url: '/api/bugs/clone',
                 data: data
             });
         };
@@ -124,7 +124,7 @@ app.service('Bug', ['$http',
         this.getClones = function(id) {
             return $http({
                 method: 'GET',
-                url: '/api/bug/' + id + '/clones'
+                url: '/api/bugs/' + id + '/clones'
             });
         };
 
@@ -132,7 +132,7 @@ app.service('Bug', ['$http',
         this.get = function(id) {
             return $http({
                 method: 'GET',
-                url: '/api/bug/' + id
+                url: '/api/bugs/' + id
             });
         };
 
@@ -141,14 +141,14 @@ app.service('Bug', ['$http',
             console.log('getting bug count');
             return $http({
                 method: 'GET',
-                url: '/api/bug/count'
+                url: '/api/bugs/count'
             });
         };
 
         this.getFacets = function() {
             return $http({
                 method: 'GET',
-                url: '/bug/facets'
+                url: '/bugs/facets'
             });
         };
 

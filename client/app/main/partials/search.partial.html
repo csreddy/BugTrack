@@ -34,7 +34,7 @@
                             <ul class="dropdown-menu dropdown-menu-right" role="menu" id="historyMenu">
                                 <li><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last 5 Searches</b></li>
                                 <li ng-if="searchHistory.length === 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nothing here yet...start searching</li>
-                                <li ng-repeat="item in searchHistory track by $index" id="historyItem">
+                                <li ng-repeat="item in searchHistory.slice().reverse() track by $index" id="historyItem">
                                         <a href="" title="" ng-click="selectUserQuery(item)">
                                             <pre>
                                                 <p> {{item}}</p>
