@@ -81,7 +81,7 @@
 </div>
 <div class="modal-footer" style="border-top: 0px">
     <button type="button" class="btn btn-primary btn-danger " ng-if="modalOptions.showCloseButton" data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
-    <button class="btn btn-primary btn-success" ng-if="modalOptions.showActionButton" data-ng-click="modalOptions.ok();" ng-disabled="modalForm.$invalid" style="margin-right:200px; margin-left:0px">{{modalOptions.actionButtonText}}</button>
+    <button class="btn btn-primary btn-success" ng-if="modalOptions.showActionButton" data-ng-click="modalOptions.ok();" ng-disabled="modalForm.$invalid" id="modalSuccessBtn">{{modalOptions.actionButtonText}}</button>
 </div>
 </form>
 </div>

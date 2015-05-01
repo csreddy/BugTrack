@@ -4,6 +4,7 @@ a.tooltips {
     position: relative;
     display: inline;
 }
+
 a.tooltips span {
     position: absolute;
     width: 180px;
@@ -15,6 +16,7 @@ a.tooltips span {
     visibility: hidden;
     border-radius: 6px;
 }
+
 a.tooltips span:after {
     content: '';
     position: absolute;
@@ -27,6 +29,7 @@ a.tooltips span:after {
     border-right: 8px solid transparent;
     border-left: 8px solid transparent;
 }
+
 a:hover.tooltips span {
     visibility: visible;
     opacity: 0.8;
@@ -35,6 +38,7 @@ a:hover.tooltips span {
     margin-left: -76px;
     z-index: 999;
 }
+
 .truncate {
     width: 250px;
     white-space: nowrap;
@@ -51,16 +55,17 @@ a:hover.tooltips span {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 #facet_grouplist {
     min-height: 10px;
     max-height: 300px;
     min-width: 10em;
     overflow: auto;
 }
+
 li.ivh-treeview-node-leaf {
     font-size: 10px;
 }
-
 /*#tablestyle {
       padding-bottom: 15px;
 }
@@ -70,29 +75,42 @@ li.ivh-treeview-node-leaf {
   padding-right: 2px;
 }*/
 
-#historyMenu{
+#historyMenu {
     width: 600px
 }
 
-@media screen and (max-width: 560px){
-    #historyMenu{
-    width: 350px
-}
-
+@media screen and (max-width: 560px) {
+    #historyMenu {
+        width: 350px
+    }
 }
 
 #historyItem > a> pre > p {
     font-size: 10px;
 }
 
-#historyItem > a:hover, a:active, a:focus {
+#historyItem > a:hover,
+a:active,
+a:focus {
     color: none;
 }
 
 #historyItem > a > pre {
     font-size: 10px;
     margin: 0 0 0 0px;
-    padding:5px;
+    padding: 5px;
     border: 0px solid #ccc;
     border-radius: 5px;
+}
+
+#modalSuccessBtn {
+    margin-right: 200px;
+    margin-left: 0px
+}
+
+@media screen and (max-width: 560px) {
+    #modalSuccessBtn {
+        margin-right: 100px;
+        margin-left: 0px;
+    }
 }
