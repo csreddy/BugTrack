@@ -32,6 +32,13 @@ label.xsm-label {
     }
 }
 
+@media screen and (max-width: 767px) {
+    label.xsm-label {
+        margin-right: 20px;
+        font-size: small;
+    }
+}
+
 input.form-control.input-xsm {
     height: 25px;
     /* line-height: 30px;*/
