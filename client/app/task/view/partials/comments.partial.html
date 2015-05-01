@@ -30,7 +30,9 @@
                         <dt>Files</dt>
                         <dd ng-repeat="path in item.svn.paths"><a href="http://svn.marklogic.com/trac.engsvn/browser/{{path}}" target="_window">{{path}}</a></dd>
                 </dl>
-            <p ng-show="item.comment" ng-bind-html="item.comment"></p>
+             <div ta-bind ng-model="item.comment" ng-show="item.comment">
+            <!-- <p ng-show="item.comment" ng-bind-html="item.comment"></p> -->
+
             <!--   <b ng-show="item.attachments">Attached:</b> -->
             <ul ng-repeat="file in item.files" class="list-inline" style="display: inline-block;">
                 <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{::file.name}}&nbsp;&nbsp;&nbsp;</a>
