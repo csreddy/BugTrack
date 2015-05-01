@@ -74,6 +74,13 @@ li.ivh-treeview-node-leaf {
     width: 600px
 }
 
+@media screen and (max-width: 560px){
+    #historyMenu{
+    width: 350px
+}
+
+}
+
 #historyItem > a> pre > p {
     font-size: 10px;
 }

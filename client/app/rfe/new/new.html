@@ -6,15 +6,15 @@
                 <fieldset>
                     <legend class="text-center"><i class="fa fa-briefcase"></i> New RFE</legend>
                     <div class="form-group">
-                        <label class="col-md-2 control-label" for="name">Title</label>
+                        <label class="col-md-2 control-label" for="name">Title*</label>
                         <div class="col-md-9">
                             <input id="title" ng-model="rfe.title" name="rfe_title" type="text" placeholder="rfe title" class="form-control" required />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label" for="name">Description</label>
+                        <label class="col-md-2 control-label" for="name">Description*</label>
                         <div class="col-md-9">
-                            <text-angular ta-toolbar="[['p','bold','pre', 'quote','italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="rfe.description" id="description" name="rfe_description" placeholder="Enter rfe description here..."></text-angular>
+                            <text-angular ta-toolbar="[['p','bold','pre', 'quote','italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="rfe.description" id="description" name="rfe_description" placeholder="Enter rfe description here..." required></text-angular>
                         </div>
                     </div>
                     <div class="form-group">
@@ -34,9 +34,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label" for="severity">Version</label>
+                                        <label class="col-md-2 control-label" for="severity">Version*</label>
                                         <div class="col-md-3">
-                                            <select name="rfe_version" id="rfe_version" ng-model="rfe.version" ng-options="version for version in config.version" class="form-control input-sm">
+                                            <select name="rfe_version" id="rfe_version" ng-model="rfe.version" ng-options="version for version in config.version" class="form-control input-sm" required>
                                                 <option value="" selected></option>
                                             </select>
                                         </div>
@@ -59,9 +59,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label" for="category">Category</label>
+                                        <label class="col-md-2 control-label" for="category">Category*</label>
                                         <div class="col-md-3">
-                                            <select name="rfe_category" id="rfe_category" ng-model="rfe.category" ng-options="category for category in config.category" class="form-control input-sm">
+                                            <select name="rfe_category" id="rfe_category" ng-model="rfe.category" ng-options="category for category in config.category" class="form-control input-sm" required>
                                                 <option value="" selected></option>
                                             </select>
 
