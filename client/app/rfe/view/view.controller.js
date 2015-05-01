@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('rfe.controllers')
-    .controller('viewRFECtrl', ['$scope', '$location', '$timeout', '$q', 'RFE', 'Task','SubTasks','config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
+    .controller('viewRFECtrl', ['$scope', '$location', '$timeout', '$q', '$sce','RFE', 'Task','SubTasks','config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
 
-        function($scope, $location, $timeout, $q, RFE, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress) {
+        function($scope, $location, $timeout, $q, $sce, RFE, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress) {
 
             $scope.changes = {};
             $scope.updatedBy = currentUser || {};
@@ -54,6 +54,8 @@ angular.module('rfe.controllers')
             RFE.get(id).then(function(response) {
 
                     $scope.rfe = response.data;
+                    // ignore html sanitize
+                    $scope.rfe.description = $sce.trustAsHtml($scope.rfe.description);
                     oldCopy = angular.copy(response.data);
 
                     // need specical handling for 'priority' and 'assignTo' for 

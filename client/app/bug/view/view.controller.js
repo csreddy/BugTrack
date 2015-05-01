@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('bug.controllers')
-    .controller('viewCtrl', ['$scope', '$location', '$window', 'Bug', 'clones', 'config', 'Flash', 'currentUser', 'modalService', '$q', 'ngProgress',
+    .controller('viewCtrl', ['$scope', '$location', '$window', '$sce', 'Bug', 'clones', 'config', 'Flash', 'currentUser', 'modalService', '$q', 'ngProgress',
 
-        function($scope, $location, $window, Bug, clones, config, Flash, currentUser, modalService, $q, ngProgress) {
+        function($scope, $location, $window, $sce, Bug, clones, config, Flash, currentUser, modalService, $q, ngProgress) {
             $location.search({}); // clear query params from url when navigating from search page
             $scope.changes = {};
             $scope.updatedBy = {
@@ -52,6 +52,7 @@ angular.module('bug.controllers')
                     console.log(response.data);
 
                     $scope.bug = response.data;
+                    $scope.bug.description = $sce.trustAsHtml($scope.bug.description);
                     updateBug = JSON.parse(JSON.stringify(response.data));
                     console.log('updateBug', updateBug);
 

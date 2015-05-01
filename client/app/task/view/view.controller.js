@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('task.controllers')
-    .controller('viewTaskCtrl', ['$scope', '$location', '$timeout', '$q', 'Task', 'SubTasks','config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
+    .controller('viewTaskCtrl', ['$scope', '$location', '$timeout', '$q', '$sce','Task', 'SubTasks','config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
  
-        function($scope, $location, $timeout, $q, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress) {
+        function($scope, $location, $timeout, $q, $sce, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress) {
 
             $scope.changes = {};
             $scope.updatedBy = {
@@ -57,6 +57,8 @@ angular.module('task.controllers')
             Task.get(id).then(function(response) {
 
                     $scope.task = response.data;
+                    // ignore html sanitize
+                    $scope.task.description = $sce.trustAsHtml($scope.task.description);
                     oldCopy = angular.copy(response.data);
 
                     // need specical handling for 'priority' and 'assignTo' for 
