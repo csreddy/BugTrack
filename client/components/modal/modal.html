@@ -5,13 +5,13 @@
 <form name="modalForm">
 <div class="modal-body">
     <p ng-bind-html="modalOptions.bodyText"></p>
-    <div class="col-md-12">
+    <div class="col-md-12" ng-init="editTitle.newTitle = modalOptions.scope.oldTitle">
         {{modalOptions.scope.taskTitle}}
      
             <!-- when editing bug title -->
             <div ng-if="modalOptions.scope.editTitle">
                 <div class="form-group">
-                    <textarea class="form-control" name="newTitle" value="{{editTitle.newTitle}}" placeholder="" ng-model="editTitle.newTitle" ng-init="editTitle.newTitle = modalOptions.scope.oldTitle" rows="3" required></textarea>
+                    <textarea class="form-control" name="newTitle" value="{{editTitle.newTitle}}" placeholder="" ng-model="editTitle.newTitle" rows="3" required></textarea>
                 </div>
             </div>
             <!--  when setting duplicate bug  -->
