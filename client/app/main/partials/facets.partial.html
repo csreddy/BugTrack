@@ -9,10 +9,7 @@
     </div>
     <div class="box-body">
     <label for="groups">Groups</label>
-  <!--   <select name="criteria" id="criteria" ng-model="groupCriteria" ng-options="groupCriteria.label for groupCriteria in config.groupCriteria" class="form-control" ng-change="setGroupCriteria(groupCriteria)" ng-selected="groupCriteria === 'submittedBy'"><option value="">select criterion</option></select> -->
-    <select  name="criteria" id="criteria" mg-model="groupCriteria" class="form-control input-xsm">
-        <option value="{{criteria.value}}" ng-repeat="criteria in config.groupCriteria" ng-selected="groupCriteria === 'submittedBy'">{{criteria.label}}</option>
-    </select>
+    <select name="criteria" id="criteria" ng-model="groupCriteria" ng-options="groupCriteria.label for groupCriteria in config.groupCriteria" ng-change="setGroupCriteria(groupCriteria)" class="form-control"><option value="">select criterion</option></select>
     <div class="form-group" style="margin-top:2px;">
             <input type="search" ng-model="searchGroupTree" class="form-control input-xsm" placeholder="search group">
             <small><a href="" ng-click="expand()" class="pull-left" style="padding-top:5px;"><span class="glyphicon glyphicon-expand" aria-hidden="true"></span>Expand</a></small>
