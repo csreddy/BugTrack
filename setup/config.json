@@ -1261,167 +1261,16 @@
         "name": "Cameron  Stillion"
     }],
     "groups": [{
-        "label": "dev",
-        "value": "dev",
+        "label": "Dev",
+        "value": "Dev",
         "children": [{
-            "label": "Ian Small",
+            "label": "Christopher Lindblad",
             "value": {
-                "username": "ian",
-                "email": "ian@cerisent.com",
-                "name": "Ian Small"
+                "username": "cjl",
+                "email": "cjl@cerisent.com",
+                "name": "Christopher Lindblad"
             },
-            "parent": "dev"
-        }, {
-            "label": "Paul Pedersen",
-            "value": {
-                "username": "pcp",
-                "email": "pcp@cerisent.com",
-                "name": "Paul Pedersen"
-            },
-            "parent": "dev"
-        }]
-    }, {
-        "label": "qa",
-        "value": "qa",
-        "children": [{
-            "label": "Bugtrack User",
-            "value": {
-                "username": "btuser",
-                "email": "bugtrack@marklogic.com",
-                "name": "Bugtrack User"
-            },
-            "parent": "qa"
-        }, {
-            "label": "Jason Hunter",
-            "value": {
-                "username": "jhunter",
-                "email": "jhunter@servlets.com",
-                "name": "Jason Hunter"
-            },
-            "parent": "qa"
-        }, {
-            "label": "Nick Lanham",
-            "value": {
-                "username": "nick",
-                "email": "nick@cerisent.com",
-                "name": "Nick Lanham"
-            },
-            "parent": "qa"
-        }, {
-            "label": "group1",
-            "value": "group1",
-            "children": [{
-                "label": "Jason Hunter",
-                "value": {
-                    "username": "jhunter",
-                    "email": "jhunter@servlets.com",
-                    "name": "Jason Hunter"
-                },
-                "parent": "group1"
-            }, {
-                "label": "Mary Holstege",
-                "value": {
-                    "username": "mary",
-                    "email": "mary@cerisent.com",
-                    "name": "Mary Holstege"
-                },
-                "parent": "group1"
-            }, {
-                "label": "group2",
-                "value": "group2",
-                "children": [{
-                    "label": "Denise Miura",
-                    "value": {
-                        "username": "denise",
-                        "email": "denise.skarupski@marklogic.com",
-                        "name": "Denise Miura"
-                    },
-                    "parent": "group2"
-                }, {
-                    "label": "Danny Sokolsky",
-                    "value": {
-                        "username": "dsokolsky",
-                        "email": "dsokolsky@marklogic.com",
-                        "name": "Danny Sokolsky"
-                    },
-                    "parent": "group2"
-                }, {
-                    "label": "group3",
-                    "value": "group3",
-                    "children": [{
-                        "label": "Kelly Stirman",
-                        "value": {
-                            "username": "kelly",
-                            "email": "kelly@cerisent.com",
-                            "name": "Kelly Stirman"
-                        },
-                        "parent": "group3"
-                    }, {
-                        "label": "Hui Li",
-                        "value": {
-                            "username": "hui",
-                            "email": "hui.li@marklogic.com",
-                            "name": "Hui Li"
-                        },
-                        "parent": "group3"
-                    }, {
-                        "label": "Denise Miura",
-                        "value": {
-                            "username": "denise",
-                            "email": "denise.skarupski@marklogic.com",
-                            "name": "Denise Miura"
-                        },
-                        "parent": "group3"
-                    }, {
-                        "label": "Christina Williams",
-                        "value": {
-                            "username": "cwilliams",
-                            "email": "cwilliams@marklogic.com",
-                            "name": "Christina Williams"
-                        },
-                        "parent": "group3"
-                    }, {
-                        "label": "Ron Hitchens",
-                        "value": {
-                            "username": "ronh",
-                            "email": "ronh@marklogic.com",
-                            "name": "Ron Hitchens"
-                        },
-                        "parent": "group3"
-                    }, {
-                        "label": "Danny Sokolsky",
-                        "value": {
-                            "username": "dsokolsky",
-                            "email": "dsokolsky@marklogic.com",
-                            "name": "Danny Sokolsky"
-                        },
-                        "parent": "group3"
-                    }, {
-                        "label": "Uchenna Igwebuike",
-                        "value": {
-                            "username": "uigwebuike",
-                            "email": "uigwebuike@marklogic.com",
-                            "name": "Uchenna Igwebuike"
-                        },
-                        "parent": "group3"
-                    }],
-                    "parent": "group2"
-                }],
-                "parent": "group1"
-            }],
-            "parent": "qa"
-        }]
-    }, {
-        "label": "group1",
-        "value": "group1",
-        "children": [{
-            "label": "Jason Hunter",
-            "value": {
-                "username": "jhunter",
-                "email": "jhunter@servlets.com",
-                "name": "Jason Hunter"
-            },
-            "parent": "group1"
+            "parent": "Dev"
         }, {
             "label": "Mary Holstege",
             "value": {
@@ -1429,230 +1278,479 @@
                 "email": "mary@cerisent.com",
                 "name": "Mary Holstege"
             },
-            "parent": "group1"
+            "parent": "Dev"
         }, {
-            "label": "group2",
-            "value": "group2",
-            "children": [{
-                "label": "Denise Miura",
-                "value": {
-                    "username": "denise",
-                    "email": "denise.skarupski@marklogic.com",
-                    "name": "Denise Miura"
-                },
-                "parent": "group2"
-            }, {
-                "label": "Danny Sokolsky",
-                "value": {
-                    "username": "dsokolsky",
-                    "email": "dsokolsky@marklogic.com",
-                    "name": "Danny Sokolsky"
-                },
-                "parent": "group2"
-            }, {
-                "label": "group3",
-                "value": "group3",
-                "children": [{
-                    "label": "Kelly Stirman",
-                    "value": {
-                        "username": "kelly",
-                        "email": "kelly@cerisent.com",
-                        "name": "Kelly Stirman"
-                    },
-                    "parent": "group3"
-                }, {
-                    "label": "Hui Li",
-                    "value": {
-                        "username": "hui",
-                        "email": "hui.li@marklogic.com",
-                        "name": "Hui Li"
-                    },
-                    "parent": "group3"
-                }, {
-                    "label": "Denise Miura",
-                    "value": {
-                        "username": "denise",
-                        "email": "denise.skarupski@marklogic.com",
-                        "name": "Denise Miura"
-                    },
-                    "parent": "group3"
-                }, {
-                    "label": "Christina Williams",
-                    "value": {
-                        "username": "cwilliams",
-                        "email": "cwilliams@marklogic.com",
-                        "name": "Christina Williams"
-                    },
-                    "parent": "group3"
-                }, {
-                    "label": "Ron Hitchens",
-                    "value": {
-                        "username": "ronh",
-                        "email": "ronh@marklogic.com",
-                        "name": "Ron Hitchens"
-                    },
-                    "parent": "group3"
-                }, {
-                    "label": "Danny Sokolsky",
-                    "value": {
-                        "username": "dsokolsky",
-                        "email": "dsokolsky@marklogic.com",
-                        "name": "Danny Sokolsky"
-                    },
-                    "parent": "group3"
-                }, {
-                    "label": "Uchenna Igwebuike",
-                    "value": {
-                        "username": "uigwebuike",
-                        "email": "uigwebuike@marklogic.com",
-                        "name": "Uchenna Igwebuike"
-                    },
-                    "parent": "group3"
-                }],
-                "parent": "group2"
-            }],
-            "parent": "group1"
+            "label": "Wayne Feick",
+            "value": {
+                "username": "wfeick",
+                "email": "wfeick@marklogic.com",
+                "name": "Wayne Feick"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Jane Chen",
+            "value": {
+                "username": "jchen",
+                "email": "jane.chen@marklogic.com",
+                "name": "Jane Chen"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "John Snelson",
+            "value": {
+                "username": "jsnelson",
+                "email": "jsnelson@marklogic.com",
+                "name": "John Snelson"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Scott Brooks",
+            "value": {
+                "username": "sbrooks",
+                "email": "Scott.Brooks@marklogic.com",
+                "name": "Scott Brooks"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Haitao Wu",
+            "value": {
+                "username": "hwu",
+                "email": "haitao.wu@marklogic.com",
+                "name": "Haitao Wu"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Erik Hennum",
+            "value": {
+                "username": "ehennum",
+                "email": "erik.hennum@marklogic.com",
+                "name": "Erik Hennum"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Aries Li",
+            "value": {
+                "username": "ali",
+                "email": "ali@marklogic.com",
+                "name": "Aries Li"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Jim Fuller",
+            "value": {
+                "username": "jfuller",
+                "email": "jim.fuller@marklogic.com",
+                "name": "Jim Fuller"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Charles Greer",
+            "value": {
+                "username": "cgreer",
+                "email": "charles.greer@marklogic.com",
+                "name": "Charles Greer"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Mike Wooldridge",
+            "value": {
+                "username": "mwooldri",
+                "email": "mike.wooldridge@marklogic.com",
+                "name": "Mike Wooldridge"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Fei Xue",
+            "value": {
+                "username": "fxue",
+                "email": "Fei.Xue@marklogic.com",
+                "name": "Fei Xue"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Michael Blakeley",
+            "value": {
+                "username": "michael",
+                "email": "michael.blakeley@marklogic.com",
+                "name": "Michael Blakeley"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Adam Fowler",
+            "value": {
+                "username": "afowler",
+                "email": "afowler@marklogic.com",
+                "name": "Adam Fowler"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Stu Salsbury",
+            "value": {
+                "username": "ssalsbur",
+                "email": "stu.salsbury@marklogic.com",
+                "name": "Stu Salsbury"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Jim Driscoll",
+            "value": {
+                "username": "jdriscol",
+                "email": "Jim.Driscoll@marklogic.com",
+                "name": "Jim Driscoll"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Geert Josten",
+            "value": {
+                "username": "gjosten",
+                "email": "Geert.Josten@marklogic.com",
+                "name": "Geert Josten"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Sam Mefford",
+            "value": {
+                "username": "smefford",
+                "email": "Sam.Mefford@marklogic.com",
+                "name": "Sam Mefford"
+            },
+            "parent": "Dev"
+        }, {
+            "label": "Daphne Maddox",
+            "value": {
+                "username": "dmaddox",
+                "email": "Daphne.Maddox@marklogic.com",
+                "name": "Daphne Maddox"
+            },
+            "parent": "Dev"
         }]
     }, {
-        "label": "group2",
-        "value": "group2",
+        "label": "QA",
+        "value": "QA",
         "children": [{
-            "label": "Denise Miura",
+            "label": "John James",
             "value": {
-                "username": "denise",
-                "email": "denise.skarupski@marklogic.com",
-                "name": "Denise Miura"
+                "username": "jjames",
+                "email": "John.James@marklogic.com",
+                "name": "John James"
             },
-            "parent": "group2"
+            "parent": "QA"
         }, {
+            "label": "Mahalakshmi Srinivasan",
+            "value": {
+                "username": "msrinivasan",
+                "email": "mahalakshmi.srinivasan@marklogic.com",
+                "name": "Mahalakshmi Srinivasan"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Gaurav Ghai",
+            "value": {
+                "username": "gghai",
+                "email": "Gaurav.ghai@marklogic.com",
+                "name": "Gaurav Ghai"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Gaurav Pushkarna",
+            "value": {
+                "username": "gpushkar",
+                "email": "gaurav.pushkarna@marklogic.com",
+                "name": "Gaurav Pushkarna"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Kuldeep Nagar",
+            "value": {
+                "username": "knagar",
+                "email": "Kuldeep.Nagar@marklogic.com",
+                "name": "Kuldeep Nagar"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Vipul Goyal",
+            "value": {
+                "username": "vgoyal",
+                "email": "Vipul.Goyal@marklogic.com",
+                "name": "Vipul Goyal"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Larry Ratcliff",
+            "value": {
+                "username": "lratcliff",
+                "email": "lratcliff@marklogic.com",
+                "name": "Larry Ratcliff"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Sundeep Vempati",
+            "value": {
+                "username": "svempati",
+                "email": "sundeep.vempati@marklogic.com",
+                "name": "Sundeep Vempati"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Meghalim Sarma",
+            "value": {
+                "username": "msarma",
+                "email": "msarma@marklogic.com",
+                "name": "Meghalim Sarma"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Sravan Kottam",
+            "value": {
+                "username": "skottam",
+                "email": "Sravan.Kottam@marklogic.com",
+                "name": "Sravan Kottam"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Isha Agrawal",
+            "value": {
+                "username": "iagrawal",
+                "email": "iagrawal@marklogic.com",
+                "name": "Isha Agrawal"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Sumit Anand",
+            "value": {
+                "username": "sanand",
+                "email": "Sumit.Anand@marklogic.com",
+                "name": "Sumit Anand"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Vitaly Korolev",
+            "value": {
+                "username": "vkorolev",
+                "email": "vitaly.korolev@marklogic.com",
+                "name": "Vitaly Korolev"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Aries Yuwono",
+            "value": {
+                "username": "ayuwono",
+                "email": "ayuwono@marklogic.com",
+                "name": "Aries Yuwono"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Rashi Gupta",
+            "value": {
+                "username": "rgupta",
+                "email": "Rashi.Gupta@marklogic.com",
+                "name": "Rashi Gupta"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Ganesh Vaideeswaran",
+            "value": {
+                "username": "gvaidees",
+                "email": "Ganesh.Vaideeswaran@marklogic.com",
+                "name": "Ganesh Vaideeswaran"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Subhadra Thirumavalavan",
+            "value": {
+                "username": "sthirumavalavan",
+                "email": "subhadra.thirumavalavan@marklogic.com",
+                "name": "Subhadra Thirumavalavan"
+            },
+            "parent": "QA"
+        }, {
+            "label": "Sudhakar Reddy",
+            "value": {
+                "username": "sreddy",
+                "email": "sreddy@marklogic.com",
+                "name": "Sudhakar Reddy"
+            },
+            "parent": "QA"
+        }]
+    }, {
+        "label": "Docs",
+        "value": "Docs",
+        "children": [{
             "label": "Danny Sokolsky",
             "value": {
                 "username": "dsokolsky",
                 "email": "dsokolsky@marklogic.com",
                 "name": "Danny Sokolsky"
             },
-            "parent": "group2"
+            "parent": "Docs"
         }, {
-            "label": "group3",
-            "value": "group3",
-            "children": [{
-                "label": "Kelly Stirman",
-                "value": {
-                    "username": "kelly",
-                    "email": "kelly@cerisent.com",
-                    "name": "Kelly Stirman"
-                },
-                "parent": "group3"
-            }, {
-                "label": "Hui Li",
-                "value": {
-                    "username": "hui",
-                    "email": "hui.li@marklogic.com",
-                    "name": "Hui Li"
-                },
-                "parent": "group3"
-            }, {
-                "label": "Denise Miura",
-                "value": {
-                    "username": "denise",
-                    "email": "denise.skarupski@marklogic.com",
-                    "name": "Denise Miura"
-                },
-                "parent": "group3"
-            }, {
-                "label": "Christina Williams",
-                "value": {
-                    "username": "cwilliams",
-                    "email": "cwilliams@marklogic.com",
-                    "name": "Christina Williams"
-                },
-                "parent": "group3"
-            }, {
-                "label": "Ron Hitchens",
-                "value": {
-                    "username": "ronh",
-                    "email": "ronh@marklogic.com",
-                    "name": "Ron Hitchens"
-                },
-                "parent": "group3"
-            }, {
-                "label": "Danny Sokolsky",
-                "value": {
-                    "username": "dsokolsky",
-                    "email": "dsokolsky@marklogic.com",
-                    "name": "Danny Sokolsky"
-                },
-                "parent": "group3"
-            }, {
-                "label": "Uchenna Igwebuike",
-                "value": {
-                    "username": "uigwebuike",
-                    "email": "uigwebuike@marklogic.com",
-                    "name": "Uchenna Igwebuike"
-                },
-                "parent": "group3"
-            }],
-            "parent": "group2"
+            "label": "Jane McKean",
+            "value": {
+                "username": "jmckean",
+                "email": "Jane.McKean@marklogic.com",
+                "name": "Jane McKean"
+            },
+            "parent": "Docs"
+        }, {
+            "label": "Gordon Furbush ",
+            "value": {
+                "username": "gfurbush",
+                "email": "gfurbush@marklogic.com",
+                "name": "Gordon Furbush "
+            },
+            "parent": "Docs"
+        }, {
+            "label": "Kim Coleman",
+            "value": {
+                "username": "kcoleman",
+                "email": "kim.coleman@marklogic.com",
+                "name": "Kim Coleman"
+            },
+            "parent": "Docs"
         }]
     }, {
-        "label": "group3",
-        "value": "group3",
+        "label": "Support",
+        "value": "Support",
         "children": [{
-            "label": "Kelly Stirman",
+            "label": "Jose Espinoza",
             "value": {
-                "username": "kelly",
-                "email": "kelly@cerisent.com",
-                "name": "Kelly Stirman"
+                "username": "jespinoza",
+                "email": "jespinoza@marklogic.com",
+                "name": "Jose Espinoza"
             },
-            "parent": "group3"
+            "parent": "Support"
         }, {
-            "label": "Hui Li",
+            "label": "Rick Pelton",
             "value": {
-                "username": "hui",
-                "email": "hui.li@marklogic.com",
-                "name": "Hui Li"
+                "username": "rpelton",
+                "email": "rick.pelton@marklogic.com",
+                "name": "Rick Pelton"
             },
-            "parent": "group3"
+            "parent": "Support"
         }, {
-            "label": "Denise Miura",
+            "label": "Lavanya Davuluri",
             "value": {
-                "username": "denise",
-                "email": "denise.skarupski@marklogic.com",
-                "name": "Denise Miura"
+                "username": "ldavulur",
+                "email": "lavanya.davuluri@marklogic.com",
+                "name": "Lavanya Davuluri"
             },
-            "parent": "group3"
+            "parent": "Support"
         }, {
-            "label": "Christina Williams",
+            "label": "Vaidehi Deodhar",
             "value": {
-                "username": "cwilliams",
-                "email": "cwilliams@marklogic.com",
-                "name": "Christina Williams"
+                "username": "vdeodhar",
+                "email": "Vaidehi.Deodhar@marklogic.com",
+                "name": "Vaidehi Deodhar"
             },
-            "parent": "group3"
+            "parent": "Support"
+        }]
+    }, {
+        "label": "PM",
+        "value": "PM",
+        "children": [{
+            "label": "Justin Makeig",
+            "value": {
+                "username": "jmakeig",
+                "email": "jmakeig@marklogic.com",
+                "name": "Justin Makeig"
+            },
+            "parent": "PM"
         }, {
-            "label": "Ron Hitchens",
+            "label": "Joe Pasqua",
             "value": {
-                "username": "ronh",
-                "email": "ronh@marklogic.com",
-                "name": "Ron Hitchens"
+                "username": "jpasqua",
+                "email": "Joe.Pasqua@marklogic.com",
+                "name": "Joe Pasqua"
             },
-            "parent": "group3"
+            "parent": "PM"
         }, {
-            "label": "Danny Sokolsky",
+            "label": "David Gorbet",
             "value": {
-                "username": "dsokolsky",
-                "email": "dsokolsky@marklogic.com",
-                "name": "Danny Sokolsky"
+                "username": "dgorbet",
+                "email": "David.Gorbet@marklogic.com",
+                "name": "David Gorbet"
             },
-            "parent": "group3"
+            "parent": "PM"
         }, {
-            "label": "Uchenna Igwebuike",
+            "label": "Jim Clark",
             "value": {
-                "username": "uigwebuike",
-                "email": "uigwebuike@marklogic.com",
-                "name": "Uchenna Igwebuike"
+                "username": "jclark",
+                "email": "jim.clark@marklogic.com",
+                "name": "Jim Clark"
             },
-            "parent": "group3"
+            "parent": "PM"
+        }, {
+            "label": "Kasey Alderete",
+            "value": {
+                "username": "kalderet",
+                "email": "Kasey.Alderete@marklogic.com",
+                "name": "Kasey Alderete"
+            },
+            "parent": "PM"
+        }]
+    }, {
+        "label": "Performance",
+        "value": "Performance",
+        "children": [{
+            "label": "Erin Miller",
+            "value": {
+                "username": "emiller",
+                "email": "emiller@marklogic.com",
+                "name": "Erin Miller"
+            },
+            "parent": "Performance"
+        }, {
+            "label": "Haitao Wu",
+            "value": {
+                "username": "hwu",
+                "email": "haitao.wu@marklogic.com",
+                "name": "Haitao Wu"
+            },
+            "parent": "Performance"
+        }, {
+            "label": "Silvano  Ravotto",
+            "value": {
+                "username": "sravotto",
+                "email": "sravotto@marklogic.com",
+                "name": "Silvano  Ravotto"
+            },
+            "parent": "Performance"
+        }]
+    }, {
+        "label": "Tools",
+        "value": "Tools",
+        "children": [{
+            "label": "Sudhakar Reddy",
+            "value": {
+                "username": "sreddy",
+                "email": "sreddy@marklogic.com",
+                "name": "Sudhakar Reddy"
+            },
+            "parent": "Tools"
+        }, {
+            "label": "Shiva Verma",
+            "value": {
+                "username": "sverma",
+                "email": "shiva.verma@marklogic.com",
+                "name": "Shiva Verma"
+            },
+            "parent": "Tools"
+        }, {
+            "label": "Joe Hoy",
+            "value": {
+                "username": "jhoy",
+                "email": "Joe.Hoy@marklogic.com",
+                "name": "Joe Hoy"
+            },
+            "parent": "Tools"
+        }, {
+            "label": "Ganesh Vaideeswaran",
+            "value": {
+                "username": "gvaidees",
+                "email": "Ganesh.Vaideeswaran@marklogic.com",
+                "name": "Ganesh Vaideeswaran"
+            },
+            "parent": "Tools"
         }]
     }],
     "groupCriteria": [{
@@ -1776,8 +1874,7 @@
     "kind": [
         "Bug",
         "Task",
-        "RFE",
-        "Other"
+        "RFE"
     ],
     "platform": [
         "all",
