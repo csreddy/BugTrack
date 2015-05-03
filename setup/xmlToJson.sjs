@@ -408,7 +408,7 @@ function convertBug(doc) {
         newbug.processors = bug.environment['number-cpus'] || ''
         newbug.note = bug.environment.note || ''
         newbug.subscribers = [newbug.submittedBy]
-        if (newbug.submittedBy.username.toString() !== newbug.assignTo.username.toString() && newbug.assignTo.username.toString() !== 'nobody') {
+        if (newbug.submittedBy.username !== newbug.assignTo.username && newbug.assignTo.username !== 'nobody') {
             newbug.subscribers.push(newbug.assignTo)
         }
 
@@ -655,7 +655,7 @@ function convertTask(doc) {
         newtask.processors = bug.environment['number-cpus'] || ''
         newtask.note = bug.environment.note || ''
         newtask.subscribers = [newtask.submittedBy]
-        if (newtask.submittedBy.username.toString() !== newtask.assignTo.username.toString() && newtask.assignTo.username.toString() !== 'nobody') {
+        if (newtask.submittedBy.username!== newtask.assignTo.username && newtask.assignTo.username !== 'nobody') {
             newtask.subscribers.push(newtask.assignTo)
         }
 
@@ -816,15 +816,16 @@ function convert(doc){
 }
 
 
-function bulkTransform(){
+function bulkTransform(start, end){
     var uris = [];
-    var uriCount = fn.count(cts.uriMatch("root/support/bugtracking/bug*.xml"));
-    for (var id=1; id<=uriCount; id++){
+    var _start = start || 1
+    var _end = end || fn.count(cts.uriMatch("root/support/bugtracking/bug*.xml"));
+    for (var id=_start; id<=_end; id++){
         uris.push("root/support/bugtracking/bug"+ id +".xml");
     }
     for (var i=0; i< uris.length; i++){
         if(fn.exists(cts.doc(uris[i]))){
-            xdmp.log('Bulk Transform: '+ uri)
+            xdmp.log('XML Source: '+ uris[i])
             try{
                 var json = convertXMLToJSON2(uris[i]);
                 var newdoc = convert(json);
@@ -837,15 +838,18 @@ function bulkTransform(){
                         updateSubTaskParent(newdoc.parent, newdoc.id)
                     }
                 }
+                success.push(uris[i]);
                 // cpf.success(uri, transition, null);
             }catch(e){
                 xdmp.log('----------error in bulkTransform()---------')
                 problematicXML.push(uris[i]);
-                xdmp.log(e.toString())
+                xdmp.log(e.toString());
+                failure.push(uris[i]);
                 //  cpf.failure(uri, transition, e, null);
             }
         }
     }
+   msg+="Transformed  : \n Success:\n"+ success.join('\n') + '\n\n Failed:\n'+failure.join('\n')+'\n'
 }
 
 function batchTransform(uris){
@@ -875,6 +879,7 @@ function batchTransform(uris){
             }
         }
     }
+   msg+="Transformed  : \n Success:\n"+ success.join('\n') + '\n\n Failed:\n'+failure.join('\n')+'\n'
 }
 
 function singleTransform(uri){
@@ -1002,11 +1007,6 @@ if(uri){
 }
 
 
+//bulkTransform(11, 20)
 
 msg;
-
-
-
-
-//'\nLoaded '+total + ' documents\n Problematic xmls: '+problematicXML +'\n count: '+problematicXML.length;
-

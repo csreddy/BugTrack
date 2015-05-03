@@ -284,7 +284,7 @@ exports.search = function(req, res) {
                         debug: true,
                         queryPlan: true,
                         metrics: true,
-                        category: 'metadata',
+                        category: 'content',
                         view: 'facets'
                     })
                 )
