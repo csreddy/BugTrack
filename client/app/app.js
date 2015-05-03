@@ -82,7 +82,7 @@ app.config(function($routeProvider, $locationProvider) {
     };
 })
 // progress bar
-.run(function($rootScope, $location, ngProgress) {
+.run(function($rootScope, $location, ngProgress, $anchorScroll) {
     $rootScope.$on('$routeChangeStart', function() {
         ngProgress.height('3px');
         ngProgress.color('green');
@@ -91,10 +91,13 @@ app.config(function($routeProvider, $locationProvider) {
 
     $rootScope.$on('$routeChangeSuccess', function() {
         ngProgress.complete();
+         $location.hash();
+          $anchorScroll.yOffset = 80;
+         $anchorScroll();  
 
         if ($location.path().indexOf('/home') === -1) {
             console.log($location.search());
-            $location.search({}); // reset url query params when in not in search page
+            $location.$$search = {}; // reset url query params when in not in search page
         }
     });
     // Do the same with $routeChangeError

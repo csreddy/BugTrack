@@ -21,8 +21,8 @@
             </div>
         </div>
         <!-- /.box-header -->
-        <div class="box-body no-padding">
-            <table class="table table-striped table-responsive table-condensed pull-left table-nowrap" ng-if="userPref.doubleRowTable">
+        <div class="box-body no-padding table-responsive">
+            <table class="table table-striped table-condensed pull-left table-nowrap" ng-if="userPref.doubleRowTable">
                 <thead>
                     <tr ng-init="reverse=false">
                         <th><a href="" ng-click="reverse=!reverse; order('id', reverse)">Id</a>

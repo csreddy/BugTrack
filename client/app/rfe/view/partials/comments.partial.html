@@ -1,8 +1,10 @@
 <div class="panel panel-default" ng-show="item.show || item.show == undefined" ng-repeat="item in rfe.changeHistory">
     <div class="panel-heading">
-        <img alt="user pic" src="assets/images/avatar.png" class="img-circle img-responsive" style="height: 3em;width: 3em; float:left;margin-right: 5px;">
-        <b>{{::item.updatedBy.name | capitalize}}</b>
-        <p class="pull-right" style="font-size: 12px;font-weight: 400;">{{::item.time | date:'medium'}}</p>
+        <img alt="user pic" src="assets/images/avatar.png" class="img-circle img-responsive user-img">
+            <b>{{::item.updatedBy.name | capitalize}}</b>
+            <p class="pull-right" style="font-size: 12px;font-weight: 400;">
+<span><a href="#{{$index+1}}" tooltip-trigger tooltip-animation="false" tooltip-placement="top" tooltip="comment #{{$index+1}}" id="{{$index+1}}">#{{$index+1}}</a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            {{::item.time | date:'medium'}}</p>
     </div>
     <div class="panel-body">
         <p class="bg-success">

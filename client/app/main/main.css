@@ -83,12 +83,11 @@ li.ivh-treeview-node-leaf {
     #historyMenu {
         width: 350px
     }
-     #modalSuccessBtn {
+    #modalSuccessBtn {
         margin-right: 100px;
         margin-left: 0px;
     }
 }
-
 
 #historyItem > a> pre > p {
     font-size: 10px;
@@ -113,4 +112,9 @@ a:focus {
     margin-left: 0px
 }
 
-
+.user-img {
+    height: 3em;
+    width: 3em;
+    float: left;
+    margin-right: 5px;
+}
