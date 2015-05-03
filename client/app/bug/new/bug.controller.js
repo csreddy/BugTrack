@@ -9,8 +9,12 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
             // accordion interactions   
             $scope.accordion = {
                 status: {
-                    isFirstOpen: true,
-                    isFirstDisabled: false
+                    oneAtATime: false,
+                    samplequery: false,
+                    sampledata:false,
+                    stacktrace:false,
+                    bugInfo:true,
+                    supportInfo: false
                 }
             };
 

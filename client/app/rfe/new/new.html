@@ -21,9 +21,9 @@
                         <label class="col-md-2 control-label" for="otherinfo"></label>
                         <div class="col-md-9">
                             <accordion>
-                                <accordion-group is-open="accordion.status.isFirstOpen">
+                                <accordion-group is-open="accordion.status.rfeInfo">
                                     <accordion-heading>
-                                        <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;RFE info
+                                        <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.rfeInfo, 'fa-chevron-circle-right': !accordion.status.rfeInfo}"></i>&nbsp;&nbsp;&nbsp;RFE Info
                                     </accordion-heading>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="severity">Severity</label>
@@ -53,7 +53,7 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="assignTo">Assign To</label>
                                         <div class="col-md-3">
-                                            <select name="rfe_assignTo" id="rfe_assignTo" ng-model="rfe.assignTo" ng-options="user.name for user in config.users" class="form-control input-sm">
+                                            <select name="rfe_assignTo" id="rfe_assignTo" ng-model="rfe.assignTo" ng-options="user.name group by user.name[0] for user in config.users" class="form-control input-sm">
                                                 <option value="" selected></option>
                                             </select>
                                         </div>

@@ -18,9 +18,8 @@ angular.module('bug.controllers')
             $scope.hasAttachments = false;
             $scope.accordion = {};
             $scope.accordion.status = {
-                isFirstOpen: true,
-                isFirstDisabled: false,
-                open: true
+                open: true,
+                closed: false
             };
             $scope.clones = clones.data;
 

@@ -18,8 +18,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
             $scope.config = config.data;
             $scope.accordion = {};
             $scope.accordion.status = {
-                isFirstOpen: true,
-                isFirstDisabled: false
+                taskInfo: true
             };
 
             $scope.task.files = [];
@@ -36,6 +35,9 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
 
             $scope.days = _.range(1, 101);
 
+               // sort users
+            $scope.config.users = _.sortBy($scope.config.users, 'name');
+          
 
             // for calendar   
             $scope.cal = {

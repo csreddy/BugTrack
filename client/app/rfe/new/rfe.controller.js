@@ -13,8 +13,7 @@ angular.module('rfe.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
             $scope.config = config.data;
             $scope.accordion = {};
             $scope.accordion.status = {
-                isFirstOpen: true,
-                isFirstDisabled: false
+                rfeInfo: true
             };
 
             $scope.rfe.files = [];
@@ -30,7 +29,9 @@ angular.module('rfe.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
             ];
 
             $scope.days = _.range(1, 101);
-
+               // sort users
+            $scope.config.users = _.sortBy($scope.config.users, 'name');
+          
 
             // for calendar   
             $scope.cal = {

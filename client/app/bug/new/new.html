@@ -32,28 +32,28 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="moreinfo"></label>
                             <div class="col-md-9">
-                                <accordion close-others="false">
-                                    <accordion-group>
-                                        <accordion-heading is-open="accordion.status.isFirstOpen" is-disabled="accordion.status.isFirstDisabled">
-                                        <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Enter a sample query that exposes the bug
+                                <accordion close-others="accordion.status.oneAtATime">
+                                    <accordion-group is-open="accordion.status.samplequery">
+                                        <accordion-heading>
+                                        <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.samplequery, 'fa-chevron-circle-right': !accordion.status.samplequery}"></i>&nbsp;&nbsp;&nbsp;Enter a sample query that exposes the bug
                                         </accordion-heading>
                                         <textarea class="form-control" ng-model="samplequery" ng-change="setQuery(samplequery)" id="samplequery" name="samplequery" placeholder="Provide sample query.." rows="8"></textarea>
                                     </accordion-group>
-                                    <accordion-group>
+                                    <accordion-group is-open="accordion.status.sampledata">
                                         <accordion-heading>
-                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Enter supporting sample data for the query above
+                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.sampledata, 'fa-chevron-circle-right': !accordion.status.sampledata}"></i>&nbsp;&nbsp;&nbsp;Enter supporting sample data for the query above
                                         </accordion-heading>
                                         <textarea class="form-control" ng-model="sampledata" ng-change="setSampledata(sampledata)" id="sampledata" name="sampledata" placeholder="Provide sample data.." rows="8"></textarea>
                                     </accordion-group>
-                                    <accordion-group>
-                                        <accordion-heading>
-                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Enter stacktrace
+                                    <accordion-group is-open="accordion.status.stacktrace">
+                                        <accordion-heading class="cursor">
+                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.stacktrace, 'fa-chevron-circle-right': !accordion.status.stacktrace}"></i>&nbsp;&nbsp;&nbsp;Enter stacktrace
                                         </accordion-heading>
                                         <textarea class="form-control" ng-model="stacktrace" ng-change="setStacktrace(stacktrace)" id="stacktrace" name="stacktrace" placeholder="Provide stacktrace.." rows="8"></textarea>
                                     </accordion-group>
-                                    <accordion-group is-open="accordion.status.isFirstOpen">
+                                    <accordion-group is-open="accordion.status.bugInfo">
                                         <accordion-heading>
-                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Other info
+                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.bugInfo, 'fa-chevron-circle-right': !accordion.status.bugInfo}"></i>&nbsp;&nbsp;&nbsp;Bug Info
                                         </accordion-heading>
                                         <div class="form-group">
                                             <label class="col-md-2 control-label" for="severity">Severity*</label>
@@ -128,9 +128,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label" for="platform">Platform</label>
+                                            <label class="col-md-2 control-label" for="platform">Platform*</label>
                                             <div class="col-md-3">
-                                                <select id="platform" ng-model="platform" ng-change="setPlatform(platform)" name="platform" type="text" class="form-control input-sm">
+                                                <select id="platform" ng-model="platform" ng-change="setPlatform(platform)" name="platform" type="text" class="form-control input-sm" required>
                                                     <option ng-selected="platform === 'all'" ng-repeat="platform in config.platform.sort()" value="{{platform}}">
                                                         {{platform}}</option>
                                                 </select>
@@ -156,9 +156,9 @@
                                             </div>
                                         </div>
                                     </accordion-group>
-                                    <accordion-group>
+                                    <accordion-group is-open="accordion.status.supportInfo">
                                         <accordion-heading>
-                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Support Info
+                                            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.supportInfo, 'fa-chevron-circle-right': !accordion.status.supportInfo}"></i>&nbsp;&nbsp;&nbsp;Support Info
                                         </accordion-heading>
                                         <div class="form-group">
                                             <label class="col-md-2 control-label" for="headline">Headline</label>

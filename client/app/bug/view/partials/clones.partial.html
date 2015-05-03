@@ -1,6 +1,6 @@
 <accordion ng-if="clones.length > 0">   
-    <accordion-group>
-        <accordion-heading is-open="accordion.status.open">
+    <accordion-group is-open="accordion.status.open">
+        <accordion-heading>
            <i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;&nbsp;&nbsp;Clones
         </accordion-heading>
          <table class="table table-striped table-condensed pull-left table-nowrap">
