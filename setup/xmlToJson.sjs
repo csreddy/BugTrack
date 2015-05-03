@@ -8,17 +8,17 @@ var success = [];
 var failure = [];
 var fromDateTime = xdmp.getRequestField('from');
 var toDateTime = xdmp.getRequestField('to');
-//var uri = xdmp.getRequestField('uri');
-var uri;
+var uri = xdmp.getRequestField('uri') || uri;
+
 var msg = "Converted old bugtrack XML documents into new bugtrack JSON documents\n\n\n";
 //xdmp.setResponseContentType("text/html");
 //var uri;
 //var transition;
 
 
-xdmp.log('------------------------------')
-xdmp.log(uri)
-xdmp.log('------------------------------')
+//xdmp.log('------------------------------')
+//xdmp.log(uri)
+//xdmp.log('------------------------------')
 
 
 // capitalises the first letter in a string
@@ -222,7 +222,7 @@ function updateSubTaskParent(relation, subtaskId){
             case 'Documentation Task':
                 taskType = relation.type;
                 str = 'declareUpdate();var parent=cts.doc(uri).root; xdmp.nodeInsertChild(parent.proceduralTasks[taskType], new NodeBuilder().addNumber(subtaskId).toNode())'
-                xdmp.log(str)
+               // xdmp.log(str)
                 xdmp.eval(str,  {uri:_uri, taskType: taskType, subtaskId:subtaskId}, {database: xdmp.database('bugtrack')})
                 break;
             case 'Sub-task':
@@ -283,7 +283,7 @@ function loadDoc(doc){
 
     // for Task
     if(doc.kind.toString() === 'Task'){
-        xdmp.log('TASK')
+      //  xdmp.log('TASK')
         str = 'declareUpdate(); xdmp.documentInsert("/task/" + newTask.id + "/" + newTask.id + ".json", newTask, null, ["tasks", newTask.submittedBy.username])'
         xdmp.eval(str, {newTask: doc}, {database: xdmp.database('bugtrack')});
         xdmp.log("loaded /task/" +doc.id + '/' + doc.id+ '.json' )
@@ -446,8 +446,8 @@ function convertBug(doc) {
         }
 
         newbug.clones = [];
-        var docExists = xdmp.eval('var uri="/bug/" + id + "/" + id + ".json"; xdmp.log(uri);fn.exists(cts.doc(uri))', {id: newbug.id}, {database: xdmp.database('bugtrack')}).next().value
-        xdmp.log(docExists)
+        var docExists = xdmp.eval('var uri="/bug/" + id + "/" + id + ".json";fn.exists(cts.doc(uri))', {id: newbug.id}, {database: xdmp.database('bugtrack')}).next().value
+       // xdmp.log(docExists)
         if(docExists){
             newbug.clones = xdmp.eval('cts.doc("/bug/" + id + "/" + id + ".json")', {id: newbug.id}, {database: xdmp.database('bugtrack')}).next().value.root.clones;
         }
@@ -555,7 +555,7 @@ function convertBug(doc) {
 
 
 function convertTask(doc) {
-    xdmp.log('------1---------')
+   // xdmp.log('------1---------')
     var bug = doc.root["bug-holder"].bug.toObject();
     var submittedBy = bug['submit-info']['submitted-by'];
     if (submittedBy === '') {
@@ -601,7 +601,7 @@ function convertTask(doc) {
                 // do nothing
                 break;
         }
-        xdmp.log('------2---------')
+      //  xdmp.log('------2---------')
         newtask.priority = parseInt(bug.priority) || {}
         switch (newtask.priority) {
             case 1:
@@ -633,7 +633,7 @@ function convertTask(doc) {
                 endDate: ""
             };
         }
-        xdmp.log('------3---------')
+      //  xdmp.log('------3---------')
         try {
             newtask.submittedBy = getUserInfo(submittedBy) || {}
         } catch (e) {
@@ -695,7 +695,7 @@ function convertTask(doc) {
         } catch(e){
             xdmp.log('no parent')
         }
-        xdmp.log('------4---------')
+       // xdmp.log('------4---------')
 
         newtask.includeInTaskList = includeInTaskList(bug);
         newtask.proceduralTasks = {
@@ -707,7 +707,7 @@ function convertTask(doc) {
         newtask.subTasks  = [];
 
         var docExists = xdmp.eval('var uri="/" + kind + "/" + id + "/" + id + ".json"; xdmp.log(uri);fn.exists(cts.doc(uri))', {kind: newtask.kind.toLowerCase(), id: newtask.id}, {database: xdmp.database('bugtrack')}).next().value
-        xdmp.log(docExists)
+        //xdmp.log(docExists)
         if(docExists){
             var  _doc = xdmp.eval('cts.doc("/" + kind + "/" + id + "/" + id + ".json")', {kind: newtask.kind.toLowerCase(), id: newtask.id}, {database: xdmp.database('bugtrack')}).next().value.root
             newtask.subTasks = _doc.subTasks;
@@ -839,7 +839,7 @@ function bulkTransform(){
                 }
                 // cpf.success(uri, transition, null);
             }catch(e){
-                xdmp.log('----------catch-----')
+                xdmp.log('----------error in bulkTransform()---------')
                 problematicXML.push(uris[i]);
                 xdmp.log(e.toString())
                 //  cpf.failure(uri, transition, e, null);
@@ -853,10 +853,6 @@ function batchTransform(uris){
         if(fn.exists(cts.doc(uris[i]))){
             xdmp.log('Batch Transform: '+ uris[i])
             try{
-                // check if doc already exists in new db
-                var isJsonDocExists = xdmp.eval("")
-
-
                 var json = convertXMLToJSON2(uris[i]);
                 var newdoc = convert(json);
                 loadDoc(newdoc);
@@ -871,7 +867,7 @@ function batchTransform(uris){
                 success.push(uris[i])
                 //  cpf.success(uri, transition, null);
             }catch(e){
-                xdmp.log('----------catch-----')
+                xdmp.log('----------error in batchTransform()---------')
                 problematicXML.push(uris[i]);
                 xdmp.log(e.toString());
                 failure.push(uris[i]);
@@ -902,7 +898,7 @@ function singleTransform(uri){
             "Transformed: " + uri
             //  cpf.success(uri, transition, null);
         }catch(e){
-            xdmp.log('----------catch-----')
+            xdmp.log('----------error in singleTransform()-----------')
             problematicXML.push(uri);
             xdmp.log(e.toString())
             // cpf.failure(uri, transition, e, null);

@@ -1,6 +1,12 @@
 //var cpf = require("/MarkLogic/cpf/cpf.xqy");
 // var uri;
 // var transition;
+var success = [];
+var failure = [];
+var fromDateTime = xdmp.getRequestField('from');
+var toDateTime = xdmp.getRequestField('to');
+var uri = xdmp.getRequestField('uri') || uri;
+var msg = "Converted new bugtrack JSON documents into old bugtrack XML documents\n\n\n"
 
 function cleanString(str){
     try{
@@ -14,10 +20,13 @@ function cleanString(str){
 }
 
 function convert(uri){
-    var doc = cts.doc(uri).root.toObject();
+    if(!xdmp.eval("fn.exists(cts.doc(uri))", {uri: uri}, {database: xdmp.database('bugtrack')}).next().value){
+        return msg+=uri + ' does not exist'
+    } else {
+    var doc = xdmp.eval("cts.doc(uri)", {uri: uri}, {database: xdmp.database('bugtrack')}).next().value.root.toObject();
     var nb = new NodeBuilder();
     if(doc.id) {
-    xdmp.log("Converting xml to json: " + uri)
+        xdmp.log("Converting json to xml: " + uri)
         nb.startDocument();
         nb.startElement("bt:bug-holder", "http://cerisent.com/bugtrack");
         nb.startElement("bt:bug")
@@ -166,6 +175,7 @@ function convert(uri){
         // xdmp.log(nb.toNode().root)
         return nb.toNode().root;
     }
+    }
 }
 
 function loadDoc(doc){
@@ -176,13 +186,88 @@ function loadDoc(doc){
             str = 'declareUpdate(); xdmp.documentInsert(uri, doc, [xdmp.permission("bugtrack-user", "read"), xdmp.permission("bugtrack-user", "update")])'
             xdmp.eval(str, {doc: doc, uri: docuri}, {database: xdmp.database('bugtrack-staging-db')});
             xdmp.log("loaded "+docuri )
+            msg+="\n*****************\n Transformed uri:" + uri + '\n';
           //  cpf.success(uri, transition, null);
         }
     }catch(e){
         xdmp.log('could not load')
+        msg+="\n*****************\n ERROR: Could not transform uri:" + uri + '\n';
       //  cpf.failure(uri, transition, e, null);
     }
 }
 
 
-loadDoc(convert(uri))
+function sortUris(docuris){
+    var ids = []
+    //  xdmp.log(docuris)
+    var sortedUris = []
+    for(var i in docuris){
+        var _uri = docuris[i].toString()
+        var _id = docuris[i].toString()
+            .replace(/\/\w*\/\d*\//, '')
+            .replace(/.json/, '')
+        xdmp.log(_id)
+        if(!isNaN(_id)){
+            ids.push({id: parseInt(_id), uri: docuris[i]})
+        }
+    }
+    ids.sort(function(a, b){return a.id-b.id});
+    for(var id in ids){
+        sortedUris.push(ids[id].uri)
+    }
+    return sortedUris
+}
+
+
+
+
+function getModifiedDocUris(from, to){
+    try{
+        if(!from){
+            throw new Error('Need "from" date')
+        }
+        var _from = xs.dateTime(from); //new Date(from)
+        var _to = (to == 'undefined') ? xs.dateTime(to) : fn.currentDateTime();
+
+        var query = cts.andQuery([
+            cts.elementRangeQuery("prop:last-modified", ">", _from ),
+            cts.elementRangeQuery("prop:last-modified", "<=",  _to)
+        ])
+        var uris =   cts.uriMatch("/*/*/*.json", ["properties"], query).toArray();
+        return sortUris(uris)
+    }catch(e){
+        return e.toString()
+    }
+}
+
+function batchTransform(uris){
+  for(var i in uris){
+      try{
+          xdmp.log('Converting '+ uris[i])
+          loadDoc(convert(uris[i]))
+          success.push(uris[i])
+      }catch(e){
+          failure.push(uris[i])
+      }
+  }
+}
+
+
+if(fromDateTime || toDateTime){
+    try{
+        if(fromDateTime){ xs.dateTime(fromDateTime)}
+        if(toDateTime){ xs.dateTime(toDateTime)}
+        var modifiedDocs = getModifiedDocUris(fromDateTime, toDateTime)
+        batchTransform(modifiedDocs);
+        msg+="Transformed  : \n Success:\n"+ success.join('\n') + '\n\n Failed:\n'+failure.join('\n')+'\n'
+    }catch(e){
+        msg+="Date format is wrong. Ex: 2015-04-27T11:10:00"
+    }
+}
+
+if(uri){
+    loadDoc(convert(uri))
+}
+
+msg
+
