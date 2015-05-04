@@ -166,9 +166,9 @@ angular.module('rfe.controllers')
                     scope: {config: $scope.config}
                 };
                 modalService.showModal({}, modalOptions).then(function() {
-                    Task.count().success(function(response) {
+                    Task.getNewId().success(function(response) {
                         var task = {};
-                        task.id = response.count + 1;
+                        task.id = response.nextId;
                         task.kind = 'Task';
                         task.title = proceduralTaskType + ' for ' + $scope.rfe.title;
                         task.description = 'Implement ' + task.title;
@@ -248,9 +248,9 @@ angular.module('rfe.controllers')
                     scope: {config: $scope.config}
                 };
                 modalService.showModal({}, modalOptions).then(function() {
-                    Task.count().success(function(response) {
+                    Task.getNewId().success(function(response) {
                         var task = {};
-                        task.id = response.count + 1;
+                        task.id = response.nextId;
                         task.kind = 'Task';
                         task.title = $scope.rfe.subtaskTitle;
                         task.description = 'Implement ' + task.title;

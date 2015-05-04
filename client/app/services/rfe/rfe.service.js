@@ -4,6 +4,14 @@ var app = angular.module('rfe.services', []);
 
 app.service('RFE', ['$http',
     function($http) {
+        
+         this.getNewId = function() {
+            return $http({
+                method: 'GET',
+                url: '/api/common/nextId'
+            });
+        };
+        
         this.getCurrentUserTasks = function(user) {
             if (user) {
                 var searchCriteria = {

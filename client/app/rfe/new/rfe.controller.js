@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('rfe.controllers', ['angularFileUpload', 'textAngular', 'ngProgress'])
-    .controller('newRFECtrl', ['$scope','$q', '$location', 'config', 'currentUser', 'count', 'RFE', 'Flash', 'ngProgress',
-        function($scope, $q, $location, config, currentUser, count, RFE, Flash, ngProgress) {
+    .controller('newRFECtrl', ['$scope','$q', '$location', 'config', 'currentUser', 'RFE', 'Flash', 'ngProgress',
+        function($scope, $q, $location, config, currentUser, RFE, Flash, ngProgress) {
             $scope.rfe = {};
             $scope.rfe.parent = {};
             $scope.rfe.period = {
@@ -76,9 +76,9 @@ angular.module('rfe.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
             function submitRFE() {
                 console.log('submit new rfe');
                 ngProgress.start();
-                RFE.count().success(function(response) {
+                RFE.getNewId().success(function(response) {
                     var rfe = {};
-                    rfe.id = response.count + 1;
+                    rfe.id = response.nextId;
                     rfe.kind = 'RFE';
                     rfe.title = $scope.rfe.title;
                     rfe.description = $scope.rfe.description;
@@ -139,7 +139,7 @@ angular.module('rfe.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                     });
                 }).error(function(error) {
                     ngProgress.complete();
-                    Flash.addAlert('danger', 'Oops! cound not get rfe count')
+                    Flash.addAlert('danger', 'Oops! cound not get new RFE Id')
                 });
 
             }

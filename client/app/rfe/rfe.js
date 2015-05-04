@@ -18,11 +18,11 @@ angular.module('fullstackApp')
                         return User.getCurrentUserInfo();
                     }
                 ],
-                count: ['RFE',
+                /*count: ['RFE',
                     function(RFE) {
                         return RFE.count();
                     }
-                ]
+                ]*/
 
             }
         })

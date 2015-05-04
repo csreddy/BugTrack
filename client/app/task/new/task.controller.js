@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgress'])
-    .controller('newTaskCtrl', ['$scope', '$q', '$location', 'config', 'currentUser', 'count', 'Task', 'RFE', 'Flash', 'ngProgress',
-        function($scope, $q, $location, config, currentUser, count, Task, RFE, Flash, ngProgress) {
+    .controller('newTaskCtrl', ['$scope', '$q', '$location', 'config', 'currentUser', 'Task', 'RFE', 'Flash', 'ngProgress',
+        function($scope, $q, $location, config, currentUser, Task, RFE, Flash, ngProgress) {
             $scope.task = {};
             $scope.task.parent = {};
             $scope.task.period = {
@@ -90,9 +90,9 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
             function submitTask() {
                 console.log('submit new task');
                 ngProgress.start();
-                Task.count().success(function(response) {
+                Task.getNewId().success(function(response) {
                     var task = {};
-                    task.id = response.count + 1;
+                    task.id = response.nextId;
                     task.kind = 'Task';
                     task.title = $scope.task.title;
                     task.description = $scope.task.description;
@@ -187,7 +187,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                     });
                 }).error(function(error) {
                     ngProgress.complete();
-                    Flash.addAlert('danger', 'Oops! cound not get task count')
+                    Flash.addAlert('danger', 'Oops! cound not get new Task Id');
                 });
 
             }

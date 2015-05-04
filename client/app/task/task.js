@@ -18,12 +18,12 @@ angular.module('fullstackApp')
                         return User.getCurrentUserInfo();
                     }
                 ],
-                count: ['Task',
+              /*  count: ['Task',
                     function(Task) {
                         return Task.count();
                     }
                 ]
-
+                */
             }
         })
         .when('/task/:id', {

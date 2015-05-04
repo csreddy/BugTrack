@@ -18,12 +18,12 @@ angular.module('fullstackApp')
                         return User.getCurrentUserInfo();
                     }
                 ],
-                bugId: ['Bug',
+               /* bugId: ['Bug',
                     function(Bug) {
                         return Bug.count();
                     }
                 ]
-
+                */
             }
         })
         .when('/bug/:id', {

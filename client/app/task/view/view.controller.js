@@ -170,9 +170,9 @@ angular.module('task.controllers')
                     scope: {config: $scope.config}
                 };
                 modalService.showModal({}, modalOptions).then(function() {
-                    Task.count().success(function(response) {
+                    Task.getNewId().success(function(response) {
                         var task = {};
-                        task.id = response.count + 1;
+                        task.id = response.nextId + 1;
                         task.kind = 'Task';
                         task.title = proceduralTaskType + ' for ' + $scope.task.title;
                         task.description = 'Implement ' + task.title;
@@ -253,9 +253,9 @@ angular.module('task.controllers')
                     scope: {config: $scope.config}
                 };
                 modalService.showModal({}, modalOptions).then(function() {
-                    Task.count().success(function(response) {
+                    Task.getNewId().success(function(response) {
                         var task = {};
-                        task.id = response.count + 1;
+                        task.id = response.nextId;
                         task.kind = 'Task';
                         task.title = $scope.task.subtaskTitle;
                         task.description = 'Implement ' + task.title;

@@ -4,16 +4,14 @@ var app = angular.module('task.services', []);
 
 app.service('Task', ['$http',
     function($http) {
-        // AngularJS will instantiate a singleton by calling 'new' on this function
-        this.search = function(criteria) {
+         this.getNewId = function() {
             return $http({
-                method: 'POST',
-                url: '/api/search',
-                data: criteria
+                method: 'GET',
+                url: '/api/common/nextId'
             });
         };
 
-
+    
         this.getCurrentUserTasks = function(user) {
             if (user) {
                 var searchCriteria = {

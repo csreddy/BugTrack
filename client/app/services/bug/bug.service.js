@@ -138,12 +138,20 @@ app.service('Bug', ['$http',
 
 
         this.count = function() {
-            console.log('getting bug count');
             return $http({
                 method: 'GET',
                 url: '/api/bugs/count'
             });
         };
+
+
+        this.getNewId = function() {
+            return $http({
+                method: 'GET',
+                url: '/api/common/nextId'
+            });
+        };
+
 
         this.getFacets = function() {
             return $http({
@@ -158,7 +166,7 @@ app.service('Bug', ['$http',
             scope.$watch(object, function() {
                 if (scope[object] !== undefined) {
                     var note = object + ' changed from ' + scope.bug[object] + ' to ' + scope[object];
-                  //  console.log(note);
+                    //  console.log(note);
                     scope.changes[object] = {
                         'from': scope.bug[object],
                         'to': scope[object]
