@@ -118,3 +118,45 @@ a:focus {
     float: left;
     margin-right: 5px;
 }
+
+.alert {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#appversion {
+    position: absolute;
+    background-color: #D72824;
+    color: white;
+    padding: 1px 1px;
+    border-radius: 3px;
+    font-size: 11px;
+    margin: -48px 155px;
+}
+
+
+/* sticky site footer */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 100px;
+    /* bottom = footer height */
+}
+
+.site-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+    text-align: center;
+    background-color: #f2f2f2;
+    margin-top: 100px;
+}
