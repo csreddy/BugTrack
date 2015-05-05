@@ -130,6 +130,26 @@
                     </td>
                     <td colspan="" rowspan="">{{task.createdAt | date: 'medium'}}</td>
                 </tr>
+                <tr ng-show="task.fixedAt">
+                    <td colspan="" rowspan="" class="hidden-md"><b>Fixed on</b>
+                    </td>
+                    <td colspan="" rowspan="">{{task.fixedAt | date: 'medium'}}</td>
+                </tr>
+                 <tr ng-show="task.sentBackToFixAt">
+                    <td colspan="" rowspan="" class="hidden-md"><b>Sent back to fix on</b>
+                    </td>
+                    <td colspan="" rowspan="">{{task.sentBackToFixAt | date: 'medium'}}</td>
+                </tr>
+                <tr ng-show="task.shippedAt">
+                    <td colspan="" rowspan="" class="hidden-md"><b>Shipped on</b>
+                    </td>
+                    <td colspan="" rowspan="">{{task.shippedAt | date: 'medium'}}</td>
+                </tr>
+                 <tr ng-show="task.closedAt">
+                    <td colspan="" rowspan="" class="hidden-md"><b>Closed on</b>
+                    </td>
+                    <td colspan="" rowspan="">{{task.closedAt | date: 'medium'}}</td>
+                </tr>
             </table>
             <span class="label label-default" class="hidden-md">Related tasks</span>
             <div class="bg-gray">

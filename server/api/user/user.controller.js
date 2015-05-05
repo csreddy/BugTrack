@@ -45,6 +45,7 @@ exports.saveDefaultQuery = function(req, res) {
 exports.saveQuery = function(req, res) {
     var uri = '/users/' + req.user + '.json';
     console.log('saveQuery', req.body);
+    
     var update = [];
     var queryObj = new Object();
     if (req.body.name === 'default') {
@@ -52,12 +53,14 @@ exports.saveQuery = function(req, res) {
             description: 'This is the default query',
             query: req.body.query
         }
+        queryObj['default'].query.page = 1 // always set to 1 
         update.push(p.replace('/node("savedQueries")/node("default")', queryObj.default))
     } else{
         queryObj[req.body.name] = {
                 description: req.body.description,
                 query: req.body.query
             }
+        queryObj[req.body.name].query.page = 1 // always set to 1 
          update.push(p.insert('/node("savedQueries")', 'last-child', queryObj));   
     }
 

@@ -1008,5 +1008,5 @@ if(uri){
 
 
 //bulkTransform(11, 20)
-
+xdmp.log(msg)
 msg;

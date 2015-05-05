@@ -190,7 +190,7 @@ angular.module('task.controllers')
                         task.category = $scope.task.category;
                         task.severity = $scope.task.severity;
                         task.version = $scope.task.version;
-                        task.tofixin = $scope.newSubTask.tofixin
+                        task.tofixin = $scope.newSubTask.tofixin;
                         task.submittedBy = {
                             username: currentUser.username,
                             email: currentUser.email,
@@ -213,7 +213,6 @@ angular.module('task.controllers')
                         };
                         task.subTasks = [];
                         task.createdAt = new Date();
-                        task.modifiedAt = new Date();
                         task.changeHistory = [];
 
                         var updates = [Task.create(task, []).then(), Task.insertProceduralTask(id, proceduralTaskType, task.id).then()];

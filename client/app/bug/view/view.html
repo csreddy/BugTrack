@@ -127,17 +127,6 @@
                     </td>
                     <td colspan="" rowspan="">{{bug.memory}}</td>
                 </tr>
-                <tr ng-show="bug.resolvedAt">
-                    <td colspan="" rowspan="" class="hidden-md"><b>Resolved on</b>
-                    </td>
-                    <td colspan="" rowspan="">{{bug.resolvedAt | date: 'medium'}}</td>
-                </tr>
-                <tr ng-show="bug.testedAt">
-                    <td colspan="" rowspan="" class="hidden-md"><b>Tested on</b>
-                    </td>
-                    <td colspan="" rowspan="">{{bug.resolvedAt | date: 'medium'}}</td>
-                    <!-- same as resolved date -->
-                </tr>
                 <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Reported on</b>
                     </td>
@@ -155,6 +144,27 @@
                     </td>
                     <td colspan="" rowspan="">{{bug.submittedBy.name}}</td>
                 </tr>
+                <tr ng-show="bug.fixedAt">
+                    <td colspan="" rowspan="" class="hidden-md"><b>Fixed on</b>
+                    </td>
+                    <td colspan="" rowspan="">{{bug.fixedAt | date: 'medium'}}</td>
+                </tr>
+                 <tr ng-show="bug.sentBackToFixAt">
+                    <td colspan="" rowspan="" class="hidden-md"><b>Sent back to fix on</b>
+                    </td>
+                    <td colspan="" rowspan="">{{bug.sentBackToFixAt | date: 'medium'}}</td>
+                </tr>
+                <tr ng-show="bug.shippedAt">
+                    <td colspan="" rowspan="" class="hidden-md"><b>Shipped on</b>
+                    </td>
+                    <td colspan="" rowspan="">{{bug.shippedAt | date: 'medium'}}</td>
+                </tr>
+                 <tr ng-show="bug.closedAt">
+                    <td colspan="" rowspan="" class="hidden-md"><b>Closed on</b>
+                    </td>
+                    <td colspan="" rowspan="">{{bug.closedAt | date: 'medium'}}</td>
+                </tr>
+               
             </table>
             <span class="label label-default" class="hidden-md">Related bugs</span>
             <div class="bg-gray">

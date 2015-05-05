@@ -213,7 +213,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
 
         $scope.getItems = function(kind) {
             if (kind) $location.search('kind', kind);
-            $location.search('page', $location.$$search.page || 1); // start from page 1 for every search
+            $location.search('page', 1); // start from page 1 for every search
             $location.search('pageLength', $scope.form.pageLength);
         };
 
@@ -380,10 +380,10 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 var query = {
                     name: $scope.newQuery.name,
                     description: $scope.newQuery.description,
-                    query: $location.search()
+                    query: $location.$$search
                 };
                 User.saveQuery(query).success(function() {
-                    Flash.addAlert('success', 'Query saved')
+                    Flash.addAlert('success', 'Query saved');
                 }).error(function() {
                     Flash.addAlert('danger', 'Could not save query. Please try again');
                 });

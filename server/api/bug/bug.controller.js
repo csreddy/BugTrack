@@ -194,12 +194,9 @@ exports.update = function(req, res) {
             function(callback) {
                 db.documents.read(uri)
                     .result(function(documents) {
-                        console.log('FROM:', documents);
                         from = documents[0].content;
-                        //  delete from.changeHistory;
                         callback();
                     }, function(error) {
-                        // res.status(error.statusCode).json(error);
                         callback();
                     })
 
@@ -238,6 +235,7 @@ exports.update = function(req, res) {
                                                 shippedAt: updateTime
                                             }));
                                         }
+                                         updates.push(p.remove('/sentBackToFixAt'))
                                         break;
                                     case 'Closed':
                                         if (from.closedAt) {
@@ -249,15 +247,14 @@ exports.update = function(req, res) {
                                         }
                                         break;
                                     case 'Fix':
-                                        if (from.status === 'Test') {
                                             if (from.sentBackToFixAt) {
                                                 updates.push(p.replace('/sentBackToFixAt', updateTime))
+                                                updates.push(p.remove('/fixedAt'))
                                             } else {
                                                 updates.push(p.insert('/createdAt', 'after', {
                                                     sentBackToFixAt: updateTime
                                                 }));
                                             }
-                                        }
                                         break;
                                     default:
                                         // do nothing
