@@ -7,7 +7,7 @@ var conn = require('../../config/db-config.js').connection;
 var db = marklogic.createDatabaseClient(conn);
 var q = marklogic.queryBuilder;
 var p = marklogic.patchBuilder;
-
+var async = require('async');
 var _ = require('lodash');
 
 // Get list of items
@@ -168,15 +168,13 @@ exports.new = function(req, res) {
 
 exports.update = function(req, res) {
     console.log('Inside update....');
-    console.log(req.body);
-    // res.json(req.body);
-    var from = JSON.parse(req.body.old);
+    //console.log(req.body);
+    var from = null;
     var to = JSON.parse(req.body.bug);
     var file = req.files;
-    var uri = '/bug/' + from.id + '/' + from.id + '.json';
+    var uri = '/bug/' + to.id + '/' + to.id + '.json';
     var updates = []
     var updateTime = new Date();
-
     var changes = {
         time: updateTime,
         updatedBy: {
@@ -190,251 +188,327 @@ exports.update = function(req, res) {
 
     console.log('FILES', req.files);
 
-    for (var prop in to) {
-        switch (prop) {
-            case 'title':
-                if (from.title !== to.title) {
-                    updates.push(p.replace('/title', to.title));
-                    changes.change.title = {
-                        from: from.title,
-                        to: to.title
-                    };
-                }
-                break;
-            case 'status':
-                if (from.status !== to.status) {
-                    updates.push(p.replace('/status', to.status));
-                    changes.change.status = {
-                        from: from.status,
-                        to: to.status
-                    };
-                }
-                break;
-            case 'severity':
-                if (from.severity !== to.severity) {
-                    updates.push(p.replace('/severity', to.severity));
-                    changes.change.severity = {
-                        from: from.severity,
-                        to: to.severity
-                    };
-                }
-                break;
-            case 'category':
-                if (from.category !== to.category) {
-                    updates.push(p.replace('/category', to.category));
-                    changes.change.category = {
-                        from: from.category,
-                        to: to.category
-                    };
-                }
-                break;
-            case 'priority':
-                if (from.priority.level !== to.priority.level) {
-                    updates.push(p.replace('/priority/level', to.priority.level));
-                    updates.push(p.replace('/priority/title', to.priority.title));
-                    changes.change.priority = {
-                        from: from.priority,
-                        to: to.priority
-                    };
-                }
-                break;
-            case 'version':
-                if (from.version !== to.version) {
-                    updates.push(p.replace('/version', to.version));
-                    changes.change.version = {
-                        from: from.version,
-                        to: to.version
-                    };
-                }
-                break;
-            case 'platform':
-                if (from.platform !== to.platform) {
-                    updates.push(p.replace('/platform', to.platform))
-                    changes.change.platform = {
-                        from: from.platform,
-                        to: to.platform
-                    };
-                }
-                break;
-            case 'tofixin':
-                if (from.tofixin !== to.tofixin) {
-                    updates.push(p.replace('/tofixin', to.tofixin));
-                }
-                break;
-            case 'fixedin':
-                if (from.fixedin !== to.fixedin) {
-                    updates.push(p.replace('/fixedin', to.fixedin));
-                    changes.change.fixedin = {
-                        from: from.fixedin,
-                        to: to.fixedin
-                    };
-                }
-                break;
-            case 'assignTo':
-                if (from.assignTo.username !== to.assignTo.username) {
-                    updates.push(p.replace('/assignTo/username', to.assignTo.username));
-                    updates.push(p.replace('/assignTo/email', to.assignTo.email));
-                    updates.push(p.replace('/assignTo/name', to.assignTo.name));
-                    for (var i = 0; i < to.subscribers.length; i++) {
-                        // check if the user has already subscribed
-                        if (to.subscribers[i].username === to.assignTo.username) {
+
+    async.series([
+
+            function(callback) {
+                db.documents.read(uri)
+                    .result(function(documents) {
+                        console.log('FROM:', documents);
+                        from = documents[0].content;
+                        //  delete from.changeHistory;
+                        callback();
+                    }, function(error) {
+                        // res.status(error.statusCode).json(error);
+                        callback();
+                    })
+
+            },
+            function(callback) {
+                for (var prop in to) {
+                    switch (prop) {
+                        case 'title':
+                            if (from.title !== to.title) {
+                                updates.push(p.replace('/title', to.title));
+                                changes.change.title = {
+                                    from: from.title,
+                                    to: to.title
+                                };
+                            }
                             break;
+                        case 'status':
+                            if (from.status !== to.status) {
+                                updates.push(p.replace('/status', to.status));
+                                switch (to.status) {
+                                    case 'Test':
+                                        if (from.fixedAt) {
+                                            updates.push(p.replace('/fixedAt', updateTime))
+                                        } else {
+                                            updates.push(p.insert('/createdAt', 'after', {
+                                                fixedAt: updateTime
+                                            }));
+                                        }
+                                        // updates.push(p.replaceInsert('/fixedAt', 'createdAt', 'after', {'test': new Date()}))
+                                        break;
+                                    case 'Ship':
+                                        if (from.shippedAt) {
+                                            updates.push(p.replace('/shippedAt', updateTime))
+                                        } else {
+                                            updates.push(p.insert('/createdAt', 'after', {
+                                                shippedAt: updateTime
+                                            }));
+                                        }
+                                        break;
+                                    case 'Closed':
+                                        if (from.closedAt) {
+                                            updates.push(p.replace('/closedAt', updateTime))
+                                        } else {
+                                            updates.push(p.insert('/createdAt', 'after', {
+                                                closedAt: updateTime
+                                            }));
+                                        }
+                                        break;
+                                    case 'Fix':
+                                        if (from.status === 'Test') {
+                                            if (from.sentBackToFixAt) {
+                                                updates.push(p.replace('/sentBackToFixAt', updateTime))
+                                            } else {
+                                                updates.push(p.insert('/createdAt', 'after', {
+                                                    sentBackToFixAt: updateTime
+                                                }));
+                                            }
+                                        }
+                                        break;
+                                    default:
+                                        // do nothing
+                                }
+                                changes.change.status = {
+                                    from: from.status,
+                                    to: to.status
+                                };
+                            }
+                            break;
+                        case 'severity':
+                            if (from.severity !== to.severity) {
+                                updates.push(p.replace('/severity', to.severity));
+                                changes.change.severity = {
+                                    from: from.severity,
+                                    to: to.severity
+                                };
+                            }
+                            break;
+                        case 'category':
+                            if (from.category !== to.category) {
+                                updates.push(p.replace('/category', to.category));
+                                changes.change.category = {
+                                    from: from.category,
+                                    to: to.category
+                                };
+                            }
+                            break;
+                        case 'priority':
+                            if (from.priority.level !== to.priority.level) {
+                                updates.push(p.replace('/priority/level', to.priority.level));
+                                updates.push(p.replace('/priority/title', to.priority.title));
+                                changes.change.priority = {
+                                    from: from.priority,
+                                    to: to.priority
+                                };
+                            }
+                            break;
+                        case 'version':
+                            if (from.version !== to.version) {
+                                updates.push(p.replace('/version', to.version));
+                                changes.change.version = {
+                                    from: from.version,
+                                    to: to.version
+                                };
+                            }
+                            break;
+                        case 'platform':
+                            if (from.platform !== to.platform) {
+                                updates.push(p.replace('/platform', to.platform))
+                                changes.change.platform = {
+                                    from: from.platform,
+                                    to: to.platform
+                                };
+                            }
+                            break;
+                        case 'tofixin':
+                            if (from.tofixin !== to.tofixin) {
+                                updates.push(p.replace('/tofixin', to.tofixin));
+                            }
+                            break;
+                        case 'fixedin':
+                            if (from.fixedin !== to.fixedin) {
+                                updates.push(p.replace('/fixedin', to.fixedin));
+                                changes.change.fixedin = {
+                                    from: from.fixedin,
+                                    to: to.fixedin
+                                };
+                            }
+                            break;
+                        case 'assignTo':
+                            if (from.assignTo.username !== to.assignTo.username) {
+                                updates.push(p.replace('/assignTo/username', to.assignTo.username));
+                                updates.push(p.replace('/assignTo/email', to.assignTo.email));
+                                updates.push(p.replace('/assignTo/name', to.assignTo.name));
+                                for (var i = 0; i < to.subscribers.length; i++) {
+                                    // check if the user has already subscribed
+                                    if (to.subscribers[i].username === to.assignTo.username) {
+                                        break;
+                                    }
+                                    // if user has not subscribed then subscribe at the last iteration
+                                    if (i === to.subscribers.length - 1) {
+                                        updates.push(p.insert("array-node('subscribers')", 'last-child', to.assignTo));
+                                    }
+                                }
+
+                                changes.change.assignTo = {
+                                    from: from.assignTo,
+                                    to: to.assignTo
+                                };
+
+                            }
+                            break;
+                        case 'comment':
+                            if (to.comment.length > 0) {
+                                changes.comment = to.comment;
+                            }
+                            break;
+                        case 'subscribers':
+                            var userIndex = _.findIndex(from.subscribers, function(user) {
+                                return user.username == changes.updatedBy.username;
+                            });
+                            if (userIndex === -1) {
+                                updates.push(p.insert("array-node('subscribers')", 'last-child', changes.updatedBy))
+                            }
+                            break;
+                        case 'support':
+                            if (from.support.headline !== to.support.headline) {
+                                updates.push(p.replace('/support/headline', to.support.headline));
+                                changes.change['support headline'] = {
+                                    from: from.support.headline,
+                                    to: to.support.headline
+                                }
+                            }
+                            if (from.support.supportDescription !== to.support.supportDescription) {
+                                updates.push(p.replace('/support/supportDescription', to.support.supportDescription));
+                                changes.change['support description'] = {
+                                    from: from.support.supportDescription,
+                                    to: to.support.supportDescription
+                                }
+                            }
+                            if (from.support.workaround !== to.support.workaround) {
+                                updates.push(p.replace('/support/workaround', to.support.workaround));
+                                changes.change['support workaround'] = {
+                                    from: from.support.workaround,
+                                    to: to.support.workaround
+                                }
+                            }
+                            if (from.support.publishStatus !== to.support.publishStatus) {
+                                updates.push(p.replace('/support/publishStatus', to.support.publishStatus));
+                                changes.change['support publishStatus'] = {
+                                    from: from.support.publishStatus,
+                                    to: to.support.publishStatus
+                                }
+                            }
+
+
+                            if ((typeof to.support.tickets) === 'string') {
+                                to.support.tickets = to.support.tickets.split(',');
+                                _.forEach(to.support.tickets, function(value, index) {
+                                    if (!isNaN(value)) {
+                                        to.support.tickets[index] = value.trim();
+                                    } else {
+                                        res.status(500).json({
+                                            message: 'ticket ids should be numbers only'
+                                        })
+                                    }
+                                });
+                                to.support.tickets.sort();
+                            }
+
+                            if (to.support.tickets instanceof Array) {
+                                if (from.support.tickets.sort().join(',') !== to.support.tickets.sort().join(',')) {
+                                    updates.push(p.replace("/support/array-node('tickets')", to.support.tickets));
+                                    changes.change['support tickets'] = {
+                                        from: from.support.tickets.join(','),
+                                        to: to.support.tickets.join(',')
+                                    }
+                                }
+                            }
+
+
+                            if (from.support.customerImpact.level !== to.support.customerImpact.level) {
+                                updates.push(p.replace('/support/customerImpact', to.support.customerImpact));
+                                changes.change['customer impact'] = {
+                                    from: from.support.customerImpact.level,
+                                    to: to.support.customerImpact
+                                }
+                            }
+                            break;
+                        case 'svninfo':
+                            if (true) {
+                                // TODO
+                            }
+                            break;
+                        default:
+                            break;
+                            // do nothing
+                    }
+
+                }
+
+                if (Object.keys(req.files).length > 0) {
+                    for (var file in req.files) {
+                        var fileObj = {
+                            name: req.files[file].originalname,
+                            uri: '/bug/' + to.id + '/attachments/' + req.files[file].originalname
                         }
-                        // if user has not subscribed then subscribe at the last iteration
-                        if (i === to.subscribers.length - 1) {
-                            updates.push(p.insert("array-node('subscribers')", 'last-child', to.assignTo));
-                        }
-                    }
-
-                    changes.change.assignTo = {
-                        from: from.assignTo,
-                        to: to.assignTo
-                    };
-
-                }
-                break;
-            case 'comment':
-                if (to.comment.length > 0) {
-                    changes.comment = to.comment;
-                }
-                break;
-            case 'subscribers':
-                var userIndex = _.findIndex(from.subscribers, function(user) {
-                    return user.username == changes.updatedBy.username;
-                });
-                if (userIndex === -1) {
-                    updates.push(p.insert("array-node('subscribers')", 'last-child', changes.updatedBy))
-                }
-                break;
-            case 'support':
-                if (from.support.headline !== to.support.headline) {
-                    updates.push(p.replace('/support/headline', to.support.headline));
-                    changes.change['support headline'] = {
-                        from: from.support.headline,
-                        to: to.support.headline
-                    }
-                }
-                if (from.support.supportDescription !== to.support.supportDescription) {
-                    updates.push(p.replace('/support/supportDescription', to.support.supportDescription));
-                    changes.change['support description'] = {
-                        from: from.support.supportDescription,
-                        to: to.support.supportDescription
-                    }
-                }
-                if (from.support.workaround !== to.support.workaround) {
-                    updates.push(p.replace('/support/workaround', to.support.workaround));
-                    changes.change['support workaround'] = {
-                        from: from.support.workaround,
-                        to: to.support.workaround
-                    }
-                }
-                if (from.support.publishStatus !== to.support.publishStatus) {
-                    updates.push(p.replace('/support/publishStatus', to.support.publishStatus));
-                    changes.change['support publishStatus'] = {
-                        from: from.support.publishStatus,
-                        to: to.support.publishStatus
+                        updates.push(p.insert("array-node('attachments')", 'last-child', fileObj));
+                        changes.files.push(fileObj);
                     }
                 }
 
 
-                if ((typeof to.support.tickets) === 'string') {
-                    to.support.tickets = to.support.tickets.split(',');
-                    _.forEach(to.support.tickets, function(value, index) {
-                        if (!isNaN(value)) {
-                            to.support.tickets[index] = value.trim();
-                        } else {
-                            res.status(500).json({
-                                message: 'ticket ids should be numbers only'
-                            })
-                        }
-                    });
-                    to.support.tickets.sort();
-                }
+                if (Object.keys(req.files).length > 0) {
+                    for (var file in req.files) {
+                        console.log(req.files[file]);
+                        var doc = {
+                            uri: '/bug/' + to.id + '/attachments/' + req.files[file].originalname,
+                            category: 'content',
+                            contentType: req.files[file].mimetype,
+                            content: fs.createReadStream(req.files[file].path)
+                        };
 
-                if (to.support.tickets instanceof Array) {
-                    if (from.support.tickets.sort().join(',') !== to.support.tickets.sort().join(',')) {
-                        updates.push(p.replace("/support/array-node('tickets')", to.support.tickets));
-                        changes.change['support tickets'] = {
-                            from: from.support.tickets.join(','),
-                            to: to.support.tickets.join(',')
-                        }
+                        db.documents.write(doc).result(function(response) {
+                            console.log('wrote:\n ', JSON.stringify(response.documents[0]));
+                            // res.send(200);
+                        }, function(error) {
+                            errors = true;
+                            res.send(400, {
+                                message: 'file upload failed. Try again'
+                            });
+                        });
+                    }
+
+                    for (var i in req.files) {
+                        // delete file from uploads dir after successfull upload
+                        fs.unlink(req.files[i].path, function(err) {
+                            if (err) throw err;
+                        });
                     }
                 }
 
+                updates.push(p.insert("array-node('changeHistory')", 'last-child', changes))
 
-                if (from.support.customerImpact.level !== to.support.customerImpact.level) {
-                    updates.push(p.replace('/support/customerImpact', to.support.customerImpact));
-                    changes.change['customer impact'] = {
-                        from: from.support.customerImpact.level,
-                        to: to.support.customerImpact
-                    }
-                }
-                break;
-            case 'svninfo':
-                if (true) {
-                    // TODO
-                }
-                break;
-            default:
-                break;
-                // do nothing
-        }
-
-    }
-
-    if (Object.keys(req.files).length > 0) {
-        for (var file in req.files) {
-            var fileObj = {
-                name: req.files[file].originalname,
-                uri: '/bug/' + to.id + '/attachments/' + req.files[file].originalname
+                callback();
             }
-            updates.push(p.insert("array-node('attachments')", 'last-child', fileObj));
-            changes.files.push(fileObj);
-        }
-    }
-
-
-    if (Object.keys(req.files).length > 0) {
-        for (var file in req.files) {
-            console.log(req.files[file]);
-            var doc = {
-                uri: '/bug/' + to.id + '/attachments/' + req.files[file].originalname,
-                category: 'content',
-                contentType: req.files[file].mimetype,
-                content: fs.createReadStream(req.files[file].path)
-            };
-
-            db.documents.write(doc).result(function(response) {
-                console.log('wrote:\n ', JSON.stringify(response.documents[0]));
-                // res.send(200);
+        ],
+        function(error, result) {
+            if (error) res.status(500).json(error);
+            
+            // when no error
+             if (from.updatedAt) {
+                    updates.push(p.replace('/updatedAt', updateTime))
+                } else {
+                    updates.push(p.insert('/createdAt', 'after', {
+                        updatedAt: updateTime
+                    }));
+                }
+            db.documents.patch(uri, updates).result(function(response) {
+                res.status(200).json({
+                    message: 'bug updated'
+                })
             }, function(error) {
-                errors = true;
-                res.send(400, {
-                    message: 'file upload failed. Try again'
-                });
+                console.log(error);
+                res.status(500).json({
+                    message: 'bug update failed\n' + error
+                })
             });
         }
-
-        for (var i in req.files) {
-            // delete file from uploads dir after successfull upload
-            fs.unlink(req.files[i].path, function(err) {
-                if (err) throw err;
-            });
-        }
-    }
-
-    updates.push(p.insert("array-node('changeHistory')", 'last-child', changes))
-
-    db.documents.patch(uri, updates).result(function(response) {
-        res.status(200).json({
-            message: 'bug updated'
-        })
-    }, function(error) {
-        console.log(error);
-        res.status(500).json({
-            message: 'bug update failed\n' + error
-        })
-    });
+    )
 
 };
 

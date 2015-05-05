@@ -3,6 +3,8 @@ pre#description {
     border: 0px;
     font-size: 14px;
     font-family: 'Source Sans Pro', sans-serif;
+    white-space: pre-wrap;
+    word-break: normal;
 }
 .gist {
     color: #000;

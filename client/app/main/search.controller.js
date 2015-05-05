@@ -99,7 +99,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 // browser back/fwd is clicked. This is a hack to fix it.
                 $timeout(function() {
                     highlightPageNumber($location.search().page);
-                }, 500);
+                }, 0);
                 $scope.form.groups = angular.copy($scope.preSelectedGroups) || angular.copy(config.groups);
                 /*   
             // check if the url matches users default query, if true then select checkbox to indicate
@@ -112,6 +112,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 // otherwise initialize with app default query
                 console.log('user has default search....');
                 $location.$$search = currentUser.savedQueries.default.query;
+                $timeout(function() {
+                    highlightPageNumber($location.search().page);
+                }, 0);
             } else {
                 // if user does not have default query then return all bugs assigned to 
                 // the current user
@@ -210,7 +213,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
 
         $scope.getItems = function(kind) {
             if (kind) $location.search('kind', kind);
-            $location.search('page', 1); // start from page 1 for every search
+            $location.search('page', $location.$$search.page || 1); // start from page 1 for every search
             $location.search('pageLength', $scope.form.pageLength);
         };
 
@@ -477,7 +480,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             }
 
             if ($location.url().indexOf('/home') > -1) {
-                $scope.currentPage = $location.search().page || 1;
+                $scope.currentPage = $location.$$search.page || 1;
 
                 // due to pagination directive bug, current page number does not get higlighted when 
                 // browser back/fwd is clicked. This is a hack to fix it.
@@ -485,16 +488,16 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
 
                 if (!$scope.isPaginationEvent) {
                     // for form selections to auto fill when browser back/fwd is clicked
-                    if (Object.keys($location.search()).length === 0) {
+                    if (Object.keys($location.$$search).length === 0) {
                         // reset search form to default
 
                         $scope.form = angular.copy(defaultSearchCriteria);
                     } else {
                         // get form selections from query params
-                        $scope.form = convertSearchParamsIntoFormSelections($location.search());
+                        $scope.form = convertSearchParamsIntoFormSelections($location.$$search);
 
                     }
-                    search($location.search());
+                    search($location.$$search);
                 }
                 $scope.isPaginationEvent = false;
             }

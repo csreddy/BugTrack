@@ -64,7 +64,7 @@ app.service('Bug', ['$http',
         };
 
 
-        this.update = function(bug, old, files) {
+        this.update = function(bug, files) {
             return $http({
                 url: '/api/bugs/update',
                 method: 'PUT',
@@ -74,7 +74,7 @@ app.service('Bug', ['$http',
                 transformRequest: function(data) {
                     var form = new FormData();
                     form.append('bug', angular.toJson(bug));
-                    form.append('old', angular.toJson(old));
+                  //  form.append('old', angular.toJson(old));
                     if (data.files) {
                         for (var i = 0; i < data.files.length; i++) {
                             //console.log('FORM', data.files[i]);
@@ -85,7 +85,6 @@ app.service('Bug', ['$http',
                 },
                 data: {
                     bug: bug,
-                    old: old,
                     files: files
                 }
             });

@@ -237,7 +237,7 @@ angular.module('bug.controllers')
                 updateBug.fixedin = $scope.fixedin || $scope.bug.fixedin;
                 updateBug.comment = $scope.newcomment || '';
                 // updateBug.subscribers = $scope.assignTo || '';
-                updateBug.updatedBy = currentUser;
+                updateBug.updatedBy = $scope.updatedBy;
                 updateBug.support = $scope.support || $scope.bug.support;
                 updateBug.svninfo = {};
 
@@ -257,7 +257,7 @@ angular.module('bug.controllers')
                     }
                 }
 
-                Bug.update(updateBug, $scope.bug, $scope.files).success(function() {
+                Bug.update(updateBug, $scope.files).success(function() {
                     // reset watchers
                     $scope.changes = {};
                     $scope.files = [];
