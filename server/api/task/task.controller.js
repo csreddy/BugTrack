@@ -180,39 +180,44 @@ exports.update = function(req, res) {
             for (var prop in to) {
                 switch (prop) {
                     case 'status':
-                        if (from.status && from.status !== to.status) {
+                        if (from.status !== to.status) {
                             updates.push(p.replace('/status', to.status));
                             switch (to.status) {
                                 case 'Test':
                                     if (from.fixedAt) {
-                                            updates.push(p.replace('/fixedAt', updateTime))
-                                        } else {
-                                            updates.push(p.insert('/createdAt', 'after', {
-                                                fixedAt: updateTime
-                                            }));
-                                        }
-                                    break;
-                                case 'Fix':
-                                    if (from.status === 'Test') {
-                                            if (from.sentBackToFixAt) {
-                                                updates.push(p.replace('/sentBackToFixAt', updateTime))
-                                                updates.push(p.remove('/fixedAt'))
-                                            } else {
-                                                updates.push(p.insert('/createdAt', 'after', {
-                                                    sentBackToFixAt: updateTime
-                                                }));
-                                            }
-                                        }
+                                        updates.push(p.replace('/fixedAt', updateTime))
+                                    } else {
+                                        updates.push(p.insert('/createdAt', 'after', {
+                                            fixedAt: updateTime
+                                        }));
+                                    }
+                                    if (from.fixedBy) {
+                                        updates.push(p.replace('/fixedBy', updateTime))
+                                    } else {
+                                        updates.push(p.insert('/submittedBy', 'after', {
+                                            fixedBy: changes.updatedBy
+                                        }));
+                                    }
+
+                                    // updates.push(p.replaceInsert('/fixedAt', 'createdAt', 'after', {'test': new Date()}))
                                     break;
                                 case 'Ship':
-                                  if (from.shippedAt) {
-                                            updates.push(p.replace('/shippedAt', updateTime))
-                                        } else {
-                                            updates.push(p.insert('/createdAt', 'after', {
-                                                shippedAt: updateTime
-                                            }));
-                                        }
-                                         updates.push(p.remove('/sentBackToFixAt'))
+                                    if (from.shippedAt) {
+                                        updates.push(p.replace('/shippedAt', updateTime))
+                                    } else {
+                                        updates.push(p.insert('/createdAt', 'after', {
+                                            shippedAt: updateTime
+                                        }));
+                                    }
+                                    if (from.shippedBy) {
+                                        updates.push(p.replace('/shippedBy', updateTime))
+                                    } else {
+                                        updates.push(p.insert('/submittedBy', 'after', {
+                                            shippedBy: changes.updatedBy
+                                        }));
+                                    }
+                                     // remove this when task is fixed and shipped successfully   
+                                    updates.push(p.remove('/sentBackToFixAt'))
                                     break;
                                 case 'Closed':
                                     if (from.closedAt) {
@@ -222,6 +227,30 @@ exports.update = function(req, res) {
                                             closedAt: updateTime
                                         }));
                                     }
+                                    if (from.closedBy) {
+                                        updates.push(p.replace('/closedBy', updateTime))
+                                    } else {
+                                        updates.push(p.insert('/submittedBy', 'after', {
+                                            closedBy: changes.updatedBy
+                                        }));
+                                    }
+                                    // remove this when task closed successfully   
+                                    updates.push(p.remove('/sentBackToFixAt'))
+                                    break;
+                                case 'Fix':
+                                    if (from.sentBackToFixAt) {
+                                        updates.push(p.replace('/sentBackToFixAt', updateTime))
+                                    } else {
+                                        updates.push(p.insert('/createdAt', 'after', {
+                                            sentBackToFixAt: updateTime
+                                        }));
+                                    }
+                                    updates.push(p.remove('/fixedAt'))
+                                    updates.push(p.remove('/fixedBy'))
+                                    updates.push(p.remove('/shippedAt'))
+                                    updates.push(p.remove('/shippedBy'))
+                                    updates.push(p.remove('/closedAt'))
+                                    updates.push(p.remove('/closedBy'))
                                     break;
                                 default:
                                     // do nothing       

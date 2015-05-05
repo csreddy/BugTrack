@@ -225,6 +225,14 @@ exports.update = function(req, res) {
                                                 fixedAt: updateTime
                                             }));
                                         }
+                                        if (from.fixedBy) {
+                                            updates.push(p.replace('/fixedBy', updateTime))
+                                        } else {
+                                            updates.push(p.insert('/submittedBy', 'after', {
+                                                fixedBy: changes.updatedBy
+                                            }));
+                                        }
+
                                         // updates.push(p.replaceInsert('/fixedAt', 'createdAt', 'after', {'test': new Date()}))
                                         break;
                                     case 'Ship':
@@ -235,7 +243,15 @@ exports.update = function(req, res) {
                                                 shippedAt: updateTime
                                             }));
                                         }
-                                         updates.push(p.remove('/sentBackToFixAt'))
+                                        if (from.shippedBy) {
+                                            updates.push(p.replace('/shippedBy', updateTime))
+                                        } else {
+                                            updates.push(p.insert('/submittedBy', 'after', {
+                                                shippedBy: changes.updatedBy
+                                            }));
+                                        }
+
+                                        updates.push(p.remove('/sentBackToFixAt'))
                                         break;
                                     case 'Closed':
                                         if (from.closedAt) {
@@ -245,16 +261,28 @@ exports.update = function(req, res) {
                                                 closedAt: updateTime
                                             }));
                                         }
+                                        if (from.closedBy) {
+                                            updates.push(p.replace('/closedBy', updateTime))
+                                        } else {
+                                            updates.push(p.insert('/submittedBy', 'after', {
+                                                closedBy: changes.updatedBy
+                                            }));
+                                        }
                                         break;
                                     case 'Fix':
-                                            if (from.sentBackToFixAt) {
-                                                updates.push(p.replace('/sentBackToFixAt', updateTime))
-                                                updates.push(p.remove('/fixedAt'))
-                                            } else {
-                                                updates.push(p.insert('/createdAt', 'after', {
-                                                    sentBackToFixAt: updateTime
-                                                }));
-                                            }
+                                        if (from.sentBackToFixAt) {
+                                            updates.push(p.replace('/sentBackToFixAt', updateTime))
+                                        } else {
+                                            updates.push(p.insert('/createdAt', 'after', {
+                                                sentBackToFixAt: updateTime
+                                            }));
+                                        }
+                                        updates.push(p.remove('/fixedAt'))
+                                        updates.push(p.remove('/fixedBy'))
+                                        updates.push(p.remove('/shippedAt'))
+                                        updates.push(p.remove('/shippedBy'))
+                                        updates.push(p.remove('/closedAt'))
+                                        updates.push(p.remove('/closedBy'))
                                         break;
                                     default:
                                         // do nothing
@@ -485,15 +513,15 @@ exports.update = function(req, res) {
         ],
         function(error, result) {
             if (error) res.status(500).json(error);
-            
+
             // when no error
-             if (from.updatedAt) {
-                    updates.push(p.replace('/updatedAt', updateTime))
-                } else {
-                    updates.push(p.insert('/createdAt', 'after', {
-                        updatedAt: updateTime
-                    }));
-                }
+            if (from.updatedAt) {
+                updates.push(p.replace('/updatedAt', updateTime))
+            } else {
+                updates.push(p.insert('/createdAt', 'after', {
+                    updatedAt: updateTime
+                }));
+            }
             db.documents.patch(uri, updates).result(function(response) {
                 res.status(200).json({
                     message: 'bug updated'

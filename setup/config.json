@@ -1700,39 +1700,38 @@
         "label": "Performance",
         "value": "Performance",
         "children": [{
-                "label": "Erin Miller",
-                "value": {
-                    "username": "emiller",
-                    "email": "emiller@marklogic.com",
-                    "name": "Erin Miller"
-                },
-                "parent": "Performance"
-            }, {
-                "label": "Haitao Wu",
-                "value": {
-                    "username": "hwu",
-                    "email": "haitao.wu@marklogic.com",
-                    "name": "Haitao Wu"
-                },
-                "parent": "Performance"
-            }, {
-                "label": "Silvano  Ravotto",
-                "value": {
-                    "username": "sravotto",
-                    "email": "sravotto@marklogic.com",
-                    "name": "Silvano  Ravotto"
-                },
-                "parent": "Performance"
-            }, {
-                "label": "Marc  Chiarini",
-                "value": {
-                    "username": "mchiarin",
-                    "email": "mchiarin@marklogic.com",
-                    "name": "Marc Chiarini"
-                },
-                "parent": "Performance"
-            }
-        ]
+            "label": "Erin Miller",
+            "value": {
+                "username": "emiller",
+                "email": "emiller@marklogic.com",
+                "name": "Erin Miller"
+            },
+            "parent": "Performance"
+        }, {
+            "label": "Haitao Wu",
+            "value": {
+                "username": "hwu",
+                "email": "haitao.wu@marklogic.com",
+                "name": "Haitao Wu"
+            },
+            "parent": "Performance"
+        }, {
+            "label": "Silvano  Ravotto",
+            "value": {
+                "username": "sravotto",
+                "email": "sravotto@marklogic.com",
+                "name": "Silvano  Ravotto"
+            },
+            "parent": "Performance"
+        }, {
+            "label": "Marc  Chiarini",
+            "value": {
+                "username": "mchiarin",
+                "email": "mchiarin@marklogic.com",
+                "name": "Marc Chiarini"
+            },
+            "parent": "Performance"
+        }]
     }, {
         "label": "Tools",
         "value": "Tools",
@@ -1776,6 +1775,15 @@
     }, {
         "label": "Submitted by",
         "value": "submittedBy"
+    }, {
+        "label": "Fixed by",
+        "value": "fixedBy"
+    }, {
+        "label": "Shipped by",
+        "value": "shippedBy"
+    }, {
+        "label": "Closed by",
+        "value": "closedBy"
     }],
     "severity": [
         "P1 - Catastrophic",

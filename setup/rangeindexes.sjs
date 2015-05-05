@@ -9,7 +9,7 @@ admin.saveConfiguration(config);
      }
  
 
- var elements = ["createdAt", "modifiedAt"]
+ var elements = ["createdAt", "updatedAt", "fixedAt", "shippedAt", "closedAt", 'sentBackToFixAt']
      for (var i=0;i<elements.length; i++){
  var config = admin.getConfiguration(); 
  var dbid = xdmp.database("bugtrack"); 
@@ -30,7 +30,7 @@ admin.saveConfiguration(config);
  
 
  
- var paths = ["/submittedBy/username", "/submittedBy/name", "/assignTo/username", "/assignTo/name", "/priority/level", "/priority/title"];
+ var paths = ["/submittedBy/username", "/submittedBy/name", "/assignTo/username", "/assignTo/name", "/shippedBy/username", "/fixedBy/username", "/closedBy/username", "/priority/level", "/priority/title"];
  for (var i=0;i<paths.length; i++){
  var config = admin.getConfiguration(); 
  var dbid = xdmp.database("bugtrack"); 

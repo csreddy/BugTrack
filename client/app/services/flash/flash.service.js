@@ -44,11 +44,15 @@ app.service('Flash', function($rootScope, $timeout) {
     });
 
     function timeout () {
+        var defaultTimeout =  10000;  // 15 sec
         if (_.last($rootScope.alerts).type === 'danger') {
-            return 100000;
-        } else {
-            return 5000;
+            return 120000; // 2 mins
+        } 
+
+        if (_.last($rootScope.alerts).type === 'info') {
+            return 30000; // 30 sec
         }
+        return defaultTimeout;
     }
 
 

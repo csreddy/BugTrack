@@ -19,7 +19,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         //$scope.pageLengthOptions = [{name:'20',value:20},{name:'50',value:50},{name:'100',value:100},{name:'200',value:200},{name:'All',value:99999}]
         $scope.facetName = '';
         $scope.isPaginationEvent = false;
-        $scope.groupCriteria = $scope.config.groupCriteria[1];
+        $scope.groupCriteria = null;//$scope.config.groupCriteria[1];
         $scope.totalItems = {
             all: 0,
             bugs: 0,
@@ -178,10 +178,12 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             console.log('SCOPE.FORM', $scope.form);
             var queryParams = convertFormSelectionsToQueryParams();
             $scope.isPaginationEvent = false;
+            $scope.form.pageLength = $window.localStorage.pageLength || '50';
+
             $location.search(queryParams);
             $location.search('page', 1); // start from page 1 for every search
-            $scope.form.pageLength = $window.localStorage.pageLength || '50';
             $location.search('pageLength', $scope.form.pageLength);
+
             // if search params contains kind=Bug then make Bug tab active
             if (isBug()) {
                 $scope.tabs[0].active = true;
@@ -201,13 +203,15 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 $scope.tabs[2].active = true;
             }
 
-            // push to search history
+            // push to search history, max limit is 5 queries
             if ($scope.searchHistory.length === 5) {
                 $scope.searchHistory.pop();
             }
 
             $scope.searchHistory.push(queryParams);
             $window.localStorage.last5Searches = JSON.stringify($scope.searchHistory);
+
+          //  Flash.addAlert('info', 'Warning! You selected Group Criteria <b>('+ $scope.form.groupCriteria +')</b> but did not select <b>Group Users</b>, search results may not be what you expected');
         };
 
 
@@ -780,8 +784,9 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 }
             });
             if (params.groupUsers.length === 0) {
-                delete params.groupCriteria;
-                delete params.groupUsers;
+                Flash.addAlert('info', 'Warning! You selected Group Criteria <b>('+ params.groupCriteria +')</b> but did not select <b>Group Users</b>, search results may not be what you expected');
+                // delete params.groupCriteria;
+               // delete params.groupUsers;
             }
             // we dont need groups param
             delete params.groups;
