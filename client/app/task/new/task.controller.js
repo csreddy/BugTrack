@@ -152,21 +152,21 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                     task.modifiedAt = new Date();
                     task.changeHistory = [];
                     var updates = [Task.create(task, $scope.task.files).then()];
-                    if (task.parent.id) {
+                    if (task.parent.parentId) {
                         task.parent.taskOrRfe = $scope.task.parent.taskOrRfe.toLowerCase();
                         switch (task.parent.taskOrRfe) {
                             case 'rfe':
                                 if ($scope.relationTypes.indexOf(task.parent.type) > -1 && task.parent.type !== 'Sub-task') {
-                                    updates.push(RFE.insertProceduralTask(task.parent.id, task.parent.type, task.id).then());
+                                    updates.push(RFE.insertProceduralTask(task.parent.parentId, task.parent.type, task.id).then());
                                 } else {
-                                    updates.push(RFE.insertSubTask(task.parent.id, task.id).then());
+                                    updates.push(RFE.insertSubTask(task.parent.parentId, task.id).then());
                                 }
                                 break;
                             case 'task':
                                 if ($scope.relationTypes.indexOf(task.parent.type) > -1 && task.parent.type !== 'Sub-task') {
-                                    updates.push(Task.insertProceduralTask(task.parent.id, task.parent.type, task.id).then());
+                                    updates.push(Task.insertProceduralTask(task.parent.parentId, task.parent.type, task.id).then());
                                 } else {
-                                    updates.push(Task.insertSubTask(task.parent.id, task.id).then());
+                                    updates.push(Task.insertSubTask(task.parent.parentId, task.id).then());
                                 }
                                 break;
                             default:

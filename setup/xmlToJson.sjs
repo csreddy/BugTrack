@@ -237,7 +237,7 @@ function updateSubTaskParent(relation, subtaskId){
         //  loadDoc(parent);
         //xdmp.log('relation:' +JSON.stringify(relation, null, 2))
 
-        // var _uri = "/rfe/" + parent.id + "/" + parent.id + ".json"
+        // var _uri = "/rfe/" + parent.parentId + "/" + parent.parentId + ".json"
         // str = 'declareUpdate(); xdmp.documentInsert("/rfe/" + newRfe.id + "/" + newRfe.id + ".json", newRfe, null, ["rfes", newRfe.submittedBy.username]);'
         //xdmp.eval(str, {newRfe: parent, uri:_uri}, {database: xdmp.database('bugtrack'),  transactionMode: 'update-auto-commit'});
     }
@@ -688,7 +688,7 @@ function convertTask(doc) {
             if(bug.relationships.relation.to){
                 newtask.parent = {
                     type: parentType(bug),
-                    id: parentId(bug),
+                    parentId: parentId(bug),
                     taskOrRfe: isTaskOrRfe(bug)
                 }
             }
@@ -834,7 +834,7 @@ function bulkTransform(start, end){
                     updateCloneParent(newdoc.cloneOf, newdoc.id);
                 }
                 if(newdoc.parent){
-                    if(newdoc.parent.id){
+                    if(newdoc.parent.parentId){
                         updateSubTaskParent(newdoc.parent, newdoc.id)
                     }
                 }
@@ -864,7 +864,7 @@ function batchTransform(uris){
                     updateCloneParent(newdoc.cloneOf, newdoc.id);
                 }
                 if(newdoc.parent){
-                    if(newdoc.parent.id){
+                    if(newdoc.parent.parentId){
                         updateSubTaskParent(newdoc.parent, newdoc.id)
                     }
                 }
@@ -896,7 +896,7 @@ function singleTransform(uri){
 
             // update parent if the current bug/task/rfe is the subtask of another task/rfe
             if(newdoc.parent){
-                if(newdoc.parent.id){
+                if(newdoc.parent.parentId){
                     updateSubTaskParent(newdoc.parent, newdoc.id)
                 }
             }

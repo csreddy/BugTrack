@@ -84,7 +84,7 @@ function convert(uri){
         nb.startElement("bt:relation")
         if (doc["parent"]) {
             nb.addElement("bt:type", doc["parent"]["type"] || '')
-            nb.addElement("bt:to", doc["parent"]["id"] || '')
+            nb.addElement("bt:to", doc["parent"]["parentId"] || '')
         } else {
             nb.addElement("bt:type", '')
             nb.addElement("bt:to", '')

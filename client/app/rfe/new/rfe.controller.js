@@ -139,7 +139,7 @@ angular.module('rfe.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                     });
                 }).error(function(error) {
                     ngProgress.complete();
-                    Flash.addAlert('danger', 'Oops! cound not get new RFE Id')
+                    Flash.addAlert('danger', 'Oops! cound not get new RFE Id');
                 });
 
             }
