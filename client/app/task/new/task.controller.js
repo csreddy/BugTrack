@@ -115,7 +115,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                     task.tofixin = $scope.task.tofixin;
                     task.fixedin = '';
                     task.parent = {};
-                    task.parent.id = $scope.task.parent.id || null;
+                    task.parent.parentId = $scope.task.parent.parentId || null;
                     task.parent.type = $scope.task.parent.type || null;
 
                     task.submittedBy = {

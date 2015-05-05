@@ -196,7 +196,7 @@ angular.module('rfe.controllers')
                         task.attachments = [];
                         task.parent = {
                             type: proceduralTaskType,
-                            id: id,
+                            parentId: id,
                             taskOrRfe: 'rfe'
                         };
                         task.proceduralTasks = {
@@ -279,7 +279,7 @@ angular.module('rfe.controllers')
                         task.attachments = [];
                         task.parent = {
                             type: $scope.relationTypes[5],
-                            id: id,
+                            parentId: id,
                             taskOrRfe: 'rfe'
                         };
                         task.proceduralTasks = {

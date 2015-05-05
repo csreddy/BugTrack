@@ -26,7 +26,7 @@ exports.getNextId = function(req, res) {
             )
             .slice(1, 1)
             .withOptions({
-                categories: 'metadata',
+                categories: 'none',
                 debug: true
             })
         )
@@ -44,3 +44,23 @@ exports.getNextId = function(req, res) {
             res.status(error.statusCode).json(error);
         })
 };
+
+
+function sortUris(docuris){
+    var ids = []
+    var sortedUris = []
+    for(var i in docuris){
+        var _uri = docuris[i].toString()
+        var _id = docuris[i].toString()
+            .replace(/\/\w*\/\d*\//, '')
+            .replace(/.json/, '')
+        if(!isNaN(_id)){
+            ids.push({id: parseInt(_id), uri: docuris[i]})
+        }
+    }
+    ids.sort(function(a, b){return a.id-b.id});
+    for(var id in ids){
+        sortedUris.push(ids[id].uri)
+    }
+    return sortedUris
+}

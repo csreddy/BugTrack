@@ -284,7 +284,7 @@ angular.module('task.controllers')
                         task.attachments = [];
                         task.parent = {
                             type: $scope.relationTypes[5],
-                            id: id,
+                            parentId: id,
                             taskOrRfe: 'task'
                         };
                         task.proceduralTasks = {
