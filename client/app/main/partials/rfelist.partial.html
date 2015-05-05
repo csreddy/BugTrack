@@ -47,7 +47,7 @@
                             </th>
                         </tr>
                     </thead>
-                <tbody class="animate-repeat" ng-repeat="rfe in rfes  | filter:searchrfe track by rfe.id">
+                <tbody ng-repeat="rfe in rfes  | filter:searchrfe track by rfe.id">
                         <tr>
                             <td><a ng-href="/rfe/{{rfe.id}}">{{::rfe.id}}</a>
                             </td>
@@ -96,7 +96,7 @@
                             </th>
                         </tr>
                     </thead>
-                <tr class="animate-repeat" ng-repeat="rfe in rfes | filter:searchrfe track by rfe.id">
+                <tr  ng-repeat="rfe in rfes | filter:searchrfe track by rfe.id">
                         <td><a ng-href="/rfe/{{rfe.id}}">{{::rfe.id}}</a>
                         </td>
                         <td style="max-width:120px" class="hidden-xs">{{::rfe.severity}}</td>

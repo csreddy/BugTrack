@@ -45,7 +45,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody class="animate-repeat" ng-repeat="bug in bugs | filter:searchbug track by bug.id">
+                <tbody ng-repeat="bug in bugs | filter:searchbug track by bug.id">
                     <tr>
                         <td><a ng-href="/bug/{{bug.id}}">{{::bug.id}}</a>
                         </td>
@@ -92,7 +92,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tr class="animate-repeat" ng-repeat="bug in bugs | filter:searchbug track by bug.id">
+                <tr ng-repeat="bug in bugs | filter:searchbug track by bug.id">
                     <td><a ng-href="/bug/{{bug.id}}">{{::bug.id}}</a>
                     </td>
                     <td style="max-width:120px" class="hidden-xs">{{::bug.severity}}</td>

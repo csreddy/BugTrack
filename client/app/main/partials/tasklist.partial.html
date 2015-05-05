@@ -47,7 +47,7 @@
                             </th>
                         </tr>
                     </thead>
-                <tbody class="animate-repeat" ng-repeat="task in tasks | filter:searchtask track by task.id ">
+                <tbody  ng-repeat="task in tasks | filter:searchtask track by task.id ">
                         <tr>
                             <td><a ng-href="/task/{{task.id}}">{{::task.id}}</a>
                             </td>
@@ -96,7 +96,7 @@
                             </th>
                         </tr>
                     </thead>
-                <tr class="animate-repeat" ng-repeat="task in tasks | filter:searchtask track by task.id">
+                <tr  ng-repeat="task in tasks | filter:searchtask track by task.id">
                         <td><a ng-href="/task/{{task.id}}">{{::task.id}}</a>
                         </td>
                         <td style="max-width:120px" class="hidden-xs">{{::task.severity}}</td>
