@@ -248,7 +248,7 @@ function updateSubTaskParent(relation, subtaskId){
 function convertXMLToJSON(uri) {
     var xml = cts.doc(uri).root;
     var config = json.config("custom");
-    config["array-element-names"] = xdmp.arrayValues(["comment", "subscriber", "attachment", "path", "support-ticket"]);
+    config["array-element-names"] = xdmp.arrayValues(["comment", "subscriber", "attachment", "path", "support-ticket", "bug-id"]);
     config["element-namespace"] = "http://cerisent.com/bugtrack";
     config["element-namespace-prefix"] = "bt";
     return json.transformToJson(xml, config);
@@ -263,7 +263,7 @@ function convertXMLToJSON2(uri) {
         let $custom := \
         let $config := json:config("custom") \
             return \
-                (map:put($config, "array-element-names",("comment", "subscriber", "attachment", "path", "support-ticket")), \
+                (map:put($config, "array-element-names",("comment", "subscriber", "attachment", "path", "support-ticket", "bug-id")), \
                  map:put($config, "element-namespace", "http://cerisent.com/bugtrack"), \
                  map:put($config, "element-namespace-prefix", "bt"), \
                  $config) \
@@ -516,7 +516,7 @@ function convertBug(doc) {
                     repository: comment.svn.repository,
                     revision: comment.svn.revision,
                     paths: comment.svn.paths.path,
-                    affectedBugs: comment.svn['affected-bugs']
+                    affectedBugs: comment.svn['affected-bugs']['bug.id'] || []
                 }
                 change.show = true;
             }
@@ -760,7 +760,7 @@ function convertTask(doc) {
                     repository: comment.svn.repository,
                     revision: comment.svn.revision,
                     paths: comment.svn.paths.path,
-                    affectedBugs: comment.svn['affected-bugs']
+                    affectedBugs: comment.svn['affected-bugs']['bug.id'] || []
                 }
                 change.show = true;
             }

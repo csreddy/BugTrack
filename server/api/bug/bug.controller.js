@@ -268,6 +268,8 @@ exports.update = function(req, res) {
                                                 closedBy: changes.updatedBy
                                             }));
                                         }
+                                    // remove this when bug is fixed and shipped successfully   
+                                    updates.push(p.remove('/sentBackToFixAt'))
                                         break;
                                     case 'Fix':
                                         if (from.sentBackToFixAt) {
