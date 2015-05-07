@@ -93,7 +93,7 @@ angular.module('fullstackApp')
                                 tofixin: null,
                                 range: {},
                                 selectedUsers: [],
-                                groupCriteria: 'submittedBy'
+                                groupCriteria: null
                             };
                             return criteria;
                         }

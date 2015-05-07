@@ -62,8 +62,8 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-5">
-            <div class="form-group">
+        <div class="col-md-6">
+            <div class="form-group" style="margin-right:10px">
                 <label class="sm">Assigned to</label>
                 <br>
                 <select name="assignTo" id="assignTo" ng-model="form.assignTo" ng-options="user.username as user.name group by user.name[0] for user in config.users" class="form-control input-xsm">
@@ -71,7 +71,7 @@
                 </select>
                 <a ng-href="" title="clear" ng-click="clearSelection('assignTo')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-right:10px">
                 <label class="sm">Category</label>
                 <br>
                 <select name="category" id="category" ng-model="form.category" ng-options="category for category in config.category" class="form-control input-xsm" ng-selected="form.category === category">
@@ -79,7 +79,7 @@
                 </select>
                 <a ng-href="" title="clear" ng-click="clearSelection('category')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-right:10px">
                 <label class="sm">Fixed in</label>
                 <br>
                 <select name="fixedin" id="fixedin" ng-model="form.fixedin" ng-options="version for version in config.version" class="form-control input-xsm" ng-selected="form.fixedin === version">
@@ -87,7 +87,7 @@
                 </select>
                 <a ng-href="" title="clear" ng-click="clearSelection('fixedin')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-right:10px">
                 <label class="sm">Submitted By</label>
                 <br>
                 <select name="submittedBy" id="submittedBy" ng-model="form.submittedBy" 
@@ -97,7 +97,7 @@
                 </select>
                 <a ng-href="" title="clear" ng-click="clearSelection('submittedBy')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-right:10px">
                 <label class="sm">Version</label>
                 <br>
                 <select name="version" id="version" ng-model="form.version" ng-options="version for version in config.version" class="form-control input-xsm" ng-selected="form.version === version">
@@ -113,26 +113,25 @@
                 </select>
                 <a ng-href="" title="clear" ng-click="clearSelection('tofixin')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
-
-
-            <div class="form-group">
+            <div class="form-group" style="margin-right:10px">
                 <label class="sm">From</label>
                 <br>
                 <!--  <p class="input-group"> -->
                 <input type="text" class="form-control input-xsm" datepicker-popup="{{cal.format}}" ng-model="form.range.from" is-open="cal.fromOpened" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('from', $event)" close-text="Close" />
+                 <a ng-href="" title="clear" ng-click="clearSelection('from')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                 <!-- </p> -->
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div class="form-group">
                 <label class="sm">To</label>
                 <br>
                 <!--  <p class="input-group"> -->
                 <input type="text" class="form-control input-xsm" datepicker-popup="{{cal.format}}" ng-model="form.range.to" is-open="cal.toOpened" min-date="minDate" date-disabled="disabled(date, mode)" show-weeks="false" ng-click="cal.open('to', $event)" close-text="Close" />
+                 <a ng-href="" title="clear" ng-click="clearSelection('to')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                 <!--   </p> -->
             </div>
 
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             <div class="form-group">
                 <a ng-href="" ng-click="clear()" class="btn btn-sm btn-danger"><i class="fa fa-eraser"></i> Reset</a>
             </div>

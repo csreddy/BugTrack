@@ -454,8 +454,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         // clear dropdown selection
         $scope.clearSelection = function(selection) {
             console.log('selection', selection);
-            $scope.form[selection] = null;
-            // $location.search(selection, null);
+            if (selection === 'from' || selection === 'to') {
+                    $scope.form['range'][selection] = null;
+            } else{
+                $scope.form[selection] = null;    
+            }
         };
 
         // highlight page number in the pagination button list
@@ -783,7 +786,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     console.log('groups', value);
                 }
             });
-            if (params.groupUsers.length === 0) {
+            if (params.groupUsers.length === 0 && params.groupCriteria) {
                 Flash.addAlert('info', 'Warning! You selected Group Criteria <b>('+ params.groupCriteria +')</b> but did not select <b>Group Users</b>, search results may not be what you expected');
                 // delete params.groupCriteria;
                // delete params.groupUsers;
