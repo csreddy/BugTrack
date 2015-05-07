@@ -516,7 +516,7 @@ function convertBug(doc) {
                     repository: comment.svn.repository,
                     revision: comment.svn.revision,
                     paths: comment.svn.paths.path,
-                    affectedBugs: comment.svn['affected-bugs']['bug.id'] || []
+                    affectedBugs: comment.svn['affected-bugs']['bug-id'] || []
                 }
                 change.show = true;
             }
@@ -760,7 +760,7 @@ function convertTask(doc) {
                     repository: comment.svn.repository,
                     revision: comment.svn.revision,
                     paths: comment.svn.paths.path,
-                    affectedBugs: comment.svn['affected-bugs']['bug.id'] || []
+                    affectedBugs: comment.svn['affected-bugs']['bug-id'] || []
                 }
                 change.show = true;
             }

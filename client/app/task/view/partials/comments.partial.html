@@ -34,6 +34,7 @@
                         <dt>Affected bugs</dt>
                         <dd ng-repeat="bug in item.svn.affectedBugs">
                         <a href="/{{bug.kind}}/{{bug.id}}">{{bug.id}}</a>
+                        <span ng-hide="bug.id">{{bug}}</span>
                         </dd>
                 </dl>
              <div ta-bind ng-model="item.comment" ng-show="item.comment">
