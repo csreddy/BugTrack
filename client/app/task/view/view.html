@@ -192,7 +192,7 @@
     <div ng-include="'app/task/view/partials/taskInfo.partial.html'"></div>
     <!-- <form class="form-horizontal"> -->
     <accordion close-others="oneAtATime">
-        <accordion-group is-open="accordion.status.isFirstOpen" style="cursor:pointer">
+        <accordion-group is-open="accordion.status.isFirstOpen">
             <accordion-heading><i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;Engineering Task List</accordion-heading>
             <form class="form-horizontal">
                 <span><p ng-bind-html="message" class="text-green"></p></span>
@@ -208,7 +208,7 @@
                     <label class="col-md-2 control-label" for="headline">Parent Task</label>
                     <div class="col-md-6" ng-if="task.parent.parentId">
                         <p class="form-control-static">
-                            <a href="/{{task.parent.taskOrRfe}}/{{task.parent.parentId}}">{{task.parent.type}} for {{task.parent.taskOrRfe | uppercase}}-{{task.parent.parentId}} </a>
+                            <a href="/{{task.parent.taskOrRfe}}/{{task.parent.parentId}}">{{task.parent.type}} for {{task.parent.taskOrRfe | capitalize}}-{{task.parent.parentId}} </a>
                         </p>
                          <p ng-if="!task.parent.parentId" class="form-control-static">No parent</p>
                     </div>
@@ -257,7 +257,7 @@
 <div ng-include="'app/task/view/partials/comments.partial.html'"></div>
 <form name="commentForm">
     <!-- <text-angular ta-toolbar="[['p','bold','pre', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="newcomment" id="newcomment" name="newcomment" placeholder="Add a comment here"></text-angular> -->
-    <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="task.comment" id="comment" name="comment" placeholder="Add a comment here"></text-angular>
+    <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage']]" ng-model="task.comment" id="comment" name="comment" placeholder="Add a comment here"></text-angular>
     <br>
     <input type="file" file-upload multiple/>
     <ul>

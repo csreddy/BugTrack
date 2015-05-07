@@ -236,6 +236,10 @@ angular.module('bug.controllers')
                 updateBug.platform = $scope.platform || $scope.bug.platform;
                 updateBug.fixedin = $scope.fixedin || $scope.bug.fixedin;
                 updateBug.comment = $scope.newcomment || '';
+                updateBug.comment =  updateBug.comment
+                                                .replace(/(b#)(\d*)/,   "<a href='/bug/$2'>$2</a>")
+                                                .replace(/(t#)(\d*)/,   "<a href='/task/$2'>$2</a>")
+                                                .replace(/(r#)(\d*)/,   "<a href='/rfe/$2'>$2</a>");
                 // updateBug.subscribers = $scope.assignTo || '';
                 updateBug.updatedBy = $scope.updatedBy;
                 updateBug.support = $scope.support || $scope.bug.support;

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgress'])
-    .controller('newBugCtrl', ['$scope', '$location', 'Bug', 'Config', 'Flash', 'User', 'config', 'currentUser','ngProgress',
+    .controller('newBugCtrl', ['$scope', '$location', 'Bug', 'Config', 'Flash', 'User', 'config', 'currentUser', 'ngProgress',
 
         function($scope, $location, Bug, Config, Flash, User, config, currentUser, ngProgress) {
             $location.search({}); // clear query params from url when navigating from search page
@@ -209,6 +209,9 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                     };
                     bug.assignTo = $scope.assignTo;
                     bug.description = $scope.description;
+                    bug.description.replace(/(b#)(\d*)/, "<a href='/bug/$2'>$2</a>")
+                        .replace(/(t#)(\d*)/, "<a href='/task/$2'>$2</a>")
+                        .replace(/(r#)(\d*)/, "<a href='/rfe/$2'>$2</a>");
                     bug.samplequery = $scope.samplequery;
                     bug.sampledata = $scope.sampledata;
                     bug.stacktrace = $scope.stacktrace;
@@ -260,7 +263,7 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                     });
 
                 }).error(function(error) {
-                     ngProgress.complete();
+                    ngProgress.complete();
                     Flash.addAlert('error', 'Oops! Could not generate new bug Id. Reload and try again');
                 });
             }

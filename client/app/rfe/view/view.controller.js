@@ -144,6 +144,11 @@ angular.module('rfe.controllers')
                     }
                 }
 
+               if ($scope.rfe.comment) {
+                    $scope.rfe.comment = $scope.rfe.comment.replace(/(b#)(\d*)/, "<a href='/bug/$2'>$2</a>")
+                        .replace(/(t#)(\d*)/, "<a href='/task/$2'>$2</a>")
+                        .replace(/(r#)(\d*)/, "<a href='/rfe/$2'>$2</a>");
+                }
 
                 RFE.update($scope.rfe, oldCopy, $scope.files).success(function() {
                     reloadRFEInfo(id);

@@ -50,9 +50,6 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                 format: 'MM-dd-yyyy'
             };
 
-            $scope.$watch('task.period', function() {
-                console.log($scope.task.period);
-            }, true);
 
             //listen for the file selected event
             $scope.$on('fileSelected', function(event, args) {
@@ -79,11 +76,6 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
             this.stringify = function(date) {
                 stringify(date);
             };
-
-            $scope.$watch('task.parent', function() {
-                console.log('task.parent', $scope.task.parent);
-            }, true);
-
 
 
             /* private functions */
@@ -183,7 +175,8 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                         Flash.addAlert('success', '<a href=\'/task/' + task.id + '\'>' + 'Task-' + task.id + '</a>' + ' was successfully created');
                     }, function(error) {
                         ngProgress.complete();
-                        Flash.addAlert('danger', ' Oops! Could not create the task. ' + error.data.message)
+                        Flash.addAlert('danger', ' Oops! Could not create the task. ' + error.data.message +
+                            'You can associate ' + task.parent.type +' to RFE only')
                     });
                 }).error(function(error) {
                     ngProgress.complete();

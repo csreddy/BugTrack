@@ -82,6 +82,9 @@ angular.module('rfe.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                     rfe.kind = 'RFE';
                     rfe.title = $scope.rfe.title;
                     rfe.description = $scope.rfe.description;
+                    rfe.description.replace(/(b#)(\d*)/,   "<a href='/bug/$2'>$2</a>")
+                                                .replace(/(t#)(\d*)/,   "<a href='/task/$2'>$2</a>")
+                                                .replace(/(r#)(\d*)/,   "<a href='/rfe/$2'>$2</a>");
                     rfe.note = $scope.rfe.note;
                  
                     rfe.status = $scope.config.status[0];

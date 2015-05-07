@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('task.controllers')
-    .controller('viewTaskCtrl', ['$scope', '$location', '$timeout', '$q', '$sce','Task', 'SubTasks','config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
- 
+    .controller('viewTaskCtrl', ['$scope', '$location', '$timeout', '$q', '$sce', 'Task', 'SubTasks', 'config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
+
         function($scope, $location, $timeout, $q, $sce, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress) {
-             $location.search({}); // clear query params from url when navigating from search page
+            $location.search({}); // clear query params from url when navigating from search page
             $scope.changes = {};
             $scope.updatedBy = {
                 username: currentUser.username,
@@ -89,13 +89,13 @@ angular.module('task.controllers')
                         $scope.hasAttachments = true;
                     }
 
-                   $scope.task.subTasks = SubTasks.data;
-                   $scope.allProceduralTasks  = getAllProceduralTasks($scope.task.proceduralTasks);
-                  
-                   // watch for fields in modal form
-                   $scope.$on('newItem', function(event, newItem) {
+                    $scope.task.subTasks = SubTasks.data;
+                    $scope.allProceduralTasks = getAllProceduralTasks($scope.task.proceduralTasks);
+
+                    // watch for fields in modal form
+                    $scope.$on('newItem', function(event, newItem) {
                         $scope.newSubTask = newItem;
-                   });
+                    });
 
                 },
                 function(error) {
@@ -147,7 +147,11 @@ angular.module('task.controllers')
                     }
                 }
 
-                // Task.watch2($scope, $scope.task);
+                if ($scope.task.comment) {
+                    $scope.task.comment = $scope.task.comment.replace(/(b#)(\d*)/, "<a href='/bug/$2'>$2</a>")
+                        .replace(/(t#)(\d*)/, "<a href='/task/$2'>$2</a>")
+                        .replace(/(r#)(\d*)/, "<a href='/rfe/$2'>$2</a>");
+                }
 
                 Task.update($scope.task, oldCopy, $scope.files).success(function() {
                     reloadBugInfo(id);
@@ -167,7 +171,9 @@ angular.module('task.controllers')
                     actionButtonText: 'Create',
                     bodyText: '',
                     headerText: 'Create ' + proceduralTaskType + ' for Task-' + id,
-                    scope: {config: $scope.config}
+                    scope: {
+                        config: $scope.config
+                    }
                 };
                 modalService.showModal({}, modalOptions).then(function() {
                     Task.getNewId().success(function(response) {
@@ -185,7 +191,7 @@ angular.module('task.controllers')
                         };
 
 
-                        task.period  = '';
+                        task.period = '';
                         task.priority = $scope.newSubTask.priority;
                         task.category = $scope.task.category;
                         task.severity = $scope.task.severity;
@@ -244,12 +250,14 @@ angular.module('task.controllers')
 
             $scope.createSubTask = function() {
                 var modalOptions = {
-                 //   templateUrl: '/components/modal/subtask.modal.html',
+                    //   templateUrl: '/components/modal/subtask.modal.html',
                     closeButtonText: 'Cancel',
                     actionButtonText: 'Create',
                     bodyText: '',
                     headerText: 'Create sub-task for Task-' + id,
-                    scope: {config: $scope.config}
+                    scope: {
+                        config: $scope.config
+                    }
                 };
                 modalService.showModal({}, modalOptions).then(function() {
                     Task.getNewId().success(function(response) {
@@ -373,12 +381,12 @@ angular.module('task.controllers')
                 Task.toggleTaskListInclusion(id, yesOrNo).success(function() {
                     $scope.message = "<span class='label label-danger'><span class='glyphicon glyphicon-bullhorn'></span> Updated </span>";
                 }).error(function(error) {
-                        Flash.addAlert('danger', 'Oops! Something went wrong. Reload and try again.');
+                    Flash.addAlert('danger', 'Oops! Something went wrong. Reload and try again.');
                 });
             };
 
 
-    
+
 
             // private functions
             function reloadBugInfo(id) {
@@ -428,7 +436,7 @@ angular.module('task.controllers')
             function subTasks(id) {
                 Task.getSubTasks(id).then(function(response) {
                     $scope.task.subTasks = response.data;
-                    console.log('subTasks',$scope.task.subTasks);
+                    console.log('subTasks', $scope.task.subTasks);
                 }, function(error) {
                     // console.log(error);
                     Flash.addAlert('danger', 'Oops! Could not retrieve sub tasks')
@@ -438,10 +446,10 @@ angular.module('task.controllers')
             function getAllProceduralTasks(proceduralTasks) {
                 var _proceduralTasks = [];
                 angular.forEach(proceduralTasks, function(tasks) {
-                     _proceduralTasks.push(tasks);
+                    _proceduralTasks.push(tasks);
                 });
-                
-                _proceduralTasks =  _.flatten(_proceduralTasks);
+
+                _proceduralTasks = _.flatten(_proceduralTasks);
                 return _proceduralTasks;
             }
         }
