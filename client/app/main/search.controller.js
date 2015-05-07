@@ -791,6 +791,11 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 // delete params.groupCriteria;
                // delete params.groupUsers;
             }
+
+           if (params.groupUsers.length > 0 && !params.groupCriteria) {
+                Flash.addAlert('info', 'Warning! You selected <b>Group Users</b> but did not select <b>Group Criteria</b>, search results may not be what you expected');
+            }
+
             // we dont need groups param
             delete params.groups;
             console.log('params:', params);
