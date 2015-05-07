@@ -13,8 +13,8 @@ angular.module('rfe.controllers')
             $scope.hasAttachments = false;
             $scope.accordion = {};
             $scope.accordion.status = {
-                isFirstOpen: true,
-                isFirstDisabled: false
+                open: true,
+                closed: false
             };
             $scope.proceduralTaskTypes = [
                 'Requirements Task',

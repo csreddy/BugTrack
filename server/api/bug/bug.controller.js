@@ -217,6 +217,17 @@ exports.update = function(req, res) {
                             if (from.status !== to.status) {
                                 updates.push(p.replace('/status', to.status));
                                 switch (to.status) {
+                                    case 'New':
+                                    case 'Verify':
+                                        // remove these if they already exist
+                                        updates.push(p.remove('/shippedAt'))
+                                        updates.push(p.remove('/shippedBy'))
+                                        updates.push(p.remove('/closedAt'))
+                                        updates.push(p.remove('/closedBy'))
+                                        updates.push(p.remove('/fixedAt'))
+                                        updates.push(p.remove('/fixedBy'))
+                                        updates.push(p.remove('/sentBackToFixAt'))
+                                        break;
                                     case 'Test':
                                         if (from.fixedAt) {
                                             updates.push(p.replace('/fixedAt', updateTime))
@@ -268,8 +279,8 @@ exports.update = function(req, res) {
                                                 closedBy: changes.updatedBy
                                             }));
                                         }
-                                    // remove this when bug is fixed and shipped successfully   
-                                    updates.push(p.remove('/sentBackToFixAt'))
+                                        // remove this when bug is fixed and shipped successfully   
+                                        updates.push(p.remove('/sentBackToFixAt'))
                                         break;
                                     case 'Fix':
                                         if (from.sentBackToFixAt) {
@@ -279,6 +290,7 @@ exports.update = function(req, res) {
                                                 sentBackToFixAt: updateTime
                                             }));
                                         }
+                                       // when bug need to be fixed, remove them
                                         updates.push(p.remove('/fixedAt'))
                                         updates.push(p.remove('/fixedBy'))
                                         updates.push(p.remove('/shippedAt'))

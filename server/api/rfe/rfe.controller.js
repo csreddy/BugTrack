@@ -69,8 +69,8 @@ exports.id = function(req, res) {
             res.status(404).json({
                 error: 'could not find rfe ' + req.params.id
             });
-           //  res.redirect('/404'); 
-            
+            //  res.redirect('/404'); 
+
         }
     }, function(error) {
         res.status(error.statusCode).json({
@@ -172,6 +172,53 @@ exports.update = function(req, res) {
             case 'status':
                 if (from.status && from.status !== to.status) {
                     updates.push(p.replace('/status', to.status));
+                    switch (to.status) {
+                        case 'New':
+                        case 'Verify':
+                        case 'Test':
+                        case 'Fix':
+                        // remove these if they already exist
+                        updates.push(p.remove('/shippedAt'))
+                        updates.push(p.remove('/shippedBy'))
+                        updates.push(p.remove('/closedAt'))
+                        updates.push(p.remove('/closedBy'))
+                        break;
+                        case 'Ship':
+                            if (from.shippedAt) {
+                                updates.push(p.replace('/shippedAt', updateTime))
+                            } else {
+                                updates.push(p.insert('/createdAt', 'after', {
+                                    shippedAt: updateTime
+                                }));
+                            }
+                            if (from.shippedBy) {
+                                updates.push(p.replace('/shippedBy', updateTime))
+                            } else {
+                                updates.push(p.insert('/submittedBy', 'after', {
+                                    shippedBy: changes.updatedBy
+                                }));
+                            }
+                            break;
+                        case 'Closed':
+                            if (from.closedAt) {
+                                updates.push(p.replace('/closedAt', updateTime))
+                            } else {
+                                updates.push(p.insert('/createdAt', 'after', {
+                                    closedAt: updateTime
+                                }));
+                            }
+                            if (from.closedBy) {
+                                updates.push(p.replace('/closedBy', updateTime))
+                            } else {
+                                updates.push(p.insert('/submittedBy', 'after', {
+                                    closedBy: changes.updatedBy
+                                }));
+                            }
+                            break;
+                        default:
+                            // do nothing       
+                    }
+
                     changes.change.status = {
                         from: from.status,
                         to: to.status
@@ -293,7 +340,7 @@ exports.update = function(req, res) {
                 if (userIndex === -1) {
                     updates.push(p.insert("array-node('subscribers')", 'last-child', changes.updatedBy))
                 }
-                break;    
+                break;
             case 'svninfo':
                 if (true) {
                     // TODO
@@ -383,7 +430,7 @@ exports.insertSubTask = function(req, res) {
 
 exports.insertProceduralTask = function(req, res) {
     // rfe because, procedural tasks can be added for RFEs only
-    var uri = '/rfe/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json'; 
+    var uri = '/rfe/' + req.body.parentTaskId + '/' + req.body.parentTaskId + '.json';
     db.documents.probe(uri).result(function(response) {
         if (response.exists) {
             db.documents.patch(uri, p.insert("proceduralTasks/array-node(\"" + req.body.proceduralTaskType + "\")", 'last-child', parseInt(req.body.proceduralTaskId))).result(function(response) {
@@ -404,7 +451,7 @@ exports.insertProceduralTask = function(req, res) {
 exports.subtasks = function(req, res, next) {
     var uri = '/rfe/' + req.params.id + '/' + req.params.id + '.json'
         // check if doc exists
-        db.documents.probe(uri).result(function(response) {
+    db.documents.probe(uri).result(function(response) {
         if (response.exists) {
             // do nothing, proceed further
         } else {
@@ -429,7 +476,7 @@ exports.subtasks = function(req, res, next) {
             db.documents.read({
                 uris: subTaskDocUris
             }).result(function(documents) {
-              //  console.log('documents', documents);
+                //  console.log('documents', documents);
                 subTasks = [];
                 if (documents.length > 0) {
                     for (var i = 0; i < documents.length; i++) {
@@ -499,7 +546,7 @@ exports.getParentAndSubTasks = function(req, res) {
     var parents = [];
     var subtasks = [];
     if (version === 'all') {
-        criteria = [q.collection('rfes'),q.collection('tasks'), q.scope('parent', q.value('taskId', ''))]
+        criteria = [q.collection('rfes'), q.collection('tasks'), q.scope('parent', q.value('taskId', ''))]
     } else {
         criteria = [q.collection('rfes'), q.collection('tasks'), q.value('version', version), q.scope('parent', q.value('taskId', ''))]
     }
@@ -545,8 +592,8 @@ exports.getParentAndSubTasks = function(req, res) {
                 for (var i = 0; i < parent.subTasks.length; i++) {
                     uris.push('/task/' + parent.subTasks[i] + '/' + parent.subTasks[i] + '.json')
                 };
-               
-               // for each parent, get their corresponding sub tasks
+
+                // for each parent, get their corresponding sub tasks
 
                 db.documents.read({
                     uris: uris
@@ -593,6 +640,5 @@ exports.getParentAndSubTasks = function(req, res) {
     }
 
     getParentTasks(criteria)
- 
-};
 
+};

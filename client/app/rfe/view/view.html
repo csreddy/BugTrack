@@ -108,6 +108,16 @@
                     </td>
                     <td colspan="" rowspan="">{{rfe.createdAt | date: 'medium'}}</td>
                 </tr>
+                <tr ng-show="rfe.shippedAt">
+                    <td colspan="" rowspan="" class="hidden-md"><b>Shipped on</b>
+                    </td>
+                    <td colspan="" rowspan="">{{rfe.shippedAt | date: 'medium'}}</td>
+                </tr>
+                 <tr ng-show="rfe.closedAt">
+                    <td colspan="" rowspan="" class="hidden-md"><b>Closed on</b>
+                    </td>
+                    <td colspan="" rowspan="">{{rfe.closedAt | date: 'medium'}}</td>
+                </tr>
             </table>
             <span class="label label-default" class="hidden-md">Related tasks</span>
             <div class="bg-gray">
@@ -143,8 +153,8 @@
 <div class="col-xs-12 col-sm-8 col-md-9">
     <div ng-include="'app/rfe/view/partials/rfeInfo.partial.html'"></div>
     <!-- <form class="form-horizontal"> -->
-    <accordion close-others="oneAtATime">
-        <accordion-group is-open="accordion.status.isFirstOpen" style="cursor:pointer">
+    <accordion>
+        <accordion-group is-open="accordion.status.open">
             <accordion-heading><i class="fa" ng-class="{'fa-chevron-circle-down': accordion.status.open, 'fa-chevron-circle-right': !accordion.status.open}"></i>&nbsp;Engineering Task List</accordion-heading>
             <form class="form-horizontal">
              <span><p ng-bind-html="message" class="text-green"></p></span>
