@@ -398,7 +398,8 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
 
         // select saved query
         $scope.selectUserQuery = function(query) {
-            $location.$$search = query;
+            //$location.$$search = query;
+            $location.search(query);
         };
 
         // selecting checkbox nvfe  selects n/v/f/e checkboxes

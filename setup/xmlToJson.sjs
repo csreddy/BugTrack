@@ -361,7 +361,7 @@ function convertBug(doc) {
                 break;
         }
 
-        newbug.priority = parseInt(bug.priority) || {}
+        newbug.priority = parseInt(bug.priority) || {level:null, title: null}
         switch (newbug.priority) {
             case 1:
                 newbug.priority = {'level': "1", 'title': 'Drop everything and fix'}
@@ -602,7 +602,7 @@ function convertTask(doc) {
                 break;
         }
       //  xdmp.log('------2---------')
-        newtask.priority = parseInt(bug.priority) || {}
+        newtask.priority = parseInt(bug.priority) || {level:null, title: null}
         switch (newtask.priority) {
             case 1:
                 newtask.priority = {'level': "1", 'title': 'Drop everything and fix'}
