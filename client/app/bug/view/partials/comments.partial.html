@@ -1,16 +1,102 @@
-    <div class="panel panel-default" ng-show="item.show || item.show == undefined" ng-repeat="item in bug.changeHistory">
-        <div class="panel-heading">
-            <img alt="user pic" src="assets/images/avatar.png" class="img-circle img-responsive user-img">
-            <b>{{::item.updatedBy.name | capitalize}}</b>
-            <p class="pull-right" style="font-size: 12px;font-weight: 400;">
-<span><a href="#{{$index+1}}" tooltip-trigger tooltip-animation="false" tooltip-placement="top" tooltip="comment #{{$index+1}}" id="{{$index+1}}"> #{{$index+1}}</a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            {{::item.time | date:'medium'}}</p>
-        </div>
+<div class="panel panel-default" ng-show="item.show || item.show == undefined" ng-repeat="item in bug.changeHistory">
+    <div class="panel-heading">
+        <img alt="user pic" src="assets/images/avatar.png" class="img-circle img-responsive user-img">
+        <b>{{::item.updatedBy.name | capitalize}}</b>
+        <p class="pull-right" style="font-size: 12px;font-weight: 400;">
+            <span><a href="#{{$index+1}}" tooltip-trigger tooltip-animation="false" tooltip-placement="top" tooltip="comment #{{$index+1}}" id="{{$index+1}}"> #{{$index+1}}</a>&nbsp;&nbsp;&nbsp;&nbsp;</span> {{::item.time | date:'medium'}}</p>
+    </div>
+    <div class="panel-body">
+        <p>
+            <dl ng-repeat="(key, value) in item.change" class="dl-horizontal" id="changelist">
+                <div ng-switch on="key">
+                    <div ng-switch-when="assignTo">
+                        <dt><i class="fa fa-user"></i> Assigned To:</dt>
+                        <dd>
+                            <span class="label label-danger">{{::value.to.name}}</span>
+                            <span ng-show="value.to.name == ''">(none)</span>
+                            <i class="fa  fa-long-arrow-left" ng-hide="value.from.name == ''"></i>
+                            <span class="label label-default">{{::value.from.name}}</span>
+                        </dd>
+                    </div>
+                     <div ng-switch-when="priority">
+                        <dt><i class="fa fa-list-ol"></i> Priority:</dt>
+                        <dd>
+                            <span class="label label-danger">{{::value.to.level}}</span>
+                             <span ng-show="value.to.level == null">(empty)</span>
+                            <i class="fa  fa-long-arrow-left" ng-hide="value.from.level == null"></i>
+                            <span class="label label-default">{{::value.from.level}}</span>
+                        </dd>
+                    </div>
 
-        <div class="panel-body">
-            <p class="bg-success">
-                <ul ng-repeat="(key, value) in item.change" class="list-unstyled">
-                    <li ng-hide="value.to.name || value.to.level">
+                    <div ng-switch-default>
+                        <dt>
+                         <span ng-switch on="key">
+                             <span ng-switch-when="category">
+                                 <i class="fa fa-folder-open"></i>
+                             </span>
+                              <span ng-switch-when="tofixin">
+                               <i class="fa fa-gavel"></i>
+                             </span>
+                             <span ng-switch-when="fixedin">
+                              <i class="fa fa-check-square"></i>
+                             </span>
+                             <span ng-switch-when="platform">
+                                 <i class="fa fa-laptop"></i>
+                             </span>
+                            <span ng-switch-when="severity">
+                                   <i class="fa fa-exclamation-triangle"></i>
+                             </span>
+                             <span ng-switch-when="status">
+                                <i class="fa fa-road"></i>
+                             </span>
+                             <span ng-switch-when="version">
+                                <i class="fa fa-code-fork"></i>
+                             </span>
+                             <span ng-switch-default>
+                                 <i class="fa fa-circle"></i>
+                             </span>
+                         </span>   
+                        {{::key | capitalize}}:</dt>
+                        <dd>
+                            <span class="label label-danger">{{::value.to}}</span>
+                            <i class="fa  fa-long-arrow-left" ng-hide="value.from == ''"></i>
+                            <span class="label label-default">{{::value.from}}</span>
+                        </dd>
+                    </div>
+                </div>
+            </dl>
+            </p>
+
+<!--             <p>
+            <ul ng-repeat="(key, value) in item.change" class="list-unstyled">
+                <div ng-switch on="key">
+                    <li ng-switch-when="assignTo">
+                        Bug assignee changed from
+                        <span class="label label-default">{{::value.from.name}}</span>
+                        <i class="fa  fa-long-arrow-right"></i>
+                        <span class="label label-success">{{::value.to.name}}</span>
+                    </li>
+                    <li ng-switch-when="priority">
+                        {{::key | capitalize}} changed from
+                        <span class="label label-warning">{{::value.from.level}}</span>
+                        <i class="fa  fa-long-arrow-right"></i>
+                        <span class="label label-success">{{::value.to.level}}</span>
+                    </li>
+                    <li ng-switch-default>
+                        {{::key | capitalize}} changed from
+                        <span class="label label-warning">{{::value.from | date: 'mediumDate'}}</span>
+                        <span ng-show="value.from == ''" class="label label-default">(empty)</span>
+                        <i class="fa  fa-long-arrow-right"></i>
+                        <span class="label label-success">{{::value.to | date: 'mediumDate' }}</span>
+                    </li>
+                </div>
+            </ul>
+        
+        </p> -->
+<!--   
+        <p>
+            <ul ng-repeat="(key, value) in item.change" class="list-unstyled">
+                <li ng-hide="value.to.name || value.to.level">
                     {{::key | capitalize}} changed from
                     <span ng-hide="value.from===undefined" class="label label-warning">{{::value.from | date: 'mediumDate'}}</span>
                     <i class="fa  fa-long-arrow-right"></i>
@@ -24,36 +110,30 @@
                     <span ng-hide="value.from===undefined" class="label label-warning">{{::value.from.level}}</span> <i class="fa  fa-long-arrow-right"></i>
                     <span class="label label-success">{{::value.to.level}}</span>
                 </li>
-                </ul>
-
-              <dl class="dl-horizontal" ng-if="item.svn">
-                        <dt>Repository</dt>
-                        <dd><a href="">{{item.svn.repository}}</a></dd>
-                        <dt>Revision</dt>
-                        <dd><a href="">{{item.svn.revision}}</a></dd>
-                        <dt>Files</dt>
-                        <dd ng-repeat="path in item.svn.paths track by $index"><a href="http://svn.marklogic.com/trac.engsvn/browser/{{path}}" target="_window">{{path}}</a></dd>
-                        <dt>Affected bugs</dt>
-                        <dd ng-repeat="bug in item.svn.affectedBugs">
-                        <a href="/{{bug.kind}}/{{bug.id}}">{{bug.id}}</a>
-                        <span ng-hide="bug.id">{{bug}}</span>
-                        </dd>
-                </dl>
-              
-               <!--  hides attached file when used this -->
-               <!--  <div ta-bind ng-model="item.comment" ng-if="item.comment"> --> 
-               
-               <!-- videos are not rendered when used this -->
-                <p ng-show="item.comment" ng-bind-html="item.comment"></p>
-
-                <!--   <b ng-show="item.attachments">Attached:</b> -->
-                <ul ng-repeat="file in item.files" class="list-inline" style="display: inline-block;">
-                    <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{::file.name}}&nbsp;&nbsp;&nbsp;</a>
-                    </li>
-                </ul>
-            </p>
-
-
-        </div>
+            </ul>
+        </p> -->
+        <dl class="dl-horizontal" ng-if="item.svn">
+            <dt>Repository</dt>
+            <dd><a href="">{{item.svn.repository}}</a></dd>
+            <dt>Revision</dt>
+            <dd><a href="">{{item.svn.revision}}</a></dd>
+            <dt>Files</dt>
+            <dd ng-repeat="path in item.svn.paths track by $index"><a href="http://svn.marklogic.com/trac.engsvn/browser/{{path}}" target="_window">{{path}}</a></dd>
+            <dt>Affected bugs</dt>
+            <dd ng-repeat="bug in item.svn.affectedBugs">
+                <a href="/{{bug.kind}}/{{bug.id}}">{{bug.id}}</a>
+                <span ng-hide="bug.id">{{bug}}</span>
+            </dd>
+        </dl>
+        <!--  hides attached file when used this -->
+        <!--  <div ta-bind ng-model="item.comment" ng-if="item.comment"> -->
+        <!-- videos are not rendered when used this -->
+        <p ng-show="item.comment" ng-bind-html="item.comment"></p>
+        <!--   <b ng-show="item.attachments">Attached:</b> -->
+         <i class="fa fa-file" ng-if="item.files.length > 0"></i>
+        <ul ng-repeat="file in item.files" class="list-inline" style="display: inline-block;">
+            <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{::file.name}}&nbsp;&nbsp;&nbsp;</a>
+            </li>
+        </ul>
     </div>
-       
+</div>

@@ -356,6 +356,10 @@ exports.update = function(req, res) {
                         case 'tofixin':
                             if (from.tofixin !== to.tofixin) {
                                 updates.push(p.replace('/tofixin', to.tofixin));
+                                changes.change.tofixin = {
+                                    from: from.tofixin,
+                                    to: to.tofixin
+                                };
                             }
                             break;
                         case 'fixedin':

@@ -161,3 +161,9 @@ body {
     background-color: #f2f2f2;
     margin-top: 100px;
 }
+
+/* change list in comments */
+
+dl#changelist dd {
+     margin-top: -14px;
+}
