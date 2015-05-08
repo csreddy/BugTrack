@@ -48,11 +48,11 @@
                 </div>
                 <div class="col-sm-6 col-md-2">
                     <div class="form-group">
-                        <a ng-href="" id="advSrch" ng-click="!showAdvancedSearch()">&nbsp;<small>Advanced Search</small></a> &nbsp;&nbsp;&nbsp;
+                        <a ng-href="" id="advSrch" ng-click="userPref.toggleAdvSearch()">&nbsp;<small>Advanced Search</small></a> &nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
             </div>
-            <div id="advanced_search" ng-if="showMore">
+            <div id="advanced_search" ng-hide="userPref.hideAdvSearch">
                 <div ng-include src="'app/main/partials/advSearch.partial.html'"></div>
             </div>
         </fieldset>

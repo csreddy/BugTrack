@@ -162,17 +162,6 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             $scope.form.facets[facetName][index].selected = true;
         };
 
-        // toggle advanced search panel visibility
-        $scope.showMore = true;
-        $scope.showAdvancedSearch = function() {
-            if ($scope.showMore) {
-                $scope.showMore = false;
-            } else {
-                $scope.showMore = true;
-            }
-        };
-
-
 
         $scope.mainSearch = function() {
             console.log('SCOPE.FORM', $scope.form);
@@ -276,6 +265,13 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     return 'col-md-10';
                 }
             })(),
+            hideAdvSearch: (function () {
+                if ($window.localStorage.hideAdvSearch) {
+                   return true;
+                } else{
+                    return false;
+                }
+            })(), 
             // pageLength: (function () {
             //     if ($window.localStorage.pageLength) {
             //         return $window.localStorage.pageLength
@@ -294,6 +290,14 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                     $window.localStorage.removeItem('hideFacetBox');
                     this.hideFacetBox = false;
                     this.tableWidth = 'col-md-10';
+                }
+            },
+            toggleAdvSearch: function(){
+                this.hideAdvSearch = !this.hideAdvSearch;
+                if (this.hideAdvSearch === false) {
+                     $window.localStorage.removeItem('hideAdvSearch');
+                } else {
+                    $window.localStorage.hideAdvSearch = true;
                 }
             },
             setTableStyle: function(tableStyle) {
