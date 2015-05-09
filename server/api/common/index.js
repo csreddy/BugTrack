@@ -7,4 +7,5 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/nextId', controller.getNextId);
+router.get('/document', controller.document)
 module.exports = router;

@@ -96,9 +96,11 @@ app.use('/v1/', function(req, res, next) {
     switch (req.method) {
         case 'GET':
             req.pipe(request(url, {
-                user: 'admin',
-                pass: 'admin',
-                sendImmediately: false
+                auth: {
+                    user: 'admin',
+                    pass: 'admin',
+                    sendImmediately: false
+                }
             }, function(error, response, body) {
                 if (error) {
                     next(error);

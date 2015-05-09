@@ -52,6 +52,9 @@
                              <span ng-switch-when="version">
                                 <i class="fa fa-code-fork"></i>
                              </span>
+                             <span ng-switch-when="title">
+                              <!--  <i class="fa fa-header"></i> -->
+                             </span>
                              <span ng-switch-default>
                                  <i class="fa fa-circle"></i>
                              </span>
@@ -66,52 +69,7 @@
                 </div>
             </dl>
             </p>
-
-<!--             <p>
-            <ul ng-repeat="(key, value) in item.change" class="list-unstyled">
-                <div ng-switch on="key">
-                    <li ng-switch-when="assignTo">
-                        Bug assignee changed from
-                        <span class="label label-default">{{::value.from.name}}</span>
-                        <i class="fa  fa-long-arrow-right"></i>
-                        <span class="label label-success">{{::value.to.name}}</span>
-                    </li>
-                    <li ng-switch-when="priority">
-                        {{::key | capitalize}} changed from
-                        <span class="label label-warning">{{::value.from.level}}</span>
-                        <i class="fa  fa-long-arrow-right"></i>
-                        <span class="label label-success">{{::value.to.level}}</span>
-                    </li>
-                    <li ng-switch-default>
-                        {{::key | capitalize}} changed from
-                        <span class="label label-warning">{{::value.from | date: 'mediumDate'}}</span>
-                        <span ng-show="value.from == ''" class="label label-default">(empty)</span>
-                        <i class="fa  fa-long-arrow-right"></i>
-                        <span class="label label-success">{{::value.to | date: 'mediumDate' }}</span>
-                    </li>
-                </div>
-            </ul>
-        
-        </p> -->
-<!--   
-        <p>
-            <ul ng-repeat="(key, value) in item.change" class="list-unstyled">
-                <li ng-hide="value.to.name || value.to.level">
-                    {{::key | capitalize}} changed from
-                    <span ng-hide="value.from===undefined" class="label label-warning">{{::value.from | date: 'mediumDate'}}</span>
-                    <i class="fa  fa-long-arrow-right"></i>
-                    <span class="label label-success">{{::value.to | date: 'mediumDate' }}</span>
-                </li>
-                <li ng-show="value.to.name">Bug assigned from
-                    <span ng-hide="value.from===undefined" class="label label-danger">{{::value.from.name}}</span> <i class="fa  fa-long-arrow-right"></i>
-                    <span class="label label-success">{{::value.to.name}}</span>
-                </li>
-                <li ng-show="value.to.level">{{::key | capitalize}} changed from
-                    <span ng-hide="value.from===undefined" class="label label-warning">{{::value.from.level}}</span> <i class="fa  fa-long-arrow-right"></i>
-                    <span class="label label-success">{{::value.to.level}}</span>
-                </li>
-            </ul>
-        </p> -->
+       
         <dl class="dl-horizontal" ng-if="item.svn">
             <dt>Repository</dt>
             <dd><a href="">{{item.svn.repository}}</a></dd>

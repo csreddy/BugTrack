@@ -46,21 +46,20 @@ exports.getNextId = function(req, res) {
 };
 
 
-function sortUris(docuris){
-    var ids = []
-    var sortedUris = []
-    for(var i in docuris){
-        var _uri = docuris[i].toString()
-        var _id = docuris[i].toString()
-            .replace(/\/\w*\/\d*\//, '')
-            .replace(/.json/, '')
-        if(!isNaN(_id)){
-            ids.push({id: parseInt(_id), uri: docuris[i]})
+// NEED TO FIX THIS FUNCTION
+exports.document = function(req, res) {
+  console.log(req);
+    db.documents.read(req.query.uri).result(function(documents) {
+        res.set('Content-type', documents[0].contentType)
+        if (documents[0].contentType === 'application/pdf') {
+            // res.setHeader('Content-disposition', 'inline; filename="' + 'jsinterviewquestions-sample.pdf' + '"');
+           // console.log(JSON.stringify(documents));
+            res.send(documents)
+        } else{
+            res.status(200).send(documents[0].content)    
         }
-    }
-    ids.sort(function(a, b){return a.id-b.id});
-    for(var id in ids){
-        sortedUris.push(ids[id].uri)
-    }
-    return sortedUris
-}
+        
+    }, function(error) {
+        res.status(error.statusCode).send('Document does not exist at '+ req.query.uri)
+    })
+};
