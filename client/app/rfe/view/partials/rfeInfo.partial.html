@@ -19,7 +19,7 @@
                     </div>
                     <div class="box-body">
                         <ul ng-repeat="file in rfe.attachments track by $index" class="list-inline" style="display: inline-block;">
-                            <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{::file.name}}&nbsp;&nbsp;&nbsp;</a>
+                            <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{::file.name}}&nbsp;&nbsp;<span ng-show="rfe.attachments.length > 1">|</span></a>
                             </li>
                         </ul>
                     </div>

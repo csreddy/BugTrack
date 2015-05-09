@@ -54,7 +54,7 @@
                                 <i class="fa fa-code-fork"></i>
                              </span>
                              <span ng-switch-default>
-                                 <i class="fa fa-circle"></i>
+                               <!--   <i class="fa fa-circle"></i> -->
                              </span>
                          </span>   
                         {{::key | capitalize}}:</dt>
@@ -86,7 +86,7 @@
             <!--   <b ng-show="item.files">Attached:</b> -->
              <i class="fa fa-file" ng-if="item.files.length > 0"></i>
             <ul ng-repeat="file in item.files" class="list-inline" style="display: inline-block;">
-                <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{::file.name}}&nbsp;&nbsp;&nbsp;</a>
+                <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{::file.name}}&nbsp;&nbsp;<span ng-show="rfe.files.length > 1">|</span></a>
                 </li>
             </ul>
         </p>

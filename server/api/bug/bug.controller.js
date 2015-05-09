@@ -186,9 +186,6 @@ exports.update = function(req, res) {
         files: []
     }
 
-    console.log('FILES', req.files);
-
-
     async.series([
 
             function(callback) {
@@ -630,7 +627,6 @@ exports.clones = function(req, res, next) {
             db.documents.read({
                 uris: [uri]
             }).result(function(document) {
-                console.log('document', document);
                 var clones = document[0].content.clones.sort();
                 var cloneDocUris = [];
                 if (clones.length > 0) {
@@ -643,7 +639,6 @@ exports.clones = function(req, res, next) {
                     db.documents.read({
                         uris: cloneDocUris
                     }).result(function(documents) {
-                        console.log('documents', documents);
                         clones = [];
                         if (documents.length > 0) {
                             for (var i = 0; i < documents.length; i++) {
