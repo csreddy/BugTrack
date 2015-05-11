@@ -1,5 +1,8 @@
     <div class="panel panel-default">
-        <div class="panel-heading"><i class="fa" ng-class="{'fa-sitemap': task.parent.parentId}"></i> <b class="panel-title">{{::task.title}}</b>
+        <div class="panel-heading">
+        <a href="{{task.github.url}}" title="" ng-if="task.github.url" target="_window" tooltip-trigger tooltip-placement="false" tooltip-animation="false" tooltip="imported from github"> 
+        <i class="fa fa-github" style="font-size:20px"></i></a>
+        <i class="fa" ng-class="{'fa-sitemap': task.parent.parentId}"></i> <b class="panel-title">{{::task.title}}</b>
         </div>
         <div class="panel-body">
             <!--   <span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:40px;color: red;z-index:1"><h2 style="z-index:-1;">{{task.status}}</h2></span> -->

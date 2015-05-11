@@ -627,7 +627,10 @@ exports.clones = function(req, res, next) {
             db.documents.read({
                 uris: [uri]
             }).result(function(document) {
-                var clones = document[0].content.clones.sort();
+                var clones = []
+                if(document[0].content.clones){
+                    document[0].content.clones.sort();
+                }
                 var cloneDocUris = [];
                 if (clones.length > 0) {
                     for (var i = 0; i < clones.length; i++) {

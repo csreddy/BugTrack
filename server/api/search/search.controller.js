@@ -122,17 +122,17 @@ exports.search = function(req, res) {
                     q.parsedFrom(value,
                         q.parseBindings(
                             q.value('id', q.jsontype('number'), q.bind('id')),
-                            q.value('kind', q.bind('kind')),
-                            q.value('status', q.bind('stat')),
+                            q.value('kind', q.bind('k')),
+                            q.value('status', q.bind('s')),
                             q.value('category', q.bind('cat')),
                             q.value('version', q.bind('v')),
-                            q.value('platform', q.bind('plat')),
+                            q.value('platform', q.bind('pl')),
                             q.value('tofixin', q.bind('tfi')),
                             q.value('fixedin', q.bind('fi')),
                             q.value('severity', q.bind('sev')),
                             q.word('title', q.bind('title')),
                             q.word('description', q.bind('desc')),
-                            q.range(q.pathIndex('/priority/level'), q.bind('pr')),
+                            q.range(q.pathIndex('/priority/level'), q.bind('p')),
                             q.range(q.pathIndex('/assignTo/username'), q.bind('at')),
                             q.range(q.pathIndex('/submittedBy/username'), q.bind('sb'))
                         )

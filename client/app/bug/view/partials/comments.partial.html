@@ -14,7 +14,7 @@
                         <dd>
                             <span class="label label-danger">{{::value.to.name}}</span>
                             <span ng-show="value.to.name == ''">(none)</span>
-                            <i class="fa  fa-long-arrow-left" ng-hide="value.from.name == ''"></i>
+                            <i class="fa  fa-long-arrow-left" ng-hide="value.from.name == '' || value.from.name == null"></i>
                             <span class="label label-default">{{::value.from.name}}</span>
                         </dd>
                     </div>
@@ -62,7 +62,7 @@
                         {{::key | capitalize}}:</dt>
                         <dd>
                             <span class="label label-danger">{{::value.to}}</span>
-                            <i class="fa  fa-long-arrow-left" ng-hide="value.from == ''"></i>
+                            <i class="fa  fa-long-arrow-left" ng-hide="value.from == '' || value.from == null"></i>
                             <span class="label label-default">{{::value.from}}</span>
                         </dd>
                     </div>
