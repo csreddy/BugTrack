@@ -35,12 +35,18 @@ exports.getNextId = function(req, res) {
         })
     )
         .result(function(response) {
-            res.status(200).json({
+            if (response[0].results.length > 0) {
+                  res.status(200).json({
                 nextId: parseInt(
                     response[0].results[0].uri.toString()
                     .replace(/\/\w*\/\d*\//, '')
                     .replace(/.json/, '')) + 1
             });
+            } else{
+                // when db is empty
+                res.status(200).json({nextId: 1});
+            }
+          
         }, function(error) {
             console.log(error);
             res.status(error.statusCode).json(error);

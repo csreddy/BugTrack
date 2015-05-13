@@ -13,8 +13,8 @@ var bug = require('../bug/bug.controller');
 
 var bugList = "https://api.github.com/repos/marklogic/java-client-api/issues/";
 var githubAuth = {
-    user: 'sudhakarsjce@gmail.com',
-    pass: '****'
+    user: 'marklogic-builder',
+    pass: 'rhUrnQ1AewawZ61K'
 }
 var githubLabels = {
     all: ['Bug', 'Enhancement', 'Task', 'new', 'verify', 'test', 'fix', 'ship', 'closed', 'external', 'will not fix', 'catastrophic', 'critical', 'major', 'minor', 'aesthetic', 'performance'],
@@ -231,6 +231,7 @@ exports.transformAndLoadGitHubBugs = function(req, res) {
                 if (err) {
                     res.send(err)
                 }
+            
 
                 var cargo = async.cargo(function(tasks, callback) {
                     for (var i = 0; i < tasks.length; i++) {
@@ -242,16 +243,20 @@ exports.transformAndLoadGitHubBugs = function(req, res) {
                             finalResult.push(result)
                             // console.log('finalResult:' + finalResult.length + 'transformedIssues.length:' + transformedIssues.length);
                             if (finalResult.length === transformedIssues.length) {
-                                res.send(_.sortBy(finalResult, 'id'))
+                                res.send(finalResult)
                             }
+                             callback();
                         });
                     }
-                    callback();
+                  //  callback();
                 }, 1);
 
                 transformedIssues.forEach(function(issue) {
                     cargo.push(issue);
                 })
+
+
+
             })
 
         } // if end
@@ -445,7 +450,7 @@ function insertIssueIntoBugtrack(item, req, res, callback) {
     var action = {
         githubId: item.github.issueId,
         bugtrackId: item.id,
-        message: null
+        msg: null
     }
     async.waterfall([
 
@@ -461,39 +466,16 @@ function insertIssueIntoBugtrack(item, req, res, callback) {
 
             if (bug) {
                 // TODO: update existing bug & also preserve any changes that were made in bugtrack
-                action.message = 'updated existing issue';
                 action.bugtrackId = bug.id
-                callback(null, bug);
+                callback(null, {
+                    id: bug.id,
+                    msg: 'updated'
+                });
             } else {
-                action.message = 'created new issue';
-                switch (item.kind) {
-                    case 'Bug':
-                        options.uri = baseUri + '/api/bugs/new';
-                        options.json = {
-                            bug: item
-                        };
-                        createNewBug(item, req, callback)
-                        break;
-                    case 'Task':
-                        options.uri = baseUri + '/api/tasks/new';
-                        options.json = {
-                            task: item
-                        };
-                        createNewTask(item, req, callback)
-                        break;
-                    case 'RFE':
-                        options.uri = baseUri + '/api/rfes/new';
-                        options.json = {
-                            rfe: item
-                        };
-                        createNewRFE(item, req, callback)
-                        break;
-                    default:
-                        console.log('Issue #' + item.github.issueId + ' kind is unknown');
-                        return res.status(500).json({
-                            error: 'Issue #' + item.github.issueId + ' kind is unknown'
-                        })
-                }
+                createNewBugtrackIssue(item, req, function(err, result) {
+                    if (err) callback(err)
+                    callback(null, result);
+                });
             }
 
         }
@@ -502,9 +484,10 @@ function insertIssueIntoBugtrack(item, req, res, callback) {
             console.log(err);
             return res.send(err)
         }
-        //return res.status(200).json(action);
-        console.log('result----', result);
-        action.bugtrackId = result.id
+        if (!result.err) {
+            action.bugtrackId = result.id;
+        }
+        action.msg = result.msg;
         return callback(null, action);
     })
 }
@@ -710,6 +693,133 @@ function createNewRFE(rfe, req, callback) {
     })
 }
 
+
+// generatea a new id and inserts into database
+function createNewBugtrackIssue(issue, req, callback) {
+
+    if ((typeof issue.kind) === 'undefined' && issue.kind !== 'Bug' && issue.kind !== 'Task' && issue.kind !== 'RFE') {
+        console.log('inside if');
+        if (callback) {
+            return callback(null, {
+                error: true,
+                msg: 'Issue #' + issue.github.issueId + ' invalid kind. kind is ' + issue.kind
+            });
+        } else {
+            return {
+                error:true,
+                msg: 'Issue #' + issue.github.issueId + ' invalid kind. kind is ' + issue.kind
+            }
+        }
+    }
+
+    async.waterfall([
+
+        function getId(waterfallCallback) {
+            getNextId(req, waterfallCallback)
+        },
+        function insert(id, waterfallCallback) {
+            issue.id = parseInt(id);
+            createBugtrackIssue(issue, req, waterfallCallback);
+        }
+    ], function end(err, result) {
+        if (err) {
+            return callback(err)
+        }
+        return callback(null, result)
+    })
+}
+
+// inserts the given issues into datatabase (does not generate new id)
+function createBugtrackIssue(issue, req, callback) {
+    if ((typeof issue.kind) === 'undefined' && issue.kind !== 'Bug' && issue.kind !== 'Task' && issue.kind !== 'RFE') {
+        console.log('inside if');
+        if (callback) {
+            return callback(null, {
+                error: true,
+                msg: 'Issue #' + issue.github.issueId + ' invalid kind. kind is ' + issue.kind
+            });
+        } else {
+            return {
+                error:true,
+                msg: 'Issue #' + issue.github.issueId + ' invalid kind. kind is ' + issue.kind
+            }
+        }
+    }
+
+    var baseUri = req.protocol + '://' + req._remoteAddress + ':' + req.headers.host.replace(/(\S*:)(\d*)/, '$2');
+    var kind = issue.kind;
+    var options = {};
+    options.method = 'POST';
+    switch (kind) {
+        case 'Bug':
+            options.uri = baseUri + '/api/bugs/new';
+            options.json = {
+                'bug': issue
+            };
+            break;
+        case 'Task':
+            options.uri = baseUri + '/api/tasks/new';
+            options.json = {
+                'task': issue
+            };
+            break;
+        case 'RFE':
+            options.uri = baseUri + '/api/rfes/new';
+            options.json = {
+                'rfe': issue
+            };
+            break;
+         default:
+          return callback(null, {error: true, msg: 'invalid kind. kind is ' + kind})      
+    }
+
+    
+
+    request(options, function(err, response, body) {
+        if (callback) {
+            if (err) {
+                console.error('could not import issue #' + issue.github.issueId, err);
+                return callback(null, {error:true, msg: 'could not import issue #' + issue.github.issueId + '. ' +err.toString()});
+            }
+
+            if (response.statusCode !== 200) {
+                return callback({
+                    error:true,
+                    msg: 'could not import issue #' + issue.github.issueId
+                })
+            }
+
+            console.log(issue.id + ' created successfully');
+            return callback(null, {
+                id: issue.id,
+                msg: 'created'
+            });
+        } else {
+
+            if (err) {
+                console.error('could not import issue #' + issue.github.issueId, err);
+                return err;
+            }
+
+            if (response.statusCode !== 200) {
+                return {
+                    error:true,
+                    msg: 'could not import issue #' + issue.github.issueId
+                }
+            }
+            console.log(issue.id + ' created successfully');
+            return {
+                id: issue.id,
+                msg: 'created'
+            };
+        }
+    })
+
+
+}
+
+
+
 function createBug(bug, req, callback) {
     request({
         method: 'POST',
@@ -731,10 +841,7 @@ function createBug(bug, req, callback) {
             }
 
             console.log('bug created successfully');
-            return callback(null, {
-                id: bug.id,
-                msg: 'bug-' + bug.id + ' created successfully'
-            });
+            return callback(null, bug.id);
         } else {
 
             if (err) {
@@ -748,10 +855,7 @@ function createBug(bug, req, callback) {
                 }
             }
             console.log('bug created successfully');
-            return {
-                id: bug.id,
-                msg: 'bug-' + bug.id + ' created successfully'
-            }
+            return bug.id
         }
 
     })
@@ -778,10 +882,7 @@ function createTask(task, req, callback) {
             }
 
             console.log('task created successfully');
-            return callback(null, {
-                id: task.id,
-                msg: 'task-' + task.id + ' created successfully'
-            });
+            return callback(null, task.id);
         } else {
 
             if (err) {
@@ -795,10 +896,7 @@ function createTask(task, req, callback) {
                 }
             }
             console.log('task created successfully');
-            return {
-                id: task.id,
-                msg: 'task-' + task.id + ' created successfully'
-            }
+            return task.id
         }
 
     })
@@ -825,10 +923,7 @@ function createRFE(rfe, req, callback) {
             }
 
             console.log('rfe created successfully');
-            return callback(null, {
-                id: rfe.id,
-                msg: 'rfe-' + rfe.id + ' created successfully'
-            });
+            return callback(null, rfe.id);
         } else {
 
             if (err) {
@@ -842,10 +937,7 @@ function createRFE(rfe, req, callback) {
                 }
             }
             console.log('rfe created successfully');
-            return {
-                id: rfe.id,
-                msg: 'rfe-' + rfe.id + ' created successfully'
-            }
+            return rfe.id
         }
 
     })
@@ -862,7 +954,6 @@ function processEventList(eventList) {
     eventList.forEach(function(eventItem) {
         switch (eventItem.event) {
             case 'labeled':
-            case 'unlabeled':
                 var changeName = null;
                 if (githubLabels.kind.indexOf(eventItem.label.name) > -1) {
                     changeName = 'kind';
@@ -890,6 +981,38 @@ function processEventList(eventList) {
                 change.change[changeName] = {
                     from: null,
                     to: eventItem.label.name
+                }
+                changeHistory.push(change);
+                change = {}
+                break;
+            case 'unlabeled':
+                var changeName = null;
+                if (githubLabels.kind.indexOf(eventItem.label.name) > -1) {
+                    changeName = 'kind';
+                }
+                if (githubLabels.status.indexOf(eventItem.label.name) > -1) {
+                    changeName = 'status';
+                }
+                if (githubLabels.severity.indexOf(eventItem.label.name) > -1) {
+                    changeName = 'severity';
+                }
+
+                // enahncements are added as rfes
+                if (eventItem.label.name === 'Enhancement') {
+                    eventItem.label.name = 'RFE';
+                }
+
+                change = {
+                    time: eventItem.created_at,
+                    updatedBy: {
+                        username: eventItem.actor.login,
+                        name: eventItem.actor.login
+                    }
+                }
+                change['change'] = {};
+                change.change[changeName] = {
+                    from: eventItem.label.name,
+                    to: null
                 }
                 changeHistory.push(change);
                 change = {}
