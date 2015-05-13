@@ -119,7 +119,6 @@ exports.new = function(req, res) {
         collections.push(JSON.parse(req.body.bug).submittedBy.username);
     }
     var uri = '/bug/' + id + '/' + id + '.json';
-    var countDoc = 'count.json'
     db.documents.write([{
         uri: uri,
         category: 'content',
@@ -133,7 +132,7 @@ exports.new = function(req, res) {
             }).join(', ')
         );
         console.log('done\n');
-        res.send(200);
+        res.send(200); 
     });
 
     for (var file in attachments) {

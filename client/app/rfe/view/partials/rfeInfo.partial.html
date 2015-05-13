@@ -1,30 +1,33 @@
-    <div class="panel panel-default">
-        <div class="panel-heading"><b class="panel-title">{{::rfe.title}}</b>
-        </div>
-        <div class="panel-body">
-            <!--   <span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:40px;color: red;z-index:1"><h2 style="z-index:-1;">{{rfe.status}}</h2></span> -->
-            <p ng-bind-html="rfe.description"></p>
-            <div ng-show="rfe.note">
-                <div class="callout callout-warning">
-                    <i class="fa fa-bullhorn"></i>
-                    <p>{{::rfe.note}}</p>
-                </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a href="{{rfe.github.url}}" title="" ng-if="rfe.github.url" target="_window" tooltip-trigger tooltip-placement="false" tooltip-animation="false" tooltip="imported from github">
+            <i class="fa fa-github" style="font-size:20px"></i></a>
+        <b class="panel-title">{{::rfe.title}}</b>
+    </div>
+    <div class="panel-body">
+        <!--   <span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:40px;color: red;z-index:1"><h2 style="z-index:-1;">{{rfe.status}}</h2></span> -->
+        <p ng-bind-html="rfe.description"></p>
+        <div ng-show="rfe.note">
+            <div class="callout callout-warning">
+                <i class="fa fa-bullhorn"></i>
+                <p>{{::rfe.note}}</p>
             </div>
-            <div class="pull-left" ng-show="hasAttachments">
-                <div class="box box-success">
-                    <div class="box-header">
-                        <div class="box-tools pull-left">
-                            <div class="label bg-green"><span class="glyphicon glyphicon-file"></span> All Attachments</div>
-                        </div>
+        </div>
+        <div class="pull-left" ng-show="hasAttachments">
+            <div class="box box-success">
+                <div class="box-header">
+                    <div class="box-tools pull-left">
+                        <div class="label bg-green"><span class="glyphicon glyphicon-file"></span> All Attachments</div>
                     </div>
-                    <div class="box-body">
-                        <ul ng-repeat="file in rfe.attachments track by $index" class="list-inline" style="display: inline-block;">
-                            <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{::file.name}}&nbsp;&nbsp;<span ng-show="rfe.attachments.length > 1">|</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.box-body -->
                 </div>
+                <div class="box-body">
+                    <ul ng-repeat="file in rfe.attachments track by $index" class="list-inline" style="display: inline-block;">
+                        <li><a ng-href="/v1/documents?uri={{file.uri}}" target="_window">{{::file.name}}&nbsp;&nbsp;<span ng-show="rfe.attachments.length > 1">|</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
             </div>
         </div>
     </div>
+</div>
