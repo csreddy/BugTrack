@@ -73,7 +73,8 @@ module.exports = function(app) {
     // Common route
     app.use('/api/common', require('./api/common'));   
 
-
+    // github route 
+    app.use('/api/github', require('./api/github'))
 
     // All undefined asset or api routes should return a 404
     app.route('/:url(api|auth|components|app|bower_components|assets)/*')

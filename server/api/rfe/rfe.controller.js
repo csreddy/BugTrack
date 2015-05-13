@@ -83,7 +83,6 @@ exports.id = function(req, res) {
 exports.new = function(req, res) {
     'use strict';
     console.log('inside NEW TASK');
-    console.log('BODY', req.body);
     //console.log('FILES', req.files);
     var attachments = req.files;
     var errors = false;
