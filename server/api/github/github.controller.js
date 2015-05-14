@@ -146,13 +146,30 @@ exports.listTransformedGitHubBugs = function(req, res) {
 
 }
 
-exports.listGitHubBugs = function(req, res) {
+exports.issues = function(req, res) {
     var _project = req.query.project || null;
     var _sort = req.query.sort || 'created';
     var _order = req.query.order || 'asc';
     var _page = req.query.page || 1;
     var _per_page = req.query.per_page || 25;
     var _transform = req.query.transform || false;
+    var _load = req.query.load || false;
+
+    try {
+        _transform = JSON.parse(_transform)
+    } catch (e) {
+        _transform = false;
+    }
+
+    // when load=true, then set transform=true
+    try {
+        _load = JSON.parse(_load);
+        if (_load) {
+            _transform = true;
+        }
+    } catch (e) {
+        _load = false;
+    }
 
     var finalResult = []
         //console.log('url:', 'https://api.github.com/repos/marklogic/' + req.query.project + '/issues?page=' + _page + '&per_page=' + _per_page);
@@ -165,113 +182,105 @@ exports.listGitHubBugs = function(req, res) {
         auth: githubAuth
     };
 
-    request(options, function(error, response, body) {
-        if (error) {
-            console.log(error);
-            return res.send(error);
-        }
+    if (_load) {
+        request(options, function(error, response, body) {
+            if (error) {
+                console.log(error);
+                return res.send(error);
+            }
 
-        if (!error && response.statusCode === 200) {
-            var issues = JSON.parse(body).items
-            var finalResult = [];
-            async.times(issues.length, function(n, next) {
-                getEventsAndComments(issues[n], function(err, issue) {
-                    if (_transform) {
-                        finalResult.push(convertToBugtrackItem(issue));
-                    } else {
-                        finalResult.push(issue);
+            if (!error && response.statusCode === 200) {
+                var issues = JSON.parse(body).items
+                var transformedIssues = [];
+                async.times(issues.length, function(n, next) {
+                    getEventsAndComments(issues[n], function(err, issue) {
+                        transformedIssues.push(convertToBugtrackItem(issue));
+                        next(err, issue);
+                    })
+                }, function(err, issues) {
+                    if (err) {
+                        res.send(err)
                     }
-                    next(err, issue);
+
+
+                    var cargo = async.cargo(function(tasks, callback) {
+                        for (var i = 0; i < tasks.length; i++) {
+                            insertIssueIntoBugtrack(tasks[i], req, res, function(err, result) {
+                                if (err) {
+                                    res.send(err)
+                                }
+                                //  console.log('result:', result);
+                                finalResult.push(result)
+                                // console.log('finalResult:' + finalResult.length + 'transformedIssues.length:' + transformedIssues.length);
+                                if (finalResult.length === transformedIssues.length) {
+                                    res.send(finalResult)
+                                }
+                                callback();
+                            });
+                        }
+                        //  callback();
+                    }, 1);
+                    transformedIssues.forEach(function(issue) {
+                        cargo.push(issue);
+                    })
                 })
-            }, function(err, issues) {
-                if (err) {
-                    res.send(err)
-                }
-                res.send(finalResult)
-            })
+            } // if end
+        }) // request end
+    } else {
+        request(options, function(error, response, body) {
+            if (error) {
+                console.log(error);
+                return res.send(error);
+            }
 
-        } // if end
-
-    }) // request end
-}
-
-exports.transformAndLoadGitHubBugs = function(req, res) {
-    var _project = req.query.project || null;
-    var _sort = req.query.sort || 'created';
-    var _order = req.query.order || 'asc';
-    var _page = req.query.page || 1;
-    var _per_page = req.query.per_page || 25;
-
-    var finalResult = []
-        //console.log('url:', 'https://api.github.com/repos/marklogic/' + req.query.project + '/issues?page=' + _page + '&per_page=' + _per_page);
-        // https://api.github.com/search/issues?q=repo:marklogic/java-client-api&sort=created&order=asc&page=1&per_page=10
-    var options = {
-        url: 'https://api.github.com/search/issues?q=repo:marklogic/' + _project + '&sort=' + _sort + '&order=' + _order + '&page=' + _page + '&per_page=' + _per_page,
-        headers: {
-            'User-Agent': req.query.project
-        },
-        auth: githubAuth
-    };
-
-    request(options, function(error, response, body) {
-        if (error) {
-            console.log(error);
-            return res.send(error);
-        }
-
-        if (!error && response.statusCode === 200) {
-            var issues = JSON.parse(body).items
-            var transformedIssues = [];
-            async.times(issues.length, function(n, next) {
-                getEventsAndComments(issues[n], function(err, issue) {
-                    transformedIssues.push(convertToBugtrackItem(issue));
-                    next(err, issue);
-                })
-            }, function(err, issues) {
-                if (err) {
-                    res.send(err)
-                }
-            
-
-                var cargo = async.cargo(function(tasks, callback) {
-                    for (var i = 0; i < tasks.length; i++) {
-                        insertIssueIntoBugtrack(tasks[i], req, res, function(err, result) {
-                            if (err) {
-                                res.send(err)
-                            }
-                            //  console.log('result:', result);
-                            finalResult.push(result)
-                            // console.log('finalResult:' + finalResult.length + 'transformedIssues.length:' + transformedIssues.length);
-                            if (finalResult.length === transformedIssues.length) {
-                                res.send(finalResult)
-                            }
-                             callback();
-                        });
+            if (!error && response.statusCode === 200) {
+                var issues = JSON.parse(body).items
+                var finalResult = [];
+                async.times(issues.length, function(n, next) {
+                    getEventsAndComments(issues[n], function(err, issue) {
+                        if (_transform) {
+                            finalResult.push(convertToBugtrackItem(issue));
+                        } else {
+                            finalResult.push(issue);
+                        }
+                        next(err, issue);
+                    })
+                }, function(err, issues) {
+                    if (err) {
+                        res.send(err)
                     }
-                  //  callback();
-                }, 1);
-
-                transformedIssues.forEach(function(issue) {
-                    cargo.push(issue);
+                    res.send(finalResult)
                 })
+            } // if end
+        }) // request end
+    }
 
 
 
-            })
-
-        } // if end
-
-    }) // request end
 }
 
 
-
-
-
-exports.getGitHubIssue = function(req, res) {
+exports.issue = function(req, res) {
     var _project = req.query.project || null;
     var _issueId = req.query.id || null;
     var _transform = req.query.transform || false;
+    var _load = req.query.load || false;
+
+    try {
+        _transform = JSON.parse(_transform);
+    } catch (e) {
+        _transform = false;
+    }
+    // when load=true, then set transform=true
+    try {
+        _load = JSON.parse(_load);
+        if (_load) {
+            _transform = true;
+        }
+    } catch (e) {
+        _load = false;
+    }
+
     var _url = 'https://api.github.com/repos/marklogic/' + _project + '/issues/' + _issueId + '&transform=' + _transform
     var options = {
         url: _url,
@@ -280,27 +289,60 @@ exports.getGitHubIssue = function(req, res) {
         },
         auth: githubAuth
     };
-    async.waterfall([
+    if (_load) {
+        async.waterfall([
 
-        function(waterfallCallback) {
-            getIssue(options, waterfallCallback);
-        },
-        function(issue, waterfallCallback) {
-            getEventsAndComments(issue, waterfallCallback)
-        }
-    ], function end(err, item) {
-        if (err) {
-            return res.status(404).json({
-                error: 'Not Found'
-            })
-        }
-        if (_transform) {
-            res.send(convertToBugtrackItem(item));
-        } else {
-            res.send(item);
-        }
+            function(waterfallCallback) {
+                getIssue(options, waterfallCallback);
+            },
+            function(issue, waterfallCallback) {
+                getEventsAndComments(issue, waterfallCallback)
+            },
+            function(issue, waterfallCallback) {
+                convertToBugtrackItem(issue, waterfallCallback)
+            },
+            function(transformedItem, waterfallCallback) {
+                attachNewBugtrackId(transformedItem, req, waterfallCallback);
+            }
 
-    })
+        ], function end(err, item) {
+            if (err) {
+                return res.status(404).json({
+                    error: 'Issue not found'
+                })
+            }
+            insertIssueIntoBugtrack(item, req, res, function(err, result) {
+                if (err) {
+                    res.send(err);
+                }
+                return res.send(result);
+            });
+        })
+
+    } else {
+        async.waterfall([
+
+            function(waterfallCallback) {
+                getIssue(options, waterfallCallback);
+            },
+            function(issue, waterfallCallback) {
+                getEventsAndComments(issue, waterfallCallback)
+            }
+        ], function end(err, item) {
+            if (err) {
+                return res.status(404).json({
+                    error: 'Not Found'
+                })
+            }
+            if (_transform) {
+                return res.send(convertToBugtrackItem(item));
+            } else {
+                return res.send(item);
+            }
+        })
+    }
+
+
 };
 
 exports.transformGitHubIssue = function(req, res) {
@@ -339,67 +381,6 @@ exports.transformGitHubIssue = function(req, res) {
     })
 };
 
-
-exports.loadGitHubIssue = function(req, res) {
-    var _project = req.query.project || null
-    var _issueId = req.query.id || null
-    var _url = 'https://api.github.com/repos/marklogic/' + _project + '/issues/' + _issueId;
-    var options = {
-        url: _url,
-        headers: {
-            'User-Agent': _project
-        },
-        auth: githubAuth
-    };
-    async.waterfall([
-
-        function(waterfallCallback) {
-            getIssue(options, waterfallCallback);
-        },
-        function(issue, waterfallCallback) {
-            getEventsAndComments(issue, waterfallCallback)
-        },
-        function(issue, waterfallCallback) {
-            convertToBugtrackItem(issue, waterfallCallback)
-        },
-        function(transformedItem, waterfallCallback) {
-            attachNewBugtrackId(transformedItem, req, waterfallCallback);
-        }
-
-    ], function end(err, item) {
-        if (err) {
-            return res.status(404).json({
-                error: 'Issue not found'
-            })
-        }
-        insertIssueIntoBugtrack(item, req, res, function(err, result) {
-            if (err) {
-                res.send(err);
-            }
-            res.send(result);
-        });
-    })
-};
-
-function insertTransformedGitHubIssue(issue, req, res) {
-    async.waterfall([
-
-        function(issue, waterfallCallback) {
-            attachNewBugtrackId(issue, req, waterfallCallback);
-        }
-
-    ], function end(err, item) {
-        if (err) {
-            return res.status(404).json({
-                error: 'Not Found'
-            })
-        }
-        insertIssueIntoBugtrack(item, req, res, function(err, result) {
-            if (err) return err;
-            return result;
-        });
-    })
-}
 
 
 function getGitHubUserInfo(username, callback) {
@@ -469,7 +450,8 @@ function insertIssueIntoBugtrack(item, req, res, callback) {
                 action.bugtrackId = bug.id
                 callback(null, {
                     id: bug.id,
-                    msg: 'updated'
+                    msg: 'updated',
+                    bug: bug
                 });
             } else {
                 createNewBugtrackIssue(item, req, function(err, result) {
@@ -487,10 +469,20 @@ function insertIssueIntoBugtrack(item, req, res, callback) {
         if (!result.err) {
             action.bugtrackId = result.id;
         }
+        if (result.bug) {
+            action.bug = result.bug;
+        }
         action.msg = result.msg;
         return callback(null, action);
     })
 }
+
+
+function preseveBugtrackUpdates(btIssue, ghIssue) {
+
+}
+
+
 
 function attachNewBugtrackId(issue, req, callback) {
     request.get(req.protocol + '://' + req._remoteAddress + ':' + req.headers.host.replace(/(\S*:)(\d*)/, '$2') + '/api/common/nextId', function(err, response, body) {
@@ -706,7 +698,7 @@ function createNewBugtrackIssue(issue, req, callback) {
             });
         } else {
             return {
-                error:true,
+                error: true,
                 msg: 'Issue #' + issue.github.issueId + ' invalid kind. kind is ' + issue.kind
             }
         }
@@ -740,7 +732,7 @@ function createBugtrackIssue(issue, req, callback) {
             });
         } else {
             return {
-                error:true,
+                error: true,
                 msg: 'Issue #' + issue.github.issueId + ' invalid kind. kind is ' + issue.kind
             }
         }
@@ -769,22 +761,28 @@ function createBugtrackIssue(issue, req, callback) {
                 'rfe': issue
             };
             break;
-         default:
-          return callback(null, {error: true, msg: 'invalid kind. kind is ' + kind})      
+        default:
+            return callback(null, {
+                error: true,
+                msg: 'invalid kind. kind is ' + kind
+            })
     }
 
-    
+
 
     request(options, function(err, response, body) {
         if (callback) {
             if (err) {
                 console.error('could not import issue #' + issue.github.issueId, err);
-                return callback(null, {error:true, msg: 'could not import issue #' + issue.github.issueId + '. ' +err.toString()});
+                return callback(null, {
+                    error: true,
+                    msg: 'could not import issue #' + issue.github.issueId + '. ' + err.toString()
+                });
             }
 
             if (response.statusCode !== 200) {
                 return callback({
-                    error:true,
+                    error: true,
                     msg: 'could not import issue #' + issue.github.issueId
                 })
             }
@@ -803,7 +801,7 @@ function createBugtrackIssue(issue, req, callback) {
 
             if (response.statusCode !== 200) {
                 return {
-                    error:true,
+                    error: true,
                     msg: 'could not import issue #' + issue.github.issueId
                 }
             }
@@ -951,174 +949,113 @@ function getProjectNameFromURL(url) {
 function processEventList(eventList) {
     var changeHistory = [];
     var change = {};
-    eventList.forEach(function(eventItem) {
-        switch (eventItem.event) {
-            case 'labeled':
-                var changeName = null;
-                if (githubLabels.kind.indexOf(eventItem.label.name) > -1) {
-                    changeName = 'kind';
-                }
-                if (githubLabels.status.indexOf(eventItem.label.name) > -1) {
-                    changeName = 'status';
-                }
-                if (githubLabels.severity.indexOf(eventItem.label.name) > -1) {
-                    changeName = 'severity';
-                }
 
-                // enahncements are added as rfes
-                if (eventItem.label.name === 'Enhancement') {
-                    eventItem.label.name = 'RFE';
-                }
+    var groupedByTime = _.groupBy(eventList, function(t) {
+        return t.created_at;
+    })
 
-                change = {
-                    time: eventItem.created_at,
-                    updatedBy: {
-                        username: eventItem.actor.login,
-                        name: eventItem.actor.login
+    console.log(groupedByTime);
+    _.forEach(groupedByTime, function(item, time) {
+        var changedSelections = {};
+        var updatedBy = null;
+        var svn = null;
+        _.forEach(item, function(eventItem) {
+            updatedBy = {
+                username: eventItem.actor.login,
+                name: eventItem.actor.login
+            }
+
+            switch (eventItem.event) {
+                case 'labeled':
+                    var changeName = null;
+                    if (githubLabels.kind.indexOf(eventItem.label.name) > -1) {
+                        changeName = 'kind';
                     }
-                }
-                change['change'] = {};
-                change.change[changeName] = {
-                    from: null,
-                    to: eventItem.label.name
-                }
-                changeHistory.push(change);
-                change = {}
-                break;
-            case 'unlabeled':
-                var changeName = null;
-                if (githubLabels.kind.indexOf(eventItem.label.name) > -1) {
-                    changeName = 'kind';
-                }
-                if (githubLabels.status.indexOf(eventItem.label.name) > -1) {
-                    changeName = 'status';
-                }
-                if (githubLabels.severity.indexOf(eventItem.label.name) > -1) {
-                    changeName = 'severity';
-                }
-
-                // enahncements are added as rfes
-                if (eventItem.label.name === 'Enhancement') {
-                    eventItem.label.name = 'RFE';
-                }
-
-                change = {
-                    time: eventItem.created_at,
-                    updatedBy: {
-                        username: eventItem.actor.login,
-                        name: eventItem.actor.login
+                    if (githubLabels.status.indexOf(eventItem.label.name) > -1) {
+                        changeName = 'status';
                     }
-                }
-                change['change'] = {};
-                change.change[changeName] = {
-                    from: eventItem.label.name,
-                    to: null
-                }
-                changeHistory.push(change);
-                change = {}
-                break;
-            case 'assigned':
-                change = {
-                    time: eventItem.created_at,
-                    updatedBy: {
-                        username: eventItem.actor.login,
-                        name: eventItem.actor.login
-                    },
-                    change: {
-                        assignTo: {
-                            from: null,
-                            to: {
-                                username: eventItem.assignee.login,
-                                name: eventItem.assignee.login
-                            }
+                    if (githubLabels.severity.indexOf(eventItem.label.name) > -1) {
+                        changeName = 'severity';
+                    }
+
+                    // enahncements are added as rfes
+                    if (eventItem.label.name === 'Enhancement') {
+                        eventItem.label.name = 'RFE';
+                    }
+
+                    changedSelections[changeName] = {
+                        from: null,
+                        to: eventItem.label.name
+                    }
+                    break;
+                case 'assigned':
+                    changedSelections['assignTo'] = {
+                        from: null,
+                        to: {
+                            username: eventItem.assignee.login,
+                            name: eventItem.assignee.login
                         }
                     }
-                }
-                changeHistory.push(change);
-                change = {}
-                break;
-            case 'unassigned':
-                change = {
-                    time: eventItem.created_at,
-                    updatedBy: {
-                        username: eventItem.actor.login,
-                        name: eventItem.actor.login
-                    },
-                    change: {
-                        assignTo: {
-                            from: {
-                                username: eventItem.assignee.actor,
-                                name: eventItem.assignee.actor,
-                            },
-                            to: {
-                                "username": "nobody",
-                                "email": "nobody@marklogic.com",
-                                "name": "nobody nobody"
-                            }
-                        }
+                    break;
+                case 'milestoned':
+                    changedSelections['tofixin'] = {
+                        from: null,
+                        to: eventItem.milestone.title
                     }
-
-                }
-                changeHistory.push(change);
-                change = {}
-                break;
-            case 'milestoned':
-                change = {
-                    time: eventItem.created_at,
-                    updatedBy: {
-                        username: eventItem.actor.login,
-                        name: eventItem.actor.login
-                    },
-                    change: {
-                        tofixin: {
-                            from: null,
-                            to: eventItem.milestone.title
-                        }
-                    }
-
-                }
-                changeHistory.push(change);
-                change = {}
-                break;
-            case 'referenced':
-                change = {
-                    time: eventItem.created_at,
-                    updatedBy: {
-                        username: eventItem.actor.login,
-                        name: eventItem.actor.login
-                    },
-                    svn: {
+                    break;
+                case 'referenced':
+                    svn = {
                         revision: eventItem.commit_id
                     }
-                }
-                changeHistory.push(change);
-                change = {}
-                break;
-            case 'renamed':
-                change = {
-                    time: eventItem.created_at,
-                    updatedBy: {
-                        username: eventItem.actor.login,
-                        name: eventItem.actor.login
-                    },
-                    change: {
-                        title: {
-                            from: eventItem.rename.from,
-                            to: eventItem.rename.to
-                        }
+                    break;
+                case 'renamed':
+                    changedSelections['title'] = {
+                        from: eventItem.rename.from,
+                        to: eventItem.rename.to
                     }
-                }
-                changeHistory.push(change);
-                change = {}
-                break;
-            case 'opened':
-            case 'closed':
-            case 'reopened':
-                break;
-            default:
-                // do nothing
+
+                    break;
+                case 'opened':
+                    changedSelections['status'] = {
+                        from: null,
+                        to: 'New'
+                    }
+                    break;
+                case 'closed':
+                    changedSelections['status'] = {
+                        from: null,
+                        to: 'Closed'
+                    }
+                    break;
+                case 'reopened':
+                    changedSelections['status'] = {
+                        from: 'Closed',
+                        to: 'Fix'
+                    }
+                    break;
+                default:
+                    // do nothing
+
+            }
+        });
+        var changes = {
+            time: time,
+            updatedBy: updatedBy,
+            change: changedSelections,
+            files: [],
+            comment: ''
         }
-    });
+        if (svn) {
+            changes.svn = svn;
+        }
+
+        if (_.keys(changes.change).length > 0) {
+            changeHistory.push(changes);
+        }
+
+    })
+
+
     return changeHistory;
 }
 
