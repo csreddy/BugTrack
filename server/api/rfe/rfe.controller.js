@@ -95,6 +95,11 @@ exports.new = function(req, res) {
         id = JSON.parse(req.body.rfe).id;
         collections.push(JSON.parse(req.body.rfe).submittedBy.username);
     }
+
+      if (!id) {
+        return res.status(500).json({error: 'rfe id was null'})
+    }
+
     var uri = '/rfe/' + id + '/' + id + '.json';
     db.documents.write([{
         uri: uri,

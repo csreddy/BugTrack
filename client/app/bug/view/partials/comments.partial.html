@@ -86,7 +86,7 @@
         <!--  hides attached file when used this -->
         <!--  <div ta-bind ng-model="item.comment" ng-if="item.comment"> -->
         <!-- videos are not rendered when used this -->
-        <p ng-show="item.comment" ng-bind-html="item.comment"></p>
+        <p ng-show="item.comment"  ng-bind-html="item.comment | trustedHtml "></p>
         <!--   <b ng-show="item.attachments">Attached:</b> -->
          <i class="fa fa-file" ng-if="item.files.length > 0"></i>
         <ul ng-repeat="file in item.files" class="list-inline" style="display: inline-block;">

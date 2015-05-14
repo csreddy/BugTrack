@@ -1,7 +1,7 @@
 <div class="panel panel-default">
         <div class="panel-heading">
-        <a href="{{bug.github.url}}" title="" ng-if="bug.github.url" target="_window" tooltip-trigger tooltip-placement="false" tooltip-animation="false" tooltip="imported from github"> 
-        <i class="fa fa-github" style="font-size:20px"></i></a>
+        <a href="{{bug.github.url}}" title="" ng-if="bug.github.url" target="_window" tooltip-trigger tooltip-placement="false" tooltip-animation="false" tooltip="Imported from github"> 
+        <i class="fa fa-github" style="font-size:20px; color:black"></i></a>
         <b class="panel-title"><i class="fa fa-files-o" ng-if="bug.cloneOf"></i> {{bug.title}}</b>
         <div class="pull-right" tooltip-animation="false" tooltip-trigger tooltip-placement="top" tooltip="Edit title">
         <a href="" title="Edit title" ng-click="editTitle()"><i class="fa fa-pencil-square-o"></i></div>    
@@ -11,7 +11,7 @@
         <div class="panel-body">
               <!--  <span class="glyphicon glyphicon-certificate" aria-hidden="true" style="font-size:40px;color: red;z-index:1"><h2 style="z-index:-1;">{{bug.status}}</h2></span>  -->
 
-            <p ng-bind-html="::bug.description"></p>  
+            <p ng-bind-html="::bug.description | trustedHtml "></p>  
            <!--  <p><a href=""  ng-click="description={'max-height': '100px'}">show less</a></p>      
             <p><a href=""  ng-click="maxheight={}">show more</a></p>   -->    
 

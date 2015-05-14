@@ -52,8 +52,6 @@ angular.module('bug.controllers')
                     console.log(response.data);
 
                     $scope.bug = response.data;
-                    // ignore html sanitize
-                    $scope.bug.description = $sce.trustAsHtml($scope.bug.description);
                     updateBug = JSON.parse(JSON.stringify(response.data));
                     console.log('updateBug', updateBug);
 

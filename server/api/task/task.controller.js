@@ -96,6 +96,9 @@ exports.new = function(req, res) {
         id = JSON.parse(req.body.task).id;
         collections.push(JSON.parse(req.body.task).submittedBy.username);
     }
+      if (!id) {
+        return res.status(500).json({error: 'task id was null'})
+    }
     var uri = '/task/' + id + '/' + id + '.json';
     db.documents.write([{
         uri: uri,

@@ -111,6 +111,7 @@ exports.new = function(req, res) {
     var errors = false;
     var id;
     var collections = ['bugs'];
+
     if (typeof req.body.bug === 'object') {
         id = req.body.bug.id;
         collections.push(req.body.bug.submittedBy.username);
@@ -118,6 +119,10 @@ exports.new = function(req, res) {
         id = JSON.parse(req.body.bug).id;
         collections.push(JSON.parse(req.body.bug).submittedBy.username);
     }
+    if (!id) {
+        return res.status(500).json({error: 'bug id was null'})
+    }
+    
     var uri = '/bug/' + id + '/' + id + '.json';
     db.documents.write([{
         uri: uri,

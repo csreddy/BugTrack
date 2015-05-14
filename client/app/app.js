@@ -81,6 +81,12 @@ app.config(function($routeProvider, $locationProvider) {
         }) : '';
     };
 })
+// trust html content
+.filter('trustedHtml', ['$sce', function($sce){
+        return function(text) {
+            return $sce.trustAsHtml(text);
+        };
+    }])
 // progress bar
 .run(function($rootScope, $location, ngProgress, $anchorScroll) {
     $rootScope.$on('$routeChangeStart', function() {
