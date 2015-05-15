@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <legend>Import GitHub Bugs</legend>
+    <div class="row">
+        <div class="col-md-2" id="kind">
+            <form class="form-horizontal">
+                <fieldset>
+                    <!-- Form Name -->
+                    <label>GitHub Projects ({{config.githubProjects.length}})</label>
+                    <!-- Select Multiple -->
+                    <div class="form-group">
+                        <input type="search" ng-model="searchProject" class="form-control" placeholder="search project">
+                        <br>
+                        <select name="ghProject" id="ghProject" ng-model="ghProject" ng-options="project for project in config.githubProjects.sort() | filter:searchProject" multiple="multiple" class="form-control"></select>
+                    </div>
+                    <!-- Text input -->
+                    <div class="form-group">
+                        <input ng-model="newItem.ghProject" id="newproject" name="newproject" type="text" placeholder="new github project" class="form-control input-md">
+                        <span class="help-block">help</span>
+                    </div>
+                    <!-- Button (Double) -->
+                    <div class="form-group">
+                        <button ng-click="updateConfigOptions('githubProjects', newItem.ghProject, 'add')" id="addnewproject" name="addnewproject" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i> Add</button>
+                        <button ng-click="updateConfigOptions('githubProjects', ghProject, 'delete')" id="deleteproject" name="deletekind" class="btn btn-sm btn-danger"><i class="fa fa-minus-circle"></i> Delete</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label>Import issues from</label>
+                    <select name="ghProject" id="ghProject" ng-model="importProject" ng-options="project for project in config.githubProjects.sort()" class="form-control"></select>
+                </div>
+                <button ng-click="importIssues(importProject)" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i> Import</button>
+            </form>
+
+            <table class="table table-striped">
+                <!--  	<caption>Could not import these issues</caption> -->
+                <thead>
+                    <tr>
+                        <th>Issue Id</th>
+                        <th>Bugtrack Id</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="issue in importedIssues">
+                        <td><a ng-href="http://github.com/marklogic/{{importProject}}/issues/{{issue.githubId}}" title="" target="_window">{{issue.githubId}}</a></td>
+                        <td><a href="" ng-click="$parent.quickSearch(issue.bugtrackId)">{{issue.bugtrackId}}</a></td>
+                        <td>{{issue.msg}}</td>
+                        <td><button type="submit" class="btn btn-danger btn-sm">Retry</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

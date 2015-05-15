@@ -30,7 +30,7 @@ admin.saveConfiguration(config);
  
 
  
- var paths = ["/submittedBy/username", "/submittedBy/name", "/assignTo/username", "/assignTo/name", "/shippedBy/username", "/fixedBy/username", "/closedBy/username", "/priority/level", "/priority/title"];
+ var paths = ["/submittedBy/username", "/submittedBy/name", "/assignTo/username", "/assignTo/name", "/shippedBy/username", "/fixedBy/username", "/closedBy/username", "/priority/level", "/priority/title", "/github/project", "/github/issueId"];
  for (var i=0;i<paths.length; i++){
  var config = admin.getConfiguration(); 
  var dbid = xdmp.database("bugtrack"); 

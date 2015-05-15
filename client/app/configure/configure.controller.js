@@ -1,17 +1,51 @@
 'use strict';
 
 angular.module('config.controllers', ['ivh.treeview'])
-    .controller('configCtrl', ['$scope', 'Config', 'Flash',
-        function($scope, Config, Flash) {
+    .controller('configCtrl', ['$scope', '$location', 'Config', 'Flash', 'ngProgress',
+        function($scope, $location, Config, Flash, ngProgress) {
+            $location.$$search = null;
             $scope.config = {};
             Config.get().then(function(response) {
                 $scope.config = response.data;
             });
 
+
+            $scope.tabs = [{
+                title: 'Field Options',
+                content: 'Dynamic content 1',
+                hash: 'options'
+            }, {
+                title: 'GitHub',
+                content: 'Dynamic content 2',
+                hash: 'github'
+            }, {
+                title: 'Others',
+                content: 'Dynamic content 2',
+                hash: 'others'
+            }];
+
             $scope.users = {
                 selectedChildren: []
             };
 
+
+            $scope.selectTab = function(tabPath) {
+                $location.hash(tabPath);
+            };
+
+            switch ($location.$$hash) {
+                case 'options':
+                    $scope.tabs[0].active = true;
+                    break;
+                case 'github':
+                    $scope.tabs[1].active = true;
+                    break;
+                case 'others':
+                    $scope.tabs[2].active = true;
+                    break;
+                default:
+                    $scope.tabs[0].active = true;
+            }
 
             $scope.addUser = function(email, name, username) {
                 var newuser = {
@@ -47,7 +81,7 @@ angular.module('config.controllers', ['ivh.treeview'])
 
             $scope.updateConfigOptions = function(category, items, operation) {
                 Config.update(category, items, operation).then(function() {
-                    var msg = (operation === 'add') ? 'Added ' + items + ' to ' + category : 'Removed ' + items.join(',') + ' from ' + category;
+                    var msg = (operation === 'add') ? 'Added <b>' + items + '</b> to ' + category : 'Removed ' + items.join(',') + ' from ' + category;
                     // if (category === 'groups' && operation === 'delete') {
                     //     msg = 'Removed group';
                     // }
@@ -59,9 +93,9 @@ angular.module('config.controllers', ['ivh.treeview'])
                         $scope.config[category] = response.data[category];
                     });
                 }, function(error) {
-                   // Flash.addAlert('danger', error.statusText + ': Oops! Could not update config. Please try again.');
-                    
-                      Flash.addAlert('danger', error.data.message);
+                    // Flash.addAlert('danger', error.statusText + ': Oops! Could not update config. Please try again.');
+
+                    Flash.addAlert('danger', error.data.message);
                 });
 
             };
@@ -145,6 +179,31 @@ angular.module('config.controllers', ['ivh.treeview'])
             // collapse tree
             $scope.collapse = function() {
                 Config.collapseGroups($scope.config.groups);
+            };
+
+
+            $scope.importIssues = function(project) {
+                ngProgress.start();
+                Config.importGithubIssues(project).success(function(response) {
+                    ngProgress.complete();
+                    Flash.addAlert('success', 'Imported issues successfully');
+                    $scope.importedIssues = response.issues;
+                    console.log('response', response);
+                }).error(function(error) {
+                    ngProgress.complete();
+                    Flash.addAlert('danger', 'Oops! Something went wront while importing.' + error);
+                });
+            };
+
+            $scope.goto = function(id) {
+                Config.goto(id).success(function(response) {
+                console.log('response', response);
+                   
+                   $location.path(response.uri);
+                   return response.uri;
+                }, function(error) {
+                   // $location.path('/404');
+                });
             };
 
         }

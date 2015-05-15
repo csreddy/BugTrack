@@ -69,6 +69,21 @@ app.factory('Config', ['$http','ivhTreeviewMgr',
            ivhTreeviewMgr.collapseRecursive(groups);
         }
 
+        function importGithubIssues (project) {
+            return $http({
+                method: 'GET',
+                url: '/api/github/issues?project='+project+'&interval=false&load=true'
+            });
+        }
+
+        function goto (id) {
+            return $http({
+                method: 'GET',
+                uri: '/api/common/goto?id='+id
+            });
+        }
+
+
         // Public API here
         return {
             insert: function(payload) {
@@ -95,6 +110,12 @@ app.factory('Config', ['$http','ivhTreeviewMgr',
             },
             collapseGroups: function(groups) {
                 return collapseGroups(groups);
+            },
+            importGithubIssues: function(project) {
+                return importGithubIssues(project);
+            },
+            goto: function(id) {
+                return goto(id);
             }
         };
     }

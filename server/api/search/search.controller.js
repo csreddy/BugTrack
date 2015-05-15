@@ -135,7 +135,8 @@ exports.search = function(req, res) {
                             q.range(q.pathIndex('/priority/level'), q.bind('p')),
                             q.range(q.pathIndex('/assignTo/username'), q.bind('at')),
                             q.range(q.pathIndex('/submittedBy/username'), q.bind('sb')),
-                            q.range(q.pathIndex('/github/issueId'), q.bind('gh'))
+                            q.range(q.pathIndex('/github/issueId'), q.bind('gh')),
+                            q.range(q.pathIndex('/github/project'), q.bind('ghp'))
                         )
                     )
                 );

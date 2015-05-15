@@ -45,104 +45,104 @@ exports.listTransformedGitHubBugs = function(req, res) {
     };
 
     request(options, function(error, response, body) {
-            if (error) {
-                console.log(error);
-                return res.send(error);
-            }
+        if (error) {
+            console.log(error);
+            return res.send(error);
+        }
 
-            if (!error && response.statusCode === 200) {
-                var issues = JSON.parse(response.body)
+        if (!error && response.statusCode === 200) {
+            var issues = JSON.parse(response.body)
 
-                async.waterfall([
-                            // get events and comments for all bugs and return the final processes list of bugs
-                            function getEventsAndCommentsForAllBugs(callback) {
-                                issues.forEach(function getEventsAndComments(issue, index) {
-                                        // for each bug, get comments and events
-                                        async.parallel([
+            async.waterfall([
+                    // get events and comments for all bugs and return the final processes list of bugs
+                    function getEventsAndCommentsForAllBugs(callback) {
+                        issues.forEach(function getEventsAndComments(issue, index) {
+                            // for each bug, get comments and events
+                            async.parallel([
 
-                                                function getEvents(parallelCallback) {
-                                                    var options = {
-                                                        url: issue.events_url,
-                                                        headers: {
-                                                            'User-Agent': getProjectNameFromURL(issue.events_url)
-                                                        },
-                                                        auth: githubAuth
-                                                    };
-                                                    request(options, function(error, response, body) {
-                                                        if (error) {
-                                                            console.log('ERROR', error);
-                                                            parallelCallback(error)
-                                                        }
-                                                        if (response.statusCode === 200) {
-                                                            // console.log('events:', body);
-                                                            parallelCallback(null, body)
+                                function getEvents(parallelCallback) {
+                                    var options = {
+                                        url: issue.events_url,
+                                        headers: {
+                                            'User-Agent': getProjectNameFromURL(issue.events_url)
+                                        },
+                                        auth: githubAuth
+                                    };
+                                    request(options, function(error, response, body) {
+                                        if (error) {
+                                            console.log('ERROR', error);
+                                            parallelCallback(error)
+                                        }
+                                        if (response.statusCode === 200) {
+                                            // console.log('events:', body);
+                                            parallelCallback(null, body)
 
-                                                        }
-
-
-                                                    })
-                                                },
-                                                function getComments(parallelCallback) {
-                                                    var options = {
-                                                        url: issue.comments_url,
-                                                        headers: {
-                                                            'User-Agent': getProjectNameFromURL(issue.comments_url)
-                                                        },
-                                                        auth: githubAuth
-                                                    };
-                                                    request(options, function(error, response, body) {
-                                                        if (error) {
-                                                            console.log('ERROR', error);
-                                                            parallelCallback(error)
-                                                        }
-                                                        if (response.statusCode === 200) {
-                                                            //  console.log('comments:', body);
-                                                            parallelCallback(null, body)
-                                                        }
+                                        }
 
 
-                                                    })
-                                                }
-                                            ], function attachEventsAndComments(err, result) {
-                                                if (err) {
-                                                    console.log('ERROR:', err);
-                                                    callback(err);
-                                                }
-                                                console.log('parallel process done');
-                                                var bugtrackItem = _.cloneDeep(issue);
-                                                issue.eventList = JSON.parse(result[0]);
-                                                issue.commentList = JSON.parse(result[1]);
+                                    })
+                                },
+                                function getComments(parallelCallback) {
+                                    var options = {
+                                        url: issue.comments_url,
+                                        headers: {
+                                            'User-Agent': getProjectNameFromURL(issue.comments_url)
+                                        },
+                                        auth: githubAuth
+                                    };
+                                    request(options, function(error, response, body) {
+                                        if (error) {
+                                            console.log('ERROR', error);
+                                            parallelCallback(error)
+                                        }
+                                        if (response.statusCode === 200) {
+                                            //  console.log('comments:', body);
+                                            parallelCallback(null, body)
+                                        }
 
-                                                bugtrackItem.changeHistory = processEventList(issue.eventList);
-                                                var commentList = processCommentList(issue.commentList);
-                                                commentList.forEach(function(comment) {
-                                                    bugtrackItem.changeHistory.push(comment);
-                                                })
 
-                                                bugtrackItem.changeHistory = sortChangeHistory(bugtrackItem.changeHistory);
+                                    })
+                                }
+                            ], function attachEventsAndComments(err, result) {
+                                if (err) {
+                                    console.log('ERROR:', err);
+                                    callback(err);
+                                }
+                                console.log('parallel process done');
+                                var bugtrackItem = _.cloneDeep(issue);
+                                issue.eventList = JSON.parse(result[0]);
+                                issue.commentList = JSON.parse(result[1]);
 
-                                                var newBug = convertToBugtrackItem(bugtrackItem)
-                                                finalResult.push(newBug);
+                                bugtrackItem.changeHistory = processEventList(issue.eventList);
+                                var commentList = processCommentList(issue.commentList);
+                                commentList.forEach(function(comment) {
+                                    bugtrackItem.changeHistory.push(comment);
+                                })
 
-                                                console.log('finalResult length = ', finalResult.length);
-                                                if (finalResult.length === issues.length) {
-                                                    callback(null, finalResult)
-                                                }
-                                            }) // parallel end
-                                    }) // forEach end
-                            }
-                        ],
-                        function processedBugs(err, result) {
-                            if (err) {
-                                res.send(err);
-                            }
-                            console.log('waterfall done');
-                            console.log('LENGTH = ', result.length);
-                            res.send(result);
-                        }) // waterfall end
+                                bugtrackItem.changeHistory = sortChangeHistory(bugtrackItem.changeHistory);
 
-            } // if end
-        }) // request end
+                                var newBug = convertToBugtrackItem(bugtrackItem)
+                                finalResult.push(newBug);
+
+                                console.log('finalResult length = ', finalResult.length);
+                                if (finalResult.length === issues.length) {
+                                    callback(null, finalResult)
+                                }
+                            }) // parallel end
+                        }) // forEach end
+                    }
+                ],
+                function processedBugs(err, result) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    console.log('waterfall done');
+                    console.log('LENGTH = ', result.length);
+                    res.send(result);
+                }) // waterfall end
+
+        } // if end
+    }) // request end
 
 }
 
@@ -151,7 +151,7 @@ exports.issues = function(req, res) {
     var _sort = req.query.sort || 'created';
     var _order = req.query.order || 'asc';
     var _page = req.query.page || 1;
-    var _per_page = req.query.per_page || 25;
+    var _per_page = req.query.per_page || 3;
     var _transform = req.query.transform || false;
     var _load = req.query.load || false;
     var _interval = req.query.interval || null;
@@ -201,93 +201,94 @@ exports.issues = function(req, res) {
 
     if (_load) {
         request(options, function(error, response, body) {
-                if (error) {
-                    console.log(error);
-                    return res.send(error);
-                }
+            if (error) {
+                console.log(error);
+                return res.send(error);
+            }
 
-                if (!error && response.statusCode === 200) {
-                    var issues = JSON.parse(body).items
-                    if (issues.length === 0) {
-                        return res.send({
-                            url: _url,
-                            time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
-                            count: issues.length,
-                            issues: issues
-                        })
-                    }
-                    var transformedIssues = [];
-                    async.times(issues.length, function(n, next) {
-                        getEventsAndComments(issues[n], function(err, issue) {
-                            transformedIssues.push(convertToBugtrackItem(issue));
-                            next(err, issue);
-                        })
-                    }, function(err, issues) {
-                        if (err) {
-                            res.send(err)
-                        }
-
-
-                        var cargo = async.cargo(function(tasks, callback) {
-                            for (var i = 0; i < tasks.length; i++) {
-                                insertIssueIntoBugtrack(tasks[i], req, res, function(err, result) {
-                                    if (err) {
-                                        res.send(err)
-                                    }
-                                    //  console.log('result:', result);
-                                    finalResult.push(result)
-                                        // console.log('finalResult:' + finalResult.length + 'transformedIssues.length:' + transformedIssues.length);
-                                    if (finalResult.length === transformedIssues.length) {
-                                        return res.send({
-                                            url: _url,
-                                            time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
-                                            count: finalResult.length,
-                                            imported_issues: finalResult
-                                        })
-                                    }
-                                    callback();
-                                });
-                            }
-                            //  callback();
-                        }, 1);
-                        transformedIssues.forEach(function(issue) {
-                            cargo.push(issue);
-                        })
+            if (!error && response.statusCode === 200) {
+                var issues = JSON.parse(body).items
+                if (issues.length === 0) {
+                    return res.send({
+                        url: _url,
+                      //  time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
+                        count: issues.length,
+                        issues: issues
                     })
-                } // if end
-            }) // request end
+                }
+                var transformedIssues = [];
+                async.times(issues.length, function(n, next) {
+                    getEventsAndComments(issues[n], function(err, issue) {
+                        transformedIssues.push(convertToBugtrackItem(issue));
+                        next(err, issue);
+                    })
+                }, function(err, issues) {
+                    if (err) {
+                        res.send(err)
+                    }
+
+
+                    var cargo = async.cargo(function(tasks, callback) {
+                        for (var i = 0; i < tasks.length; i++) {
+                            insertIssueIntoBugtrack(tasks[i], req, res, function(err, result) {
+                                if (err) {
+                                    res.send(err)
+                                }
+                                //  console.log('result:', result);
+                                finalResult.push(result)
+                                // console.log('finalResult:' + finalResult.length + 'transformedIssues.length:' + transformedIssues.length);
+                                if (finalResult.length === transformedIssues.length) {
+                                    return res.send({
+                                        url: _url,
+                                    //    time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
+                                        count: finalResult.length,
+                                        issues: finalResult
+                                    })
+                                }
+                                callback();
+                            });
+                        }
+                        //  callback();
+                    }, 1);
+                    transformedIssues.forEach(function(issue) {
+                        cargo.push(issue);
+                    })
+                })
+            } // if end
+        }) // request end
     } else {
         request(options, function(error, response, body) {
-                if (error) {
-                    console.log(error);
-                    return res.send(error);
-                }
+            if (error) {
+                console.log(error);
+                return res.send(error);
+            }
 
-                if (!error && response.statusCode === 200) {
-                    var issues = JSON.parse(body).items
-                    var finalResult = [];
-                    async.times(issues.length, function(n, next) {
-                        getEventsAndComments(issues[n], function(err, issue) {
-                            if (_transform) {
-                                finalResult.push(convertToBugtrackItem(issue));
-                            } else {
-                                finalResult.push(issue);
-                            }
-                            next(err, issue);
-                        })
-                    }, function(err, issues) {
-                        if (err) {
-                            res.send(err)
+            if (!error && response.statusCode === 200) {
+                var issues = JSON.parse(body).items
+                var finalResult = [];
+                async.times(issues.length, function(n, next) {
+                    getEventsAndComments(issues[n], function(err, issue) {
+                        if (_transform) {
+                            finalResult.push(convertToBugtrackItem(issue));
+                        } else {
+                            finalResult.push(issue);
                         }
-                        res.send({
-                            url: _url,
-                            time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
-                            count: finalResult.length,
-                            issues: finalResult
-                        })
+                        next(err, issue);
                     })
-                } // if end
-            }) // request end
+                }, function(err, issues) {
+                    if (err) {
+                        res.send(err)
+                    }
+
+                    res.send({
+                        url: _url,
+                      //  time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
+                        count: finalResult.length,
+                        issues: finalResult
+                    })
+                })
+            } // if end
+        }) // request end
     }
 
 
@@ -527,9 +528,9 @@ function preserveBugtrackUpdates(btIssue, ghIssue) {
         }
     });
 
-    combinedIssue.changeHistory = _.flatten([btIssue.changeHistory, ghIssue.changeHistory]);
+    combinedIssue.changeHistory = _.uniq(_.flatten([btIssue.changeHistory, ghIssue.changeHistory]), 'time');
     combinedIssue.changeHistory = _.sortBy(combinedIssue.changeHistory, 'time');
-    // console.log('Combined', combinedIssue);
+   //  console.log('Combined', combinedIssue);
     return combinedIssue;
 }
 
@@ -634,9 +635,13 @@ function getEventsAndComments(issue, callback) {
 
 function isBugExistsInBugtrack(bug, callback) {
     db.documents.query(
-            q.where(
-                q.parsedFrom('gh:' + bug.github.issueId, q.parseBindings(q.range(q.pathIndex('/github/issueId'), q.bind('gh'))))
-            ))
+        q.where(
+            q.parsedFrom('gh:' + bug.github.issueId + ' AND ' + 'ghp:' +bug.github.project, 
+                q.parseBindings(
+                    q.range(q.pathIndex('/github/issueId'), q.bind('gh')),
+                    q.range(q.pathIndex('/github/project'), q.bind('ghp'))
+                    ))
+        ))
         .result(function(result) {
             //console.log('result', result);
 
@@ -700,24 +705,24 @@ function createNewBug(bug, req, callback) {
 
 // insert new task
 function createNewTask(task, req, callback) {
-        async.waterfall([
+    async.waterfall([
 
-            function getId(waterfallCallback) {
-                getNextId(req, waterfallCallback)
-            },
-            function insert(id, waterfallCallback) {
-                task.id = parseInt(id);
-                createTask(task, req, waterfallCallback);
-            }
-        ], function end(err, result) {
-            if (err) {
-                return callback(err)
-            }
-            console.log('create new Task', result);
-            return callback(null, result)
-        })
-    }
-    // insert new rfe
+        function getId(waterfallCallback) {
+            getNextId(req, waterfallCallback)
+        },
+        function insert(id, waterfallCallback) {
+            task.id = parseInt(id);
+            createTask(task, req, waterfallCallback);
+        }
+    ], function end(err, result) {
+        if (err) {
+            return callback(err)
+        }
+        console.log('create new Task', result);
+        return callback(null, result)
+    })
+}
+// insert new rfe
 function createNewRFE(rfe, req, callback) {
     async.waterfall([
 
@@ -1118,7 +1123,7 @@ function processCommentList(commentList) {
                 name: commentItem.user.login
             },
             files: [],
-            comment: commentItem.body
+            comment: "<p><pre id='description'>" + commentItem.body + "</pre></p>"
         }
     });
     return commentList;
@@ -1175,7 +1180,7 @@ function convertToBugtrackItem(githubIssue, callback) {
                 return '';
             }
         })(),
-        description: githubIssue.body,
+        description: "<p><pre id='description'>" + githubIssue.body + "</pre></p>",
         samplequery: '',
         sampledata: '',
         stacktrace: '',
@@ -1198,6 +1203,7 @@ function convertToBugtrackItem(githubIssue, callback) {
         cloneOf: null,
         changeHistory: githubIssue.changeHistory,
         github: {
+            project:getProjectNameFromURL(githubIssue.url),
             issueId: githubIssue.number,
             url: githubIssue.html_url,
             endpoint: githubIssue.url
