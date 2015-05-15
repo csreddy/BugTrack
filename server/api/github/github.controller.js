@@ -17,8 +17,8 @@ var githubAuth = {
     pass: 'rhUrnQ1AewawZ61K'
 }
 var githubLabels = {
-    all: ['Bug', 'Enhancement', 'Task', 'new', 'verify', 'test', 'fix', 'ship', 'closed', 'external', 'will not fix', 'catastrophic', 'critical', 'major', 'minor', 'aesthetic', 'performance'],
-    kind: ['Bug', 'Enhancement', 'Task'],
+    all: ['Bug', 'Enhancement', 'Task', 'RFE', 'new', 'verify', 'test', 'fix', 'ship', 'closed', 'external', 'will not fix', 'catastrophic', 'critical', 'major', 'minor', 'aesthetic', 'performance'],
+    kind: ['Bug', 'Enhancement', 'Task', 'RFE'],
     status: ['new', 'verify', 'test', 'fix', 'ship', 'closed', 'external', 'will not fix'],
     severity: ['catastrophic', 'critical', 'major', 'minor', 'aesthetic', 'performance']
 }
@@ -28,132 +28,14 @@ exports.index = function(req, res) {
     res.json([]);
 };
 
-exports.listTransformedGitHubBugs = function(req, res) {
-    var _project = req.query.project || null;
-    var _sort = req.query.sort || 'created';
-    var _order = req.query.order || 'asc';
-    var _page = req.query.page || 1;
-    var _per_page = req.query.per_page || 25;
-    var finalResult = []
-        // url: 'https://api.github.com/repos/marklogic/' + req.query.project + '/issues?page=' + _page + '&per_page=' + _per_page,
-    var options = {
-        url: 'https://api.github.com/search/issues?q=repo:marklogic/' + _project + '&sort=' + _sort + '&order=' + _order + '&page=' + _page + '&per_page=' + _per_page,
-        headers: {
-            'User-Agent': req.query.project
-        },
-        auth: githubAuth
-    };
-
-    request(options, function(error, response, body) {
-        if (error) {
-            console.log(error);
-            return res.send(error);
-        }
-
-        if (!error && response.statusCode === 200) {
-            var issues = JSON.parse(response.body)
-
-            async.waterfall([
-                    // get events and comments for all bugs and return the final processes list of bugs
-                    function getEventsAndCommentsForAllBugs(callback) {
-                        issues.forEach(function getEventsAndComments(issue, index) {
-                            // for each bug, get comments and events
-                            async.parallel([
-
-                                function getEvents(parallelCallback) {
-                                    var options = {
-                                        url: issue.events_url,
-                                        headers: {
-                                            'User-Agent': getProjectNameFromURL(issue.events_url)
-                                        },
-                                        auth: githubAuth
-                                    };
-                                    request(options, function(error, response, body) {
-                                        if (error) {
-                                            console.log('ERROR', error);
-                                            parallelCallback(error)
-                                        }
-                                        if (response.statusCode === 200) {
-                                            // console.log('events:', body);
-                                            parallelCallback(null, body)
-
-                                        }
-
-
-                                    })
-                                },
-                                function getComments(parallelCallback) {
-                                    var options = {
-                                        url: issue.comments_url,
-                                        headers: {
-                                            'User-Agent': getProjectNameFromURL(issue.comments_url)
-                                        },
-                                        auth: githubAuth
-                                    };
-                                    request(options, function(error, response, body) {
-                                        if (error) {
-                                            console.log('ERROR', error);
-                                            parallelCallback(error)
-                                        }
-                                        if (response.statusCode === 200) {
-                                            //  console.log('comments:', body);
-                                            parallelCallback(null, body)
-                                        }
-
-
-                                    })
-                                }
-                            ], function attachEventsAndComments(err, result) {
-                                if (err) {
-                                    console.log('ERROR:', err);
-                                    callback(err);
-                                }
-                                console.log('parallel process done');
-                                var bugtrackItem = _.cloneDeep(issue);
-                                issue.eventList = JSON.parse(result[0]);
-                                issue.commentList = JSON.parse(result[1]);
-
-                                bugtrackItem.changeHistory = processEventList(issue.eventList);
-                                var commentList = processCommentList(issue.commentList);
-                                commentList.forEach(function(comment) {
-                                    bugtrackItem.changeHistory.push(comment);
-                                })
-
-                                bugtrackItem.changeHistory = sortChangeHistory(bugtrackItem.changeHistory);
-
-                                var newBug = convertToBugtrackItem(bugtrackItem)
-                                finalResult.push(newBug);
-
-                                console.log('finalResult length = ', finalResult.length);
-                                if (finalResult.length === issues.length) {
-                                    callback(null, finalResult)
-                                }
-                            }) // parallel end
-                        }) // forEach end
-                    }
-                ],
-                function processedBugs(err, result) {
-                    if (err) {
-                        res.send(err);
-                    }
-                    console.log('waterfall done');
-                    console.log('LENGTH = ', result.length);
-                    res.send(result);
-                }) // waterfall end
-
-        } // if end
-    }) // request end
-
-}
-
 exports.issues = function(req, res) {
     var _project = req.query.project || null;
     var _sort = req.query.sort || 'created';
     var _order = req.query.order || 'asc';
     var _page = req.query.page || 1;
-    var _per_page = req.query.per_page || 3;
+    var _per_page = req.query.per_page || 100;
     var _transform = req.query.transform || false;
-    var _load = req.query.load || false;
+    var _import = req.query.import || false;
     var _interval = req.query.interval || null;
     var t1 = null;
     var t2 = null;
@@ -168,12 +50,12 @@ exports.issues = function(req, res) {
 
     // when load=true, then set transform=true
     try {
-        _load = JSON.parse(_load);
-        if (_load) {
+        _import = JSON.parse(_import);
+        if (_import) {
             _transform = true;
         }
     } catch (e) {
-        _load = false;
+        _import = false;
     }
 
     // when interval=false then remove time constraint from the url
@@ -199,7 +81,7 @@ exports.issues = function(req, res) {
         auth: githubAuth
     };
 
-    if (_load) {
+    if (_import) {
         request(options, function(error, response, body) {
             if (error) {
                 console.log(error);
@@ -300,7 +182,7 @@ exports.issue = function(req, res) {
     var _project = req.query.project || null;
     var _issueId = req.query.id || null;
     var _transform = req.query.transform || false;
-    var _load = req.query.load || false;
+    var _import = req.query.import || false;
 
     try {
         _transform = JSON.parse(_transform);
@@ -309,12 +191,12 @@ exports.issue = function(req, res) {
     }
     // when load=true, then set transform=true
     try {
-        _load = JSON.parse(_load);
-        if (_load) {
+        _import = JSON.parse(_import);
+        if (_import) {
             _transform = true;
         }
     } catch (e) {
-        _load = false;
+        _import = false;
     }
 
     var _url = 'https://api.github.com/repos/marklogic/' + _project + '/issues/' + _issueId + '&transform=' + _transform
@@ -325,7 +207,7 @@ exports.issue = function(req, res) {
         },
         auth: githubAuth
     };
-    if (_load) {
+    if (_import) {
         async.waterfall([
 
             function(waterfallCallback) {
