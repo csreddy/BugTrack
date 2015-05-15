@@ -211,7 +211,7 @@ exports.issues = function(req, res) {
                 if (issues.length === 0) {
                     return res.send({
                         url: _url,
-                      //  time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
+                        //  time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
                         count: issues.length,
                         issues: issues
                     })
@@ -240,7 +240,7 @@ exports.issues = function(req, res) {
                                 if (finalResult.length === transformedIssues.length) {
                                     return res.send({
                                         url: _url,
-                                    //    time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
+                                        //    time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
                                         count: finalResult.length,
                                         issues: finalResult
                                     })
@@ -282,7 +282,7 @@ exports.issues = function(req, res) {
 
                     res.send({
                         url: _url,
-                      //  time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
+                        //  time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
                         count: finalResult.length,
                         issues: finalResult
                     })
@@ -487,10 +487,11 @@ function insertIssueIntoBugtrack(item, req, res, callback) {
                 bug = preserveBugtrackUpdates(bug, item);
                 createBugtrackIssue(bug, req, function(err, result) {
                     if (err) callback(err)
-                    callback(null, {
-                        id: bug.id,
-                        msg: 'updated'
-                    });
+                        // callback(null, {
+                        //     id: bug.id,
+                        //     msg: 'updated'
+                        // });
+                    callback(null, result)
                 })
 
             } else {
@@ -530,7 +531,7 @@ function preserveBugtrackUpdates(btIssue, ghIssue) {
 
     combinedIssue.changeHistory = _.uniq(_.flatten([btIssue.changeHistory, ghIssue.changeHistory]), 'time');
     combinedIssue.changeHistory = _.sortBy(combinedIssue.changeHistory, 'time');
-   //  console.log('Combined', combinedIssue);
+    //  console.log('Combined', combinedIssue);
     return combinedIssue;
 }
 
@@ -636,11 +637,11 @@ function getEventsAndComments(issue, callback) {
 function isBugExistsInBugtrack(bug, callback) {
     db.documents.query(
         q.where(
-            q.parsedFrom('gh:' + bug.github.issueId + ' AND ' + 'ghp:' +bug.github.project, 
+            q.parsedFrom('gh:' + bug.github.issueId + ' AND ' + 'ghp:' + bug.github.project,
                 q.parseBindings(
                     q.range(q.pathIndex('/github/issueId'), q.bind('gh')),
                     q.range(q.pathIndex('/github/project'), q.bind('ghp'))
-                    ))
+                ))
         ))
         .result(function(result) {
             //console.log('result', result);
@@ -742,21 +743,39 @@ function createNewRFE(rfe, req, callback) {
 }
 
 
+function checkImportRules(issue) {
+
+    // when issue kind is not set or set invalid label
+    if ((typeof issue.kind) === 'undefined' && issue.kind !== 'Bug' && issue.kind !== 'Task' && issue.kind !== 'RFE') {
+        return {
+            error: true,
+            msg: 'Error: invalid kind. kind is ' + issue.kind
+        }
+    }
+
+    // when milestone is not set
+    if (!issue.tofixin) {
+        return {
+            error: true,
+            msg: 'Error: no milestone'
+        }
+    }
+
+    return {
+        msg: 'ok'
+    };
+}
+
+
 // generatea a new id and inserts into database
 function createNewBugtrackIssue(issue, req, callback) {
 
-    if ((typeof issue.kind) === 'undefined' && issue.kind !== 'Bug' && issue.kind !== 'Task' && issue.kind !== 'RFE') {
-        console.log('inside if');
+    var validationResult = checkImportRules(issue);
+    if (validationResult.error) {
         if (callback) {
-            return callback(null, {
-                error: true,
-                msg: 'Issue #' + issue.github.issueId + ' invalid kind. kind is ' + issue.kind
-            });
+            return callback(null, validationResult)
         } else {
-            return {
-                error: true,
-                msg: 'Issue #' + issue.github.issueId + ' invalid kind. kind is ' + issue.kind
-            }
+            return validationResult;
         }
     }
 
@@ -778,20 +797,17 @@ function createNewBugtrackIssue(issue, req, callback) {
 }
 
 // inserts the given issues into datatabase (does not generate new id)
+// use this function to update existing issues
 function createBugtrackIssue(issue, req, callback) {
-    if ((typeof issue.kind) === 'undefined' && issue.kind !== 'Bug' && issue.kind !== 'Task' && issue.kind !== 'RFE') {
+    var validationResult = checkImportRules(issue);
+    if (validationResult.error) {
         if (callback) {
-            return callback(null, {
-                error: true,
-                msg: 'Issue #' + issue.github.issueId + ' invalid kind. kind is ' + issue.kind
-            });
+            return callback(null, validationResult)
         } else {
-            return {
-                error: true,
-                msg: 'Issue #' + issue.github.issueId + ' invalid kind. kind is ' + issue.kind
-            }
+            return validationResult;
         }
     }
+
 
     var baseUri = req.protocol + '://' + req._remoteAddress + ':' + req.headers.host.replace(/(\S*:)(\d*)/, '$2');
     var kind = issue.kind;
@@ -819,7 +835,7 @@ function createBugtrackIssue(issue, req, callback) {
         default:
             return callback(null, {
                 error: true,
-                msg: 'invalid kind. kind is ' + kind
+                msg: 'Error: invalid kind. kind is ' + kind
             })
     }
 
@@ -831,39 +847,39 @@ function createBugtrackIssue(issue, req, callback) {
                 console.error('could not import issue #' + issue.github.issueId, err);
                 return callback(null, {
                     error: true,
-                    msg: 'could not import issue #' + issue.github.issueId + '. ' + err.toString()
+                    msg: 'Error: could not import issue #' + issue.github.issueId + '. ' + err.toString()
                 });
             }
 
             if (response.statusCode !== 200) {
                 return callback({
                     error: true,
-                    msg: 'could not import issue #' + issue.github.issueId
+                    msg: 'Error: could not import issue #' + issue.github.issueId
                 })
             }
 
             console.log(issue.id + ' created successfully');
             return callback(null, {
                 id: issue.id,
-                msg: 'created'
+                msg: 'imported'
             });
         } else {
 
             if (err) {
-                console.error('could not import issue #' + issue.github.issueId, err);
+                console.error('Error: could not import issue #' + issue.github.issueId, err);
                 return err;
             }
 
             if (response.statusCode !== 200) {
                 return {
                     error: true,
-                    msg: 'could not import issue #' + issue.github.issueId
+                    msg: 'Error: could not import issue #' + issue.github.issueId
                 }
             }
             console.log(issue.id + ' created successfully');
             return {
                 id: issue.id,
-                msg: 'created'
+                msg: 'imported'
             };
         }
     })
@@ -1033,9 +1049,9 @@ function processEventList(eventList) {
                     }
 
                     // enahncements are added as rfes
-                    if (eventItem.label.name === 'Enhancement') {
-                        eventItem.label.name = 'RFE';
-                    }
+                    // if (eventItem.label.name === 'Enhancement') {
+                    //     eventItem.label.name = 'RFE';
+                    // }
 
                     changedSelections[changeName] = {
                         from: null,
@@ -1090,9 +1106,16 @@ function processEventList(eventList) {
                     break;
                 default:
                     // do nothing
-
+            }
+            if (eventItem.commit_id) {
+                svn = {
+                    repository: getProjectNameFromURL(eventItem.url),
+                    revision: eventItem.commit_id
+                }
             }
         });
+
+
         var changes = {
             time: time,
             updatedBy: updatedBy,
@@ -1144,6 +1167,7 @@ function convertToBugtrackItem(githubIssue, callback) {
         title: githubIssue.title,
         kind: getKind(githubIssue.labels),
         status: getStatus(githubIssue.labels),
+        version: '',
         createdAt: githubIssue.created_at,
         shippedAt: null,
         closedAt: githubIssue.closed_at,
@@ -1180,11 +1204,12 @@ function convertToBugtrackItem(githubIssue, callback) {
                 return '';
             }
         })(),
+        fixedin: '',
         description: "<p><pre id='description'>" + githubIssue.body + "</pre></p>",
         samplequery: '',
         sampledata: '',
         stacktrace: '',
-        platfrom: 'all',
+        platfrom: '',
         processors: '',
         memory: '',
         note: '',
@@ -1201,9 +1226,17 @@ function convertToBugtrackItem(githubIssue, callback) {
         ],
         clones: [],
         cloneOf: null,
+        support: {
+            headline: '',
+            supportDescription: '',
+            workaround: '',
+            publishStatus: 'never',
+            tickets: [],
+            customerImpact: 'N/A'
+        },
         changeHistory: githubIssue.changeHistory,
         github: {
-            project:getProjectNameFromURL(githubIssue.url),
+            project: getProjectNameFromURL(githubIssue.url),
             issueId: githubIssue.number,
             url: githubIssue.html_url,
             endpoint: githubIssue.url
@@ -1239,8 +1272,12 @@ function getKind(labels) {
             kind = 'Bug'
         }
 
-        if (label.name === 'Enhancement') {
+        if (label.name === 'RFE') {
             kind = 'RFE'
+        }
+
+        if (label.name === 'Enhancement') {
+            kind = 'Enhancement'
         }
         if (label.name === 'Task') {
             kind = 'Task'
