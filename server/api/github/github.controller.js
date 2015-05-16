@@ -280,9 +280,16 @@ exports.issue = function(req, res) {
             }
             insertIssueIntoBugtrack(item, req, res, function(err, result) {
                 if (err) {
-                    res.send(err);
+                    return res.send(err);
                 }
-                return res.send(result);
+                db.documents.patch('github_issues.json', [p.remove('/array-node("github_issues")//*[githubId eq ' + item.githubId + ' and project = "' + item.project + '" ]')])
+                .result(function(response) {
+                    return res.send(result);
+                }, function(error) {
+                    return res.send(result)
+                })
+
+                //return res.send(result);
             });
         })
 
