@@ -47,6 +47,11 @@ exports.issues = function(req, res) {
     var period = null;
     var _url = null;
 
+    if (!_project) {
+        return res.send({msg: 'You must specify project'})
+    }
+
+
     try {
         _transform = JSON.parse(_transform)
     } catch (e) {
