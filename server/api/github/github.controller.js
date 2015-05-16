@@ -408,7 +408,7 @@ function insertIssueIntoBugtrack(item, req, res, callback) {
             isBugExistsInBugtrack(item, callback);
         },
         function insertOrUpdate(bug, callback) {
-            var baseUri = req.protocol + '://' + req._remoteAddress + ':' + req.headers.host.replace(/(\S*:)(\d*)/, '$2')
+            var baseUri = req.protocol + '://' +  req.headers.host;
             var key = null;
             var options = {};
             options.method = 'POST';
@@ -468,7 +468,7 @@ function preserveBugtrackUpdates(btIssue, ghIssue) {
 
 
 function attachNewBugtrackId(issue, req, callback) {
-    request.get(req.protocol + '://' + req._remoteAddress + ':' + req.headers.host.replace(/(\S*:)(\d*)/, '$2') + '/api/common/nextId', function(err, response, body) {
+    request.get(req.protocol + '://' + req.headers.host + '/api/common/nextId', function(err, response, body) {
         if (callback) {
             if (err) {
                 return callback(err);
@@ -596,7 +596,7 @@ function isBugExistsInBugtrack(bug, callback) {
 
 
 function getNextId(req, callback) {
-    request.get(req.protocol + '://' + req._remoteAddress + ':' + req.headers.host.replace(/(\S*:)(\d*)/, '$2') + '/api/common/nextId', function(err, response, body) {
+    request.get(req.protocol + '://' + req.headers.host + '/api/common/nextId', function(err, response, body) {
         if (callback) {
             if (err) {
                 console.log(err);
@@ -739,7 +739,7 @@ function createBugtrackIssue(issue, req, callback) {
     }
 
 
-    var baseUri = req.protocol + '://' + req._remoteAddress + ':' + req.headers.host.replace(/(\S*:)(\d*)/, '$2');
+    var baseUri = req.protocol + '://' + req.headers.host;
     var kind = issue.kind;
     var options = {};
     options.method = 'POST';
@@ -822,7 +822,7 @@ function createBugtrackIssue(issue, req, callback) {
 function createBug(bug, req, callback) {
     request({
         method: 'POST',
-        uri: req.protocol + '://' + req._remoteAddress + ':' + req.headers.host.replace(/(\S*:)(\d*)/, '$2') + '/api/bugs/new',
+        uri: req.protocol + '://' +req.headers.host + '/api/bugs/new',
         json: {
             'bug': bug
         }
@@ -863,7 +863,7 @@ function createBug(bug, req, callback) {
 function createTask(task, req, callback) {
     request({
         method: 'POST',
-        uri: req.protocol + '://' + req._remoteAddress + ':' + req.headers.host.replace(/(\S*:)(\d*)/, '$2') + '/api/tasks/new',
+        uri: req.protocol + '://' + req.headers.host+ '/api/tasks/new',
         json: {
             'task': task
         }
@@ -904,7 +904,7 @@ function createTask(task, req, callback) {
 function createRFE(rfe, req, callback) {
     request({
         method: 'POST',
-        uri: req.protocol + '://' + req._remoteAddress + ':' + req.headers.host.replace(/(\S*:)(\d*)/, '$2') + '/api/rfes/new',
+        uri: req.protocol + '://' + req.headers.host + '/api/rfes/new',
         json: {
             'rfe': rfe
         }
