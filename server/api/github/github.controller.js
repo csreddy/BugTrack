@@ -58,7 +58,13 @@ exports.issues = function(req, res) {
         _transform = false;
     }
 
-    // when load=true, then set transform=true
+
+    if (_interval instanceof Array || _project instanceof Array || _transform instanceof Array || _import instanceof Array || _sort instanceof Array || _order instanceof Array || _page instanceof Array || _per_page instanceof Array) {
+        return res.send({
+            msg: 'Pass only one value to interval. You may be passing multiple query parameter values for project|interval|transform|import|sort|order|page|per_page'
+        })
+    }
+        // when load=true, then set transform=true
     try {
         _import = JSON.parse(_import);
         if (_import) {
@@ -67,13 +73,6 @@ exports.issues = function(req, res) {
     } catch (e) {
         _import = false;
     }
-
-    if (_interval instanceof Array || _project instanceof Array || _transform instanceof Array || _import instanceof Array || _sort instanceof Array || _order instanceof Array || _page instanceof Array || _per_page instanceof Array) {
-        return res.send({
-            msg: 'Pass only one value to interval. You may be passing multiple query parameter values for project|interval|transform|import|sort|order|page|per_page'
-        })
-    }
-
 
     // when interval=false then remove time constraint from the url
     if (_interval === 'false' || !_interval) {
