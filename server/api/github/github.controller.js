@@ -9,9 +9,6 @@ var request = require('request');
 var async = require('async');
 var _ = require('lodash');
 
-var bug = require('../bug/bug.controller');
-
-var bugList = "https://api.github.com/repos/marklogic/java-client-api/issues/";
 var githubAuth = {
     user: 'marklogic-builder',
     pass: 'rhUrnQ1AewawZ61K'
@@ -25,8 +22,16 @@ var githubLabels = {
 
 // Get list of githubs
 exports.index = function(req, res) {
-    res.json([]);
+    db.documents.read('github_issues.json').result(function(response) {
+        return res.status(200).json(response[0].content)
+    }, function(error) {
+        return res.status(500).json({
+            error: 'Could not retrive un-imported github issues'
+        })
+    })
 };
+
+
 
 exports.issues = function(req, res) {
     var _project = req.query.project || null;
@@ -72,7 +77,8 @@ exports.issues = function(req, res) {
 
     console.log('url:', _url)
 
-    var finalResult = []
+    var finalResult = [];
+    var unImportedIssues = [];
     var options = {
         url: _url,
         headers: {
@@ -114,18 +120,50 @@ exports.issues = function(req, res) {
                         for (var i = 0; i < tasks.length; i++) {
                             insertIssueIntoBugtrack(tasks[i], req, res, function(err, result) {
                                 if (err) {
-                                    res.send(err)
+                                    return res.send(err)
                                 }
                                 //  console.log('result:', result);
                                 finalResult.push(result)
+
+                                // push unimported issues into an array
+                                if (result.msg.substring(0, 5) === 'Error') {
+                                    delete result.bugtrackId;
+                                    unImportedIssues.push(result);
+                                }
+
                                 // console.log('finalResult:' + finalResult.length + 'transformedIssues.length:' + transformedIssues.length);
                                 if (finalResult.length === transformedIssues.length) {
-                                    return res.send({
-                                        url: _url,
-                                        //    time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
-                                        count: finalResult.length,
-                                        issues: finalResult
+
+                                    // update databse with un-imported issues for record keeping
+                                    var updates = [];
+                                    _.forEach(unImportedIssues, function(issue) {
+                                        updates.push(p.insert('/array-node("github_issues")', 'last-child', issue));
+                                        //var xpath = '/array-node("github_issues")//*[githubId eq ' + issue.githubId + ' and project = "' + issue.project + '" ]'
+                                        updates.push(p.remove('/array-node("github_issues")//*[githubId eq ' + issue.githubId + ' and project = "' + issue.project + '" ]'))
                                     })
+                                    if (updates.length > 0) {
+                                        db.documents.patch('github_issues.json', updates)
+                                            .result(function(response) {
+                                                console.log('github_issues.json updated');
+                                                return res.send({
+                                                    url: _url,
+                                                    //    time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
+                                                    count: finalResult.length,
+                                                    issues: finalResult
+                                                })
+                                            }, function(error) {
+                                                return res.status(500).json({
+                                                    error: 'Could not save un-imported issues in the database.' + error
+                                                })
+                                            })
+                                    } else {
+                                        return res.send({
+                                            url: _url,
+                                            //    time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
+                                            count: finalResult.length,
+                                            issues: finalResult
+                                        })
+                                    }
                                 }
                                 callback();
                             });
@@ -159,10 +197,10 @@ exports.issues = function(req, res) {
                     })
                 }, function(err, issues) {
                     if (err) {
-                        res.send(err)
+                        return res.send(err)
                     }
 
-                    res.send({
+                    return res.send({
                         url: _url,
                         //  time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
                         count: finalResult.length,
@@ -347,7 +385,9 @@ function getGitHubUserInfo(username, callback) {
 function insertIssueIntoBugtrack(item, req, res, callback) {
     console.log('called insertIssueIntoBugtrack');
     var action = {
+        project: item.github.project,
         githubId: item.github.issueId,
+        issue_url: item.github.url,
         bugtrackId: item.id,
         msg: null
     }
@@ -364,15 +404,11 @@ function insertIssueIntoBugtrack(item, req, res, callback) {
 
 
             if (bug) {
-                // TODO: update existing bug & also preserve any changes that were made in bugtrack
+                // update existing bug & also preserve any changes that were made in bugtrack
                 action.bugtrackId = bug.id
                 bug = preserveBugtrackUpdates(bug, item);
                 createBugtrackIssue(bug, req, function(err, result) {
                     if (err) callback(err)
-                        // callback(null, {
-                        //     id: bug.id,
-                        //     msg: 'updated'
-                        // });
                     callback(null, result)
                 })
 
@@ -389,8 +425,9 @@ function insertIssueIntoBugtrack(item, req, res, callback) {
             console.log(err);
             return res.send(err)
         }
-        if (!result.err) {
+        if (!result.error) {
             action.bugtrackId = result.id;
+            action.bugtrack_url = '/' + item.kind.toLowerCase() + '/' + item.id
         }
         if (result.bug) {
             action.bug = result.bug;

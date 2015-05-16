@@ -66,3 +66,18 @@ fs.readFile('searchoptions.xml', 'utf8', function(err, data) {
         console.log(error);
     });
 });
+
+// load github_issues doc
+fs.readFile('github_issues.json', 'utf8', function(err, data) {
+    if (err) throw err;
+
+    db1.documents.write([{
+        uri: 'github_issues.json',
+        contentType: 'application/json',
+        content: data
+    }]).result(function() {
+        console.log('loaded github_issues.json into ' + conn1.database + ' database\n\t uri: github_issues.json');
+    }, function(error) {
+        console.log(error);
+    });
+});

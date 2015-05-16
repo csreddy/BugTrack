@@ -2,7 +2,10 @@
 <div >
     
  <tabset class="nav-tabs-custom">
-    <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled" style="cursor:pointer;" select="selectTab(tab.hash)">
+    <tab ng-repeat="tab in tabs" active="tab.active" disable="tab.disabled" style="cursor:pointer;" select="selectTab(tab.hash)">
+    <tab-heading>
+    <i class="fa" ng-class="{'fa-github': tab.title == 'GitHub', 'fa-cogs': tab.title == 'Field Options'}"></i> <b>{{tab.title}}</b>
+    </tab-heading>
         <div ng-if="tab.title === 'Field Options' " ng-include="'app/configure/partials/options.partial.html'"></div> 
         <div  ng-if="tab.title === 'GitHub' " ng-include="'app/configure/partials/github.partial.html'"></div>      
     </tab>

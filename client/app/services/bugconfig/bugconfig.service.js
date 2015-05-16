@@ -72,7 +72,7 @@ app.factory('Config', ['$http','ivhTreeviewMgr',
         function importGithubIssues (project) {
             return $http({
                 method: 'GET',
-                url: '/api/github/issues?project='+project+'&interval=false&load=true'
+                url: '/api/github/issues?project='+project+'&interval=false&import=true'
             });
         }
 
@@ -80,6 +80,13 @@ app.factory('Config', ['$http','ivhTreeviewMgr',
             return $http({
                 method: 'GET',
                 uri: '/api/common/goto?id='+id
+            });
+        }
+
+        function getUnImportedIssues() {
+            return $http({
+                method:'GET',
+                url: '/api/github/'
             });
         }
 
@@ -116,6 +123,9 @@ app.factory('Config', ['$http','ivhTreeviewMgr',
             },
             goto: function(id) {
                 return goto(id);
+            },
+            getUnImportedIssues: function () {
+                return getUnImportedIssues();
             }
         };
     }

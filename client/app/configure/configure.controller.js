@@ -1,28 +1,26 @@
 'use strict';
 
 angular.module('config.controllers', ['ivh.treeview'])
-    .controller('configCtrl', ['$scope', '$location', 'Config', 'Flash', 'ngProgress',
-        function($scope, $location, Config, Flash, ngProgress) {
+    .controller('configCtrl', ['$scope', '$location', 'Config', 'config', 'issues', 'Flash', 'ngProgress',
+        function($scope, $location, Config, config, issues, Flash, ngProgress) {
             $location.$$search = null;
-            $scope.config = {};
-            Config.get().then(function(response) {
-                $scope.config = response.data;
-            });
 
+            $scope.config = config.data;
+            $scope.unImportedIssues = _.sortBy(issues.data['github_issues'], 'project');
 
             $scope.tabs = [{
                 title: 'Field Options',
-                content: 'Dynamic content 1',
+                content: '',
                 hash: 'options'
             }, {
                 title: 'GitHub',
-                content: 'Dynamic content 2',
+                content: '',
                 hash: 'github'
-            }, {
+            } /*{
                 title: 'Others',
-                content: 'Dynamic content 2',
+                content: '',
                 hash: 'others'
-            }];
+            }*/];
 
             $scope.users = {
                 selectedChildren: []
@@ -40,9 +38,9 @@ angular.module('config.controllers', ['ivh.treeview'])
                 case 'github':
                     $scope.tabs[1].active = true;
                     break;
-                case 'others':
+               /* case 'others':
                     $scope.tabs[2].active = true;
-                    break;
+                    break;*/
                 default:
                     $scope.tabs[0].active = true;
             }
@@ -188,23 +186,19 @@ angular.module('config.controllers', ['ivh.treeview'])
                     ngProgress.complete();
                     Flash.addAlert('success', 'Imported issues successfully');
                     $scope.importedIssues = response.issues;
-                    console.log('response', response);
+                     Config.getUnImportedIssues().success(function(response) {
+                            $scope.unImportedIssues = _.sortBy(response.data['github_issues'], 'project');
+                     }).error(function(error) {
+                        console.log('Could not retrive GitHub issues');
+                     });
+           
                 }).error(function(error) {
                     ngProgress.complete();
                     Flash.addAlert('danger', 'Oops! Something went wront while importing.' + error);
                 });
             };
 
-            $scope.goto = function(id) {
-                Config.goto(id).success(function(response) {
-                console.log('response', response);
-                   
-                   $location.path(response.uri);
-                   return response.uri;
-                }, function(error) {
-                   // $location.path('/404');
-                });
-            };
+
 
         }
     ]);
