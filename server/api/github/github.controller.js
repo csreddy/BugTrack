@@ -63,6 +63,13 @@ exports.issues = function(req, res) {
         _import = false;
     }
 
+    if (_interval instanceof Array || _project instanceof Array || _transform instanceof Array || _import instanceof Array || _sort instanceof Array || _order instanceof Array || _page instanceof Array || _per_page instanceof Array) {
+        return res.send({
+            msg: 'Pass only one value to interval. You may be passing multiple query parameter values for project|interval|transform|import|sort|order|page|per_page'
+        })
+    }
+
+
     // when interval=false then remove time constraint from the url
     if (_interval === 'false' || !_interval) {
         _url = encodeURI('https://api.github.com/search/issues?q=repo:marklogic/' + _project + '&sort=' + _sort + '&order=' + _order + '&page=' + _page + '&per_page=' + _per_page + '&transform=' + _transform);
