@@ -401,7 +401,7 @@ function getGitHubUserInfo(username, callback) {
 }
 
 function insertIssueIntoBugtrack(item, req, res, callback) {
-    console.log('called insertIssueIntoBugtrack');
+   // console.log('called insertIssueIntoBugtrack');
     var action = {
         project: item.github.project,
         githubId: item.github.issueId,
@@ -736,6 +736,7 @@ function createNewBugtrackIssue(issue, req, callback) {
 // inserts the given issues into datatabase (does not generate new id)
 // use this function to update existing issues
 function createBugtrackIssue(issue, req, callback) {
+   // console.log('request', req);
     var validationResult = checkImportRules(issue);
     if (validationResult.error) {
         if (callback) {
@@ -750,6 +751,7 @@ function createBugtrackIssue(issue, req, callback) {
     var kind = issue.kind;
     var options = {};
     options.method = 'POST';
+    options.headers = req.headers;
     switch (kind) {
         case 'Bug':
             options.uri = baseUri + '/api/bugs/new';
@@ -791,7 +793,7 @@ function createBugtrackIssue(issue, req, callback) {
             if (response.statusCode !== 200) {
                 return callback({
                     error: true,
-                    msg: 'Error: could not import issue #' + issue.github.issueId
+                    msg: 'Error: could not import issue #' + issue.github.issueId + JSON.stringify(response)
                 })
             }
 
@@ -829,6 +831,7 @@ function createBugtrackIssue(issue, req, callback) {
 function createBug(bug, req, callback) {
     request({
         method: 'POST',
+        headers: req.headers,
         uri: req.protocol + '://' +req.headers.host + '/api/bugs/new',
         json: {
             'bug': bug
@@ -870,6 +873,7 @@ function createBug(bug, req, callback) {
 function createTask(task, req, callback) {
     request({
         method: 'POST',
+        headers: req.headers,
         uri: req.protocol + '://' + req.headers.host+ '/api/tasks/new',
         json: {
             'task': task
@@ -911,6 +915,7 @@ function createTask(task, req, callback) {
 function createRFE(rfe, req, callback) {
     request({
         method: 'POST',
+        headers: req.headers,
         uri: req.protocol + '://' + req.headers.host + '/api/rfes/new',
         json: {
             'rfe': rfe

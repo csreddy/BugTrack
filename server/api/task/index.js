@@ -2,21 +2,22 @@
 
 var express = require('express');
 var controller = require('./task.controller');
+var auth = require('../../auth/auth.service');
 
 var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/count', controller.count);
-router.post('/new', controller.new)
-router.put('/update', controller.update);
-router.get('/:id(\\d+)', controller.id);
-router.get('/:id(\\d+)/subtasks', controller.subtasks);
-router.put('/:id(\\d+)/subscribe', controller.subscribe);
-router.put('/:id(\\d+)/unsubscribe', controller.unsubscribe);
-router.put('/:id(\\d+)/toggleTaskListInclusion', controller.toggleTaskListInclusion);
-router.put('/insertProceduralTask', controller.insertProceduralTask);
-router.put('/insertSubTask', controller.insertSubTask);
-router.post('/createSubTask', controller.createSubTask);
-router.get('/:version/parentAndSubTasks', controller.getParentAndSubTasks)
+router.post('/new', auth.ensureAuthenticated, controller.new)
+router.put('/update', auth.ensureAuthenticated, controller.update);
+router.get('/:id(\\d+)', auth.ensureAuthenticated, controller.id);
+router.get('/:id(\\d+)/subtasks', auth.ensureAuthenticated, controller.subtasks);
+router.put('/:id(\\d+)/subscribe', auth.ensureAuthenticated, controller.subscribe);
+router.put('/:id(\\d+)/unsubscribe',auth.ensureAuthenticated, controller.unsubscribe);
+router.put('/:id(\\d+)/toggleTaskListInclusion', auth.ensureAuthenticated, controller.toggleTaskListInclusion);
+router.put('/insertProceduralTask', auth.ensureAuthenticated, controller.insertProceduralTask);
+router.put('/insertSubTask', auth.ensureAuthenticated, controller.insertSubTask);
+router.post('/createSubTask', auth.ensureAuthenticated, controller.createSubTask);
+router.get('/:version/parentAndSubTasks', auth.ensureAuthenticated, controller.getParentAndSubTasks)
 
 module.exports = router;

@@ -10,12 +10,11 @@ router.get('/', controller.index);
 router.get('/count', controller.count)
 router.get('/facets',  controller.facets);
 router.get('/:id(\\d+)', controller.id);
-router.put('/:id/subscribe', controller.subscribe);
-router.put('/:id/unsubscribe', controller.unsubscribe);
+router.put('/:id/subscribe',auth.ensureAuthenticated, controller.subscribe);
+router.put('/:id/unsubscribe', auth.ensureAuthenticated, controller.unsubscribe);
 router.get('/:id/clones', controller.clones);
-router.post('/newbugid', controller.newbugid);
 router.post('/new', auth.ensureAuthenticated, controller.new);
-router.put('/update', controller.update);
-router.post('/clone', controller.clone);
+router.put('/update', auth.ensureAuthenticated, controller.update);
+router.post('/clone', auth.ensureAuthenticated, controller.clone);
 
 module.exports = router; 

@@ -137,7 +137,7 @@ exports.new = function(req, res) {
             }).join(', ')
         );
         console.log('done\n');
-        res.send(200); 
+        return res.send(200); 
     });
 
     for (var file in attachments) {
@@ -151,10 +151,10 @@ exports.new = function(req, res) {
 
         db.documents.write(doc).result(function(response) {
             console.log('wrote:\n ', JSON.stringify(response.documents[0]));
-            res.send(200);
+            return res.send(200);
         }, function(error) {
             errors = true;
-            res.send(400, {
+           return res.send(400, {
                 message: 'file upload failed. Try again'
             });
         });
@@ -611,16 +611,6 @@ exports.clone = function(req, res) {
         })
     })
 
-};
-
-exports.newbugid = function(req, res) {
-    db.documents.read('count.json').result(function(response) {
-        console.log('count:', response);
-        res.status(200).json(response)
-    }, function(error) {
-        console.log('error:', error);
-        res.status(error.statusCode).json(JSON.stringify(error));
-    })
 };
 
 

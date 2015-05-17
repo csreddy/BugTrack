@@ -61,7 +61,6 @@ module.exports = function(app) {
     app.use('/api/bugs/:id(\\d+)/unsubscribe', require('./api/bug'));
     app.use('/api/bugs/:id(\\d+)/clones', require('./api/bug'));
     app.use('/api/bugs/new', require('./api/bug'));
-    app.use('/api/bugs/newbugid', require('./api/bug'));
     app.use('/api/bugs/update', require('./api/bug'));
     app.use('/api/bugs/count', require('./api/bug'));
     app.use('/api/bugs/facets', require('./api/bug'));
