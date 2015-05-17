@@ -486,6 +486,10 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         // watch for location changes and extract search pararms from the url and perform search
         $scope.$on('$locationChangeSuccess', function() {
             console.log($location.url());
+            if ($location.$$path !== '/home') {
+                return;
+            }
+
             if (Object.keys($location.$$search).length === 0) {
                 search({
                     kind: 'Bug',
@@ -496,7 +500,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
                 });
             }
 
-            if ($location.url().indexOf('/home') > -1) {
+            if ($location.$$path === '/home') {
                 $scope.currentPage = $location.$$search.page || 1;
 
                 // due to pagination directive bug, current page number does not get higlighted when 
@@ -610,7 +614,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
             $scope.form.facets = angular.copy(processFacets(searchResult[0].facets));
             // groups does not come from search resposne
             // so we artifically attach groups to the search response
-            if ($location.search().groupUsers) {
+            if ($location.$$path === '/home' && $location.search().groupUsers) {
                 $scope.form.groups = angular.copy($scope.preSelectedGroups);
             } else {
                 $scope.form.groups = angular.copy(config.groups);
