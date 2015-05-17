@@ -63,7 +63,7 @@
             </table>
             </div>
 
-            <div id="importList">
+            <div id="imported">
             	       <table class="table table-striped table-condensed" ng-if="importedIssues">
                 <!--  	<caption>Could not import these issues</caption> -->
                 <thead>
@@ -82,7 +82,7 @@
                         <td><a ng-href="{{issue.bugtrack_url}}">{{issue.bugtrackId}}</a></td>
                          <td>{{issue.msg}}</td>
                          <td>
-            			  <a href="" title="" style="color:red"  ng-show="issue.msg.substring(0,5) == 'Error'" class="pull-right" ng-click="importIssue(issue.project, issue.githubId, $event)"><i class="fa fa-refresh"></i> Retry</a>
+            			  <a href="" title="" style="color:red"  ng-show="issue.msg.substring(0,5) == 'Error'" ng-click="importIssue(issue.project, issue.githubId, $event)"><i class="fa fa-refresh"></i> Retry</a>
             			</td>
                     </tr>
                 </tbody>

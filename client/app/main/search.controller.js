@@ -339,8 +339,13 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
 
         // for table column sorting
         $scope.order = function(predicate, reverse) {
-            $scope.bugs = $filter('orderBy')($scope.bugs, predicate.split(','), reverse);
-            $scope.tasks = $filter('orderBy')($scope.tasks, predicate.split(','), reverse);
+            var primarySortOrder = predicate;
+            var secondarySortOrder = 'id';
+            if (reverse) secondarySortOrder = '-id';
+                    
+            $scope.bugs = $filter('orderBy')($scope.bugs, [primarySortOrder, secondarySortOrder], reverse);
+            $scope.tasks = $filter('orderBy')($scope.tasks, [primarySortOrder, secondarySortOrder], reverse);
+            $scope.rfes = $filter('orderBy')($scope.rfes, [primarySortOrder, secondarySortOrder], reverse);
         };
 
 

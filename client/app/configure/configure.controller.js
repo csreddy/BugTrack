@@ -6,7 +6,7 @@ angular.module('config.controllers', ['ivh.treeview'])
             $location.$$search = null;
 
             $scope.config = config.data;
-            $scope.unImportedIssues = _.sortBy(issues.data['github_issues'], 'project');
+            $scope.unImportedIssues = _.sortByAll(issues.data['github_issues'], ['project', 'githubId']);
 
             $scope.tabs = [{
                     title: 'Field Options',
@@ -210,7 +210,7 @@ angular.module('config.controllers', ['ivh.treeview'])
                 Config.importGithubIssues(project).success(function(response) {
                     ngProgress.complete();
                     Flash.addAlert('success', 'Imported issues successfully');
-                    $scope.importedIssues = response.issues;
+                    $scope.importedIssues = _.sortBy(response.issues, 'githubId');
                     Config.getUnImportedIssues().success(function(response) {
                         $scope.unImportedIssues = _.sortBy(response['github_issues'], 'project');
                     }).error(function(error) {
