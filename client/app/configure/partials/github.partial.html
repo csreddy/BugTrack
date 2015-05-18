@@ -28,14 +28,35 @@
         <div class="col-xs-5">
             <form class="form-inline" name="importForm">
                 <div class="form-group">
-                    <label>Import issues from</label>
+                    <label>Import issues from &nbsp;</label>
                     <select name="ghProject" id="ghProject" ng-model="importProject" ng-options="project for project in config.githubProjects.sort()" class="form-control" required>
                         <option value=""></option>
                     </select>
                 </div>
-                <button ng-click="importIssues(importProject, $event)" class="btn btn-sm btn-success" ng-disabled="importForm.$invalid"><i class="fa fa-github"></i> Import</button>
+                <button ng-click="importIssues(importProject, $event)" class="btn btn-sm btn-success" ng-disabled="importForm.$invalid" tooltip-trigger tooltip-placement="right" tooltip-animation="false" tooltip="Imports issues that were updated in the last 30 mins"><i class="fa fa-github"></i> Import</button>
             </form>
-                       <div id='unimported' style="margin-top:10px;">
+            <form class="form-inline" name="singleImportForm" style="margin-top:10px">
+                <div class="form-group">
+                    <label>Import a issue from</label>
+                    <select name="project" id="project" ng-model="singleImportProject" ng-options="project for project in config.githubProjects.sort()" class="form-control" required>
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input ng-model="issueId" id="issueId" name="issueId" type="number" placeholder="github id" class="form-control input-md" required>
+                </div>
+                <div class="btn-group" tooltip-trigger tooltip-placement="top" tooltip-animation="false" tooltip="Imports one issue">
+                    <button type="button" class="btn btn-md btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Import <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="" ng-click="importAs(singleImportProject, issueId, 'bug')">Import as Bug</a></li>
+                        <li><a href="" ng-click="importAs(singleImportProject, issueId, 'task')">Import as Task</a></li>
+                        <li><a href="" ng-click="importAs(singleImportProject, issueId, 'rfe')">Import as RFE</a></li>
+                    </ul>
+                </div>
+            </form>
+            <div id='unimported' style="margin-top:10px;">
                 <label><i class="fa fa-exclamation-triangle" style="color:red"></i> Un-imported issues: <span class="badge bg-red">{{unImportedIssues.length}}</span></label>
                 <table class="table table-striped table-condensed">
                     <thead>
@@ -54,26 +75,38 @@
                                 {{issue.msg}}
                             </td>
                             <td>
-                                <a href="" title="" style="color:red" ng-click="importIssue(issue.project, issue.githubId, $event)"><i class="fa fa-refresh"></i> Retry</a>
+                               <!--  <a href="" title="" style="color:red" ng-click="importIssue(issue.project, issue.githubId, $event)"><i class="fa fa-refresh"></i> Retry</a> -->
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="">
+                                      <i class="fa fa-refresh"></i> Retry
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="" ng-click="importIssue(issue.project, issue.githubId, $event)">Retry</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="" ng-click="importAs(issue.project, issue.githubId, 'bug')">Import as Bug</a></li>
+                                        <li><a href="" ng-click="importAs(issue.project, issue.githubId, 'task')">Import as Task</a></li>
+                                        <li><a href="" ng-click="importAs(issue.project, issue.githubId, 'rfe')">Import as RFE</a></li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-      
-            </div>
-            <div class="col-xs-5">
- 	      <div id="imported" ng-if="importedIssues">
- 	      <label>Issues pulled from GitHub: <span class="badge bg-green">{{importedIssues.length}}</span></label>
+        </div>
+        <div class="col-xs-5">
+            <div id="imported" ng-if="importedIssues">
+                <label>Issues pulled from GitHub: <span class="badge bg-green">{{importedIssues.length}}</span></label>
                 <table class="table table-striped table-condensed">
-                    <!--  	<caption>Could not import these issues</caption> -->
+                    <!--    <caption>Could not import these issues</caption> -->
                     <thead>
                         <tr>
                             <th>Project</th>
                             <th>Issue Id</th>
                             <th>Bugtrack Id</th>
                             <th>Status</th>
-                            <th class="col-md-2"></th>
+                           <!--  <th class="col-md-2"></th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -82,9 +115,9 @@
                             <td><a ng-href="{{issue.issue_url}}" title="" target="_blank">{{issue.githubId}}</a></td>
                             <td><a ng-href="{{issue.bugtrack_url}}">{{issue.bugtrackId}}</a></td>
                             <td>{{issue.msg}}</td>
-                            <td>
+                            <!-- <td>
                                 <a href="" title="" style="color:red" ng-show="issue.msg.substring(0,5) == 'Error'" ng-click="importIssue(issue.project, issue.githubId, $event)"><i class="fa fa-refresh"></i> Retry</a>
-                            </td>
+                            </td> -->
                         </tr>
                     </tbody>
                 </table>

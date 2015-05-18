@@ -4,7 +4,6 @@ angular.module('config.controllers', ['ivh.treeview'])
     .controller('configCtrl', ['$scope', '$location', 'Config', 'config', 'issues', 'Flash', 'ngProgress',
         function($scope, $location, Config, config, issues, Flash, ngProgress) {
             $location.$$search = null;
-
             $scope.config = config.data;
             $scope.unImportedIssues = _.sortByAll(issues.data['github_issues'], ['project', 'githubId']);
 
@@ -182,32 +181,55 @@ angular.module('config.controllers', ['ivh.treeview'])
             };
 
             $scope.importIssue = function(project, id, event) {
-                event.currentTarget.parentElement.parentElement.cells[event.currentTarget.parentElement.parentElement.cells.length-2].textContent = '';
-                event.currentTarget.text = 'Retrying...';
-                // ngProgress.start();
+              //  event.currentTarget.parentElement.parentElement.cells[event.currentTarget.parentElement.parentElement.cells.length-2].textContent = '';
+               // event.currentTarget.text = 'Retrying...';
+                 ngProgress.start();
                 Config.importSingleGithibIssue(project, id).success(function(response) {
-                    event.currentTarget.style.pointerEvents = 'none';
-                    event.currentTarget.style.cursor = 'default';                    
+                    ngProgress.complete();
+                //    event.currentTarget.style.pointerEvents = 'none';
+                 //   event.currentTarget.style.cursor = 'default';                    
                     if (response.msg.substring(0, 5) === 'Error') {
-                        event.currentTarget.style.color = 'red';
-                        event.currentTarget.text = 'Failed';
-                        event.currentTarget.parentElement.parentElement.cells[event.currentTarget.parentElement.parentElement.cells.length-2].textContent = response.msg;
-                        //Flash.addAlert('danger', 'Could not import #'+id + ' because of error: ' + response.msg);
+                   //     event.currentTarget.style.color = 'red';
+                     //   event.currentTarget.text = 'Failed';
+                       // event.currentTarget.parentElement.parentElement.cells[event.currentTarget.parentElement.parentElement.cells.length-2].textContent = response.msg;
+                        Flash.addAlert('danger', 'Could not import #'+id + ' because of error: ' + response.msg);
                     } else {
-                       event.currentTarget.style.color = 'green';
-                        event.currentTarget.text = 'Imported';
-                        event.currentTarget.parentElement.parentElement.cells[event.currentTarget.parentElement.parentElement.cells.length-2].textContent = response.msg + ' with id ' + response.bugtrackId;
-                        // Flash.addAlert('success', 'Successfully imported with bugtrack id '+ response.bugtrackId);
+                     //   event.currentTarget.style.color = 'green';
+                     //   event.currentTarget.text = 'Imported';
+                     //   event.currentTarget.parentElement.parentElement.cells[event.currentTarget.parentElement.parentElement.cells.length-2].textContent = response.msg + ' with id ' + response.bugtrackId;
+                     Flash.addAlert('success', 'Successfully imported with bugtrack Id '+ response.bugtrackId);
                     }
                 }, function(error) {
-                    //  ngProgress.complete();
+                      ngProgress.complete();
+                    Flash.addAlert('danger', 'Oops! Something went wrong. Reload page and try again');
+                });
+            };
+
+            $scope.importAs = function(project, id, kind) {
+                 ngProgress.start();
+                Config.importSingleGithibIssue(project, id, kind).success(function(response) {
+                                ngProgress.complete();      
+                    if (response.msg.substring(0, 5) === 'Error') {
+                        Flash.addAlert('danger', 'Could not import #'+id + ' because of error: ' + response.msg);
+                    } else {
+                         Flash.addAlert('success', 'Successfully imported with bugtrack Id '+ response.bugtrackId);
+                    }
+                    Config.getUnImportedIssues().success(function(response) {
+                        $scope.unImportedIssues = _.sortByAll(response['github_issues'], ['project', 'githubId']);
+
+                    }).error(function(error) {
+                        console.log('Could not retrive GitHub issues');
+                        Flash.addAlert('danger', 'Oh snap! Could not retrive GitHub issues');
+                    });
+                }, function(error) {
+                      ngProgress.complete();
                     Flash.addAlert('danger', 'Oops! Something went wrong. Reload page and try again');
                 });
             };
 
 
             $scope.importIssues = function(project, event) {
-                console.log('event', event)
+                //console.log('event', event)
                 event.currentTarget.disabled = true;
                 event.currentTarget.innerHTML = "<i class='fa fa-spinner'></i> Importing...";
                // ngProgress.start();
@@ -216,9 +238,9 @@ angular.module('config.controllers', ['ivh.treeview'])
                      event.currentTarget.innerHTML = "<i class='fa fa-github'></i> Import";
                    // ngProgress.complete();
                     Flash.addAlert('success', 'Import completed');
-                    $scope.importedIssues = _.sortBy(response.issues, 'msg');
+                    $scope.importedIssues = _.sortByAll(response.issues, ['msg', 'githubId']);
                     Config.getUnImportedIssues().success(function(response) {
-                        $scope.unImportedIssues = _.sortBy(response['github_issues'], 'project');
+                        $scope.unImportedIssues = _.sortByAll(response['github_issues'], ['project', 'githubId']);
                     }).error(function(error) {
                         console.log('Could not retrive GitHub issues');
                         Flash.addAlert('danger', 'Oh snap! Could not retrive GitHub issues');
@@ -226,6 +248,8 @@ angular.module('config.controllers', ['ivh.treeview'])
 
                 }).error(function(error) {
                  //   ngProgress.complete();
+                    event.currentTarget.innerHTML = "<i class='fa fa-github'></i> Import";
+                     event.currentTarget.disabled = false;
                     Flash.addAlert('danger', 'Oops! Something went wront while importing.' + error);
                 });
             };

@@ -35,7 +35,7 @@ exports.index = function(req, res) {
 
 exports.issues = function(req, res) {
     var _project = req.query.project || null;
-    var _sort = req.query.sort || 'created';
+    var _sort = req.query.sort || 'updated';
     var _order = req.query.order || 'asc';
     var _page = req.query.page || 1;
     var _per_page = req.query.per_page || 100;
@@ -48,7 +48,9 @@ exports.issues = function(req, res) {
     var _url = null;
 
     if (!_project) {
-        return res.send({msg: 'You must specify project'})
+        return res.send({
+            msg: 'You must specify project'
+        })
     }
 
 
@@ -64,7 +66,7 @@ exports.issues = function(req, res) {
             msg: 'Pass only one value to interval. You may be passing multiple query parameter values for project|interval|transform|import|sort|order|page|per_page'
         })
     }
-        // when load=true, then set transform=true
+    // when load=true, then set transform=true
     try {
         _import = JSON.parse(_import);
         if (_import) {
@@ -76,12 +78,12 @@ exports.issues = function(req, res) {
 
     // when interval=false then remove time constraint from the url
     if (_interval === 'false' || !_interval) {
-        _url = encodeURI('https://api.github.com/search/issues?q=repo:marklogic/' + _project + '&sort=' + _sort + '&order=' + _order + '&page=' + _page + '&per_page=' + _per_page + '&transform=' + _transform);
+        _url = encodeURI('https://api.github.com/search/issues?q=repo:marklogic/' + _project + '&sort=' + _sort + '&order=' + _order + '&page=' + _page + '&per_page=' + _per_page);
     } else {
         t1 = new Date();
         t2 = new Date(t1.getTime() - (_interval * 60 * 1000));
         period = ' updated:"' + t2.toISOString() + ' .. ' + t1.toISOString() + '"';
-        _url = encodeURI('https://api.github.com/search/issues?q=repo:marklogic/' + _project + period + '&sort=' + _sort + '&order=' + _order + '&page=' + _page + '&per_page=' + _per_page + '&transform=' + _transform);
+        _url = encodeURI('https://api.github.com/search/issues?q=repo:marklogic/' + _project + period + '&sort=' + _sort + '&order=' + _order + '&page=' + _page + '&per_page=' + _per_page);
     }
 
     // _url = encodeURI('https://api.github.com/search/issues?q=repo:marklogic/' + _project + ' updated:"' + t2 + ' .. ' + t1 + '"' + '&sort=' + _sort + '&order=' + _order + '&page=' + _page + '&per_page=' + _per_page + '&transform=' + _transform);
@@ -129,57 +131,52 @@ exports.issues = function(req, res) {
 
                     var cargo = async.cargo(function(tasks, callback) {
                         for (var i = 0; i < tasks.length; i++) {
-                            insertIssueIntoBugtrack(tasks[i], req, res, function(err, result) {
-                                if (err) {
-                                    return res.send(err)
-                                }
-                                //  console.log('result:', result);
-                                finalResult.push(result)
 
-                                // push unimported issues into an array
-                                if (result.msg.substring(0, 5) === 'Error') {
-                                    delete result.bugtrackId;
-                                    unImportedIssues.push(result);
-                                }
-
-                                // console.log('finalResult:' + finalResult.length + 'transformedIssues.length:' + transformedIssues.length);
+                            var validationResult = checkImportRules(tasks[i]);
+                            if (validationResult.msg.substring(0, 5) === 'Error') {
+                                unImportedIssues.push(validationResult);
+                                finalResult.push(validationResult);
                                 if (finalResult.length === transformedIssues.length) {
-
-                                    // update databse with un-imported issues for record keeping
-                                    var updates = [];
-                                    _.forEach(unImportedIssues, function(issue) {
-                                        updates.push(p.insert('/array-node("github_issues")', 'last-child', issue));
-                                        //var xpath = '/array-node("github_issues")//*[githubId eq ' + issue.githubId + ' and project = "' + issue.project + '" ]'
-                                        updates.push(p.remove('/array-node("github_issues")//*[githubId eq ' + issue.githubId + ' and project = "' + issue.project + '" ]'))
-                                    })
-                                    if (updates.length > 0) {
-                                        db.documents.patch('github_issues.json', updates)
-                                            .result(function(response) {
-                                                console.log('github_issues.json updated');
-                                                return res.send({
-                                                    url: _url,
-                                                    //    time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
-                                                    count: finalResult.length,
-                                                    issues: finalResult
-                                                })
-                                            }, function(error) {
-                                                return res.status(500).json({
-                                                    error: 'Could not save un-imported issues in the database.' + error
-                                                })
+                                    updateDB(finalResult, unImportedIssues, _url, function(err, response) {
+                                                if (err) {
+                                                    return res.status(500).json(err)
+                                                }
+                                                return res.send(response)
                                             })
-                                    } else {
-                                        return res.send({
-                                            url: _url,
-                                            //    time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
-                                            count: finalResult.length,
-                                            issues: finalResult
-                                        })
-                                    }
                                 }
                                 callback();
-                            });
+                            } else {
+                                insertIssueIntoBugtrack(tasks[i], req, res, function(err, result) {
+                                    if (err) {
+                                        return res.send(err)
+                                    }
+                                    //  console.log('result:', result);
+                                    finalResult.push(result)
+
+                                    // push unimported issues into an array
+                                    if (result.msg.substring(0, 5) === 'Error') {
+                                        delete result.bugtrackId;
+                                        unImportedIssues.push(result);
+                                    }
+
+                                    // console.log('finalResult:' + finalResult.length + 'transformedIssues.length:' + transformedIssues.length);
+                                    if (finalResult.length === transformedIssues.length) {
+                                         console.log('responding from callback2');
+                                            console.log('unImportedIssues:', unImportedIssues);
+                                            updateDB(finalResult, unImportedIssues, _url, function(err, response) {
+                                                if (err) {
+                                                    return res.status(500).json(err)
+                                                }
+                                                return res.send(response)
+                                            })
+
+                                         // return res.send(updateDB(finalResult, unImportedIssues, _url))
+                                    }
+                                    callback();
+                                });
+                            }
                         }
-                        //  callback();
+
                     }, 1);
                     transformedIssues.forEach(function(issue) {
                         cargo.push(issue);
@@ -208,7 +205,7 @@ exports.issues = function(req, res) {
                     })
                 }, function(err, issues) {
                     if (err) {
-                        return res.send(err)
+                        return res.status(500).json(err);
                     }
 
                     return res.send({
@@ -232,6 +229,7 @@ exports.issue = function(req, res) {
     var _issueId = req.query.id || null;
     var _transform = req.query.transform || false;
     var _import = req.query.import || false;
+    var _issueKind = req.query.kind || null;
 
     try {
         _transform = JSON.parse(_transform);
@@ -278,16 +276,30 @@ exports.issue = function(req, res) {
                     error: 'Issue not found'
                 })
             }
+
+            if (_issueKind) {
+                item.kind = _issueKind;
+            } else {
+                var validationResult = checkImportRules(item);
+                if (validationResult.msg.substring(0, 5) === 'Error') {
+                    return res.send(validationResult);
+                }
+            }
+
             insertIssueIntoBugtrack(item, req, res, function(err, result) {
                 if (err) {
                     return res.send(err);
                 }
-                db.documents.patch('github_issues.json', [p.remove('/array-node("github_issues")//*[githubId eq ' + item.githubId + ' and project = "' + item.project + '" ]')])
-                .result(function(response) {
-                    return res.send(result);
-                }, function(error) {
-                    return res.send(result)
-                })
+                console.log('result', result);
+
+                db.documents.patch('github_issues.json', [p.remove('/array-node("github_issues")//*[githubId eq ' + result.githubId + ' and project = "' + result.project + '" ]')])
+                    .result(function(response) {
+                        console.log('github_issues.json updated');
+                        return res.send(result);
+                    }, function(error) {
+                        console.log('error updating github_issues.json', error);
+                        return res.send(error)
+                    })
 
                 //return res.send(result);
             });
@@ -318,6 +330,7 @@ exports.issue = function(req, res) {
 
 
 };
+
 
 exports.transformGitHubIssue = function(req, res) {
     var _project = req.query.project || null
@@ -355,6 +368,40 @@ exports.transformGitHubIssue = function(req, res) {
     })
 };
 
+// updates db with un-imported issues
+function updateDB(finalResult, unImportedIssues, url, callback) {
+    // update databse with un-imported issues for record keeping
+    var updates = [];
+    _.forEach(unImportedIssues, function(issue) {
+        updates.push(p.insert('/array-node("github_issues")', 'last-child', issue));
+        //var xpath = '/array-node("github_issues")//*[githubId eq ' + issue.githubId + ' and project = "' + issue.project + '" ]'
+        updates.push(p.remove('/array-node("github_issues")//*[githubId eq ' + issue.githubId + ' and project = "' + issue.project + '" ]'))
+    })
+    if (updates.length > 0) {
+        db.documents.patch('github_issues.json', updates)
+            .result(function(response) {
+                console.log('github_issues.json updated');
+                return callback(null, {
+                    url: url,
+                    //    time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
+                    count: finalResult.length,
+                    issues: finalResult
+                })
+            }, function(error) {
+                return callback({
+                    error: 'Could not save un-imported issues in the database.' + error
+                })
+            })
+    } else {
+        return callback(null,{
+            url: url,
+            //    time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
+            count: finalResult.length,
+            issues: finalResult
+        })
+    }
+
+}
 
 
 function getGitHubUserInfo(username, callback) {
@@ -401,7 +448,7 @@ function getGitHubUserInfo(username, callback) {
 }
 
 function insertIssueIntoBugtrack(item, req, res, callback) {
-   // console.log('called insertIssueIntoBugtrack');
+    // console.log('called insertIssueIntoBugtrack');
     var action = {
         project: item.github.project,
         githubId: item.github.issueId,
@@ -415,7 +462,7 @@ function insertIssueIntoBugtrack(item, req, res, callback) {
             isBugExistsInBugtrack(item, callback);
         },
         function insertOrUpdate(bug, callback) {
-            var baseUri = req.protocol + '://' +  req.headers.host;
+            var baseUri = req.protocol + '://' + req.headers.host;
             var key = null;
             var options = {};
             options.method = 'POST';
@@ -683,9 +730,11 @@ function createNewRFE(rfe, req, callback) {
 function checkImportRules(issue) {
 
     // when issue kind is not set or set invalid label
-    if ((typeof issue.kind) === 'undefined' && issue.kind !== 'Bug' && issue.kind !== 'Task' && issue.kind !== 'RFE') {
+    if ((typeof issue.kind) === 'undefined' && issue.kind.toLowerCase() !== 'bug' && issue.kind.toLowerCase() !== 'task' && issue.kind.toLowerCase() !== 'rfe') {
         return {
-            error: true,
+            project:issue.github.project,
+            githubId: issue.github.issueId,
+            issue_url:issue.github.url,
             msg: 'Error: invalid kind. kind is ' + issue.kind
         }
     }
@@ -693,7 +742,9 @@ function checkImportRules(issue) {
     // when milestone is not set
     if (!issue.tofixin) {
         return {
-            error: true,
+            project:issue.github.project,
+            githubId: issue.github.issueId,
+            issue_url:issue.github.url,
             msg: 'Error: no milestone'
         }
     }
@@ -707,14 +758,14 @@ function checkImportRules(issue) {
 // generatea a new id and inserts into database
 function createNewBugtrackIssue(issue, req, callback) {
 
-    var validationResult = checkImportRules(issue);
-    if (validationResult.error) {
+    /*   var validationResult = checkImportRules(issue);
+    if (validationResult.msg.substring(0, 5) === 'Error') {
         if (callback) {
             return callback(null, validationResult)
         } else {
             return validationResult;
         }
-    }
+    }*/
 
     async.waterfall([
 
@@ -736,36 +787,36 @@ function createNewBugtrackIssue(issue, req, callback) {
 // inserts the given issues into datatabase (does not generate new id)
 // use this function to update existing issues
 function createBugtrackIssue(issue, req, callback) {
-   // console.log('request', req);
-    var validationResult = checkImportRules(issue);
-    if (validationResult.error) {
+    // console.log('request', req);
+    /*   var validationResult = checkImportRules(issue);
+    if (validationResult.msg.substring(0, 5) === 'Error') {
         if (callback) {
             return callback(null, validationResult)
         } else {
             return validationResult;
         }
     }
-
+*/
 
     var baseUri = req.protocol + '://' + req.headers.host;
     var kind = issue.kind;
     var options = {};
     options.method = 'POST';
     options.headers = req.headers;
-    switch (kind) {
-        case 'Bug':
+    switch (kind.toLowerCase()) {
+        case 'bug':
             options.uri = baseUri + '/api/bugs/new';
             options.json = {
                 'bug': issue
             };
             break;
-        case 'Task':
+        case 'task':
             options.uri = baseUri + '/api/tasks/new';
             options.json = {
                 'task': issue
             };
             break;
-        case 'RFE':
+        case 'rfe':
             options.uri = baseUri + '/api/rfes/new';
             options.json = {
                 'rfe': issue
@@ -773,7 +824,7 @@ function createBugtrackIssue(issue, req, callback) {
             break;
         default:
             return callback(null, {
-                error: true,
+                githubId: issue.github.issueId,
                 msg: 'Error: invalid kind. kind is ' + kind
             })
     }
@@ -832,7 +883,7 @@ function createBug(bug, req, callback) {
     request({
         method: 'POST',
         headers: req.headers,
-        uri: req.protocol + '://' +req.headers.host + '/api/bugs/new',
+        uri: req.protocol + '://' + req.headers.host + '/api/bugs/new',
         json: {
             'bug': bug
         }
@@ -874,7 +925,7 @@ function createTask(task, req, callback) {
     request({
         method: 'POST',
         headers: req.headers,
-        uri: req.protocol + '://' + req.headers.host+ '/api/tasks/new',
+        uri: req.protocol + '://' + req.headers.host + '/api/tasks/new',
         json: {
             'task': task
         }
@@ -971,108 +1022,110 @@ function processEventList(eventList) {
         var changedSelections = {};
         var updatedBy = null;
         var svn = null;
-        _.forEach(item, function(eventItem) {
-            updatedBy = {
-                username: eventItem.actor.login,
-                name: eventItem.actor.login
-            }
 
-            switch (eventItem.event) {
-                case 'labeled':
-                    var changeName = null;
-                    if (githubLabels.kind.indexOf(eventItem.label.name) > -1) {
-                        changeName = 'kind';
-                    }
-                    if (githubLabels.status.indexOf(eventItem.label.name) > -1) {
-                        changeName = 'status';
-                    }
-                    if (githubLabels.severity.indexOf(eventItem.label.name) > -1) {
-                        changeName = 'severity';
-                    }
+        if (item.actor) {
+            _.forEach(item, function(eventItem) {
+                updatedBy = {
+                    username: eventItem.actor.login,
+                    name: eventItem.actor.login
+                }
 
-                    // enahncements are added as rfes
-                    // if (eventItem.label.name === 'Enhancement') {
-                    //     eventItem.label.name = 'RFE';
-                    // }
-
-                    changedSelections[changeName] = {
-                        from: null,
-                        to: eventItem.label.name
-                    }
-                    break;
-                case 'assigned':
-                    changedSelections['assignTo'] = {
-                        from: null,
-                        to: {
-                            username: eventItem.assignee.login,
-                            name: eventItem.assignee.login
+                switch (eventItem.event) {
+                    case 'labeled':
+                        var changeName = null;
+                        if (githubLabels.kind.indexOf(eventItem.label.name) > -1) {
+                            changeName = 'kind';
                         }
-                    }
-                    break;
-                case 'milestoned':
-                    changedSelections['tofixin'] = {
-                        from: null,
-                        to: eventItem.milestone.title
-                    }
-                    break;
-                case 'referenced':
+                        if (githubLabels.status.indexOf(eventItem.label.name) > -1) {
+                            changeName = 'status';
+                        }
+                        if (githubLabels.severity.indexOf(eventItem.label.name) > -1) {
+                            changeName = 'severity';
+                        }
+
+                        // enahncements are added as rfes
+                        // if (eventItem.label.name === 'Enhancement') {
+                        //     eventItem.label.name = 'RFE';
+                        // }
+
+                        changedSelections[changeName] = {
+                            from: null,
+                            to: eventItem.label.name
+                        }
+                        break;
+                    case 'assigned':
+                        changedSelections['assignTo'] = {
+                            from: null,
+                            to: {
+                                username: eventItem.assignee.login,
+                                name: eventItem.assignee.login
+                            }
+                        }
+                        break;
+                    case 'milestoned':
+                        changedSelections['tofixin'] = {
+                            from: null,
+                            to: eventItem.milestone.title
+                        }
+                        break;
+                    case 'referenced':
+                        svn = {
+                            repository: getProjectNameFromURL(eventItem.url),
+                            revision: eventItem.commit_id
+                        }
+                        break;
+                    case 'renamed':
+                        changedSelections['title'] = {
+                            from: eventItem.rename.from,
+                            to: eventItem.rename.to
+                        }
+
+                        break;
+                    case 'opened':
+                        changedSelections['status'] = {
+                            from: null,
+                            to: 'New'
+                        }
+                        break;
+                    case 'closed':
+                        changedSelections['status'] = {
+                            from: null,
+                            to: 'Closed'
+                        }
+                        break;
+                    case 'reopened':
+                        changedSelections['status'] = {
+                            from: 'Closed',
+                            to: 'Fix'
+                        }
+                        break;
+                    default:
+                        // do nothing
+                }
+                if (eventItem.commit_id) {
                     svn = {
                         repository: getProjectNameFromURL(eventItem.url),
                         revision: eventItem.commit_id
                     }
-                    break;
-                case 'renamed':
-                    changedSelections['title'] = {
-                        from: eventItem.rename.from,
-                        to: eventItem.rename.to
-                    }
-
-                    break;
-                case 'opened':
-                    changedSelections['status'] = {
-                        from: null,
-                        to: 'New'
-                    }
-                    break;
-                case 'closed':
-                    changedSelections['status'] = {
-                        from: null,
-                        to: 'Closed'
-                    }
-                    break;
-                case 'reopened':
-                    changedSelections['status'] = {
-                        from: 'Closed',
-                        to: 'Fix'
-                    }
-                    break;
-                default:
-                    // do nothing
-            }
-            if (eventItem.commit_id) {
-                svn = {
-                    repository: getProjectNameFromURL(eventItem.url),
-                    revision: eventItem.commit_id
                 }
+            });
+
+
+            var changes = {
+                time: time,
+                updatedBy: updatedBy,
+                change: changedSelections,
+                files: [],
+                comment: ''
             }
-        });
+            if (svn) {
+                changes.svn = svn;
+            }
 
-
-        var changes = {
-            time: time,
-            updatedBy: updatedBy,
-            change: changedSelections,
-            files: [],
-            comment: ''
+            if (_.keys(changes.change).length > 0) {
+                changeHistory.push(changes);
+            }
         }
-        if (svn) {
-            changes.svn = svn;
-        }
-
-        if (_.keys(changes.change).length > 0) {
-            changeHistory.push(changes);
-        }
-
     })
 
 
@@ -1101,6 +1154,7 @@ function sortChangeHistory(changeHistory) {
 
 
 function convertToBugtrackItem(githubIssue, callback) {
+    console.log('converting ', githubIssue.number);
     githubIssue.changeHistory = _.sortBy(_.flatten([processEventList(githubIssue.eventList), processCommentList(githubIssue.commentList)]), 'time');
     delete githubIssue.eventList;
     delete githubIssue.commentList;
@@ -1185,7 +1239,8 @@ function convertToBugtrackItem(githubIssue, callback) {
         }
     }
 
-    if (bugtrackItem.kind === 'Task' || bugtrackItem.kind === 'RFE') {
+    console.log('KIND---', bugtrackItem.kind);
+    if (bugtrackItem.kind.toLowerCase() === 'task' || bugtrackItem.kind.toLowerCase() === 'rfe') {
         delete bugtrackItem.clones;
         delete bugtrackItem.cloneOf;
         bugtrackItem.proceduralTasks = {
@@ -1210,18 +1265,19 @@ function getKind(labels) {
     if (labels.length === 0) return ''
     var kind = null;
     labels.forEach(function(label) {
-        if (label.name === 'Bug') {
+        if (label.name.toLowerCase() === 'bug') {
             kind = 'Bug'
         }
 
-        if (label.name === 'RFE') {
+        if (label.name.toLowerCase() === 'rfe') {
             kind = 'RFE'
         }
 
-        if (label.name === 'Enhancement') {
+        if (label.name.toLowerCase() === 'enhancement') {
             kind = 'Enhancement'
         }
-        if (label.name === 'Task') {
+
+        if (label.name.toLowerCase() === 'task') {
             kind = 'Task'
         }
     })
