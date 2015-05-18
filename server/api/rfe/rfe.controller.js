@@ -468,9 +468,10 @@ exports.subtasks = function(req, res, next) {
         uris: [uri]
     }).result(function(document) {
         console.log('document', document);
-        var subTasks = document[0].content.subTasks.sort();
+        var subTasks = document[0].content.subTasks;
         var subTaskDocUris = [];
         if (subTasks.length > 0) {
+            subTasks = subTasks.sort();
             for (var i = 0; i < subTasks.length; i++) {
                 subTaskDocUris.push('/task/' + subTasks[i] + '/' + subTasks[i] + '.json')
             }

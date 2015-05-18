@@ -102,66 +102,66 @@ exports.issues = function(req, res) {
 
     if (_import) {
         request(options, function(error, response, body) {
-            if (error) {
-                console.log(error);
-                return res.send(error);
-            }
-
-            if (!error && response.statusCode === 200) {
-                var issues = JSON.parse(body).items
-                if (issues.length === 0) {
-                    return res.send({
-                        url: _url,
-                        //  time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
-                        count: issues.length,
-                        issues: issues
-                    })
+                if (error) {
+                    console.log(error);
+                    return res.send(error);
                 }
-                var transformedIssues = [];
-                async.times(issues.length, function(n, next) {
-                    getEventsAndComments(issues[n], function(err, issue) {
-                        transformedIssues.push(convertToBugtrackItem(issue));
-                        next(err, issue);
-                    })
-                }, function(err, issues) {
-                    if (err) {
-                        res.send(err)
+
+                if (!error && response.statusCode === 200) {
+                    var issues = JSON.parse(body).items
+                    if (issues.length === 0) {
+                        return res.send({
+                            url: _url,
+                            //  time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
+                            count: issues.length,
+                            issues: issues
+                        })
                     }
+                    var transformedIssues = [];
+                    async.times(issues.length, function(n, next) {
+                        getEventsAndComments(issues[n], function(err, issue) {
+                            transformedIssues.push(convertToBugtrackItem(issue));
+                            next(err, issue);
+                        })
+                    }, function(err, issues) {
+                        if (err) {
+                            res.send(err)
+                        }
 
 
-                    var cargo = async.cargo(function(tasks, callback) {
-                        for (var i = 0; i < tasks.length; i++) {
+                        var cargo = async.cargo(function(tasks, callback) {
+                            for (var i = 0; i < tasks.length; i++) {
 
-                            var validationResult = checkImportRules(tasks[i]);
-                            if (validationResult.msg.substring(0, 5) === 'Error') {
-                                unImportedIssues.push(validationResult);
-                                finalResult.push(validationResult);
-                                if (finalResult.length === transformedIssues.length) {
-                                    updateDB(finalResult, unImportedIssues, _url, function(err, response) {
-                                                if (err) {
-                                                    return res.status(500).json(err)
-                                                }
-                                                return res.send(response)
-                                            })
-                                }
-                                callback();
-                            } else {
-                                insertIssueIntoBugtrack(tasks[i], req, res, function(err, result) {
-                                    if (err) {
-                                        return res.send(err)
-                                    }
-                                    //  console.log('result:', result);
-                                    finalResult.push(result)
-
-                                    // push unimported issues into an array
-                                    if (result.msg.substring(0, 5) === 'Error') {
-                                        delete result.bugtrackId;
-                                        unImportedIssues.push(result);
-                                    }
-
-                                    // console.log('finalResult:' + finalResult.length + 'transformedIssues.length:' + transformedIssues.length);
+                                var validationResult = checkImportRules(tasks[i]);
+                                if (validationResult.msg.substring(0, 5) === 'Error') {
+                                    unImportedIssues.push(validationResult);
+                                    finalResult.push(validationResult);
                                     if (finalResult.length === transformedIssues.length) {
-                                         console.log('responding from callback2');
+                                        updateDB(finalResult, unImportedIssues, _url, function(err, response) {
+                                            if (err) {
+                                                return res.status(500).json(err)
+                                            }
+                                            return res.send(response)
+                                        })
+                                    }
+                                    callback();
+                                } else {
+                                    insertIssueIntoBugtrack(tasks[i], req, res, function(err, result) {
+                                        if (err) {
+                                            return res.send(err)
+                                        }
+                                        //  console.log('result:', result);
+                                        finalResult.push(result)
+
+                                        // push unimported issues into an array
+                                        if (result.msg.substring(0, 5) === 'Error') {
+                                            delete result.bugtrackId;
+                                            unImportedIssues.push(result);
+                                        }
+
+                                        // console.log('finalResult:' + finalResult.length + 'transformedIssues.length:' + transformedIssues.length);
+                                        if (finalResult.length === transformedIssues.length) {
+                                            console.log('responding from callback2');
                                             console.log('unImportedIssues:', unImportedIssues);
                                             updateDB(finalResult, unImportedIssues, _url, function(err, response) {
                                                 if (err) {
@@ -170,53 +170,53 @@ exports.issues = function(req, res) {
                                                 return res.send(response)
                                             })
 
-                                         // return res.send(updateDB(finalResult, unImportedIssues, _url))
-                                    }
-                                    callback();
-                                });
+                                            // return res.send(updateDB(finalResult, unImportedIssues, _url))
+                                        }
+                                        callback();
+                                    });
+                                }
                             }
-                        }
 
-                    }, 1);
-                    transformedIssues.forEach(function(issue) {
-                        cargo.push(issue);
+                        }, 1);
+                        transformedIssues.forEach(function(issue) {
+                            cargo.push(issue);
+                        })
                     })
-                })
-            } // if end
-        }) // request end
+                } // if end
+            }) // request end
     } else {
         request(options, function(error, response, body) {
-            if (error) {
-                console.log(error);
-                return res.send(error);
-            }
+                if (error) {
+                    console.log(error);
+                    return res.send(error);
+                }
 
-            if (!error && response.statusCode === 200) {
-                var issues = JSON.parse(body).items
-                var finalResult = [];
-                async.times(issues.length, function(n, next) {
-                    getEventsAndComments(issues[n], function(err, issue) {
-                        if (_transform) {
-                            finalResult.push(convertToBugtrackItem(issue));
-                        } else {
-                            finalResult.push(issue);
+                if (!error && response.statusCode === 200) {
+                    var issues = JSON.parse(body).items
+                    var finalResult = [];
+                    async.times(issues.length, function(n, next) {
+                        getEventsAndComments(issues[n], function(err, issue) {
+                            if (_transform) {
+                                finalResult.push(convertToBugtrackItem(issue));
+                            } else {
+                                finalResult.push(issue);
+                            }
+                            next(err, issue);
+                        })
+                    }, function(err, issues) {
+                        if (err) {
+                            return res.status(500).json(err);
                         }
-                        next(err, issue);
-                    })
-                }, function(err, issues) {
-                    if (err) {
-                        return res.status(500).json(err);
-                    }
 
-                    return res.send({
-                        url: _url,
-                        //  time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
-                        count: finalResult.length,
-                        issues: finalResult
+                        return res.send({
+                            url: _url,
+                            //  time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
+                            count: finalResult.length,
+                            issues: finalResult
+                        })
                     })
-                })
-            } // if end
-        }) // request end
+                } // if end
+            }) // request end
     }
 
 
@@ -279,6 +279,18 @@ exports.issue = function(req, res) {
 
             if (_issueKind) {
                 item.kind = _issueKind;
+                if (item.kind.toLowerCase() === 'task' || item.kind.toLowerCase() === 'rfe') {
+                    delete item.clones;
+                    delete item.cloneOf;
+                    item.proceduralTasks = {
+                        'Requirements Task': [],
+                        'Functional Specification Task': [],
+                        'Test Specification Task': [],
+                        'Test Automation Task': [],
+                        'Documentation Task': []
+                    };
+                    item.subTasks = []
+                }
             } else {
                 var validationResult = checkImportRules(item);
                 if (validationResult.msg.substring(0, 5) === 'Error') {
@@ -393,7 +405,7 @@ function updateDB(finalResult, unImportedIssues, url, callback) {
                 })
             })
     } else {
-        return callback(null,{
+        return callback(null, {
             url: url,
             //    time_range: t2.toLocaleString() + ' - ' + t1.toLocaleString(),
             count: finalResult.length,
@@ -620,13 +632,13 @@ function getEventsAndComments(issue, callback) {
 
 function isBugExistsInBugtrack(bug, callback) {
     db.documents.query(
-        q.where(
-            q.parsedFrom('gh:' + bug.github.issueId + ' AND ' + 'ghp:' + bug.github.project,
-                q.parseBindings(
-                    q.range(q.pathIndex('/github/issueId'), q.bind('gh')),
-                    q.range(q.pathIndex('/github/project'), q.bind('ghp'))
-                ))
-        ))
+            q.where(
+                q.parsedFrom('gh:' + bug.github.issueId + ' AND ' + 'ghp:' + bug.github.project,
+                    q.parseBindings(
+                        q.range(q.pathIndex('/github/issueId'), q.bind('gh')),
+                        q.range(q.pathIndex('/github/project'), q.bind('ghp'))
+                    ))
+            ))
         .result(function(result) {
             //console.log('result', result);
 
@@ -690,24 +702,24 @@ function createNewBug(bug, req, callback) {
 
 // insert new task
 function createNewTask(task, req, callback) {
-    async.waterfall([
+        async.waterfall([
 
-        function getId(waterfallCallback) {
-            getNextId(req, waterfallCallback)
-        },
-        function insert(id, waterfallCallback) {
-            task.id = parseInt(id);
-            createTask(task, req, waterfallCallback);
-        }
-    ], function end(err, result) {
-        if (err) {
-            return callback(err)
-        }
-        console.log('create new Task', result);
-        return callback(null, result)
-    })
-}
-// insert new rfe
+            function getId(waterfallCallback) {
+                getNextId(req, waterfallCallback)
+            },
+            function insert(id, waterfallCallback) {
+                task.id = parseInt(id);
+                createTask(task, req, waterfallCallback);
+            }
+        ], function end(err, result) {
+            if (err) {
+                return callback(err)
+            }
+            console.log('create new Task', result);
+            return callback(null, result)
+        })
+    }
+    // insert new rfe
 function createNewRFE(rfe, req, callback) {
     async.waterfall([
 
@@ -732,9 +744,9 @@ function checkImportRules(issue) {
     // when issue kind is not set or set invalid label
     if ((typeof issue.kind) === 'undefined' && issue.kind.toLowerCase() !== 'bug' && issue.kind.toLowerCase() !== 'task' && issue.kind.toLowerCase() !== 'rfe') {
         return {
-            project:issue.github.project,
+            project: issue.github.project,
             githubId: issue.github.issueId,
-            issue_url:issue.github.url,
+            issue_url: issue.github.url,
             msg: 'Error: invalid kind. kind is ' + issue.kind
         }
     }
@@ -742,9 +754,9 @@ function checkImportRules(issue) {
     // when milestone is not set
     if (!issue.tofixin) {
         return {
-            project:issue.github.project,
+            project: issue.github.project,
             githubId: issue.github.issueId,
-            issue_url:issue.github.url,
+            issue_url: issue.github.url,
             msg: 'Error: no milestone'
         }
     }
