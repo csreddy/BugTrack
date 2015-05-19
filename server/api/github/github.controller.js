@@ -645,11 +645,20 @@ function isBugExistsInBugtrack(bug, callback) {
             if (result.length === 0) {
                 return callback(null, null)
             } else {
-                var _uri = result[0].uri
-                console.log('search result', _uri);
-                if (_uri) {
+                //var _uri = result[0].uri
+                var existingUris = _.pluck(result, 'uri')|| [ ];
+                console.log('existing uris:', existingUris);
+                if (existingUris.length > 0) {
                     console.log('bug exists');
-                    return callback(null, result[0].content)
+                    db.documents.remove({uri: existingUris}).result(
+                        function(response) {
+                        console.log(JSON.stringify(response));
+                          return callback(null, result[0].content)
+                    }, function(error) {
+                        console.log('error while deleting existing docs:', error);
+                    }
+                    );
+                    //return callback(null, result[0].content)
                 } else {
                     console.log('bug does not exist');
                     return callback(null, null);
@@ -817,18 +826,21 @@ function createBugtrackIssue(issue, req, callback) {
     options.headers = req.headers;
     switch (kind.toLowerCase()) {
         case 'bug':
+            issue.kind = 'Bug';
             options.uri = baseUri + '/api/bugs/new';
             options.json = {
                 'bug': issue
             };
             break;
         case 'task':
+            issue.kind = 'Task';
             options.uri = baseUri + '/api/tasks/new';
             options.json = {
                 'task': issue
             };
             break;
         case 'rfe':
+            issue.kind = 'RFE';
             options.uri = baseUri + '/api/rfes/new';
             options.json = {
                 'rfe': issue
@@ -1250,9 +1262,20 @@ function convertToBugtrackItem(githubIssue, callback) {
             endpoint: githubIssue.url
         }
     }
+    if (githubIssue.milestone) {
+        bugtrackItem.version = githubIssue.milestone.title;
+    }
 
-    console.log('KIND---', bugtrackItem.kind);
-    if (bugtrackItem.kind.toLowerCase() === 'task' || bugtrackItem.kind.toLowerCase() === 'rfe') {
+    if (bugtrackItem.status && bugtrackItem.status.toLowerCase() === 'ship') {
+        bugtrackItem.fixedin = bugtrackItem.tofixin;
+        bugtrackItem.assignTo = {
+                    "username": "nobody",
+                    "email": "nobody@marklogic.com",
+                    "name": "nobody nobody"
+                }
+    }
+
+    if (bugtrackItem.kind && (bugtrackItem.kind.toLowerCase() === 'task' || bugtrackItem.kind.toLowerCase() === 'rfe')) {
         delete bugtrackItem.clones;
         delete bugtrackItem.cloneOf;
         bugtrackItem.proceduralTasks = {

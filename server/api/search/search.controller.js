@@ -306,8 +306,7 @@ exports.search = function(req, res) {
             debug: true,
             queryPlan: true,
             metrics: true,
-            category: 'content',
-            view: 'facets'
+            categories: ['content']
         })
     )
     /*

@@ -539,7 +539,7 @@ exports.createSubTask = function(req, res) {
             db.transactions.open().result().then(function(response) {
                 transactionId = response.txid;
             }).then(function() {
-                console.log('write ' + subTaskUri);
+               // console.log('write ' + subTaskUri);
                 return db.documents.write({
                     uri: subTaskUri,
                     contentType: 'application/json',
@@ -583,7 +583,7 @@ exports.subtasks = function(req, res, next) {
             db.documents.read({
                 uris: [uri]
             }).result(function(document) {
-                console.log('document', document);
+               // console.log('document', document);
                 var subTasks = document[0].content.subTasks;
                 var subTaskDocUris = [];
                 if (subTasks.length > 0) {
