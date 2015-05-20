@@ -3,9 +3,9 @@ var dev =  {
   modules: "bugtrack-modules",
   host: "localhost",    // The database app server host
   port: 8003,           // By default port 8000 is enabled
-  user: "admin",       // A user with at least the rest-writer role
+  user: "bugtrack-admin",       // A user with at least the rest-writer role
   password: "admin", // Probably not your password
-  authType: "DIGEST"    // The default auth
+  authType: "application-level"    // The default auth
 }
 
 

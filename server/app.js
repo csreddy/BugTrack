@@ -66,7 +66,6 @@ app.use(flash());
 
 // authentication
 passport.serializeUser(function(user, done) {
-    log.info('serializeUser:', user);
     done(null, user.username);
 });
 
@@ -76,8 +75,7 @@ passport.deserializeUser(function(user, done) {
 
 
 process.on('uncaughtException', function(err) {
-    console.error('uncaughtException: ' + err.message);
-    console.error('ERROR', err.stack);
+    console.log('ERROR', JSON.stringify(err, null, 2));
     process.exit(1); // exit with error
 });
 
@@ -93,7 +91,7 @@ app.use('/v1/', function(req, res, next) {
             throw err;
         }
     }
-    var url = 'http://localhost:8003/v1' + req.url;
+    var url = req.protocol + '://' + req.headers.host +'/v1' + req.url;
     switch (req.method) {
         case 'GET':
             req.pipe(request(url, {

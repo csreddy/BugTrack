@@ -37,14 +37,14 @@ app.service('User', ['$http', '$location', 'Flash',
             login: function(userCredentials) {
                 return $http({
                     method: 'POST',
-                    url: '/auth/local/login',
+                    url: '/auth/ml_ldap/login',
                     data: userCredentials
                 });
             },
             logout: function() {
                 return $http({
                     method: 'GET',
-                    url: '/auth/local/logout',
+                    url: '/auth/ml_ldap/logout',
                 });
             },
             saveDefaultQuery: function(searchCriteria) {

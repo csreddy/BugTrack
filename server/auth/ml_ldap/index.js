@@ -6,7 +6,12 @@ var router = express.Router();
 
 // login
 router.post('/login', function(req, res, next) {
+    console.log("Login...", req.body.username);
     passport.authenticate('local', function(err, user, info) {
+        // console.log('err:', err);
+        // console.log('user:', user);
+        // console.log('info:', info);
+
         if (err) {
             return next(err);
         }
@@ -17,6 +22,7 @@ router.post('/login', function(req, res, next) {
         }
         req.logIn(user, function(err) {
             if (err) {
+                console.log(JSON.stringfy(err, null, 2));
                 return next(err);
             }
             console.log('from /login post', req.user);
