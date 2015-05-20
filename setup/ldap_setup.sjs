@@ -13,3 +13,6 @@ var sec = require("/MarkLogic/security.xqy");
         "",
 	    "",
     	"MD5")
+
+
+// IMORTANT: set internal security to 'false'

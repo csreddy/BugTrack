@@ -6,7 +6,7 @@ var sec = require("/MarkLogic/security.xqy");
 sec.createRole(
     "bugtrack-admin",
     "bugtrack admin role provides access to bugtrack configurtion settings",
-    ["rest-admin", "rest-reader", "eval"],
+    ["rest-admin", "rest-reader"],
     [],
     null)
 
