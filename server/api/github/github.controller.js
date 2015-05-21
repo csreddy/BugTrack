@@ -761,7 +761,7 @@ function checkImportRules(issue) {
     }
 
     // when milestone is not set
-    if (!issue.tofixin) {
+    if (!issue.tofixin && issue.status !== 'Closed') {
         return {
             project: issue.github.project,
             githubId: issue.github.issueId,

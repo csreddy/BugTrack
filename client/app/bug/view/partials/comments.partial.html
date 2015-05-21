@@ -27,6 +27,22 @@
                             <span class="label label-default">{{::value.from.level}}</span>
                         </dd>
                     </div>
+                    <div ng-switch-when="tofixin">
+                        <dt><i class="fa fa-gavel"></i> To Fix In:</dt>
+                        <dd>
+                            <span class="label label-danger">{{::value.to}}</span>
+                            <i class="fa  fa-long-arrow-left" ng-hide="value.from == '' || value.from == null"></i>
+                            <span class="label label-default">{{::value.from}}</span>
+                        </dd>
+                    </div>
+                    <div ng-switch-when="fixedin">
+                        <dt><i class="fa fa-check-square"></i> Fixed In:</dt>
+                        <dd>
+                            <span class="label label-danger">{{::value.to}}</span>
+                            <i class="fa  fa-long-arrow-left" ng-hide="value.from == '' || value.from == null"></i>
+                            <span class="label label-default">{{::value.from}}</span>
+                        </dd>
+                    </div>
 
                     <div ng-switch-default>
                         <dt>
@@ -34,12 +50,12 @@
                              <span ng-switch-when="category">
                                  <i class="fa fa-folder-open"></i>
                              </span>
-                              <span ng-switch-when="tofixin">
+                             <!--  <span ng-switch-when="tofixin">
                                <i class="fa fa-gavel"></i>
                              </span>
                              <span ng-switch-when="fixedin">
                               <i class="fa fa-check-square"></i>
-                             </span>
+                             </span> -->
                              <span ng-switch-when="platform">
                                  <i class="fa fa-laptop"></i>
                              </span>
