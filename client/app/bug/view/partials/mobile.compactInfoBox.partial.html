@@ -6,26 +6,46 @@
             </p>
         </div>
         <div class="panel-body">
-            <dl class="dl-horizontal">
-                <dt>Status</dt>
-                <dd>{{bug.status}}</dd>
-                <dt>Severity</dt>
-                <dd>{{bug.severity}}</dd>
-                <dt>Category</dt>
-                <dd>{{bug.category}}</dd>
-                <dt>Priority</dt>
-                <dd>{{bug.priority.level}}</dd>
-                <dt>Version</dt>
-                <dd>{{bug.version}}</dd>
-                <dt>To Fix In</dt>
-                <dd>{{bug.tofixin}}</dd>
-                <dt>Reported By</dt>
-                <dd>{{bug.submittedBy.name}}</dd>
-                <dt>Assigned To</dt>
-                <dd>{{bug.assignTo.name}}</dd>
-                <dt>Fixed In</dt>
-                <dd>{{bug.fixedin}}</dd>
-            </dl>
+        <table class="table table-striped table-condensed">
+            <tbody>
+                <tr>
+                    <td class="col-sm-1"><b>Status</b></td>
+                    <td class="col-sm-1"><span class="label bg-olive" style="font-size: smaller">{{bug.status}}</span></td>
+                </tr>
+                 <tr>
+                    <td class="col-sm-1"><b>Severity</b></td>
+                    <td class="col-sm-1"><span class="label bg-olive" style="font-size: smaller">{{bug.severity}}</span></td>
+                </tr>
+                 <tr>
+                    <td class="col-sm-1"><b>Category</b></td>
+                    <td class="col-sm-1"><span class="label bg-olive" style="font-size: smaller">{{bug.category}}</span></td>
+                </tr>
+                 <tr>
+                    <td class="col-sm-1"><b>Priority</b></td>
+                    <td class="col-sm-1"><span class="label bg-olive" style="font-size: smaller" ng-show="bug.priority.level">{{bug.priority.level}} - {{bug.priority.title}}</span></td>
+                </tr>
+                 <tr>
+                    <td class="col-sm-1"><b>Version</b></td>
+                    <td class="col-sm-1"><span class="label bg-olive" style="font-size: smaller">{{bug.version}}</span></td>
+                </tr>
+                 <tr>
+                    <td class="col-sm-1"><b>To Fix In</b></td>
+                    <td class="col-sm-1"><span class="label bg-olive" style="font-size: smaller">{{bug.tofixin}}</span></td>
+                </tr>
+                 <tr>
+                    <td class="col-sm-1"><b>Reported By</b></td>
+                    <td class="col-sm-1"><span class="label bg-olive" style="font-size: smaller">{{bug.submittedBy.name}}</span></td>
+                </tr>
+                <tr>
+                    <td class="col-sm-1"><b>Assigned To</b></td>
+                    <td class="col-sm-1"><span class="label bg-olive" style="font-size: smaller">{{bug.assignTo.name}}</span></td>
+                </tr>
+                <tr>
+                    <td class="col-sm-1"><b>Fixed In</b></td>
+                    <td class="col-sm-1"><span class="label bg-olive" style="font-size: smaller">{{bug.fixedin}}</span></td>
+                </tr>
+            </tbody>
+        </table>
             <p class="text-center">
                 <button type="button" class="btn btn-sm btn-danger" ng-click="showSidebar()"><i class="fa fa-columns"></i> Edit</button>
             </p>

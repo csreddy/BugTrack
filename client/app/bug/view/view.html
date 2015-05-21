@@ -128,11 +128,6 @@
                     <td colspan="" rowspan="">{{bug.memory}}</td>
                 </tr>
                 <tr>
-                    <td colspan="" rowspan="" class="hidden-md"><b>Reported on</b>
-                    </td>
-                    <td colspan="" rowspan="">{{bug.createdAt | date: 'medium'}}</td>
-                </tr>
-                <tr>
                     <td colspan="" rowspan="" class="hidden-md"><b>Subscribers</b>
                     </td>
                     <td colspan="" rowspan="">
@@ -143,6 +138,11 @@
                     <td colspan="" rowspan="" class="hidden-md"><b>Reported by</b>
                     </td>
                     <td colspan="" rowspan="">{{bug.submittedBy.name}}</td>
+                </tr>
+                  <tr>
+                    <td colspan="" rowspan="" class="hidden-md"><b>Reported on</b>
+                    </td>
+                    <td colspan="" rowspan="">{{bug.createdAt | date: 'medium'}}</td>
                 </tr>
                 <tr ng-show="bug.fixedAt">
                     <td colspan="" rowspan="" class="hidden-md"><b>Fixed on</b>

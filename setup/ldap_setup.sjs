@@ -10,8 +10,8 @@ var sec = require("/MarkLogic/security.xqy");
         "ldap://ldap.marklogic.com", 
         "OU=CORP,DC=marklogic,DC=com", 
         "sAMAccountName",
-        "",
-	    "",
+        "CN=Mark Space,OU=Role Accounts,OU=CORP,DC=marklogic,DC=com",
+	    "Ma^8s@S)",
     	"MD5")
 
 

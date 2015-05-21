@@ -275,7 +275,7 @@ function loadDoc(doc){
     var str = null;
     //print("===="+ JSON.stringify(doc))
     if(doc.kind.toString() === 'Bug'){
-        str = 'declareUpdate(); xdmp.documentInsert("/bug/" + newBug.id + "/" + newBug.id + ".json", newBug, null, ["bugs", newBug.submittedBy.username])'
+        str = 'declareUpdate(); xdmp.documentInsert("/bug/" + newBug.id + "/" + newBug.id + ".json", newBug, [xdmp.permission("bugtrack-admin", "read"), xdmp.permission("bugtrack-admin", "update"), xdmp.permission("bugtrack-user", "read"), xdmp.permission("bugtrack-user", "update"),xdmp.permission("admin", "read"), xdmp.permission("admin", "update")], ["bugs", newBug.submittedBy.username])'
         xdmp.eval(str, {newBug: doc}, {database: xdmp.database('bugtrack')});
         xdmp.log("loaded /bug/" +doc.id + '/' + doc.id+ '.json' )
         total++;
@@ -284,14 +284,14 @@ function loadDoc(doc){
     // for Task
     if(doc.kind.toString() === 'Task'){
       //  xdmp.log('TASK')
-        str = 'declareUpdate(); xdmp.documentInsert("/task/" + newTask.id + "/" + newTask.id + ".json", newTask, null, ["tasks", newTask.submittedBy.username])'
+        str = 'declareUpdate(); xdmp.documentInsert("/task/" + newTask.id + "/" + newTask.id + ".json", newTask, [xdmp.permission("bugtrack-admin", "read"), xdmp.permission("bugtrack-admin", "update"), xdmp.permission("bugtrack-user", "read"), xdmp.permission("bugtrack-user", "update"),xdmp.permission("admin", "read"), xdmp.permission("admin", "update")], ["tasks", newTask.submittedBy.username])'
         xdmp.eval(str, {newTask: doc}, {database: xdmp.database('bugtrack')});
         xdmp.log("loaded /task/" +doc.id + '/' + doc.id+ '.json' )
         total++;
     }
     // for RFE
     if(doc.kind.toString() === 'RFE'){
-        // current bugtrack does not have a straignfwd way for creating RFE, you create a task first and then set it as RFE
+        // current bugtrack does not have a straightfwd way for creating RFE, you create a task first and then set it as RFE
         // when this script converts the rfe into json it leaves a copy of task json created earlier
         // so this will remove the task json from db
         try{
@@ -302,7 +302,7 @@ function loadDoc(doc){
             // xdmp.log(e.toString());
         }
 
-        str = 'declareUpdate(); xdmp.documentInsert("/rfe/" + newRfe.id + "/" + newRfe.id + ".json", newRfe, null, ["rfes", newRfe.submittedBy.username]);'
+        str = 'declareUpdate(); xdmp.documentInsert("/rfe/" + newRfe.id + "/" + newRfe.id + ".json", newRfe, [xdmp.permission("bugtrack-admin", "read"), xdmp.permission("bugtrack-admin", "update"), xdmp.permission("bugtrack-user", "read"), xdmp.permission("bugtrack-user", "update"),xdmp.permission("admin", "read"), xdmp.permission("admin", "update")], ["rfes", newRfe.submittedBy.username]);'
         xdmp.eval(str, {newRfe: doc}, {database: xdmp.database('bugtrack')});
         xdmp.log("loaded /rfe/" +doc.id + '/' + doc.id+ '.json' )
         total++;
@@ -472,6 +472,8 @@ function convertBug(doc) {
             tickets: tkts,
             customerImpact: bug['support-customer-impact'] || 'N/A'
         }
+      
+          
         newbug.tags = [newbug.category, newbug.submittedBy.username] // TODO
         newbug.changeHistory = [];
         var comments = bug['comment-log'].comment || [];
@@ -486,12 +488,36 @@ function convertBug(doc) {
                 files: [],
                 show: false
             };
+            newbug.updatedAt = change.time;
+          
             if (comment['old-status']) {
                 change.change.status = {
                     from: capitalize(comment['old-status']) || '',
                     to: capitalize(comment['new-status']) || ''
                 }
                 change.show = true;
+              // set timestamps on the bug for status change
+              switch(comment['new-status']){
+                case 'test':
+                  newbug.fixedAt = change.time;
+                  newbug.fixedBy = change.updatedBy;
+                  break;
+                case 'fix':
+                  if(comment['old-status'] === 'test' ){
+                       newbug.sentBackToFixAt = change.time
+                     }
+                  break;
+                 case 'ship':
+                 newbug.shippedAt = change.time;
+                  newbug.shippedBy = change.updatedBy
+                  break;
+                  case 'closed':
+                  newbug.closedAt = change.time;
+                  newbug.closedBy = change.updatedBy
+                  break;
+                default:
+                  // do nothing
+                     }
             }
 
             if (comment['new-to-be-fixed-in-version']) {
@@ -730,12 +756,36 @@ function convertTask(doc) {
                 files: [],
                 show: false
             };
+          newtask.updatedAt = change.time;
             if (comment['old-status']) {
                 change.change.status = {
                     from: capitalize(comment['old-status']) || '',
                     to: capitalize(comment['new-status']) || ''
                 }
                 change.show = true;
+               // set timestamps on the bug for status change
+              switch(comment['new-status']){
+                case 'test':
+                  newtask.fixedAt = change.time;
+                  newtask.fixedBy = change.updatedBy;
+                  break;
+                case 'fix':
+                  if(comment['old-status'] === 'test' ){
+                       newtask.sentBackToFixAt = change.time
+                     }
+                  break;
+                 case 'ship':
+                 newtask.shippedAt = change.time;
+                  newtask.shippedBy = change.updatedBy
+                  break;
+                  case 'closed':
+                  newtask.closedAt = change.time;
+                  newtask.closedBy = change.updatedBy
+                  break;
+                default:
+                  // do nothing
+                     }
+
             }
 
             if (comment['new-to-be-fixed-in-version']) {
@@ -1007,6 +1057,6 @@ if(uri){
 }
 
 
-//bulkTransform(11, 20)
+bulkTransform(30000, 30100)
 xdmp.log(msg)
 msg;

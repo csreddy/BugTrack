@@ -138,6 +138,8 @@ exports.new = function(req, res) {
         );
         console.log('done\n');
         return res.send(200); 
+    }, function(error) {
+        return res.status(error.statusCode).json({error: error.body.errorResponse.messageCode + ':' + error.body.errorResponse.message});
     });
 
     for (var file in attachments) {
