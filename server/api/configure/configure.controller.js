@@ -47,9 +47,20 @@ exports.update = function(req, res) {
         }
         if (req.body.operation === 'delete') {
             for (var i = 0; i < req.body.items.length; i++) {
-                (req.body.category === 'groups') ? operations.push(p.remove(req.body.category + "[ value eq '" + req.body.items[i] + "']")) :
+                if (req.body.category === 'groups') {
+                    operations.push(p.remove(req.body.category + "[ value eq '" + req.body.items[i] + "']"))
+                } else if (req.body.category === 'users') {
+                    operations.push(p.remove("/users[username eq '" + req.body.items[i] + "']"));
+                } else {
                     operations.push(p.remove(req.body.category + "[. eq '" + req.body.items[i] + "']"));
+                }
+
+                // (req.body.category === 'groups') ? operations.push(p.remove(req.body.category + "[ value eq '" + req.body.items[i] + "']")) :
+                //     operations.push(p.remove(req.body.category + "[. eq '" + req.body.items[i] + "']"));
             }
+        }
+        if (req.body.items.length === 0) {
+            return res.status(400).json({error: 'Select at least one item to delete'})
         }
 
         db.documents.patch({
@@ -60,14 +71,15 @@ exports.update = function(req, res) {
                 message: 'config updated'
             })
         }, function(error) {
-            res.send(error.statusCode, error);
+            console.error(JSON.stringify(error, null, 2));
+            res.send(error.statusCode, {error: error.body.errorResponse.messageCode +':'+ error.message});
         })
     } else {
         // res.send(500, {
         //     message: 'cannot update config with empty value'
         // });
         res.status(500).send({
-            message: 'cannot update config with empty value'
+            error: 'cannot update config with empty value'
         });
 
     }
@@ -140,7 +152,7 @@ exports.adduserstogroup = function(req, res) {
 
 
 exports.removeusersfromgroup = function(req, res) {
-  //  console.log('removeusersfromgroup:', JSON.stringify(req.body));
+  console.log('removeusersfromgroup:', JSON.stringify(req.body));
     var operations = [];
     if (req.body.users.length > 0) {
         for (var i = 0; i < req.body.users.length; i++) {
@@ -152,12 +164,17 @@ exports.removeusersfromgroup = function(req, res) {
                         operationStr += (j === 0) ? "groups[label eq \"" + ancestors[0] + "\"]" : "/children[label eq \"" + ancestors[j] + "\"]";
                         if (j === ancestors.length - 1) operationStr += "/children[label eq \"" + req.body.users[i].parent + "\"]";
                     }
-                } else {
-                    operationStr += operationStr + "groups[label eq \"" + req.body.users[i].parent + "\"]";
-                }
+                } 
 
-                operationStr = operationStr + "/children[label eq \"" + req.body.users[i].label + "\"]"
-                //console.log('operationStr', operationStr);
+                    if (req.body.users[i].children) {
+                        operationStr += operationStr + "groups[label eq \"" + req.body.users[i].children[0].parent + "\"]";
+                        operationStr = operationStr + "/children[label eq \"" + req.body.users[i].children[0].label + "\"]"
+                    } else{
+                        operationStr += operationStr + "groups[label eq \"" + req.body.users[i].parent + "\"]";
+                        operationStr = operationStr + "/children[label eq \"" + req.body.users[i].label + "\" and ./value/username eq \""+ req.body.users[i].value.username +"\"]"    
+                    }
+                    
+                console.log('operationStr', operationStr);
                 operations.push(p.remove(operationStr));
             }
         }
@@ -170,7 +187,7 @@ exports.removeusersfromgroup = function(req, res) {
                     message: 'users removed'
                 })
             }, function(error) {
-                res.status(error.statusCode).json(error)
+                res.status(error.statusCode).json({error: error.body.errorResponse.messageCode + ':' + error.message})
             })
         }
 

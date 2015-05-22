@@ -4,10 +4,11 @@
  <tabset class="nav-tabs-custom">
     <tab ng-repeat="tab in tabs" active="tab.active" disable="tab.disabled" style="cursor:pointer;" select="selectTab(tab.hash)">
     <tab-heading>
-    <i class="fa" ng-class="{'fa-github': tab.title == 'GitHub', 'fa-cogs': tab.title == 'Field Options'}"></i> <b>{{tab.title}}</b>
+    <i class="fa" ng-class="{'fa-github': tab.title == 'GitHub', 'fa-cogs': tab.title == 'Field Options', 'fa-users': tab.title == 'Users'}"></i> <b>{{tab.title}}</b>
     </tab-heading>
         <div ng-if="tab.title === 'Field Options' " ng-include="'app/configure/partials/options.partial.html'"></div> 
         <div  ng-if="tab.title === 'GitHub' " ng-include="'app/configure/partials/github.partial.html'"></div>      
+        <div  ng-if="tab.title === 'Users' " ng-include="'app/configure/partials/users.partial.html'"></div>      
     </tab>
   </tabset>
 

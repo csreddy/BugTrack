@@ -1,41 +1,6 @@
 <div class="container-fluid">
     <legend>Configure Bug Field Options</legend>
     <div class="row">
-        <!-- Users -->
-        <!-- <div class="col-md-3">
-            <form class="form-horizontal">
-                <fieldset>
-                    
-                    <label>Users ({{config.users.length}})</label>
-
-                    
-                    <div class="form-group">
-                        <select ng-model="users" id="users" name="users" class="form-control " multiple="multiple" style="height: 500px;">
-                            <option ng-repeat="user in config.users" value="{{user}}">
-                                {{user.name}} - {{user.email}} </option>
-                        </select>
-                    </div>
-
-                    
-                    <div class="form-group">
-                        <input ng-model="newuseremail" id="newuseremail" name="newuseremail" type="text" placeholder="email" class="form-control input-md">
-                        <br>
-                        <input ng-model="newusername" id="newusername" name="newusername" type="text" placeholder="full name" class="form-control input-md">
-                        <br>
-                        <input ng-model="newuserusername" id="newuserusername" name="newuserusername" type="text" placeholder=" username" class="form-control input-md">
-                        <span class="help-block">help</span>
-                    </div>
-
-                    
-                    <div class="form-group">
-                        <button ng-click="addUser(newuseremail, newusername, newuserusername)" id="addnewuser" name="addnewuser" class="btn btn-sm btn-success">Add</button>
-                        <button ng-click="deleteUser(users)" id="deleteuser" name="deleteuser" class="btn btn-sm btn-danger">Delete</button>
-                    </div>
-
-                </fieldset>
-            </form>
-        </div> -->
-
         <div class="col-md-2" id="kind">
             <form class="form-horizontal">
                 <fieldset>
@@ -52,7 +17,6 @@
                     <!-- Text input -->
                     <div class="form-group">
                         <input ng-model="newItem.kind" id="newkind" name="newkind" type="text" placeholder="new kind" class="form-control input-md">
-                        <span class="help-block">help</span>
                     </div>
 
                     <!-- Button (Double) -->
@@ -82,7 +46,6 @@
                     <!-- Text input -->
                     <div class="form-group">
                         <input ng-model="newItem.platform" id="newplatform" name="newplatform" type="text" placeholder="new platform" class="form-control input-md">
-                        <span class="help-block">help</span>
                     </div>
 
                     <!-- Button (Double) addPlatform(newplatform) -->
@@ -112,7 +75,6 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <input ng-model="newItem.status" id="newstatus" name="newstatus" type="text" placeholder="new status" class="form-control input-md">
-                        <span class="help-block">help</span>
                     </div>
 
                     <!-- Button (Double) -->
@@ -140,7 +102,6 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <input ng-model="newItem.category" id="newcategory" name="newcategory" type="text" placeholder="new category" class="form-control input-md">
-                        <span class="help-block">help</span>
                     </div>
 
                     <!-- Button (Double) -->
@@ -169,7 +130,6 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <input ng-model="newItem.version" id="newversion" name="newversion" type="text" placeholder="new version" class="form-control input-md">
-                        <span class="help-block">help</span>
                     </div>
 
                     <!-- Button (Double) -->
@@ -199,7 +159,6 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <input ng-model="newItem.tofixin" id="newtofixin" name="newtofixin" type="text" placeholder="new fix-in version" class="form-control input-md">
-                        <span class="help-block">help</span>
                     </div>
 
                     <!-- Button (Double) -->
@@ -228,7 +187,6 @@
                     <!-- Text input -->
                     <div class="form-group">
                         <input ng-model="newItem.severity" id="newseverity" name="newseverity" type="text" placeholder="new severity" class="form-control input-md">
-                        <span class="help-block">help</span>
                     </div>
 
                     <!-- Button (Double) -->
@@ -242,7 +200,7 @@
         </div>
     </div>
   <legend>Users and Groups</legend>
-    <div class="col-md-1" id="group">
+    <div class="col-xs-2" id="group">
         <form class="form-horizontal">
             <fieldset>
                 <!-- Form Name -->
@@ -259,7 +217,6 @@
                 <!-- Text input -->
                 <div class="form-group">
                     <input ng-model="newItem.group" id="newgroup" name="newgroup" type="text" placeholder="new group" class="form-control input-md">
-                    <span class="help-block">help</span>
                 </div>
 
                 <!-- Button (Double) -->
@@ -298,7 +255,6 @@
                 <!-- Select input -->
                 <div class="form-group">
                     <select name="grouplist" id="grouplist" ng-model="groupname" ng-options="group.value for group in config.groups" class="form-control"></select>
-                    <span class="help-block">help</span>
                 </div>
 
                 <!-- Button (Double) -->
@@ -319,7 +275,7 @@
             <small><a href="" ng-click="collapse()" class="pull-right" style="padding-top:5px;"><span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>Collapse</a></small>
         </div>
         <br>
-            <div ivh-treeview="config.groups" id="groupsTree" ivh-treeview-filter="searchGroupTree" ivh-treeview-expand-to-depth="1" ivh-treeview-validate="false" ivh-treeview-change-handler="selectUsers2"></div>
+            <div ivh-treeview="config.groups" id="groupsTree" ivh-treeview-filter="searchGroupTree" ivh-treeview-expand-to-depth="0" ivh-treeview-validate="false" ivh-treeview-change-handler="selectUsers2"></div>
         <br>
         <div class="form-group">
             <button ng-click="removeUsersFromGroup(node, isSelected, tree)" id="deletegroup" name="deletegroup" class="btn btn-sm btn-danger">Remove Group Members</button>

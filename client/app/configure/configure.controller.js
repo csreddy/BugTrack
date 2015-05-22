@@ -5,24 +5,24 @@ angular.module('config.controllers', ['ivh.treeview'])
         function($scope, $location, Config, config, issues, Flash, ngProgress) {
             $location.$$search = null;
             $scope.config = config.data;
+            $scope.config.users = _.sortBy($scope.config.users, 'name');
             $scope.unImportedIssues = _.sortByAll(issues.data['github_issues'], ['project', 'githubId']);
 
             $scope.tabs = [{
-                    title: 'Field Options',
-                    content: '',
-                    hash: 'options'
-                }, {
-                    title: 'GitHub',
-                    content: '',
-                    hash: 'github'
-                }
-                /*{
-                title: 'Others',
+                title: 'Field Options',
                 content: '',
-                hash: 'others'
-            }*/
-            ];
+                hash: 'options'
+            }, {
+                title: 'GitHub',
+                content: '',
+                hash: 'github'
+            }, {
+                title: 'Users',
+                content: '',
+                hash: 'users'
+            }];
 
+            // this is for groups
             $scope.users = {
                 selectedChildren: []
             };
@@ -39,44 +39,23 @@ angular.module('config.controllers', ['ivh.treeview'])
                 case 'github':
                     $scope.tabs[1].active = true;
                     break;
-                    /* case 'others':
+                case 'users':
                     $scope.tabs[2].active = true;
-                    break;*/
+                    break;
                 default:
                     $scope.tabs[0].active = true;
             }
 
-            $scope.addUser = function(email, name, username) {
-                var newuser = {
-                    email: email,
-                    name: name,
-                    username: username
-                };
-                $scope.config.users.push(newuser);
-                Config.update($scope.config);
-                $scope.newuseremail = $scope.newusername = $scope.newuserusername = '';
-
+            $scope.newUser = {
+                email: '',
+                name: '',
+                username: '',
+                githubUsername: ''
             };
 
-
-            $scope.deleteUser = function(usersIndex) {
-                console.log('users', usersIndex);
-                for (var i = 0; i < usersIndex.length; i++) {
-                    $scope.config.users.splice(usersIndex[i], 1);
-                }
-                Config.update($scope.config);
-            };
-
-            // $scope.deleteUser = function(users) {
-            //     console.log('users', users);
-            //     for (var i = 0; i < users.length; i++) {
-            //         while ($scope.config.users.indexOf(users[i]) !== -1) {
-            //             $scope.config.users.splice($scope.config.users.indexOf(users[i]), 1);
-            //         }
-            //     }
-            //     bugConfig.updateConfiguration($scope.config);
-            // };
-
+            $scope.$watch('selectedUsers', function() {
+                console.log('selected: ', $scope.selectedUsers);
+            }, true);
 
             $scope.updateConfigOptions = function(category, items, operation) {
                 Config.update(category, items, operation).then(function() {
@@ -84,6 +63,9 @@ angular.module('config.controllers', ['ivh.treeview'])
                     // if (category === 'groups' && operation === 'delete') {
                     //     msg = 'Removed group';
                     // }
+                    if (category === 'users' && operation === 'add') {
+                        msg = (operation === 'add') ? 'Added <b>' + items.name + '</b> to ' + category : 'Removed  users from ' + category;
+                    }
 
                     Flash.addAlert('success', msg);
                     $scope.newItem = {}; // clear input field after success
@@ -94,7 +76,7 @@ angular.module('config.controllers', ['ivh.treeview'])
                 }, function(error) {
                     // Flash.addAlert('danger', error.statusText + ': Oops! Could not update config. Please try again.');
 
-                    Flash.addAlert('danger', error.data.message);
+                    Flash.addAlert('danger', error.data.error);
                 });
 
             };
@@ -113,24 +95,25 @@ angular.module('config.controllers', ['ivh.treeview'])
 
             // get all selected items from the groups tree
             function getSelectedChildren2(tree, selectedItems, ancestors) {
+                console.log('TREE:', tree);
                 var selectedChildren = selectedItems || [];
                 for (var i = 0; i < tree.length; i++) {
                     tree[i].ancestors = ancestors || [];
-                    // console.log('tree[i]:', tree[i]);
-                    if (tree[i].children && tree[i].children.length > 0) {
-
-                        if (tree[i].parent) tree[i].ancestors.push(tree[i].parent);
-                        if (tree[i].selected) {
-                            tree[i].ancestors.pop();
-                            selectedChildren.push(tree[i]);
-                        } else {
+                    //  console.log('tree:', tree[i].label);
+                    console.log('tree-selected:', tree[i].selected);
+                    if (tree[i].hasOwnProperty('selected') && !tree[i].selected && tree[i].children) {
+                            if (tree[i].parent) {
+                                tree[i].ancestors.push(tree[i].parent);
+                               // tree.ancestors = _(tree[i].ancestors).reverse().value();
+                            }
+                            console.log('calling recursion...');
                             getSelectedChildren2(tree[i].children, selectedChildren, tree[i].ancestors);
-                        }
-                    } else {
+                    }
                         if (tree[i].selected) {
+                            console.log('child selected');
+                           // tree[i].ancestors.pop();
                             selectedChildren.push(tree[i]);
                         }
-                    }
                 }
                 return selectedChildren;
             }
@@ -181,38 +164,38 @@ angular.module('config.controllers', ['ivh.treeview'])
             };
 
             $scope.importIssue = function(project, id, event) {
-              //  event.currentTarget.parentElement.parentElement.cells[event.currentTarget.parentElement.parentElement.cells.length-2].textContent = '';
-               // event.currentTarget.text = 'Retrying...';
-                 ngProgress.start();
+                //  event.currentTarget.parentElement.parentElement.cells[event.currentTarget.parentElement.parentElement.cells.length-2].textContent = '';
+                // event.currentTarget.text = 'Retrying...';
+                ngProgress.start();
                 Config.importSingleGithibIssue(project, id).success(function(response) {
                     ngProgress.complete();
-                //    event.currentTarget.style.pointerEvents = 'none';
-                 //   event.currentTarget.style.cursor = 'default';                    
+                    //    event.currentTarget.style.pointerEvents = 'none';
+                    //   event.currentTarget.style.cursor = 'default';                    
                     if (response.msg.substring(0, 5) === 'Error') {
-                   //     event.currentTarget.style.color = 'red';
-                     //   event.currentTarget.text = 'Failed';
-                       // event.currentTarget.parentElement.parentElement.cells[event.currentTarget.parentElement.parentElement.cells.length-2].textContent = response.msg;
-                        Flash.addAlert('danger', 'Could not import #'+id + ' because of error: ' + response.msg);
+                        //     event.currentTarget.style.color = 'red';
+                        //   event.currentTarget.text = 'Failed';
+                        // event.currentTarget.parentElement.parentElement.cells[event.currentTarget.parentElement.parentElement.cells.length-2].textContent = response.msg;
+                        Flash.addAlert('danger', 'Could not import #' + id + ' because of error: ' + response.msg);
                     } else {
-                     //   event.currentTarget.style.color = 'green';
-                     //   event.currentTarget.text = 'Imported';
-                     //   event.currentTarget.parentElement.parentElement.cells[event.currentTarget.parentElement.parentElement.cells.length-2].textContent = response.msg + ' with id ' + response.bugtrackId;
-                     Flash.addAlert('success', 'Successfully imported with bugtrack Id '+ response.bugtrackId);
+                        //   event.currentTarget.style.color = 'green';
+                        //   event.currentTarget.text = 'Imported';
+                        //   event.currentTarget.parentElement.parentElement.cells[event.currentTarget.parentElement.parentElement.cells.length-2].textContent = response.msg + ' with id ' + response.bugtrackId;
+                        Flash.addAlert('success', 'Successfully imported with bugtrack Id ' + response.bugtrackId);
                     }
                 }, function(error) {
-                      ngProgress.complete();
+                    ngProgress.complete();
                     Flash.addAlert('danger', 'Oops! Something went wrong. Reload page and try again');
                 });
             };
 
             $scope.importAs = function(project, id, kind) {
-                 ngProgress.start();
+                ngProgress.start();
                 Config.importSingleGithibIssue(project, id, kind).success(function(response) {
-                                ngProgress.complete();      
+                    ngProgress.complete();
                     if (response.msg.substring(0, 5) === 'Error') {
-                        Flash.addAlert('danger', 'Could not import #'+id + ' because of error: ' + response.msg);
+                        Flash.addAlert('danger', 'Could not import #' + id + ' because of error: ' + response.msg);
                     } else {
-                         Flash.addAlert('success', 'Successfully imported with bugtrack Id '+ response.bugtrackId);
+                        Flash.addAlert('success', 'Successfully imported with bugtrack Id ' + response.bugtrackId);
                     }
                     Config.getUnImportedIssues().success(function(response) {
                         $scope.unImportedIssues = _.sortByAll(response['github_issues'], ['project', 'githubId']);
@@ -222,7 +205,7 @@ angular.module('config.controllers', ['ivh.treeview'])
                         Flash.addAlert('danger', 'Oh snap! Could not retrive GitHub issues');
                     });
                 }, function(error) {
-                      ngProgress.complete();
+                    ngProgress.complete();
                     Flash.addAlert('danger', 'Oops! Something went wrong. Reload page and try again');
                 });
             };
@@ -232,11 +215,11 @@ angular.module('config.controllers', ['ivh.treeview'])
                 //console.log('event', event)
                 event.currentTarget.disabled = true;
                 event.currentTarget.innerHTML = "<i class='fa fa-spinner'></i> Importing...";
-               // ngProgress.start();
+                // ngProgress.start();
                 Config.importGithubIssues(project).success(function(response) {
-                     event.currentTarget.disabled = false;
-                     event.currentTarget.innerHTML = "<i class='fa fa-github'></i> Import";
-                   // ngProgress.complete();
+                    event.currentTarget.disabled = false;
+                    event.currentTarget.innerHTML = "<i class='fa fa-github'></i> Import";
+                    // ngProgress.complete();
                     Flash.addAlert('success', 'Import completed');
                     $scope.importedIssues = _.sortByAll(response.issues, ['msg', 'githubId']);
                     Config.getUnImportedIssues().success(function(response) {
@@ -247,9 +230,9 @@ angular.module('config.controllers', ['ivh.treeview'])
                     });
 
                 }).error(function(error) {
-                 //   ngProgress.complete();
+                    //   ngProgress.complete();
                     event.currentTarget.innerHTML = "<i class='fa fa-github'></i> Import";
-                     event.currentTarget.disabled = false;
+                    event.currentTarget.disabled = false;
                     Flash.addAlert('danger', 'Oops! Something went wront while importing.' + error);
                 });
             };
