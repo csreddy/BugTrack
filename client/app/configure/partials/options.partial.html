@@ -230,7 +230,7 @@
     </div>
 
 
-    <div class="col-md-3" id="users">
+    <div class="col-md-4" id="users">
         <form class="form-horizontal">
             <fieldset>
                 <!-- Form Name -->
@@ -242,13 +242,15 @@
                     <input type="search" ng-model="searchUser" class="form-control" placeholder="search user/group">
                     <br>
                     <select ng-model="users" id="users" name="users" class="form-control " multiple="multiple" style="height: 500px;">
-                        <optgroup label="Groups">
+                       <!--  <optgroup label="Groups">
                             <option ng-repeat="group in config.groups | filter:searchUser" value="{{group.value}}">{{group.value}}</option>
                         </optgroup>
                         <optgroup label="Users">
                             <option ng-repeat="user in config.users | filter:searchUser" value="{{user}}">
                                 {{user.name}} - {{user.email}} </option>
-                        </optgroup>
+                        </optgroup> -->
+                        <option ng-repeat="user in config.users | filter:searchUser" value="{{user}}">
+                                {{user.name}} - {{user.email}} </option>
                     </select>
                 </div>
 
@@ -267,7 +269,7 @@
         </form>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
         <label>Group Members ({{config.groups.length}})</label>
         <div class="form-group">
             <input type="search" ng-model="searchGroupTree" class="form-control" placeholder="search group">

@@ -105,7 +105,8 @@ exports.adduserstogroup = function(req, res) {
                     // when a user is add to a  group, update all groups that contain this group as child
                     operations.push(p.insert("children[label eq '" + req.body.group + "']/array-node('children')", 'last-child', user));
                 } catch (e) {
-                    // when group is added to another group
+                     return res.status(400).json({error: "Cannot make group of groups"})
+                    /*// when group is added to another group
                     var groupName = req.body.users[i];
                     var groups = document[0].content.groups;
                     // console.log('groups', groups);
@@ -123,7 +124,8 @@ exports.adduserstogroup = function(req, res) {
                     operations.push(p.insert("groups[value ='" + req.body.group + "']/array-node('children')", 'last-child', group))
                     // when a group is add to another  group, update all groups that contain this group as child
                     operations.push(p.insert("children[label eq '" + req.body.group + "']/array-node('children')", 'last-child', group));
-                }
+                */
+               }
             }
 
             if (operations.length > 0) {
@@ -154,26 +156,19 @@ exports.adduserstogroup = function(req, res) {
 exports.removeusersfromgroup = function(req, res) {
   console.log('removeusersfromgroup:', JSON.stringify(req.body));
     var operations = [];
-    if (req.body.users.length > 0) {
-        for (var i = 0; i < req.body.users.length; i++) {
-            if (req.body.users[i].parent !== req.body.users[i].label) {
-                var ancestors = req.body.users[i].ancestors;
-                var operationStr = '';
-                if (ancestors.length > 0) {
-                    for (var j = 0; j < ancestors.length; j++) {
-                        operationStr += (j === 0) ? "groups[label eq \"" + ancestors[0] + "\"]" : "/children[label eq \"" + ancestors[j] + "\"]";
-                        if (j === ancestors.length - 1) operationStr += "/children[label eq \"" + req.body.users[i].parent + "\"]";
-                    }
-                } 
-
-                    if (req.body.users[i].children) {
-                        operationStr += operationStr + "groups[label eq \"" + req.body.users[i].children[0].parent + "\"]";
-                        operationStr = operationStr + "/children[label eq \"" + req.body.users[i].children[0].label + "\"]"
-                    } else{
-                        operationStr += operationStr + "groups[label eq \"" + req.body.users[i].parent + "\"]";
-                        operationStr = operationStr + "/children[label eq \"" + req.body.users[i].label + "\" and ./value/username eq \""+ req.body.users[i].value.username +"\"]"    
-                    }
-                    
+    var items = [];
+    console.log('BODY', req.body.users);
+    if (req.body.users[0].children) {
+        items = req.body.users[0].children;
+    } else {
+        items = req.body.users;
+    }
+    if (items.length > 0) {
+        for (var i = 0; i < items.length; i++) {
+            //console.log('req.body.users[i].children', req.body.users[i].children[i]);
+            if (items[i].parent !== items[i].label) {
+                var operationStr = "groups[label eq \"" + items[i].parent + "\"]";
+                operationStr = operationStr + "/children[label eq \"" +items[i].label + "\" and ./value/username eq \""+ items[i].value.username +"\"]"    
                 console.log('operationStr', operationStr);
                 operations.push(p.remove(operationStr));
             }

@@ -1,41 +1,38 @@
 <div class="container-fluid">
     <legend>Users</legend>
     <div class="row">
-
-
         <div class="col-md-3 col-xs-offset-1" id="newuser">
             <form class="form-horizontal">
                 <fieldset>
-                 <label>Add New User</label>
-                     <div class="form-group">
-                     <label for="">Name </label>
+                    <label>Add New User</label>
+                    <div class="form-group">
+                        <label for="">Name </label>
                         <input ng-model="newUser.name" id="name" name="name" type="text" placeholder="email" class="form-control input-md">
-                        </div>
-                        <div class="form-group">
-                         <label for="">Email </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email </label>
                         <input ng-model="newUser.email" id="email" name="email" type="email" placeholder="full name" class="form-control input-md">
-                        </div>
-                        <div class="form-group">
-                         <label for="">Username </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Username </label>
                         <input ng-model="newUser.username" id="ghUsername" name="ghUsername" type="text" placeholder=" username" class="form-control input-md">
-                        </div>
-                        <div class="form-group">
-                         <label for="">GitHub Username </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="">GitHub Username </label>
                         <input ng-model="newUser.githubUsername" id="githubUsername" name="githubUsername" type="text" placeholder="github username" class="form-control input-md">
                     </div>
                     <div class="form-group">
                         <button ng-click="updateConfigOptions('users',newUser, 'add')" id="addnewuser" name="addnewuser" class="btn btn-sm btn-success center-block"><i class="fa fa-plus-circle"></i> Add</button>
                     </div>
-
                 </fieldset>
             </form>
         </div>
-                <div class="col-md-3" id="users">
-        <form class="form-horizontal">
+        <div class="col-md-3" id="users">
+            <form class="form-horizontal">
                 <fieldset>
                     <label>Users ({{config.users.length}})</label>
                     <div class="form-group">
-                    <input ng-model="searchUser" type="text" name="" value="" placeholder="search user" class="form-control"> </div>
+                        <input ng-model="searchUser" type="text" name="" value="" placeholder="search user" class="form-control"> </div>
                     <div class="form-group">
                         <select name="assignTo" id="assignTo" ng-model="selectedUsers" ng-options="user.username as user.name group by user.name[0] for user in config.users | filter: searchUser" class="form-control" multiple style="height: 500px;">
                             <option value="" selected></option>
@@ -51,4 +48,11 @@
                 </fieldset>
             </form>
         </div>
-</div>
+        <div class="col-md-3" id="userInfo">
+            <div class="form-horizontal">
+            <fieldset>
+                <label>User Info</label>   
+                </fieldset>
+            </div>
+        </div>
+    </div>

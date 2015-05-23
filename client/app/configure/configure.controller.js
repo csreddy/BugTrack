@@ -89,7 +89,7 @@ angular.module('config.controllers', ['ivh.treeview'])
                     });
 
                 }, function(error) {
-                    Flash.addAlert('danger', error.statusText + ': Oops! Could not add user(s) to the group. Please try again.');
+                    Flash.addAlert('danger', error.statusText + ': Oops! Could not add user(s) to the group.' + error.data.error);
                 });
             };
 
