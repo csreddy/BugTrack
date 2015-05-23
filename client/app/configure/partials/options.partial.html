@@ -199,7 +199,7 @@
             </form>
         </div>
     </div>
-  <legend>Users and Groups</legend>
+  <legend>Users</legend>
     <div class="col-xs-2" id="group">
         <form class="form-horizontal">
             <fieldset>
@@ -211,7 +211,7 @@
                     <input type="search" ng-model="searchGroup" class="form-control" placeholder="search group">
                     <span class="fornav"><i class="icon-search"></i></span>
                     <br>
-                    <select name="grouplist" id="grouplist" ng-model="grouplist" ng-change="" ng-options="group.label as group.value for group in config.groups | filter:searchGroup" class="form-control" multiple="multiple"></select>
+                    <select name="grouplist" id="grouplist" ng-model="grouplist" ng-options="group.label as group.value for group in config.groups | filter:searchGroup" class="form-control" multiple="multiple"></select>
                 </div>
 
                 <!-- Text input -->
@@ -235,24 +235,14 @@
             <fieldset>
                 <!-- Form Name -->
                 <label>Users ({{config.users.length}})</label>
-
-
-
                 <div class="form-group">
                     <input type="search" ng-model="searchUser" class="form-control" placeholder="search user/group">
-                    <br>
-                    <select ng-model="users" id="users" name="users" class="form-control " multiple="multiple" style="height: 500px;">
-                       <!--  <optgroup label="Groups">
-                            <option ng-repeat="group in config.groups | filter:searchUser" value="{{group.value}}">{{group.value}}</option>
-                        </optgroup>
-                        <optgroup label="Users">
-                            <option ng-repeat="user in config.users | filter:searchUser" value="{{user}}">
-                                {{user.name}} - {{user.email}} </option>
-                        </optgroup> -->
-                        <option ng-repeat="user in config.users | filter:searchUser" value="{{user}}">
-                                {{user.name}} - {{user.email}} </option>
-                    </select>
                 </div>
+                <div class="form-group">
+                     <select name="usersForGroup" id="usersForGroup" ng-model="usersForGroup" ng-options="user as user.name group by user.name[0] for user in config.users | filter: searchUser" class="form-control" multiple style="height: 400px;">
+                        </select>
+                </div>
+              <!--   user.username as user.name group by user.name[0] for user in config.users -->
 
                 <!-- Select input -->
                 <div class="form-group">
@@ -261,8 +251,7 @@
 
                 <!-- Button (Double) -->
                 <div class="form-group">
-                    <button ng-click="addUsersToGroup(groupname.value, users)" id="adduser" name="adduser" class="btn btn-sm btn-success"><i class="fa fa-plus-circle-circle"></i> Add</button>
-                    <button ng-click="removeUsersFromGroup(groupname.value, users)" id="deleteuser" name="deleteuser" class="btn btn-sm btn-danger"><i class="fa fa-minus-circle"></i> Delete</button>
+                    <button ng-click="addUsersToGroup(groupname.value, usersForGroup)" id="adduserToGroup" name="adduserToGroup" class="btn btn-sm btn-success center-block"><i class="fa fa-plus-circle"></i> Add</button>
                 </div>
 
             </fieldset>
@@ -280,7 +269,7 @@
             <div ivh-treeview="config.groups" id="groupsTree" ivh-treeview-filter="searchGroupTree" ivh-treeview-expand-to-depth="0" ivh-treeview-validate="false" ivh-treeview-change-handler="selectUsers2"></div>
         <br>
         <div class="form-group">
-            <button ng-click="removeUsersFromGroup(node, isSelected, tree)" id="deletegroup" name="deletegroup" class="btn btn-sm btn-danger">Remove Group Members</button>
+            <button ng-click="removeUsersFromGroup(node, isSelected, tree)" id="deletegroup" name="deletegroup" class="btn btn-sm btn-danger"><i class="fa fa-minus-circle"></i> Remove Group Members</button>
         </div>
 
     </div>

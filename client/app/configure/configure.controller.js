@@ -27,7 +27,6 @@ angular.module('config.controllers', ['ivh.treeview'])
                 selectedChildren: []
             };
 
-
             $scope.selectTab = function(tabPath) {
                 $location.hash(tabPath);
             };
@@ -53,9 +52,6 @@ angular.module('config.controllers', ['ivh.treeview'])
                 githubUsername: ''
             };
 
-            $scope.$watch('selectedUsers', function() {
-                console.log('selected: ', $scope.selectedUsers);
-            }, true);
 
             $scope.updateConfigOptions = function(category, items, operation) {
                 Config.update(category, items, operation).then(function() {

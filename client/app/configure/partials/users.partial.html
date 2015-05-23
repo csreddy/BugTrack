@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <input ng-model="searchUser" type="text" name="" value="" placeholder="search user" class="form-control"> </div>
                     <div class="form-group">
-                        <select name="assignTo" id="assignTo" ng-model="selectedUsers" ng-options="user.username as user.name group by user.name[0] for user in config.users | filter: searchUser" class="form-control" multiple style="height: 500px;">
+                        <select name="assignTo" id="assignTo" ng-model="selectedUsers" ng-options="user.username as user.name group by user.name[0] for user in config.users | filter: searchUser" class="form-control" multiple style="height: 230px;">
                             <option value="" selected></option>
                         </select>
                         <!--  <select ng-model="users" id="users" name="users" class="form-control " multiple="multiple" style="height: 500px;">
