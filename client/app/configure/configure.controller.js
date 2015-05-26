@@ -243,6 +243,7 @@ angular.module('config.controllers', ['ivh.treeview'])
 
 
             $scope.createUser = function(user) {
+                ngProgress.start();
                 user.createdAt = new Date();
                 user.modifiedAt = new Date();
                 user.savedQueries = {
@@ -255,6 +256,7 @@ angular.module('config.controllers', ['ivh.treeview'])
                 };
 
                 User.create(user).then(function() {
+                        ngProgress.complete();
                         $scope.newUser = null;
                         Flash.addAlert('success', 'Added <b>' + user.name + '</b>')
                         Config.get().then(function(response) {
@@ -265,12 +267,14 @@ angular.module('config.controllers', ['ivh.treeview'])
                         });
                     },
                     function(error) {
+                        ngProgress.complete();
                         Flash.addAlert('danger', 'Oops! Could not add user.' + error)
                     });
             };
 
 
             $scope.removeUser = function(user) {
+               ngProgress.start();
                 // when mulitiple user are selcted then get only the last selected user info
                 if (user instanceof Array && user.length > 1) {
                     return Flash.addAlert('info', 'You can delete only one user at a time');
@@ -278,6 +282,7 @@ angular.module('config.controllers', ['ivh.treeview'])
                     user = user[0];
                 }
                 User.removeUser(user.username).then(function() {
+                    ngProgress.complete();
                     Flash.addAlert('success', 'Removed <b>'+ user.name + '</b>');
                     Config.get().then(function(response) {
                             $scope.config = response.data;
@@ -286,6 +291,7 @@ angular.module('config.controllers', ['ivh.treeview'])
                             return;
                         });
                 }, function(error) {
+                    ngProgress.complete();
                     Flash.addAlert('danger', 'Could not remove user. '+ error);
                 });
             };
