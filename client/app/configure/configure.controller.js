@@ -244,6 +244,7 @@ angular.module('config.controllers', ['ivh.treeview'])
 
             $scope.createUser = function(user) {
                 ngProgress.start();
+                user.name = capitalize(user.name);
                 user.createdAt = new Date();
                 user.modifiedAt = new Date();
                 user.savedQueries = {
@@ -274,7 +275,7 @@ angular.module('config.controllers', ['ivh.treeview'])
 
 
             $scope.removeUser = function(user) {
-               ngProgress.start();
+                ngProgress.start();
                 // when mulitiple user are selcted then get only the last selected user info
                 if (user instanceof Array && user.length > 1) {
                     return Flash.addAlert('info', 'You can delete only one user at a time');
@@ -283,16 +284,16 @@ angular.module('config.controllers', ['ivh.treeview'])
                 }
                 User.removeUser(user.username).then(function() {
                     ngProgress.complete();
-                    Flash.addAlert('success', 'Removed <b>'+ user.name + '</b>');
+                    Flash.addAlert('success', 'Removed <b>' + user.name + '</b>');
                     Config.get().then(function(response) {
-                            $scope.config = response.data;
-                        }, function(error) {
-                            console.log(error);
-                            return;
-                        });
+                        $scope.config = response.data;
+                    }, function(error) {
+                        console.log(error);
+                        return;
+                    });
                 }, function(error) {
                     ngProgress.complete();
-                    Flash.addAlert('danger', 'Could not remove user. '+ error);
+                    Flash.addAlert('danger', 'Could not remove user. ' + error);
                 });
             };
 
@@ -300,7 +301,7 @@ angular.module('config.controllers', ['ivh.treeview'])
                 // when mulitiple user are selcted then get only the last selected user info
                 if (user instanceof Array) {
                     user = _.last(user);
-                } 
+                }
 
                 User.getUserInfo(user.username).then(function(user) {
                     $scope.userInfo = user.data;
@@ -309,5 +310,12 @@ angular.module('config.controllers', ['ivh.treeview'])
                 });
             };
 
+            function capitalize(str) {
+                return str.replace(/(?:^|\s)\S/g, function(a) {
+                    return a.toUpperCase();
+                });
+            }
         }
+
+
     ]);
