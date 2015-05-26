@@ -4,7 +4,7 @@ angular.module('rfe.controllers')
     .controller('viewRFECtrl', ['$scope', '$location', '$timeout', '$q', '$sce','RFE', 'Task','SubTasks','config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
 
         function($scope, $location, $timeout, $q, $sce, RFE, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress) {
-            $location.search({}); // clear query params from url when navigating from search page
+            $location.search({}).replace(); // clear query params from url when navigating from search page
             $scope.changes = {};
             $scope.updatedBy = currentUser || {};
             $scope.showSubscribe = true;

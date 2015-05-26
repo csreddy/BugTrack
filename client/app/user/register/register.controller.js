@@ -3,7 +3,7 @@
 angular.module('user.controllers')
  .controller('registerCtrl', ['$scope', '$location', '$window', 'Flash', 'User', 'Config',
     function($scope, $location, $window, Flash, User, Config) {
-
+        $location.search({}).replace(); // clear query params from url
         $scope.config = {};
         Config.get().then(function(response) {
             $scope.config = response.data;

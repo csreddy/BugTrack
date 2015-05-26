@@ -18,7 +18,7 @@ angular.module('fullstackApp')
                         return User.getCurrentUserInfo();
                     }
                 ],
-               /* bugId: ['Bug',
+                /* bugId: ['Bug',
                     function(Bug) {
                         return Bug.count();
                     }
@@ -26,26 +26,27 @@ angular.module('fullstackApp')
                 */
             }
         })
-        .when('/bug/:id', {
-        	templateUrl: 'app/bug/view/view.html',
-        	controller: 'viewCtrl',
-            reloadOnSearch: false,
-        	resolve: {
-        		config: ['Config',
-                    function(Config) {
-                        return Config.get();
-                    }
-                ],
-                currentUser: ['User',
-                   function(User) {
-                        return User.getCurrentUserInfo();
-                    }
-                ],
-                clones: ['Bug', '$location', function(Bug, $location) {
-                      var id = $location.url().replace(/\/bug\//, '');
-                      return Bug.getClones(id);
-                }]
-            }
-        });
+            .when('/bug/:id', {
+                templateUrl: 'app/bug/view/view.html',
+                controller: 'viewCtrl',
+                reloadOnSearch: false,
+                resolve: {
+                    config: ['Config',
+                        function(Config) {
+                            return Config.get();
+                        }
+                    ],
+                    currentUser: ['User',
+                        function(User) {
+                            return User.getCurrentUserInfo();
+                        }
+                    ],
+                    clones: ['Bug', '$location',
+                        function(Bug, $location) {
+                            var id = $location.url().replace(/\/bug\//, '');
+                            return Bug.getClones(id);
+                        }
+                    ]
+                }
+            });
     });
-

@@ -487,6 +487,7 @@ app.controller('searchCtrl', ['$rootScope', '$scope', '$location', '$filter', '$
         $scope.$on('$locationChangeSuccess', function() {
             console.log($location.url());
             if ($location.$$path !== '/home') {
+               // $location.search({}).replace();
                 return;
             }
 

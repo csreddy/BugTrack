@@ -3,6 +3,7 @@
 angular.module('rfe.controllers', ['angularFileUpload', 'textAngular', 'ngProgress'])
     .controller('newRFECtrl', ['$scope','$q', '$location', 'config', 'currentUser', 'RFE', 'Flash', 'ngProgress',
         function($scope, $q, $location, config, currentUser, RFE, Flash, ngProgress) {
+            $location.search({}).replace();
             $scope.rfe = {};
             $scope.rfe.parent = {};
             $scope.rfe.period = {

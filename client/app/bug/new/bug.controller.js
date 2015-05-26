@@ -4,7 +4,7 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
     .controller('newBugCtrl', ['$scope', '$location', 'Bug', 'Config', 'Flash', 'User', 'config', 'currentUser', 'ngProgress',
 
         function($scope, $location, Bug, Config, Flash, User, config, currentUser, ngProgress) {
-            $location.search({}); // clear query params from url when navigating from search page
+            $location.search({}).replace(); // clear query params from url when navigating from search page
 
             // accordion interactions   
             $scope.accordion = {

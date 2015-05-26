@@ -4,7 +4,7 @@ angular.module('bug.controllers')
     .controller('viewCtrl', ['$scope', '$location', '$window', '$sce', 'Bug', 'clones', 'config', 'Flash', 'currentUser', 'modalService', '$q', 'ngProgress',
 
         function($scope, $location, $window, $sce, Bug, clones, config, Flash, currentUser, modalService, $q, ngProgress) {
-            $location.search({}); // clear query params from url when navigating from search page
+            $location.search({}).replace(); // clear query params from url when navigating from search page
             $scope.changes = {};
             $scope.updatedBy = {
                 username: currentUser.username,

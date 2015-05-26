@@ -3,7 +3,7 @@
 angular.module('config.controllers', ['ivh.treeview'])
     .controller('configCtrl', ['$scope', '$location', 'Config', 'config', 'issues', 'Flash', 'ngProgress',
         function($scope, $location, Config, config, issues, Flash, ngProgress) {
-            $location.$$search = null;
+            $location.search({}).replace();
             $scope.config = config.data;
             $scope.config.users = _.sortBy($scope.config.users, 'name');
             $scope.unImportedIssues = _.sortByAll(issues.data['github_issues'], ['project', 'githubId']);

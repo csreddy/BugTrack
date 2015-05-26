@@ -3,6 +3,7 @@
 angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgress'])
     .controller('newTaskCtrl', ['$scope', '$q', '$location', 'config', 'currentUser', 'Task', 'RFE', 'Flash', 'ngProgress',
         function($scope, $q, $location, config, currentUser, Task, RFE, Flash, ngProgress) {
+           $location.search({}).replace();
             $scope.task = {};
             $scope.task.parent = {};
             $scope.task.period = {

@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('report.controllers', [])
-    .controller('reportCtrl', ['$scope', 'Task', 'config', 'Flash',
-        function($scope, Task, config, Flash) {
+    .controller('reportCtrl', ['$scope', '$location', 'Task', 'config', 'Flash',
+        function($scope, $location, Task, config, Flash) {
+            $location.search({}).replace(); // clear query params from url
             $scope.title = 'Reports';
 
             $scope.config = config.data;
