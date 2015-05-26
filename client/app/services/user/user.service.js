@@ -17,13 +17,25 @@ app.service('User', ['$http', '$location', 'Flash',
             isExist: function(user) {
 
             },
-            getUsers: function() {
-
-            },
             getInfo: function() {
                 return $http({
                     method: 'GET',
                     url: '/userinfo'
+                });
+            },
+
+            getUserInfo : function(username) {
+                return $http({
+                    method: 'GET',
+                    url: '/api/users/' + username + '/info'
+                });
+            },
+
+            removeUser: function(username) {
+                 return $http({
+                    method: 'PUT',
+                    url: '/api/users/' + username + '/remove',
+                    data: {}
                 });
             },
             getCurrentUserInfo: function() {

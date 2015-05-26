@@ -100,11 +100,6 @@ app.config(function($routeProvider, $locationProvider) {
          $location.hash();
           $anchorScroll.yOffset = 80;
          $anchorScroll();  
-
-        if ($location.path().indexOf('/home') === -1) {
-            console.log($location.search());
-            $location.$$search = {}; // reset url query params when in not in search page
-        }
     });
     // Do the same with $routeChangeError
 })

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('config.controllers', ['ivh.treeview'])
-    .controller('configCtrl', ['$scope', '$location', 'Config', 'config', 'issues', 'Flash', 'ngProgress',
-        function($scope, $location, Config, config, issues, Flash, ngProgress) {
+    .controller('configCtrl', ['$scope', '$location', 'Config', 'config', 'User', 'issues', 'Flash', 'ngProgress',
+        function($scope, $location, Config, config, User, issues, Flash, ngProgress) {
             $location.search({}).replace();
             $scope.config = config.data;
             $scope.config.users = _.sortBy($scope.config.users, 'name');
@@ -52,6 +52,14 @@ angular.module('config.controllers', ['ivh.treeview'])
                 githubUsername: ''
             };
 
+            /*  var randomNum = new Date().getMilliseconds();
+            $scope.newUser = {
+                username: 'user-' + randomNum,
+                name: 'user-' + randomNum,
+                email: 'user-' + randomNum + '@gmail.com',
+                githubUsername: 'gh_user' + randomNum,
+            };*/
+
 
             $scope.updateConfigOptions = function(category, items, operation) {
                 Config.update(category, items, operation).then(function() {
@@ -98,18 +106,18 @@ angular.module('config.controllers', ['ivh.treeview'])
                     //  console.log('tree:', tree[i].label);
                     console.log('tree-selected:', tree[i].selected);
                     if (tree[i].hasOwnProperty('selected') && !tree[i].selected && tree[i].children) {
-                            if (tree[i].parent) {
-                                tree[i].ancestors.push(tree[i].parent);
-                               // tree.ancestors = _(tree[i].ancestors).reverse().value();
-                            }
-                            console.log('calling recursion...');
-                            getSelectedChildren2(tree[i].children, selectedChildren, tree[i].ancestors);
-                    }
-                        if (tree[i].selected) {
-                            console.log('child selected');
-                           // tree[i].ancestors.pop();
-                            selectedChildren.push(tree[i]);
+                        if (tree[i].parent) {
+                            tree[i].ancestors.push(tree[i].parent);
+                            // tree.ancestors = _(tree[i].ancestors).reverse().value();
                         }
+                        console.log('calling recursion...');
+                        getSelectedChildren2(tree[i].children, selectedChildren, tree[i].ancestors);
+                    }
+                    if (tree[i].selected) {
+                        console.log('child selected');
+                        // tree[i].ancestors.pop();
+                        selectedChildren.push(tree[i]);
+                    }
                 }
                 return selectedChildren;
             }
@@ -234,6 +242,66 @@ angular.module('config.controllers', ['ivh.treeview'])
             };
 
 
+            $scope.createUser = function(user) {
+                user.createdAt = new Date();
+                user.modifiedAt = new Date();
+                user.savedQueries = {
+                    default: {
+                        assignTo: user.username,
+                        status: ['-Closed', '-External', '-Will not fix'],
+                        pageLength: 100,
+                        page: 1
+                    }
+                };
+
+                User.create(user).then(function() {
+                        $scope.newUser = null;
+                        Flash.addAlert('success', 'Added <b>' + user.name + '</b>')
+                        Config.get().then(function(response) {
+                            $scope.config = response.data;
+                        }, function(error) {
+                            console.log(error);
+                            return;
+                        });
+                    },
+                    function(error) {
+                        Flash.addAlert('danger', 'Oops! Could not add user.' + error)
+                    });
+            };
+
+
+            $scope.removeUser = function(user) {
+                // when mulitiple user are selcted then get only the last selected user info
+                if (user instanceof Array && user.length > 1) {
+                    return Flash.addAlert('info', 'You can delete only one user at a time');
+                } else {
+                    user = user[0];
+                }
+                User.removeUser(user.username).then(function() {
+                    Flash.addAlert('success', 'Removed <b>'+ user.name + '</b>');
+                    Config.get().then(function(response) {
+                            $scope.config = response.data;
+                        }, function(error) {
+                            console.log(error);
+                            return;
+                        });
+                }, function(error) {
+                    Flash.addAlert('danger', 'Could not remove user. '+ error);
+                });
+            };
+
+            $scope.getUserInfo = function(user) {
+                // when mulitiple user are selcted then get only the last selected user info
+                if (user instanceof Array) {
+                    user = _.last(user);
+                } 
+
+                User.getUserInfo(user.username).then(function(user) {
+                    $scope.userInfo = user.data;
+                }, function(error) {
+                    Flash.addAlert('danger', 'Oops! Could not get user info. ' + error);
+                });
+            };
 
         }
     ]);

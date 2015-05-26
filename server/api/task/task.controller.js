@@ -35,7 +35,7 @@ exports.count = function(req, res) {
         .slice(1, 1)
         .withOptions({
             debug: true,
-            categories: 'metadata'
+            categories: ['metadata']
         })
     ).result(function(response) {
         // console.log(response);
@@ -673,9 +673,11 @@ exports.getParentAndSubTasks = function(req, res) {
     var parents = [];
     var subtasks = [];
     if (version === 'all') {
-        criteria = [q.collection('tasks'), q.scope('parent', q.value('taskId', ''))]
+        //criteria = [q.collection('tasks'), q.scope('parent', q.value('parentId', ''))]
+        criteria = [q.collection('tasks')]
     } else {
-        criteria = [q.collection('tasks'), q.value('version', version), q.scope('parent', q.value('taskId', ''))]
+        //criteria = [q.collection('tasks'), q.value('version', version), q.scope('parent', q.value('parentId', ''))]
+        criteria = [q.collection('tasks'), q.value('version', version)]
     }
 
     function formatDoc(result) {
@@ -706,22 +708,25 @@ exports.getParentAndSubTasks = function(req, res) {
             .withOptions({
                 debug: true,
                 metrics: true,
-                category: 'content'
+                categories: ['content']
             })
         ).result(function(result) {
+            
             result.shift() // remove metadata info from the result set
+            console.log('result', result);
             for (var i = 0; i < result.length; i++) {
                 parents.push(formatDoc(result[i]))
             }
-
+            console.log('parents:', parents);
             async.each(parents, function(parent, callback) {
                 var uris = []
                 for (var i = 0; i < parent.subTasks.length; i++) {
+                   console.log('i', i);
                     uris.push('/task/' + parent.subTasks[i] + '/' + parent.subTasks[i] + '.json')
                 };
 
                 // for each parent, get their corresponding sub tasks
-
+                console.log('uris', uris);
                 db.documents.read({
                     uris: uris
                 }).result(function(result) {

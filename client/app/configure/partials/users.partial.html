@@ -22,7 +22,7 @@
                         <input ng-model="newUser.githubUsername" id="githubUsername" name="githubUsername" type="text" placeholder="github username" class="form-control input-md">
                     </div>
                     <div class="form-group">
-                        <button ng-click="updateConfigOptions('users',newUser, 'add')" id="addnewuser" name="addnewuser" class="btn btn-sm btn-success center-block"><i class="fa fa-plus-circle"></i> Add</button>
+                        <button ng-click="createUser(newUser)" id="addnewuser" name="addnewuser" class="btn btn-sm btn-success center-block"><i class="fa fa-plus-circle"></i> Add</button>
                     </div>
                 </fieldset>
             </form>
@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <input ng-model="searchUser" type="text" name="" value="" placeholder="search user" class="form-control"> </div>
                     <div class="form-group">
-                        <select name="assignTo" id="assignTo" ng-model="selectedUsers" ng-options="user.username as user.name group by user.name[0] for user in config.users | filter: searchUser" class="form-control" multiple style="height: 230px;">
+                        <select name="assignTo" id="assignTo" ng-model="selectedUsers" ng-options="user as user.name group by user.name[0] for user in config.users | filter: searchUser"  ng-change="getUserInfo(selectedUsers)" class="form-control" multiple style="height: 230px;">
                             <option value="" selected></option>
                         </select>
                         <!--  <select ng-model="users" id="users" name="users" class="form-control " multiple="multiple" style="height: 500px;">
@@ -43,16 +43,26 @@
                         </select> -->
                     </div>
                     <div class="form-group">
-                        <button ng-click="updateConfigOptions('users', selectedUsers, 'delete')" id="deleteuser" name="deleteuser" class="btn btn-sm btn-danger center-block"><i class="fa fa-minus-circle"></i> Delete</button>
+                        <button ng-click="removeUser(selectedUsers)" id="deleteuser" name="deleteuser" class="btn btn-sm btn-danger center-block"><i class="fa fa-minus-circle"></i> Delete</button>
                     </div>
                 </fieldset>
             </form>
         </div>
         <div class="col-md-3" id="userInfo">
             <div class="form-horizontal">
-            <fieldset>
-                <label>User Info</label>   
-                </fieldset>
+                <label>User Info</label>  
+               <p class="text-center" ng-hide="userInfo"><em>no user selected</em></p>
+                <dl class="dl-horizontal" ng-if="userInfo">
+                    <dt>Name:</dt>
+                    <dd>{{userInfo.name}}</dd>
+                    <dt>Email:</dt>
+                    <dd>{{userInfo.email}}</dd>
+                    <dt>Username:</dt>
+                    <dd>{{userInfo.username}}</dd>
+                    <dt>GitHub Username</dt>
+                    <dd>{{userInfo.githubUsername}}</dd>
+                </dl>
+               
             </div>
         </div>
     </div>

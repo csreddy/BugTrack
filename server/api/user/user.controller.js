@@ -45,7 +45,7 @@ exports.saveDefaultQuery = function(req, res) {
 exports.saveQuery = function(req, res) {
     var uri = '/users/' + req.user + '.json';
     console.log('saveQuery', req.body);
-    
+
     var update = [];
     var queryObj = new Object();
     if (req.body.name === 'default') {
@@ -55,16 +55,16 @@ exports.saveQuery = function(req, res) {
         }
         queryObj['default'].query.page = 1 // always set to 1 
         update.push(p.replace('/node("savedQueries")/node("default")', queryObj.default))
-    } else{
+    } else {
         queryObj[req.body.name] = {
-                description: req.body.description,
-                query: req.body.query
-            }
+            description: req.body.description,
+            query: req.body.query
+        }
         queryObj[req.body.name].query.page = 1 // always set to 1 
-         update.push(p.insert('/node("savedQueries")', 'last-child', queryObj));   
+        update.push(p.insert('/node("savedQueries")', 'last-child', queryObj));
     }
 
-    db.documents.patch(uri,update).result(function(response) {
+    db.documents.patch(uri, update).result(function(response) {
         res.status(204).json(response);
     }, function(error) {
         res.status(error.statusCode).json(error);
@@ -73,8 +73,8 @@ exports.saveQuery = function(req, res) {
 
 
 exports.deleteQuery = function(req, res) {
-     var uri = '/users/' + req.user + '.json';
-      db.documents.patch(uri, p.remove('/node("savedQueries")/node("'+req.body.name+'")')).result(function(response) {
+    var uri = '/users/' + req.user + '.json';
+    db.documents.patch(uri, p.remove('/node("savedQueries")/node("' + req.body.name + '")')).result(function(response) {
         res.status(204).json(response);
     }, function(error) {
         res.status(error.statusCode).json(error);
@@ -108,15 +108,73 @@ exports.create = function(req, res) {
         }).result()
     }).then(function() {
         return db.transactions.commit(transactionId).result(function() {
-            res.status(202).json({
+            return res.status(202).json({
                 message: 'Created user'
             });
         }, function(error) {
-            res.status(error.statusCode).json(error.body.errorResponse)
+            return res.status(error.statusCode).json(error.body.errorResponse)
         });
     }).catch(function(error) {
         db.transactions.rollback(transactionId);
         log.info(JSON.stringify(error));
-        res.send(error.statusCode).json(error);
+        return res.status(error.statusCode).json(error);
     });
+};
+
+exports.remove = function(req, res) {
+    res.locals.errors = req.flash();
+    var uri = '/users/' + req.params.username + '.json'
+    var transactionId = null;
+    db.transactions.open().result().then(function(response) {
+        transactionId = response.txid
+    }).then(function() {
+        return db.documents.remove({
+            uri: uri,
+            txid: transactionId
+        }).result();
+    }).then(function() {
+        return db.documents.patch({
+            uri: 'config.json',
+            operations: [p.remove("/users[username eq '" + req.params.username + "']")],
+            txid: transactionId
+        }).result()
+    }).then(function() {
+        return db.transactions.commit(transactionId).result(function() {
+            return res.status(200).json({
+                message: 'Removed user'
+            });
+        }, function(error) {
+            return res.status(error.statusCode).json(error.body.errorResponse)
+        });
+    }).catch(function(error) {
+        db.transactions.rollback(transactionId);
+        console.log(JSON.stringify(error, null, 2));
+        return res.status(error.statusCode).json(error);
+    });
+};
+
+
+exports.getUserInfo = function(req, res) {
+    db.documents.probe('/users/' + req.params.username + '.json').result(function(user) {
+        if (!user.exists) {
+            return res.status(400).json({
+                error: 'user does not exist in the database'
+            })
+        }
+        db.documents.read('/users/' + req.params.username + '.json').result(function(response) {
+            if (response[0].content) {
+                return res.send(response[0].content)
+            } else {
+                return res.status(400).json({
+                    error: 'user info not available'
+                })
+            }
+        }, function(error) {
+            console.log(JSON.stringify(error, null, 2));
+            return res.status(error.statusCode).json(error)
+        })
+
+    })
+
+
 };
