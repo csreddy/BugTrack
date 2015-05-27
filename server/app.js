@@ -75,8 +75,9 @@ passport.deserializeUser(function(user, done) {
 
 
 process.on('uncaughtException', function(err) {
-    console.log('ERROR', JSON.stringify(err, null, 2));
-    process.exit(1); // exit with error
+   // console.log('ERROR', JSON.stringify(err, null, 2));
+     console.log('uncaughtException', err);
+   // process.exit(1); // exit with error
 });
 
 // api calls

@@ -146,7 +146,7 @@ exports.new = function(req, res) {
         console.log(attachments[file]);
         var doc = {
             uri: '/bug/' + id + '/attachments/' + attachments[file].originalname,
-            category: 'content',
+            categories: ['content'],
             contentType: attachments[file].mimetype,
             content: fs.createReadStream(attachments[file].path)
         };
@@ -588,17 +588,17 @@ exports.unsubscribe = function(req, res) {
 
 exports.clone = function(req, res) {
     console.log('cloning ');
-    console.log('parent', req.body.parent);
-    console.log('clone', req.body.clone);
+   // console.log('parent', req.body.parent);
+   // console.log('clone', req.body.clone);
     var bugs = [{
         uri: '/bug/' + req.body.parent.id + '/' + req.body.parent.id + '.json',
-        category: 'content',
+        categories: ['content'],
         contentType: 'application/json',
         collections: ['bugs', req.body.parent.submittedBy.username],
         content: req.body.parent
     }, {
         uri: '/bug/' + req.body.clone.id + '/' + req.body.clone.id + '.json',
-        category: 'content',
+        categories: ['content'],
         contentType: 'application/json',
         collections: ['bugs', req.body.clone.submittedBy.username],
         content: req.body.clone
@@ -621,23 +621,24 @@ exports.clones = function(req, res, next) {
     db.documents.probe(uri).result(function(response) {
         if (response.exists) {
             db.documents.read({
-                uris: [uri]
+                uris: uri,
+                categories:['content']
             }).result(function(document) {
                 var clones = []
                 if(document[0].content.clones){
                     document[0].content.clones.sort();
                 }
                 var cloneDocUris = [];
-                if (clones.length > 0) {
-                    for (var i = 0; i < clones.length; i++) {
-                        cloneDocUris.push('/bug/' + clones[i] + '/' + clones[i] + '.json')
+                if (document[0].content.clones.length > 0) {
+                    for (var i = 0; i < document[0].content.clones.length; i++) {
+                        cloneDocUris.push('/bug/' + document[0].content.clones[i] + '/' + document[0].content.clones[i] + '.json')
                     }
                 }
-
                 if (cloneDocUris.length > 0) {
                     db.documents.read({
                         uris: cloneDocUris
                     }).result(function(documents) {
+                       
                         clones = [];
                         if (documents.length > 0) {
                             for (var i = 0; i < documents.length; i++) {
@@ -656,20 +657,20 @@ exports.clones = function(req, res, next) {
                             }
                         }
 
-                        res.status(200).json(clones)
+                       return res.status(200).json(clones)
                     }, function(error) {
-                        res.status(error.statusCode).json(error)
+                        return res.status(error.statusCode).json(error)
                     })
                 } else {
-                    res.status(200).json([])
+                    return res.status(200).json([])
                 }
 
             }, function(error) {
-                res.status(error.statusCode).json(error);
+                return res.status(error.statusCode).json(error);
             })
 
         } else {
-            res.status(200).json({
+           return res.status(200).json({
                 message: 'bug ' + req.params.id + ' does not exist'
             })
         }
