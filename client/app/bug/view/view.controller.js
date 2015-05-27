@@ -310,8 +310,8 @@ angular.module('bug.controllers')
                 } else {
                     console.warn('clone of', $scope.bug.cloneOf);
                     modalService.showModal({}, modalOptions).then(function() {
-                        var cloneOps = [Bug.count().then(function(response) {
-                            newBugId = parseInt(response.data.count) + 1;
+                        var cloneOps = [Bug.getNewId().then(function(response) {
+                            newBugId = parseInt(response.data.nextId);
                             clone.bug.id = newBugId;
                             clone.bug.tofixin = $scope.newClone.tofixin;
                             clone.bug.priority = $scope.newClone.priority;

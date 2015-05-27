@@ -91,7 +91,9 @@ app.use('/v1/', function(req, res, next) {
             throw err;
         }
     }
-    var url = req.protocol + '://' + req.headers.host +'/v1' + req.url;
+    //var url = req.protocol + '://' + req.headers.host +'/v1' + req.url;
+    var url = req.protocol + '://localhost:8006'  +'/v1' + req.url;
+    console.log('url ==', url);
     switch (req.method) {
         case 'GET':
             req.pipe(request(url, {
@@ -100,7 +102,8 @@ app.use('/v1/', function(req, res, next) {
                     pass: 'admin',
                     sendImmediately: false
                 }
-            }, function(error, response, body) {
+            },
+             function(error, response, body) {
                 if (error) {
                     next(error);
                 }
