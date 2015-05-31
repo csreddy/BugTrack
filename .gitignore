@@ -7,3 +7,7 @@ dist
 uploads/*
 error-log.txt
 npm-debug.log
+
+err.log
+
+out.log

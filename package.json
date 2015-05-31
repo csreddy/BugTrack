@@ -96,12 +96,12 @@
     "node": ">=0.10.0"
   },
   "main": "server/app.js",
-  "name": "fullstack-app",
+  "name": "bugtrack",
   "private": true,
   "scripts": {
     "start": "node server/app.js",
     "test": "grunt test",
     "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
   },
-  "version": "0.0.0"
+  "version": "1.0.0"
 }

@@ -35,3 +35,5 @@ Stack: MarkLogic 8.0-nightly + NodeJs + AngularJS (1.3)
 
 
  start server ``grunt serve | bunyan -j``
+ forever start -l forever.log -o out.log -e err.log server/app.js
+ <small count="{{getChildren().length}}">&nbsp;<b>({{getChildren().length}})</b></small>
