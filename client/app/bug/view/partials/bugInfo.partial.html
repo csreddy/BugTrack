@@ -53,10 +53,15 @@
                 <legend>
                     <h5><span class="glyphicon glyphicon-file"></span>  Error Stacktrace</span></h5>
                 </legend>
-                <div style="overflow: auto; max-height:500px;">
+                  <a href="" title="expand" ng-click="stackTraceWindow.toggle(true)" ng-hide="!stackTraceWindow.expand"><i class="fa fa-expand pull-right" style="color:red"></i></a>
+                    <a href="" title="compress" ng-click="stackTraceWindow.toggle(false)" ng-hide="stackTraceWindow.expand"><i class="fa fa-compress pull-right" style="color:red"></i></a>
+                <!-- <div style="overflow: auto; max-height:500px;"> -->
+                <div ng-style="stackTraceWindow.compress">
                     <div hljs source="bug.stacktrace"></div>
                     <!-- <p class="gist">{{bug.stacktrace}}</p> -->
                 </div>
+                  <a href="" title="expand" ng-click="stackTraceWindow.toggle(true)" ng-hide="!stackTraceWindow.expand"><i class="fa fa-expand pull-right" style="color:red"></i></a>
+                    <a href="" title="compress" ng-click="stackTraceWindow.toggle(false)" ng-hide="stackTraceWindow.expand"><i class="fa fa-compress pull-right" style="color:red"></i></a>
             </div>
         </div>
     </div>

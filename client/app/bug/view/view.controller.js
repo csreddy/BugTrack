@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('bug.controllers')
-    .controller('viewCtrl', ['$scope', '$location', '$window', '$sce', 'Bug', 'clones', 'config', 'Flash', 'currentUser', 'modalService', '$q', 'ngProgress',
+    .controller('viewCtrl', ['$scope', '$location', '$window', '$sce', 'Bug', 'clones', 'config', 'Flash', 'currentUser', 'modalService', '$q', 'ngProgress', 'Common',
 
-        function($scope, $location, $window, $sce, Bug, clones, config, Flash, currentUser, modalService, $q, ngProgress) {
+        function($scope, $location, $window, $sce, Bug, clones, config, Flash, currentUser, modalService, $q, ngProgress, Common) {
             $location.search({}).replace(); // clear query params from url when navigating from search page
             $scope.changes = {};
             $scope.updatedBy = {
@@ -22,22 +22,43 @@ angular.module('bug.controllers')
                 closed: false
             };
             $scope.clones = clones.data;
+            $scope.stackTraceWindow = {
+                compress: {
+                    'overflow': 'auto',
+                    'max-height': '500px'
+                },
+                expand: true,
+                toggle: function(expand) {
+                    if (expand) {
+                        // remove style
+                        this.compress = '';
+                        this.expand = !this.expand;
+                    } else {
+                        // apply style
+                        this.compress = {
+                            'overflow': 'auto',
+                            'max-height': '500px'
+                        };
+                        this.expand = !this.expand;
+                    }
+                }
+            };
 
-            
+
             // check if this preference is stored in localStorage before
             // otherwise set the defaults
             try {
-                if($window.localStorage.showCompactInfoBox){
-                    $scope.sideBar =  false;
+                if ($window.localStorage.showCompactInfoBox) {
+                    $scope.sideBar = false;
                     $scope.compactInfoBox = true;
-                }else{
-                 $scope.sideBar = true;
-                 $scope.compactInfoBox = false;   
-                } 
+                } else {
+                    $scope.sideBar = true;
+                    $scope.compactInfoBox = false;
+                }
             } catch (e) {
                 // defaults
-                 $scope.sideBar = true;
-                 $scope.compactInfoBox = false;
+                $scope.sideBar = true;
+                $scope.compactInfoBox = false;
             }
 
 
@@ -78,17 +99,17 @@ angular.module('bug.controllers')
                         $scope.hasAttachments = true;
                     }
 
-                  /*  // watch for bug field changes   
-                    Bug.watch($scope, 'status');
-                    Bug.watch($scope, 'priority');
-                    Bug.watch($scope, 'severity');
-                    Bug.watch($scope, 'category');
-                    Bug.watch($scope, 'version');
-                    Bug.watch($scope, 'platform');
-                    Bug.watch($scope, 'tofixin');
-                    Bug.watch($scope, 'fixedin');
-                    Bug.watch($scope, 'assignTo');
-                    Bug.watch($scope, 'support');*/
+                    //   // watch for bug field changes   
+                    // Bug.watch($scope, 'status');
+                    // Bug.watch($scope, 'priority');
+                    // Bug.watch($scope, 'severity');
+                    // Bug.watch($scope, 'category');
+                    // Bug.watch($scope, 'version');
+                    // Bug.watch($scope, 'platform');
+                    // Bug.watch($scope, 'tofixin');
+                    // Bug.watch($scope, 'fixedin');
+                    // Bug.watch($scope, 'assignTo');
+                    // Bug.watch($scope, 'support');
 
 
                     // Flash.addAlert('success', 'opened ' + uri);
@@ -209,7 +230,7 @@ angular.module('bug.controllers')
             $scope.showSidebar = function() {
                 $scope.compactInfoBox = false;
                 $scope.sideBar = true;
-                delete  $window.localStorage.showCompactInfoBox;
+                delete $window.localStorage.showCompactInfoBox;
             };
 
             // show compact info box
@@ -218,7 +239,6 @@ angular.module('bug.controllers')
                 $scope.sideBar = false;
                 $window.localStorage.showCompactInfoBox = 'true';
             };
-
 
             // update bug 
             $scope.updateBug = function() {
@@ -234,11 +254,9 @@ angular.module('bug.controllers')
                 updateBug.platform = $scope.platform || $scope.bug.platform;
                 updateBug.fixedin = $scope.fixedin || $scope.bug.fixedin;
                 updateBug.comment = $scope.newcomment || '';
-                updateBug.comment =  updateBug.comment
-                                                .replace(/(b#)(\d*)/,   "<a href='/bug/$2'>$2</a>")
-                                                .replace(/(t#)(\d*)/,   "<a href='/task/$2'>$2</a>")
-                                                .replace(/(r#)(\d*)/,   "<a href='/rfe/$2'>$2</a>");
-                // updateBug.subscribers = $scope.assignTo || '';
+                updateBug.comment = Common.linkifyBugId(updateBug.comment);
+
+                updateBug.subscribers = $scope.assignTo || '';
                 updateBug.updatedBy = $scope.updatedBy;
                 updateBug.support = $scope.support || $scope.bug.support;
                 updateBug.svninfo = {};

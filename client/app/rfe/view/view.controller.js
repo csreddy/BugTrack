@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('rfe.controllers')
-    .controller('viewRFECtrl', ['$scope', '$location', '$timeout', '$q', '$sce','RFE', 'Task','SubTasks','config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
+    .controller('viewRFECtrl', ['$scope', '$location', '$timeout', '$q', '$sce','RFE', 'Task','SubTasks','config', 'Flash', 'currentUser', 'modalService', 'ngProgress', 'Common',
 
-        function($scope, $location, $timeout, $q, $sce, RFE, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress) {
+        function($scope, $location, $timeout, $q, $sce, RFE, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress, Common) {
             $location.search({}).replace(); // clear query params from url when navigating from search page
             $scope.changes = {};
             $scope.updatedBy = currentUser || {};
@@ -145,9 +145,7 @@ angular.module('rfe.controllers')
                 }
 
                if ($scope.rfe.comment) {
-                    $scope.rfe.comment = $scope.rfe.comment.replace(/(b#)(\d*)/, "<a href='/bug/$2'>$2</a>")
-                        .replace(/(t#)(\d*)/, "<a href='/task/$2'>$2</a>")
-                        .replace(/(r#)(\d*)/, "<a href='/rfe/$2'>$2</a>");
+                    $scope.rfe.comment = Common.linkifyBugId($scope.rfe.comment);
                 }
 
                 RFE.update($scope.rfe, oldCopy, $scope.files).success(function() {

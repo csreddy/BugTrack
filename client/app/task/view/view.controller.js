@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('task.controllers')
-    .controller('viewTaskCtrl', ['$scope', '$location', '$timeout', '$q', '$sce', 'Task', 'SubTasks', 'config', 'Flash', 'currentUser', 'modalService', 'ngProgress',
+    .controller('viewTaskCtrl', ['$scope', '$location', '$timeout', '$q', '$sce', 'Task', 'SubTasks', 'config', 'Flash', 'currentUser', 'modalService', 'ngProgress', 'Common',
 
-        function($scope, $location, $timeout, $q, $sce, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress) {
+        function($scope, $location, $timeout, $q, $sce, Task, SubTasks, config, Flash, currentUser, modalService, ngProgress, Common) {
             $location.search({}).replace(); // clear query params from url when navigating from search page
             $scope.changes = {};
             $scope.updatedBy = {
@@ -148,9 +148,7 @@ angular.module('task.controllers')
                 }
 
                 if ($scope.task.comment) {
-                    $scope.task.comment = $scope.task.comment.replace(/(b#)(\d*)/, "<a href='/bug/$2'>$2</a>")
-                        .replace(/(t#)(\d*)/, "<a href='/task/$2'>$2</a>")
-                        .replace(/(r#)(\d*)/, "<a href='/rfe/$2'>$2</a>");
+                    $scope.task.comment = Common.linkifyBugId($scope.task.comment);
                 }
 
                 Task.update($scope.task, oldCopy, $scope.files).success(function() {

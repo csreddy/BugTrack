@@ -33,6 +33,7 @@ var app = angular.module('fullstackApp', [
 
     'modal.services',
     'flash.services',
+    'common.services',
 
     // 'bugTexteditor.directive',
     'wysiHtml5.directive',
@@ -46,6 +47,26 @@ var app = angular.module('fullstackApp', [
 ]);
 app.config(function($routeProvider, $locationProvider) {
     $routeProvider
+        .when('/goto/:id', {
+            template: '',
+            controller: ['$routeParams', '$location', 'Search', 'Flash',
+                function($routeParams, $location, Search, Flash) {
+                    console.log('goto', $routeParams);
+                    Search.search({
+                        q: 'id:' + $routeParams.id
+                    }).success(function(response) {
+                        try {
+                            var url = '/' + response[1].content.kind.toLowerCase() + '/' + $routeParams.id;
+                            $location.path(url).replace();
+                        } catch (e) {
+                            $location.path('/404').replace();
+                        }
+                    }).error(function(error) {
+                        Flash.addAlert('danger', 'Oops! something went wrong. Reload page and try again');
+                    });
+                }
+            ]
+        })
         .when('/404', {
             templateUrl: 'components/404.html'
         })
@@ -82,11 +103,13 @@ app.config(function($routeProvider, $locationProvider) {
     };
 })
 // trust html content
-.filter('trustedHtml', ['$sce', function($sce){
+.filter('trustedHtml', ['$sce',
+    function($sce) {
         return function(text) {
             return $sce.trustAsHtml(text);
         };
-    }])
+    }
+])
 // progress bar
 .run(function($rootScope, $location, ngProgress, $anchorScroll) {
     $rootScope.$on('$routeChangeStart', function() {
@@ -97,9 +120,9 @@ app.config(function($routeProvider, $locationProvider) {
 
     $rootScope.$on('$routeChangeSuccess', function() {
         ngProgress.complete();
-         $location.hash();
-          $anchorScroll.yOffset = 80;
-         $anchorScroll();  
+        $location.hash();
+        $anchorScroll.yOffset = 80;
+        $anchorScroll();
     });
     // Do the same with $routeChangeError
 })
@@ -129,7 +152,7 @@ app.config(function($routeProvider, $locationProvider) {
         if ($location.$$path === '/login' || $location.$$path === '/register') {
             $rootScope.setBg = {
                 background: '#192026'
-              //  background: 'url(../assets/images/intro-bg.jpg)'
+                //  background: 'url(../assets/images/intro-bg.jpg)'
             };
         } else {
             $rootScope.setBg = {

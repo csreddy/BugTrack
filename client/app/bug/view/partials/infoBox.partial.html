@@ -1,8 +1,3 @@
- <div ng-include="'components/navbar/navbar.html'"></div>
-  <div class="hidden-xs" ng-include="'app/bug/view/partials/compactInfoBox.partial.html'"></div>
-  <div class="hidden-sm hidden-md hidden-lg" ng-include="'app/bug/view/partials/mobile.compactInfoBox.partial.html'"></div>
-
-<!-- <div ng-include="'app/bug/view/partials/infoBox.partial.html'"></div> -->
  <div class="col-xs-12 col-sm-4 col-md-3 pull-left" id="infobox" ng-show="sideBar">
     <div class="panel panel-info">
         <div class="panel-heading" style="height: 40px">
@@ -192,22 +187,4 @@
 
         </div>
     </div>
-</div>
-
-<!-- bug details  -->
-<div class="col-xs-12 col-sm-12" ng-class="{'col-md-12': compactInfoBox, 'col-md-9': sideBar}">
-    <div ng-include="'app/bug/view/partials/bugInfo.partial.html'"></div>
-    <div ng-include="'app/bug/view/partials/clones.partial.html'"></div>
-    <div ng-include="'app/bug/view/partials/supportInfo.partial.html'"></div>
-    <div ng-include="'app/bug/view/partials/comments.partial.html'"></div>
-    <form name="commentForm">
-        <!-- <text-angular ta-toolbar="[['p','bold','pre', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage', 'insertVideo']]" ng-model="newcomment" id="newcomment" name="newcomment" placeholder="Add a comment here"></text-angular> -->
-        <text-angular ta-toolbar="[['p','bold','pre','quote', 'italics', 'underline', 'ul', 'ol', 'indent', 'outdent','insertLink','insertImage']]" ng-model="newcomment" id="newcomment" name="newcomment" placeholder="Add a comment here"></text-angular>
-        <br>
-        <input type="file" file-upload multiple/>
-        <ul>
-            <li ng-repeat="file in files">{{file.name}}</li>
-        </ul>
-        <button ng-click="updateBug()" id="updatebug" name="updatebug" class="btn btn-primary btn-danger">Update</button>
-    </form>
 </div>

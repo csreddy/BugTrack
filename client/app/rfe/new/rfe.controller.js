@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('rfe.controllers', ['angularFileUpload', 'textAngular', 'ngProgress'])
-    .controller('newRFECtrl', ['$scope','$q', '$location', 'config', 'currentUser', 'RFE', 'Flash', 'ngProgress',
-        function($scope, $q, $location, config, currentUser, RFE, Flash, ngProgress) {
+    .controller('newRFECtrl', ['$scope','$q', '$location', 'config', 'currentUser', 'RFE', 'Flash', 'ngProgress', 'Common',
+        function($scope, $q, $location, config, currentUser, RFE, Flash, ngProgress, Common) {
             $location.search({}).replace();
             $scope.rfe = {};
             $scope.rfe.parent = {};
@@ -82,7 +82,7 @@ angular.module('rfe.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                     rfe.id = response.nextId;
                     rfe.kind = 'RFE';
                     rfe.title = $scope.rfe.title;
-                    rfe.description = $scope.rfe.description;
+                    rfe.description = Common.linkifyBugId($scope.rfe.description);
                     rfe.description.replace(/(b#)(\d*)/,   "<a href='/bug/$2'>$2</a>")
                                                 .replace(/(t#)(\d*)/,   "<a href='/task/$2'>$2</a>")
                                                 .replace(/(r#)(\d*)/,   "<a href='/rfe/$2'>$2</a>");

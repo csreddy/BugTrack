@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgress'])
-    .controller('newBugCtrl', ['$scope', '$location', 'Bug', 'Config', 'Flash', 'User', 'config', 'currentUser', 'ngProgress',
+    .controller('newBugCtrl', ['$scope', '$location', 'Bug', 'Config', 'Flash', 'User', 'config', 'currentUser', 'ngProgress', 'Common',
 
-        function($scope, $location, Bug, Config, Flash, User, config, currentUser, ngProgress) {
+        function($scope, $location, Bug, Config, Flash, User, config, currentUser, ngProgress, Common) {
             $location.search({}).replace(); // clear query params from url when navigating from search page
 
             // accordion interactions   
@@ -208,7 +208,7 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
                         name: $scope.submittedBy.name
                     };
                     bug.assignTo = $scope.assignTo;
-                    bug.description = $scope.description;
+                    bug.description = Common.linkifyBugId($scope.description);
                     bug.description.replace(/(b#)(\d*)/, "<a href='/bug/$2'>$2</a>")
                         .replace(/(t#)(\d*)/, "<a href='/task/$2'>$2</a>")
                         .replace(/(r#)(\d*)/, "<a href='/rfe/$2'>$2</a>");
@@ -272,5 +272,6 @@ angular.module('bug.controllers', ['angularFileUpload', 'textAngular', 'ngProgre
             this.submitBug = function() {
                 submitBug();
             };
+
         }
     ]);

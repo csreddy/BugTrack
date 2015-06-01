@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgress'])
-    .controller('newTaskCtrl', ['$scope', '$q', '$location', 'config', 'currentUser', 'Task', 'RFE', 'Flash', 'ngProgress',
-        function($scope, $q, $location, config, currentUser, Task, RFE, Flash, ngProgress) {
+    .controller('newTaskCtrl', ['$scope', '$q', '$location', 'config', 'currentUser', 'Task', 'RFE', 'Flash', 'ngProgress', 'Common',
+        function($scope, $q, $location, config, currentUser, Task, RFE, Flash, ngProgress, Common) {
            $location.search({}).replace();
             $scope.task = {};
             $scope.task.parent = {};
@@ -88,7 +88,7 @@ angular.module('task.controllers', ['angularFileUpload', 'textAngular', 'ngProgr
                     task.id = response.nextId;
                     task.kind = 'Task';
                     task.title = $scope.task.title;
-                    task.description = $scope.task.description;
+                    task.description = Common.linkifyBugId($scope.task.description);
                     task.note = $scope.task.note;
                     task.days = $scope.task.days;
                     task.status = $scope.config.status[0];
