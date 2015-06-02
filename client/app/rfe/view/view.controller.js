@@ -36,7 +36,7 @@ angular.module('rfe.controllers')
             var id = $location.path().replace('/rfe/', '');
 
             $scope.days = _.range(1, 101);
-
+            $scope.commentWindow = Common.commentWindow;
 
             // for calendar   
             $scope.cal = {

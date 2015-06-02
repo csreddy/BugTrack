@@ -22,28 +22,8 @@ angular.module('bug.controllers')
                 closed: false
             };
             $scope.clones = clones.data;
-            $scope.stackTraceWindow = {
-                compress: {
-                    'overflow': 'auto',
-                    'max-height': '500px'
-                },
-                expand: true,
-                toggle: function(expand) {
-                    if (expand) {
-                        // remove style
-                        this.compress = '';
-                        this.expand = !this.expand;
-                    } else {
-                        // apply style
-                        this.compress = {
-                            'overflow': 'auto',
-                            'max-height': '500px'
-                        };
-                        this.expand = !this.expand;
-                    }
-                }
-            };
-
+            $scope.stackTraceWindow = Common.stackTraceWindow;
+            $scope.commentWindow = Common.commentWindow;
 
             // check if this preference is stored in localStorage before
             // otherwise set the defaults

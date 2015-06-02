@@ -6,7 +6,7 @@
 <span><a href="#{{$index+1}}" tooltip-trigger tooltip-animation="false" tooltip-placement="top" tooltip="comment #{{$index+1}}" id="{{$index+1}}">#{{$index+1}}</a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
             {{::item.time | date:'medium'}}</p>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" id="comments">
 <p>
             <dl ng-repeat="(key, value) in item.change" class="dl-horizontal" id="changelist">
                 <div ng-switch on="key">
@@ -97,7 +97,7 @@
                         </dd>
                 </dl>
                 </p>
-             <div ta-bind ng-model="item.comment" ng-show="item.comment">
+               <p ng-show="item.comment"  ng-bind-html="item.comment | trustedHtml " id="comment-{{$index+1}}" ng-style="commentWindow.compress"></p>
             <!-- <p ng-show="item.comment" ng-bind-html="item.comment"></p> -->
 
             <!--   <b ng-show="item.attachments">Attached:</b> -->
@@ -106,5 +106,9 @@
                 <li><a href="/v1/documents?uri={{file.uri}}" target="_window">{{::file.name}}&nbsp;&nbsp;<span ng-show="task.files.length > 1">|</span></a>
                 </li>
             </ul>
+        <p ng-if="commentWindow.wordCount(item.comment) > 500">
+        <a href="" title="expand" id="comment-expand-{{$index+1}}" ng-click="commentWindow.toggle(true, $index+1)" ng-show="commentWindow.wordCount(item.comment) > 500 && !commentWindow.expand"><i class="fa fa-sort-down"></i> more</a>
+        <a href="" title="compress" id="comment-compress-{{$index+1}}" ng-click="commentWindow.toggle(false, $index+1)" ng-hide="!commentWindow.expand"><i class="fa fa-sort-asc"></i> less</a>    
+        </p>
     </div>
 </div>
