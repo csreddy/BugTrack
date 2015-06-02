@@ -18,7 +18,11 @@ angular.module('common.services', [])
             },
             expand: false,
             wordCount: function(str) {
-                return str.trim().split(' ').length;
+                if (str) {
+		            return str.trim().split(' ').length;                	
+                } else{
+                	return 0;
+                }
             },
             toggle: function(expand, index) {
                 if (expand) {
